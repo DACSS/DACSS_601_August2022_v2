@@ -1,0 +1,66 @@
+---
+title: "Challenge 1 "
+author: "Tyler Tewksbury"
+desription: "Reading in data and creating a post"
+date: "08/17/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xlsx ⭐⭐⭐⭐
+
+Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
+
+```{r}
+railroad_data <- read.csv("/Users/tylertewksbury/Desktop/Github/dacss601_august2022/posts/_data/railroad_2012_clean_county.csv")
+```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+
+railroad_data %>%
+summary()
+
+length(unique(railroad_data$state))
+
+```
+
+The dataset is a simple, pre cleaned spreadsheet consisting of three columns: State, County, and Total_Employees. These three columns are self explanatory, labeling the state, county, and the amount of employees in said railroad system. Using the summary function,we can see that there are 2930 reported counties within 53 states (including DC, Armed Forces Europe, Armed Forces Pacific). This data could be useful to determine the size of specific railroad systems based on employment. The dataset could be enhanced by adding in overall population data so one can answer questions such as the percent of people in a county who work on railroads. 
