@@ -1,6 +1,6 @@
 ---
-title: "Your Name"
-image: images/YourName.jpeg
+title: "Sathvik"
+image: YourName.jpeg
 about:
   template: solana
   image-width: 15em
@@ -30,11 +30,11 @@ about:
 
 ## Research interests
 
-
+sa.fbv jkafsdvno;jafk
 ## Hometown
 
 
 ## Hobbies
-
+bfvnijfdkv;bna
 
 ## Fun fact
