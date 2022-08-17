@@ -1,6 +1,6 @@
 ---
 title: "Challenge 1 Instructions"
-author: "Meredith Rolfe"
+author: "Animesh Sengupta"
 desription: "Reading in data and creating a post"
 date: "08/15/2022"
 format:
@@ -19,6 +19,8 @@ categories:
 #| message: false
 
 library(tidyverse)
+library(readr)
+library(readxl)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
@@ -44,7 +46,8 @@ Read in one (or more) of the following data sets, using the correct R package an
 Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
 
 ```{r}
-
+#| label: Export Data
+debt_data <- read_excel("../posts/_data/debt_in_trillions.xlsx")
 ```
 
 Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
@@ -55,5 +58,7 @@ Using a combination of words and results of R commands, can you provide a high l
 
 ```{r}
 #| label: summary
-
+dim(debt_data)
+colnames(debt_data)
+head(debt_data,5)
 ```
