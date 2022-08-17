@@ -1,0 +1,71 @@
+---
+title: "Challenge 1 Instructions"
+author: "Meredith Rolfe"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xlsx ⭐⭐⭐⭐
+
+Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
+
+```{r}
+railroad <- read_csv("_data/railroad_2012_clean_county.csv")
+railroad
+```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+spec(railroad)
+
+railroad %>%
+  filter(state == "AK")
+    
+railroad %>%
+  group_by(state) %>%
+  summarise(total_employees2 = sum(total_employees))
+
+```
+
+
+When I used the spec() function, it returned the variable types of the columns. We know that state is type col_character(), county is type col_character() and total_employees is type col_double(). When I filtered through just the state of AK it returns the list of the total employees for each county in that state. I created a pipe that groups all the states together an than is summarized by the total amount of employees in each state. This pipe is useful because I now know how many total employees are in each state. This data was likely gathered in 2012 from the most used railroad stations in the USA. This dataset is also long in the sense that the column length is much greater than the amount of columns present.
