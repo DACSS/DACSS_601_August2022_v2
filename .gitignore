@@ -47,5 +47,8 @@ _freeze/site_libs/
 *.Rproj
 .DS_Store
 
+#templates
+_templates/
+
 
 
