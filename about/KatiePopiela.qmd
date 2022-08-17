@@ -1,0 +1,37 @@
+---
+title: "Katie Popiela"
+image: images/YourName.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/YourName.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/github_user
+---
+
+## Education/Work Background
+
+I went to Mount Holyoke College for undergrad and double-majored in History and Politics. I've had several admin jobs, but now I work at a dog sanctuary!!
+
+## R experience
+
+This course last semester
+
+## Research interests
+
+I wrote my thesis on local-level ethnic and religious violence in times of extreme political instability and I'd like to make that into something much bigger than i could on my own with primary source materials
+
+## Hometown
+
+Hawthorne, NJ but now I live outside Hartford
+
+## Hobbies
+
+PLANTS!! Painting/photography, hanging out with my dog and my fiance
+
+## Fun fact
+
+I have 3 snakes and one of them is albino
