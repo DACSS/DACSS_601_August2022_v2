@@ -1,0 +1,92 @@
+---
+title: "Challenge 2 Instructions"
+author: "Meredith Rolfe"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - FAO
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in Data
+
+```{r}
+FAO <- read_csv("_data/FAOSTAT_livestock.csv")
+FAO
+```
+
+This dataset comes from the Food and Agriculture Association of the United Nations. They publish country-level data regularly and I am going to be looking at country-level estimates of the number of animals that are raised for livestock. We can see that there are `r nrow(FAO)` rows in the livestock data.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+spec(FAO)
+
+FAO.sm <- FAO %>%
+  select(-contains("Code"))
+FAO.sm
+
+print(dfSummary(FAO.sm, varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+Based on the results of the spec() function, I can see that there are six variables that are type double and eight that are type character. Out of the six double() variables, *Area Code*, *Year* and *Item Code* are all good grouping variables because they do not have values that vary across rows. I  dropped the double() variables that contain **code** because they are just numeric codes for database management purposes. Using summarytools(), I can say that the records in this dataset are the number of Live Animal Stocks and the units of the values is Head. Each case in this dataset consists of an animal record based on the country and year that tries to estimate the number of live animals which is represented by Value. In total, I have estimates of the stock of nine different types of livestock (Asses, Buffaloes, Camels, Cattle, Goats, Horses, Mules, Pigs, Sheep ) in 253 areas  for 58 years. The flags correspond to what type of estimate is being used. 
+
+## Provide Grouped Summary Statistics
+
+
+```{r}
+FAO.sm %>%
+  filter(Flag=="A")%>%
+  group_by(Area)%>%
+  summarize(n=n())
+
+
+
+FAO_clc <- FAO.sm %>%
+  filter(Flag!="A")
+
+FAO_clc  
+
+FAO_clc %>%
+  group_by(Item) %>%
+  summarize(avg=mean(Value, na.rm = TRUE),
+            mode = n(),
+            median = median(Value, na.rm = TRUE),
+            stdev= sd(Value, na.rm = TRUE),
+            min = min(Value, na.rm = TRUE),
+            max = max(Value, na.rm = TRUE))
+  
+
+
+```
+
+### Explain and Interpret
+
+Here we can confirm that not all cases are countries. Flag Value *A* corresponds to *Areas* that  are actually regional aggregations. These should be filtered out if I want to keep the same type of case as a country-level case. The second filter statement removes all cases with Flag Value *A* so that our dataset is at a country-level case. It seems like the distribution of cases for regional aggregations is even except for Areas Melanesia	and Micronesia. FAO_clc is more specific version of the dataset that only includes the cases that are type country-level. I have conducted exploartory analysis on FAO_clc on the group *Item* and my first impression was how vastly different the mean and median were for each *Item*. This implies that our data is skewed in one direction. I also see that each *Item* stdev is really high which indicates that the data observed is quite spread out. The min and max values tell little about the dataset
