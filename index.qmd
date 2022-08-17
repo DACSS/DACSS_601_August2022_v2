@@ -1,0 +1,10 @@
+---
+title: "DACSS 601 August 2022"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+---
+
+The blog posts here are contributed by students enrolled in DACSS 601, Fundamentals of Data Science. The course provides students with an introduction to R and the tidyverse, scientific publishing, and collaboration through GitHub, building a foundation for future coursework. Students also are introduced to general data management and data wrangling skills, with an emphasis on best practice workflows and tidy data management.
