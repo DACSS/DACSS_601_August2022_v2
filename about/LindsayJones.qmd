@@ -1,0 +1,41 @@
+---
+title: "Lindsay Jones"
+image: images/LindsayJones.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/LindsayJones.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/cbjamz
+---
+
+## Education/Work Background
+
+B.A. - Sociology, UC San Diego
+
+*Minor in Communication*
+
+Executive Assistant of a retirement community from 2019-2022.
+
+## R experience
+
+You're looking at it!
+
+## Research interests
+
+Social Network Analysis, Digital Behaviors, Social Demography
+
+## Hometown
+
+Sacramento, California
+
+## Hobbies
+
+Lately I've enjoyed playing trumpet, playing [Redactle](https://www.redactle.com/), and making ice cream.
+
+## Fun fact
+
+I once made the mistake of climbing a waterfall in running shoes.
