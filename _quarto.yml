@@ -19,7 +19,7 @@ website:
       - href: https://umass.edu/sbs/dacss
         text: "DACSS"
       - icon: github
-        href: https://github.com/DACSS/dacss601_august2022
+        href: https://github.com/DACSS/DACSS_601_August2022_v2
         aria-label: GitHub
 
 execution:
