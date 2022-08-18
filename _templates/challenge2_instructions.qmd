@@ -39,7 +39,9 @@ Read in one (or more) of the following data sets, available in the `posts/_data`
 -   hotel_bookings ⭐⭐⭐⭐
 
 ```{r}
-
+library(readr)
+railroad_2012 <- read_csv("posts/_data/railroad_2012_clean_county.csv")
+View(railroad_2012)
 ```
 
 Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
@@ -50,7 +52,12 @@ Using a combination of words and results of R commands, can you provide a high l
 
 ```{r}
 #| label: summary
-
+#Data Dimensions
+dim(railroad_2012)
+#Data Columns
+colnames(railroad_2012)
+#Preview of Actual Data
+head(railroad_2012,5)
 ```
 
 ## Provide Grouped Summary Statistics
@@ -58,6 +65,7 @@ Using a combination of words and results of R commands, can you provide a high l
 Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
 
 ```{r}
+
 
 ```
 
