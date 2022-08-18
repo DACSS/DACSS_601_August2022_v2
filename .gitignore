@@ -42,7 +42,7 @@ vignettes/*.pdf
 /.quarto/
 /_site/
 _freeze/site_libs/
-_quarto.yml
+#_quarto.yml
 posts/_metadata.yml
 /*.*
 
