@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```{r}
 # Reading railroad_2012 dataset
 library(readr)
-railroad <- read_csv("railroad_2012_clean_county.csv")
+railroad <- read_csv("_data/railroad_2012_clean_county.csv")
 ```
 
 Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
