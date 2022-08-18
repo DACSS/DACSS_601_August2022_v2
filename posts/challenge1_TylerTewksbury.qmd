@@ -44,7 +44,7 @@ Read in one (or more) of the following data sets, using the correct R package an
 Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
 
 ```{r}
-railroad_data <- read.csv("/Users/tylertewksbury/Desktop/Github/dacss601_august2022/posts/_data/railroad_2012_clean_county.csv")
+railroad_data <- read_csv("_data/railroad_2012_clean_county.csv")
 ```
 
 Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
