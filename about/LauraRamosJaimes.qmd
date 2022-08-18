@@ -1,0 +1,41 @@
+---
+title: "Laura Ramos Jaimes"
+image: images/lramosjaimes.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/lramosjaimes.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/lauramosjaimes
+---
+
+## Education/Work Background
+
+University of Massachusetts, Amherst -- UMass Amherst. USA. PhD Student in Economics.
+
+The London School of Economics and Political Science -- LSE. London, UK. M.Sc. in Gender, Policy and Inequalities.
+
+Universidad Nacional de Colombia -- UNAL. Bogotá, Colombia.BA. in Economics.
+
+## R experience
+
+Enough to pass my introductory-level courses
+
+## Research interests
+
+Feminist Economics. Political economy. Economics of Education.
+
+## Hometown
+
+Barrancabermeja, Colombia.
+
+## Hobbies
+
+Climbing and 1000 piece puzzles I don't finish.
+
+## Fun fact
+
+Not all Colombians dance salsa, but I do and I love it.
