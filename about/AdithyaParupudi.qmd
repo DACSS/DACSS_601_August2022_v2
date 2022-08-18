@@ -1,0 +1,49 @@
+---
+title: "Adithya Parupudi"
+image: images/myPhoto.jpg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/myPhoto.jpg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/Adithya1243
+---
+
+## Instructions
+
+-   save a copy of this document as *FirstLast.qmd* in the **about** folder
+-   replace *Your Name* in yaml header with your first and last name
+-   save an image (jpeg, png) to use in the **about/images** folder
+-   replace image names in yaml header
+-   replace github user name
+-   fill in information below, as appropriate
+-   commit to github and submit pull request
+
+## Education/Work Background
+
+I've graduated in 2019 with a B.Tech in Computer Science & Engineering (CSE) from JNTU, Hyderabad
+
+I've worked in Tech Mahindra for 2.8 yrs as a Oracle SOA 12c developer and production support engineer.
+
+## R experience
+
+I have foundational knowledge in R, gathered from youtube and datacamp.
+
+## Research interests
+
+Interested about Psychology and Social Behaviour
+
+## Hometown
+
+I'm from Hyderabad, India
+
+## Hobbies
+
+Cooking, Anime, Workout, Photography
+
+## Fun fact
+
+I'm scared of heights and I avoid horror movies. :)
