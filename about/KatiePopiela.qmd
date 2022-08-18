@@ -1,11 +1,11 @@
 ---
 title: "Katie Popiela"
-image: images/KatiePopiela.jpg
+image: images/KatiePopiela.jpeg
 about:
   template: solana
   image-width: 15em
   image-shape: round
-  image: images/KatiePopiela.jpg
+  image: images/KatiePopiela.jpeg
   links:
     - icon: github
       text: Github
