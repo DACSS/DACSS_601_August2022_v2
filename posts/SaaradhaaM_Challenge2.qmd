@@ -1,0 +1,87 @@
+---
+title: "Challenge 2"
+author: "Saaradhaa M"
+description: "Data Wrangling"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    df-print: paged 
+categories:
+  - challenge_2
+  - hotel_bookings.csv
+  - tidyverse
+  - readr
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readr)
+
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Reading in the data
+
+```{r}
+#| label: read in
+# Read in and view the dataset.
+hotel <- read.csv("_data/hotel_bookings.csv")
+hotel
+```
+
+## Description of data
+
+```{r}
+#| label: description
+# Get rows and columns.
+dim(hotel)
+# Find which columns have missing data.
+which(colSums(is.na(hotel))>0)
+```
+
+In the hotel bookings dataset, there are 119390 cases and 32 columns. Only the **children** column has missing data (*N* = 11). Interesting columns include assigned room type, previous cancellations, days in waiting list and is_canceled. There are also columns for **country** and **hotel**, indicating that the data was likely gathered by surveying different hotels around the world.
+
+## Grouped summary statistics #1
+
+I first want to examine the relationship between number of days in the waiting list and whether the booking was cancelled.
+
+```{r}
+#| label: Question 1 Summary Statistics
+# Check if is_canceled is binary.
+apply(hotel,2,function(x) { all(x %in% 0:1) })
+
+# Check mean and median for days in waiting list.
+summarise(hotel, diwl_mean = mean(days_in_waiting_list), diwl_median = median(days_in_waiting_list))
+
+# Check mean of is_canceled, grouped by days in waiting list.
+hotel %>%
+  group_by(days_in_waiting_list) %>%
+  select(`is_canceled`) %>%
+summarise(is_canceled_mean = mean(is_canceled))
+```
+
+Common sense tells me that those who wait longer are more likely to cancel their reservations, but I want to check if this can actually be observed in our data. The code chunk above demonstrates that is_canceled is a binary variable (with values 0 and 1). The tables generated also show that on average, people spend about 2 days on the waiting list. However, some people were on the waiting list for over a year!
+
+The mean cancellation rate is 1 for those who waited 391 days (understandable), and 0.36 for those who didn't wait at all.
+
+## Grouped summary statistics #1
+
+I also want to examine the relationship between assigned room type and previous cancellations.
+
+```{r}
+# Check median previous cancellations, grouped by assigned room type.
+hotel %>%
+  group_by(assigned_room_type) %>%
+  select(previous_cancellations) %>%
+summarise(previous_cancellations_median = median(previous_cancellations))
+```
+
+Most people assigned types A to K and type P were not likely to have previously cancelled their bookings. However, most people assigned type L were like to have previously cancelled their bookings on one occasion - if we can find the data source, it would be interesting to uncover how type L differs from the other room types (were these people given smaller rooms?).
