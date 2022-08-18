@@ -1,0 +1,40 @@
+---
+title: "Jerin Jacob"
+image: images/JerinJacob.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/JerinJacob.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/jerin248486
+---
+
+## Education/Work Background
+Work:
+Business Consultant, Freelance (India) - March 2020 to July 2022 
+Managing Director, Cresoul Trading & Logistics Pvt Ltd (India) - November 2014 to December 2019 
+Marketing Specialist, Eastern Hazar (Saudi Arabia) - October 2012 to October 2014
+Marketing Manager, Sookshamtech Integral Techno Solutions Pvt Ltd (India) - May 2011 to April 2012
+Assistant Store Manager, PJ Electronics & Home Appliance (India) - June 2008 to May 2009
+
+Education:
+MBA with Marketing & Finance Specialization, University of Kerala - 2009 to 2011
+Bachelor's degree in Physics, Mahatma Gandhi University - 2005 to 2008
+
+## R experience
+Beginner
+
+## Research interests
+Use of economic, political, geographical and meteorological data to predict the demand and supply of products and services, Effectiveness of marketing and PR in business and politics, based on analyzing patterns of social media usage and other media exposure of a population, Effect of different media and public responses of leaders/ famous personalities in the decision making of common people, Business decision-making based on data
+
+## Hometown
+Kottayam, Kerala
+
+## Hobbies
+music, traveling, farming 
+
+## Fun fact
+When I am in stress, I love to sleep ;)
