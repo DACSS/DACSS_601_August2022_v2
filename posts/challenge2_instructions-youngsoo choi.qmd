@@ -1,5 +1,5 @@
 ---
-title: "Challenge 2 Instructions"
+title: "Challenge 2"
 author: "Young Soo Choi"
 desription: "Data wrangling: using group() and summarise()"
 date: "08/16/2022"
@@ -40,7 +40,7 @@ Read in one (or more) of the following data sets, available in the `posts/_data`
 
 ```{r}
 library(readxl)
-state2012 <- read_xls("~/R/dacss601/dacss601_august2022/posts/_data/StateCounty2012.xls", skip=3)
+state2012 <- read_xls("_data/StateCounty2012.xls", skip=3)
 state2012
 colnames(state2012)
 ```
@@ -67,7 +67,6 @@ MA<-filter(state2012, STATE=="MA")
 summary(MA)
 CA<-filter(state2012, STATE=="CA")
 summary(CA)
-
 ```
 
 ### Explain and Interpret

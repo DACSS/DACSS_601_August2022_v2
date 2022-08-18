@@ -14,11 +14,11 @@ about:
 
 ## Education/Work Background
 
-I had majored inSociology and then worked for Korean Government over 10 years.
+I had majored in Sociology and then worked for Korean Government over 10 years.
 
 ## R experience
 
-None. I have no idea about R at all.
+None. I have no idea about R at all. 
 
 ## Research interests
 

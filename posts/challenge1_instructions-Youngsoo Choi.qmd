@@ -1,5 +1,5 @@
 ---
-title: "Challenge 1 Instructions"
+title: "Challenge 1"
 author: "Young Soo Choi"
 desription: "Reading in data and creating a post"
 date: "08/15/2022"
