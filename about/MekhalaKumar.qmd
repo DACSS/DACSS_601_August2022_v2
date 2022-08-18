@@ -1,0 +1,38 @@
+---
+title: "Mekhala Kumar"
+image: images/MekhalaKumar.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/MekhalaKumar.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/mekh09
+---
+
+## Education/Work
+
+I studied at FLAME University where I did an integrated program, earning a Bachelor's degree and Postgraduate Diploma. My major was Applied Mathematics and minor was Economics. Through my courses, I also had programming experience in Java, Python, R and STATA and visualisation experience in Google Data Studio and Tableau.\
+Moreover, I interned at the WageIndicator Foundation for two years, as an intern in Data Visualisation and Analysis team for a year and then as a co-manager of the same team in the following year.
+
+## R experience
+
+I attended a two week R Workshop at FLAME University where we learnt about operations in R and how to handle datasets. Additionally, I utilised R for statistical analysis in a few courses at FLAME University.
+
+## Research interests
+
+Migration, Gender Economics, Social Justice
+
+## Hometown
+
+Bengaluru
+
+## Hobbies
+
+I enjoy practising Karate, singing, swimming and reading books.
+
+## Fun fact
+
+I have made a few parodies, they're on YouTube.
