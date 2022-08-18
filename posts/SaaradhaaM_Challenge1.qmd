@@ -1,0 +1,96 @@
+---
+title: "Challenge 1"
+author: "Saaradhaa M"
+description: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+  - tidyverse
+  - readxl
+  - dplyr
+---
+
+```{r base}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to read in a dataset and describe the dataset using both words and any supporting information.
+
+## Read in the Data
+
+I will be working with the wild bird dataset.
+
+```{r reading in}
+# Load readxl package.
+library(readxl)
+#Read in and view the dataset.
+wildbird <- read_excel("_data/wild_bird_data.xlsx")
+view(wildbird)
+```
+
+## Describe the data
+
+Using a combination of words and results of R commands, our task is to provide a high level description of the data.
+
+```{r intro}
+# Run dim() to get the number of cases.
+dim(wildbird)
+# There are 147 cases and 2 columns in this dataset.
+# Run view() to see what these 2 columns are.
+view(wildbird)
+```
+
+There are 147 cases in 2 columns, which are **Wet Body Weight (g)** and **Population Size** (but these are in the rows and need to be renamed). Additionally, viewing the dataset shows that there are no missing cases.
+
+From one of the columns, I can see that the data was taken from Figure 1 of a paper written by Nee and colleagues (finding this paper will probably tell me which country this data is from). The column names also show that the data was probably collected via field research with wild birds.
+
+```{r cleaning}
+#Rename columns.
+library(dplyr)
+wildbird_new <- rename(wildbird, "wet_body_weight" = "Reference", "pop_size" = "Taken from Figure 1 of Nee et al.")
+#Remove the first row of data.
+wildbird_new <- wildbird_new[-1,]
+#Check that the cleaning was done correctly.
+view(wildbird_new)
+#Check the number of cases again.
+dim(wildbird_new)
+```
+
+Now that the columns are renamed and the first row is removed, we see that the true number of cases is 146.
+
+```{r conversion}
+# Let's check the descriptive statistics.
+summary(wildbird_new)
+# The data is in characters, so we need to convert it to numbers.
+wildbird_new$wet_body_weight <- as.numeric(wildbird_new$wet_body_weight)
+wildbird_new$pop_size <- as.numeric(wildbird_new$pop_size)
+```
+
+```{r analysis}
+# Now let's check the descriptive statistics again.
+library(dplyr)
+summary(wildbird_new)
+```
+
+The mean wet body weight of the wild birds analysed was about 364g, and the mean population size was close to 383000. There was also a wide range of entries in both variables. Now, let's check if they're correlated.
+
+```{r analysis 2}
+# Running correlation.
+cor(wildbird_new$wet_body_weight,wildbird_new$pop_size)
+summary(lm(wildbird_new$wet_body_weight~wildbird_new$pop_size))
+```
+
+They are quite weakly correlated.
