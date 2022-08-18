@@ -1,11 +1,11 @@
 ---
 title: "Lai Wei"
-image: images/YourName.jpeg
+image: images/Lai_Wei.jpeg
 about:
   template: solana
   image-width: 15em
   image-shape: round
-  image: images/YourName.jpeg
+  image: images/Lai_Wei.jpeg
   links:
     - icon: github
       text: Github
@@ -44,5 +44,4 @@ about:
 
 ## Fun fact
  Even though I spend more time in Massachusetts, Virginia is more like my hometown. 
-
 
