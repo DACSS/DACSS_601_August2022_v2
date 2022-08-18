@@ -1,0 +1,75 @@
+---
+title: "Challenge 2 Instructions"
+author: "Young Soo Choi"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   FAOstat\*.csv ⭐⭐⭐
+-   hotel_bookings ⭐⭐⭐⭐
+
+```{r}
+library(readxl)
+state2012 <- read_xls("~/R/dacss601/dacss601_august2022/posts/_data/StateCounty2012.xls", skip=3)
+state2012
+colnames(state2012)
+```
+
+This dataset has 2990 rows and 5 columns. And each column name is "STATE", "...2", "COUNTY", "...4", "TOTAL".
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+summary(state2012)
+```
+
+This dataset is about the number of workers related to railroad jobs in 2012 I think. And this dataset contains data of 2990 county.
+
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+```{r}
+MA<-filter(state2012, STATE=="MA")
+summary(MA)
+CA<-filter(state2012, STATE=="CA")
+summary(CA)
+
+```
+
+### Explain and Interpret
+
+MA is the state where I live in and CA is much bigger state I think. MA has 12 county and average total is 286.1 and CA has 55 county and average total is 238.9. So I figure CA has more county than MA but MA's average total is larger than CA's.
