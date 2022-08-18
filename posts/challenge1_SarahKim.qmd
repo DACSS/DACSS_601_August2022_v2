@@ -1,0 +1,93 @@
+---
+title: "Challenge 1 Sarah Kim"
+author: "Sarah Kim"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: tue
+categories:
+  - challenge_1
+  - second attempt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xlsx ⭐⭐⭐⭐
+
+Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
+
+```{r}
+library(readr)
+birds <- read_csv("_data/birds.csv")
+
+```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+
+# understanding the dimensions of the birds data set
+dim(birds)
+
+# filtering birds data after 2000
+
+BIRDS <- filter(birds, Year > 2000)
+
+# filtering birds data after 2000 in Afghanistan
+ 
+BIRDS_AFG <- filter(BIRDS, Area == "Afghanistan")
+BIRDS_AFG
+
+# arranging birds data after 2000 in Afghanistan
+arrange(BIRDS_AFG, Value)
+
+```
+
+# General Information about the Data
+
+-   There are 30,977 rows and 14 columns in the birds data set.
+
+-   By filtering the data set so that data after 2000 in Afghanistan, we see that Afghanistan birds data exists between 2001 and 2015.
+
+# Description of the Data
+
+-   By arranging the said data, we see that there are consistent increase in the value from 2014-2016.
+
+-   However, the year and the value do not show a proportional relationship as the highest value is for the year 2005.
+
+-   The two years that did not reach the value of 10,000 are 2001 and 2007.
+
+-   The two years that surpassed the value of 14,000 are 2005 and 2018.

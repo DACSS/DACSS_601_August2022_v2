@@ -1,0 +1,35 @@
+---
+title: "Sarah Kim"
+image: images/SarahKim.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/SarahKim.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/sarahselinkim
+---
+
+##Instructions
+
+## Education/Work Background
+dual degree in music and linguistics
+minor in comparative literature
+university of massachusetts amherst
+
+## R experience
+beginner 2.0
+
+## Research interests
+bilingualism, education policy, language education, second language acquisition
+
+## Hometown
+seoul, south korea
+
+## Hobbies
+music and reading
+
+## Fun fact
+i love prime numbers :]
