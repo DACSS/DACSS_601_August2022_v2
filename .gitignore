@@ -44,6 +44,7 @@ vignettes/*.pdf
 _freeze/site_libs/
 _quarto.yml
 posts/_metadata.yml
+/*.*
 
 #student files
 *.Rproj
