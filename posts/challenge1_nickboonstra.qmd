@@ -1,0 +1,137 @@
+---
+title: "Nick Boonstra Challenge 1 Resubmit"
+author: "Nick Boonstra"
+desription: "Reading in data and creating a post"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+  - boonstra
+  - week_1
+  - birds
+---
+
+## Introduction
+
+This challenge involves reading in and cleaning up data from the "birds" data set.
+
+#### Setup chunk
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Reading In and Cleaning Up
+
+```{r}
+#| label: read in
+
+birds<-read_csv("_data/birds.csv")
+birds
+
+
+```
+
+Fortunately, all of the data came in tidy, meaning:
+
+-   Each column measured observations of only one variable;
+-   Each row provided values for only one observation; and,
+-   Each cell contained only one value.
+
+### Data Cleanup
+
+However, while every column was nominally tidy-compliant, a number of them were extraneous, in that they provided redundant or useless data. These columns, specifically, were "Domain," "Domain Code," "Element," "Element Code," "Unit," and "Year Code."
+
+"Year Code" was redundant, in that its values were equal to "Year" for every observation. Of course, attempting to verify this by hand would be borderline impossible, but luckily this was easily testable by some quick code:
+
+```{r}
+#| label: year code test
+
+birds_test <- read_csv("_data/birds.csv")
+birds_test <- birds_test %>%
+  mutate(year_test = case_when(
+    Year == `Year Code` ~ 1,
+    TRUE ~ 0
+  ))
+count(birds_test,year_test)
+
+rm(birds_test)
+
+
+```
+
+Because the value of value of the dummy "year_test" variable is equal to 1 for all observations, we can know that "Year Code" was equal to "Year" for all observations, and thus eliminate "Year Code" without losing any information.
+
+In the case of the other five columns named above, all observations contained the same value, making the columns practically useless. Once again, this assertion was easily testable:
+
+```{r}
+#| label: single value vars
+
+count(birds,Domain)
+count(birds,`Domain Code`)
+count(birds,Element)
+count(birds,`Element Code`)
+count(birds,Unit)
+
+
+```
+
+Thus, with each column only carrying one value throughout the data set, these columns could be deleted without pratically losing information. In this case, however, the values being removed from the dataframe are not already being kept somewhere else in the dataframe, as opposed to the duplication found in the Year/Year Code case. Thus, recording these values in a separate location may be desirable, depending upon the exact nature of the dataset and the desired analysis.
+
+Beyond removing these extraneous columns, the only other adjustments I found necessary were to rename the remaining columns to abide by "snake_case." This was done for practicality (some of the column names had spaces), consistency, and personal preference.
+
+All of these changes, then, are seen here:
+
+```{r}
+#| label: cleanup
+
+birds<-birds %>%
+  select(-starts_with("Domain")) %>% ## All values identical for all obs
+  rename(area_code = `Area Code`) %>%
+  rename(area = Area) %>%
+  select(-starts_with("Element")) %>% ## All values identical for all obs
+  rename(item_code = `Item Code`) %>%
+  rename(item = Item) %>%
+  select(-`Year Code`) %>% ## Values identical to Year for all obs
+  rename(year = Year) %>%
+  select(-Unit) %>% ## All values identical for all obs
+  rename(value = Value) %>%
+  rename(flag = Flag) %>%
+  rename(flag_desc = `Flag Description`)
+
+birds
+
+
+```
+
+## Describing the data
+
+These data appear to be recording the populations of various types of birds across a number of countries and years.
+
+```{r}
+#| label: summary
+
+names(birds)
+birds %>%
+  group_by(item) %>%
+  summarise("Median Values by Type" = median(value,na.rm=T))
+birds %>%
+  group_by(year) %>%
+  summarise("Median Values by Year" = median(value,na.rm=T))
+birds %>%
+  group_by(area) %>%
+  summarise("Median Values by Area" = median(value,na.rm=T))
+
+
+```
