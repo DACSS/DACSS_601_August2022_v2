@@ -11,7 +11,6 @@ format:
     code-copy: true
     code-tools: true
     css: styles.css
-    self-contained: true
 categories:
   - challenge_3
   - solution
