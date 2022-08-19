@@ -69,6 +69,43 @@ state_grouped_railroad
 
 ```
 
+## Better way of producing results above
+
+```{r}
+railroad
+
+test_railroad <- railroad %>% group_by(state)
+
+test_railroad
+
+```
+
+```{r}
+#finding the total employees for each state
+
+test_railroad %>%summarise(
+  total_employees = sum(total_employees)
+)
+
+#trying to find descending order 
+
+#test_railroad <- test_railroad %>%summarise(
+  #total_employees = sum(total_employees)
+#)
+
+#test_railroad %>% arrange(desc(total_employees))
+
+```
+
+```{r}
+# finding the county(s) for each state that has the most number of employees
+test_railroad %>% filter(total_employees == max(total_employees))
+```
+
+```{r}
+#finding the county(s) for each state that has the least number of employees. In this case, there are multiple counties from a state that have the same minimum. 
+test_railroad %>% filter(total_employees == min(total_employees))
+```
 ### Explain and Interpret
 
 Work is still in progress.
