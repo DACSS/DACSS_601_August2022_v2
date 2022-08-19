@@ -1,0 +1,41 @@
+---
+title: "Saaradhaa M"
+image: images/SaaradhaaM.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/SaaradhaaM.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/granolas
+---
+
+## Background 🌱
+
+I received an Honours degree in Psychology from the National University of Singapore, then worked in government and industry. I'm currently a graduate student in the DACSS program.
+
+## R Experience 💡
+
+I took Microsoft's Introduction to R course in 2020. However, the bulk of my R experience will be coming from DACSS 601. I'm excited to learn!
+
+## Research Interests 🔍
+
+Group dynamics, implicit social cognition, inclusivity and networks in STEM
+
+## Hometown 🇸🇬
+
+I was born and raised in [Singapore](https://www.youtube.com/watch?v=XwYpr7UJFFI), a small city in Asia.
+
+## Hobbies 🐾
+
+-   I picked up yoga during the pandemic.
+
+-   I do a cappella with my college friends.
+
+-   Other things I enjoy include travel, hiking and trying new food.
+
+## Fun Fact ⭐️
+
+I am left-handed, but I play string instruments right-handed because those who taught me were right-handed.

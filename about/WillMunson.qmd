@@ -1,0 +1,37 @@
+---
+title: "Will Munson"
+image: images/WillMunson.jpg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/WillMunson.jpg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/5secondmemory
+---
+
+## Education/Work Background
+UMass Amherst - BS in Math (Concentration in statistics)
+Montgomery College Rockville - AS in Math
+Cogentiv Solutions Llc. - Database Management
+World Data Science Institute - Data Science Researcher
+
+## R experience
+R is pretty much my favorite language. I was introduced to R before I graduated high school, and started actively pursuing it by the time I started coming to UMass Amherst.
+
+## Research interests
+My research interests are actually very broad, but lately, my interests are leaning more towards environmental and agricultural research. I also have interests in what affects a city's median household income, or the wellbeing of people who live in those cities.
+
+## Hometown
+Haydenville, MA
+
+## Hobbies
+- Painting
+- Drawing
+- Magnet fishing
+- Video games
+
+## Fun fact
+I used to be Mormon, but I left before graduating high school. 

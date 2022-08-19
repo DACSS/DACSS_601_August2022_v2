@@ -1,0 +1,74 @@
+---
+title: "Challenge 1"
+author: "Mekhala Kumar"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Datasets used
+Two datasets have been used: Railroad_2012_clean_county and birds.
+
+```{r}
+#1st Dataset Railroad_2012_clean_county
+library(readr)
+railroad_2012_clean_county <- read_csv("_data/railroad_2012_clean_county.csv")
+view(railroad_2012_clean_county)
+#2nd Dataset birds
+birds <- read_csv("_data/birds.csv")
+View(birds)
+```
+
+## Description of Datasets 
+
+The first dataset is about the number of employees in each company. There are 3 variables as can be seen using the colnames command- state, county, number of employees. The number of employees is a continuous variable. The data was gathered from several states as seen in the table.\
+The second dataset has 14 columns and 30977 observations. From colnames, we get to know that the dataset gives us the values of the dietary energy intake for different countries across different years. Data types of the columns, value could actually be converted into double type. There were around 11000 missing values found and removed from the data. Many countries were included in this dataset and there are 6 types of birds but only one domain of animals present.\
+A plot was created to visualise the changes in the Value across the years.It can be seen that the values have increased over time. A plot was also created to visualise the changes in a specific country, in this case, the USA.
+
+```{r}
+#| label: summary
+
+#1st dataset Railroad_2012_clean_county
+
+colnames(railroad_2012_clean_county)
+
+states<-select(railroad_2012_clean_county,state)
+table(states)
+prop.table(table(states))
+
+#2nd dataset birds
+
+dim(birds) 
+colnames(birds)
+str(birds)
+birds <- transform(birds,value1 = as.numeric(Value))
+sum(is.na(birds))
+birds<-na.omit(birds)
+dim(birds)
+area<-select(birds,Area)
+table(area)
+item<-select(birds,Item)
+table(item)
+domain<-select(birds,Domain)
+table(domain)
+plot(value1~Year,birds)
+birds_USA<-birds%>% filter(`Area`=='United States of America')
+plot(value1~Year,birds_USA)
+```

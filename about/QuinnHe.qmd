@@ -1,0 +1,37 @@
+---
+title: "Quinn He"
+image: images/qheadshot.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/qheadshot.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/quinn556
+---
+
+## Education/Work Background
+
+I recently graduated from the University of Massachusetts Amherst in 2021 with a BA in English and a minor in Psychology. Afterwards, I worked for one year in retail while taking courses for the DACSS certificate. I wanted to further my education and applied to the DACSS MS program, which I am starting this Fall 2022.
+
+## R experience
+
+I have beginner/intermediate experience in R. For the year year I was working, I would study R in my spare time to keep my skills sharp. I still have much to learn when it comes to R/RStudio
+
+## Research interests
+
+I have not fully honed in my research interests, but I hope to come out of the program with extensive knowledge in the technical skills of data analysis and research.
+
+## Hometown
+
+Wayne, NJ
+
+## Hobbies
+
+I enjoy playing guitar, biking, reading, and cooking.
+
+## Fun fact
+
+I met  Jesse Eisenberg at an empty movie theater in NYC.

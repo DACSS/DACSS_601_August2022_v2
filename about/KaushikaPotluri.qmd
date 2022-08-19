@@ -1,0 +1,47 @@
+---
+title: "KaushikaPotluri"
+image: images/Curry.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/Curry.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/kaushiika
+---
+
+##Instructions
+
+-   save a copy of this document as *FirstLast.qmd* in the **about** folder
+-   replace *Your Name* in yaml header with your first and last name
+-   save an image (jpeg, png) to use in the **about/images** folder
+-   replace image names in yaml header
+-   replace github user name
+-   fill in information below, as appropriate
+-   commit to github and submit pull request
+
+## Education/Work Background
+
+I completed my undergraduate in Computer Science and Engineering at Bennett University, Delhi, India. I have work experience of 2 years now
+
+## R experience
+
+I am kind of new to R but I am trying to get there
+
+## Research interests
+
+My research interests are statistical analysis on data
+
+## Hometown
+
+My hometown is Hyderabad, India.
+
+## Hobbies
+
+I love playing tennis and watching basically all sports (mostly basketball). I am into photography.
+
+## Fun fact
+
+I am really short for someone who loves basketball!
