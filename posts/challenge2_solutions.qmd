@@ -1,7 +1,7 @@
 ---
 title: "Challenge 2 Solutions"
 author: "Meredith Rolfe"
-desription: "Data wrangling: using group() and summarise()"
+desdription: "Data wrangling: using group() and summarise()"
 date: "08/17/2022"
 format:
   html:
@@ -11,7 +11,6 @@ format:
     code-copy: true
     code-tools: true
     css: styles.css
-    self-contained: true
 categories:
   - challenge_2
   - solution
