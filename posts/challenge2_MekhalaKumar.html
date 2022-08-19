@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mekhala Kumar">
+<meta name="dcterms.date" content="2022-08-16">
+<meta name="description" content="Data wrangling: using group() and summarise()">
+
+<title>- Challenge 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Challenge 2">
+<meta name="twitter:description" content="Data wrangling: using group() and summarise()">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reading-in-data" id="toc-reading-in-data" class="nav-link active" data-scroll-target="#reading-in-data">Reading in Data</a></li>
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data description</a></li>
+  <li><a href="#grouped-summary-statistics-and-interpretation" id="toc-grouped-summary-statistics-and-interpretation" class="nav-link" data-scroll-target="#grouped-summary-statistics-and-interpretation">Grouped Summary Statistics and Interpretation</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Challenge 2</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">challenge_2</div>
+    <div class="quarto-category">State County dataset</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Data wrangling: using group() and summarise()
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mekhala Kumar </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 16, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="reading-in-data" class="level2">
+<h2 class="anchored" data-anchor-id="reading-in-data">Reading in Data</h2>
+<p>The dataset used is State County (the excel file). While reading in the data, it was also cleaned by removing the first few rows and last few rows which had unnecessary text. Since the country Canada was also present in the last row of the dataset but is a different country, it has been removed as well.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>railroad_df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/StateCounty2012.xls"</span>,<span class="at">skip=</span><span class="dv">3</span>,<span class="at">col_names=</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"delete"</span>, <span class="st">"county"</span>, <span class="st">"delete"</span>, <span class="st">"total_employees"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="sc">!</span><span class="fu">contains</span>(<span class="st">"delete"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(state, <span class="st">"Total"</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(railroad_df, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+   state                                               county     total_employ…¹
+   &lt;chr&gt;                                               &lt;chr&gt;      &lt;chr&gt;         
+ 1 WY                                                  PLATTE     129           
+ 2 WY                                                  SHERIDAN   252           
+ 3 WY                                                  SUBLETTE   3             
+ 4 WY                                                  SWEETWATER 196           
+ 5 WY                                                  UINTA      49            
+ 6 WY                                                  WASHAKIE   10            
+ 7 WY                                                  WESTON     37            
+ 8 CANADA                                              &lt;NA&gt;       662           
+ 9 1  Military designation.                            &lt;NA&gt;       &lt;NA&gt;          
+10 NOTE:  Excludes 2,896 employees without an address. &lt;NA&gt;       &lt;NA&gt;          
+# … with abbreviated variable name ¹​total_employees</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="ot">&lt;-</span><span class="fu">head</span>(railroad_df, <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(railroad_df, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+   state  county     total_employees
+   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;          
+ 1 WY     NIOBRARA   51             
+ 2 WY     PARK       29             
+ 3 WY     PLATTE     129            
+ 4 WY     SHERIDAN   252            
+ 5 WY     SUBLETTE   3              
+ 6 WY     SWEETWATER 196            
+ 7 WY     UINTA      49             
+ 8 WY     WASHAKIE   10             
+ 9 WY     WESTON     37             
+10 CANADA &lt;NA&gt;       662            </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="ot">&lt;-</span><span class="fu">head</span>(railroad_df, <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(railroad_df, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+   state county     total_employees
+   &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;          
+ 1 WY    NATRONA    92             
+ 2 WY    NIOBRARA   51             
+ 3 WY    PARK       29             
+ 4 WY    PLATTE     129            
+ 5 WY    SHERIDAN   252            
+ 6 WY    SUBLETTE   3              
+ 7 WY    SWEETWATER 196            
+ 8 WY    UINTA      49             
+ 9 WY    WASHAKIE   10             
+10 WY    WESTON     37             </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>railroad_df <span class="ot">=</span> railroad_df[<span class="sc">-</span><span class="dv">1</span>,] </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>railroad_df <span class="ot">&lt;-</span> <span class="fu">transform</span>(railroad_df,<span class="at">employees =</span> <span class="fu">as.numeric</span>(total_employees))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">View</span>(railroad_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="data-description" class="level2">
+<h2 class="anchored" data-anchor-id="data-description">Data description</h2>
+<p>The data consists of 3 columns- state, county and employees. Since the employees column contained character datatype, total_employees was created with the double type of variable. There are 53 states included in the data and 1709 counties. The number of employees by state can also be seen in the third table.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(railroad_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  state               county total_employees employees
+1    AE                  APO               2         2
+2    AK            ANCHORAGE               7         7
+3    AK FAIRBANKS NORTH STAR               2         2
+4    AK               JUNEAU               3         3
+5    AK    MATANUSKA-SUSITNA               2         2
+6    AK                SITKA               1         1</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(state)<span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 53</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county)<span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1709</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>railroad_df <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">employees2 =</span> <span class="fu">sum</span>(employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 53 × 2
+   state employees2
+   &lt;chr&gt;      &lt;dbl&gt;
+ 1 AE             2
+ 2 AK           103
+ 3 AL          4257
+ 4 AP             1
+ 5 AR          3871
+ 6 AZ          3153
+ 7 CA         13137
+ 8 CO          3650
+ 9 CT          2592
+10 DC           279
+# … with 43 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="grouped-summary-statistics-and-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="grouped-summary-statistics-and-interpretation">Grouped Summary Statistics and Interpretation</h2>
+<p>First, the summary statistics were checked for a country wide comparison. Then a few states were selected in such a way that a few states had many employees (around 13000) and a few states selected had a small number of employees (100-200). This was done in order to check how the central tendency and dispersion varied across counties in a particular state.<br>
+Both California and Nebraska, which had a larger number of employees, had a higher mean for the total employees among the counties compared to the mean number of employees across states. This is possibly due to the fact that they had more employees. Similarly, it was observed that in the case where there were a lower number of employees, the mean for the total employees across counties were lower and the standard deviation across counties was lower (in Vermont and Alaska). As can be seen below, the District of Columbia cannot be analysed in this way as it consists of a single county.<br>
+Finally, the total number of employees in each county of a state were arranged in descending order because a county with a higher number of employees indicates that there are more job opportunities or perhaps a higher population in the area.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean.employees median.employees min.employees max.employees sd.employees
+1       87.17816               21             1          8207     283.6359
+  var.employees IQR.employees
+1      80449.32            58</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"CA"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean.employees median.employees min.employees max.employees sd.employees
+1       238.8545               61             1          2888     549.4692
+  var.employees IQR.employees
+1      301916.3           188</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"CA"</span>)<span class="sc">%&gt;%</span><span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(county, <span class="fu">desc</span>(employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 55 × 4
+# Groups:   county [55]
+   state county       total_employees employees
+   &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;               &lt;dbl&gt;
+ 1 CA    ALAMEDA      346                   346
+ 2 CA    AMADOR       9                       9
+ 3 CA    BUTTE        69                     69
+ 4 CA    CALAVERAS    30                     30
+ 5 CA    COLUSA       2                       2
+ 6 CA    CONTRA COSTA 348                   348
+ 7 CA    EL DORADO    103                   103
+ 8 CA    FRESNO       341                   341
+ 9 CA    GLENN        4                       4
+10 CA    HUMBOLDT     2                       2
+# … with 45 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"NE"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean.employees median.employees min.employees max.employees sd.employees
+1       148.0449               15             1          3797     511.5816
+  var.employees IQR.employees
+1      261715.7            66</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"NE"</span>)<span class="sc">%&gt;%</span><span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(county, <span class="fu">desc</span>(employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 89 × 4
+# Groups:   county [89]
+   state county    total_employees employees
+   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;               &lt;dbl&gt;
+ 1 NE    ADAMS     77                     77
+ 2 NE    ANTELOPE  2                       2
+ 3 NE    ARTHUR    2                       2
+ 4 NE    BANNER    8                       8
+ 5 NE    BLAINE    2                       2
+ 6 NE    BOONE     2                       2
+ 7 NE    BOX BUTTE 1168                 1168
+ 8 NE    BROWN     1                       1
+ 9 NE    BUFFALO   107                   107
+10 NE    BURT      9                       9
+# … with 79 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"DC"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean.employees median.employees min.employees max.employees sd.employees
+1            279              279           279           279           NA
+  var.employees IQR.employees
+1            NA             0</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"VT"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean.employees median.employees min.employees max.employees sd.employees
+1           18.5              8.5             3            83     24.54431
+  var.employees IQR.employees
+1      602.4231             8</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"VT"</span>)<span class="sc">%&gt;%</span><span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(county, <span class="fu">desc</span>(employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 4
+# Groups:   county [14]
+   state county     total_employees employees
+   &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;
+ 1 VT    ADDISON    8                       8
+ 2 VT    BENNINGTON 8                       8
+ 3 VT    CALEDONIA  3                       3
+ 4 VT    CHITTENDEN 40                     40
+ 5 VT    ESSEX      4                       4
+ 6 VT    FRANKLIN   83                     83
+ 7 VT    GRAND ISLE 5                       5
+ 8 VT    LAMOILLE   4                       4
+ 9 VT    ORANGE     9                       9
+10 VT    ORLEANS    13                     13
+11 VT    RUTLAND    59                     59
+12 VT    WASHINGTON 3                       3
+13 VT    WINDHAM    10                     10
+14 VT    WINDSOR    10                     10</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"AK"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean.employees median.employees min.employees max.employees sd.employees
+1       17.16667              2.5             1            88     34.76445
+  var.employees IQR.employees
+1      1208.567             4</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"AK"</span>)<span class="sc">%&gt;%</span><span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(county, <span class="fu">desc</span>(employees))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+# Groups:   county [6]
+  state county               total_employees employees
+  &lt;chr&gt; &lt;chr&gt;                &lt;chr&gt;               &lt;dbl&gt;
+1 AK    ANCHORAGE            7                       7
+2 AK    FAIRBANKS NORTH STAR 2                       2
+3 AK    JUNEAU               3                       3
+4 AK    MATANUSKA-SUSITNA    2                       2
+5 AK    SITKA                1                       1
+6 AK    SKAGWAY MUNICIPALITY 88                     88</code></pre>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Blog" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb37" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2 "</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Mekhala Kumar"</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/16/2022"</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co">    print: paged </span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - State County dataset</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading in Data</span></span>
+<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-32"><a href="#cb37-32" aria-hidden="true" tabindex="-1"></a>The dataset used is State County (the excel file). While reading in the data, it was also cleaned by removing the first few rows and last few rows which had unnecessary text. Since the country Canada was also present in the last row of the dataset but is a different country, it has been removed as well.</span>
+<span id="cb37-33"><a href="#cb37-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-36"><a href="#cb37-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-37"><a href="#cb37-37" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb37-38"><a href="#cb37-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb37-39"><a href="#cb37-39" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb37-40"><a href="#cb37-40" aria-hidden="true" tabindex="-1"></a>railroad_df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/StateCounty2012.xls"</span>,<span class="at">skip=</span><span class="dv">3</span>,<span class="at">col_names=</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"delete"</span>, <span class="st">"county"</span>, <span class="st">"delete"</span>, <span class="st">"total_employees"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb37-41"><a href="#cb37-41" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="sc">!</span><span class="fu">contains</span>(<span class="st">"delete"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb37-42"><a href="#cb37-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(state, <span class="st">"Total"</span>))</span>
+<span id="cb37-43"><a href="#cb37-43" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(railroad_df, <span class="dv">10</span>)</span>
+<span id="cb37-44"><a href="#cb37-44" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="ot">&lt;-</span><span class="fu">head</span>(railroad_df, <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb37-45"><a href="#cb37-45" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(railroad_df, <span class="dv">10</span>)</span>
+<span id="cb37-46"><a href="#cb37-46" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="ot">&lt;-</span><span class="fu">head</span>(railroad_df, <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb37-47"><a href="#cb37-47" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(railroad_df, <span class="dv">10</span>)</span>
+<span id="cb37-48"><a href="#cb37-48" aria-hidden="true" tabindex="-1"></a>railroad_df <span class="ot">=</span> railroad_df[<span class="sc">-</span><span class="dv">1</span>,] </span>
+<span id="cb37-49"><a href="#cb37-49" aria-hidden="true" tabindex="-1"></a>railroad_df <span class="ot">&lt;-</span> <span class="fu">transform</span>(railroad_df,<span class="at">employees =</span> <span class="fu">as.numeric</span>(total_employees))</span>
+<span id="cb37-50"><a href="#cb37-50" aria-hidden="true" tabindex="-1"></a> <span class="fu">View</span>(railroad_df)</span>
+<span id="cb37-51"><a href="#cb37-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-52"><a href="#cb37-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-53"><a href="#cb37-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data description</span></span>
+<span id="cb37-54"><a href="#cb37-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-55"><a href="#cb37-55" aria-hidden="true" tabindex="-1"></a>The data consists of 3 columns- state, county and employees. Since the employees column contained character datatype, total_employees was created with the double type of variable. There are 53 states included in the data and 1709 counties. The number of employees by state can also be seen in the third table.</span>
+<span id="cb37-56"><a href="#cb37-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-59"><a href="#cb37-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-60"><a href="#cb37-60" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
+<span id="cb37-61"><a href="#cb37-61" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(railroad_df)</span>
+<span id="cb37-62"><a href="#cb37-62" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span></span>
+<span id="cb37-63"><a href="#cb37-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(state)<span class="sc">%&gt;%</span></span>
+<span id="cb37-64"><a href="#cb37-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb37-65"><a href="#cb37-65" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span></span>
+<span id="cb37-66"><a href="#cb37-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county)<span class="sc">%&gt;%</span></span>
+<span id="cb37-67"><a href="#cb37-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(.)</span>
+<span id="cb37-68"><a href="#cb37-68" aria-hidden="true" tabindex="-1"></a>railroad_df <span class="sc">%&gt;%</span></span>
+<span id="cb37-69"><a href="#cb37-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state) <span class="sc">%&gt;%</span></span>
+<span id="cb37-70"><a href="#cb37-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">employees2 =</span> <span class="fu">sum</span>(employees))</span>
+<span id="cb37-71"><a href="#cb37-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-72"><a href="#cb37-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-73"><a href="#cb37-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Grouped Summary Statistics and Interpretation</span></span>
+<span id="cb37-74"><a href="#cb37-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-75"><a href="#cb37-75" aria-hidden="true" tabindex="-1"></a>First, the summary statistics were checked for a country wide comparison. Then a few states were selected in such a way that a few states had many employees (around 13000) and a few states selected had a small number of employees (100-200). This was done in order to check how the central tendency and dispersion varied across counties in a particular state.\</span>
+<span id="cb37-76"><a href="#cb37-76" aria-hidden="true" tabindex="-1"></a>Both California and Nebraska, which had a larger number of employees, had a higher mean for the total employees among the counties compared to the mean number of employees across states. This is possibly due to the fact that they had more employees. Similarly, it was observed that in the case where there were a lower number of employees, the mean for the total employees across counties were lower and the standard deviation across counties was lower (in Vermont and Alaska). As can be seen below, the District of Columbia cannot be analysed in this way as it consists of a single county.\</span>
+<span id="cb37-77"><a href="#cb37-77" aria-hidden="true" tabindex="-1"></a>Finally, the total number of employees in each county of a state were arranged in descending order because a county with a higher number of employees indicates that there are more job opportunities or perhaps a higher population in the area.</span>
+<span id="cb37-78"><a href="#cb37-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-81"><a href="#cb37-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb37-82"><a href="#cb37-82" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb37-83"><a href="#cb37-83" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb37-84"><a href="#cb37-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-85"><a href="#cb37-85" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span>
+<span id="cb37-86"><a href="#cb37-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-87"><a href="#cb37-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-88"><a href="#cb37-88" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"CA"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span>
+<span id="cb37-89"><a href="#cb37-89" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"CA"</span>)<span class="sc">%&gt;%</span><span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(county, <span class="fu">desc</span>(employees))</span>
+<span id="cb37-90"><a href="#cb37-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-91"><a href="#cb37-91" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"NE"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span>
+<span id="cb37-92"><a href="#cb37-92" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"NE"</span>)<span class="sc">%&gt;%</span><span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(county, <span class="fu">desc</span>(employees))</span>
+<span id="cb37-93"><a href="#cb37-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-94"><a href="#cb37-94" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"DC"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span>
+<span id="cb37-95"><a href="#cb37-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-96"><a href="#cb37-96" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"VT"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span>
+<span id="cb37-97"><a href="#cb37-97" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"VT"</span>)<span class="sc">%&gt;%</span><span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(county, <span class="fu">desc</span>(employees))</span>
+<span id="cb37-98"><a href="#cb37-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-99"><a href="#cb37-99" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"AK"</span>)<span class="sc">%&gt;%</span> <span class="fu">summarise</span> (<span class="at">mean.employees =</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">median.employees =</span> <span class="fu">median</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">min.employees =</span> <span class="fu">min</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">max.employees =</span> <span class="fu">max</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">sd.employees =</span> <span class="fu">sd</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">var.employees =</span> <span class="fu">var</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>), <span class="at">IQR.employees =</span> <span class="fu">IQR</span>(<span class="st">`</span><span class="at">employees</span><span class="st">`</span>))</span>
+<span id="cb37-100"><a href="#cb37-100" aria-hidden="true" tabindex="-1"></a>railroad_df<span class="sc">%&gt;%</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"AK"</span>)<span class="sc">%&gt;%</span><span class="fu">group_by</span>(county)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(county, <span class="fu">desc</span>(employees))</span>
+<span id="cb37-101"><a href="#cb37-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

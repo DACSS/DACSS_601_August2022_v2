@@ -245,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>railroad_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"_data/railroad_2012_clean_county.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>railroad_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/railroad_2012_clean_county.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.</p>
@@ -583,7 +583,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>Find the <span class="in">`_data`</span> folder, located inside the <span class="in">`posts`</span> folder. Then you can read in the data, using either one of the <span class="in">`readr`</span> standard tidy read commands, or a specialized package such as <span class="in">`readxl`</span>.</span>
 <span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>railroad_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"_data/railroad_2012_clean_county.csv"</span>)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>railroad_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/railroad_2012_clean_county.csv"</span>)</span>
 <span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.</span>
@@ -602,7 +602,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>The dataset is a simple, pre cleaned spreadsheet consisting of three columns: State, County, and Total_Employees. These three columns are self explanatory, labeling the state, county, and the amount of employees in said railroad system. Using the summary function,we can see that there are 2930 reported counties within 53 states (including DC, Armed Forces Europe, Armed Forces Pacific). This data could be useful to determine the size of specific railroad systems based on employment. The dataset could be enhanced by adding in overall population data so one can answer questions such as the percent of people in a county who work on railroads. </span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>The dataset is a simple, pre cleaned spreadsheet consisting of three columns: State, County, and Total_Employees. These three columns are self explanatory, labeling the state, county, and the amount of employees in said railroad system. Using the summary function,we can see that there are 2930 reported counties within 53 states (including DC, Armed Forces Europe, Armed Forces Pacific). This data could be useful to determine the size of specific railroad systems based on employment. The dataset could be enhanced by adding in overall population data so one can answer questions such as the percent of people in a county who work on railroads.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
