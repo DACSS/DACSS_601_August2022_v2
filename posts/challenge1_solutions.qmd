@@ -1,7 +1,7 @@
 ---
 title: "Challenge 1 Solution"
 author: "Meredith Rolfe"
-desription: "Reading in data and creating a post"
+description: "Reading in data and creating a post"
 date: "08/16/2022"
 format:
   html:
@@ -11,7 +11,6 @@ format:
     code-copy: true
     code-tools: true
     css: "styles.css"
-    self-contained: true
 categories:
   - challenge_1
   - solution
