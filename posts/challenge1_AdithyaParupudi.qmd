@@ -1,8 +1,8 @@
 ---
-title: "Challenge 1 "
-author: "Tyler Tewksbury"
+title: "Challenge 1"
+author: "Adithya Parupudi"
 desription: "Reading in data and creating a post"
-date: "08/17/2022"
+date: "08/16/2022"
 format:
   html:
     toc: true
@@ -11,6 +11,9 @@ format:
     code-tools: true
 categories:
   - challenge_1
+  - tidyverse
+  - birds.csv
+  - hw2
 ---
 
 ```{r}
@@ -19,6 +22,8 @@ categories:
 #| message: false
 
 library(tidyverse)
+library(readr)
+library(dplyr)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
@@ -44,23 +49,38 @@ Read in one (or more) of the following data sets, using the correct R package an
 Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
 
 ```{r}
-railroad_data <- read_csv("_data/railroad_2012_clean_county.csv")
+birds_data <- read_csv("_data/birds.csv",show_col_types = FALSE)
+#spec(birds_data) -> full column specification
+
 ```
 
-Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+After importing the csv file, and I notice that out of the 14 columns, 8 of them are of character type and 6 columns are double. Total rows -\> 30977!
 
 ## Describe the data
 
 Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
 
 ```{r}
-#| label: summary
-
-railroad_data %>%
-summary()
-
-length(unique(railroad_data$state))
+names(birds_data)
 
 ```
 
-The dataset is a simple, pre cleaned spreadsheet consisting of three columns: State, County, and Total_Employees. These three columns are self explanatory, labeling the state, county, and the amount of employees in said railroad system. Using the summary function,we can see that there are 2930 reported counties within 53 states (including DC, Armed Forces Europe, Armed Forces Pacific). This data could be useful to determine the size of specific railroad systems based on employment. The dataset could be enhanced by adding in overall population data so one can answer questions such as the percent of people in a county who work on railroads.
+Column names at a glance
+
+```{r}
+head(birds_data)
+```
+
+```{r}
+#| label: summary
+str(birds_data)
+```
+
+We get to see a get a high level view of the column names and its entries.
+
+```{r}
+hist(birds_data$`Item Code`)
+hist(birds_data$`Area Code`)
+```
+
+Using the histogram functions, observed that the frequency for item code and area codes respectively.

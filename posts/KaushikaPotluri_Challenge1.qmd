@@ -1,8 +1,8 @@
 ---
 title: "Challenge 1 "
-author: "Tyler Tewksbury"
+author: "Kaushika Potluri"
 desription: "Reading in data and creating a post"
-date: "08/17/2022"
+date: "08/15/2022"
 format:
   html:
     toc: true
@@ -19,6 +19,8 @@ categories:
 #| message: false
 
 library(tidyverse)
+library(readr)
+library(dplyr)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
@@ -44,7 +46,8 @@ Read in one (or more) of the following data sets, using the correct R package an
 Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
 
 ```{r}
-railroad_data <- read_csv("_data/railroad_2012_clean_county.csv")
+data <- read_csv("_data/birds.csv", col_types = "ccncncncnncncc")
+spec(data)
 ```
 
 Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
@@ -56,11 +59,11 @@ Using a combination of words and results of R commands, can you provide a high l
 ```{r}
 #| label: summary
 
-railroad_data %>%
-summary()
+names(data)
+dim(data)
+str(data)
+summary(data)
 
-length(unique(railroad_data$state))
+
 
 ```
-
-The dataset is a simple, pre cleaned spreadsheet consisting of three columns: State, County, and Total_Employees. These three columns are self explanatory, labeling the state, county, and the amount of employees in said railroad system. Using the summary function,we can see that there are 2930 reported counties within 53 states (including DC, Armed Forces Europe, Armed Forces Pacific). This data could be useful to determine the size of specific railroad systems based on employment. The dataset could be enhanced by adding in overall population data so one can answer questions such as the percent of people in a county who work on railroads.

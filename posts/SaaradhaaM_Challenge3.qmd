@@ -1,0 +1,108 @@
+---
+title: "Challenge 3"
+author: "Saaradhaa M"
+desription: "Tidy Data: Pivoting"
+date: "08/17/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+  - tidyverse
+  - readxl
+  - dplyr
+  - tidyr
+  - households
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+library(dplyr)
+library(tidyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Reading in data
+
+I will be working with the households dataset.
+
+```{r}
+#| label: read in data
+# Reading in data.
+households <-read_excel("_data/USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx", skip=4)
+households
+```
+
+### Brief description of data
+
+When reading in the data, I skipped the first four rows (they just describe the dataset). The dataset segments households by their income levels, race and Hispanic origin of householder from 1967 to 2019. It also has an external link to https://www2.census.gov/programs-surveys/cps/techdocs/cpsmar20.pdf, which shows that the data is part of the Annual Social and Economic Supplement in the Census. I need to re-name some headers, remove "Total" (redundant column) and remove rows 353 to 383 (they're just notes).
+
+```{r}
+#| label: cleaning
+# Rename column headers.
+colnames(households)
+households <- rename(households, "year" = "...1", "num_thousands" = "...2", "estimated_median_income" = "Estimate...13", "median_moe" = "Margin of error1 (±)...14", "estimated_mean_income" = "Estimate...15", "mean_moe" = "Margin of error1 (±)...16")
+# Remove "Total" column.
+households <- households[,-3]
+# Remove rows 353-383.
+households <- households[-c(353:383),]
+# Which rows have missing values? This tells me how many rows of races there are.
+which(rowSums(is.na(households))>0)
+```
+
+## Anticipate end result and find current and future data dimensions.
+
+Now the dataset is a lot cleaner. We can see that in the "year" column, there are rows of races (*N* = 12). Race should actually be entered as a separate column, but **I don't know how to select specific rows in the "year" column to create a new column**. I'll remove those rows just for the purposes of working through this exercise.
+
+```{r}
+#| label: cleaning 2
+# Remove race rows.
+households_new <- households[-c(1,57,78,114,135,166,187,208,244,265,286,302),]
+dim(households_new)
+```
+
+The current dimensions are 340 rows and 15 columns. I would like to shift all the income categories into an "income" column, so this should give me a lot more rows and 8 columns.
+
+### Pivoting dataset
+
+```{r}
+#| label: pivot
+# Attempt pivotlonger().
+households_new <- pivot_longer(households_new, cols = contains("$"), names_to = "income", values_to = "proportion")
+households_new
+```
+
+Now we suddenly have \>3000 rows. This is because the columns estimated_median_income, median_moe, estimated_mean_income and mean_moe are the same for each year (regardless of income bracket, which we've just pivoted into a new column). So I'm going to split the data into two tables to make it easier to understand.
+
+```{r}
+# Creating table 1 by removing appropriate columns.
+households_1 <- households_new[,-c(3:6)]
+
+# Changing num_thousands to numeric so that the next argument runs properly.
+households_1$num_thousands <- as.numeric(households_1$num_thousands)
+
+# Merging 2 columns into 1.
+households_1 <- households_1 %>% mutate(count_thousands = `num_thousands`*(`proportion`/100))
+
+# Removing the 2 old columns.
+households_1 <- households_1[,-c(2,4)]
+```
+
+```{r}
+# Creating table 2 by removing appropriate columns.
+households_2 <- households_new[,-c(2, 7:8)]
+
+# Remove duplicate rows in table 2.
+households_2 %>% distinct()
+```
+
+Now we have 2 tables that are relatively easier to comprehend than what we had at the start. This is a work in progress - I want to figure out how to add the race column, and also to interpret the tables I've created.
