@@ -1,7 +1,7 @@
 ---
-title: "Challenge 3 Instructions"
-author: "Meredith Rolfe"
-description: "Tidy Data: Pivoting"
+title: "Challenge 3"
+author: "Emma Rasmussen"
+desription: "Tidy Data: Pivoting"
 date: "08/17/2022"
 format:
   html:
@@ -11,6 +11,7 @@ format:
     code-tools: true
 categories:
   - challenge_3
+  - animal_weights
 ---
 
 ```{r}
@@ -45,12 +46,15 @@ Read in one (or more) of the following datasets, using the correct R package and
 ```{r}
 animal_weight<-read_csv("_data/animal_weight.csv",
                         show_col_types = FALSE)
-
+animal_weightOG<-animal_weight#saving a copy of the original data set
+animal_weight
 ```
 
 ### Briefly describe the data
 
 Describe the data, and be sure to comment on why you are planning to pivot it to make it "tidy"
+
+The data appears to illustrate (average?) animal weights by region. To tidy the data we will pivot the columns with animal names into a single column. Each "case" is an animal type within a region, and the values/dependent variable is the weight. 
 
 ## Anticipate the End Result
 
@@ -94,12 +98,26 @@ Or simple example has $n = 6$ rows and $k - 3 = 2$ variables being pivoted, so w
 
 Document your work here.
 
-```{r}
+OG Dataset has k=17 columns and n=9 rows. 
+17-1(1 existing variable to describe each case (country), the other 16 columns need to be pivoted)
+We wll now have three columns, one region, one animalm(new col) (together the IV), one weight(the DV) (new col)
+9*16 rows expected in data frame= 144
+3col byt 144 rows rows expected
 
+
+```{r}
+nrow(animal_weightOG)
+ncol(animal_weightOG)
+
+#expected rows/cases
+nrow(animal_weightOG)*(ncol(animal_weightOG)-1)
+#expected columns
+1+2
 
 ```
 
 Any additional comments?
+See comment at bottom
 
 ## Pivot the Data
 
@@ -120,11 +138,19 @@ Yes, once it is pivoted long, our resulting data are $12x5$ - exactly what we ex
 
 ### Challenge: Pivot the Chosen Data
 
-Document your work here. What will a new "case" be once you have pivoted the data? How does it meet requirements for tidy data?
+A case will be an animal from a particular region. It meets the requirements for tidy data because each case has its own row, and each variable has its own column. 
 
 ```{r}
-
+pivot_longer(animal_weight, col = c(2:17),
+                 names_to="animal_type",
+                 values_to = "weight")
 
 ```
 
 Any additional comments?
+
+I am a little confused by the calculation, I tried to work out everything above in a way that made sense. But we essentially start with:
+- how many columns will remain unpivoted (variables that start in the correct place/column)
+-how many columns are being pivoted (the rest or starting number of col minus number above)
+-The number of columns being pivoted*number of rows = new number of rows
+-the new number of columns is the unchanged columns plus 1 for the variables contained in the pivot plus one for the values?? So unchanged col+2

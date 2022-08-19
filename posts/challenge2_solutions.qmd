@@ -1,7 +1,7 @@
 ---
 title: "Challenge 2 Solutions"
 author: "Meredith Rolfe"
-description: "Data wrangling: using group() and summarise()"
+desdription: "Data wrangling: using group() and summarise()"
 date: "08/17/2022"
 format:
   html:
@@ -118,7 +118,7 @@ But railroads are spread out along geography, and thus we might also expect squa
 
 There appear to be multiple exceptions to both rules, however. If geography plus population were the primary factors explaining railroad employment, then California would be ranked higher than New York and Illinois, and New York would likely rank higher than ILlinois. However, Illinois - Chicago in particular - is a hub of railroad activity, and thus Illinois' higher ranking is likely reflecting hub activity and employment. New York is a hub for the East Coast in particular. While California may have hubs of train activity in Los Angeles or San Francisco, the Northeast has a higher density of train stations and almost certainly generates more passenger and freight miles than the larger and more populous California.
 
-This final factor - the existence of heavily used train routes probably explains the high railroad employment in states like Nebraska, Indiana and Missouri - all of which lay along a major railway route between New York and Chicago, and then out to California. Anyway who has played Ticket to Ride probably recognizes many of these routes! 
+This final factor - the existence of heavily used train routes probably explains the high railroad employment in states like Nebraska, Indiana and Missouri - all of which lay along a major railway route between New York and Chicago, and then out to California. Anyway who has played Ticket to Ride probably recognizes many of these routes!
 
 :::{.callout-note}
 ## Go further
@@ -153,7 +153,7 @@ birds%>%
 ```
 On average, we can see that countries have far more chickens as livestock ($\bar{x}$=58.4million head) than other livestock birds (average stocks range between 2 and 10 million head). However, the information from the median stock counts suggest that there is significant variation across countries along with a strong right hand skew with regards to chicken stocks. The median number of chickens in a country is 3.8 million head - significantly less than the mean of almost 60 million. Overall, missing data doesn't seem to be a huge issue, so we will just use `na.rm=TRUE` and not worry too much about the missingness for now.
 
-It could be that stock head counts have changed over time, so lets try selecting two points in time and seeing whether or not average livestock counts are changing. 
+It could be that stock head counts have changed over time, so lets try selecting two points in time and seeing whether or not average livestock counts are changing.
 
 :::{.callout-tip}
 ## pivot-wider
@@ -215,9 +215,9 @@ bookings<-read_csv("_data/hotel_bookings.csv")
 
 print(summarytools::dfSummary(bookings,
                         varnumbers = FALSE,
-                        plain.ascii  = FALSE, 
-                        style        = "grid", 
-                        graph.magnif = 0.70, 
+                        plain.ascii  = FALSE,
+                        style        = "grid",
+                        graph.magnif = 0.70,
                         valid.col    = FALSE),
       method = 'render',
       table.classes = 'table-condensed')
@@ -296,7 +296,7 @@ t1<-bookings%>%
             adults = mean(adults),
             children = mean(children+babies, na.rm=TRUE)
             )%>%
-  pivot_wider(names_from= hotel, 
+  pivot_wider(names_from= hotel,
               values_from = c(price, adults, children))
 
 knitr::kable(t1,
