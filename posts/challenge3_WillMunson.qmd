@@ -99,10 +99,15 @@ Document your work here.
 ```{r}
 nrow(animal_weight)
 ncol(animal_weight)
+
+#Number of rows
+nrow(animal_weight)*(ncol(animal_weight)-1)
+
+
 ```
 
 Any additional comments?
-
+    There are way too many columns in the original dataset. Let's change this so we only get three of them. 
 ## Pivot the Data
 
 Now we will pivot the data, and compare our pivoted data dimensions to the dimensions calculated above as a "sanity" check.
@@ -125,8 +130,13 @@ Yes, once it is pivoted long, our resulting data are $12x5$ - exactly what we ex
 Document your work here. What will a new "case" be once you have pivoted the data? How does it meet requirements for tidy data?
 
 ```{r}
+animal_weight <- pivot_longer(animal_weight, col = c(`Cattle - dairy`, `Cattle - non-dairy`, Buffaloes, `Swine - market`, `Swine - breeding`, `Chicken - Broilers`, `Chicken - Layers`, Ducks, Turkeys, Sheep, Goats, Horses, Asses, Mules, Camels, Llamas),
+                              names_to = "Animal Type",
+                              values_to = "Weight in lb")
 
-
+animal_weight
 ```
 
 Any additional comments?
+
+    This was a very valuable lesson to learn when it comes to working with data in R. While it may seem more aesthetically pleasing to look at a dataset where you have variables in both the first row and the first column, it's not the most efficient way to analyze the data. 
