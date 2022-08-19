@@ -1,6 +1,6 @@
 ---
 title: "KaushikaPotluri"
-image: images/Curry.jpeg
+image: images/Curry.jpg
 about:
   template: solana
   image-width: 15em
