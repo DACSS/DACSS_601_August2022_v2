@@ -1,0 +1,67 @@
+---
+title: "Challenge 1"
+author: "Lindsay Jones"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    df-print: paged
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+  - railroads
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+```{r}
+library(readr)
+Railroad <- read_csv("_data/railroad_2012_clean_county.csv")
+Railroad
+```
+
+## Describe the data
+
+
+Data set contains the number of railroad employees in the United States in 2012, organized by county.
+Data was likely gathered reported to labor bureau either by counties or by each railroad station. Each row represents a county. Columns indicate state (or territory), county, and number of employees. There are `r nrow(Railroad)` counties as shown below:
+
+```{r}
+#| label: summary
+dim(Railroad)
+```
+
+
+The 10 counties with the most railroad employees are:
+```{r}
+Railroad %>%
+  arrange(desc(total_employees)) %>%
+  select(state,county,total_employees)%>%
+  group_by(total_employees) %>%
+  slice(1)%>%
+  ungroup()%>%
+  arrange(desc(total_employees))%>%
+  slice(1:10)
+```
+
+
+
+State_Railroad_Props illustrates the percentage of railroad workers located in each state or territory.
+```{r}
+State <- select(Railroad, state)
+State_Railroad_Props <- prop.table(table(State))*100
+State_Railroad_Props
+```
+
