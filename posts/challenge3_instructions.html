@@ -8,6 +8,7 @@
 
 <meta name="author" content="Meredith Rolfe">
 <meta name="dcterms.date" content="2022-08-17">
+<meta name="description" content="Tidy Data: Pivoting">
 
 <title>- Challenge 3 Instructions</title>
 <style>
@@ -125,7 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta name="twitter:title" content="- Challenge 3 Instructions">
-<meta name="twitter:description" content="Today’s challenge is to:">
+<meta name="twitter:description" content="Tidy Data: Pivoting">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
 </head>
@@ -205,6 +206,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   </div>
 
+<div>
+  <div class="description">
+    Tidy Data: Pivoting
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -291,12 +297,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code># A tibble: 6 × 5
   country  year trade outgoing incoming
   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 Mexico   1980 NAFTA     648.    -457.
-2 USA      1990 NAFTA    1558.     874.
-3 France   1980 EU        696.    1631.
-4 Mexico   1990 NAFTA    1072.    1372.
-5 USA      1980 NAFTA    1668.    1906.
-6 France   1990 EU        139.     785.</code></pre>
+1 Mexico   1980 NAFTA    1170.    1356.
+2 USA      1990 NAFTA    -166.    2329.
+3 France   1980 EU        737.    1555.
+4 Mexico   1990 NAFTA    1420.    1313.
+5 USA      1980 NAFTA    1643.    2513.
+6 France   1990 EU        728.    -213.</code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -359,18 +365,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code># A tibble: 12 × 5
    country  year trade trade_direction trade_value
    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
- 1 Mexico   1980 NAFTA outgoing               648.
- 2 Mexico   1980 NAFTA incoming              -457.
- 3 USA      1990 NAFTA outgoing              1558.
- 4 USA      1990 NAFTA incoming               874.
- 5 France   1980 EU    outgoing               696.
- 6 France   1980 EU    incoming              1631.
- 7 Mexico   1990 NAFTA outgoing              1072.
- 8 Mexico   1990 NAFTA incoming              1372.
- 9 USA      1980 NAFTA outgoing              1668.
-10 USA      1980 NAFTA incoming              1906.
-11 France   1990 EU    outgoing               139.
-12 France   1990 EU    incoming               785.</code></pre>
+ 1 Mexico   1980 NAFTA outgoing              1170.
+ 2 Mexico   1980 NAFTA incoming              1356.
+ 3 USA      1990 NAFTA outgoing              -166.
+ 4 USA      1990 NAFTA incoming              2329.
+ 5 France   1980 EU    outgoing               737.
+ 6 France   1980 EU    incoming              1555.
+ 7 Mexico   1990 NAFTA outgoing              1420.
+ 8 Mexico   1990 NAFTA incoming              1313.
+ 9 USA      1980 NAFTA outgoing              1643.
+10 USA      1980 NAFTA incoming              2513.
+11 France   1990 EU    outgoing               728.
+12 France   1990 EU    incoming              -213.</code></pre>
 </div>
 </div>
 <p>Yes, once it is pivoted long, our resulting data are <span class="math inline">\(12x5\)</span> - exactly what we expected!</p>
@@ -646,7 +652,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 3 Instructions"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Meredith Rolfe"</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Tidy Data: Pivoting"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Tidy Data: Pivoting"</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/17/2022"</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
