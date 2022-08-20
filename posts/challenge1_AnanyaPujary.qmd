@@ -31,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 railroad <- read_csv("_data/railroad_2012_clean_county.csv")
 ```
 
-## Describe the data
+## Describe the data 
 
 I'll be working with the 'railroad_2012_clean_county.csv' dataset.
 

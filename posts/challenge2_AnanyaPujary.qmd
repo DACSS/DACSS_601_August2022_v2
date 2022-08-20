@@ -123,7 +123,7 @@ hotelbookings %>%
 ```
 
 I also wanted to look at which month-year was the busiest in terms of bookings for both hotels. The busiest month was May 2017 for City Hotel (4556), and October 2016 for Resort Hotel (1984). 
-
+ 
 ### Explain and Interpret
 
 I chose certain variables that would objectively indicate which hotel (City Hotel or Resort Hotel) was more successful, such as the number of cancellations and reservation status. However, City Hotel had more entries in the dataset than Resort Hotel, which could skew the results. I also wanted to compare which hotel assigned most customers their preferred room type (reserved_room_type versus assigned_room_type) which could be contributing to customer satisfaction, and found that City Hotel was better in this aspect. It would also be interesting to look at both hotels' statistics through the years (2015-2017) to check whether their businesses have improved or declined. 

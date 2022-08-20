@@ -80,7 +80,7 @@ nrow(animal_weight) * (ncol(animal_weight)-1)
 
 There are 9 existing rows and 17 existing columns. The expected rows are 144 and expected columns are 3.
 
-### Challenge: Pivot the Chosen Data
+### Challenge: Pivot the Chosen Data 
 
 ```{r}
 #| label: pivoting the data
