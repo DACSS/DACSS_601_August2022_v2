@@ -1,0 +1,40 @@
+---
+title: "AnimeshSengupta"
+image: images/AnimeshSengupta.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/AnimeshSengupta.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/DACSS
+---
+
+## Education/Work Background
+1. High school : DLF Public School : 92.6%
+2. B.Tech CSE: Vellore institute of technology: 9.14 CGPA
+3. Intern->Sr. Software developer : Societe Generale GSC
+
+## R experience
+MynR journey began during my undergraduate days. I had learnt intermediary R syntax during that time. Since, I have had no industry experience. I can be considered beginner.
+
+## Research interests
+My research interests include:
+1. X-shot deep learning techniques to reduce learning in dearth of dataset
+2. Meta agnostic learning and prototype learning and MAML to perform meta data learning
+3. Generative adversarial networks to create new data.
+
+
+## Hometown
+I hail from New Delhi, India
+
+## Hobbies
+My hobbies are:
+1. Soccer fan - Chelsea for life
+2. Numismatics
+3. Bibliophile 
+
+## Fun fact
+I am great with bonfires 

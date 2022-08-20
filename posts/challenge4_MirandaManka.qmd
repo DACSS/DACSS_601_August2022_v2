@@ -1,0 +1,69 @@
+---
+title: "Challenge 4"
+author: "Miranda Manka"
+description: "More data wrangling: pivoting"
+date: "08/19/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  identify variables that need to be mutated
+4)  mutate variables and sanity check all mutations
+
+## Read in data
+
+```{r}
+debt = read_excel("_data/debt_in_trillions.xlsx")
+```
+
+### Briefly describe the data
+
+This is a dataset containing information about different types of debt over time. The first column contains year and quarter (for example 03:Q1 seems to be the first quarter of 2003), and it goes from 03:Q1 to 21:Q2, so probably the first quarter of 2003 to the second quarter of 2021. There are 74 rows (18.5 years) with 4 observations for each year (4 quarters) except the last which has 2. Based on the name of the dataset, each column is the amount of that type of debt in millions. There are also columns for Mortgage, HE Revolving, Auto Loan, Credit Card, Student Loan, Other, and Total (which is the sum of all the others in the row). 
+
+## Tidy data & Identify variables that need to be mutated
+
+Tidy data: Each variable has it’s own column. Each observation has it’s own row. Each value has it’s own cell.
+
+The dataset needs some work to make it fully tidy. First, I want to separate the first column into 2 columns and rename them to be "year" and "quarter" separately. Then change the year column from 03 04 etc. to 2003 2004 etc. and change it to numeric. This is important to change before the dataset can be used because otherwise I can't work with it, for example filter by a specific year or quarter separately. The the dataset will have each variable with it's own column, each observation it's own row, and value in it's own cell. 
+
+Potentially one further step could be to multiply all of the rows by 1,000,000 (except year and quarter) to get the actual value since they are currently in millions (for example, a mortgage of 4.942 in this dataset would actually be 4,942,000). I could also remove the trailing 0 after the decimal. I'm not sure if these would be helpful/necessary at this point, though.
+
+```{r}
+debt = debt %>% 
+  separate("Year and Quarter", into = c("Year1", "Quarter"), sep = ":")
+
+debt = debt %>% 
+  mutate(Quarter = str_remove(Quarter, "Q"))
+
+debt = debt %>% 
+  mutate(new_col = rep(c(20), times = 74), .before = Quarter)
+
+debt = debt %>%
+  unite("Year", new_col:Year1, sep = "")
+
+debt = debt %>% 
+  mutate(Year = parse_number(Year))
+```

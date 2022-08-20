@@ -1,0 +1,138 @@
+---
+title: "Challenge 2 Attempt"
+author: "Emma Rasmussen"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - railroads
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+##Reading in the Data/Tidying
+
+Reading the data set into R and skipping the first 3 rows so the header includes state, county, and total
+```{r}
+#| label: skip
+StateCounty2012OG<-read_excel("_data/StateCounty2012.xls",
+                            skip=3)
+StateCounty2012OG
+
+```
+
+Selecting for columns that contain variables:
+```{r}
+#| label: variables
+StateCounty2012<- select(StateCounty2012OG, "STATE", "COUNTY", "TOTAL")
+StateCounty2012
+```
+Removing state employee total rows:
+```{r}
+#| label: filter
+StateCounty2012<-filter(StateCounty2012, `COUNTY` !="NA")
+StateCounty2012
+```
+Renaming the TOTAL column to more accurate describe the variable:
+```{r}
+#| label: Rename
+StateCounty2012<-rename(StateCounty2012, Total_employees=TOTAL)
+StateCounty2012
+```
+
+The code below returns the highest and lowest number of counties (with railroad employees) by state.
+```{r}
+#| label: max
+table(StateCounty2012$STATE)%>%
+  max()
+table(StateCounty2012$STATE)%>%
+  min()
+ 
+```
+
+## Describe the data
+
+This data was likely gathered from government employment records or employment records directly from the railroads or Department of Transportation. Cases- counties within states, variables- states, and the number of employees at railroads within each county.
+
+Dimensions of the "tidied" dataset:
+```{r}
+#| label: dimensions
+dim(StateCounty2012)
+```
+The data set has 2930 rows (counties with railroads) and 3 columns (State, County, and number of employees).
+
+
+The code below creates a table with a count of counties by state. For example, Florida (FL) has 67 counties with railroads.
+```{r}
+#| label: summary
+table(StateCounty2012$STATE)
+
+```
+I was shocked to see that Texas has 221 counties with people who work for railroads, compared to MA with 12 counties. A quick Google Search says Texas actually has 254 counties. Since Texas has the greatest number of counties with railroad employees, I will look closer at the distribution of employees across Texas counties.
+
+## Provide Grouped Summary Statistics
+
+Filtering the subgroup of New Hampshire counties: (I used to live on the NH border)
+```{r}
+filter(StateCounty2012, STATE == "NH")
+```
+
+Calculating the Mode:
+```{r}
+NHTable<-filter(StateCounty2012, STATE == "NH")%>%
+  arrange(Total_employees)%>%
+  count(Total_employees)%>%
+  arrange(desc(n))
+NHTable$Total_employees[1]
+
+```
+While not super helpful, the most common number of employees at NH railroads by county is 7.
+
+
+Other summary statistics for the subgroup of NH counties:
+```{r}
+StateCounty2012
+StateCounty2012%>%
+  filter(STATE == "NH") %>%
+  summarize("NHmin"= min(Total_employees), "NHmax"= max(Total_employees), "NHmean"= mean(Total_employees), "NHmedian"= median(Total_employees), "NHmode"= mode(Total_employees), "NHsd" = sd(Total_employees), "NHIQR"= IQR(Total_employees))
+
+```
+
+Finding the county in each state with the largest number of employees:
+```{r}
+StateCountyLarge<-group_by(StateCounty2012, STATE)%>%
+  arrange(StateCounty2012, ("STATE"), desc("Total_employees"))%>%
+  slice(1)
+StateCountyLarge
+```
+
+Finding the mean of the largest total employee numbers in each state (this is a pretty useless stat but I was just trying to find some summary statistics from a grouped/sliced data set). I don't love this code, there are too many variables but it's not working when I edit it any more to try to calculate the median etc.  
+```{r}
+StateMax<-summarize(StateCountyLarge, mt= mean(Total_employees))
+TotalStateMean<-summarize(StateMax, mt=mean(mt))
+print(TotalStateMean)
+
+
+
+```
+The mean of the largest total employee numbers across the 53 included states/territories is 93.03774 employees.
+
+### Explain and Interpret
+
+I chose NH because I was curious about the distribution of railroad employees by county in that area (I grew up on the NH border). There is lots of variability in NH railroad employment. Rockingham county has 146 employees, while Belknap county has only 2 railroad employees. I then tried to slice out the counties with the most employees by state to see how many employees there are on average at the "biggest" railroad counties in each state. I was surprised comparing the NH max to the mean of the largest railroads by county in each state(the second data analyzed that was sliced). I was surprise given the mean number of employees at the "largest" railroad/county in each state was only 93, but the max for NH is 146. I don't think of NH has a big state or having a lot of railroads. One thing that might expplain this is that states like Texas (over 100) have more counties than NH (10) skewing the mean (93.0377). In comparison, NH would have larger employment numbers by county given it only has 10 counties. 
+

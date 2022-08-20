@@ -1,0 +1,31 @@
+---
+title: "Challenge2_KatiePopiela"
+editor: visual
+---
+
+## 1) Read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc).
+## 2) Provide summary statistics for different interesting groups within the data, and interpret those statistics.
+
+```{r}
+library(tidyverse)
+library(readr)
+library(dplyr)
+
+#For this challenge, I will read in "railroad_2012_clean_county.csv." This dataset shows the number of railroad employees in each county in each state.
+```
+
+```{r}
+countyrr_data <- read.csv("_data/railroad_2012_clean_county.csv")
+head(countyrr_data)
+```
+
+```{r}
+dim(countyrr_data)
+```
+
+```{r}
+#For confirmation, I got the dimensions of the table. With 2,930 rows, it must be filtered down and grouped in some way in order to present specific information. 
+
+#I'm going to start by finding the county in each state that had the fewest postal employees
+```
+

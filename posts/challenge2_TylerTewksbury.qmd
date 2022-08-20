@@ -1,0 +1,90 @@
+---
+title: "Challenge 2"
+author: "Tyler Tewksbury"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   FAOstat\*.csv ⭐⭐⭐
+-   hotel_bookings ⭐⭐⭐⭐
+
+```{r}
+df <- read_csv("_data/railroad_2012_clean_county.csv")
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+summary(df)
+```
+
+This summary shows the amount of values in the three columns, as well as a high level overview of said values. State and county are both characters, which likely was taken from an existing survey data spreadsheet. Summary also gives us a brief insight into the total_employees, showing the max, min, median, etc. Just with this summary, questions can be asked about the data. How many counties correlate to each state? Do states with more counties have a lower average of employees? Many questions can be asked, but this correlation between county count and employee count average will be looked into. 
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+
+states_mean <- df %>%
+  group_by(state) %>%
+  summarise(mean_employee = mean(total_employees)) %>%
+  arrange(desc(mean_employee), .by_group = TRUE)
+
+state_county_count <- df %>%
+  count(state) %>%
+  arrange(n)
+
+states_mean <- df %>%
+  group_by(state) %>%
+  summarise(mean_employee = mean(total_employees)) %>%
+  arrange(desc(mean_employee), .by_group = TRUE)
+
+state_county_count <- df %>%
+  count(state) %>%
+  arrange(n)
+
+state_info <- inner_join(state_county_count, states_mean)
+
+```
+
+### Explain and Interpret
+
+Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.
+
+I performed three different analyses to get a deeper understanding of the data. First, I grouped by state and calculated the mean of total employees per state, and sorted by descending. This allowed me to see the states with, what can be presumed to be, the highest concentration of employees. Next, to get a better understanding at the state level, I calculated the amount of counties in each state, sorting by ascending. This would allow me to confirm if a state with a high mean would have few counties as well. The theory seemed to be true, as there were a few I recognized by manually looking. However, I could confirm this using R. To do this, I simply repeated the first two analayses, this time creating new data frames out of them. I then ran an inner join to join via state, creating a new table with all the data I calculated. Using this table, visualizations can be made to test/prove the hypothesis of low county count = higher number of employees in their counties.

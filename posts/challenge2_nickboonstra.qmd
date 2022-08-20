@@ -1,0 +1,137 @@
+---
+title: "Nick Boonstra Challenge 2"
+author: "Nick Boonstra"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - boonstra
+  - week_1
+  - hotels
+---
+
+## Introduction
+
+For today's challenge, I will be reading in and wrangling data from the "hotel_bookings" dataset.
+
+#### Setup Chunk
+
+First, my R setup chunk:
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Reading in the data
+
+Reading in the data was a fairly straightforward process:
+
+```{r}
+#| label: read in
+
+hotels<-read_csv("_data/hotel_bookings.csv")
+hotels
+
+```
+
+#### Transformations
+
+After reading in the data, I made a few transformations:
+
+```{r}
+#| label: transformations
+
+
+hotels<-hotels %>% 
+  rename(is_cancelled = is_canceled) %>%  ## i'm petty
+  mutate(booking_dummy = case_when( ## dummy var for whether or not changes were made
+    booking_changes == 0 ~ 0,
+    T ~ 1
+  )) %>% 
+  mutate(arrival_date_month_num = case_when( ## numerical variable for months
+    arrival_date_month == "January" ~ 1,
+    arrival_date_month == "February" ~ 2,
+    arrival_date_month == "March" ~ 3,
+    arrival_date_month == "April" ~ 4,
+    arrival_date_month == "May" ~ 5,
+    arrival_date_month == "June" ~ 6,
+    arrival_date_month == "July" ~ 7,
+    arrival_date_month == "August" ~ 8,
+    arrival_date_month == "September" ~ 9,
+    arrival_date_month == "October" ~ 10,
+    arrival_date_month == "November" ~ 11,
+    arrival_date_month == "December" ~ 12
+  ))
+
+```
+
+I found that this data set only required fairly minimal/minor transformations. Firstly, I renamed the "is_canceled" variable to "is_cancelled" primarily because I'm petty, and I knew I would want to spell it with the double "L" the whole time. Next, I created a dummy variable called "booking_dummy" for whether or not any changes were made to a booking, regardless of how many such changes there were. Lastly, I created a variable named "arrival_date_month_num" to assign the corresponding number to each month as named in the "arrival_date_month" column.
+
+## Describing the data
+
+Before I started summarising, I wanted to get a sense of what the data "looked like," so to speak:
+
+```{r}
+#| label: summary
+
+names(hotels)
+count(hotels)
+count(hotels,hotel)
+count(hotels,country)
+
+arrivals<-xtabs(~arrival_date_year+arrival_date_month_num,hotels)
+arrivals
+
+```
+
+This data set appears to describe hotel bookings from across a number of different countries and kinds of hotels, in the time range between July 2015 and August 2018. Each observation appears to be a single booking, with a range of information about each booking tracked in each column.
+
+## Provide Grouped Summary Statistics
+
+As I looked through the data, I found myself gravitating toward the information about booking changes and cancellations.
+
+```{r}
+#| label: exploratory
+
+hotels %>% 
+  group_by(is_cancelled) %>% 
+  summarise(mean(booking_changes,na.rm=T))
+
+hotels %>% 
+  group_by(is_cancelled) %>%
+  summarise(median(booking_changes))
+
+
+
+```
+
+Clearly, most bookings did not have any changes to their booking, demonstrated by the fact that the median number of changes for both cancelled and non-cancelled bookings was 0. However, it is interesting to observe that non-cancelled bookings tended to have more booking changes performed, suggesting that making changes to a booking may have increased the likelihood of that booking not having to be cancelled -- a boon for hotels and travel agencies, if that extra bit of work is all it takes to retain a customer.
+
+### Visualizing and Interpreting
+
+These observations can be seen much more clearly in a graphic visualization:
+
+```{r}
+#| label: cancellations
+
+ggplot(hotels,aes(x=factor(booking_dummy),fill=factor(is_cancelled))) +
+  geom_bar() +
+  theme_bw() +
+  labs(title = "Cancellations by changes in booking", x = "Change in booking?", y= "Number of bookings",
+       fill = "Booking cancelled?")
+
+```
+
+This bar graph utilizes the "booking_dummy" variable, easily dividing all bookings into those that had changes performed and those that didn't. As can be seen, there were more bookings cancelled without changes being made than there were total bookings with changes! Additionally, a much smaller proportion of bookings with changes ended up being cancelled when compared to bookings without any changes made (though cancellations accounted for less than half of each group in the end). Of course, it is hard to make broad generalizations without knowing more of the story told by this data. However, on the face of things it looks as though a case could be made for flexibility with regards to changing bookings as a strong protection against customers cancelling reservations.

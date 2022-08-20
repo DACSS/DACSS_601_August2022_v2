@@ -1,0 +1,46 @@
+---
+title: "Challenge1_KatiePopiela"
+format: html
+editor: visual
+---
+
+## Read in a dataset and describe it with words and visuals
+
+```{r}
+#For my purposes I'll be reading in the birds.csv dataset. The data appears to record the number of various birds (ducks, geese, chickens, etc.) in different countries during the mid 20th-early 21st century. 
+
+library(readr)
+library(tidyverse)
+library(ggplot2)
+
+birds_1<-read.csv("_data/birds.csv")
+head(birds_1)
+
+#Below is the head of the dataset. At first glance it looks ok, but the dimensions, as I will show, require the data to be trimmed down. 
+```
+
+```{r}
+dim(birds_1)
+
+#There are 30,977 rows and 14 columns in this dataset (too many), so I will use the select function(s) to isolate specific variables; I want to look at the record of duck numbers in Czechoslovakia.
+```
+
+```{r}
+colnames(birds_1)
+```
+
+```{r}
+birds_refined<- select(birds_1,Area,Item,Value,Year)
+
+birds_ref2 <- birds_refined %>%
+  filter(Area=="Czechoslovakia") %>%
+  filter(Item=="Ducks")
+
+head(birds_ref2)
+```
+
+```{r}
+#The recorded number of ducks in Czechoslovakia fluctuates between being in the 300,000s and the 700,000s. Lets visualize it!
+
+ggplot(birds_ref2, aes(x=Year,y=Value)) + geom_jitter() + labs(y="Number of Ducks by 1000")
+```

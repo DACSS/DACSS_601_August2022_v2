@@ -1,0 +1,127 @@
+---
+title: "Challenge 2 Instructions"
+author: "Animesh Sengupta"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readr)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+
+-   FAOstat\*.csv ⭐⭐⭐
+
+```{r}
+#! label: Read Data
+FAOstat_livestock <- read_csv("../posts/_data/FAOSTAT_livestock.csv")
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+#Data Dimensions
+dim(FAOstat_livestock)
+#Data Columns
+colnames(FAOstat_livestock)
+#Data Preview
+head(FAOstat_livestock,3)
+```
+## Processed Data for analysis and some information about it
+```{r}
+#! label: Isolate data for analysis
+FAOstat_livestock_main <- select(FAOstat_livestock,"Area","Item","Year","Unit","Value")
+head(FAOstat_livestock_main,5)
+countries_num<-n_distinct(FAOstat_livestock_main$Area)
+year_vector<-unique(FAOstat_livestock_main$Year)
+unique(FAOstat_livestock_main$Item)
+```
+The data collected for FAO was between `r year_vector[1]` to `r tail(year_vector,1)` for `r print(countries_num)` Areas in total. 
+
+I am interested in finding the expenditure statistics on livestock for these countries. Lets find out below. 
+
+## Provide Grouped Summary Statistics
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+#| label: Finding Central Tendencies
+ct_analysis <- FAOstat_livestock_main %>%
+                group_by(Area,Item)%>%
+                summarise(mean_val=mean(Value,na.rm = TRUE),
+                          median_val=median(Value,na.rm = TRUE),
+                          .groups = 'drop')
+dim(ct_analysis)
+colnames(ct_analysis)
+```
+
+##Item wise by analysis
+```{r}
+#| label: Item wise analysis
+ct_item_group <- ct_analysis %>%
+  group_by(Item)%>%
+  summarise(mean_val=mean(mean_val,na.rm = TRUE))%>%
+  arrange(desc(mean_val))
+
+head(ct_item_group,5)
+```
+As per the data , Cattle generates the most value for any country , with the mean value being `r ct_item_group$mean_val[1]`. We can speculatively attribute this high value to cattle due to its important role in society. For example, a cattle generates value not only be meat consumption but also dairy production. On the other hand, the Mule with lowest mean value of `r tail(ct_item_group$mean_val,1)`, has lesser societal value.
+
+##Area wise analysis
+```{r}
+#| label: Area wise analysis
+ct_area_group <- ct_analysis %>%
+  group_by(Area)%>%
+  summarise(mean_val=mean(mean_val,na.rm = TRUE))%>%
+  arrange(desc(mean_val))
+
+head(ct_area_group,15)
+```
+Among the countries, Mainland China and India are the biggest mean producer of livestock value. 
+
+##Time wise analysis of largest producer for most valuable livestock
+```{r}
+#| label: Time series analysis
+ct_time_series <- FAOstat_livestock_main %>%
+  filter(Item == 'Cattle' & Area == 'China, mainland')%>%
+  group_by(Year)%>%
+  summarise(mean_val=mean(Value,na.rm = TRUE))%>%
+  arrange(Year)
+
+ggplot(data = ct_time_series, aes(x = Year, y = mean_val)) +
+  geom_point()
+```
+As per the time chart plot, the cattle production started to increase substantially during the late 1900s and saw a peak during early 2000. Since then cattle production has a seen a downfall, probably attributing to advent of technology
+
+### Explain and Interpret
+
+For my analysis I chose the subgroup of Area, Item, Time and Value from the FAO Livestock dataset. The reason for choosing such a group of features was because of its high meaningfulness. This would also allow me to conduct Area wise, Item wise and time series Analysis. Conclusion to my analysis would be that Cattle is the MVP while China is the largest producer of livestock.

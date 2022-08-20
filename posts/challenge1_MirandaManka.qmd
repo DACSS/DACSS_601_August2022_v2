@@ -1,0 +1,87 @@
+---
+title: "Challenge 1"
+author: "Miranda Manka"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+  - wild_bird_data
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+```{r}
+#Read in the excel file
+wild_bird_data = read_excel("_data/wild_bird_data.xlsx")
+```
+
+## Describe the data
+
+Using a combination of words and results of R commands, provide a high level description of the data.
+
+```{r}
+#| label: summary
+
+#View the data
+view(wild_bird_data)
+
+#Find the dimensions of the data
+dim(wild_bird_data)
+
+#Look at the first few observations
+head(wild_bird_data)
+
+#Get column names
+colnames(wild_bird_data)
+```
+
+The data appear to be about 146 wild birds, detailing two pieces of information for each - their wet body weight (in grams) and the size of the population they are in. It is hard to tell more about this data without other information, such as the types of birds or how/when/where the data were collected, although if I had to guess, I would say that it was probably collected in forests or other outdoor areas with many birds because the title of the dataset indicates they are wild birds.
+
+Interestingly, the actual variable names seem to be in the next row instead of the labels the data currently has (the variables should be "Wet body weight [g]" for the first variable/column instead of "Reference", and "Population size" for the second instead of "Taken from Figure 1 of Nee et al.")
+
+```{r}
+#Work to correct variable/column names
+#Remove first row
+wild_bird_data <- wild_bird_data[-c(1), ]
+#Rename columns/variables
+wild_bird_data = rename(wild_bird_data, wet_body_weight_g = Reference)
+wild_bird_data = rename(wild_bird_data, population_size = `Taken from Figure 1 of Nee et al.`)
+#Create value to use from each column
+wet_body_weight_g = wild_bird_data[, 1]
+population_size = wild_bird_data[, 2]
+
+#Change type
+wet_body_weight_g = as.numeric(unlist(wet_body_weight_g))
+population_size = as.numeric(unlist(population_size))
+
+#Summary of variables
+summary(wet_body_weight_g)
+summary(population_size)
+```
+
+The data are very spread out, with a lot of variation in values. This indicates that there is likely a large variety in the types of birds and/or the geographical location of the birds in these measurements.

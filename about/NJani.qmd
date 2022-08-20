@@ -1,0 +1,44 @@
+---
+title: "Nayan Jani"
+image: images/njani.jpg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/njani.jpg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/Njani01886/dacss601_august2022
+---
+
+
+
+
+
+## Education/Work Background
+
+I received my B.S. in Data Science from the University of Rhode Island this past year. Over the summer of 2021 I worked for a startup company called Bora. At Bora, the product they are trying to bring to market is an app based, self service beach chair rental company stationed at the most popular locations across the country. My job was to collect data on certain locations and then run statistical analysis on that collected data to find out which locations are the busiest based on the characteristics of beaches. While working for Bora I was in constant contact with potential clients and the CEO of the company. Working for a startup showed me how a business functions from the ground up and how to interact with clients in a professional manner.
+
+## R experience
+
+I have been working in R and R markdown since my sophomore year of college. I have mostly used it for statistical reports and model building for data sets. I only was introduced to the tidyverse for a short period of time so I will need to practice using its functions more.
+
+## Research interests
+
+The topic I explored for my Senior recitation is the use of Machine Learning in estimating the heterogeneous treatment effect using datasets that involve AIDS and breast cancer treatments. More specifically, I looked into certain meta learners that can estimate the conditional average treatment effect so that we can personalize treatment regimes. Here at Umass I hope to learn more about how to apply data science to medical treatments for people with illnesses.
+
+## Hometown
+
+Westford, MA
+
+## Hobbies
+
+-   Video Games
+-   Fantasy Football
+-   Watching Sports
+-   Playing Cards and Board Games
+
+## Fun fact
+
+I have over 50 cousins that live in the UK!
