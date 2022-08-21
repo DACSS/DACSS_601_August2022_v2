@@ -1,6 +1,6 @@
 ---
 title: "Ananya Pujary"
-image: images/IMG_2931.jpg
+image: images/IMG_2931.jpg 
 about:
   template: solana
   image-width: 15em

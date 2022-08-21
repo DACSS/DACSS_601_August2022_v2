@@ -1,6 +1,6 @@
 ---
 title: "Challenge 1"
-author: "Ananya Pujary"
+author: "Ananya Pujary" 
 description: "Reading in data and creating a post"
 date: "08/15/2022"
 format:

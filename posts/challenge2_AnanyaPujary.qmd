@@ -1,6 +1,6 @@
 ---
 title: "Challenge 2"
-author: "Ananya Pujary"
+author: "Ananya Pujary" 
 description: "Data wrangling: using group() and summarise()"
 date: "08/16/2022"
 format:
