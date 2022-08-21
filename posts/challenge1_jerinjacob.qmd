@@ -1,7 +1,7 @@
 ---
 title: "Challenge 1"
 author: "Jerin Jacob"
-desription: "Reading in data and creating a post"
+description: "Reading in data and creating a post"
 date: "08/16/2022"
 format:
   html:
@@ -24,35 +24,37 @@ library(readxl)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Read in the Data
+## Reading Railroad Employees Dataset
+
 
 ```{r}
-## Reading Dataset Railroad Employees
+
 railroad <- read_csv("_data/railroad_2012_clean_county.csv")
 ```
 
-## Describe the data
+This is a data set of the rail road employees working in 2930 counties of the states in US in the year of 2012. 
+There are 3 variables in the dataset; state, county and total number of employees.
+
+
+## Describing Railroad Data
+
+
+
 
 ```{r}
-## Describing railroad data
-## This is a data set of the rail road employees working in 2930 counties of the states in US in the year of 2012.
-## There are 3 variables in the dataset; state, county and total number of employees.
-
-## The minimum number of employees in a county is 1 and the maximum number is 8207
-
-## There are 145 counties where there is only 1 employee working in the rail road department whereas 27 counties have more than 1000 employees
 view(railroad)
 railroad%>%
   select(state)%>%
   n_distinct(.)
 
-## There are 53 distinct values in the variable column named state. This means that there are certain additional values other than the name of the states.
 
 railroad%>%
   select(state)%>%
   distinct()
 
-## The variable 'state' contains all the states along with armed forces, DC etc.  
 
 
 ```
+
+There are 53 distinct values in the variable column named state. This means that there are certain additional values other than the name of the states. The variable 'state' contains all the states along with armed forces, DC etc. To find what values are included other than the name of the states, the distinct values of the variable 'state' is taken.
+
