@@ -1,0 +1,144 @@
+---
+title: "Challenge 1 Instructions"
+author: "Meredith Rolfe"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(Hmisc)
+library(psych)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xlsx ⭐⭐⭐⭐
+
+Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
+
+```{r}
+# 
+railroad <- read.csv('_data/railroad_2012_clean_county.csv', stringsAsFactors = TRUE, header = TRUE)
+
+
+```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+
+# check first 6 rows in the dataset, to get primary understading of the dataset structure
+# check first 6 rows in the dataset, to get primary understanding of the dataframe structure
+
+head(railroad)
+View(railroad)
+dim(railroad) # numbers of rows. columns
+
+#Dataset Description
+  # "state" column contains name of different states from United States of America in upper case, abbreviated format
+  # "county" column contains names of different counties, for the states in 'state' column, in upper case format
+  # "total_employees" column contains state-county wise number of railroad employees.
+
+
+# struture of railroad dataset
+
+str(railroad)
+
+# Output
+
+  # 'data.frame':	2930 obs. of  3 variables:
+  #  $ state          : Factor w/ 53 levels "AE","AK","AL",..: 1 2 2 2 2 2 2 3 3 3 ...
+  #  $ county         : Factor w/ 1709 levels "ABBEVILLE","ACADIA",..: 44 33 524 794 963 1415 1417 78 85 95 ...
+  #  $ total_employees: int  2 7 2 3 2 1 88 102 143 1 ...
+
+#summary
+
+  # railroad dataset has 2930 rows and 3 columns
+  # State column is a factor class; as converted from character class during file read command read.csv() and it has 53 levels.
+  # county column has 1709 levels
+
+# Missing Values, check NA value
+
+sum(is.na(railroad))
+
+# check column wise NA values
+
+sum(is.na(railroad$state))
+sum(is.na(railroad$county))
+sum(is.na(railroad$total_employees))
+
+# Missing Value, check NULL value
+
+sum(is.null(railroad))
+
+# check column wise NULL values
+
+sum(is.null(railroad$state))
+sum(is.null(railroad$county))
+sum(is.null(railroad$total_employees))
+
+# column, row names of the dataset
+
+colnames(railroad)
+row.names(railroad)
+
+# dimension of dataset
+
+dim(railroad) # 2930 observations & 3 columns
+
+# number of rows, number of columns
+
+
+nrow(railroad)
+ncol(railroad)
+
+# Describe & Summary for descriptive analysis
+ 
+ #describe from Hmisc Package
+
+  Hmisc::describe(railroad)
+
+  #describe from psych Pakcage
+
+  psych::describe(railroad)
+  
+  # summary
+
+  summary(railroad)
+
+
+```

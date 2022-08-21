@@ -1,0 +1,54 @@
+---
+title: "Your Name"
+image: images/AkhileshKumar.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/AkhileshKumar.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/akhilesh0702
+---
+
+##Instructions
+
+  - save a copy of this document as *FirstLast.qmd* 
+  - replace *Your Name* in yaml header with your first and last name
+  - pick an image (jpeg, png) to use and put it in the same folder as this document
+  - replace image names in yaml header
+  - replace github user name (if you have one, otherwise we will set one up next week)
+  - fill in information below, as appropriate
+  - remove these instructions and render!
+
+## Education/Work Background
+
+I am an experienced professional with more than 13 years of progressive multi-domain experience in implementing information & emerging technology solutions on Artificial Intelligence, Machine Learning, Cloud, Geographic Information System, Drones, Internet of Things etc. I have a Post Graduate Diploma in Industrial Management (PGDIM) from National Institute of Industrial Engineering. Mumbai and a Bachelor's of Technology (B.Tech) from National Institute of Technology, Bhopal. 
+I am a Microsoft Azure Certified Cloud Solution Architect; I have led cloud migration projects, prepared cloud migration strategy for clients by studying existing IT systems and developing cloud solution by considering factors such as: system availability, replication, disaster recovery, total cost of implementation etc. 
+I have designed data systems to implement uniform data standards to enable data-convergence among different Govt. program data and implement cross-functional data analytics to enable data-driven decision-making for the Government. I have led Text Analytics Implementation by training deep learning models for 22+ different Indian vernacular languages, for topic modelling, entity extraction etc. 
+I have led implementation of several smart-city projects in urban areas, such as: AI/ML, GIS, IoT based Flood Early Warning System; Machine Learning based Heatwave Prediction Model; Smart Manhole Monitoring for Hazardous Gas & Water Overflow Detection) etc. 
+My research interest include: Artificial Intelligence, Machine Learning, Natural Language Processing etc. 
+
+
+## R experience
+
+I have done "Data Science: Foundations using R Specialization" on Coursera. I have done few implementations in R, including:
+
+- Social Media Analytics on Twitter Data to develop word cloud, named entity extraction, text classification etc.
+- Rshiny Dashboard for Inventory Management of Government Residential Schools in Remote Tribals Areas
+
+## Research interests
+My research interests include implementation of Artificial Intelligence and Machine Learning in Urban Development, Education and Health Sector. 
+
+## Hometown
+
+Ajmer Rajasthan
+
+## Hobbies
+
+Yoga, Gym, Cycling
+
+## Fun fact
+
+Normally a man speaks about 2,000 words in a day, I speak 2.000
