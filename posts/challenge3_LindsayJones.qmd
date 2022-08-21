@@ -1,0 +1,73 @@
+---
+title: "Challenge 3"
+author: "Lindsay Jones"
+description: "Tidy Data: Pivoting"
+date: "08/17/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+  - animal_weight
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1.  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2.  identify what needs to be done to tidy the current data
+3.  anticipate the shape of pivoted data
+4.  pivot the data into tidy format using `pivot_longer`
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+-   animal_weights.csv ⭐
+-   eggs_tidy.csv ⭐⭐ or organicpoultry.xls ⭐⭐⭐
+-   australian_marriage\*.xlsx ⭐⭐⭐
+-   USA Households\*.xlsx ⭐⭐⭐⭐
+-   sce_labor_chart_data_public.csv 🌟🌟🌟🌟🌟
+
+```{r}
+animal_weight<-read_csv("_data/animal_weight.csv",
+                        show_col_types = FALSE)
+print(animal_weight)
+```
+
+### Briefly describe the data
+
+This data set contains the average weight of 17 different groups of animals in 9 regions of the world. This data set is not tidy because the variables (animal species and average weight) are not set as the columns. Using pivot_longer will fix that. 
+
+### Challenge: Pivot the Chosen Data
+
+
+```{r}
+aw_pivot <- pivot_longer(animal_weight, 
+             "Cattle - dairy":"Llamas", 
+             names_to = "Species",
+             values_to = "Weight")
+print(aw_pivot)
+
+```
+
+This format makes it more difficult to look at the data for each country, but this could be solved using a few different functions. If we wanted to examine both types of cattle in every country:
+
+```{r}
+aw_pivot %>%
+  filter(grepl('Cattle', Species))
+```
