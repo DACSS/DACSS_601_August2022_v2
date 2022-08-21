@@ -1,6 +1,6 @@
 ---
 title: "Challenge 1 Instructions"
-author: "Meredith Rolfe"
+author: "Yakub Rabiutheen"
 desription: "Reading in data and creating a post"
 date: "08/15/2022"
 format:
