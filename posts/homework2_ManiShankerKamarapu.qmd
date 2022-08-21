@@ -1,0 +1,96 @@
+---
+title: "Homework2"
+author: "Mani Shanker Kamarapu"
+desription: "Reading in Data"
+date: "08/21/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw2
+  - ActiveDuty_MartialStatus
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+
+AirForce_MaritalStatus <- read_excel("_data/ActiveDuty_MaritalStatus.xls", 
+    sheet = "AirForce", skip = 9, col_names = c("remove", "Pay Grade", "SWC_Male", "SWC_Female", "SWC_Total", "SC_Male", "SC_Female", "SC_Total", "JSM_Male", "JSM_Female", "JSM_Total", "CM_Male", "CM_Female", "CM_Total", "Male", "Female", "Total")) %>%
+  select("Pay Grade", "SWC_Male", "SWC_Female", "SC_Male", "SC_Female", "JSM_Male", "JSM_Female", "CM_Male", "CM_Female") %>%
+  drop_na("Pay Grade") %>%
+  filter(!grepl("TOTAL", `Pay Grade`)) %>%
+    mutate(DOD_type="AirForce")
+
+MarineCorps_MaritalStatus <- read_excel("_data/ActiveDuty_MaritalStatus.xls", 
+    sheet = "MarineCorps", skip = 9, col_names = c("remove", "Pay Grade", "SWC_Male", "SWC_Female", "SWC_Total", "SC_Male", "SC_Female", "SC_Total", "JSM_Male", "JSM_Female", "JSM_Total", "CM_Male", "CM_Female", "CM_Total", "M_Male", "M_Female", "M_Total")) %>%
+  select("Pay Grade", "SWC_Male", "SWC_Female", "SC_Male", "SC_Female", "JSM_Male", "JSM_Female", "CM_Male", "CM_Female") %>%
+  drop_na("Pay Grade") %>%
+  filter(!grepl("TOTAL", `Pay Grade`)) %>%
+    mutate(DOD_type="MarineCorps")
+
+Navy_MaritalStatus <- read_excel("_data/ActiveDuty_MaritalStatus.xls", 
+    sheet = "Navy", skip = 9, col_names = c("remove", "Pay Grade", "SWC_Male", "SWC_Female", "SWC_Total", "SC_Male", "SC_Female", "SC_Total", "JSM_Male", "JSM_Female", "JSM_Total", "CM_Male", "CM_Female", "CM_Total", "N_Male", "N_Female", "N_Total")) %>%
+  select("Pay Grade", "SWC_Male", "SWC_Female", "SC_Male", "SC_Female", "JSM_Male", "JSM_Female", "CM_Male", "CM_Female") %>%
+  drop_na("Pay Grade") %>%
+  filter(!grepl("TOTAL", `Pay Grade`)) %>%
+    mutate(DOD_type="Navy")
+
+Army_MaritalStatus <- read_excel("_data/ActiveDuty_MaritalStatus.xls", 
+    sheet = "Army", skip = 9, col_names = c("remove", "Pay Grade", "SWC_Male", "SWC_Female", "SWC_Total", "SC_Male", "SC_Female", "SC_Total", "JSM_Male", "JSM_Female", "JSM_Total", "CM_Male", "CM_Female", "CM_Total", "Army_Male", "Army_Female", "Army_Total")) %>%
+  select("Pay Grade", "SWC_Male", "SWC_Female", "SC_Male", "SC_Female", "JSM_Male", "JSM_Female", "CM_Male", "CM_Female") %>%
+  drop_na("Pay Grade") %>%
+  filter(!grepl("TOTAL", `Pay Grade`)) %>%
+    mutate(DOD_type="Army")
+
+TotalDOD_MartialStatus <- rbind(AirForce_MaritalStatus,MarineCorps_MaritalStatus, Navy_MaritalStatus, Army_MaritalStatus)
+
+TotalDOD_MartialStatus
+```
+
+### Briefly describe the data
+
+
+
+## Anticipate the End Result
+
+
+
+
+### Challenge: Describe the final dimensions
+
+Document your work here.
+
+```{r}
+
+
+```
+
+Any additional comments?
+
+## Pivot the Data
+
+```{r}
+TotalDOD_MartialStatus <-  pivot_longer(TotalDOD_MartialStatus, SWC_Male:CM_Female, names_to = "Status", values_to = "Count") %>% 
+  separate(col = "Status", into= c("Status", "Gender"), "_") %>%
+  arrange("Pay Grade")
+
+TotalDOD_MartialStatus
+
+```
+
+
