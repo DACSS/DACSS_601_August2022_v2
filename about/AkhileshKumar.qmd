@@ -1,5 +1,5 @@
 ---
-title: "Your Name"
+title: "Akhilesh Kumar Meghwal"
 image: images/AkhileshKumar.jpeg
 about:
   template: solana
