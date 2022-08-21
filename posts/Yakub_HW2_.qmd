@@ -10,7 +10,7 @@ format:
     code-copy: true
     code-tools: true
 categories:
-  - challenge_2
+  -hw2
 ---
 
 ```{r}
