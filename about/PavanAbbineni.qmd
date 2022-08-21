@@ -1,0 +1,41 @@
+---
+title: "Pavan Datta Abbineni"
+image: images/YourName.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/pavan.jpg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/FrozenWolfyy
+---
+
+##Instructions  
+
+  - save a copy of this document as *FirstLast.qmd* in the **about** folder
+  - replace *Your Name* in yaml header with your first and last name
+  - save an image (jpeg, png) to use in the **about/images** folder
+  - replace image names in yaml header
+  - replace github user name
+  - fill in information below, as appropriate
+  - commit to github and submit pull request
+
+## Education/Work Background
+Currently a full time graduate student at UMass with two internships as a software engineer.  
+
+## R experience
+Have basic knowledge in R-markdown as I have taken a Statistics course which uses R.
+
+## Research interests
+Really interested in Computer Vision and Natural Language Processing.  
+
+## Hometown
+India.  
+
+## Hobbies
+I enjoy exercising, hanging out with friends and family, playing sports and much more.    
+
+## Fun fact
+I used to play badminton at a national level.    
