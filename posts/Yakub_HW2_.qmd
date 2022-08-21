@@ -1,0 +1,145 @@
+---
+title: "HW 2 Instructions"
+author: "Yakub Rabiutheen"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+
+Loaded the Fed Funds Dataset
+
+```{r}
+library(readr)
+fedfunds <- read_csv("_data/FedFundsRate.csv")
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+
+Doing a Head of the Dataset to get a view of what the Data Looks like.
+
+
+```{r}
+head(fedfunds)
+```
+
+Getting the column names
+```{r}
+colnames(fedfunds)
+```
+
+
+Renaming columns as I had difficulty invoking the column name in code.
+```{r}
+names(fedfunds)[names(fedfunds) == "Real GDP (Percent Change)"] <- "Real GDP"
+colnames(fedfunds)
+```
+
+
+
+
+
+Summary of the Datset and found a lot of NAs to clean up.
+```{r}
+summary(fedfunds)
+```
+
+Dropping all NAs
+```{r}
+year_metrics <- fedfunds %>%
+  drop_na(Year,`Real GDP`,`Inflation Rate`,`Unemployment Rate`,`Effective Federal Funds Rate`)
+year_metrics
+```
+
+
+```{r}
+summary(year_metrics)
+```
+
+
+I tried to use a line graph but it looks messy.
+```{r}
+library(ggplot2)
+ggplot(data=year_metrics, aes(x=`Year`, y=`Real GDP`))+
+  geom_line()
+```
+
+
+
+
+This Bar Graph came out much cleaner looking.
+```{r}
+perctgdp<-ggplot(year_metrics, aes(x =`Year`, y =`Real GDP`,fill=`Real GDP`)) + geom_bar(stat = "identity")
+perctgdp
+```
+
+I added limits and breaks to see the most recent year 2017.
+```{r}
+perctgdp<-perctgdp+scale_x_continuous(limits=c(1954,2017),breaks=seq(1954,2017,5))
+```
+
+
+
+Relabeled the Y axis to make to clear this not that actual GDP rate but the Percentage change of the GDP    
+```{r}
+print(perctgdp + labs(
+  title = "GDP Percentage Change by Year",
+  y = "GDP Percentage Change", x = "Year"
+))
+```
+
+
+```{r}
+ggplot(year_metrics) +
+  aes(x = `Unemployment Rate`, y = `Inflation Rate`) +
+  geom_point(colour = "#0c4c8a") +
+  theme_minimal()
+```
+
+
+I did a Correlation test of Unemployment rate and the Inflation rate. It got only a moderate Correlation.
+```{r}
+cor(year_metrics$`Unemployment Rate`,year_metrics$`Inflation Rate`)
+```
+
+Trying to Graph both the Unemployment Rate and Inflation Rate by Year
+```{r}
+df <- year_metrics %>%
+  select(Year, `Unemployment Rate`, `Inflation Rate`) %>%
+  gather(key = "variable", value = "value", -Year)
+```
+
+
+
+Graph that shows inflation rate vs Unemployment Rate by Year
+
+As shown here, there can be periods of High Inflation and low unemployment which is why there isn't a strong correlation.
+```{r}
+ggplot(df, aes(x =`Year`, y = value)) + 
+  geom_line(aes(color = variable, linetype = variable)) + 
+  scale_color_manual(values = c("darkred", "steelblue"))+labs(
+  title = "Inflation and UnEmployment Rates by Year",
+  y = "Variable Rates", x = "Year")
+```
+
