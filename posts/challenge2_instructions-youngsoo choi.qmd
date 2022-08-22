@@ -32,11 +32,7 @@ Today's challenge is to
 
 ## Read in the Data
 
-Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
-
--   railroad\*.csv or StateCounty2012.xlsx ⭐
--   FAOstat\*.csv ⭐⭐⭐
--   hotel_bookings ⭐⭐⭐⭐
+I choosed 'StateCounty2012.xls'file and read it. But it has first 3 rows about title and any others. So I removed the first 3 rows using skip code.
 
 ```{r}
 library(readxl)
@@ -49,19 +45,17 @@ This dataset has 2990 rows and 5 columns. And each column name is "STATE", "...2
 
 ## Describe the data
 
-Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+This dataset is about the number of workers related to railroad jobs in 2012 I think. And this dataset contains data of 2990 county.
 
 ```{r}
 #| label: summary
 summary(state2012)
 ```
 
-This dataset is about the number of workers related to railroad jobs in 2012 I think. And this dataset contains data of 2990 county.
-
-
 ## Provide Grouped Summary Statistics
 
-Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+I choosed MA and CA because MA is the state where I live in and CA is much bigger state I think. I used filter code to figure out MA's and CA's central tendency numbers.
+
 ```{r}
 MA<-filter(state2012, STATE=="MA")
 summary(MA)
@@ -71,4 +65,4 @@ summary(CA)
 
 ### Explain and Interpret
 
-MA is the state where I live in and CA is much bigger state I think. MA has 12 county and average total is 286.1 and CA has 55 county and average total is 238.9. So I figure CA has more county than MA but MA's average total is larger than CA's.
+ MA has 12 county and average total is 286.1 and CA has 55 county and average total is 238.9. So I figure CA has more county than MA but MA's average total is larger than CA's.
