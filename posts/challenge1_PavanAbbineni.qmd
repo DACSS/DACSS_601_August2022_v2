@@ -23,26 +23,6 @@ library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Challenge Overview
-
-Today's challenge is to
-
-1)  read in a dataset, and
-
-2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
-
-## Read in the Data
-
-Read in one (or more) of the following data sets, using the correct R package and command.
-
--   railroad_2012_clean_county.csv ⭐
--   birds.csv ⭐⭐
--   FAOstat\*.csv ⭐⭐
--   wild_bird_data.xlsx ⭐⭐⭐
--   StateCounty2012.xlsx ⭐⭐⭐⭐
-
-Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
-
 I've decided to use the `railroad_2012_clean_county.csv` dataset
 
 ```{r}
