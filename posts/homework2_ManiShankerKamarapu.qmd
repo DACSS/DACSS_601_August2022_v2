@@ -27,6 +27,8 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 
 ## Read in data
 
+The data set is about the marital status of the active duty DOD service. The data set focuses on four types of services(Air Force, Marine Corps, Navy and Army). The data set gives us the detailed description of marital status of the DOD service people and divided them on basis of gender and four types of statuses(Single without Children(SWC), Single with Children(SC), Joint Service Marriage(JSM) and Civilian Marriage(CM)). The enrolled people are also divided on the basis of pay grade into 3 groups(Enlisted, Officer and Warrant). 
+
 ```{r}
 
 AirForce_MaritalStatus <- read_excel("_data/ActiveDuty_MaritalStatus.xls", 
@@ -57,40 +59,70 @@ Army_MaritalStatus <- read_excel("_data/ActiveDuty_MaritalStatus.xls",
   filter(!grepl("TOTAL", `Pay Grade`)) %>%
     mutate(DOD_type="Army")
 
-TotalDOD_MartialStatus <- rbind(AirForce_MaritalStatus,MarineCorps_MaritalStatus, Navy_MaritalStatus, Army_MaritalStatus)
+TotalDOD_MaritalStatus <- rbind(AirForce_MaritalStatus,MarineCorps_MaritalStatus, Navy_MaritalStatus, Army_MaritalStatus)
 
-TotalDOD_MartialStatus
+TotalDOD_MaritalStatus
 ```
 
 ### Briefly describe the data
 
+I have read the data sets and there were many rows empty, so I used the `skip` to remove first nine rows of data and also removed some columns to reduce redundancy in data set by using `select` function and then I removed empty rows by `drop` function and filtered out the values which can calculated if wanted and added a new column using `mutate` function in regards to combine the data sets and at last combined multiple data sets into one data set using `rbind` function.
 
+:::{.callout-tip}
+### Mutate function
+
+It is used to create new columns with the values of old columns.
+:::
+
+:::{.callout-important}
+### Rbind function
+
+It is used to select to combine two or more data sets into one data set vertically. Catch is that they should have same columns.
+:::
+
+```{r}
+dim(TotalDOD_MaritalStatus)
+```
+
+These are the present dimensions of the data set after reading and transforming it, It has 90 rows and 10 columns. 
+
+```{r}
+summary(TotalDOD_MaritalStatus)
+```
 
 ## Anticipate the End Result
 
-
-
-
-### Challenge: Describe the final dimensions
-
-Document your work here.
-
-```{r}
-
-
-```
-
-Any additional comments?
+As you might see the data set now there is lot of data which is still untidy, that is I can see that each observation doesn't have it's own row and need to be tidy further. First we need decrease the number of columns and use `pivot_longer()` function to convert the columns into rows so each row can have different and unique observation. And then after that make the "Status" column separate and split it into two columns Status and gender so we can have a separate variable for gender.
 
 ## Pivot the Data
 
 ```{r}
-TotalDOD_MartialStatus <-  pivot_longer(TotalDOD_MartialStatus, SWC_Male:CM_Female, names_to = "Status", values_to = "Count") %>% 
+TotalDOD_MaritalStatus <-  pivot_longer(TotalDOD_MaritalStatus, SWC_Male:CM_Female, names_to = "Status", values_to = "Count") %>% 
   separate(col = "Status", into= c("Status", "Gender"), "_") %>%
   arrange("Pay Grade")
 
-TotalDOD_MartialStatus
+TotalDOD_MaritalStatus
 
 ```
 
+:::{.callout-tip}
+### Pivot longer function
 
+It is used to convert columns into rows so we can have each observation for each row.
+:::
+
+:::{.callout-important}
+### Separate function
+
+It is an important function used to split one column into two or more columns by using `sep` parameter.
+:::
+
+Now from the table we can see that each variable has it's own column and each observation has it's own row, so now the data set is tidy.
+
+### Describe the final dimensions
+
+```{r}
+dim(TotalDOD_MaritalStatus)
+```
+
+Now from the tidy data set, the final dimensions are 720 rows and 5 columns. The column variables are "Pay Grade", "DOD_type", "Status", "Gender" and "Count". The pay grade represents the level and stats of the people, the DOD_type tells us about the type of service the person is enrolled in and Status gives us the Marital status of the person and Count represents the count of people enrolled in different services based on their marital status and distinguishing by their pay grade.
