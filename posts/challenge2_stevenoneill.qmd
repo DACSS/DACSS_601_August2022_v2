@@ -1,0 +1,114 @@
+---
+title: "Challenge 2"
+author: "Steve O'Neill"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+df-print: paged
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - hotel_bookings
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Introduction
+
+I'm going to try to do hotel_bookings: ⭐⭐⭐⭐
+
+```{r}
+hotel_bookings <- read_csv("_data/hotel_bookings.csv")
+hotel_bookings
+```
+
+Reading in the data is straightforward.
+
+## Describe the data
+
+This dataset is available on [Kaggle](https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand) and was originally published in the journal [Hospitality Management](https://www.sciencedirect.com/science/article/pii/S2352340918315191).
+
+The data describes two hotels - one 'city' and one 'resort'-style.
+
+Before I begin, I should establish some terminology based on research online:
+
+TA: Travel Agent TO: Tour Operator Distribution channel: HB (meal): Half Board (breakfast + other meal) FB (meal): Full Board (3 meals a day)
+
+## Provide Grouped Summary Statistics
+
+*Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.*
+
+There are just two \[de-identified\] hotels analyzed in this whole dataset:
+
+```{r}
+hotel_bookings %>% group_by(hotel) %>% summarise()
+```
+
+It is straightforward to give basic descriptive statistics on the Average Daily Rate of both hotels:
+
+```{r}
+hotel_bookings %>% select(adr) %>% summary(adr)
+
+```
+
+I can also demonstrate some more interesting stats based on included values like visitor nationality and lead time:
+
+```{r}
+by_hotel <- hotel_bookings %>% group_by(hotel)
+
+by_hotel <- by_hotel %>% summarise(
+  average.lead.time = mean(lead_time),
+  busiest.year = names(which.max(table(arrival_date_year))),
+  busiest.month = names(which.max(table(arrival_date_month))),
+  most.freq.nationality = names(which.max(table(country))),
+  most.infreq.nationality = names(which.min(table(country)))
+)
+
+by_hotel
+```
+
+As we can see,
+
+-   The city hotel has a longer lead time on average compared to the resort - could this be based on conferences and business travel?
+-   Both hotels' busiest year in the dataset was 2016, as well as their busiest month being August \[annually\].
+-   The most frequent nationality of guests was that of PRT - Portugal. That makes sense because the hotels are in [Portugal](https://www.sciencedirect.com/science/article/pii/S2352340918315191).
+-   The least frequent visitors in the City and Resort hotels hailed from Anguilla and Burundi, respectively.
+
+To demonstrate select(), I pull out a few values:
+
+```{r}
+visits <- select(hotel_bookings, hotel, market_segment, children, babies, country, reservation_status, reservation_status_date, arrival_date_month, adr)
+visits
+```
+
+Using filter(), here are visits that had a higher-than-median amount of babies brought along as compared to other visitors in the same market segment (Direct, Online, Corporate):
+
+```{r}
+visits_with_baby <- visits %>% group_by(market_segment) %>% filter(babies > median(babies, na.rm = TRUE))
+visits_with_baby
+```
+
+So let's compare the general make-up of travelers:
+
+```{r}
+table(visits$market_segment)
+```
+
+...with those traveling with a baby:
+
+```{r}
+table(visits_with_baby$market_segment)
+```
+
+Somewhat expectedly, there aren't too many business travelers bringing their kids!
