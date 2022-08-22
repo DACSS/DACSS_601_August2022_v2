@@ -1,0 +1,79 @@
+---
+title: "Challenge 4 Submission"
+author: "Nick Boonstra"
+description: "More data wrangling: pivoting"
+date: "08/21/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+---
+
+## Introduction
+
+Today's challenge introduces the `mutate()` function as an additional tool in 
+the data-wrangling process. I will be using the "FedFundsRate" data set.
+
+```{r setup}
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  identify variables that need to be mutated
+4)  mutate variables and sanity check all mutations
+
+## Read in data
+
+```{r read in}
+
+fed <- read_csv(
+  file = "_data/FedFundsRate.csv",
+  skip = 1,
+  col_names = c("year","month","day","fedfunds_target","fedfunds_upper","fedfunds_lower",
+                "fedfunds_eff","gdp_change","unemploy_rate","inflation_rate")
+  )
+
+fed
+
+```
+
+### Briefly describe the data
+
+This data set is not far from being tidy. Once the data set is tidy, there will be four columns: one for the date of the observation, one for the specific rate in question, one to describe what it is about that rate that is being observed, and one to provide the value of the given rate. When I read in the data, I renamed the columns with this tidying in mind.
+
+## Tidying and Wrangling 
+
+One inconvenience about this data set is that the year, month, and date of each observation each exist in their own columns, rather than there being one single column for the date. Fortunately, the `lubridate` package provides a simple work-around for this with the `make_date()` function.
+
+When we `pivot_longer()` the data, we are going to take every column but the date (we will `select()` out the individual year/month/day columns once we've generated our date column) and pivot them into two columns: one for rate_type, and one for value. Then, we will take one further step and use the `separate()` function to split rate_type into two separate columns, one for each variable.
+
+```{r wrangling}
+
+fed <- fed %>% 
+  mutate(date=make_date(year,month,day)) %>% 
+  select(-c(year,month,day)) %>% 
+  pivot_longer(
+    cols=!date,
+    names_to="rate_type",
+    values_to="val"
+  ) %>% 
+  separate(col=rate_type,into=c("rate","type")) 
+
+fed
+
+```

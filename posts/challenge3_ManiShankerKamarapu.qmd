@@ -34,8 +34,14 @@ vote_response <- read_excel("_data/australian_marriage_law_postal_survey_2017_-_
   filter(!grepl("Total", Area))
 R <- nrow(vote_response)-7
 vote_response <- slice(vote_response, 1:R)
-view(vote_response)
+vote_response
 ```
+
+```{r}
+dim(vote_response)
+```
+
+The dimensions of the data set are `158` rows and `6` columns.
 
 The data is on the postal survey of Australian Electoral Roll. It contains the data of the eligible participants and responses of the participants in federal election as at 24 August 2017. It has data based on different federal electoral divisions survey by the Australian Election Commission. It is basically the total number of response we got in each division during the federal election. The data set is untidy and variables are not defined correctly and there are a lot of extra variables which are not required and a bunch of NA values. So using different R functions to remove unwanted variables and drop some NA values and also remove extra rows.
 
@@ -48,7 +54,11 @@ vote_response <- vote_response %>%
     TRUE ~ NA_character_ )) %>%
   fill(Division) %>%
   drop_na("Yes")
-View(vote_response)
+vote_response
+```
+
+```{r}
+dim(vote_response)
 ```
 
 After we read the data and did some hard coding along with read, now we have separated the divisions row from the area column and formed a new column so we can use it as a grouping variable. 
@@ -57,7 +67,13 @@ After we read the data and did some hard coding along with read, now we have sep
 
 ```{r}
 vote_response <- pivot_longer(vote_response, Yes:Total, names_to = "Response", values_to = "Count")
-View(vote_response)
+vote_response
 ```
+
+```{r}
+dim(vote_response)
+```
+
+Now the data set has become longer and final dimensions are `750` rows and `4` columns.
 
 I have used pivot_longer to tidy the data set where I have collapse the responses(Yes, No, Not_Eligible, NoResponse and Total) into one column so we can vary them easily and really make sense. So now we can get the divisional level count or area level count easily and we can also plot it easily now in different ways.

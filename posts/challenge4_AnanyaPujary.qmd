@@ -1,0 +1,83 @@
+---
+title: "Challenge 4"
+author: "Ananya Pujary"
+description: "More data wrangling: pivoting" 
+date: "08/18/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - fedfundsrate 
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(stringr)
+library(skimr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+I'll be reading in the 'FedFundsRate.csv' dataset.
+
+```{r}
+#| label: reading in the data
+
+fed_funds_rate<-read_csv("_data/FedFundsRate.csv",
+                        show_col_types = FALSE)
+
+```
+
+### Briefly describe the data
+
+Generating an overview of the data.
+
+```{r}
+#| label: data description
+skim(fed_funds_rate)
+```
+
+There are 904 rows and 10 columns in this dataset, all of which are numeric. It includes information on federal fund targets, unemployment rate, real GDP, and inflation rate between the years of 1954 and 2017. There seem to be a lot of missing values.
+
+The 'Federal Funds Target Rate' varies between 1 and 11.5 percent, and the 'Effective Federal Funds Target Rate' varies between 0.07 and 19.1 percent. 'Real GDP (Percent Change)' lies between -10 and 16.5 percent, 'Unemployment Rate' between 3.4 and 10.8 percent, and 'Inflation Rate' between 0.6 and 13.6 percent.
+
+## Tidy Data and Mutate Variables
+
+I think that converting the missing values to a numeric value like '0.0' would hold some weight and not make much sense, since some of the existing column values are '0.0'. The columns 'Year', 'Month', and 'Day' can be combined to give a comprehensive date for each row.
+```{r}
+#| label: tidying the data 1
+
+fed_funds_rate$Date <- str_c(fed_funds_rate$Year,"-", fed_funds_rate$Month,"-",fed_funds_rate$Day)
+
+str(fed_funds_rate$Date) # the data type is character
+
+Dates <- as.Date(fed_funds_rate$Date)
+
+fed_funds_rate$Dates <- as.Date(fed_funds_rate$Date, format="%Y-%m-%d")
+
+str(fed_funds_rate$Dates) # the data type is date
+
+fed_funds_rate_final <- fed_funds_rate %>%
+  select(-Date, -Year, -Month, -Day,-'Federal Funds Upper Target', -'Federal Funds Lower Target')
+```
+After combining the three columns ('Year','Month','Day') into a new column 'Date', its data type was still 'character'. I used the as.Date() function to convert the values to the date type and stored them in a new column, 'Dates'. I removed the 'Year','Month','Day', and (old) 'Date' columns as well.
+
+We could remove the 'Federal Funds Upper Target' and 'Federal Funds Lower Target' columns because they have a lot of missing values (801 of 904 total rows) and the 'Federal Funds Target Rate' seems to be providing the same information. I'm also reordering the columns such that 'Dates' is the first one.
+
+```{r}
+#| label: tidying the data 2
+
+fed_funds_rate_final <- fed_funds_rate_final[, c(6,1,2,3,4,5)]
+```
+
+Besides this, I think that the dataset is tidy enough to work with.

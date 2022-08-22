@@ -1,0 +1,98 @@
+---
+title: "Challenge 1"
+author: "Steve O'Neill"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+df-print: paged
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+  - tidyverse
+  - statecounty2012
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in the Data
+
+-   **StateCounty2012.xlsx** ⭐⭐⭐⭐
+
+I chose the State & County railroad employment dataset.
+
+```{r}
+library(readxl)
+```
+
+First I imported the dataset, removing the first two rows of unhelpful data:
+
+```{r}
+df1 <- read_xls("_data/StateCounty2012.xls", skip = 2)
+```
+Next, I removed un-used columns:
+
+```{r}
+df2 <- df1 %>% select(STATE,COUNTY,TOTAL)
+```
+
+After, I removed unhelpful pre-calculated totals:
+```{r}
+df3=df2[grepl("^[a-zA-Z][a-zA-Z]$",df2$STATE),]
+```
+
+
+## Describe the data
+
+This data describes railroad employment in U.S. states and territories. In this instance, the original 'cases' are the *counties* and the original 'variables' are their parent states and the total number of persons employed in the railroad industry in those counties.
+
+You may notice the data contains the uncommon state codes "AE" and "AP", as well as the recurring "APO" county name. These represent [military addresses](https://pe.usps.com/text/pub28/28c2_010.htm):
+
+| State Code | Location                            |
+|------------|-------------------------------------|
+| AE         | Europe, Middle East, Africa, Canada |
+| AP         | Asia Pacific                        |
+| AA         | Americas (excluding Canada)         |
+
+'APO' refers to "Army Post Office".
+
+I have calculated some basic statistics:
+
+```{r}
+#Group by state, but first, add the largest county to the dataframe
+by_state <- df3 %>% group_by(STATE) %>% 
+    mutate(largest.county.name = COUNTY[which.max(TOTAL)]) %>% 
+      mutate(smallest.county.name = COUNTY[which.min(TOTAL)])
+
+#Group by state, then summarize the total of all county employees, per-state:
+by_state <- by_state %>% summarise(
+  total.state.employees = sum(TOTAL),
+  median.county.employees = median(TOTAL),
+  smallest.county = min(TOTAL),
+  smallest.county.name = first(smallest.county.name),
+  largest.county = max(TOTAL),
+  largest.county.name = first(largest.county.name),
+  standard.dev = sd(TOTAL)
+)
+
+by_state
+```
+
+A few things stand out:
+
+-   Texas has the largest amount of railroad employees combined, at 19,839.
+-   However, Illinois has the largest single county of railroad employees in Cook County, at 8207. That's almost double the next-largest in Tarrant, TX.
+-   Illinois also possesses one of the smallest counties by the same metric - Hardin County, with only one employee. It has the highest standard deviation among in-state counties.
+
+Looking forward to the next steps in analysis.

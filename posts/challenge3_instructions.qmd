@@ -43,8 +43,7 @@ Read in one (or more) of the following datasets, using the correct R package and
 -   sce_labor_chart_data_public.csv 🌟🌟🌟🌟🌟
 
 ```{r}
-animal_weight<-read_csv("_data/animal_weight.csv",
-                        show_col_types = FALSE)
+
 
 ```
 
