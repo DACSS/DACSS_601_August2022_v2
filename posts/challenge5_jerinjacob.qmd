@@ -1,0 +1,97 @@
+---
+title: "Challenge 5"
+author: "Jerin Jacob"
+description: "Introduction to Visualization"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - pathogen_cost
+---
+I am working on the Cost of Pathogens dataset for the year of 2018.
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+library(dplyr)
+library(stringr)
+library(shadowtext)
+library(scales)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+Eventhough the file name says the data contains 15 pathogens, the actual dataset has 27 rows which means there are certain rows to be dropped. There are 3 columns/variable; the name of the pathogen, number of cases and the total cost caused by the pathogen in the year.
+```{r}
+pathogen <- read_excel("_data/Total_cost_for_top_15_pathogens_2018.xlsx", skip = 5, col_names = c("Pathogen", "#Cases", "Cost"), n_max = 15)
+#options(scipen=999)
+#head(pathogen)
+dim(pathogen)
+#pathogen
+```
+
+### Briefly describe the data
+
+Vibrio vulnificus had the least number of cases, just 96 cases, in 2018 while Norovirus came first with 5461731 reported cases. Cyclospora Cayetanensis	cost the least in total ($2571518) and Salmonella (non-typhoidal species)	cost the most that totalled to 4142179161.
+```{r}
+summary(pathogen)
+pathogen[which.min(pathogen$`#Cases`),]
+pathogen[which.max(pathogen$`#Cases`),]
+pathogen[which.min(pathogen$Cost),]
+pathogen[which.max(pathogen$Cost),]
+```
+
+## Tidy Data (as needed)
+The data has been mutated by adding a new variable called Average Cost per cases so that we can study how the cost per cases of each pathogen varies. 
+
+
+```{r}
+pathogen %>%
+  mutate(Avg_Cost_per_case = Cost/`#Cases`)
+head(pathogen)
+
+```
+
+## Univariate Visualizations
+```{r}
+BLUE <- "#076fa2"
+ggplot(pathogen) +
+  geom_col(aes(Cost, Pathogen), fill = BLUE, width = .8)
+ggplot(pathogen) +
+  geom_col(aes(Cost, Pathogen), fill = BLUE, width = .8) +
+  scale_x_continuous(trans = "log10")
+ggplot(pathogen) +
+  geom_col(aes(`#Cases`, Pathogen), fill = BLUE, width = .8)
+ggplot(pathogen) +
+  geom_col(aes(`#Cases`, Pathogen), fill = BLUE, width = .8) +
+  scale_x_continuous(trans = "log10")
+  
+
+
+```
+## Bivariate Visualization(s)
+
+```{r}
+
+ggplot(pathogen, aes(x=`#Cases`, y=Cost, label=Pathogen)) +
+  geom_point() +
+  scale_x_continuous(labels = scales::comma)+
+  geom_text()
+ggplot(pathogen, aes(x=`#Cases`, y=Cost, label=Pathogen)) +
+  geom_point()+
+  scale_x_continuous(trans = "log10", labels = scales::comma)+
+  scale_y_continuous(trans = "log10", labels = scales::comma)+
+  ggrepel::geom_label_repel()
+```
+
+
