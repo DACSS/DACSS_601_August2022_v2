@@ -11,6 +11,8 @@ format:
     code-tools: true
 categories:
   - challenge_2
+  - Animesh Sengupta
+  - FAOStat_livestock data
 ---
 
 ```{r}
