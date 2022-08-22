@@ -47,9 +47,7 @@ This is a dataset containing information about different types of debt over time
 
 Tidy data: Each variable has it’s own column. Each observation has it’s own row. Each value has it’s own cell.
 
-The dataset needs some work to make it fully tidy. First, I want to separate the first column into 2 columns and rename them to be "year" and "quarter" separately. Then change the year column from 03 04 etc. to 2003 2004 etc. and change it to numeric. This is important to change before the dataset can be used because otherwise I can't work with it, for example filter by a specific year or quarter separately. The the dataset will have each variable with it's own column, each observation it's own row, and value in it's own cell. 
-
-Potentially one further step could be to multiply all of the rows by 1,000,000 (except year and quarter) to get the actual value since they are currently in millions (for example, a mortgage of 4.942 in this dataset would actually be 4,942,000). I could also remove the trailing 0 after the decimal. I'm not sure if these would be helpful/necessary at this point, though.
+The dataset needs some work to make it fully tidy. First, I want to separate the first column into 2 columns and rename them to be "year" and "quarter" separately. Then change the year column from 03 04 etc. to 2003 2004 etc. and change it to numeric. This is important to change before the dataset can be used because otherwise I can't work with it, for example filter by a specific year or quarter separately. 
 
 ```{r}
 debt = debt %>% 
@@ -67,3 +65,12 @@ debt = debt %>%
 debt = debt %>% 
   mutate(Year = parse_number(Year))
 ```
+
+After this, I decided to pivot the data so that the columns are Year, Quarter, Type, and Amount. This way, there are more rows, but less columns and information in each row. Type contains the different debt types, while Amount is just the amount of debt (in millions).
+
+```{r}
+debt = debt %>% 
+  pivot_longer(cols = contains(c("Mortgage", "HE Revolving", "Auto Loan", "Credit Card", "Student Loan", "Other", "Total")), names_to = c("Type"), values_to = "Amount")
+```
+
+Potentially one further step could be to multiply the Amount column by 1,000,000 to get the actual value since it is are currently in millions (for example, a mortgage of 4.942 in this dataset would actually be 4,942,000). I could also remove the trailing 0 after the decimal. I'm not sure if these would be helpful/necessary at this point, though.
