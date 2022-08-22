@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Yakub Rabiutheen">
+<meta name="dcterms.date" content="2022-08-16">
+
+<title>- HW 2 Instructions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- HW 2 Instructions">
+<meta name="twitter:description" content="Loaded the Fed Funds Dataset">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#describe-the-data" id="toc-describe-the-data" class="nav-link active" data-scroll-target="#describe-the-data">Describe the data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">HW 2 Instructions</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">-hw2</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Yakub Rabiutheen </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 16, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Loaded the Fed Funds Dataset</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fedfunds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/FedFundsRate.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</p>
+<section id="describe-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="describe-the-data">Describe the data</h2>
+<p>Doing a Head of the Dataset to get a view of what the Data Looks like.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fedfunds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 10
+   Year Month   Day Federal Fu…¹ Feder…² Feder…³ Effec…⁴ Real …⁵ Unemp…⁶ Infla…⁷
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1  1954     7     1           NA      NA      NA    0.8      4.6     5.8      NA
+2  1954     8     1           NA      NA      NA    1.22    NA       6        NA
+3  1954     9     1           NA      NA      NA    1.06    NA       6.1      NA
+4  1954    10     1           NA      NA      NA    0.85     8       5.7      NA
+5  1954    11     1           NA      NA      NA    0.83    NA       5.3      NA
+6  1954    12     1           NA      NA      NA    1.28    NA       5        NA
+# … with abbreviated variable names ¹​`Federal Funds Target Rate`,
+#   ²​`Federal Funds Upper Target`, ³​`Federal Funds Lower Target`,
+#   ⁴​`Effective Federal Funds Rate`, ⁵​`Real GDP (Percent Change)`,
+#   ⁶​`Unemployment Rate`, ⁷​`Inflation Rate`</code></pre>
+</div>
+</div>
+<p>Getting the column names</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fedfunds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Year"                         "Month"                       
+ [3] "Day"                          "Federal Funds Target Rate"   
+ [5] "Federal Funds Upper Target"   "Federal Funds Lower Target"  
+ [7] "Effective Federal Funds Rate" "Real GDP (Percent Change)"   
+ [9] "Unemployment Rate"            "Inflation Rate"              </code></pre>
+</div>
+</div>
+<p>Renaming columns as I had difficulty invoking the column name in code.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(fedfunds)[<span class="fu">names</span>(fedfunds) <span class="sc">==</span> <span class="st">"Real GDP (Percent Change)"</span>] <span class="ot">&lt;-</span> <span class="st">"Real GDP"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fedfunds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Year"                         "Month"                       
+ [3] "Day"                          "Federal Funds Target Rate"   
+ [5] "Federal Funds Upper Target"   "Federal Funds Lower Target"  
+ [7] "Effective Federal Funds Rate" "Real GDP"                    
+ [9] "Unemployment Rate"            "Inflation Rate"              </code></pre>
+</div>
+</div>
+<p>Summary of the Datset and found a lot of NAs to clean up.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fedfunds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Year          Month             Day         Federal Funds Target Rate
+ Min.   :1954   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000           
+ 1st Qu.:1973   1st Qu.: 4.000   1st Qu.: 1.000   1st Qu.: 3.750           
+ Median :1988   Median : 7.000   Median : 1.000   Median : 5.500           
+ Mean   :1987   Mean   : 6.598   Mean   : 3.598   Mean   : 5.658           
+ 3rd Qu.:2001   3rd Qu.:10.000   3rd Qu.: 1.000   3rd Qu.: 7.750           
+ Max.   :2017   Max.   :12.000   Max.   :31.000   Max.   :11.500           
+                                                  NA's   :442              
+ Federal Funds Upper Target Federal Funds Lower Target
+ Min.   :0.2500             Min.   :0.0000            
+ 1st Qu.:0.2500             1st Qu.:0.0000            
+ Median :0.2500             Median :0.0000            
+ Mean   :0.3083             Mean   :0.0583            
+ 3rd Qu.:0.2500             3rd Qu.:0.0000            
+ Max.   :1.0000             Max.   :0.7500            
+ NA's   :801                NA's   :801               
+ Effective Federal Funds Rate    Real GDP       Unemployment Rate
+ Min.   : 0.070               Min.   :-10.000   Min.   : 3.400   
+ 1st Qu.: 2.428               1st Qu.:  1.400   1st Qu.: 4.900   
+ Median : 4.700               Median :  3.100   Median : 5.700   
+ Mean   : 4.911               Mean   :  3.138   Mean   : 5.979   
+ 3rd Qu.: 6.580               3rd Qu.:  4.875   3rd Qu.: 7.000   
+ Max.   :19.100               Max.   : 16.500   Max.   :10.800   
+ NA's   :152                  NA's   :654       NA's   :152      
+ Inflation Rate  
+ Min.   : 0.600  
+ 1st Qu.: 2.000  
+ Median : 2.800  
+ Mean   : 3.733  
+ 3rd Qu.: 4.700  
+ Max.   :13.600  
+ NA's   :194     </code></pre>
+</div>
+</div>
+<p>Dropping all NAs</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>year_metrics <span class="ot">&lt;-</span> fedfunds <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Year,<span class="st">`</span><span class="at">Real GDP</span><span class="st">`</span>,<span class="st">`</span><span class="at">Inflation Rate</span><span class="st">`</span>,<span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>,<span class="st">`</span><span class="at">Effective Federal Funds Rate</span><span class="st">`</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>year_metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 236 × 10
+    Year Month   Day Federal F…¹ Feder…² Feder…³ Effec…⁴ Real …⁵ Unemp…⁶ Infla…⁷
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1  1958     1     1          NA      NA      NA    2.72   -10       5.8     3.2
+ 2  1958     4     1          NA      NA      NA    1.26     2.6     7.4     2.4
+ 3  1958     7     1          NA      NA      NA    0.68     9.6     7.5     2.4
+ 4  1958    10     1          NA      NA      NA    1.8      9.7     6.7     1.7
+ 5  1959     1     1          NA      NA      NA    2.48     7.7     6       1.7
+ 6  1959     4     1          NA      NA      NA    2.96    10.1     5.2     1.7
+ 7  1959     7     1          NA      NA      NA    3.47    -0.8     5.1     2  
+ 8  1959    10     1          NA      NA      NA    3.98     1.6     5.7     2.7
+ 9  1960     1     1          NA      NA      NA    3.99     9.2     5.2     2  
+10  1960     4     1          NA      NA      NA    3.92    -1.5     5.2     2  
+# … with 226 more rows, and abbreviated variable names
+#   ¹​`Federal Funds Target Rate`, ²​`Federal Funds Upper Target`,
+#   ³​`Federal Funds Lower Target`, ⁴​`Effective Federal Funds Rate`,
+#   ⁵​`Real GDP`, ⁶​`Unemployment Rate`, ⁷​`Inflation Rate`
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(year_metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Year          Month            Day    Federal Funds Target Rate
+ Min.   :1958   Min.   : 1.00   Min.   :1   Min.   : 1.000           
+ 1st Qu.:1972   1st Qu.: 3.25   1st Qu.:1   1st Qu.: 3.750           
+ Median :1987   Median : 5.50   Median :1   Median : 5.250           
+ Mean   :1987   Mean   : 5.50   Mean   :1   Mean   : 5.407           
+ 3rd Qu.:2002   3rd Qu.: 7.75   3rd Qu.:1   3rd Qu.: 7.000           
+ Max.   :2016   Max.   :10.00   Max.   :1   Max.   :11.000           
+                                            NA's   :131              
+ Federal Funds Upper Target Federal Funds Lower Target
+ Min.   :0.2500             Min.   :0.00000           
+ 1st Qu.:0.2500             1st Qu.:0.00000           
+ Median :0.2500             Median :0.00000           
+ Mean   :0.2812             Mean   :0.03125           
+ 3rd Qu.:0.2500             3rd Qu.:0.00000           
+ Max.   :0.5000             Max.   :0.25000           
+ NA's   :204                NA's   :204               
+ Effective Federal Funds Rate    Real GDP       Unemployment Rate
+ Min.   : 0.070               Min.   :-10.000   Min.   : 3.400   
+ 1st Qu.: 2.655               1st Qu.:  1.400   1st Qu.: 5.000   
+ Median : 4.845               Median :  3.100   Median : 5.700   
+ Mean   : 5.084               Mean   :  3.116   Mean   : 6.074   
+ 3rd Qu.: 6.875               3rd Qu.:  4.800   3rd Qu.: 7.100   
+ Max.   :19.080               Max.   : 16.500   Max.   :10.400   
+                                                                 
+ Inflation Rate  
+ Min.   : 0.600  
+ 1st Qu.: 2.000  
+ Median : 2.800  
+ Mean   : 3.740  
+ 3rd Qu.: 4.725  
+ Max.   :13.000  
+                 </code></pre>
+</div>
+</div>
+<p>I tried to use a line graph but it looks messy.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>year_metrics, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Year</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Real GDP</span><span class="st">`</span>))<span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_HW2__files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This Bar Graph came out much cleaner looking.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>perctgdp<span class="ot">&lt;-</span><span class="fu">ggplot</span>(year_metrics, <span class="fu">aes</span>(<span class="at">x =</span><span class="st">`</span><span class="at">Year</span><span class="st">`</span>, <span class="at">y =</span><span class="st">`</span><span class="at">Real GDP</span><span class="st">`</span>,<span class="at">fill=</span><span class="st">`</span><span class="at">Real GDP</span><span class="st">`</span>)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>perctgdp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_HW2__files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I added limits and breaks to see the most recent year 2017.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>perctgdp<span class="ot">&lt;-</span>perctgdp<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">1954</span>,<span class="dv">2017</span>),<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1954</span>,<span class="dv">2017</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Relabeled the Y axis to make to clear this not that actual GDP rate but the Percentage change of the GDP</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(perctgdp <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"GDP Percentage Change by Year"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"GDP Percentage Change"</span>, <span class="at">x =</span> <span class="st">"Year"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_HW2__files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(year_metrics) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Inflation Rate</span><span class="st">`</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"#0c4c8a"</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_HW2__files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I did a Correlation test of Unemployment rate and the Inflation rate. It got only a moderate Correlation.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(year_metrics<span class="sc">$</span><span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>,year_metrics<span class="sc">$</span><span class="st">`</span><span class="at">Inflation Rate</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2095474</code></pre>
+</div>
+</div>
+<p>Trying to Graph both the Unemployment Rate and Inflation Rate by Year</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> year_metrics <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, <span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>, <span class="st">`</span><span class="at">Inflation Rate</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>, <span class="sc">-</span>Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Graph that shows inflation rate vs Unemployment Rate by Year</p>
+<p>As shown here, there can be periods of High Inflation and low unemployment which is why there isn’t a strong correlation.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span><span class="st">`</span><span class="at">Year</span><span class="st">`</span>, <span class="at">y =</span> value)) <span class="sc">+</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> variable, <span class="at">linetype =</span> variable)) <span class="sc">+</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkred"</span>, <span class="st">"steelblue"</span>))<span class="sc">+</span><span class="fu">labs</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Inflation and UnEmployment Rates by Year"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"Variable Rates"</span>, <span class="at">x =</span> <span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_HW2__files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "HW 2 Instructions"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Yakub Rabiutheen"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/16/2022"</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">  -hw2</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>Loaded the Fed Funds Dataset</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>fedfunds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/FedFundsRate.csv"</span>)</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>Doing a Head of the Dataset to get a view of what the Data Looks like.</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fedfunds)</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>Getting the column names</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fedfunds)</span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>Renaming columns as I had difficulty invoking the column name in code.</span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(fedfunds)[<span class="fu">names</span>(fedfunds) <span class="sc">==</span> <span class="st">"Real GDP (Percent Change)"</span>] <span class="ot">&lt;-</span> <span class="st">"Real GDP"</span></span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fedfunds)</span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a>Summary of the Datset and found a lot of NAs to clean up.</span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fedfunds)</span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>Dropping all NAs</span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a>year_metrics <span class="ot">&lt;-</span> fedfunds <span class="sc">%&gt;%</span></span>
+<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Year,<span class="st">`</span><span class="at">Real GDP</span><span class="st">`</span>,<span class="st">`</span><span class="at">Inflation Rate</span><span class="st">`</span>,<span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>,<span class="st">`</span><span class="at">Effective Federal Funds Rate</span><span class="st">`</span>)</span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a>year_metrics</span>
+<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(year_metrics)</span>
+<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a>I tried to use a line graph but it looks messy.</span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>year_metrics, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Year</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Real GDP</span><span class="st">`</span>))<span class="sc">+</span></span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a>This Bar Graph came out much cleaner looking.</span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a>perctgdp<span class="ot">&lt;-</span><span class="fu">ggplot</span>(year_metrics, <span class="fu">aes</span>(<span class="at">x =</span><span class="st">`</span><span class="at">Year</span><span class="st">`</span>, <span class="at">y =</span><span class="st">`</span><span class="at">Real GDP</span><span class="st">`</span>,<span class="at">fill=</span><span class="st">`</span><span class="at">Real GDP</span><span class="st">`</span>)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>perctgdp</span>
+<span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a>I added limits and breaks to see the most recent year 2017.</span>
+<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a>perctgdp<span class="ot">&lt;-</span>perctgdp<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">1954</span>,<span class="dv">2017</span>),<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">1954</span>,<span class="dv">2017</span>,<span class="dv">5</span>))</span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a>Relabeled the Y axis to make to clear this not that actual GDP rate but the Percentage change of the GDP    </span>
+<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(perctgdp <span class="sc">+</span> <span class="fu">labs</span>(</span>
+<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"GDP Percentage Change by Year"</span>,</span>
+<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"GDP Percentage Change"</span>, <span class="at">x =</span> <span class="st">"Year"</span></span>
+<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(year_metrics) <span class="sc">+</span></span>
+<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Inflation Rate</span><span class="st">`</span>) <span class="sc">+</span></span>
+<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"#0c4c8a"</span>) <span class="sc">+</span></span>
+<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a>I did a Correlation test of Unemployment rate and the Inflation rate. It got only a moderate Correlation.</span>
+<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(year_metrics<span class="sc">$</span><span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>,year_metrics<span class="sc">$</span><span class="st">`</span><span class="at">Inflation Rate</span><span class="st">`</span>)</span>
+<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a>Trying to Graph both the Unemployment Rate and Inflation Rate by Year</span>
+<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> year_metrics <span class="sc">%&gt;%</span></span>
+<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Year, <span class="st">`</span><span class="at">Unemployment Rate</span><span class="st">`</span>, <span class="st">`</span><span class="at">Inflation Rate</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"value"</span>, <span class="sc">-</span>Year)</span>
+<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a>Graph that shows inflation rate vs Unemployment Rate by Year</span>
+<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a>As shown here, there can be periods of High Inflation and low unemployment which is why there isn't a strong correlation.</span>
+<span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span><span class="st">`</span><span class="at">Year</span><span class="st">`</span>, <span class="at">y =</span> value)) <span class="sc">+</span> </span>
+<span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> variable, <span class="at">linetype =</span> variable)) <span class="sc">+</span> </span>
+<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkred"</span>, <span class="st">"steelblue"</span>))<span class="sc">+</span><span class="fu">labs</span>(</span>
+<span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Inflation and UnEmployment Rates by Year"</span>,</span>
+<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="st">"Variable Rates"</span>, <span class="at">x =</span> <span class="st">"Year"</span>)</span>
+<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

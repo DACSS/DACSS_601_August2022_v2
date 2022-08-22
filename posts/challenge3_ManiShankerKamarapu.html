@@ -124,7 +124,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <meta name="twitter:title" content="- Challenge 3">
-<meta name="twitter:description" content="The data is on the postal survey of Australian Electoral Roll. It contains the data of the eligible participants and responses of the participants in federal election as at 24 August 2017.">
+<meta name="twitter:description" content="The dimensions of the data set are 158 rows and 6 columns.">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
 </head>
@@ -236,9 +236,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Total"</span>, Area))</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">nrow</span>(vote_response)<span class="sc">-</span><span class="dv">7</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> <span class="fu">slice</span>(vote_response, <span class="dv">1</span><span class="sc">:</span>R)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(vote_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>vote_response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 158 × 6
+   Area                        Yes    No Not_Eligible NoResponse  Total
+   &lt;chr&gt;                     &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+ 1 New South Wales Divisions    NA    NA           NA         NA     NA
+ 2 Banks                     37736 46343          247      20928 105254
+ 3 Barton                    37153 47984          226      24008 109371
+ 4 Bennelong                 42943 43215          244      19973 106375
+ 5 Berowra                   48471 40369          212      16038 105090
+ 6 Blaxland                  20406 57926          220      25883 104435
+ 7 Bradfield                 53681 34927          202      17261 106071
+ 8 Calare                    54091 35779          285      25342 115497
+ 9 Chifley                   32871 46702          263      28180 108016
+10 Cook                      47505 38804          229      18713 105251
+# … with 148 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(vote_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 158   6</code></pre>
+</div>
+</div>
+<p>The dimensions of the data set are <code>158</code> rows and <code>6</code> columns.</p>
 <p>The data is on the postal survey of Australian Electoral Roll. It contains the data of the eligible participants and responses of the participants in federal election as at 24 August 2017. It has data based on different federal electoral divisions survey by the Australian Election Commission. It is basically the total number of response we got in each division during the federal election. The data set is untidy and variables are not defined correctly and there are a lot of extra variables which are not required and a bunch of NA values. So using different R functions to remove unwanted variables and drop some NA values and also remove extra rows.</p>
 </section>
 <section id="separating-different-divisions-and-areas" class="level2">
@@ -246,14 +273,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> vote_response <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Division =</span> <span class="fu">case_when</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_ends</span>(Area, <span class="st">"Divisions"</span>) <span class="sc">~</span> Area,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span> )) <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(Division) <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Yes"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(vote_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> vote_response <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Division =</span> <span class="fu">case_when</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_ends</span>(Area, <span class="st">"Divisions"</span>) <span class="sc">~</span> Area,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span> )) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(Division) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Yes"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>vote_response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 150 × 7
+   Area        Yes    No Not_Eligible NoResponse  Total Division                
+   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;                   
+ 1 Banks     37736 46343          247      20928 105254 New South Wales Divisio…
+ 2 Barton    37153 47984          226      24008 109371 New South Wales Divisio…
+ 3 Bennelong 42943 43215          244      19973 106375 New South Wales Divisio…
+ 4 Berowra   48471 40369          212      16038 105090 New South Wales Divisio…
+ 5 Blaxland  20406 57926          220      25883 104435 New South Wales Divisio…
+ 6 Bradfield 53681 34927          202      17261 106071 New South Wales Divisio…
+ 7 Calare    54091 35779          285      25342 115497 New South Wales Divisio…
+ 8 Chifley   32871 46702          263      28180 108016 New South Wales Divisio…
+ 9 Cook      47505 38804          229      18713 105251 New South Wales Divisio…
+10 Cowper    57493 38317          315      25197 121322 New South Wales Divisio…
+# … with 140 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(vote_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 150   7</code></pre>
+</div>
 </div>
 <p>After we read the data and did some hard coding along with read, now we have separated the divisions row from the area column and formed a new column so we can use it as a grouping variable.</p>
 </section>
@@ -262,10 +315,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(vote_response, Yes<span class="sc">:</span>Total, <span class="at">names_to =</span> <span class="st">"Response"</span>, <span class="at">values_to =</span> <span class="st">"Count"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(vote_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(vote_response, Yes<span class="sc">:</span>Total, <span class="at">names_to =</span> <span class="st">"Response"</span>, <span class="at">values_to =</span> <span class="st">"Count"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>vote_response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 750 × 4
+   Area   Division                  Response      Count
+   &lt;chr&gt;  &lt;chr&gt;                     &lt;chr&gt;         &lt;dbl&gt;
+ 1 Banks  New South Wales Divisions Yes           37736
+ 2 Banks  New South Wales Divisions No            46343
+ 3 Banks  New South Wales Divisions Not_Eligible    247
+ 4 Banks  New South Wales Divisions NoResponse    20928
+ 5 Banks  New South Wales Divisions Total        105254
+ 6 Barton New South Wales Divisions Yes           37153
+ 7 Barton New South Wales Divisions No            47984
+ 8 Barton New South Wales Divisions Not_Eligible    226
+ 9 Barton New South Wales Divisions NoResponse    24008
+10 Barton New South Wales Divisions Total        109371
+# … with 740 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
 </div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(vote_response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 750   4</code></pre>
+</div>
+</div>
+<p>Now the data set has become longer and final dimensions are <code>750</code> rows and <code>4</code> columns.</p>
 <p>I have used pivot_longer to tidy the data set where I have collapse the responses(Yes, No, Not_Eligible, NoResponse and Total) into one column so we can vary them easily and really make sense. So now we can get the divisional level count or area level count easily and we can also plot it easily now in different ways.</p>
 
 
@@ -525,71 +605,87 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Blog" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 3"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Mani Shanker Kamarapu"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Tidy Data: Pivoting"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/17/2022"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_3</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Australian_marriage_law</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/australian_marriage_law_postal_survey_2017_-_response_final.xls"</span>, <span class="at">sheet =</span> <span class="st">"Table 2"</span>, <span class="at">skip =</span> <span class="dv">7</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Area"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes_P"</span>, <span class="st">"No"</span>, <span class="st">"No_P"</span>, <span class="st">"Totalclear"</span>, <span class="st">"Totalclear_P"</span>, <span class="st">"Empty"</span>, <span class="st">"clear"</span>, <span class="st">"clear_P"</span>, <span class="st">"Not_Eligible"</span>, <span class="st">"Not_Eligible_P"</span>, <span class="st">"NoResponse"</span>, <span class="st">"NoResponse_P"</span>, <span class="st">"Total"</span>, <span class="st">"Total_P"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Area"</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="st">"Not_Eligible"</span>, <span class="st">"NoResponse"</span>, <span class="st">"Total"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Area"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Total"</span>, Area))</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">nrow</span>(vote_response)<span class="sc">-</span><span class="dv">7</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> <span class="fu">slice</span>(vote_response, <span class="dv">1</span><span class="sc">:</span>R)</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(vote_response)</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>The data is on the postal survey of Australian Electoral Roll. It contains the data of the eligible participants and responses of the participants in federal election as at 24 August 2017. It has data based on different federal electoral divisions survey by the Australian Election Commission. It is basically the total number of response we got in each division during the federal election. The data set is untidy and variables are not defined correctly and there are a lot of extra variables which are not required and a bunch of NA values. So using different R functions to remove unwanted variables and drop some NA values and also remove extra rows.</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Separating different divisions and areas</span></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> vote_response <span class="sc">%&gt;%</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Division =</span> <span class="fu">case_when</span>(</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_ends</span>(Area, <span class="st">"Divisions"</span>) <span class="sc">~</span> Area,</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span> )) <span class="sc">%&gt;%</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(Division) <span class="sc">%&gt;%</span></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Yes"</span>)</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(vote_response)</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>After we read the data and did some hard coding along with read, now we have separated the divisions row from the area column and formed a new column so we can use it as a grouping variable. </span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Using Pivot to tidy data</span></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(vote_response, Yes<span class="sc">:</span>Total, <span class="at">names_to =</span> <span class="st">"Response"</span>, <span class="at">values_to =</span> <span class="st">"Count"</span>)</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(vote_response)</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>I have used pivot_longer to tidy the data set where I have collapse the responses(Yes, No, Not_Eligible, NoResponse and Total) into one column so we can vary them easily and really make sense. So now we can get the divisional level count or area level count easily and we can also plot it easily now in different ways.</span>
+<div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 3"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Mani Shanker Kamarapu"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Tidy Data: Pivoting"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/17/2022"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_3</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Australian_marriage_law</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/australian_marriage_law_postal_survey_2017_-_response_final.xls"</span>, <span class="at">sheet =</span> <span class="st">"Table 2"</span>, <span class="at">skip =</span> <span class="dv">7</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Area"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes_P"</span>, <span class="st">"No"</span>, <span class="st">"No_P"</span>, <span class="st">"Totalclear"</span>, <span class="st">"Totalclear_P"</span>, <span class="st">"Empty"</span>, <span class="st">"clear"</span>, <span class="st">"clear_P"</span>, <span class="st">"Not_Eligible"</span>, <span class="st">"Not_Eligible_P"</span>, <span class="st">"NoResponse"</span>, <span class="st">"NoResponse_P"</span>, <span class="st">"Total"</span>, <span class="st">"Total_P"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Area"</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="st">"Not_Eligible"</span>, <span class="st">"NoResponse"</span>, <span class="st">"Total"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Area"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Total"</span>, Area))</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">nrow</span>(vote_response)<span class="sc">-</span><span class="dv">7</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> <span class="fu">slice</span>(vote_response, <span class="dv">1</span><span class="sc">:</span>R)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>vote_response</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(vote_response)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>The dimensions of the data set are <span class="in">`158`</span> rows and <span class="in">`6`</span> columns.</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>The data is on the postal survey of Australian Electoral Roll. It contains the data of the eligible participants and responses of the participants in federal election as at 24 August 2017. It has data based on different federal electoral divisions survey by the Australian Election Commission. It is basically the total number of response we got in each division during the federal election. The data set is untidy and variables are not defined correctly and there are a lot of extra variables which are not required and a bunch of NA values. So using different R functions to remove unwanted variables and drop some NA values and also remove extra rows.</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Separating different divisions and areas</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> vote_response <span class="sc">%&gt;%</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Division =</span> <span class="fu">case_when</span>(</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_ends</span>(Area, <span class="st">"Divisions"</span>) <span class="sc">~</span> Area,</span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span> )) <span class="sc">%&gt;%</span></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(Division) <span class="sc">%&gt;%</span></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Yes"</span>)</span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>vote_response</span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(vote_response)</span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a>After we read the data and did some hard coding along with read, now we have separated the divisions row from the area column and formed a new column so we can use it as a grouping variable. </span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a><span class="fu">## Using Pivot to tidy data</span></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>vote_response <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(vote_response, Yes<span class="sc">:</span>Total, <span class="at">names_to =</span> <span class="st">"Response"</span>, <span class="at">values_to =</span> <span class="st">"Count"</span>)</span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>vote_response</span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(vote_response)</span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>Now the data set has become longer and final dimensions are <span class="in">`750`</span> rows and <span class="in">`4`</span> columns.</span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a>I have used pivot_longer to tidy the data set where I have collapse the responses(Yes, No, Not_Eligible, NoResponse and Total) into one column so we can vary them easily and really make sense. So now we can get the divisional level count or area level count easily and we can also plot it easily now in different ways.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

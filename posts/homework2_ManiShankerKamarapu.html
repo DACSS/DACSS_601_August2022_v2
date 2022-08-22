@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mani Shanker Kamarapu">
+<meta name="dcterms.date" content="2022-08-21">
+
+<title>- Homework2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Homework2">
+<meta name="twitter:description" content="The data set is about the marital status of the active duty DOD service. The data set focuses on four types of services(Air Force, Marine Corps, Navy and Army).">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link active" data-scroll-target="#read-in-data">Read in data</a>
+  <ul class="collapse">
+  <li><a href="#briefly-describe-the-data" id="toc-briefly-describe-the-data" class="nav-link" data-scroll-target="#briefly-describe-the-data">Briefly describe the data</a></li>
+  </ul></li>
+  <li><a href="#anticipate-the-end-result" id="toc-anticipate-the-end-result" class="nav-link" data-scroll-target="#anticipate-the-end-result">Anticipate the End Result</a></li>
+  <li><a href="#pivot-the-data" id="toc-pivot-the-data" class="nav-link" data-scroll-target="#pivot-the-data">Pivot the Data</a>
+  <ul class="collapse">
+  <li><a href="#describe-the-final-dimensions" id="toc-describe-the-final-dimensions" class="nav-link" data-scroll-target="#describe-the-final-dimensions">Describe the final dimensions</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Homework2</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">hw2</div>
+    <div class="quarto-category">ActiveDuty_MartialStatus</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mani Shanker Kamarapu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 21, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="read-in-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-data">Read in data</h2>
+<p>The data set is about the marital status of the active duty DOD service. The data set focuses on four types of services(Air Force, Marine Corps, Navy and Army). The data set gives us the detailed description of marital status of the DOD service people and divided them on basis of gender and four types of statuses(Single without Children(SWC), Single with Children(SC), Joint Service Marriage(JSM) and Civilian Marriage(CM)). The enrolled people are also divided on the basis of pay grade into 3 groups(Enlisted, Officer and Warrant).</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>AirForce_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"AirForce"</span>, <span class="at">skip =</span> <span class="dv">9</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"remove"</span>, <span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SWC_Total"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"SC_Total"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"JSM_Total"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>, <span class="st">"CM_Total"</span>, <span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Total"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Pay Grade"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"TOTAL"</span>, <span class="st">`</span><span class="at">Pay Grade</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">DOD_type=</span><span class="st">"AirForce"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>MarineCorps_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"MarineCorps"</span>, <span class="at">skip =</span> <span class="dv">9</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"remove"</span>, <span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SWC_Total"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"SC_Total"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"JSM_Total"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>, <span class="st">"CM_Total"</span>, <span class="st">"M_Male"</span>, <span class="st">"M_Female"</span>, <span class="st">"M_Total"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Pay Grade"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"TOTAL"</span>, <span class="st">`</span><span class="at">Pay Grade</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">DOD_type=</span><span class="st">"MarineCorps"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>Navy_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"Navy"</span>, <span class="at">skip =</span> <span class="dv">9</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"remove"</span>, <span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SWC_Total"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"SC_Total"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"JSM_Total"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>, <span class="st">"CM_Total"</span>, <span class="st">"N_Male"</span>, <span class="st">"N_Female"</span>, <span class="st">"N_Total"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Pay Grade"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"TOTAL"</span>, <span class="st">`</span><span class="at">Pay Grade</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">DOD_type=</span><span class="st">"Navy"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>Army_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"Army"</span>, <span class="at">skip =</span> <span class="dv">9</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"remove"</span>, <span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SWC_Total"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"SC_Total"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"JSM_Total"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>, <span class="st">"CM_Total"</span>, <span class="st">"Army_Male"</span>, <span class="st">"Army_Female"</span>, <span class="st">"Army_Total"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Pay Grade"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"TOTAL"</span>, <span class="st">`</span><span class="at">Pay Grade</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">DOD_type=</span><span class="st">"Army"</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>TotalDOD_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">rbind</span>(AirForce_MaritalStatus,MarineCorps_MaritalStatus, Navy_MaritalStatus, Army_MaritalStatus)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>TotalDOD_MaritalStatus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 90 × 10
+   `Pay Grade` SWC_Male SWC_Fe…¹ SC_Male SC_Fe…² JSM_M…³ JSM_F…⁴ CM_Male CM_Fe…⁵
+   &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 E-1             7721     1550      27       5      49      27    1064     178
+ 2 E-2             4380     1010      33       9      97     105     802     163
+ 3 E-3            29725     7108     396     266    1258    1687   10436    1631
+ 4 E-4            20805     4756     987     842    3036    3207   15363    1769
+ 5 E-5            14623     4104    2755    2171    6154    5519   31711    2889
+ 6 E-6             3660     1377    2446    1449    3654    3263   23868    2026
+ 7 E-7             1441      617    1539     734    2118    1419   17290    1188
+ 8 E-8              182      139     236     110     505     241    3655     228
+ 9 E-9               83       48     106      39     204      73    1975     108
+10 O-1             3831     1068      45      43     182     265    1693     211
+# … with 80 more rows, 1 more variable: DOD_type &lt;chr&gt;, and abbreviated
+#   variable names ¹​SWC_Female, ²​SC_Female, ³​JSM_Male, ⁴​JSM_Female, ⁵​CM_Female
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<section id="briefly-describe-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="briefly-describe-the-data">Briefly describe the data</h3>
+<p>I have read the data sets and there were many rows empty, so I used the <code>skip</code> to remove first nine rows of data and also removed some columns to reduce redundancy in data set by using <code>select</code> function and then I removed empty rows by <code>drop</code> function and filtered out the values which can calculated if wanted and added a new column using <code>mutate</code> function in regards to combine the data sets and at last combined multiple data sets into one data set using <code>rbind</code> function.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Mutate function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is used to create new columns with the values of old columns.</p>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Rbind function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is used to select to combine two or more data sets into one data set vertically. Catch is that they should have same columns.</p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(TotalDOD_MaritalStatus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 90 10</code></pre>
+</div>
+</div>
+<p>These are the present dimensions of the data set after reading and transforming it, It has 90 rows and 10 columns.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(TotalDOD_MaritalStatus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Pay Grade            SWC_Male          SWC_Female        SC_Male       
+ Length:90          Min.   :    0.00   Min.   :   0.0   Min.   :   0.00  
+ Class :character   1st Qu.:   19.25   1st Qu.:   7.0   1st Qu.:  25.25  
+ Mode  :character   Median :  442.50   Median : 166.5   Median : 122.50  
+                    Mean   : 5084.57   Mean   : 931.5   Mean   : 571.42  
+                    3rd Qu.: 4434.00   3rd Qu.:1091.2   3rd Qu.: 471.00  
+                    Max.   :50758.00   Max.   :7108.0   Max.   :7010.00  
+   SC_Female          JSM_Male        JSM_Female        CM_Male       
+ Min.   :   0.00   Min.   :   0.0   Min.   :   0.0   Min.   :    3.0  
+ 1st Qu.:   2.25   1st Qu.:  17.0   1st Qu.:   6.0   1st Qu.:  439.5  
+ Median :  42.50   Median : 114.0   Median :  81.0   Median : 2496.5  
+ Mean   : 271.91   Mean   : 546.4   Mean   : 507.9   Mean   : 7266.8  
+ 3rd Qu.: 191.75   3rd Qu.: 608.0   3rd Qu.: 497.5   3rd Qu.: 9517.8  
+ Max.   :2599.00   Max.   :6154.0   Max.   :5519.0   Max.   :58317.0  
+   CM_Female         DOD_type        
+ Min.   :   0.00   Length:90         
+ 1st Qu.:   9.25   Class :character  
+ Median : 154.00   Mode  :character  
+ Mean   : 541.13                     
+ 3rd Qu.: 533.75                     
+ Max.   :6010.00                     </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="anticipate-the-end-result" class="level2">
+<h2 class="anchored" data-anchor-id="anticipate-the-end-result">Anticipate the End Result</h2>
+<p>As you might see the data set now there is lot of data which is still untidy, that is I can see that each observation doesn’t have it’s own row and need to be tidy further. First we need decrease the number of columns and use <code>pivot_longer()</code> function to convert the columns into rows so each row can have different and unique observation. And then after that make the “Status” column separate and split it into two columns Status and gender so we can have a separate variable for gender.</p>
+</section>
+<section id="pivot-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="pivot-the-data">Pivot the Data</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>TotalDOD_MaritalStatus <span class="ot">&lt;-</span>  <span class="fu">pivot_longer</span>(TotalDOD_MaritalStatus, SWC_Male<span class="sc">:</span>CM_Female, <span class="at">names_to =</span> <span class="st">"Status"</span>, <span class="at">values_to =</span> <span class="st">"Count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">"Status"</span>, <span class="at">into=</span> <span class="fu">c</span>(<span class="st">"Status"</span>, <span class="st">"Gender"</span>), <span class="st">"_"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="st">"Pay Grade"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>TotalDOD_MaritalStatus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 720 × 5
+   `Pay Grade` DOD_type Status Gender Count
+   &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;
+ 1 E-1         AirForce SWC    Male    7721
+ 2 E-1         AirForce SWC    Female  1550
+ 3 E-1         AirForce SC     Male      27
+ 4 E-1         AirForce SC     Female     5
+ 5 E-1         AirForce JSM    Male      49
+ 6 E-1         AirForce JSM    Female    27
+ 7 E-1         AirForce CM     Male    1064
+ 8 E-1         AirForce CM     Female   178
+ 9 E-2         AirForce SWC    Male    4380
+10 E-2         AirForce SWC    Female  1010
+# … with 710 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Pivot longer function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is used to convert columns into rows so we can have each observation for each row.</p>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Separate function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is an important function used to split one column into two or more columns by using <code>sep</code> parameter.</p>
+</div>
+</div>
+<p>Now from the table we can see that each variable has it’s own column and each observation has it’s own row, so now the data set is tidy.</p>
+<section id="describe-the-final-dimensions" class="level3">
+<h3 class="anchored" data-anchor-id="describe-the-final-dimensions">Describe the final dimensions</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(TotalDOD_MaritalStatus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 720   5</code></pre>
+</div>
+</div>
+<p>Now from the tidy data set, the final dimensions are 720 rows and 5 columns. The column variables are “Pay Grade”, “DOD_type”, “Status”, “Gender” and “Count”. The pay grade represents the level and stats of the people, the DOD_type tells us about the type of service the person is enrolled in and Status gives us the Marital status of the person and Count represents the count of people enrolled in different services based on their marital status and distinguishing by their pay grade.</p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Homework2"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Mani Shanker Kamarapu"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Reading in Data"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/21/2022"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - hw2</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - ActiveDuty_MartialStatus</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>The data set is about the marital status of the active duty DOD service. The data set focuses on four types of services(Air Force, Marine Corps, Navy and Army). The data set gives us the detailed description of marital status of the DOD service people and divided them on basis of gender and four types of statuses(Single without Children(SWC), Single with Children(SC), Joint Service Marriage(JSM) and Civilian Marriage(CM)). The enrolled people are also divided on the basis of pay grade into 3 groups(Enlisted, Officer and Warrant). </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>AirForce_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, </span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"AirForce"</span>, <span class="at">skip =</span> <span class="dv">9</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"remove"</span>, <span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SWC_Total"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"SC_Total"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"JSM_Total"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>, <span class="st">"CM_Total"</span>, <span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Total"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Pay Grade"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"TOTAL"</span>, <span class="st">`</span><span class="at">Pay Grade</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">DOD_type=</span><span class="st">"AirForce"</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>MarineCorps_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, </span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"MarineCorps"</span>, <span class="at">skip =</span> <span class="dv">9</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"remove"</span>, <span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SWC_Total"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"SC_Total"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"JSM_Total"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>, <span class="st">"CM_Total"</span>, <span class="st">"M_Male"</span>, <span class="st">"M_Female"</span>, <span class="st">"M_Total"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Pay Grade"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"TOTAL"</span>, <span class="st">`</span><span class="at">Pay Grade</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">DOD_type=</span><span class="st">"MarineCorps"</span>)</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>Navy_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, </span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"Navy"</span>, <span class="at">skip =</span> <span class="dv">9</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"remove"</span>, <span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SWC_Total"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"SC_Total"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"JSM_Total"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>, <span class="st">"CM_Total"</span>, <span class="st">"N_Male"</span>, <span class="st">"N_Female"</span>, <span class="st">"N_Total"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Pay Grade"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"TOTAL"</span>, <span class="st">`</span><span class="at">Pay Grade</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">DOD_type=</span><span class="st">"Navy"</span>)</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>Army_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, </span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"Army"</span>, <span class="at">skip =</span> <span class="dv">9</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"remove"</span>, <span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SWC_Total"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"SC_Total"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"JSM_Total"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>, <span class="st">"CM_Total"</span>, <span class="st">"Army_Male"</span>, <span class="st">"Army_Female"</span>, <span class="st">"Army_Total"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Pay Grade"</span>, <span class="st">"SWC_Male"</span>, <span class="st">"SWC_Female"</span>, <span class="st">"SC_Male"</span>, <span class="st">"SC_Female"</span>, <span class="st">"JSM_Male"</span>, <span class="st">"JSM_Female"</span>, <span class="st">"CM_Male"</span>, <span class="st">"CM_Female"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(<span class="st">"Pay Grade"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"TOTAL"</span>, <span class="st">`</span><span class="at">Pay Grade</span><span class="st">`</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">DOD_type=</span><span class="st">"Army"</span>)</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>TotalDOD_MaritalStatus <span class="ot">&lt;-</span> <span class="fu">rbind</span>(AirForce_MaritalStatus,MarineCorps_MaritalStatus, Navy_MaritalStatus, Army_MaritalStatus)</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>TotalDOD_MaritalStatus</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a><span class="fu">### Briefly describe the data</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>I have read the data sets and there were many rows empty, so I used the <span class="in">`skip`</span> to remove first nine rows of data and also removed some columns to reduce redundancy in data set by using <span class="in">`select`</span> function and then I removed empty rows by <span class="in">`drop`</span> function and filtered out the values which can calculated if wanted and added a new column using <span class="in">`mutate`</span> function in regards to combine the data sets and at last combined multiple data sets into one data set using <span class="in">`rbind`</span> function.</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip}</span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mutate function</span></span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>It is used to create new columns with the values of old columns.</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>:::{.callout-important}</span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a><span class="fu">### Rbind function</span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>It is used to select to combine two or more data sets into one data set vertically. Catch is that they should have same columns.</span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(TotalDOD_MaritalStatus)</span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>These are the present dimensions of the data set after reading and transforming it, It has 90 rows and 10 columns. </span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(TotalDOD_MaritalStatus)</span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Anticipate the End Result</span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>As you might see the data set now there is lot of data which is still untidy, that is I can see that each observation doesn't have it's own row and need to be tidy further. First we need decrease the number of columns and use <span class="in">`pivot_longer()`</span> function to convert the columns into rows so each row can have different and unique observation. And then after that make the "Status" column separate and split it into two columns Status and gender so we can have a separate variable for gender.</span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pivot the Data</span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a>TotalDOD_MaritalStatus <span class="ot">&lt;-</span>  <span class="fu">pivot_longer</span>(TotalDOD_MaritalStatus, SWC_Male<span class="sc">:</span>CM_Female, <span class="at">names_to =</span> <span class="st">"Status"</span>, <span class="at">values_to =</span> <span class="st">"Count"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(<span class="at">col =</span> <span class="st">"Status"</span>, <span class="at">into=</span> <span class="fu">c</span>(<span class="st">"Status"</span>, <span class="st">"Gender"</span>), <span class="st">"_"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="st">"Pay Grade"</span>)</span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>TotalDOD_MaritalStatus</span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip}</span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pivot longer function</span></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>It is used to convert columns into rows so we can have each observation for each row.</span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>:::{.callout-important}</span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a><span class="fu">### Separate function</span></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>It is an important function used to split one column into two or more columns by using <span class="in">`sep`</span> parameter.</span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>Now from the table we can see that each variable has it's own column and each observation has it's own row, so now the data set is tidy.</span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a><span class="fu">### Describe the final dimensions</span></span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(TotalDOD_MaritalStatus)</span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>Now from the tidy data set, the final dimensions are 720 rows and 5 columns. The column variables are "Pay Grade", "DOD_type", "Status", "Gender" and "Count". The pay grade represents the level and stats of the people, the DOD_type tells us about the type of service the person is enrolled in and Status gives us the Marital status of the person and Count represents the count of people enrolled in different services based on their marital status and distinguishing by their pay grade.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

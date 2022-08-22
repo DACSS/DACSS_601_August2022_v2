@@ -310,12 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code># A tibble: 6 × 5
   country  year trade outgoing incoming
   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 Mexico   1980 NAFTA    1334.     752.
-2 USA      1990 NAFTA    1923.     649.
-3 France   1980 EU       1356.    1363.
-4 Mexico   1990 NAFTA    1123.    1074.
-5 USA      1980 NAFTA    1081.     936.
-6 France   1990 EU       -132.     897.</code></pre>
+1 Mexico   1980 NAFTA    1005.    -416.
+2 USA      1990 NAFTA    1210.    1473.
+3 France   1980 EU        437.    2058.
+4 Mexico   1990 NAFTA     972.     806.
+5 USA      1980 NAFTA    1962.    1305.
+6 France   1990 EU        262.     612.</code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -409,18 +409,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code># A tibble: 12 × 5
    country  year trade trade_direction trade_value
    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
- 1 Mexico   1980 NAFTA outgoing              1334.
- 2 Mexico   1980 NAFTA incoming               752.
- 3 USA      1990 NAFTA outgoing              1923.
- 4 USA      1990 NAFTA incoming               649.
- 5 France   1980 EU    outgoing              1356.
- 6 France   1980 EU    incoming              1363.
- 7 Mexico   1990 NAFTA outgoing              1123.
- 8 Mexico   1990 NAFTA incoming              1074.
- 9 USA      1980 NAFTA outgoing              1081.
-10 USA      1980 NAFTA incoming               936.
-11 France   1990 EU    outgoing              -132.
-12 France   1990 EU    incoming               897.</code></pre>
+ 1 Mexico   1980 NAFTA outgoing              1005.
+ 2 Mexico   1980 NAFTA incoming              -416.
+ 3 USA      1990 NAFTA outgoing              1210.
+ 4 USA      1990 NAFTA incoming              1473.
+ 5 France   1980 EU    outgoing               437.
+ 6 France   1980 EU    incoming              2058.
+ 7 Mexico   1990 NAFTA outgoing               972.
+ 8 Mexico   1990 NAFTA incoming               806.
+ 9 USA      1980 NAFTA outgoing              1962.
+10 USA      1980 NAFTA incoming              1305.
+11 France   1990 EU    outgoing               262.
+12 France   1990 EU    incoming               612.</code></pre>
 </div>
 </div>
 <p>Yes, once it is pivoted long, our resulting data are <span class="math inline">\(12x5\)</span> - exactly what we expected!</p>
@@ -738,7 +738,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Blog" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb28" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 3"</span></span>

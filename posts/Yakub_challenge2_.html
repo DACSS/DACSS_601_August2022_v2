@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Yakub Rabiutheen">
+<meta name="dcterms.date" content="2022-08-16">
+
+<title>- Challenge 2 Instructions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Challenge 2 Instructions">
+<meta name="twitter:description" content="Today’s challenge is to">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#challenge-overview" id="toc-challenge-overview" class="nav-link active" data-scroll-target="#challenge-overview">Challenge Overview</a></li>
+  <li><a href="#read-in-the-data" id="toc-read-in-the-data" class="nav-link" data-scroll-target="#read-in-the-data">Read in the Data</a></li>
+  <li><a href="#describe-the-data" id="toc-describe-the-data" class="nav-link" data-scroll-target="#describe-the-data">Describe the data</a></li>
+  <li><a href="#provide-grouped-summary-statistics" id="toc-provide-grouped-summary-statistics" class="nav-link" data-scroll-target="#provide-grouped-summary-statistics">Provide Grouped Summary Statistics</a>
+  <ul class="collapse">
+  <li><a href="#explain-and-interpret" id="toc-explain-and-interpret" class="nav-link" data-scroll-target="#explain-and-interpret">Explain and Interpret</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Challenge 2 Instructions</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">challenge_2</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Yakub Rabiutheen </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 16, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="challenge-overview" class="level2">
+<h2 class="anchored" data-anchor-id="challenge-overview">Challenge Overview</h2>
+<p>Today’s challenge is to</p>
+<ol type="1">
+<li>read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</li>
+<li>provide summary statistics for different interesting groups within the data, and interpret those statistics</li>
+</ol>
+</section>
+<section id="read-in-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-the-data">Read in the Data</h2>
+<p>Read in one (or more) of the following data sets, available in the <code>posts/_data</code> folder, using the correct R package and command.</p>
+<ul>
+<li>railroad*.csv or StateCounty2012.xlsx ⭐</li>
+<li>FAOstat*.csv ⭐⭐⭐</li>
+<li>hotel_bookings ⭐⭐⭐⭐</li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>FAOstat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/FAOSTAT_livestock.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</p>
+</section>
+<section id="describe-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="describe-the-data">Describe the data</h2>
+<p>Doing a Head of the Dataset to get a view of what the Data Looks Like</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(FAOstat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 14
+  Domai…¹ Domain Area …² Area  Eleme…³ Element Item …⁴ Item  Year …⁵  Year Unit 
+  &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+1 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1961  1961 Head 
+2 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1962  1962 Head 
+3 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1963  1963 Head 
+4 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1964  1964 Head 
+5 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1965  1965 Head 
+6 QA      Live …       2 Afgh…    5111 Stocks     1107 Asses    1966  1966 Head 
+# … with 3 more variables: Value &lt;dbl&gt;, Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;,
+#   and abbreviated variable names ¹​`Domain Code`, ²​`Area Code`,
+#   ³​`Element Code`, ⁴​`Item Code`, ⁵​`Year Code`
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>FAO.sm <span class="ot">&lt;-</span> FAOstat <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">contains</span>(<span class="st">"Code"</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>FAO.sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 82,116 × 9
+   Domain       Area        Element Item   Year Unit    Value Flag  Flag Descr…¹
+   &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       
+ 1 Live Animals Afghanistan Stocks  Asses  1961 Head  1300000 &lt;NA&gt;  Official da…
+ 2 Live Animals Afghanistan Stocks  Asses  1962 Head   851850 &lt;NA&gt;  Official da…
+ 3 Live Animals Afghanistan Stocks  Asses  1963 Head  1001112 &lt;NA&gt;  Official da…
+ 4 Live Animals Afghanistan Stocks  Asses  1964 Head  1150000 F     FAO estimate
+ 5 Live Animals Afghanistan Stocks  Asses  1965 Head  1300000 &lt;NA&gt;  Official da…
+ 6 Live Animals Afghanistan Stocks  Asses  1966 Head  1200000 &lt;NA&gt;  Official da…
+ 7 Live Animals Afghanistan Stocks  Asses  1967 Head  1200000 &lt;NA&gt;  Official da…
+ 8 Live Animals Afghanistan Stocks  Asses  1968 Head  1328000 &lt;NA&gt;  Official da…
+ 9 Live Animals Afghanistan Stocks  Asses  1969 Head  1250000 &lt;NA&gt;  Official da…
+10 Live Animals Afghanistan Stocks  Asses  1970 Head  1300000 &lt;NA&gt;  Official da…
+# … with 82,106 more rows, and abbreviated variable name ¹​`Flag Description`
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(FAO.sm, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">FAO.sm</h4>
+<strong>Dimensions</strong>: 82116 x 9
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">Domain
+[character]</td>
+      <td align="left">1. Live Animals</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">82116</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">100.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHUAAAAXCAQAAACfMchmAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBYENRmImNMXAAAAVUlEQVRYw+3YMQ4AEBBEUSvu6A4O5A5OSYka2WT81023PzrWwy+i9wGkknoiraP27H3PVS0Um+ujVyVVEamKSFVEqiJSFZGqKO2zed/zkPHhIohURQMdGAXYo3nwyAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yMlQwNDo1MzoyNSswMDowMDI1Ul4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjJUMDQ6NTM6MjUrMDA6MDBDaOriAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Area
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Africa</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Asia</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. China, mainland</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Eastern Africa</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Eastern Asia</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Eastern Europe</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Egypt</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Europe</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. India</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Northern Africa</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 243 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">522</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">76896</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">93.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG8AAAC9CAQAAAAXOuvPAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBYENRmImNMXAAABQklEQVR42u3XQYrCUBRFQSPusVfWi3CV6elPQyYqxPOochQCkkO+4N3222T3qx9AnrxT+/L5HfFDXIuGvz15ZfLK5JXJK5NXJq9seN62bqDt6qf5iLVo+Ns75M2Ys6d588grk1cmr0xembwyeWXD88zZMnO2TF6ZvDJ5ZfLK5JXJK7P3yuy9Mnll8srklckrk1cmr2x4njlbZs6WySuTVyavTF6ZvDJ5ZcPzzNkyc7ZMXpm8Mnll8srklckrs/fK7L0yeWXyyuSVySuTVyavbHieOVtmzpbJK5NXJq9MXpm8Mnll9l6ZvVcmr0xembwyeWXyyuSVDc8zZ8vM2TJ5ZfLK5JXJK5NXJq9seJ45W/ZYL4bM2eUQPo53fq5+tLc9D1fDD6e8Mnll8srklckr+/ef8/nat3ytbcZIODP8cMor+wNzzzZhe592HQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yMlQwNDo1MzoyNSswMDowMDI1Ul4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjJUMDQ6NTM6MjUrMDA6MDBDaOriAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Element
+[character]</td>
+      <td align="left">1. Stocks</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">82116</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">100.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHUAAAAXCAQAAACfMchmAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBYENRmImNMXAAAAVUlEQVRYw+3YMQ4AEBBEUSvu6A4O5A5OSYka2WT81023PzrWwy+i9wGkknoiraP27H3PVS0Um+ujVyVVEamKSFVEqiJSFZGqKO2zed/zkPHhIohURQMdGAXYo3nwyAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yMlQwNDo1MzoyNSswMDowMDI1Ul4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjJUMDQ6NTM6MjUrMDA6MDBDaOriAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Item
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Asses</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Buffaloes</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Camels</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Cattle</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Goats</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Horses</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Mules</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Pigs</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Sheep</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8571</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">10.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3505</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3265</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">13086</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">15.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12498</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">15.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11104</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">13.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">6153</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12015</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">14.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11919</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">14.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAB0AAACcCAQAAAApdmj5AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBYENRmImNMXAAAAw0lEQVRo3u2XUQ6EIAwFwewdPYTnce/gKfVrN1ApIpLstpn3pQmjLXUSjHvozdRN/gh9pTdvpfElfq52DQ1hLoDbX/UKCioivuHtBhpTF+Ll8nT1qILX70OX6wLKvrZ1bG6uoKAiqN70VnNzBQUV8aK6XqXa61zl8p0wN1dQnyi+KsFXUF+oZ9XlybxZ9fMumJsrKKiIN9VrP95V1eudm5srqE/Um695cntvnMLlPpibKyioCKoXg+qg3tBRqlvo9QF6AMiXNHZxIQFgAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTIyVDA0OjUzOjI1KzAwOjAwMjVSXgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yMlQwNDo1MzoyNSswMDowMENo6uIAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Year
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1990.4 (16.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1961 ≤ 1991 ≤ 2018</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 29 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">58 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBYENRmImNMXAAAA30lEQVR42u3bwQ3CMBAAQYzSIz1APdADVcL3CMKS5XDWnnZ/+QQPiY1kkvY6Ve28egDSpMW2eNCSP/w+PdFvuyHHE25DZzq8y8fRc/i4Vypt/iqNlHzVRr712QovI9KI/XWu5S4bXdrxQ8lcNrq0+d+ZlZR9heeaNGLSiEkjJo2YNGLSiEkjJo1YYdrijfHZvnZzwn8AcFpvL6bwDSmNmDRi0ohJIyaNmDRi0ohJIyaNmDRi0ohJIyaNmDRi0ohJIyaNmDRi0ogVprX4uMwD/2r9NTzt0/CanxW+IaURewNvgBr8VR8OGAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yMlQwNDo1MzoyNSswMDowMDI1Ul4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjJUMDQ6NTM6MjUrMDA6MDBDaOriAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Unit
+[character]</td>
+      <td align="left">1. Head</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">82116</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">100.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHUAAAAXCAQAAACfMchmAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBYENRmImNMXAAAAVUlEQVRYw+3YMQ4AEBBEUSvu6A4O5A5OSYka2WT81023PzrWwy+i9wGkknoiraP27H3PVS0Um+ujVyVVEamKSFVEqiJSFZGqKO2zed/zkPHhIohURQMdGAXYo3nwyAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yMlQwNDo1MzoyNSswMDowMDI1Ul4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjJUMDQ6NTM6MjUrMDA6MDBDaOriAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Value
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 11625569 (64779790)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 224667 ≤ 1489744504</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2364200 (5.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">43667 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBYENRmImNMXAAAAr0lEQVR42u3bMQ6CQBBAUTHc0UN4HryDp9TOLCYUaEEe+a+CbDM/sOVMr8tZXY8eoLTSRvP48lhdvPt09HD7jQHz+uj2eXoePeXfTvxDliYqTVSaqDRRaaLSRKWJShOVJipNVJqoNFFpotJEpYlKE5UmKk1Umqg0UWmi0kSliUoTlSYqTVSaqDRRaaLSRKWJShOVJpq3jxZ8KfYrbXv5dTHW7ocPMBkT/+LEd6000RsQhgrhBdMm/gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yMlQwNDo1MzoyNSswMDowMDI1Ul4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjJUMDQ6NTM6MjUrMDA6MDBDaOriAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">1301
+(1.6%)</td>
+    </tr>
+    <tr>
+      <td align="left">Flag
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. *</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. A</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. F</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Im</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. M</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2667</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12567</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">28.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">24550</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">56.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2877</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1185</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEcAAABaCAQAAABA8YPRAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBYENRmImNMXAAAA2ElEQVRo3u3ZQQqDMBCFYSPe0UN4Hr2Dp2w3tU4GlNaGmSf930px4UcmkIeWR6eUPhsA5/MM9mapNtJUYgj2pUP9aHxfrbHL8orYsODAgQMHjlLEOO4IzTk49xR7vAc1ChcrUB7W/FOPb1HXDuvXt2mz68SGBQcOHDhwlCLGoX75/Ef9uhwzlGb162rq3So2LDhw4MCBoxQxDvXL5671K+r34wGnrl8Z+0hsWHDgwIEDRyliHOqXz93qV3zt2uJWZ0z4/nXCyQ4cOHDgwFGKct/Jj9iw4JzlCd+mHVVsYtxNAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTIyVDA0OjUzOjI1KzAwOjAwMjVSXgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yMlQwNDo1MzoyNSswMDowMENo6uIAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">38270
+(46.6%)</td>
+    </tr>
+    <tr>
+      <td align="left">Flag Description
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Aggregate, may include of</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Data not available</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. FAO data based on imputat</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. FAO estimate</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Official data</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Unofficial figure</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12567</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">15.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1185</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2877</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">24550</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">29.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">38270</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">46.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2667</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAD0AAABrCAQAAABuvEKIAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBYENRmImNMXAAAA1UlEQVRo3u3ZWw6DIBCF4dK4RxbR9dg9uEp8ajKYhovgQJj/vDXGfEE0c6ouvEblPUw2Sm/yxze78R/Xxklgiw/55IlH11Xb3GtoaGjoNejL+Og7INJxcow1TsSCSG2Wvd7DrtgSZ1k1NDQ0NDR0WWxWhaib/YpC67uDslxW7TPvFR6kNQMNDQ29Bs1fe+X8ndd3Uzfnq74CpFN7n9h8uKChoaHXoKkKyulaFQoiLmzHqpBPfCfZfLigoaGh16CpCsrhK4ByoKGhoaEbM0tV0I3NvR5InwWzIkkW1nw3AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTIyVDA0OjUzOjI1KzAwOjAwMjVSXgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yMlQwNDo1MzoyNSswMDowMENo6uIAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-22</p>
+</div>
+</div>
+</div>
+<p>Find out information about flags to see which one that I would pick.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flag_description <span class="ot">&lt;-</span> FAO.sm<span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Flag,<span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(flag_description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  Flag  `Flag Description`                                                      
+  &lt;chr&gt; &lt;chr&gt;                                                                   
+1 &lt;NA&gt;  Official data                                                           
+2 F     FAO estimate                                                            
+3 *     Unofficial figure                                                       
+4 Im    FAO data based on imputation methodology                                
+5 M     Data not available                                                      
+6 A     Aggregate, may include official, semi-official, estimated or calculated…</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lifestocktypes<span class="ot">&lt;-</span> FAO.sm<span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Flag,<span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(flag_description)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  Flag  `Flag Description`                                                      
+  &lt;chr&gt; &lt;chr&gt;                                                                   
+1 &lt;NA&gt;  Official data                                                           
+2 F     FAO estimate                                                            
+3 *     Unofficial figure                                                       
+4 Im    FAO data based on imputation methodology                                
+5 M     Data not available                                                      
+6 A     Aggregate, may include official, semi-official, estimated or calculated…</code></pre>
+</div>
+</div>
+</section>
+<section id="provide-grouped-summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="provide-grouped-summary-statistics">Provide Grouped Summary Statistics</h2>
+<p>Conduct some exploratory data analysis, using dplyr commands such as <code>group_by()</code>, <code>select()</code>, <code>filter()</code>, and <code>summarise()</code>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>FAO.sm <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Flag<span class="sc">==</span><span class="st">"A"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area)<span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 2
+   Area                          n
+   &lt;chr&gt;                     &lt;int&gt;
+ 1 Africa                      522
+ 2 Americas                    464
+ 3 Asia                        522
+ 4 Australia and New Zealand   376
+ 5 Caribbean                   464
+ 6 Central America             406
+ 7 Central Asia                243
+ 8 Eastern Africa              522
+ 9 Eastern Asia                522
+10 Eastern Europe              522
+# … with 18 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>FAO.sm <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Flag<span class="sc">==</span><span class="st">"A"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area)<span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 2
+   Area                          n
+   &lt;chr&gt;                     &lt;int&gt;
+ 1 Africa                      522
+ 2 Americas                    464
+ 3 Asia                        522
+ 4 Australia and New Zealand   376
+ 5 Caribbean                   464
+ 6 Central America             406
+ 7 Central Asia                243
+ 8 Eastern Africa              522
+ 9 Eastern Asia                522
+10 Eastern Europe              522
+# … with 18 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<section id="explain-and-interpret" class="level3">
+<h3 class="anchored" data-anchor-id="explain-and-interpret">Explain and Interpret</h3>
+<p>Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.</p>
+<p>Here is where I filtered by area</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>area_filter<span class="ot">&lt;-</span>FAO.sm <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Flag<span class="sc">==</span><span class="st">"A"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area)<span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I then wanted to see the averages by proportions.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>area_filter<span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">prop =</span> <span class="fu">prop.table</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 3
+   Area                          n   prop
+   &lt;chr&gt;                     &lt;int&gt;  &lt;dbl&gt;
+ 1 Africa                      522 0.0415
+ 2 Americas                    464 0.0369
+ 3 Asia                        522 0.0415
+ 4 Australia and New Zealand   376 0.0299
+ 5 Caribbean                   464 0.0369
+ 6 Central America             406 0.0323
+ 7 Central Asia                243 0.0193
+ 8 Eastern Africa              522 0.0415
+ 9 Eastern Asia                522 0.0415
+10 Eastern Europe              522 0.0415
+# … with 18 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>I did a filter for Pigs and also wanted to see number of Pigs in Iran.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pig_analysis <span class="ot">&lt;-</span> FAO.sm <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Item<span class="sc">==</span><span class="st">"Pigs"</span>,Area<span class="sc">==</span><span class="st">"Iran (Islamic Republic of)"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>pig_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 50 × 9
+   Domain       Area               Element Item   Year Unit  Value Flag  Flag …¹
+   &lt;chr&gt;        &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  
+ 1 Live Animals Iran (Islamic Rep… Stocks  Pigs   1961 Head  55000 &lt;NA&gt;  Offici…
+ 2 Live Animals Iran (Islamic Rep… Stocks  Pigs   1962 Head  58000 &lt;NA&gt;  Offici…
+ 3 Live Animals Iran (Islamic Rep… Stocks  Pigs   1963 Head  52000 &lt;NA&gt;  Offici…
+ 4 Live Animals Iran (Islamic Rep… Stocks  Pigs   1964 Head  50000 &lt;NA&gt;  Offici…
+ 5 Live Animals Iran (Islamic Rep… Stocks  Pigs   1965 Head  50000 &lt;NA&gt;  Offici…
+ 6 Live Animals Iran (Islamic Rep… Stocks  Pigs   1966 Head  50000 &lt;NA&gt;  Offici…
+ 7 Live Animals Iran (Islamic Rep… Stocks  Pigs   1967 Head  52000 &lt;NA&gt;  Offici…
+ 8 Live Animals Iran (Islamic Rep… Stocks  Pigs   1968 Head  52000 &lt;NA&gt;  Offici…
+ 9 Live Animals Iran (Islamic Rep… Stocks  Pigs   1969 Head  50000 F     FAO es…
+10 Live Animals Iran (Islamic Rep… Stocks  Pigs   1970 Head  48000 F     FAO es…
+# … with 40 more rows, and abbreviated variable name ¹​`Flag Description`
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>I then did a data visualization by year and found something interesting. There was a massive drop in the number of Pigs around the year 1980, which is when the Islamic Revolution happened and Iran became a theocracy which made Pork banned to eat.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pig_analysis, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_challenge2__files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Using the Table function, I found that the data for Iran stopped being available after 1994.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">table</span>(pig_analysis<span class="sc">$</span><span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>,pig_analysis<span class="sc">$</span>Year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    
+                     1961 1962 1963 1964 1965 1966 1967 1968 1969 1970 1971
+  Data not available    0    0    0    0    0    0    0    0    0    0    0
+  FAO estimate          0    0    0    0    0    0    0    0    1    1    1
+  Official data         1    1    1    1    1    1    1    1    0    0    0
+                    
+                     1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1990
+  Data not available    0    0    0    0    0    0    0    0    0    0    0
+  FAO estimate          1    0    0    1    1    1    1    1    1    1    0
+  Official data         0    1    1    0    0    0    0    0    0    0    1
+                    
+                     1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001
+  Data not available    0    0    1    1    1    1    1    1    1    1    1
+  FAO estimate          0    0    0    0    0    0    0    0    0    0    0
+  Official data         1    1    0    0    0    0    0    0    0    0    0
+                    
+                     2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012
+  Data not available    1    1    1    1    1    1    1    1    1    1    1
+  FAO estimate          0    0    0    0    0    0    0    0    0    0    0
+  Official data         0    0    0    0    0    0    0    0    0    0    0
+                    
+                     2013 2014 2015 2016 2017 2018
+  Data not available    1    1    1    1    1    1
+  FAO estimate          0    0    0    0    0    0
+  Official data         0    0    0    0    0    0</code></pre>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2 Instructions"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Yakub Rabiutheen"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/16/2022"</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>Today's challenge is to</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>2)  provide summary statistics for different interesting groups within the data, and interpret those statistics</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>Read in one (or more) of the following data sets, available in the <span class="in">`posts/_data`</span> folder, using the correct R package and command.</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>railroad<span class="sc">\*</span>.csv or StateCounty2012.xlsx ⭐</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FAOstat<span class="sc">\*</span>.csv ⭐⭐⭐</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>hotel_bookings ⭐⭐⭐⭐</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>FAOstat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/FAOSTAT_livestock.csv"</span>)</span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>Doing a Head of the Dataset to get a view of what the Data Looks Like</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(FAOstat)</span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a>FAO.sm <span class="ot">&lt;-</span> FAOstat <span class="sc">%&gt;%</span></span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">contains</span>(<span class="st">"Code"</span>))</span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a>FAO.sm</span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(FAO.sm, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a>                        <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>                        <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a>                        <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a>Find out information about flags to see which one that I would pick.</span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a>flag_description <span class="ot">&lt;-</span> FAO.sm<span class="sc">%&gt;%</span></span>
+<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Flag,<span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
+<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(flag_description)</span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a>lifestocktypes<span class="ot">&lt;-</span> FAO.sm<span class="sc">%&gt;%</span></span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Flag,<span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
+<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(flag_description)</span>
+<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a>Conduct some exploratory data analysis, using dplyr commands such as <span class="in">`group_by()`</span>, <span class="in">`select()`</span>, <span class="in">`filter()`</span>, and <span class="in">`summarise()`</span>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</span>
+<span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a>FAO.sm <span class="sc">%&gt;%</span></span>
+<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Flag<span class="sc">==</span><span class="st">"A"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area)<span class="sc">%&gt;%</span></span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span>
+<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a>FAO.sm <span class="sc">%&gt;%</span></span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Flag<span class="sc">==</span><span class="st">"A"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area)<span class="sc">%&gt;%</span></span>
+<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span>
+<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
+<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a>Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.</span>
+<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a>Here is where I filtered by area </span>
+<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>area_filter<span class="ot">&lt;-</span>FAO.sm <span class="sc">%&gt;%</span></span>
+<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Flag<span class="sc">==</span><span class="st">"A"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area)<span class="sc">%&gt;%</span></span>
+<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span>
+<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a>I then wanted to see the averages by proportions.</span>
+<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a>area_filter<span class="sc">%&gt;%</span></span>
+<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">prop =</span> <span class="fu">prop.table</span>(n))</span>
+<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-168"><a href="#cb24-168" aria-hidden="true" tabindex="-1"></a>I did a filter for Pigs and also wanted to see number of Pigs in Iran.</span>
+<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a>pig_analysis <span class="ot">&lt;-</span> FAO.sm <span class="sc">%&gt;%</span></span>
+<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Item<span class="sc">==</span><span class="st">"Pigs"</span>,Area<span class="sc">==</span><span class="st">"Iran (Islamic Republic of)"</span>)</span>
+<span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a>pig_analysis</span>
+<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a>I then did a data visualization by year and found something interesting. There was a massive drop in the number of Pigs around the year 1980, which</span>
+<span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a>is when the Islamic Revolution happened and Iran became a theocracy which made Pork banned to eat.</span>
+<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-183"><a href="#cb24-183" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pig_analysis, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
+<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_line</span>()</span>
+<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a>Using the Table function, I found that the data for Iran stopped being available after 1994.</span>
+<span id="cb24-190"><a href="#cb24-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-191"><a href="#cb24-191" aria-hidden="true" tabindex="-1"></a>(<span class="fu">table</span>(pig_analysis<span class="sc">$</span><span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>,pig_analysis<span class="sc">$</span>Year))</span>
+<span id="cb24-192"><a href="#cb24-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
