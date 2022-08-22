@@ -1,8 +1,9 @@
 ---
-title: "Challenge 4 Instructions"
+title: "Challenge 4"
 author: "Steve O'Neill"
 desription: "More data wrangling: pivoting"
 date: "08/18/2022"
+df-print: paged
 format:
   html:
     toc: true
@@ -53,7 +54,7 @@ Yes - it looks like `Total` and `calculated_total` are matching up, so I can rel
 
 ### Briefly describe the data
 
-The data describes total household debt balance (in trillions) and its composition. It was published by the Federal Reserve Bank of New York and its source can be found [here](https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/hhd_c_report_2022q2.xlsx)
+The data describes total household debt balance (in trillions) and its composition. It was published by the Federal Reserve Bank of New York and its source can be found [here](https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/hhd_c_report_2022q2.xlsx).
 
 ## Tidy-ness
 
