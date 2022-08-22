@@ -1,0 +1,88 @@
+---
+title: "Challenge 4"
+author: "Emma Rasmussen"
+desription: "More data wrangling: pivoting"
+date: "08/18/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - FederalFundsRate
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+FedFundsRate<-read_csv("_data/FedFundsRate.csv",
+                        show_col_types = FALSE)
+#Saving an unchanged copy of the dataset
+FedFundsRateOrig<-FedFundsRate
+
+#checking variables
+colnames(FedFundsRate)
+
+#Checking columns with a lot of NA values
+FedFundsRate%>%
+  select("Federal Funds Target Rate", "Federal Funds Upper Target", "Federal Funds Lower Target") %>% 
+  distinct()
+
+#renaming columns prior to pivot
+FedFundsRate<-rename(FedFundsRate, "TargetRate"="Federal Funds Target Rate", "UpperTargetRate"="Federal Funds Upper Target", "LowerTargetRate"="Federal Funds Lower Target", "EffectiveRate"="Effective Federal Funds Rate", "GDP(PercentChange)"="Real GDP (Percent Change)", "UnemploymentRate"="Unemployment Rate", "InflationRate"="Inflation Rate")
+
+FedFundsRate
+
+```
+
+### Briefly describe the data
+I know nothing about economics but the Federal Funds Rate appears to be set by the government to regulate lending by banks. The Federal Open Markets Committee (FOMC) sets an upper and lower limit target for the Federal Funds Rate. This data set includes a target rate, these upper and lower target limits, and the effective rate (I am assuming these are independent variables). So one observation includes: date, target rate, upper and lower limits, and effective rate). The data set also includes the GDP, Unemployment Rate, and inflation which I am assuming to be dependent variables because they are effected by the federal funds rate.
+
+## Tidy Data (as needed)
+
+#Pivoting federal fund rates into a single column 
+```{r}
+
+
+FedFundsRateLonger<-pivot_longer(FedFundsRate, col=c("TargetRate", "UpperTargetRate", "LowerTargetRate", "EffectiveRate"),
+                                 names_to="FederalFundsRate",
+                                 values_to="Value")
+FedFundsRateLonger
+                                 
+
+```
+
+Any additional comments?
+
+If I knew how the data was being used/type of analyses we were doing I might pivot differently
+
+## Identify variables that need to be mutated
+
+```{r}
+#reformatting date
+FedFundsRateLonger$Date<- paste(FedFundsRateLonger$Year, FedFundsRateLonger$Month, FedFundsRateLonger$Day, sep="-") %>% 
+  ymd() %>% 
+  as.Date()
+
+#removing date columns and reordering columns for readability: date-rate-value-Dependent Variables
+select(FedFundsRateLonger, 9,7,8,6,5,4)
+
+
+```
+
+Any additional comments?
+
+I left the unemployment rate, inflation rate, and GDP in their own columns so analyses on these data could more easily compare Federal Funds Rate against these dependent variables over time (i.e. filtering effective rate and comparing to one of these variables). Condensing the data into one rate and variable might be easier to answer specific questions, but I did not want to remove any data. 
