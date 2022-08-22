@@ -71,8 +71,9 @@ Railroads <- read_csv("_data/railroad_2012_clean_county.csv", show_col_types = F
 
 Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
 
+    I think the one thing that might be a little bit confusing here is the fact that the county names might correlate with multiple values.
 ```{r}
-
+length(unique(Railroads$county))
 
 ```
 
