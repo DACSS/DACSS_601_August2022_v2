@@ -23,13 +23,6 @@ library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Challenge Overview
-
-Today's challenge is to
-
-1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
-2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
-
 ## Read in the Data
 
 I've decided to use the hotel bookings dataset for this challenge.
