@@ -1,0 +1,50 @@
+---
+title: "Steve O'Neill"
+image: images/stevenoneill.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/stevenoneill.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/thefirstcircle
+---
+
+## Education/Work Background
+
+I have a B.A. in Political Science from UMass and currently work here as a system administrator (A&F IT). Day-to-day I work on server administration, scripting, and endpoint management at scale. More about who we are and what we support is [here.](https://www.umass.edu/afsystems/)
+*(Disclaimer: my bio hasn't been updated on our website since I recently changed roles)*
+
+This summer I did an internship with Facilities & Campus Services, focusing on GIS and spatial analytics. It's been challenging and rewarding! 
+
+I've been using PostGIS, FME, and ArcGIS to visualize and model restroom supply + demand points on campus. We are looking at improving disability accessibility, gender equity, and [OSHA compliance](https://www.grainger.com/know-how/business-operations/building-maintenance/kh-know-the-requirements-for-restroom-renovations) among the 1200+ public restrooms here.
+
+I previously worked at UMass Transit (PVTA) and was also a seasonal mechanic at Northampton Bicycle for several years.
+
+## R experience
+
+Comparatively, I have less experience with R than other scripting languages (Python, Bash, and PowerShell). I do have *R for Data Science* on long-term loan and have been doing some of the exercises in it with plotting, etc. since earlier this summer.
+
+In the course of my summer internship, I turned to R for doing data cleaning on survey results since no other language had an easy way to join dataframes based on column values containing regular expressions. The 'fuzzyjoin' library came to the rescue (!) and saved me a lot of time.
+
+Compared to other IDEs I've used, I appreciate how RStudio connects directly to our SQL server using an ODBC connection and lets me read tables directly into dataframes. Very neat.
+
+I can provide a sanitized version of the RMarkdown narrative from the data cleaning part of my internship if there is any interest.
+
+## Research interests
+
+I'm interested in the media, public opinion, data privacy legislation, and international internet governance. 
+
+## Hometown
+
+I'm from Monson, Massachusetts. We are [technically] in Western Mass! Currently I live in Northampton.
+
+## Hobbies
+
+Cycling, photography, running, and reading!
+
+## Fun fact
+
+I've been in a tornado!

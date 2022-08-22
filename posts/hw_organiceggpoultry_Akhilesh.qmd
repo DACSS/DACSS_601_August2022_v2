@@ -1,0 +1,178 @@
+---
+title: "Homework 2"
+author: "Akhilesh Kumar Meghwal"
+desription: ""
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw2
+---
+
+## Homework-2 Overview
+
+- Read in a dataset from the _data folder in the course blog repository, or choose your own data. If you decide to use one of the datasets we have provided, please use a challenging dataset - check with us if you are not sure. 
+- Clean the data as needed using dplyr and related tidyverse packages.
+- Provide a narrative about the data set (look it up if you aren't sure what you have got) and the variables in your dataset, including what type of data each variable is. The goal of this step is to communicate in a visually appealing way to non-experts - not to replicate r-code.
+- Identify potential research questions that your dataset can help answer.
+  
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(Hmisc)
+library(psych)
+library(readxl)
+library(stringr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+
+```
+## Data Reading 
+#### Read dataset 'organiceggpoultry.xls', sheet 2, available in the `posts/_data` folder, using the read_excel R package and command.
+```{r}
+
+
+
+organicegg <- read_excel("_data/organiceggpoultry.xls", sheet = "Organic egg prices, 2004-13", skip = 1)
+
+glimpse(organicegg)
+
+```
+## Data Wrangling
+##### - mutate function to convert column type to numeric
+##### - filter along with regex to remove row consisting NA,Year & Certified Organic Eggs:
+##### - replace to replace all NA value with 0
+##### - filter to remove unnecessary tail of 41, 42 43 rows
+```{r}
+organicegg <-organicegg%>%
+  mutate_at(vars(colnames(organicegg)[2:13]), function(x)as.numeric(x)) %>% 
+  filter(!is.na(Year) & !grepl("^2", Year) & !grepl("^Ce", Year)) %>% 
+  replace(is.na(.), 0)%>% 
+  filter(!row_number() %in% c(41, 42, 43))
+```
+## Data Wrangling
+
+##### - changed name of first column
+##### - create vector of same length as the number of rows in the organicegg dataset and same distribution of years as original dataset
+##### - column bind to merge Year vector & organicegg dataset
+##### - pivot_longer on All Month Columns
+```{r}
+
+names(organicegg)[1] = "Certified_Organic_Eggs"
+Year <- rep(c(2013,2012,2011,2010,2009,2008,2007,2006,2005,2004),each=4)
+organicegg<- cbind(Year, organicegg)
+organicegg <- organicegg%>% 
+  pivot_longer(colnames(organicegg)[3:14], names_to = 'Month', values_to = 'Price')
+
+```
+## Describe Data
+#### - summary of organicegg dataset using summarytools::dfSummary
+```{r}
+
+
+print(summarytools::dfSummary(organicegg,
+                              varnumbers = FALSE,
+                              plain.ascii  = FALSE,
+                              style        = "grid",
+                              graph.magnif = 0.70,
+                              valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+```{r}
+# a <-as.data.frame(strsplit(organicegg$Certified_Organic_Eggs, split = '([a-zA-Z\\ -1/-2])'))
+# View(a)
+
+```
+## Group Summary Statistics
+#### - Year wise, Certified_Organic_Eggs wise Price Distribution
+```{r}
+
+organicegg$Year<-as.factor(organicegg$Year)
+organicegg %>% 
+  group_by(Year, Certified_Organic_Eggs) %>% 
+  summarise(Price_min=min(Price),Price_max=max(Price),Price_mean=mean(Price), .groups = 'keep') %>%
+  arrange(desc(Certified_Organic_Eggs))
+
+  print(organicegg, n=40)
+```
+## Group Summary Statistics
+#### - pivot_wider to expand Month wise Price value across columns
+```{r}
+organicegg %>% 
+  pivot_wider(names_from = Month, values_from = Price) %>% 
+  print(n=40)
+
+```
+## Data Reading 
+#### - read dataset 'organiceggpoultry.xls', sheet 3, , available in the `posts/_data` folder, using the read_excel R package and command.
+```{r}
+
+
+organicepoultry <- read_excel("_data/organiceggpoultry.xls", sheet = "Organic poultry prices, 2004-13", skip = 1)
+
+glimpse(organicepoultry)
+
+```
+## Data Wrangling
+#### - mutate function to convert column type to numeric
+#### - filter along with regex to remove rows consisting NA, Year & Organic young chicken:
+#### - replace to replace all NA value with 0
+#### - filter to remove unnecessary tail of 51, 52 and 53 rows
+```{r}
+
+organicepoultry <-organicepoultry%>%
+  mutate_at(vars(colnames(organicepoultry)[2:13]), function(x)as.numeric(x)) %>% 
+  filter(!is.na(Year) & !grepl("^2", Year) & !grepl("^Or", Year)) %>% 
+  replace(is.na(.), 0)%>% 
+  filter(!row_number() %in% c(51, 52, 53))
+
+```
+## Data Wrangling
+#### - changed name of first column to Organic_Young_Chicken
+#### - create vector of same length as the number of rows in the organicegg dataset and same distribution of years as original dataset
+#### - column bind to merge, Year vector & organicegg
+#### - pivot_longer on All Month Columns
+```{r}
+names(organicepoultry)[1] = "Organic_Young_Chicken"
+
+Year <- rep(c(2013,2012,2011,2010,2009,2008,2007,2006,2005,2004),each=5)
+
+organicepoultry<- cbind(Year, organicepoultry)
+
+organicepoultry<-organicepoultry%>% 
+  pivot_longer(colnames(organicepoultry)[3:14], names_to = 'Month', values_to = 'Price')
+```
+## Describe Data
+#### - Summary of organicepoultry Dataset, using summarytools::dfSummary
+```{r}
+
+print(summarytools::dfSummary(organicepoultry,
+                              varnumbers = FALSE,
+                              plain.ascii  = FALSE,
+                              style        = "grid",
+                              graph.magnif = 0.70,
+                              valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+## Group Summary Statistics
+#### - Year wise, Certified_Organic_Eggs wise Price Distribution
+```{r}
+
+organicepoultry$Year<-as.factor(organicepoultry$Year)
+organicepoultry %>% 
+  group_by(Year, Organic_Young_Chicken) %>% 
+  summarise(Price_min=min(Price),Price_max=max(Price),Price_mean=mean(Price), .groups = 'keep') %>% 
+  arrange(desc(Organic_Young_Chicken)) %>%
+  print(n = 50)
+```
+
+

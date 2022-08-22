@@ -1,6 +1,6 @@
 ---
 title: "Challenge 4 Instructions"
-author: "Meredith Rolfe"
+author: "Kim Darkenwald"
 desription: "More data wrangling: pivoting"
 date: "08/18/2022"
 format:
@@ -19,6 +19,7 @@ categories:
 #| message: false
 
 library(tidyverse)
+library(readr)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
@@ -43,8 +44,8 @@ Read in one (or more) of the following datasets, using the correct R package and
 -   debt_in_trillions ⭐⭐⭐⭐⭐
 
 ```{r}
-animal_weight<-read_csv("_data/animal_weight.csv",
-                        show_col_types = FALSE)
+ABC <- read.csv("_data/abc_poll_2021.csv")
+view(ABC)
 
 ```
 
@@ -55,7 +56,6 @@ animal_weight<-read_csv("_data/animal_weight.csv",
 Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
 
 ```{r}
-
 
 ```
 

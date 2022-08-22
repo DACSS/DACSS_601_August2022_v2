@@ -1,0 +1,165 @@
+---
+title: "Challenge 2 Instructions"
+author: "Yakub Rabiutheen"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   FAOstat\*.csv ⭐⭐⭐
+-   hotel_bookings ⭐⭐⭐⭐
+
+```{r}
+library(readr)
+FAOstat <- read_csv("_data/FAOSTAT_livestock.csv")
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+
+Doing a Head of the Dataset to get a view of what the Data Looks Like
+
+
+```{r}
+head(FAOstat)
+```
+
+
+
+
+
+
+
+```{r}
+FAO.sm <- FAOstat %>%
+  select(-contains("Code"))
+FAO.sm
+```
+
+
+```{r}
+print(dfSummary(FAO.sm, varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+
+Find out information about flags to see which one that I would pick.
+
+```{r}
+flag_description <- FAO.sm%>%
+  select(Flag,`Flag Description`)
+unique(flag_description)
+```
+
+
+
+
+```{r}
+lifestocktypes<- FAO.sm%>%
+  select(Flag,`Flag Description`)
+unique(flag_description)
+```
+
+
+
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+FAO.sm %>%
+  filter(Flag=="A")%>%
+  group_by(Area)%>%
+  summarize(n=n())
+```
+
+
+
+```{r}
+FAO.sm %>%
+  filter(Flag=="A")%>%
+  group_by(Area)%>%
+  summarize(n=n())
+```
+
+### Explain and Interpret
+
+Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.
+
+
+
+Here is where I filtered by area 
+
+```{r}
+area_filter<-FAO.sm %>%
+  filter(Flag=="A")%>%
+  group_by(Area)%>%
+  summarize(n=n())
+```
+
+
+
+I then wanted to see the averages by proportions.
+```{r}
+area_filter%>%
+mutate(prop = prop.table(n))
+```
+
+
+I did a filter for Pigs and also wanted to see number of Pigs in Iran.
+```{r}
+pig_analysis <- FAO.sm %>%
+  filter(Item=="Pigs",Area=="Iran (Islamic Republic of)")
+pig_analysis
+```
+
+I then did a data visualization by year and found something interesting. There was a massive drop in the number of Pigs around the year 1980, which
+is when the Islamic Revolution happened and Iran became a theocracy which made Pork banned to eat.
+
+```{r}
+ggplot(data = pig_analysis, aes(x = Year, y = Value)) +
+     geom_line()
+```
+
+Using the Table function, I found that the data for Iran stopped being available after 1994.
+```{r}
+(table(pig_analysis$`Flag Description`,pig_analysis$Year))
+```
+
