@@ -1,0 +1,50 @@
+---
+title: "Challenge 1 Instructions"
+author: "Kim Darkenwald"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+
+```{r}
+library(readr)
+railroad_2012_clean_county <- read_csv("_data/railroad_2012_clean_county.csv")
+View(railroad_2012_clean_county)
+
+```
+```{r}
+dim(railroad_2012_clean_county)
+colnames(railroad_2012_clean_county)
+select(railroad_2012_clean_county, "state", "county")
+select(railroad_2012_clean_county, "state", starts_with("M"))
+```
+
+## Describe the data
+
+Found within this dataset are three columns: "state," "county," and "total_employees".  There are 2390 rows containing information for these three columns.  
+```{r}
+#| label: summary
+```
+
+Data was collected in the year 2012 determining the amount of railroad employees across the country.  According to the data, there are 2930 counties within the country that contain railroad employees.  Some states have multiple counties with railroad employees.
+ 
