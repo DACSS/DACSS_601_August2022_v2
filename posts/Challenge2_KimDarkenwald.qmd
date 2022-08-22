@@ -1,0 +1,85 @@
+---
+title: "Challenge 2 Instructions"
+author: "Kim Darkenwald"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   FAOstat\*.csv ⭐⭐⭐
+-   hotel_bookings ⭐⭐⭐⭐
+
+```{r}
+railroad <- read_excel("_data/StateCounty2012.xls",
+                       skip = 4,
+                       col_names = c("state", "delete", "county", "delete",
+                                     "employees"))%>%
+select(!contains("delete"))%>%
+  mutate(county=ifelse(state=="CANADA", "CANADA", county))
+                      
+
+
+```
+Because I do not have experience coding, I am using the solutions page and seeing where I have questions. Here are the following questions I have for this code chunk:
+
+1. Why "skip = 4?"
+2. I assume the "delete" is to delete the empty columns between "state", "county", and employees", however, I don't understand the "filter(!str_detect(state,"Total"))
+3. I don't understand the "-2" in the next line.
+4. I'm assuming the last line has two CANADAs in it so that if the "state" has "CANADA" in it, it means the system should put "CANADA" as the county?
+5. Why can't I see the "New names:"?
+
+
+## Describe the data
+
+Railroad employee totals were gathered for states and their respective counties across the US as well as data from Canada.  
+
+```{r}
+#| label: summary
+
+select(railroad, filter(railroad, "state", n_distinct))
+summarise(railroad, "state", "total")
+
+
+```
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+summarize(total_employees = sum (employees))
+```
+
+### Explain and Interpret
+
+Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.

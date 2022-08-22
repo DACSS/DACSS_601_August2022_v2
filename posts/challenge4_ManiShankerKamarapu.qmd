@@ -1,0 +1,70 @@
+---
+title: "Challenge 4"
+author: "Mani Shanker Kamarapu"
+desription: "More data wrangling: pivoting"
+date: "08/18/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - debt_in_trillions
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+The data set is about the debt in trillions in different years and quarters and various types of loans. It gives the detailed description and data from 2003-2021 in four quarters. 
+
+```{r}
+Debt <- read_excel("_data/debt_in_trillions.xlsx") %>%
+  select(!Total)
+Debt
+```
+
+### Briefly describe the data
+
+```{r}
+dim(Debt)
+```
+
+This will give us the dimensions of the data set and which is 74 rows and 7 columns. 
+
+```{r}
+summary(Debt)
+```
+
+The above observation helps us with the mean values of the debts and we can get an overall grasp of the situation through years. And further we can also draw a plot representing the mean values and type of debt.
+
+## Tidy Data (as needed)
+
+As you can observe that the data set is still untidy so we use two important functions to make it tidy, those are `pivot longer` and `pivot wider`. And also first I will use `separate` function to split year an quarter into two separate columns. Now we use pivot_longer() to convert types of debt variables into single column so we can have each observation for each row. And at last convert quarter rows into columns so we can have each variable for each column.
+
+```{r}
+Debt <- Debt %>%
+  separate("Year and Quarter", into = c("Year", "Quarter"), ":") %>%
+  pivot_longer(Mortgage:Other, names_to = "Type of loan", values_to = "Amount") %>%
+  pivot_wider(names_from = "Quarter", values_from = "Amount")
+Debt
+
+```
+
+```{r}
+dim(Debt)
+summary(Debt)
+```
+
+The final dimensions of the tidy data set are 114 rows and 6 columns.

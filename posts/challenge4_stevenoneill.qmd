@@ -1,0 +1,93 @@
+---
+title: "Challenge 4"
+author: "Steve O'Neill"
+desription: "More data wrangling: pivoting"
+date: "08/18/2022"
+df-print: paged
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - debt_in_trillions
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(lubridate)
+library(zoo)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+-   debt_in_trillions ⭐⭐⭐⭐⭐
+
+I chose the debt_in_trillions dataset. I am going to use the `.name_repair` function to remove spaces from column names and replace them with periods.
+
+```{r}
+debt <- read_excel("_data/debt_in_trillions.xlsx",
+                  .name_repair = "universal")
+debt
+```
+This dataset contains debt in trillions based on fiscal year and quarter. It comes with a precalculated total for each of the 6 categories.
+
+The column names are self-explanatory, except for HE.Revolving - that refers to home equity revolving lines of credit, also known as [HELOC](https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/pdf/hhdc_2019q4.pdf) debt.
+
+### Sanity check
+
+Do the totals for each category of debt add up according to the "Total" column? Let's see:
+
+```{r}
+debt %>% rowwise() %>% mutate(calculated_total = sum(c_across("Mortgage":"Other"), na.rm = T))
+```
+Yes - it looks like `Total` and `calculated_total` are matching up, so I can rely on the original values.
+
+### Briefly describe the data
+
+The data describes total household debt balance (in trillions) and its composition. It was published by the Federal Reserve Bank of New York and its source can be found [here](https://www.newyorkfed.org/medialibrary/interactives/householdcredit/data/xls/hhd_c_report_2022q2.xlsx).
+
+## Tidy-ness
+
+The data seems tidy, but fiscal year is not the best format to do time-series analysis based on.
+
+The `lubridate` package has helpful tools to get the quarter from each date... if you already have the full date. Here we just have the year and quarters, so I need to use the `zoo` package to get the first day of the quarter for that specific year.
+
+So, using the `zoo` package, I can interpret the quarters as dates the following way:
+
+```{r}
+debt2 <- debt %>% rowwise() %>% mutate(quarter_beginning_date = as.Date(as.yearqtr(Year.and.Quarter, format = "%y:Q%q")))
+```
+
+This is  preferable to using complicated lookup tables or regular expressions.I don't mind the original Year.And.Quarter column so I am going to keep it rather than replacing it with `date`.
+
+If preferred, I can also get the last date of the quarter:
+
+```{r}
+debt2 <- debt2 %>% rowwise() %>% mutate(quarter_ending_date = as.Date(as.yearqtr(Year.and.Quarter, format = "%y:Q%q"), frac = 1))
+```
+
+### Time intervals
+
+Lubridate supports [time intervals](https://lubridate.tidyverse.org/articles/lubridate.html#time-intervals), which is maybe a better idea:
+
+```{r}
+debt2 <- debt2 %>% rowwise() %>% mutate(quarter_interval = interval(quarter_beginning_date, quarter_ending_date))
+```
+
+## More observations
+
+The percentage of student loan debt in proportion to total debt (per year) increased from 3.32% in Q1 of 2003 to 10.49% in Q1 of 2021. Ow!
+
+```{r}
+debt2 %>% group_by(quarter_interval) %>% mutate(Student.Loan.Percent = 100 * Student.Loan/Total)
+```

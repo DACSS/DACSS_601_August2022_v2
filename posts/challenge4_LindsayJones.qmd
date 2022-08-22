@@ -1,0 +1,58 @@
+---
+title: "Challenge 4"
+author: "Lindsay Jones"
+description: "More data wrangling: pivoting"
+date: "08/18/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - poultry_tidy
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in data
+
+
+```{r}
+poultry_tidy <- read_csv("_data/poultry_tidy.csv",
+                         show_col_types = FALSE)
+
+```
+
+### Briefly describe the data
+
+Data set shows the price in dollars for 5 different cuts of poultry during each month from 2004 to 2013. 
+
+## Tidy Data (as needed)
+
+The data is NOT tidy. I will use pivot_wider to correct this.
+
+```{r}
+poultry_tidy_wider <- pivot_wider(poultry_tidy, 
+                                  names_from = Product, 
+                                  values_from = Price_Dollar)
+print(poultry_tidy_wider)
+
+```
+
+
+## Identify variables that need to be mutated
+
+I wasn't able to identify any variables that need to be mutated. Factors also didn't seem necessary given the type of data we're working with. 
+
+I would like to rename the "Whole Legs" column to something not containing the word "whole" to avoid confusion with the other variable, but my attempts to rename the column didn't work. 

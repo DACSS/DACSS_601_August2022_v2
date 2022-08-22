@@ -1,0 +1,239 @@
+---
+title: "Challenge 2"
+author: "Akhilesh Kumar Meghwal"
+desription: "Data wrangling: using group() and summarise("
+date: "08/21/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(Hmisc)
+library(psych)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+  - railroad\*.csv or StateCounty2012.xlsx ⭐
+  - hotel_bookings ⭐⭐⭐
+  - FAOstat\*.csv ⭐⭐⭐⭐⭐ (join FAOSTAT_country_groups)
+
+```{r}
+#### Read dataset 'hotel_bookings.csv', available in the `posts/_data` folder, using the read_.csv command.
+
+hotel_bookings <- read.csv('_data/hotel_bookings.csv', stringsAsFactors = TRUE, header = TRUE)
+
+
+```
+
+Add any comments or documentation as needed. More challenging data may require additional code chunks and documentation.
+
+## Describe the data
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+
+##### Check first 6 rows in the dataset, to get primary understanding of the dataframe structure
+```{r}
+#| label: summary
+head(hotel_bookings)
+```
+###### View Dataframe in table view
+```{r}
+View(hotel_bookings)
+```
+##### Row and column dimentions of dataframe
+```{r}
+dim(hotel_bookings)
+```
+##### Column names of the dataframe
+```{r}
+colnames(hotel_bookings)
+```
+##### Column classes of the dataframe
+```{r}
+col_classes = data.frame(t(data.frame(lapply(hotel_bookings,class))))
+```
+##### Describe, Dataframe
+```{r}
+describe(hotel_bookings)
+summary(hotel_bookings)
+```   
+
+##### Summary of dataframe
+```{r}
+
+summary(hotel_bookings)
+```   
+##### group_by summary hotel wise
+```{r}
+    a <- hotel_bookings%>%
+      group_by('hotel')
+    
+describe(a)
+summary(a)
+
+```
+##### Dataframe summary description using summarytools::dfSummary
+```{r}
+print(summarytools::dfSummary(hotel_bookings,
+                              varnumbers = FALSE,
+                              plain.ascii  = FALSE,
+                              style        = "grid",
+                              graph.magnif = 0.70,
+                              valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+##### Booking details for two hotels, namely "City Hotel & "Resort Hotel" is given in the dataset hotel_bookings
+##### Hotel Bookings can be classified on following columns:
+```{r}
+table(hotel_bookings$arrival_date_month)
+```
+##### Hotel_bookings year wise
+```{r}
+table(hotel_bookings$arrival_date_year)
+```
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+##### Change class of certain columns to factors to represent categorical data
+
+```{r}
+#select columns for factorization
+cols_factor <- c("is_canceled", 'arrival_date_year', 'arrival_date_month', 'arrival_date_week_number', 'arrival_date_day_of_month', 'is_repeated_guest' ) 
+
+# converting class of columns: "is_canceled", 'arrival_date_year', 'arrival_date_month', 'arrival_date_week_number', 'arrival_date_day_of_month' to factor 'is_repeated_guest'
+
+hotel_bookings <-hotel_bookings%>%
+  mutate_at(vars(is_canceled, arrival_date_year, arrival_date_month, arrival_date_week_number, arrival_date_day_of_month, is_repeated_guest), funs(factor))
+
+# verify class of hotel_bookings: 
+
+sapply(hotel_bookings, class)  
+
+```
+##### Hotel wise, year wise, month wise, reservation status wise number of bookings
+```{r}
+booking_hymrs<-hotel_bookings%>%
+  group_by(hotel, arrival_date_year, arrival_date_month, reservation_status)%>%
+  summarise(no_of_bookings=n(),.groups = 'keep') %>% 
+  pivot_wider(names_from = c(hotel, reservation_status), values_from = no_of_bookings)
+  
+booking_hymrs
+
+```
+###### Hotel year wise, month wise, reservation status wise number of cancelled/normal bookings
+###### is_cancelled: 1 = cancelled, 0= normal booking
+```{r}
+booking_hymc<-hotel_bookings%>%
+  group_by(hotel, arrival_date_year, arrival_date_month)%>%
+  summarise(no_of_bookings=sum(!as.numeric(is_canceled)),no_of_cancelled=sum(as.numeric(is_canceled)), .groups = 'keep') %>% 
+  pivot_wider(names_from = hotel, values_from = c(no_of_bookings, no_of_cancelled))
+
+booking_hymc
+```
+##### Hotel wise: Number of cancelled ticket: Canceled and No-Show
+```{r}
+booking_can <-hotel_bookings%>%
+  filter(is_canceled==1, reservation_status %in% c('No-Show', 'Canceled'))%>%
+  group_by(hotel,reservation_status)%>%
+  summarise(cancelled_ticket_status=n(), .groups = 'keep') %>% 
+  pivot_wider(names_from = hotel, values_from = c(cancelled_ticket_status))
+
+booking_can
+```
+##### Hotel year wise, month wise, reservation status wise number of cancelled/normal bookings
+```{r}
+booking_cym <-hotel_bookings%>%
+  filter(is_canceled==1, reservation_status %in% c('No-Show', 'Canceled'))%>%
+  group_by(hotel, arrival_date_year, arrival_date_month, reservation_status)%>%
+  summarise(cancelled_ticket_status=n(), .groups = 'keep') %>% 
+  pivot_wider(names_from = hotel, values_from = c(cancelled_ticket_status))
+
+booking_cym
+```
+##### Hotel year wise, month wise, country wise reservation status wise number of normal bookings/not-cancelled
+##### To identify and undertand the hotel wise, year wise, month wise, country wise Average Daily Rate for the hotel for the bookings undertaken
+
+##### Mean, median, standard deviation, minimum, maximum, quantile of adr for hotel > arrival_date_year
+##### To identify the hotel wise, year wise, distribution of Average Daily Rate for the hotel for the bookings undertaken
+```{r}
+booking_adr <-hotel_bookings%>%
+  filter(is_canceled==0, reservation_status %in% c('No-Show', 'Check-Out'))%>%
+  group_by(hotel, arrival_date_year)%>%
+  summarise(median_adr=median(adr),avg_adr=mean(adr),sd_adr=sd(adr), min_adr = min(adr),max_adr = max(adr), quantile(adr, c(0.25, 0.5, 0.75)), .groups = 'keep')
+
+booking_adr
+
+```
+##### Leadtime for cancelled booking
+##### To understand if higher lead time is causing cancellation of booking
+```{r}
+booking_canc_lt<- hotel_bookings%>%
+  select(hotel, is_canceled, lead_time)%>%
+  filter(is_canceled==1)%>%
+  group_by(hotel)%>%
+  summarise(max_leadtime_cancelled = max(lead_time), min_leadtime_cancelled= min(lead_time), sd_leadtime_cancelled = sd(lead_time), mean_lead_time_cancelled = mean(lead_time), .groups = 'keep')
+
+booking_canc_lt
+```
+##### Leadtime for booking undertaken
+##### To understand if the lead time for bookings undertaken and compare the same with cancelled booking as calculated above
+```{r}
+booking_ut_lt<- hotel_bookings%>%
+  select(hotel, is_canceled, lead_time)%>%
+  filter(is_canceled==0)%>%
+  group_by(hotel)%>%
+  summarise(max_leadtime = max(lead_time), min_leadtime= min(lead_time), sd_leadtime = sd(lead_time), mean_lead_time = mean(lead_time), .groups = 'keep')
+
+booking_ut_lt
+```
+##### Hotel wise, market segment wise repeated guest bookings undertaken 
+##### To identify any specific market segment is generating more number of bookings for the repeated guests.
+
+```{r}
+booking_rg<- hotel_bookings%>%
+  select(hotel, market_segment, is_repeated_guest, is_canceled)%>%
+  filter(is_repeated_guest==1, is_canceled==0)%>%
+  group_by(hotel,market_segment)%>%
+  summarise(repeat_guest=n(),.groups = 'keep')
+
+booking_rg
+```
+##### Hotel wise, market segment wise repeated guest bookings cancelled 
+##### To identify any specific market segment is generating more number of cancelled bookings for the repeated guests.
+```{r}
+booking_rg_can<- hotel_bookings%>%
+  select(hotel, market_segment, is_repeated_guest, is_canceled)%>%
+  filter(is_repeated_guest==1, is_canceled==1)%>%
+  group_by(hotel,market_segment)%>%
+  summarise(repeat_guest_cancel=n(),.groups = 'keep') 
+
+booking_rg_can
+```
+### Explain and Interpret
+
+Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.

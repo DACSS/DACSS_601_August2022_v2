@@ -1,0 +1,41 @@
+---
+title: "Ananya Pujary"
+image: images/IMG_2931.jpg 
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/IMG_2931.jpg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/apujary  
+---
+
+## Education/Work Background
+  
+
+I received a Bachelor of Arts degree in Psychology with a minor in Literary and Cultural Studies, and a Post-Graduate Diploma in Interdisciplinary Studies and Research from FLAME University, India. I learnt Python in some courses I'd taken, and have some experience with SQL and Java NetBeans from high school too.  
+
+## R experience
+
+I've taken the Coursera courses 'The Data Scientist's Toolbox' and 'R Programming' before joining DACSS.
+
+## Research interests
+
+Public Opinion Dynamics, Behavioral Data, Networks, Community Psychology
+
+## Hometown
+
+Mangalore, India
+
+## Hobbies
+
+-   Piano
+-   Reading
+-   Cycling
+-   Art
+
+## Fun fact
+
+I've lived in the Middle East my whole life.

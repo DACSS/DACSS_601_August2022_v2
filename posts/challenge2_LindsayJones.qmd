@@ -1,0 +1,101 @@
+---
+title: "Challenge 2"
+author: "Lindsay Jones"
+description: "Data wrangling: using group() and summarise("
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - StateCounty
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
+
+-   railroad\*.csv or StateCounty2012.xlsx ⭐
+-   hotel_bookings ⭐⭐⭐
+-   FAOstat\*.csv ⭐⭐⭐⭐⭐ (join FAOSTAT_country_groups)
+
+```{r}
+library(readxl)
+Railroad <- read_xls("_data/StateCounty2012.xls", 
+    skip =3)
+View(Railroad)
+```
+
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+Total railroad employment by state and county for calendar year 2012.
+
+```{r}
+#| label: summary
+library(readxl)
+Railroad <- read_xls("_data/StateCounty2012.xls", 
+    skip =3)
+View(Railroad)
+```
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+The total number of railroad employees for each state/territory are shown below. 
+```{r}
+state_totals = Railroad %>% 
+  filter(grepl("Total", STATE)) %>%
+  filter(!grepl("Grand", STATE))
+print(state_totals)
+```
+Here is the median number of railroad employees per state:
+```{r}
+summarize(state_totals,median(TOTAL))
+```
+
+The mean number railroad employees in each state is:
+```{r}
+summarize(state_totals,mean(TOTAL))
+```
+
+The Armed Forces Pacific (AP) is the territory with the fewest employees:
+```{r}
+summarize(state_totals,min(TOTAL))
+```
+And Texas is the territory with the most employees:
+```{r}
+summarize(state_totals,max(TOTAL))
+```
+
+Standard deviation of employees is:
+```{r}
+sd(state_totals$TOTAL)
+```
+
+### Explain and Interpret
+
+I chose the states because I found some of the totals for each state surprising, based on what I know about the size of those states' populations. 

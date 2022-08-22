@@ -1,0 +1,74 @@
+---
+title: "Challenge 1"
+author: "Ananya Pujary" 
+description: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+  - railroad
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in the Data
+
+```{r}
+#| label: reading in the data
+railroad <- read_csv("_data/railroad_2012_clean_county.csv")
+```
+
+## Describe the data 
+
+I'll be working with the 'railroad_2012_clean_county.csv' dataset.
+
+```{r}
+#| label: summary 1
+
+dim(railroad) #describing the 'railroad' dataset's dimensions
+```
+
+From this command, we learn that the 'railroad_2012_clean_county.csv' dataset has 3 columns and 2930 rows.
+
+```{r}
+#| label: summary 2
+colnames(railroad)
+head(railroad)
+```
+
+The columns in 'railroad' are: 'state' (datatype: character), 'county'(datatype: character), and 'total_employees'(datatype: double class - numeric values with decimal points). These data were probably collected as part of a large-scale survey of the number of railroad employees by county and state in the United States.
+
+```{r}
+#| label: summary 3
+railroad_arranged <- railroad %>%
+  arrange(desc(total_employees)) # arranging data to find the county with the most number of employees
+head(railroad_arranged)
+```
+
+Cook county in Illinois has the highest number of railroad employees (8207).
+
+```{r}
+#| label: summary 4
+railroads<- railroad %>%
+  group_by(state) %>%  # grouping the data by state
+  select(total_employees) %>% # looking only at the 'total_employees' column
+  summarize_all(sum, na.rm=TRUE)%>% # adding the number of employees in the counties state-wise
+  arrange(desc(total_employees)) # arranging the states from highest to lowest number of employees
+
+head(railroads)
+```
+
+Texas has the most railroad employees (19839) and the Armed Forces Pacific has the least (1).

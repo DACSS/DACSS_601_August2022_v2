@@ -1,5 +1,5 @@
 ---
-title: "Challenge 2"
+title: "Challenge 2 Instructions"
 author: "Animesh Sengupta"
 desription: "Data wrangling: using group() and summarise()"
 date: "08/16/2022"

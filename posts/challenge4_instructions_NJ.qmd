@@ -1,0 +1,115 @@
+---
+title: "Challenge 4 Instructions"
+author: "Nayan Jani"
+description: "More data wrangling: pivoting"
+date: "08/21/2022"
+format:
+  html:
+    df-print: paged
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - mutate
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(summarytools)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+
+## Read in data
+
+
+```{r}
+FED <-read_csv("_data/FedFundsRate.csv",
+                        show_col_types = FALSE, col_names = c("Year", "Month",
+                               "Day", "fed_funds_target_rate",
+                              "fed_funds_upper_target","fed_funds_lower_target","effective_fed_funds_rate",
+                              "real_gdp_percent_change", "unemployment_rate", "inflation_rate"), skip =1)
+FED
+colnames(FED)
+
+print(dfSummary(FED, varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+
+
+```
+
+### Briefly describe the data
+
+After reading in the data, I can see that each case is YMD rate value. The rate represents the Fund Rate type that is being assigned. The Value is the actual rate with the unit being percent. I noticed that the names of the columns with multiple words in them were not formatted correctly so that I can pivot them. I renamed the columns using underscores so that they are in the correct form to pivot. Once I created the new names for the columns I realized that the new column names were inserted into the first row. To remove them, I used the *skip* parameter and set it to 1 so that my columns names do not repeat. Using **summary tools**, I can see that all columns that include a rate value have missing values. The columns with most missing values are fed_funds_upper_target and fed_funds_lower_target , which suggests that for those months there was no fund intervals for the fed_funds_target_rate. In fact, there was no intervals created until `filter(FED,Year == 2008, Month ==12, Day==16)`. This means that there is a lot of unfilled data that I will have to handle accordingly when tidying.
+
+## Tidy Data 
+
+Here I create a new variable FED_long which is a long pivot of all the columns that include a rate value. I need to set up the data in the form YMD rate value, where each data instance has a Date, rate type and value. I use the parameter *values_drop_na* to remove any missing value from the dataset. 
+
+```{r}
+
+FED_long <- FED%>%
+  pivot_longer( col = c(fed_funds_target_rate,
+                              fed_funds_upper_target,fed_funds_lower_target,effective_fed_funds_rate,
+                              real_gdp_percent_change, unemployment_rate, inflation_rate),
+                 names_to="type",
+                 values_to = "value",
+                 values_drop_na = TRUE)
+
+
+FED_long 
+  
+
+```
+
+One issue I see is that not all the data is being shown in the tibble because here the dataset ends at 1980 when it should continue to 2017. I believe it is something to do with the dimensions of the code chunk since I can still filter out the missing years.
+
+
+## Identify variables that need to be mutated
+
+
+Now I have to mutate the dates so that they are in the correct form. I now want one column that includes Year, month, Day in form YYYY-MM-DD. To do this, I used mutate() to create the new column called Date, and within that I use the function make_datetime to format the date. I then select the three columns that we need to create our case: Date, type and value. 
+
+```{r}
+
+nrow(FED_long)
+
+
+FED_long%>%
+  count(Year)
+
+FED_long%>%
+  filter(Year > 1980)
+
+FED_long%>%
+  filter(Year > 1998)
+
+
+
+
+FED_t <- FED_long %>% 
+  mutate(Date = make_datetime(Year, Month, Day)) %>%
+  select(Date,type,value)
+
+
+
+FED_t
+
+
+```
+
+

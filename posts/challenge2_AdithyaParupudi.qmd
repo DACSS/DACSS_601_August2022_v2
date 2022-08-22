@@ -1,0 +1,144 @@
+---
+title: "Challenge 2 - Adithya Parupudi"
+author: "Adithya Parupudi"
+description: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    df-print : paged
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - hw3
+  - faostat_cattle_diary.csv
+  - dplyr
+  - tidyverse
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+Focusing on FAOSTAT_cattle_dairy.csv
+
+```{r}
+cattle <- read_csv("_data/FAOSTAT_cattle_dairy.csv")
+cattle
+```
+
+Looks like this is an extensive data gathered by faostat regarding the cattle's products from different countries between 1961 and 2018. A quick glance at the last column tells whether this data is estimated or calculated by faostat. I am interested to see whether over the years, did faostat collect more data or did it unofficially made entries in this data set.
+
+## Describe the data
+
+```{r}
+#| label: summary
+dim(cattle)
+colnames(cattle)
+```
+
+```{r}
+cattle %>% 
+  group_by(`Flag Description`) %>% 
+  summarise()
+
+cattle %>% 
+  group_by(Area) %>% 
+  summarise()
+```
+
+By filtering the unique values of the Flag Description column, I notice there are some unofficial figures and "Data not available" entries. I want to see how many entries of these were since 1961 and did their count reduce. Maybe this will tell the data gathering techniques have improved over the years.
+
+There are 232 unique countries from the data set with their domain = "Primary Livestock" common to all. (FAOSTAT focused on collecting livestock information from all the countries)
+
+```{r}
+
+
+```
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+```{r}
+all_countries <- cattle %>%
+  group_by(Area,`Flag Description`, Year) %>%
+  summarise(median_val=median(Value,na.rm = TRUE), .groups = 'drop') %>% 
+  arrange(Year, `Flag Description`) %>% 
+  select(Year, Area, `Flag Description`)
+all_countries
+```
+
+For analysis purpose, I place my focus on these columns (Year, Area, Flag Description) and arranged the list in ascending order with respect to Year column
+
+```{r}
+all_grouped <- all_countries %>%
+  group_by(`Flag Description`, Year) %>%
+  summarise(count = n(), ) %>% 
+  arrange(desc(Year)) %>% 
+  select(Year, `Flag Description`, count)
+all_grouped
+```
+
+We have grouped the data by year and flag-description to see the number of flag-description entries in each year. Now lets pick first and last years of the data set and compare the results.
+
+```{r}
+yr_2018 <- all_grouped %>% 
+  filter(Year == '2018') %>% 
+  arrange(desc(count))
+yr_2000 <- all_grouped %>% 
+  filter(Year == '2000') %>% 
+  arrange(desc(count))
+yr_2018
+yr_2000
+```
+
+I wanted to compare the entries of "unofficial figure" of two different years. Looks like there were efficient data gathering methods in place, when we look at "Calculated Data" and "Official Data". There is a rise in "FAO data based on imputation methodology" from 45 to 125 in 18 years.
+
+```{r}
+all_grouped %>% 
+  filter(`Flag Description` == 'Unofficial figure') %>% 
+  arrange(desc(count))
+```
+
+Unofficial figures were high in 1981. This observation didnt have a steady decline in number, but it varied was rather varied each year.
+
+```{r}
+india <- cattle %>%
+  filter(Area == 'India') %>% 
+  select(Area, Year, Item, Element, `Element Code` ,`Flag Description`) %>% 
+  group_by(`Flag Description`) %>%
+  summarise(count = n())
+india
+
+cattle %>%
+  filter(Area == 'Afghanistan') %>% 
+  select(Area, Year, Item, Element, `Element Code` ,`Flag Description`) %>% 
+  group_by(`Flag Description`) %>%
+  summarise(count = n())
+
+```
+
+Wanted to see India's contribution to FAOSTAT since 1961. I've compared the details with Afghanistan and noticed India's overall contribution to the faostat list is less, and unofficial figure numbers are higher. In India, there was no use of "FAO data based on imputation methodology" as well.
+
+### Explain and Interpret
+
+I began this analysis, think to group Area, Flag Description and Year and probably tell that over the years (1961 to 2018) the numbers will tell a different story in terms of types of entries made. Though I didn't uncover groundbreaking observations, it was interesting to see that not all countries have contributed to this FAOSTAT list equally in terms of how data was added.
