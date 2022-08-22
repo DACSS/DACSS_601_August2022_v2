@@ -67,4 +67,4 @@ b <- birds %>%
 plot(x = b$Year, y = b$Value)
 ```
 
-The birds.csv file is a measurement of the price of each of these birds, most likely for livestock purposes. These are categorized by year, type of bird, country where they're sold, and even the accuracy of the data. Each qualitative variable is designated by a specific code. 
+    The birds.csv file is a measurement of the price of each of these birds, most likely for livestock purposes. These are categorized by year, type of bird, country where they're sold, and even the accuracy of the data. Each qualitative variable is designated by a specific code. 
