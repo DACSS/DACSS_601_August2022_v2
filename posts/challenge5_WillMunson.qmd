@@ -74,7 +74,9 @@ Is your data already tidy, or is there work to be done? Be sure to anticipate yo
     I think the one thing that might be a little bit confusing here is the fact that the county names might correlate with multiple values.
 ```{r}
 length(unique(Railroads$county))
-
+Railroads %>%
+  group_by(county) %>%
+  summarize(n = n())
 ```
 
 Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
