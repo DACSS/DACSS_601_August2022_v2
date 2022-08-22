@@ -1,0 +1,35 @@
+---
+title: "Tyler Tewksbury"
+image: images/TylerTewksbury.jpeg
+
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/TylerTewksbury.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/ttewks
+---
+
+## Education/Work Background
+2022 graduate with a B.A. in Economics from UMass Amherst. 
+Worked as a Business Systems Analyst Intern at Epsilon in the Summer of 2022, and have been a
+DACSS Student Employee for over a year (Social Media currently, previously Instructional Design).
+
+## R experience
+I have experience in R from classwork in Econometrics and Quantitative Research Methods, as well as working on 601 as an Instructional Designer.
+
+
+## Research interests
+Data Visualization, Autonomous Transportation
+
+## Hometown
+Originally from Milton Massachusetts, but moved around a lot. Lived in New York, Maine, and now Amherst!
+
+## Hobbies
+Weightlifting, Reading, Video Games, Crossword Puzzles, Geography.
+
+## Fun fact
+I met the creator of Pokémon in 2015! He sat at the table next to me in a restaurant in Boston.

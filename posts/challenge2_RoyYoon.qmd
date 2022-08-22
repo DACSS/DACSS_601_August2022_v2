@@ -1,0 +1,84 @@
+---
+title: "Challenge 2 Instructions"
+author: "Roy Yoon"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - railroad
+  - question
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+#library(readr)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in the Dataset "railroad_2012_clean_county.csv"
+
+
+```{r initial inspection}
+railroad <- read_csv("_data/railroad_2012_clean_county.csv")
+
+railroad
+
+dim(railroad)
+
+colnames(railroad)
+```
+
+There are three variable names: 'state', 'county', and 'total_employees'.
+
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+#| label: summary
+
+colnames(railroad)
+
+dim(railroad)
+
+railroad 
+```
+
+## Summary Statistics
+
+First I tried to attempt at making the data grouped by states with a single total employee count(regardless of the counties)
+```{r}
+state_grouped_railroad <- railroad %>%
+    select(state, total_employees) %>%
+    group_by(state) %>%
+    tally(total_employees)
+
+state_grouped_railroad <-rename(state_grouped_railroad, total_employees = n)
+
+state_grouped_railroad
+
+```
+
+### Explain and Interpret
+
+Work is still in progress.
+
+Thought process:
+
+* examine which state has the most/least 'total_employees'
+
+* identify which county has the most/least 'total_employees' in the state with the most/least 'total_employees'  
+
+* look at overall, which county has the most/least 'total_employees', and how does that compare to the state values
+
+* examine the average, min, max across states/counties

@@ -1,0 +1,34 @@
+---
+title: "Roy Yoon"
+image: images/RoyYoonDacssPICFinal.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/RoyYoonDacssPICFinal.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/ry0531/dacss601_august2022
+---
+
+## Education/Work Background
+UMass Amherst 
+BA Linguistics and Political Science
+Minor in Spanish
+MA National Guard
+
+## R experience
+Beginner 2.0
+
+## Research interests
+harm reduction, international human rights
+
+## Hometown
+Worcester, MA
+
+## Hobbies
+Music, running, hair 
+
+## Fun fact
+I get the no.25 from Miss Saigon with extra noodles, sate broth, and the occasional extra meat!
