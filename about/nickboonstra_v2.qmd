@@ -1,0 +1,44 @@
+---
+title: "Nick Boonstra"
+image: images/nickboonstra.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/nickboonstra.jpeg
+  links:
+    - icon: github
+      text: nesboonstra
+      href: https://github.com/nesboonstra
+---
+
+## Education/Work Background
+
+I started college at Boston University studying physics. Financial issues kept me from continuing, so I spent a few years in Boston working part-time and taking classes at Bunker Hill Community College. I eventually transferred to UMass Lowell, where I finished with a Bachelor’s in Liberal Arts with concentrations in Political Science and Writing. Professionally, I have experience in a few areas, including banking and journalism.
+
+
+## R experience
+
+None before this summer! In fact, I have very little programming experience in general, beyond a rusty grasp of LaTeX and a bit of dabbling in Python years ago. However, I have been fortunate to have started working for DACSS remotely a couple before arriving in Western Mass, which provided me the opportunity to get a jump start on R.
+
+
+## Research and career interests
+
+I have a wide range of career interests, from political science professor to broadcast journalist to investment banker. When it comes to political science, my research interest tend to revolve around partisanship and polarization, and particularly around understanding how to bridge the perception gap between opposite partisans in the United States and abroad.
+
+
+## Hometown
+
+I grew up in Leominster, MA. After living in Boston for a few years, and in Lowell for a few more, I have just moved to Chicopee.
+
+
+## Hobbies
+
+I am a massive fan of West Ham United Football Club, and follow the English Premier League far more closely than any American league, though I will always be a devoted fan of the Celtics and Red Sox. I also have passing interests in rugby and cricket, and have recently been getting into Formula 1.
+
+Beyond sports, I'm a big indie music junkie; some of my favorite artists right now include Beirut, Fleet Foxes, and Day Wave, though I'm equally at home with Foo Fighters, Coldplay, and Indigo Girls. When I'm looking to kill time, my go-to is usually my lichess app, or maybe a crossword.
+
+
+## Fun fact
+
+I once took a one-night trip from Boston to London to see a football match! January 29, 2020, WHU 0 - 2 LIV -- not a surprising scoreline but still a disappointing one. The Reds dominated the game; the closest we came to scoring was an errant cross from Trent Alexander-Arnold clattering off of his own post. In other words: Yes, we were so bad that not even Liverpool could have scored for us. But it was an incredible experience nonetheless, and I'm so glad I got to go when I did.

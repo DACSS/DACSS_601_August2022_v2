@@ -1,0 +1,96 @@
+---
+title: "Challenge 2"
+author: "Miranda Manka"
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - hotel_bookings
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)
+2)  provide summary statistics for different interesting groups within the data, and interpret those statistics
+
+## Read in the Data
+
+```{r}
+hotel_bookings = read_csv("_data/hotel_bookings.csv", show_col_types = FALSE)
+```
+
+## Describe the data
+
+```{r}
+#| label: summary
+#Looking at the data
+view(hotel_bookings)
+
+#Dimensions of the data
+dim(hotel_bookings)
+
+#Summary of the variables in the dataset
+summary(hotel_bookings)
+```
+
+This dataset has 32 variables with 119,390 observations. The variables include information about hotel bookings, while each observation/case is a different hotel booking. Some variables include hotel type (city hotel vs resort hotel), if the booking was canceled, arrival date, number of nights stayed (week and weekend), number of people and kids and babies, the market segment, if the guest is a repeat guest, and room type (there are more, this just points out a few). Some of the variables have categories (city vs resort hotel, for the type of hotel), some are numeric and continuous (lead time, in days for example 14) and some are numerical but binary (is canceled, 0 or 1). This data likely came from a hotel chain with different locations and/or multiple hotels, as the country variable shows that these are hotels in different countries. 
+
+## Provide Grouped Summary Statistics & Explain and Interpret
+
+```{r}
+#Find mean and sd for number of stays in week nights grouped by hotel type
+hotel_bookings %>%
+  group_by(hotel) %>%
+  summarise(mean = mean(stays_in_week_nights), sd = sd(stays_in_week_nights))
+
+#Find mean and sd for number of stays in weekend nights grouped by hotel type
+hotel_bookings %>%
+  group_by(hotel) %>%
+  summarise(mean = mean(stays_in_weekend_nights), sd = sd(stays_in_weekend_nights))
+
+#Find mean and sd for number of stays in week nights grouped by whether the guest is a repeat guest
+hotel_bookings %>%
+  group_by(is_repeated_guest) %>%
+  summarise(mean = mean(stays_in_week_nights), sd = sd(stays_in_week_nights))
+```
+
+I started by picking out a few interesting variables and looking at them. First, I grouped by hotel and looked at number of night stayed during the week to see if there was any difference. The resort hotels had a higher mean (3.1 compared to 2.2 for the city hotels) which was interesting, I thought maybe people staying at resorts plan an extra day more of their trip during the week. I also looked the same hotel grouping for weekend nights and the mean for resort hotels was still higher (1.2 vs 0.8 for city), so maybe people staying at resort hotels simply stay longer. This could be explored more in the future.
+I also looked grouped by whether someone is a repeated guest (0 for no, 1 for yes), then examined the mean for how many week nights they stayed. Repeat guests tend to stay for shorter amount of nights (1.48  vs 2.53 for non repeat guests). I thought this was interesting because people who tend to stay again aren't staying as long (maybe more business people for a night rather than a family vacation).
+
+```{r}
+#Find summary statistics for lead time for booking grouped by hotel type
+hotel_bookings %>%
+  group_by(hotel) %>%
+  select(lead_time, hotel) %>%
+  summarize_all(list(mean=mean, median = median, min = min, max = max, sd = sd, var = var, IQR = IQR), na.rm = TRUE)
+```
+
+I wanted to look at the lead time for each type of hotel. Lead time is how many days ahead of their stay someone booked, for example 7 would mean they booked their hotel a week bfore they showed up. The mean lead time for city hotels is 109.7 days (about 3.5 months ahead of time), while the mean lead time for the resort hotels is 92.7 days (about 3 months ahead of time). That is interesting but is only different by a few weeks. The medians for both groups were much lower than the mean, which indicates the data are skewed (positively, or towards the right), meaning more of the lead times were lower values. The maximums were still high though, with 629 days for city hotels and 737 days for resort hotels, although they both had minimums of 0 (same day or walk-in). The standard deviation and other measures of dispersion were fairly large, indicating the data are spread out (looking at the maximums and minimums, this makes sense).
+
+```{r}
+#Creating variable to see if people got the room they booked
+different_room = ifelse(hotel_bookings$reserved_room_type != hotel_bookings$assigned_room_type, 1, 0)
+
+#Looking at the results
+prop.table(table(different_room))
+```
+
+Finally, I thought it would be interesting to look at how many people got the room they booked. I made a binary indicator variable to do this. If someone got a different room they were assigned a 1 for different_room, otherwise a 0 indicating they got the room they booked. The proportion table shows that 87.5% of people got the room they wanted, and 12.5% of people did not.
