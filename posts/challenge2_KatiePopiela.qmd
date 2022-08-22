@@ -24,8 +24,27 @@ dim(countyrr_data)
 ```
 
 ```{r}
-#For confirmation, I got the dimensions of the table. With 2,930 rows, it must be filtered down and grouped in some way in order to present specific information. 
+#For confirmation, I got the dimensions of the table. With 2,930 rows, it must be filtered down and grouped in some way in order to present specific information. As an example, I will filter the data down to one state and put in for the most and fewest number of RR employees in that state.
 
-#I'm going to start by finding the county in each state that had the fewest postal employees
+countyrr_NY <- countyrr_data %>%
+  filter(state=="NY")
+min(countyrr_NY$total_employees)
+max(countyrr_NY$total_employees)
+```
+
+```{r}
+countyrr_NY %>%
+  group_by(total_employees) %>%
+  slice_min(order_by = county)
+```
+
+
+```{r}
+#There is a massive difference between the NY counties with the most and fewest RR employees - Suffolk County (3685) and Lewis (5). Furthermore, despite the large disparity between these two numbers, the average number of RR employees in NY is relatively low at 279.508. The SD (standard deviation) is 590.779. The variance came out as 349,019.9 which doesn't really make sense to me, though.
+```
+
+```{r}
+countyrr_NY %>%
+  summarize(mean = mean(total_employees, na.rm = TRUE), sd = sd(total_employees, na.rm = TRUE), var = var(total_employees, na.rm = TRUE)) 
 ```
 
