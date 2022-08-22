@@ -1,0 +1,94 @@
+---
+title: "Challenge 3"
+author: "Ananya Pujary" 
+description: "Tidy Data: Pivoting"
+date: "08/17/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+  - animal_weight
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+library(skimr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+I'll be reading in the 'animal_weight' dataset.
+```{r}
+#| label: reading in the data
+animal_weight<-read_csv("_data/animal_weight.csv",
+                        show_col_types = FALSE)
+
+```
+
+### Briefly describe the data
+
+```{r}
+#| label: data description 1
+
+dim(animal_weight)
+colnames(animal_weight) 
+
+```
+The data chosen seems to describe the average weights of different animals (dairy and non-dairy cattle, chickens, ducks, etc.) across global regions (Africa, Latin America, Middle East, etc.). It has 9 rows and 17 columns, of which the $n=9$ rows indicate the region name and $k=16$ columns the type of animal. 
+
+```{r}
+#| label: data description 2
+
+skim(animal_weight)
+
+```
+There are no missing values in this dataset. Overall, dairy cattle seem to have the highest average weight (425.44) and broiler chickens have the lowest (0.9).
+
+I plan to pivot it because it seems that the selected animals are recurring categories in all of the regions. $k-3$ variables will be pivoted and put in a new column.
+
+Hence, the pivoted dataset would have `r 9*16` rows and 3 columns ('IPCC Area','Animal Type', 'Weight').
+
+### Challenge: Describe the final dimensions
+
+```{r}
+#| label: describing final dimensions
+
+# existing rows/cases
+nrow(animal_weight)
+
+# existing columns/cases
+ncol(animal_weight)
+
+#expected rows/cases
+nrow(animal_weight) * (ncol(animal_weight)-1)
+
+# expected columns 
+1 + 2
+
+```
+
+There are 9 existing rows and 17 existing columns. The expected rows are 144 and expected columns are 3.
+
+### Challenge: Pivot the Chosen Data 
+
+```{r}
+#| label: pivoting the data
+
+animal_weight_pivoted <- pivot_longer(animal_weight,
+                         col = c('Cattle - dairy', 'Cattle - non-dairy', 'Buffaloes', 'Swine - market', 'Swine - breeding', 'Chicken - Broilers', 'Chicken - Layers', 'Ducks', 'Turkeys', 'Sheep', 'Goats', 'Horses', 'Asses', 'Mules', 'Camels', 'Llamas'), names_to = 'Animal Type', values_to = 'Weight')
+animal_weight_pivoted
+
+dim(animal_weight_pivoted)
+```
+The dimensions of the pivoted data, as predicted, are 144 rows and 3 columns. The new case created is 'Animal Type'. Overall, pivoting made the data easier to understand since we can now find the weight of a certain animal from a particular region.
