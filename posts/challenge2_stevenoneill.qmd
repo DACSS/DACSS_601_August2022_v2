@@ -47,9 +47,7 @@ TA: Travel Agent TO: Tour Operator Distribution channel: HB (meal): Half Board (
 
 ## Provide Grouped Summary Statistics
 
-*Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.*
-
-There are just two \[de-identified\] hotels analyzed in this whole dataset:
+There are just two de-identified hotels analyzed in this whole dataset:
 
 ```{r}
 hotel_bookings %>% group_by(hotel) %>% summarise()
