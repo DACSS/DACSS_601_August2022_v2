@@ -1,0 +1,114 @@
+---
+title: "Challenge 4"
+author: "Saaradhaa M"
+desription: "Data wrangling and pivoting"
+date: "08/21/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    df-print: paged
+categories:
+  - challenge_4
+  - tidyverse
+  - readxl
+  - lubridate
+  - summarytools
+  - debt_in_trillions
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+library(lubridate)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Reading in and describing data
+
+::: callout-tip
+## Just trying out pop-up text for fun!
+
+I will be working with the debt in trillions dataset.
+:::
+
+```{r}
+#| label: read and describe
+
+# read in data.
+debt <- read_excel("_data/debt_in_trillions.xlsx")
+
+# dimensions, column names and basic descriptives.
+dim(debt)
+colnames(debt)
+summary(debt)
+
+# check for missing data.
+apply(debt, 2, anyNA)
+
+```
+
+This dataset has 74 rows and 8 columns. Except for Year and Quarter, all other columns are in numeric format. A quick Google search shows that each row represents different types of debt in the US for that particular year and quarter. Looking at the median values for each column, mortgage debt seems to be the greatest in value (8.412 trillion!), while other debt has the lowest median value (0.3921). There also seems to be no missing data.
+
+## Tidy and Mutate Data
+
+The data needs to be tidied:
+
+-   Year and Quarter should be split into two separate columns.
+
+-   For consistency, all debt-type columns should have the same number of decimal places.
+
+-   The data would be easier to read if we pivoted the debt-type columns (*N* = 7) such that we only have to look at Year, Quarter, Debt Type and Value.
+
+At the end of the tidying process, we should have 74 \* 7 = 514 rows, 4 columns and all decimals to 3 decimal places.
+
+```{r}
+#| label: tidy
+# separate the two columns.
+debt <- separate(debt, "Year and Quarter", into=c("year", "quarter"), sep=":Q")
+
+# mutate for consistent decimal places.
+debt <- mutate(debt, across(where(is.numeric), ~ round(., 3)))
+
+# pivot.
+debt <- debt %>% pivot_longer(cols = where(is.numeric), names_to = "debt_type", values_to = "amount")
+
+# check new dimensions.
+dim(debt)
+```
+
+Great! Now we have tidy data, where each case is represented by a particular year, quarter, debt_type and associated amount. Moving on to changing column types - we can change quarter to numeric format, debt_type into a factor and year into date format.
+
+```{r}
+#| label: mutate
+# change "quarter" to numeric.
+debt$quarter <- as.numeric(debt$quarter)
+
+# change "debt_type" to categories.
+debt$debt_type <- as.factor(debt$debt_type)
+
+# change "year" to date.
+debt$year <- as.Date(debt$year, format = "%y")
+debt$year <- year(debt$year)
+
+# check new dataset.
+print(summarytools::dfSummary(debt, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.50, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+```
+
+Ok - we've changed our column types as required, and checked that this was done correctly. From the summary table, we can see that 6 values for quarters 3 and 4 have not been keyed in. I want to look at year and quarter to see which values these are - so that for future analyses using year and quarter, we know which year(s) might not have all the information we need.
+
+```{r}
+#| label: table
+debt %>% select(year, quarter) %>% arrange(desc(quarter), desc(year))
+```
+
+Looking through the table shows us that the missing values are for 2021 (understandable - the data might not yet be available). This means that our dataset ranges from Q1 of 2003 to Q2 of 2021. When looking at total debt for each year, it might be useful just to look at 2003 to 2020 for completeness.
