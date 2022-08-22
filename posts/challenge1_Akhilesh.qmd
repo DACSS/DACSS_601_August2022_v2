@@ -1,5 +1,5 @@
 ---
-title: "Challenge 1 Instructions"
+title: "Challenge 1"
 author: "Akhilesh Kumar Meghwal"
 desription: "Reading in data and creating a post"
 date: "08/21/2022"
