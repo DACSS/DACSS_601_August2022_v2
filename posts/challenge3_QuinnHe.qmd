@@ -1,0 +1,186 @@
+---
+title: "Challenge 3"
+author: "Quinn He"
+desription: "Tidy Data: Pivoting"
+date: "08/19/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Note
+
+Go to the "Eggs" label if you don't want to see me fumble through a harder data set.
+
+## Read in data
+
+```{r}
+household <-read_excel("_data/USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx", 
+                skip = 4)
+
+household
+```
+
+### Briefly describe the data
+
+This is a data set that contains household income by race for homeowners from 1967 to 2019. The data set is a mess with the first column containing the years listed in descending order followed by the next race in the data set. Also, the columns are listed so poorly that I had to skip some in the read-in section. One thing I notice just by combing through the data set, Asian Americans have a much higher number of people making over \$200,000 in household income, but this excludes Asian Pacific Islanders. Notes at the bottom also have to be removed. Before I can really see any trends in the data, I need to clean it and organize it. Right now we do not have tidy data!
+
+Below, the column names do not make any sense and it is clearly not tidy. By changing some of the names, I hope to make it easier to manipulate later on.
+
+```{r}
+
+colnames(household)
+
+```
+
+```{r}
+
+household <- household %>% 
+  rename("year" = "...1", "num_thousands" = "...2", "median_income" = "Estimate...13", "mean_income" = "Estimate...15")
+
+```
+
+Okay, so I changed some of the names so it's a little neater. Now, at least the columns, are easier to read, but there is still the problem of the "year" column. It contains all the races, as well as the years in the data set so it's much more difficult to look at individual races. There are also random numbers at the end of some of the years.
+
+```{r}
+
+household <- household %>% 
+  mutate(year = str_remove(year, " [0:28]"))
+
+household
+
+```
+
+In the above function, I try to remove the excess numbers after the years in the "years" column, but I cannot figure out why the numbers still remain. It's necessary I remove them in the future, but for now I will push on.
+
+### Sanity Check
+
+Here are our dimensions for the data before it's pivoted
+
+```{r}
+
+dim(household)
+
+```
+
+### Challenge: Pivot the Chosen Data
+
+Document your work here. What will a new "case" be once you have pivoted the data? How does it meet requirements for tidy data?
+
+```{r}
+
+household2 <- pivot_longer(household, cols = 4:12,
+                          names_to = "income",
+                          values_to = "count")
+
+household2
+
+```
+
+Well, that turned out horribly. I'm going to leave that mistake here and move on to try and fix that. Clearly, the data is anything but tidy.
+
+Let's try that again below.
+
+```{r}
+
+household3 <- pivot_longer(household, 4:12, names_to = "income_brackets", values_to = "count")
+
+
+```
+
+### Switch to Eggs Data Set
+
+I'm going to switch data sets because I think I am a little over my head in this data frame, from here on out I will be working with "Eggs". Below I will run through the assignment quicker than above to save you some already spent time.
+
+```{r}
+#| label: Eggs
+
+eggs <- read_excel("_data/organiceggpoultry.xls",
+                   sheet = "Data",
+                   skip = 4,
+                   range =cell_limits(c(6,2),c(NA,6)),
+                  col_names = c("date", "xldozen", "xlhalf_dozen", "large_dozen", "large_half_dozen"))
+
+eggs
+
+```
+
+Above I read in the data set as an excel file. I had to look at the solutions sheet to learn how to read in the data. The only trouble I had was figuring out the "range" parameter of the function. That one I just had to copy in because I was getting an error without it, but I understand that this tells R which cells to read.
+
+```{r}
+
+eggs %>% 
+  select("date")  %>% 
+  distinct()
+
+
+```
+
+Now we still have the issue of notes in the names of our months. This is most evident with "Jan...", but the " /1" in February needs to go. This needs to be removed to make analysis later on a bit easier to look at.
+
+```{r}
+
+eggs <- eggs %>% 
+  mutate(date = str_remove(date, " /1"))
+
+```
+
+Next, the January columns need to be dealt with so below I will remove the years in the "Jan" column with the separate and fill function.
+
+```{r}
+
+eggs <- eggs %>% 
+  separate(date, c("month", "year"), convert = TRUE) %>% 
+  fill("year")
+  
+
+eggs
+
+```
+
+There we go. Clean, easy to use data. You can see as the years progress, the price of eggs increase, though at what rate I am uncertain. Now the data set is read for some pivoting. Now let me do a sanity check to view the data dimensions before the pivot and then I will look at it after the pivot.
+
+```{r}
+
+dim(eggs)
+
+```
+
+There are four columns with the type of eggs this data set is viewing. If we want even tidier data we can collapse these four columns into one. Lets call this new data set "eggstidy" to represent the final form of the data in this challenge.
+
+```{r}
+
+eggstidy <- eggs %>% 
+  pivot_longer(c(3:6), names_to = "egg_type", values_to = "price")
+
+eggstidy
+
+```
+
+Finally! After banging my head against the wall with the household data set, reading in, cleaning, and pivoting this easier data set was much more manageable. It was helpful to look at the solution to how to read in this data set, but after that, it was easy to move on my own.
+
+By pivoting the data, each row has one observation, making it tidy for future manipulation. Within each row we can look at the particular variables within that observation with ease.
+
+Below the dimensions have clearly changed, adding significantly more rows, but also condensing the amount of columns.
+
+```{r}
+
+dim(eggstidy)
+
+```
