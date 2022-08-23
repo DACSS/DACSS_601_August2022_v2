@@ -81,10 +81,13 @@ Railroads %>%
 
 Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
 
+    Let's merge the state and county variables together. 
+    
 Document your work here.
 
 ```{r}
-
+Railroads %>%
+  unite('State and County', county:state, remove = FALSE)
 ```
 
 ## Univariate Visualizations
