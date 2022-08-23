@@ -86,11 +86,18 @@ Are there any variables that require mutation to be usable in your analysis stre
 Document your work here.
 
 ```{r}
-Railroads %>%
+Railroads <- Railroads %>%
   unite('State and County', county:state, remove = FALSE)
 ```
 
 ## Univariate Visualizations
+```{r}
+Railroads %>%
+  group_by(state) %>%
+  summarise(sum_emp = sum(total_employees)) %>%
+  ggplot(aes(x = sum_emp)) +
+  geom_histogram(bins = 20, alpha = 0.25, fill = "blue")
+```
 
 
 ## Bivariate Visualization(s)
