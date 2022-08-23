@@ -44,7 +44,6 @@ Read in one (or more) of the following data sets, using the correct R package an
 Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
 
 ```{r}
-#| label: setup
 #| warning: false
 
 birds <- read_csv("_data/birds.csv")
@@ -67,4 +66,6 @@ b <- birds %>%
 plot(x = b$Year, y = b$Value)
 ```
 
-    The birds.csv file is a measurement of the price of each of these birds, most likely for livestock purposes. These are categorized by year, type of bird, country where they're sold, and even the accuracy of the data. Each qualitative variable is designated by a specific code. 
+
+    The birds.csv file is a measurement of the price of each of these birds, most likely for livestock purposes. These are categorized by year, type of bird, country where they're sold, and even the accuracy of the data. Each qualitative variable is designated by a specific code.
+
