@@ -44,8 +44,6 @@ Read in one (or more) of the following data sets, using the correct R package an
 Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
 
 ```{r}
-#| label: setup
-#| warning: false
 #| warning: false
 
 birds <- read_csv("_data/birds.csv")
