@@ -2,7 +2,7 @@
 title: "Challenge 1"
 author: "Lai Wei "
 desription: "Reading in data and creating a post"
-date: "08/15b /2022"
+date: "08/22 /2022"
 format:
   html:
     toc: true
@@ -58,5 +58,7 @@ Using a combination of words and results of R commands, can you provide a high l
 
 ```{r}
 #| label: summary
-
+spec(railroad)
+dim(railroad)
+colnames(railroad)
 ```
