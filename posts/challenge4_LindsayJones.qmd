@@ -53,6 +53,9 @@ print(poultry_tidy_wider)
 
 ## Identify variables that need to be mutated
 
-I wasn't able to identify any variables that need to be mutated. Factors also didn't seem necessary given the type of data we're working with. 
+The year and month need to be mutated into one date.
+```{r}
+
+```
 
 I would like to rename the "Whole Legs" column to something not containing the word "whole" to avoid confusion with the other variable, but my attempts to rename the column didn't work. 
