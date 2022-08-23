@@ -1,0 +1,134 @@
+---
+title: "Challenge 5"
+author: "Mekhala Kumar"
+description: "Introduction to Visualization"
+date: "08/22/2022"
+format:
+  html:
+    df-print: paged
+    toc: true
+    code-copy: true
+    code-tools: true
+    css: "styles.css"
+categories:
+  - challenge_5
+  - cereal
+  - public_schools
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(readr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+::: panel-tabset
+## Read in data
+
+## Cereal
+
+```{r}
+cereal <- read_csv("_data/cereal.csv")
+str(cereal)
+print(summarytools::dfSummary(cereal,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+## Briefly describe the data
+
+The dataset contains details about the type of cereal as well as sugar and sodium contents of cereals for different brands of cereal. It has 20 observations and 4 variables The data is already tidy. The values in the Sodium and Sugar columns can be kept as they are since this will help visualise data in an easier way. Moreover, there are only 2 types so the variable Type does not to be turned into a factor.\
+
+## Univariate Visualisations
+
+The first barplot shows us that in this dataset, there are an equal number of cereals of Type A and Type C. Here, I am assuming that the unit of measurement depicted for sodium is milligram and for sugar is gram. The graphs show us that most of the cereals have a sodium content between 150 to 250 mg and a sugar content between 5 to 15g.
+
+```{r}
+ggplot(cereal, aes(Type)) + geom_bar()
+ggplot(cereal, aes(Sodium)) + geom_histogram(binwidth=100,aes(y = ..density..))+
+  geom_density(alpha = 0.2, fill="blue")
+ggplot(cereal, aes(Sugar)) + geom_histogram(binwidth=10,aes(y = ..density..))+
+  geom_density(alpha = 0.2, fill="blue")
+```
+
+## Bivariate Visualisation(s)
+
+Three graphs have been depicted.\
+The first graph depicts the sodium and sugar content. A scatterplot was used since both the variables are continuous. There seems to be no specific pattern such as a cereal with more sugar having lower sodium. Hence, there is no definite relation between the sugar and sodium content.\
+The second and third graph depict the relation between the type of cereal and sodium and then type of cereal and sugar. Here boxplots have been used since 'Type' is a nominal variable.\
+For both sodium and sugar, the median content is higher for the Type C cereal than the Type A cereal. Thus we can conclude that Type C cereals generally have higher levels of sodium and sugar. However, the difference between the median levels of sodium in Type A and Type C cereals is much lower than that of difference found between the mean levels of sugar in Type A and Type C cereals.\
+Another observation to note is that in Type A cereals, for sodium, most of the values lied in the first quartile whereas for sugar,most of the values lied in the third quartile. In Type C cereals, for both sodium and sugar, most values lie in the first quartile.
+
+```{r}
+ggplot(cereal, aes(Sodium,Sugar)) + geom_point()
+ggplot(cereal, aes(Type,Sodium)) + geom_boxplot()
+ggplot(cereal, aes(Type,Sugar)) + geom_boxplot()
+
+
+```
+:::
+
+## Public School Characteristics
+
+```{r}
+PublicSchoolChar <- read_csv("_data/Public_School_Characteristics_2017-18.csv")
+dim(PublicSchoolChar)
+print(summarytools::dfSummary(PublicSchoolChar,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+## Briefly describe the data
+
+The dataset contains details about the public school education. It has 100729 observations and 79 variables. The data contains many variables that could be renamed for the sake of understanding easily. Some of the variables need to be turned into factors. In this challenge, I will be focusing on the variables of state and school level so I will be performing the changes to only these two variables.I also made a smaller dataframe with two states in order to compare observations between the two states.\
+One issue faced while changing the categories in the School Education Level variable was that there were secondary, middle and high school mentioned. I assumed that secondary should include both middle and high school, but the number of observations for middle and high school do not add up to the observations present for secondary school. Hence, I have kept all three in the dataset,
+
+## Tidy Data (as needed)
+
+```{r}
+PublicSchoolChar<-PublicSchoolChar%>%
+  rename( State= STABR )
+PublicSchoolChar<-PublicSchoolChar%>%select(State,SCHOOL_LEVEL,everything())
+level <- unique(PublicSchoolChar$SCHOOL_LEVEL)
+level
+PublicSchoolChar<-PublicSchoolChar%>%
+  mutate(Levels = factor(SCHOOL_LEVEL, 
+                       labels=level[c(4,8,9,7,1,6,5,2,10,3)]))%>%
+  select(-SCHOOL_LEVEL)
+rm(level)
+
+table(PublicSchoolChar$Levels)
+State2<-PublicSchoolChar%>%filter(State == "MA"|State=="NJ")
+State2
+```
+
+## Univariate Visualisations
+
+Here the number of observations in each state can be seen. The distribution of the different school levels is also visible. However, it can be seen that the majority of the observations are not applicable, so essentially they are missing.
+
+```{r}
+ggplot(PublicSchoolChar, aes(State)) + geom_bar()
+ggplot(PublicSchoolChar, aes(Levels)) + geom_bar()
+```
+
+## Bivariate Visualisations (Doubt)
+
+In order to make a bivariate visualisation, a continuous variable is also required. However, I am unable to understand what data is represented from the column names in the dataset and hence was unable to complete this step.
+
+:::

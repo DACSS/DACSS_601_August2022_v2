@@ -33,31 +33,21 @@ Today's challenge is to
 
 ## Read in the Data
 
-Read in one (or more) of the following data sets, using the correct R package and command.
-
--   railroad_2012_clean_county.csv ⭐
--   birds.csv ⭐⭐
--   FAOstat\*.csv ⭐⭐
--   wild_bird_data.xlsx ⭐⭐⭐
--   StateCounty2012.xlsx ⭐⭐⭐⭐
-
-Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
+I choose data about birds.
 
 ```{r}
-# Read data about birds
 library(readr)
 birds <- read_csv("_data/birds.csv")
-View(birds)
+birds
 ```
 
 This dataset contains over 30000 birds' characters include area, years, etc.
 
 ## Describe the data
 
-Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+This data set I read contains data from 1961. I wonder how many birds of that year code is after year 2000 in this data set. 
 
 ```{r}
-# Count how many birds after 2000
 a2000<-filter(birds, Year>=2000)
 a2000
 count(a2000)

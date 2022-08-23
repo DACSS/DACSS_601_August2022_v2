@@ -1,5 +1,5 @@
 ---
-title: "Challenge 2 Instructions"
+title: "Challenge 2"
 author: "Animesh Sengupta"
 desription: "Data wrangling: using group() and summarise()"
 date: "08/16/2022"
@@ -11,6 +11,8 @@ format:
     code-tools: true
 categories:
   - challenge_2
+  - Animesh Sengupta
+  - FAOStat_livestock data
 ---
 
 ```{r}

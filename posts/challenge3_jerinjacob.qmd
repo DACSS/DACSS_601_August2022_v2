@@ -1,0 +1,52 @@
+---
+title: "Challenge 3"
+author: " Jerin Jacob"
+desription: "Tidy Data: Pivoting"
+date: "08/17/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in data
+
+
+```{r}
+animal_weight<-read_csv("_data/animal_weight.csv",
+                        show_col_types = FALSE)
+animal_weight
+
+```
+
+## Describing the data
+
+The animal weight data has the weight of 16 types of livestocks collected from 9 geographical areas. 
+
+The pivoted dataset will have 144 rows/ cases and 3 columns of region, animal type and weight.
+
+
+```{r}
+animal_weight_longer<-pivot_longer(animal_weight, 
+                                    col=-`IPCC Area`,
+                                    names_to = "Livestock",
+                                    values_to = "Weight")
+animal_weight_longer
+```
+
+
