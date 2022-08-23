@@ -23,22 +23,15 @@ library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Challenge Overview
-
-Today's challenge is to:
-
-1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
-2)  tidy data (as needed, including sanity checks)
-3)  identify variables that need to be mutated
-4)  mutate variables and sanity check all mutations
-
 ## Read in data
 
 Read Fed Funds Rate
 
 ```{r}
-ffr<-read_csv("_data/FedFundsRate.csv")
+ffr<-read_csv("_data/FedFundsRate.csv",
+              show_col_types = FALSE)
 ffr
+
 ```
 
 ### Briefly describe the data
@@ -47,12 +40,25 @@ This data set is regarding various national economic variables from July of 1954
 
 ## Tidy Data (as needed)
 
-I Selected data of January 1st and July 1st each year to tidy data. First of all I filtered January 1st data and then filtered July 1st data. And I merged those two data.
+Year, Month, Day are seperated. So I mutated Date column newly.(thanks to Nayan)
+```{r}
+
+library(lubridate)
+
+ffr2 <- ffr %>% 
+  mutate(Date = make_datetime(Year, Month, Day))
+
+ffr2
+
+```
+
+Then, I selected date, unemployment rate, and inflation rate to checked Phillip Curve's validity. To check it I created scatter plot of unemployment and inflation.(thanks again Nayan)
 
 ```{r}
-jan<-filter(ffr, Month==1, Day==1)
-jul<-filter(ffr, Month==7, Day==1)
-sffr<-rbind(jan,jul)
-sffr<-arrange(sffr, Year, Month)
-sffr
+pc<-select(ffr2, "Date", "Inflation Rate", "Unemployment Rate")
+pc
+
+ggplot(pc ,mapping=aes(x=ffr$`Unemployment Rate`, y=ffr$`Inflation Rate`)) + geom_point()
 ```
+
+It maybe too long period so I cannot see Phillip Curve clearly. 
