@@ -1,11 +1,11 @@
 ---
 title: "Kimberly Darkenwald"
-image: images/KimDarkenwald.jpeg
+image: images/KimDarkenwald.jpg
 about:
   template: solana
   image-width: 15em
   image-shape: round
-  image: images/KimDarkenwald.jpeg
+  image: images/KimDarkenwald.jpg
   links: 
     - icon: github
       text: Github
