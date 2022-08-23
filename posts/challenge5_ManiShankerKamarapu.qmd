@@ -1,22 +1,17 @@
 ---
 title: "Challenge 5"
-author: "Meredith Rolfe"
+author: "Mani Shanker Kamarapu"
 description: "Introduction to Visualization"
 date: "08/22/2022"
 format:
   html:
     toc: true
+    code-fold: true
     code-copy: true
     code-tools: true
 categories:
   - challenge_5
-  - railroads
-  - cereal
-  - air_bnb
-  - pathogen_cost
-  - australian_marriage
-  - public_schools
-  - usa_hh
+  - AB_NYC_2019
 ---
 
 ```{r}
@@ -30,60 +25,78 @@ library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Challenge Overview
-
-Today's challenge is to:
-
-1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
-2)  tidy data (as needed, including sanity checks)
-3)  mutate variables as needed (including sanity checks)
-4)  create at least two univariate visualizations
-   - try to make them "publication" ready
-   - Explain why you choose the specific graph type
-5)  Create at least one bivariate visualization
-   - try to make them "publication" ready
-   - Explain why you choose the specific graph type
-
-[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.
-
-(be sure to only include the category tags for the data you use!)
-
 ## Read in data
 
-Read in one (or more) of the following datasets, using the correct R package and command.
-
--   cereal ⭐
--   pathogen cost ⭐
--   Australian Marriage ⭐⭐ 
--   AB_NYC_2019.csv ⭐⭐⭐
--   railroads ⭐⭐⭐
--   Public School Characteristics ⭐⭐⭐⭐ 
--   USA Households ⭐⭐⭐⭐⭐
-
 ```{r}
+AB_NYC_2019 <- read_csv("_data/AB_NYC_2019.csv") %>%
+  select(!c("id", "host_id", "neighbourhood", "latitude", "longitude", "minimum_nights", "last_review"))
+AB_NYC_2019
 ```
 
 ### Briefly describe the data
 
-## Tidy Data (as needed)
-
-Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
-
 ```{r}
-
-
+dim(AB_NYC_2019)
 ```
 
-Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+```{r}
+summary(AB_NYC_2019)
+```
 
-Document your work here.
+## Tidy Data (as needed)
 
 ```{r}
+AB_NYC_2019 <- replace_na(AB_NYC_2019, list(reviews_per_month = 0))
+AB_NYC_2019
+```
 
+```{r}
+dim(AB_NYC_2019)
+```
+
+```{r}
+summary(AB_NYC_2019)
 ```
 
 ## Univariate Visualizations
 
+```{r}
+ggplot(AB_NYC_2019, aes(price)) + 
+  geom_histogram(fill = "blue") + 
+  xlim(0,1700) +
+  labs(title = "Price of the room", x = "Price", y = "Frequency") + 
+  theme_bw()
+```
+
+```{r}
+ggplot(AB_NYC_2019, aes(number_of_reviews)) + 
+  geom_histogram(fill = "lightgreen") + 
+  xlim(0,400) +
+  labs(title = "No of reviews", x = "Reviews", y = "Frequency") + 
+  theme_bw()
+```
+
+```{r}
+ggplot(AB_NYC_2019, aes(reviews_per_month)) + 
+  geom_histogram(fill = "red") + 
+  xlim(0,15) +
+  labs(title = "Reviews in a month", x = "Monthly reviews", y = "Frequency") + 
+  theme_bw()
+```
+
+```{r}
+ggplot(AB_NYC_2019, aes(availability_365)) + 
+  geom_histogram(fill = "orange") + 
+  xlim(0,370) +
+  labs(title = "Availability of the room", x = "Availability", y = "Frequency") + 
+  theme_bw()
+```
 
 ## Bivariate Visualization(s)
-Any additional comments?
+
+```{r}
+ggplot(AB_NYC_2019, aes(price, room_type)) + 
+  geom_point() + 
+  labs(title = "Price and Room Type", x = "Price", y = "Room Type") + 
+  theme_bw()
+```
