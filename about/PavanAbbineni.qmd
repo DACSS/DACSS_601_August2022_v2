@@ -1,5 +1,5 @@
 ---
-title: "Pavan Datta Abbineni"
+title: "Pavan Datta Abbineni "
 image: images/YourName.jpeg
 about:
   template: solana

@@ -1,6 +1,6 @@
 ---
 title: "Challenge 3"
-author: "Pavan Datta Abbineni"
+author: "Pavan Datta Abbineni "
 desription: "Tidy Data: Pivoting"
 date: "08/17/2022"
 format:
