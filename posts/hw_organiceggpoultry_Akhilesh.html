@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Akhilesh Kumar Meghwal">
+<meta name="dcterms.date" content="2022-08-22">
+
+<title>- Homework 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Homework 2">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#homework-2-overview" id="toc-homework-2-overview" class="nav-link active" data-scroll-target="#homework-2-overview">Homework-2 Overview</a></li>
+  <li><a href="#data-reading" id="toc-data-reading" class="nav-link" data-scroll-target="#data-reading">Data Reading</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
+  <li><a href="#data-wrangling-1" id="toc-data-wrangling-1" class="nav-link" data-scroll-target="#data-wrangling-1">Data Wrangling</a></li>
+  <li><a href="#describe-data" id="toc-describe-data" class="nav-link" data-scroll-target="#describe-data">Describe Data</a></li>
+  <li><a href="#group-summary-statistics" id="toc-group-summary-statistics" class="nav-link" data-scroll-target="#group-summary-statistics">Group Summary Statistics</a></li>
+  <li><a href="#group-summary-statistics-1" id="toc-group-summary-statistics-1" class="nav-link" data-scroll-target="#group-summary-statistics-1">Group Summary Statistics</a></li>
+  <li><a href="#data-reading-1" id="toc-data-reading-1" class="nav-link" data-scroll-target="#data-reading-1">Data Reading</a></li>
+  <li><a href="#data-wrangling-2" id="toc-data-wrangling-2" class="nav-link" data-scroll-target="#data-wrangling-2">Data Wrangling</a></li>
+  <li><a href="#data-wrangling-3" id="toc-data-wrangling-3" class="nav-link" data-scroll-target="#data-wrangling-3">Data Wrangling</a></li>
+  <li><a href="#describe-data-1" id="toc-describe-data-1" class="nav-link" data-scroll-target="#describe-data-1">Describe Data</a></li>
+  <li><a href="#group-summary-statistics-2" id="toc-group-summary-statistics-2" class="nav-link" data-scroll-target="#group-summary-statistics-2">Group Summary Statistics</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Homework 2</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">hw2</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Akhilesh Kumar Meghwal </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 22, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="homework-2-overview" class="level2">
+<h2 class="anchored" data-anchor-id="homework-2-overview">Homework-2 Overview</h2>
+<ul>
+<li>Read in a dataset from the _data folder in the course blog repository, or choose your own data. If you decide to use one of the datasets we have provided, please use a challenging dataset - check with us if you are not sure.</li>
+<li>Clean the data as needed using dplyr and related tidyverse packages.</li>
+<li>Provide a narrative about the data set (look it up if you aren’t sure what you have got) and the variables in your dataset, including what type of data each variable is. The goal of this step is to communicate in a visually appealing way to non-experts - not to replicate r-code.</li>
+<li>Identify potential research questions that your dataset can help answer.</li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="data-reading" class="level2">
+<h2 class="anchored" data-anchor-id="data-reading">Data Reading</h2>
+<section id="read-dataset-organiceggpoultry.xls-sheet-2-available-in-the-posts_data-folder-using-the-read_excel-r-package-and-command." class="level4">
+<h4 class="anchored" data-anchor-id="read-dataset-organiceggpoultry.xls-sheet-2-available-in-the-posts_data-folder-using-the-read_excel-r-package-and-command.">Read dataset ‘organiceggpoultry.xls’, sheet 2, available in the <code>posts/_data</code> folder, using the read_excel R package and command.</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>organicegg <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/organiceggpoultry.xls"</span>, <span class="at">sheet =</span> <span class="st">"Organic egg prices, 2004-13"</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(organicegg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 74
+Columns: 13
+$ Year &lt;chr&gt; "2013", "Certified Organic Eggs:", "Extra Large \nDozen", "Extra …
+$ Jan. &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "Jan.", NA, NA, "288.5",…
+$ Feb. &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "Feb.", NA, NA, "288.5",…
+$ Mar. &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "Mar.", NA, NA, "288.5",…
+$ Apr. &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "Apr.", NA, NA, "288.5",…
+$ May  &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "May", NA, NA, "288.5", …
+$ June &lt;chr&gt; "Cents per pound", NA, "290", "188.13", "267.5", "178", "June", "…
+$ July &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "July", NA, NA, "288.5",…
+$ Aug. &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "Aug.", NA, NA, "288.5",…
+$ Sep. &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "Sep.", NA, NA, "290", "…
+$ Oct. &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "Oct.", NA, NA, "290", "…
+$ Nov. &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "Nov.", NA, NA, "290", "…
+$ Dec. &lt;chr&gt; NA, NA, "290", "188.13", "267.5", "178", "Dec.", NA, NA, "290", "…</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h2>
+<section id="mutate-function-to-convert-column-type-to-numeric" class="level5">
+<h5 class="anchored" data-anchor-id="mutate-function-to-convert-column-type-to-numeric">- mutate function to convert column type to numeric</h5>
+</section>
+<section id="filter-along-with-regex-to-remove-row-consisting-nayear-certified-organic-eggs" class="level5">
+<h5 class="anchored" data-anchor-id="filter-along-with-regex-to-remove-row-consisting-nayear-certified-organic-eggs">- filter along with regex to remove row consisting NA,Year &amp; Certified Organic Eggs:</h5>
+</section>
+<section id="replace-to-replace-all-na-value-with-0" class="level5">
+<h5 class="anchored" data-anchor-id="replace-to-replace-all-na-value-with-0">- replace to replace all NA value with 0</h5>
+</section>
+<section id="filter-to-remove-unnecessary-tail-of-41-42-43-rows" class="level5">
+<h5 class="anchored" data-anchor-id="filter-to-remove-unnecessary-tail-of-41-42-43-rows">- filter to remove unnecessary tail of 41, 42 43 rows</h5>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>organicegg <span class="ot">&lt;-</span>organicegg<span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">colnames</span>(organicegg)[<span class="dv">2</span><span class="sc">:</span><span class="dv">13</span>]), <span class="cf">function</span>(x)<span class="fu">as.numeric</span>(x)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Year) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^2"</span>, Year) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^Ce"</span>, Year)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">42</span>, <span class="dv">43</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="data-wrangling-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling-1">Data Wrangling</h2>
+<section id="changed-name-of-first-column" class="level5">
+<h5 class="anchored" data-anchor-id="changed-name-of-first-column">- changed name of first column</h5>
+</section>
+<section id="create-vector-of-same-length-as-the-number-of-rows-in-the-organicegg-dataset-and-same-distribution-of-years-as-original-dataset" class="level5">
+<h5 class="anchored" data-anchor-id="create-vector-of-same-length-as-the-number-of-rows-in-the-organicegg-dataset-and-same-distribution-of-years-as-original-dataset">- create vector of same length as the number of rows in the organicegg dataset and same distribution of years as original dataset</h5>
+</section>
+<section id="column-bind-to-merge-year-vector-organicegg-dataset" class="level5">
+<h5 class="anchored" data-anchor-id="column-bind-to-merge-year-vector-organicegg-dataset">- column bind to merge Year vector &amp; organicegg dataset</h5>
+</section>
+<section id="pivot_longer-on-all-month-columns" class="level5">
+<h5 class="anchored" data-anchor-id="pivot_longer-on-all-month-columns">- pivot_longer on All Month Columns</h5>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(organicegg)[<span class="dv">1</span>] <span class="ot">=</span> <span class="st">"Certified_Organic_Eggs"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2013</span>,<span class="dv">2012</span>,<span class="dv">2011</span>,<span class="dv">2010</span>,<span class="dv">2009</span>,<span class="dv">2008</span>,<span class="dv">2007</span>,<span class="dv">2006</span>,<span class="dv">2005</span>,<span class="dv">2004</span>),<span class="at">each=</span><span class="dv">4</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>organicegg<span class="ot">&lt;-</span> <span class="fu">cbind</span>(Year, organicegg)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>organicegg <span class="ot">&lt;-</span> organicegg<span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">colnames</span>(organicegg)[<span class="dv">3</span><span class="sc">:</span><span class="dv">14</span>], <span class="at">names_to =</span> <span class="st">'Month'</span>, <span class="at">values_to =</span> <span class="st">'Price'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="describe-data" class="level2">
+<h2 class="anchored" data-anchor-id="describe-data">Describe Data</h2>
+<section id="summary-of-organicegg-dataset-using-summarytoolsdfsummary" class="level4">
+<h4 class="anchored">- summary of organicegg dataset using summarytools::dfSummary</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(organicegg,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style        =</span> <span class="st">"grid"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored" data-anchor-id="summary-of-organicegg-dataset-using-summarytoolsdfsummary">Data Frame Summary</h3>
+<h4 class="anchored">organicegg</h4>
+<strong>Dimensions</strong>: 480 x 4
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">Year
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 2008.5 (2.9)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2004 ≤ 2008.5 ≤ 2013</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 5 (0)</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2004</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2005</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2006</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2007</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2008</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2009</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2010</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2011</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2012</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2013</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">48</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABcAAACsCAQAAAA6Lv+dAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBcEGzKXn0QeAAAAgElEQVRYw+3TwQmAMBBE0V2xR3uwH+0hVeo16A6yBI2EP7fAO2xgxg/LZErpl/lcP/bwI6sLbrbccPnvV+F9+KUz5YF7XUIPSS1ajtni4dJ3+HeceajAR+T0XQUOZx4ycDjzkIGPyOm7ChzOPGTgcOYhAx+R03cVOLxpHr1vT/ITI+k2VoOK03QAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjNUMDQ6Mjc6NTArMDA6MDDkcFCIAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTIzVDA0OjI3OjUwKzAwOjAwlS3oNAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Certified_Organic_Eggs
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Extra Large </td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Dozen</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Extra Large 1/2 Doz.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Extra Large 1/2 Doz.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1/2 </td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Large </td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1/2 Doz.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Large </td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Dozen</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">120</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">25.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">108</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">22.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">120</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">25.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">120</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">25.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACcAAABaCAQAAACRFoehAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBcEGzKXn0QeAAAAmElEQVRYw+3XwQ2AIAwFUGrc0R1kHt2BKfVmCFKTFmqa9PfG5YVPyA/QlWbOMlVzzq314lQd5E4Ml9ImxoplWHDgwBlzTQUUnfIM1Z1EKqIWLMMewvrMrzgD9dk7Z98XBRw4cO1Er8+s22Rvd/LX5yc3OuDAgfuXC1ef8oQMh887OHDRuOivT3lChkN9ggPnnrPsO3dhfXM3ZjcbkbL7MxMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjNUMDQ6Mjc6NTArMDA6MDDkcFCIAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTIzVDA0OjI3OjUwKzAwOjAwlS3oNAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Month
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Apr.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Aug.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Dec.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Feb.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Jan.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. July</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. June</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Mar.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. May</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Nov.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 2 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">40</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">80</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">16.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAB4AAAC9CAQAAAAOsQVpAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBcEGzKXn0QeAAAArElEQVRo3u3UwQ2DMBBE0W+UHiki9UAPqZIcuNiAYysQAc7fmxFPYo1mwsT30+2wJ+JHfBhXF/AMyydTDkOfnF6X3Vks/i1eBKMUhXRCHLFQAeL3j/vsoaIMPuxsGYjFYBlgGYgbwubZPIvFgGWAZSAWz2MZWAbidrB5Ns9iMWAZYBmIG8Lm2TyLxYBlgGUgFs/TZhlsfWt2574g0zu56X8W/wc+Ls/32XkXfgM+XkB9cOCF5gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yM1QwNDoyNzo1MCswMDowMORwUIgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjNUMDQ6Mjc6NTArMDA6MDCVLeg0AAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Price
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 210.8 (55.3)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">126 ≤ 206.6 ≤ 290</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 93 (0.3)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">46 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBcEGzKXn0QeAAAA6UlEQVR42u3bWw6CMBQA0dawR/eg64E9sEr9vcSSQME0czPz5yvtSSqNgPVTsvYYPQFp0mJTfLA0v3jvOnqSx4uAafvS8+fN6+jZdpd4QUojJo2YNGLSiEkjJo2YNGLSiEkjJo3Y1Pex+dT59Gun+06NFUbqpLVO65Wy7jx7taNjbUdKvCClEZNGLDGt++B/rb296s4LXoNo5U87YCzxgpRGTBqxxLRhB/92534Homh37naJF6Q0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKI1XjVZ8H/tf4Vbs6oeM1uiRekNGJfuA8W0tKpZNMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjNUMDQ6Mjc6NTArMDA6MDDkcFCIAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTIzVDA0OjI3OjUwKzAwOjAwlS3oNAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-23</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a &lt;-as.data.frame(strsplit(organicegg$Certified_Organic_Eggs, split = '([a-zA-Z\\ -1/-2])'))</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># View(a)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="group-summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="group-summary-statistics">Group Summary Statistics</h2>
+<section id="year-wise-certified_organic_eggs-wise-price-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="year-wise-certified_organic_eggs-wise-price-distribution">- Year wise, Certified_Organic_Eggs wise Price Distribution</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>organicegg<span class="sc">$</span>Year<span class="ot">&lt;-</span><span class="fu">as.factor</span>(organicegg<span class="sc">$</span>Year)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>organicegg <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Certified_Organic_Eggs) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Price_min=</span><span class="fu">min</span>(Price),<span class="at">Price_max=</span><span class="fu">max</span>(Price),<span class="at">Price_mean=</span><span class="fu">mean</span>(Price), <span class="at">.groups =</span> <span class="st">'keep'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Certified_Organic_Eggs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 40 × 5
+# Groups:   Year, Certified_Organic_Eggs [40]
+   Year  Certified_Organic_Eggs Price_min Price_max Price_mean
+   &lt;fct&gt; &lt;chr&gt;                      &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+ 1 2004  "Large \nDozen"             225       234.       230.
+ 2 2005  "Large \nDozen"             234.      234.       234.
+ 3 2006  "Large \nDozen"             234.      236.       234.
+ 4 2007  "Large \nDozen"             234.      237        237.
+ 5 2008  "Large \nDozen"             237       278.       267.
+ 6 2009  "Large \nDozen"             272.      278.       274 
+ 7 2010  "Large \nDozen"             268.      268        268.
+ 8 2011  "Large \nDozen"             268.      270        269.
+ 9 2012  "Large \nDozen"             268.      268.       268.
+10 2013  "Large \nDozen"             268.      268.       268.
+# … with 30 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(organicegg, <span class="at">n=</span><span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 480 × 4
+   Year  Certified_Organic_Eggs Month Price
+   &lt;fct&gt; &lt;chr&gt;                  &lt;chr&gt; &lt;dbl&gt;
+ 1 2013  "Extra Large \nDozen"  Jan.   290 
+ 2 2013  "Extra Large \nDozen"  Feb.   290 
+ 3 2013  "Extra Large \nDozen"  Mar.   290 
+ 4 2013  "Extra Large \nDozen"  Apr.   290 
+ 5 2013  "Extra Large \nDozen"  May    290 
+ 6 2013  "Extra Large \nDozen"  June   290 
+ 7 2013  "Extra Large \nDozen"  July   290 
+ 8 2013  "Extra Large \nDozen"  Aug.   290 
+ 9 2013  "Extra Large \nDozen"  Sep.   290 
+10 2013  "Extra Large \nDozen"  Oct.   290 
+11 2013  "Extra Large \nDozen"  Nov.   290 
+12 2013  "Extra Large \nDozen"  Dec.   290 
+13 2013  "Extra Large 1/2 Doz." Jan.   188.
+14 2013  "Extra Large 1/2 Doz." Feb.   188.
+15 2013  "Extra Large 1/2 Doz." Mar.   188.
+16 2013  "Extra Large 1/2 Doz." Apr.   188.
+17 2013  "Extra Large 1/2 Doz." May    188.
+18 2013  "Extra Large 1/2 Doz." June   188.
+19 2013  "Extra Large 1/2 Doz." July   188.
+20 2013  "Extra Large 1/2 Doz." Aug.   188.
+21 2013  "Extra Large 1/2 Doz." Sep.   188.
+22 2013  "Extra Large 1/2 Doz." Oct.   188.
+23 2013  "Extra Large 1/2 Doz." Nov.   188.
+24 2013  "Extra Large 1/2 Doz." Dec.   188.
+25 2013  "Large \nDozen"        Jan.   268.
+26 2013  "Large \nDozen"        Feb.   268.
+27 2013  "Large \nDozen"        Mar.   268.
+28 2013  "Large \nDozen"        Apr.   268.
+29 2013  "Large \nDozen"        May    268.
+30 2013  "Large \nDozen"        June   268.
+31 2013  "Large \nDozen"        July   268.
+32 2013  "Large \nDozen"        Aug.   268.
+33 2013  "Large \nDozen"        Sep.   268.
+34 2013  "Large \nDozen"        Oct.   268.
+35 2013  "Large \nDozen"        Nov.   268.
+36 2013  "Large \nDozen"        Dec.   268.
+37 2013  "Large \n1/2 Doz."     Jan.   178 
+38 2013  "Large \n1/2 Doz."     Feb.   178 
+39 2013  "Large \n1/2 Doz."     Mar.   178 
+40 2013  "Large \n1/2 Doz."     Apr.   178 
+# … with 440 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="group-summary-statistics-1" class="level2">
+<h2 class="anchored" data-anchor-id="group-summary-statistics-1">Group Summary Statistics</h2>
+<section id="pivot_wider-to-expand-month-wise-price-value-across-columns" class="level4">
+<h4 class="anchored" data-anchor-id="pivot_wider-to-expand-month-wise-price-value-across-columns">- pivot_wider to expand Month wise Price value across columns</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>organicegg <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Month, <span class="at">values_from =</span> Price) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n=</span><span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 40 × 14
+   Year  Certified…¹  Jan.  Feb.  Mar.  Apr.   May  June  July  Aug.  Sep.  Oct.
+   &lt;fct&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 2013  "Extra Lar…  290   290   290   290   290   290   290   290   290   290 
+ 2 2013  "Extra Lar…  188.  188.  188.  188.  188.  188.  188.  188.  188.  188.
+ 3 2013  "Large \nD…  268.  268.  268.  268.  268.  268.  268.  268.  268.  268.
+ 4 2013  "Large \n1…  178   178   178   178   178   178   178   178   178   178 
+ 5 2012  "Extra Lar…  288.  288.  288.  288.  288.  288.  288.  288.  290   290 
+ 6 2012  "Extra Lar…  186.  186.  186.  186.  186.  186.  186.  186.  188.  188.
+ 7 2012  "Large \nD…  268.  268.  268.  268.  268.  268.  268.  268.  268.  268.
+ 8 2012  "Large \n1…  174.  174.  173.  173.  173.  173.  173.  173.  178   178 
+ 9 2011  "Extra Lar…  286.  286.  286.  286.  286.  286.  286.  286.  286.  286.
+10 2011  "Extra Lar…  186.  186.  186.  186.  186.  186.  186.  186.  186.  186.
+11 2011  "Large \nD…  268.  268.  268.  270   270   270   270   270   270   270 
+12 2011  "Large \n1…  174.  174.  174.  174.  174.  174.  174.  174.  174.  174.
+13 2010  "Extra Lar…  286.  286.  286.  286.  286.  286.  286.  286.  286.  286.
+14 2010  "Extra Lar…  186.  186.  186.  186.  186.  186.  186.  186.  186.  186.
+15 2010  "Large \nD…  268   268   268   268   268   268   268   268.  268.  268.
+16 2010  "Large \n1…  174.  174.  174.  174.  174.  174.  174.  174.  174.  174.
+17 2009  "Extra Lar…  286.  286.  286.  286.  286.  286.  286.  286.  286.  286.
+18 2009  "Extra Lar…  186.  186.  186.  186.  186.  186.  186.  186.  186.  186.
+19 2009  "Large \nD…  278.  278.  278.  278.  278.  272.  272.  272.  272.  272.
+20 2009  "Large \n1…  174.  174.  174.  174.  174.  174.  174.  174.  174.  174.
+21 2008  "Extra Lar…  245   245   245   286.  286.  286.  286.  286.  286.  286.
+22 2008  "Extra Lar…  139   139   139   186.  186.  186.  186.  186.  186.  186.
+23 2008  "Large \nD…  237   237   237   278.  278.  278.  278.  278.  278.  278.
+24 2008  "Large \n1…  132   132   132   174.  174.  174.  174.  174.  174.  174.
+25 2007  "Extra Lar…  241.  244.  245   245   245   245   245   245   245   245 
+26 2007  "Extra Lar…  136.  138.  139   139   139   139   139   139   139   139 
+27 2007  "Large \nD…  234.  236.  237   237   237   237   237   237   237   237 
+28 2007  "Large \n1…  128.  131.  132   132   132   132   132   132   132   132 
+29 2006  "Extra Lar…  241   240   241.  242.  242.  242.  242.  242.  242.  242.
+30 2006  "Extra Lar…  136.  136.  136.  136.  136.  136.  136.  136.  136.  136.
+31 2006  "Large \nD…  234.  234.  234.  234.  234.  234.  234.  234.  234.  234.
+32 2006  "Large \n1…  128.  128.  128.  128.  128.  128.  128.  128.  128.  128.
+33 2005  "Extra Lar…  241   241   241   241   241   241   241   241   241   241 
+34 2005  "Extra Lar…  136.  136.  136.  136.  136.  136.  136.  136.  136.  136.
+35 2005  "Large \nD…  234.  234.  234.  234.  234.  234.  234.  234.  234.  234.
+36 2005  "Large \n1…  128.  128.  128.  128.  128.  128.  128.  128.  128.  128.
+37 2004  "Extra Lar…  230   230   230   234.  236   241   241   241   241   241 
+38 2004  "Extra Lar…  132   134.  137   137   137   137   137   137   136.  136.
+39 2004  "Large \nD…  230   226.  225   225   225   231.  234.  234.  234.  234.
+40 2004  "Large \n1…  126   128.  131   131   131   134.  134.  134.  130.  128.
+# … with 2 more variables: Nov. &lt;dbl&gt;, Dec. &lt;dbl&gt;, and abbreviated variable
+#   name ¹​Certified_Organic_Eggs
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="data-reading-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-reading-1">Data Reading</h2>
+<section id="read-dataset-organiceggpoultry.xls-sheet-3-available-in-the-posts_data-folder-using-the-read_excel-r-package-and-command." class="level4">
+<h4 class="anchored" data-anchor-id="read-dataset-organiceggpoultry.xls-sheet-3-available-in-the-posts_data-folder-using-the-read_excel-r-package-and-command.">- read dataset ‘organiceggpoultry.xls’, sheet 3, , available in the <code>posts/_data</code> folder, using the read_excel R package and command.</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>organicepoultry <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/organiceggpoultry.xls"</span>, <span class="at">sheet =</span> <span class="st">"Organic poultry prices, 2004-13"</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(organicepoultry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 99
+Columns: 13
+$ Year &lt;chr&gt; "2013", "Organic young chicken:", "Whole", "B/S Breast", "Bone-in…
+$ Jan. &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "Jan.", NA…
+$ Feb. &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "Feb.", NA…
+$ Mar. &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "Mar.", NA…
+$ Apr. &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "Apr.", NA…
+$ May  &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "May", NA,…
+$ June &lt;chr&gt; "Cents per pound", NA, "238.5", "703.75", "390.5", "203.5", "216.…
+$ July &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "July", NA…
+$ Aug. &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "Aug.", NA…
+$ Sep. &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "Sep.", NA…
+$ Oct. &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "Oct.", NA…
+$ Nov. &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "Nov.", NA…
+$ Dec. &lt;chr&gt; NA, NA, "238.5", "703.75", "390.5", "203.5", "216.25", "Dec.", NA…</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="data-wrangling-2" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling-2">Data Wrangling</h2>
+<section id="mutate-function-to-convert-column-type-to-numeric-1" class="level4">
+<h4 class="anchored" data-anchor-id="mutate-function-to-convert-column-type-to-numeric-1">- mutate function to convert column type to numeric</h4>
+</section>
+<section id="filter-along-with-regex-to-remove-rows-consisting-na-year-organic-young-chicken" class="level4">
+<h4 class="anchored" data-anchor-id="filter-along-with-regex-to-remove-rows-consisting-na-year-organic-young-chicken">- filter along with regex to remove rows consisting NA, Year &amp; Organic young chicken:</h4>
+</section>
+<section id="replace-to-replace-all-na-value-with-0-1" class="level4">
+<h4 class="anchored" data-anchor-id="replace-to-replace-all-na-value-with-0-1">- replace to replace all NA value with 0</h4>
+</section>
+<section id="filter-to-remove-unnecessary-tail-of-51-52-and-53-rows" class="level4">
+<h4 class="anchored" data-anchor-id="filter-to-remove-unnecessary-tail-of-51-52-and-53-rows">- filter to remove unnecessary tail of 51, 52 and 53 rows</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>organicepoultry <span class="ot">&lt;-</span>organicepoultry<span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">colnames</span>(organicepoultry)[<span class="dv">2</span><span class="sc">:</span><span class="dv">13</span>]), <span class="cf">function</span>(x)<span class="fu">as.numeric</span>(x)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Year) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^2"</span>, Year) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^Or"</span>, Year)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">51</span>, <span class="dv">52</span>, <span class="dv">53</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="data-wrangling-3" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling-3">Data Wrangling</h2>
+<section id="changed-name-of-first-column-to-organic_young_chicken" class="level4">
+<h4 class="anchored" data-anchor-id="changed-name-of-first-column-to-organic_young_chicken">- changed name of first column to Organic_Young_Chicken</h4>
+</section>
+<section id="create-vector-of-same-length-as-the-number-of-rows-in-the-organicegg-dataset-and-same-distribution-of-years-as-original-dataset-1" class="level4">
+<h4 class="anchored" data-anchor-id="create-vector-of-same-length-as-the-number-of-rows-in-the-organicegg-dataset-and-same-distribution-of-years-as-original-dataset-1">- create vector of same length as the number of rows in the organicegg dataset and same distribution of years as original dataset</h4>
+</section>
+<section id="column-bind-to-merge-year-vector-organicegg" class="level4">
+<h4 class="anchored" data-anchor-id="column-bind-to-merge-year-vector-organicegg">- column bind to merge, Year vector &amp; organicegg</h4>
+</section>
+<section id="pivot_longer-on-all-month-columns-1" class="level4">
+<h4 class="anchored" data-anchor-id="pivot_longer-on-all-month-columns-1">- pivot_longer on All Month Columns</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(organicepoultry)[<span class="dv">1</span>] <span class="ot">=</span> <span class="st">"Organic_Young_Chicken"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2013</span>,<span class="dv">2012</span>,<span class="dv">2011</span>,<span class="dv">2010</span>,<span class="dv">2009</span>,<span class="dv">2008</span>,<span class="dv">2007</span>,<span class="dv">2006</span>,<span class="dv">2005</span>,<span class="dv">2004</span>),<span class="at">each=</span><span class="dv">5</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>organicepoultry<span class="ot">&lt;-</span> <span class="fu">cbind</span>(Year, organicepoultry)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>organicepoultry<span class="ot">&lt;-</span>organicepoultry<span class="sc">%&gt;%</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">colnames</span>(organicepoultry)[<span class="dv">3</span><span class="sc">:</span><span class="dv">14</span>], <span class="at">names_to =</span> <span class="st">'Month'</span>, <span class="at">values_to =</span> <span class="st">'Price'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="describe-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="describe-data-1">Describe Data</h2>
+<section id="summary-of-organicepoultry-dataset-using-summarytoolsdfsummary" class="level4">
+<h4 class="anchored">- Summary of organicepoultry Dataset, using summarytools::dfSummary</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(organicepoultry,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style        =</span> <span class="st">"grid"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored" data-anchor-id="summary-of-organicepoultry-dataset-using-summarytoolsdfsummary">Data Frame Summary</h3>
+<h4 class="anchored">organicepoultry</h4>
+<strong>Dimensions</strong>: 600 x 4
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">Year
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 2008.5 (2.9)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2004 ≤ 2008.5 ≤ 2013</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 5 (0)</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2004</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2005</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2006</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2007</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2008</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2009</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2010</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2011</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2012</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">2013</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">60</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABcAAACsCAQAAAA6Lv+dAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBcEGzKXn0QeAAAAgElEQVRYw+3TwQmAMBBE0V2xR3uwH+0hVeo16A6yBI2EP7fAO2xgxg/LZErpl/lcP/bwI6sLbrbccPnvV+F9+KUz5YF7XUIPSS1ajtni4dJ3+HeceajAR+T0XQUOZx4ycDjzkIGPyOm7ChzOPGTgcOYhAx+R03cVOLxpHr1vT/ITI+k2VoOK03QAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjNUMDQ6Mjc6NTArMDA6MDDkcFCIAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTIzVDA0OjI3OjUwKzAwOjAwlS3oNAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Organic_Young_Chicken
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. B/S Breast</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Bone-in Breast</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Thighs</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Whole</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Whole Legs</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">120</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">20.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">120</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">20.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">120</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">20.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">120</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">20.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">120</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">20.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACIAAABaCAQAAAB3P0zlAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBcEGzKXn0QeAAAAe0lEQVRYw+3UwQmAMAxA0Ubc0R3cR3folHoNBqGpgUT4vfXQR1rol6t9X0uAUQhZ9eZ0PNAuL0hr2yDRi74JCMi/kMcH7FOI6N8vjoP6XPx1Dk+1iRIISA2EKNmxiRIISCJClOzYRAkEJBEhSnZsogQCMrfie5J6nTrIDf0XG2iq/SDtAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTIzVDA0OjI3OjUwKzAwOjAw5HBQiAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yM1QwNDoyNzo1MCswMDowMJUt6DQAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Month
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Apr.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Aug.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Dec.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Feb.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Jan.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. July</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. June</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Mar.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. May</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Nov.</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 2 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">100</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">16.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAB4AAAC9CAQAAAAOsQVpAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBcEGzKXn0QeAAAArElEQVRo3u3UwQ2DMBBE0W+UHiki9UAPqZIcuNiAYysQAc7fmxFPYo1mwsT30+2wJ+JHfBhXF/AMyydTDkOfnF6X3Vks/i1eBKMUhXRCHLFQAeL3j/vsoaIMPuxsGYjFYBlgGYgbwubZPIvFgGWAZSAWz2MZWAbidrB5Ns9iMWAZYBmIG8Lm2TyLxYBlgGUgFs/TZhlsfWt2574g0zu56X8W/wc+Ls/32XkXfgM+XkB9cOCF5gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yM1QwNDoyNzo1MCswMDowMORwUIgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjNUMDQ6Mjc6NTArMDA6MDCVLeg0AAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Price
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 335.1 (175.9)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 235 ≤ 703.8</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 175.5 (0.5)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">33 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBcEGzKXn0QeAAAA6klEQVR42u3bQQ6CMBQAUWu4o3fQ8+AdPKVuXHyafCLFtJlm3goXYCcUk5pS3pdZXUcPwDTToiV+KIdPX6tH9XH8En8Vh7M0X+XrFo5fY7sqE09I04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzq9s+43282FfbYWdkqLmwt7bS10Qo7WMqEhaS0TeuIJaRqRaUSmEZlGZBqRaUSmEWHWa5nqlc6wSG1IW4e/yr0dQbZIXfJT8mV6/79wsu/fG0GJNc/h9+Ose7gdBV+TmvgX0jSiDxLoGWigVKkHAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTIzVDA0OjI3OjUwKzAwOjAw5HBQiAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yM1QwNDoyNzo1MCswMDowMJUt6DQAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-23</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="group-summary-statistics-2" class="level2">
+<h2 class="anchored" data-anchor-id="group-summary-statistics-2">Group Summary Statistics</h2>
+<section id="year-wise-certified_organic_eggs-wise-price-distribution-1" class="level4">
+<h4 class="anchored" data-anchor-id="year-wise-certified_organic_eggs-wise-price-distribution-1">- Year wise, Certified_Organic_Eggs wise Price Distribution</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>organicepoultry<span class="sc">$</span>Year<span class="ot">&lt;-</span><span class="fu">as.factor</span>(organicepoultry<span class="sc">$</span>Year)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>organicepoultry <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Organic_Young_Chicken) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Price_min=</span><span class="fu">min</span>(Price),<span class="at">Price_max=</span><span class="fu">max</span>(Price),<span class="at">Price_mean=</span><span class="fu">mean</span>(Price), <span class="at">.groups =</span> <span class="st">'keep'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Organic_Young_Chicken)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 50 × 5
+# Groups:   Year, Organic_Young_Chicken [50]
+   Year  Organic_Young_Chicken Price_min Price_max Price_mean
+   &lt;fct&gt; &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+ 1 2004  Whole Legs                 194.      204.       199.
+ 2 2005  Whole Legs                 204.      204.       204.
+ 3 2006  Whole Legs                 204.      204.       204.
+ 4 2007  Whole Legs                 204.      204.       204.
+ 5 2008  Whole Legs                 204.      204.       204.
+ 6 2009  Whole Legs                 204.      204.       204.
+ 7 2010  Whole Legs                 204.      204.       204.
+ 8 2011  Whole Legs                 204.      204.       204.
+ 9 2012  Whole Legs                 204.      204.       204.
+10 2013  Whole Legs                 204.      204.       204.
+11 2004  Whole                      198.      217        212.
+12 2005  Whole                      217       217        217 
+13 2006  Whole                      217       220.       220.
+14 2007  Whole                      220.      220.       220.
+15 2008  Whole                      220.      248        237.
+16 2009  Whole                      248       248        248 
+17 2010  Whole                      235       248        239.
+18 2011  Whole                      235       235        235 
+19 2012  Whole                      235       238.       238.
+20 2013  Whole                      238.      238.       238.
+21 2004  Thighs                       0       203        184.
+22 2005  Thighs                     213       222        221.
+23 2006  Thighs                     222       222        222 
+24 2007  Thighs                     222       222        222 
+25 2008  Thighs                     222       222        222 
+26 2009  Thighs                     222       222        222 
+27 2010  Thighs                     215       222        219.
+28 2011  Thighs                     215       215        215 
+29 2012  Thighs                     215       216.       216.
+30 2013  Thighs                     216.      216.       216.
+31 2004  Bone-in Breast               0       390.       195.
+32 2005  Bone-in Breast             390.      390.       390.
+33 2006  Bone-in Breast             390.      390.       390.
+34 2007  Bone-in Breast             390.      390.       390.
+35 2008  Bone-in Breast             390.      390.       390.
+36 2009  Bone-in Breast             390.      390.       390.
+37 2010  Bone-in Breast             390.      390.       390.
+38 2011  Bone-in Breast             390.      390.       390.
+39 2012  Bone-in Breast             390.      390.       390.
+40 2013  Bone-in Breast             390.      390.       390.
+41 2004  B/S Breast                 641       646.       643.
+42 2005  B/S Breast                 644       646.       645.
+43 2006  B/S Breast                 646.      646.       646.
+44 2007  B/S Breast                 646.      646.       646.
+45 2008  B/S Breast                 646.      646.       646.
+46 2009  B/S Breast                 646.      646.       646.
+47 2010  B/S Breast                 638.      646.       643.
+48 2011  B/S Breast                 638.      638.       638.
+49 2012  B/S Breast                 638.      704.       695.
+50 2013  B/S Breast                 704.      704.       704.</code></pre>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb21" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Homework 2"</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Akhilesh Kumar Meghwal"</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> ""</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/22/2022"</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - hw2</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Homework-2 Overview</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Read in a dataset from the _data folder in the course blog repository, or choose your own data. If you decide to use one of the datasets we have provided, please use a challenging dataset - check with us if you are not sure. </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clean the data as needed using dplyr and related tidyverse packages.</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Provide a narrative about the data set (look it up if you aren't sure what you have got) and the variables in your dataset, including what type of data each variable is. The goal of this step is to communicate in a visually appealing way to non-experts - not to replicate r-code.</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Identify potential research questions that your dataset can help answer.</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Reading </span></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Read dataset 'organiceggpoultry.xls', sheet 2, available in the `posts/_data` folder, using the read_excel R package and command.</span></span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>organicegg <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/organiceggpoultry.xls"</span>, <span class="at">sheet =</span> <span class="st">"Organic egg prices, 2004-13"</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(organicegg)</span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Wrangling</span></span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a><span class="fu">##### - mutate function to convert column type to numeric</span></span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a><span class="fu">##### - filter along with regex to remove row consisting NA,Year &amp; Certified Organic Eggs:</span></span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a><span class="fu">##### - replace to replace all NA value with 0</span></span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a><span class="fu">##### - filter to remove unnecessary tail of 41, 42 43 rows</span></span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>organicegg <span class="ot">&lt;-</span>organicegg<span class="sc">%&gt;%</span></span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">colnames</span>(organicegg)[<span class="dv">2</span><span class="sc">:</span><span class="dv">13</span>]), <span class="cf">function</span>(x)<span class="fu">as.numeric</span>(x)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Year) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^2"</span>, Year) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^Ce"</span>, Year)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">42</span>, <span class="dv">43</span>))</span>
+<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Wrangling</span></span>
+<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a><span class="fu">##### - changed name of first column</span></span>
+<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a><span class="fu">##### - create vector of same length as the number of rows in the organicegg dataset and same distribution of years as original dataset</span></span>
+<span id="cb21-67"><a href="#cb21-67" aria-hidden="true" tabindex="-1"></a><span class="fu">##### - column bind to merge Year vector &amp; organicegg dataset</span></span>
+<span id="cb21-68"><a href="#cb21-68" aria-hidden="true" tabindex="-1"></a><span class="fu">##### - pivot_longer on All Month Columns</span></span>
+<span id="cb21-71"><a href="#cb21-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-72"><a href="#cb21-72" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(organicegg)[<span class="dv">1</span>] <span class="ot">=</span> <span class="st">"Certified_Organic_Eggs"</span></span>
+<span id="cb21-73"><a href="#cb21-73" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2013</span>,<span class="dv">2012</span>,<span class="dv">2011</span>,<span class="dv">2010</span>,<span class="dv">2009</span>,<span class="dv">2008</span>,<span class="dv">2007</span>,<span class="dv">2006</span>,<span class="dv">2005</span>,<span class="dv">2004</span>),<span class="at">each=</span><span class="dv">4</span>)</span>
+<span id="cb21-74"><a href="#cb21-74" aria-hidden="true" tabindex="-1"></a>organicegg<span class="ot">&lt;-</span> <span class="fu">cbind</span>(Year, organicegg)</span>
+<span id="cb21-75"><a href="#cb21-75" aria-hidden="true" tabindex="-1"></a>organicegg <span class="ot">&lt;-</span> organicegg<span class="sc">%&gt;%</span> </span>
+<span id="cb21-76"><a href="#cb21-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">colnames</span>(organicegg)[<span class="dv">3</span><span class="sc">:</span><span class="dv">14</span>], <span class="at">names_to =</span> <span class="st">'Month'</span>, <span class="at">values_to =</span> <span class="st">'Price'</span>)</span>
+<span id="cb21-77"><a href="#cb21-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-78"><a href="#cb21-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-79"><a href="#cb21-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe Data</span></span>
+<span id="cb21-80"><a href="#cb21-80" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - summary of organicegg dataset using summarytools::dfSummary</span></span>
+<span id="cb21-83"><a href="#cb21-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-84"><a href="#cb21-84" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(organicegg,</span>
+<span id="cb21-85"><a href="#cb21-85" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-86"><a href="#cb21-86" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-87"><a href="#cb21-87" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style        =</span> <span class="st">"grid"</span>,</span>
+<span id="cb21-88"><a href="#cb21-88" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>,</span>
+<span id="cb21-89"><a href="#cb21-89" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb21-90"><a href="#cb21-90" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb21-91"><a href="#cb21-91" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb21-92"><a href="#cb21-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-95"><a href="#cb21-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-96"><a href="#cb21-96" aria-hidden="true" tabindex="-1"></a><span class="co"># a &lt;-as.data.frame(strsplit(organicegg$Certified_Organic_Eggs, split = '([a-zA-Z\\ -1/-2])'))</span></span>
+<span id="cb21-97"><a href="#cb21-97" aria-hidden="true" tabindex="-1"></a><span class="co"># View(a)</span></span>
+<span id="cb21-98"><a href="#cb21-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-99"><a href="#cb21-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-100"><a href="#cb21-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Group Summary Statistics</span></span>
+<span id="cb21-101"><a href="#cb21-101" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - Year wise, Certified_Organic_Eggs wise Price Distribution</span></span>
+<span id="cb21-104"><a href="#cb21-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-105"><a href="#cb21-105" aria-hidden="true" tabindex="-1"></a>organicegg<span class="sc">$</span>Year<span class="ot">&lt;-</span><span class="fu">as.factor</span>(organicegg<span class="sc">$</span>Year)</span>
+<span id="cb21-106"><a href="#cb21-106" aria-hidden="true" tabindex="-1"></a>organicegg <span class="sc">%&gt;%</span> </span>
+<span id="cb21-107"><a href="#cb21-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Certified_Organic_Eggs) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-108"><a href="#cb21-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Price_min=</span><span class="fu">min</span>(Price),<span class="at">Price_max=</span><span class="fu">max</span>(Price),<span class="at">Price_mean=</span><span class="fu">mean</span>(Price), <span class="at">.groups =</span> <span class="st">'keep'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-109"><a href="#cb21-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Certified_Organic_Eggs))</span>
+<span id="cb21-110"><a href="#cb21-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-111"><a href="#cb21-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(organicegg, <span class="at">n=</span><span class="dv">40</span>)</span>
+<span id="cb21-112"><a href="#cb21-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-113"><a href="#cb21-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Group Summary Statistics</span></span>
+<span id="cb21-114"><a href="#cb21-114" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - pivot_wider to expand Month wise Price value across columns</span></span>
+<span id="cb21-117"><a href="#cb21-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-118"><a href="#cb21-118" aria-hidden="true" tabindex="-1"></a>organicegg <span class="sc">%&gt;%</span> </span>
+<span id="cb21-119"><a href="#cb21-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Month, <span class="at">values_from =</span> Price) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-120"><a href="#cb21-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n=</span><span class="dv">40</span>)</span>
+<span id="cb21-121"><a href="#cb21-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-122"><a href="#cb21-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-123"><a href="#cb21-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Reading </span></span>
+<span id="cb21-124"><a href="#cb21-124" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - read dataset 'organiceggpoultry.xls', sheet 3, , available in the `posts/_data` folder, using the read_excel R package and command.</span></span>
+<span id="cb21-127"><a href="#cb21-127" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-128"><a href="#cb21-128" aria-hidden="true" tabindex="-1"></a>organicepoultry <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/organiceggpoultry.xls"</span>, <span class="at">sheet =</span> <span class="st">"Organic poultry prices, 2004-13"</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb21-129"><a href="#cb21-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-130"><a href="#cb21-130" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(organicepoultry)</span>
+<span id="cb21-131"><a href="#cb21-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-132"><a href="#cb21-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-133"><a href="#cb21-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Wrangling</span></span>
+<span id="cb21-134"><a href="#cb21-134" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - mutate function to convert column type to numeric</span></span>
+<span id="cb21-135"><a href="#cb21-135" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - filter along with regex to remove rows consisting NA, Year &amp; Organic young chicken:</span></span>
+<span id="cb21-136"><a href="#cb21-136" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - replace to replace all NA value with 0</span></span>
+<span id="cb21-137"><a href="#cb21-137" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - filter to remove unnecessary tail of 51, 52 and 53 rows</span></span>
+<span id="cb21-140"><a href="#cb21-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-141"><a href="#cb21-141" aria-hidden="true" tabindex="-1"></a>organicepoultry <span class="ot">&lt;-</span>organicepoultry<span class="sc">%&gt;%</span></span>
+<span id="cb21-142"><a href="#cb21-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">colnames</span>(organicepoultry)[<span class="dv">2</span><span class="sc">:</span><span class="dv">13</span>]), <span class="cf">function</span>(x)<span class="fu">as.numeric</span>(x)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-143"><a href="#cb21-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Year) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^2"</span>, Year) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^Or"</span>, Year)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-144"><a href="#cb21-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb21-145"><a href="#cb21-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">51</span>, <span class="dv">52</span>, <span class="dv">53</span>))</span>
+<span id="cb21-146"><a href="#cb21-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-147"><a href="#cb21-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-148"><a href="#cb21-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Wrangling</span></span>
+<span id="cb21-149"><a href="#cb21-149" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - changed name of first column to Organic_Young_Chicken</span></span>
+<span id="cb21-150"><a href="#cb21-150" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - create vector of same length as the number of rows in the organicegg dataset and same distribution of years as original dataset</span></span>
+<span id="cb21-151"><a href="#cb21-151" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - column bind to merge, Year vector &amp; organicegg</span></span>
+<span id="cb21-152"><a href="#cb21-152" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - pivot_longer on All Month Columns</span></span>
+<span id="cb21-155"><a href="#cb21-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-156"><a href="#cb21-156" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(organicepoultry)[<span class="dv">1</span>] <span class="ot">=</span> <span class="st">"Organic_Young_Chicken"</span></span>
+<span id="cb21-157"><a href="#cb21-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-158"><a href="#cb21-158" aria-hidden="true" tabindex="-1"></a>Year <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2013</span>,<span class="dv">2012</span>,<span class="dv">2011</span>,<span class="dv">2010</span>,<span class="dv">2009</span>,<span class="dv">2008</span>,<span class="dv">2007</span>,<span class="dv">2006</span>,<span class="dv">2005</span>,<span class="dv">2004</span>),<span class="at">each=</span><span class="dv">5</span>)</span>
+<span id="cb21-159"><a href="#cb21-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-160"><a href="#cb21-160" aria-hidden="true" tabindex="-1"></a>organicepoultry<span class="ot">&lt;-</span> <span class="fu">cbind</span>(Year, organicepoultry)</span>
+<span id="cb21-161"><a href="#cb21-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-162"><a href="#cb21-162" aria-hidden="true" tabindex="-1"></a>organicepoultry<span class="ot">&lt;-</span>organicepoultry<span class="sc">%&gt;%</span> </span>
+<span id="cb21-163"><a href="#cb21-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">colnames</span>(organicepoultry)[<span class="dv">3</span><span class="sc">:</span><span class="dv">14</span>], <span class="at">names_to =</span> <span class="st">'Month'</span>, <span class="at">values_to =</span> <span class="st">'Price'</span>)</span>
+<span id="cb21-164"><a href="#cb21-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-165"><a href="#cb21-165" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe Data</span></span>
+<span id="cb21-166"><a href="#cb21-166" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - Summary of organicepoultry Dataset, using summarytools::dfSummary</span></span>
+<span id="cb21-169"><a href="#cb21-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-170"><a href="#cb21-170" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(organicepoultry,</span>
+<span id="cb21-171"><a href="#cb21-171" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-172"><a href="#cb21-172" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-173"><a href="#cb21-173" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style        =</span> <span class="st">"grid"</span>,</span>
+<span id="cb21-174"><a href="#cb21-174" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>,</span>
+<span id="cb21-175"><a href="#cb21-175" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb21-176"><a href="#cb21-176" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb21-177"><a href="#cb21-177" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb21-178"><a href="#cb21-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-179"><a href="#cb21-179" aria-hidden="true" tabindex="-1"></a><span class="fu">## Group Summary Statistics</span></span>
+<span id="cb21-180"><a href="#cb21-180" aria-hidden="true" tabindex="-1"></a><span class="fu">#### - Year wise, Certified_Organic_Eggs wise Price Distribution</span></span>
+<span id="cb21-183"><a href="#cb21-183" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb21-184"><a href="#cb21-184" aria-hidden="true" tabindex="-1"></a>organicepoultry<span class="sc">$</span>Year<span class="ot">&lt;-</span><span class="fu">as.factor</span>(organicepoultry<span class="sc">$</span>Year)</span>
+<span id="cb21-185"><a href="#cb21-185" aria-hidden="true" tabindex="-1"></a>organicepoultry <span class="sc">%&gt;%</span> </span>
+<span id="cb21-186"><a href="#cb21-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Organic_Young_Chicken) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-187"><a href="#cb21-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Price_min=</span><span class="fu">min</span>(Price),<span class="at">Price_max=</span><span class="fu">max</span>(Price),<span class="at">Price_mean=</span><span class="fu">mean</span>(Price), <span class="at">.groups =</span> <span class="st">'keep'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-188"><a href="#cb21-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Organic_Young_Chicken)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-189"><a href="#cb21-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">50</span>)</span>
+<span id="cb21-190"><a href="#cb21-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb21-191"><a href="#cb21-191" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
