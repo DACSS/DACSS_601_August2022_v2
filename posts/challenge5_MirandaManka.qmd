@@ -111,13 +111,13 @@ ggplot(air_bnb, aes(x = last_review)) +
   theme_bw()
 ```
 
-## Bivariate Visualization(s)
+## Bivariate Visualization
 
 This visualization is a histogram of price (continuous) with room_type (discrete) as the fill. I chose this combination because I thought it showed these variables well together and gave some interesting insights. As expected, the shared rooms generally cost the least, while private rooms go for slightly more than shared rooms (however they have a fairly large range and some go for more), and the entire home/apt listings generally cost the most (but also have a wide range of prices).
 
 ```{r}
 ggplot(air_bnb, aes(x = price, fill = room_type)) + 
-  geom_histogram(fill = "lightgrey") + 
+  geom_histogram(bins = 25) + 
   xlim(0, 600) + 
   labs(title = "Airbnb Price and Room Type", x = "Price", y = "Frequency", 
      fill = guide_legend("Room Type")) + 
