@@ -13,10 +13,6 @@ categories:
   - challenge_3
   - boonstra
   - week_1
-about: 
-  links:
-  - text: Australian Marriage Law Postal Survey
-    href: https://www.abs.gov.au/websitedbs/D3310114.nsf/home/AMLPS+-+Process
 ---
 
 ## Introduction
