@@ -1,0 +1,118 @@
+---
+title: "Challenge 5 Instructions"
+author: "Roy Yoon"
+description: "Introduction to Visualization"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - cereal
+  - ggplotly()
+
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(gapminder)
+library(readxl)
+
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least two univariate visualizations
+   - try to make them "publication" ready
+   - Explain why you choose the specific graph type
+5)  Create at least one bivariate visualization
+   - try to make them "publication" ready
+   - Explain why you choose the specific graph type
+
+## Read in data
+```{r}
+cereal <- read_csv("_data/cereal.csv")
+```
+
+### Briefly describe the data
+```{r}
+head(cereal)
+
+dim(cereal)
+
+colnames(cereal)
+
+summary(cereal)
+
+cereal
+```
+The cereal data set contains tabular-style data, with variables representing the cereal name, sodium level, sugar level, and type(A or C) for 20 brands of cereal.
+
+
+## Data arranged by Sodium level
+
+```{r}
+
+arranged_sodium <- cereal %>% arrange(cereal, Sodium)
+arranged_sodium
+```
+## Data arranged by Sugar level
+```{r}
+arranged_sugar <- cereal %>% arrange(cereal, Sugar)
+arranged_sugar 
+```
+
+## Univariate Visualizations
+
+Plan to show data arranged by Sodium level and data arranged by Sugar level
+
+## Bivariate Visualization(s)
+
+## Observing realtions between Sodium, Sugar, and Cereal(brand)
+
+```{r}
+brand_cereal <- ggplot(data = cereal, mapping = aes(x = Sodium, y = Sugar)) + 
+  geom_point(mapping = aes(color = Cereal)) + 
+  geom_smooth()
+```
+
+I thought that this visualization would be interesting to make as it shows the relation between the sodium levels and sugar levels of different cereal brands. I would like to continue working on better visualizing the color distinctions between the cereal brands and to spread out the x and y increments. 
+
+## Exploration
+
+I found that if you use ggplotly(), you are able to build an interactive visualization. This can resolve the issue of determining which color corresponds to which color as when you hover over a point the information about a specific cereal is readily available.To make ggplotly() available, I installed packages plotly and gapminder.
+
+```{r}
+ggplotly(brand_cereal)
+```
+
+
+```{r}
+type_cereal <- ggplot(data = cereal, mapping = aes(x = Sodium, y = Sugar)) + 
+  geom_point(mapping = aes(color = Type)) + 
+  geom_smooth() 
+
+  ggplotly(type_cereal)
+```
+I thought that this visualization would be interesting to make as it shows the relation between the sodium levels and sugar levels of cereal types A and C. Such visualizations could be useful for example, if Type A represented hot cereal and Type C represented cold cereal, then an analysis of the Sodium and Sugar levels in hot and cold cereal could be analyzed.
+
+
+
+
+
