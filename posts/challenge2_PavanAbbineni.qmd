@@ -1,6 +1,6 @@
 ---
 title: "Challenge 2"
-author: "Pavan Datta Abbineni"
+author: "Pavan Datta Abbineni "
 desription: "Data wrangling: using group() and summarise()"
 date: "08/16/2022"
 format:
