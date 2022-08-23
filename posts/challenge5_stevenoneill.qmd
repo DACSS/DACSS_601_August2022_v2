@@ -1,0 +1,144 @@
+---
+title: "Challenge 5"
+author: "Steve O'Neill"
+description: "Introduction to Visualization"
+date: "08/22/2022"
+df-print: paged
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - usa_hh
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## USA Households
+
+-   USA Households ⭐⭐⭐⭐⭐
+
+I'm choosing the *USA Households by Total Money Income, Race, and Hispanic Origin of Householder* dataset.
+
+Right away I am changing the row names manually. It doesn't take long and wouldn't make sense to automate. I assume these variables do not change year-to-year.
+
+```{r}
+households <- read_xlsx("_data/USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx",
+                        range = cell_rows(6:357),
+                        col_names = c("year_or_race",
+                                      "number",
+                                      "pct_total",
+                                      "pct_under_15k",
+                                      "pct_15k_to_24999",
+                                      "pct_25k_to_34999",
+                                      "pct_35k_to_49999",
+                                      "pct_50k_to_74999",
+                                      "pct_75k_to_99999",
+                                      "pct_100k_to_149999",
+                                      "pct_150k_to_199999",
+                                      "pct_over_200k",
+                                      "median_income_estimate",
+                                      "median_income_moe",
+                                      "mean_income_estimate",
+                                      "mean_income_moe" ))
+households
+```
+
+Woah, tons of extra numbers are appended to the years. And... several years are repeated twice.
+
+```{r}
+households %>% distinct(year_or_race)
+```
+
+On the original spreadsheet they appear to lead to footnotes with extra information. For example:
+
+*3 The 2014 CPS ASEC included redesigned questions for income and health insurance coverage. All of the approximately 98,000 addresses were eligible to receive the redesigned set of health insurance coverage questions. The redesigned income questions were implemented to a subsample of these 98,000 addresses using a probability split panel design. Approximately 68,000 addresses were eligible to receive a set of income questions similar to those used in the 2013 CPS ASEC and the remaining 30,000 addresses were eligible to receive the redesigned income questions. The source of these 2013 estimates is the portion of the CPS ASEC sample which received the redesigned income questions, approximately 30,000 addresses.\
+4 The source of these 2013 estimates is the portion of the CPS ASEC sample which received the income questions consistent with the 2013 CPS ASEC, approximately 68,000 addresses.*
+
+... and so on.
+
+I will deal with the duplicate years after I remove the footnotes.
+
+In the code below, the regex `"\\d{4}"` looks for years and extracts them into the column `calc_year`.
+
+After, it seeks all values `(.*)` between alphabetic characters, creates a `race` column, and fills lower cells until the `race` variable is overwritten.
+
+```{r}
+households <- households %>% mutate(year = str_extract(year_or_race, "\\d{4}"),
+                      race = str_extract(year_or_race, "[:alpha:](.*)[:alpha:].")) %>% fill(race)
+households
+```
+
+Next, I can remove the rows which only told me what race we were looking at. Goodbye, rows with no `number`. Also, begone, `year_or_race` and `pct_total` column.
+
+```{r}
+households <- households %>% drop_na(number) %>% select(-year_or_race, -pct_total) %>% relocate(year, race)
+households
+```
+
+### Sanity checks
+
+There are still some "race" data that have multiple years, like 2017. Mostly, according to the document's footnote, the studies that occur a second time in a year have some marginal improvement in the way they are conducted. So I'll just keep the more "recent" study and discard the other one for now.
+
+By combing year and race, I can remove duplicates. I'll use `separate` to put things back as they were.
+
+```{r}
+households <- households %>% unite("race_year", year:race) %>% filter(!duplicated(race_year)) %>% separate(race_year, into=c("race", "year"), sep="_")
+households
+```
+
+Additionally, as in challenge 3, we see that survey data was not collected with uniform "race" data during certain years. 2001 to 2002 had the biggest change
+
+For example, "White" was collected until 2002, when it was disambiguated into `WHITE ALONE`, or `WHITE ALONE, NOT HISPANIC`.
+
+```{r}
+households %>% filter(year %in% c(1967, 1970, 1972, 1980, 1985, 1995, 2001, 2002, 2008, 2010, 2017)) %>% select(race, number, year) %>% pivot_wider(values_from="number", names_from = "year")
+```
+
+Also, `ASIAN AND PACIFIC ISLANDER` were not reliably collected.
+
+## Univariate Visualizations
+
+Here is median income for the "Black alone or in Combination" subset, from 2002 to 2019 when data was available:
+
+```{r}
+black_alone <- households %>% filter(year %in% 2002:2019 ) %>% filter(race == "BLACK ALONE OR IN COMBINATION")
+
+black_alone %>% ggplot(aes(x=year, y=median_income_estimate)) + 
+  geom_bar(stat = "identity")
+```
+
+Compared to "Asian Alone" demographics in the same time period:
+
+```{r}
+asian_alone <- households %>% filter(year %in% 2002:2019 ) %>% filter(race == "ASIAN ALONE OR IN COMBINATION")
+
+asian_alone %>% ggplot(aes(x=year, y=median_income_estimate)) + 
+  geom_bar(stat = "identity")
+```
+Although incomes are at different levels, we can see the effect of the financial recession (2008-2011) in both groups.
+
+## Bivariate Visualization
+
+This plot visualizes the difference between the three groups better:
+
+```{r}
+alone_demographics <- households %>% filter(race %in% c("ASIAN ALONE ","WHITE ALONE ", "BLACK ALONE "))
+
+alone_demographics %>% ggplot(aes(x=year, y=median_income_estimate, fill = race)) + 
+  geom_bar(stat = "identity")
+```
+
