@@ -1,0 +1,36 @@
+ ---
+title: "Shoshana Buck"
+image: images/ShoshanaBuck.jpg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/ShoshanaBuck.jpg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/shoshanamb
+---
+
+## Education/Work Background
+
+I spent my freshman year of undergrad at Simmons University in Boston and then in 2019 I transferred to UMass Amherst for my sophomore year. I graduated this past May with a B.A in Communication and am continuing my education at UMass with the DACSS program.
+
+## R experience
+
+I have very limited amount of experience with R. I took a sociology course about data collection and analysis, which introduced me to research design and how data is obtained and analyzed. I used R for my final research which made me interested to learn and use R more.
+
+## Research interests
+
+Some of my research interests include digital inequalities, media effects especially in children, and disinformation.
+
+## Hometown
+
+I am originally from Framingham Massachusetts.
+
+## Hobbies
+
+I like to go to the beach, hang out with my family and friends, take my dog on walks, and listen to live music.
+
+## Fun fact
+A fun fat about me is that my first ever concert that I went to was the Cheetah Girls and Vanessa Hudgens.

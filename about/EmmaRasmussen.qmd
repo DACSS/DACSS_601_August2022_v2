@@ -1,0 +1,38 @@
+---
+title: "Emma Rasmussen"
+image: images/EmmaRasmussen.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/EmmaRasmussen.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/DACSS
+---
+
+## Education/Work Background
+I graduated in 2021 with a B.S. in Public Health and Anthropology/Sociology and a minor in Biology from Roger Williams University. Since graduating, I completed a research internship with the Framingham Heart Study for their Brain Aging Program. In between, I have spent a lot of time working in restaurants.
+  
+## R experience
+
+I have no background in R
+
+## Research interests
+
+Population Health, Demography, Social Determinants of Health, Environmental Health, Disaster Research, Social Movements
+
+## Hometown
+
+Groton, MA
+
+## Hobbies
+
+- Baking and cooking: I just got a sourdough starter which I have been experimenting with
+- Listening to podcasts: My favorite is Iliza Schlesinger's podcast "Ask Iliza Anything"
+- Traveling and exploring new places: I have been to Europe a few times, but since Covid I have been exploring more locally. And I'm a foodie, so I love to eat my way around new places.
+
+## Fun fact
+
+This past February, I donated stem cells through Be The Match

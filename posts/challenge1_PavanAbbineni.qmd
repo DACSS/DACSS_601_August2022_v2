@@ -1,0 +1,76 @@
+---
+title: "Challenge 1"
+author: "Pavan Datta Abbineni"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+I've decided to use the `railroad_2012_clean_county.csv` dataset
+
+```{r}
+railroadCompleteData<- read_csv("_data/railroad_2012_clean_county.csv")
+```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## Describe the data
+
+```{r head-visualisation}
+head(railroadCompleteData)
+```
+```{r tail-visualisation}
+tail(railroadCompleteData)
+```
+For a dataset to be in `tidy-format` it needs to satisfy the following conditions.  
+1)  Each variable has its own column
+2)  Each value is in its own cell and
+3)  Each observation is located in its own row.  
+  
+From our visualization of our above dataset we can confidently say that our dataset is already in tidy format.
+
+```{r rows-dimension}
+nrow(railroadCompleteData)
+```
+
+Our dataset has a total of 2930 rows.
+
+```{r cols-dimension}
+ncol(railroadCompleteData)
+colnames(railroadCompleteData)
+```
+
+We have a total of 3 columns with the names being `state`, `county` and `total_employees`.
+```{r}
+stateNames = railroadCompleteData$state
+countyNames = railroadCompleteData$county
+(unique(stateNames))
+length(unique(stateNames))
+```
+
+We can see that there are 53 unique states data in our dataset.
+
+```{r sorteddata}
+tableOfCompleteData =(table(railroadCompleteData$state))
+tableOfCompleteData[order(tableOfCompleteData)]
+```
+We can see that Texas and Georgia are the states with highest employees where as there are quite a few states with fewer than 10 employees.
+
+This data is likely gathered from the official railroad website, as the number of employees currently on payroll is known data to them.

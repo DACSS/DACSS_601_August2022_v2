@@ -1,0 +1,33 @@
+---
+title: "ManiShankerKamarapu"
+image: images/Mani.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/Mani.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/Mkamarapu
+---
+
+## Education/Work Background
+Work: Senior Systems Engineer,Infosys Ltd - December 2019 to July 2022
+
+Education: B.E with Electronics and Communication Engineering Specialization, Osmania University - 2015 to 2019 
+
+## R experience
+Beginner
+
+## Research interests
+Data analytics, data communication & visualization, machine learning, and networks
+
+## Hometown
+Karimnagar, Telangana, India - 505001
+
+## Hobbies
+Music, playing games and long walks
+
+## Fun fact
+I love to listen music.

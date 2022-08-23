@@ -1,0 +1,129 @@
+---
+title: "Challenge 5 Emma Rasmussen"
+author: "Emma Rasmussen"
+description: "Introduction to Visualization"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - air_bnb
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+###Read in data
+Reading in the data and saving a original copy of the dataset
+```{r}
+library(readr)
+AB_NYC_2019 <- read_csv("_data/AB_NYC_2019.csv")
+AB_NYC_2019_Orig<-AB_NYC_2019
+
+AB_NYC_2019
+
+```
+
+### Briefly describe the data
+Data set appears to be taken from Airbnb listings in New York City. Each case is a Airbnb rental, at a particular location. Variables include price, minimum stay, number of reviews, reviews per month, how many days of the year it is available, etc.
+
+## Tidy Data (as needed)
+I think the data is tidy? Each case has a row, each column is a variable, and each value has it's own cell. 
+
+Looking at summary of variables/dimensions of data/distribution of certain variables
+```{r}
+print(summarytools::dfSummary(AB_NYC_2019,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+
+dim(AB_NYC_2019)
+
+prop.table(table(AB_NYC_2019$neighbourhood_group))
+
+```
+
+Variables appear to be in usable form (ex- dates correct) for visualizations. Variable names and values make sense. While completing this assignment there were some variables I wanted to mutate/create a new column to display other subsets of data but it's getting too late for that at this point and I already have a bunch of visuals
+
+I am going to work with price and neighborhood group in the next graphs so I am looking at the distribution of values in these columns to figure out the best way to display the data. The first price histogram I made was not super readable (just a couple large columns at beginning of data set so I am filtering the data before graphing)
+```{r}
+summarize(AB_NYC_2019, max(price), min(price), median(price), mean(price))
+
+filter(AB_NYC_2019, price==0)#there are 11 listings where the cost is zero!
+filter(AB_NYC_2019, price>1000)#only 239 listings over $1000
+filter(AB_NYC_2019, price>0 & price<1000) #most listings fall in this range, there are 48895 rows in total, and 48586 in this range
+
+#creating a new df with above filter
+AB_NYC_2019_filter<-filter(AB_NYC_2019, price>0 & price<1000)
+
+```
+
+## Univariate Visualizations
+```{r}
+#first histogram
+ggplot(AB_NYC_2019, aes(price))+geom_histogram()
+
+#second histogram
+filter(AB_NYC_2019, price>0 & price<1000) %>% 
+  ggplot(aes(price))+
+  geom_histogram(binwidth=10, alpha=0.6, color = 1)+
+  labs(title="Cost of NYC Airbnbs (2019)*", caption="*Histogram excludes prices equal to $0 and greater than $1,000", x="Price in $", y="Frequency")
+
+#pie chart
+pie(table(AB_NYC_2019$neighbourhood_group), main= "Distribution of NYC Airbnbs by Neighborhood (%) (2019)", cex=0.8, labels=(prop.table(table(AB_NYC_2019$neighbourhood_group)))*100)
+legend("left", c("Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"))
+#I give up on adding values to this legend/fixing decimal points, everywhere says pie charts aren't super useful anyway so I will switch to a bar graph
+
+#bar graph
+ggplot(AB_NYC_2019, aes(neighbourhood_group))+
+  geom_bar(alpha=0.85)+
+  ggtitle("NYC Airbnbs by Neighborhood (2019)")+
+  xlab("Neighborhood")+
+  ylab("Number of Airbnbs")
+```
+#First Histogram:
+Ignore this. Shows why I filtered the data before creating my edited histogram
+#Second Histogram: 
+Here, I excluded prices of 0 dollars and over 1000. Surprisingly there were 11 listings with a cost=0. After a quick google I learned that Airbnb listers may set their price to 0 when renting to family/friends instead of marking it as unavailable. I figured it made sense to exclude this data from the histogram. The max listing cost was 10,000 dollars which stretched out the distribution making it nearly impossible to visualize the data so this histogram uses the filtered data set
+#PieChart:
+I tried. Everywhere I looked up to help said pie charts are criticized anyway. Did not want to spend any more time on it.
+#Bar Graph: 
+Generally better for visualizing distribution of categorical variables than pie chart. Also took 5 min compared to maybe an 1 hour trying to format pie chart (pie() is not a ggplot function)
+
+## Bivariate Visualization(s)
+```{r}
+#First boxplot (with unfiltered data)
+ggplot(AB_NYC_2019, aes(neighbourhood_group, price))+
+  geom_boxplot()
+
+#Second boxplot (with filtered data)
+ggplot(AB_NYC_2019_filter, aes(neighbourhood_group, price))+
+  geom_boxplot()+
+  labs(title="Cost of NYC Airbnbs by Neighborhood (2019)", x= "Neighborhood", y="Price ($)", caption="*Histogram excludes prices equal to $0 and greater than $1,000")
+
+#Violin plot with filtered data
+ggplot(AB_NYC_2019_filter, aes(room_type, price))+geom_violin()+
+  labs(title="NYC Airbnb Price Based on Room Type (2019)*", x= "Room Type", y= "Price ($)", caption= "*Excludes listings where price is equal to $0 or greater than $1,000")
+```
+#First boxplot: 
+Ignore this. Shows boxpplot distribution without filter. Not helpful. 
+#Second boxplot: 
+Gives us a better visual of the average price of Airbnbs by neighborhood. Brooklyn and Manhattan appear to have the most expensive Airbnbs including some costing 1000 or more. Bronx, Queens, and Staten Island Airbnbs don't get quite as expensive. 
+#Violin Plot
+Entire home/apt is on average most expensive (makes sense) but there is a lot of variability in the average. Interestingly, according to the chart, private rooms can cost 1000 dollars or more! I wonder what you get for that money. Shared rooms appear to have the lowest average price (also makes sense) and there seems to be a smaller IQR around the mean (if I am using that terminology correctly).

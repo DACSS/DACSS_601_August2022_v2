@@ -1,0 +1,109 @@
+---
+title: "Challenge 2"
+author: "Jerin jacob"
+description: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+df-print: paged
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+The railroad data contain 2931 county-level aggregated counts of the number of railroad employees in 2012. Counties are embedded within States, and all 50 states plus Canada, overseas addresses in Asia and Europe, and Washington, DC are represented.
+
+## Reading Railroad dataset
+
+To include the data of Canada too in the analysis, we have mutated the county column and renamed the county name to  CANADA.
+
+```{r}
+
+library(readxl)
+railroad <- read_excel("_data/StateCounty2012.xls", skip = 4, col_names = c("State", "Delete", "County", "Delete", "Employees")) %>%
+  select(!contains("Delete")) %>%
+  filter(!str_detect(State, "Total"))
+
+railroad<-head(railroad, -2)%>%
+  mutate(County = ifelse(State=="CANADA", "CANADA", County))
+
+railroad
+
+```
+
+
+## Describe the data
+
+
+```{r}
+#| label: summary
+
+railroad %>%
+  summarise(across(c(State, County), n_distinct))
+
+```
+There are 2931 state-county cases but only 1710 distinct county names. This means that there are many county names that repeats in different states. 
+
+
+```{r}
+railroad %>%
+  summarise(total_employees = sum(Employees))
+
+```
+There are 256094 railroad employees in 2012 dataset across the counties
+
+ 
+## Provide Grouped Summary Statistics
+
+```{r}
+railroad %>%
+  filter(Employees >= 1000) %>%
+  arrange(desc(Employees))
+
+```
+
+Cook, IL has the most number of employees with a head count of 8207. 27 counties have more than 1000 employees
+
+```{r}
+railroad %>%
+  summarise(min(Employees))
+  
+```
+
+```{r}
+railroad %>%
+  filter(Employees == 1)
+```
+
+
+There are 145 counties where there is only 1 employee working in the rail road department. 
+
+
+
+## Explain and Interpret
+```{r}
+railroad %>%
+  group_by(State) %>%
+  summarise(Total_Employees = sum(Employees), num_counties = n()) %>%
+  arrange(desc(Total_Employees))
+
+```
+Texas has the most number of employees working in rail road followed by IL, NY NE and CA in the consecutive top 5 positions. When we closely look on the data, the top states are populous and geographically large. But there are exceptions and are not directly propotionate.
+
+
+
+
+

@@ -1,0 +1,115 @@
+---
+title: "Challenge 5"
+author: "Nick Boonstra"
+description: "Introduction to Visualization"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - railroads
+  - boonstra
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r read in}
+
+rr_orig<-read_csv("_data/railroad_2012_clean_county.csv")
+
+rr_orig
+
+```
+
+### Briefly describe the data
+
+This data set records railroad employment numbers in the U.S. (and certain overseas locations)
+
+```{r summary}
+
+print(dfSummary(rr_orig, varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+
+```
+
+One piece of information I was particularly curious about is how average employees per county compared across states:
+
+```{r averages}
+
+rr_orig %>% 
+  group_by(state) %>% 
+  summarise(mean_emp=mean(total_employees,na.rm=T)) %>% 
+  arrange(desc(mean_emp)) %>% 
+  slice(1:10)
+
+
+```
+
+The data show that Delaware has the highest number of average employees per county. This finding becomes even more interesting when investigating how many (or few) counties Delaware has:
+
+```{r counties}
+
+rr_orig %>% 
+  filter(state=="DE")
+
+```
+
+Clearly, New Castle county does a lot to offset the mean, especially given that the state of Delaware only has three counties. However, this is not the highest employment in the country:
+
+```{r max_employ}
+
+rr_orig %>% 
+  arrange(desc(total_employees)) %>% 
+  slice(1:10)
+
+
+
+```
+
+Perhaps unsurprisingly, Cook County, IL -- home of a major transit center in Chicago -- employs the most railroad workers of any county in the country. A bit more surprisingly, New Castle County's 1,000+ employees are not actually enough for it to register in the top ten counties!
+
+## Tidy Data (as needed)
+
+These data are already tidy!
+
+## Visualization
+
+Using `ggplot2`, I was able to create a visualization overlaying a density function on top of a histogram of average number of employees per county, when grouped by state.
+
+```{r univariate}
+
+rr_orig %>% 
+  group_by(state) %>% 
+  summarise(mean_emp=mean(total_employees)) %>% 
+  ggplot(aes(x=mean_emp)) +
+  geom_histogram(aes(y=..density..),bins=50,alpha=0.5,fill="red") +
+  geom_density(fill="blue",alpha=0.2) +
+  theme_bw() +
+  labs(title="Average Number of Employees per County, by State",
+       x="Number of Employees",
+       y="Density")
+  
+
+```
+
+Because this data set only contains one value, I was not sure how I would create a bivariate visualization.

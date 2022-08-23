@@ -1,0 +1,96 @@
+---
+title: "Challenge 4 Akhilesh"
+author: "Akhilesh Kumar Meghwal"
+desription: "More data wrangling: pivoting"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  identify variables that need to be mutated
+4)  mutate variables and sanity check all mutations
+
+## Read in data
+
+
+```{r}
+animal_weight<-read_csv("_data/animal_weight.csv",
+                        show_col_types = FALSE)
+
+```
+
+### Briefly describe the data
+```{r}
+
+print(summarytools::dfSummary(animal_weight,
+                              varnumbers = FALSE,
+                              plain.ascii  = FALSE,
+                              style        = "grid",
+                              graph.magnif = 0.50,
+                              valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+##### Column names of the dataframe
+```{r}
+colnames(animal_weight)
+```
+##### Column classes of the dataframe
+```{r}
+col_classes = data.frame(t(data.frame(lapply(animal_weight,class))))
+col_classes
+```
+##### Summary, Dataframe
+```{r}
+summary(animal_weight)
+```
+## Tidy Data (as needed)
+
+##### Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+##### tidy data using pivot_longer, so that obervations represent individual observation and columns represent individual variable  
+
+```{r}
+
+animal_weight_pivot <- pivot_longer(animal_weight, col = names(animal_weight)[2:17], names_to = 'animal_name', values_to = 'weight')
+animal_weight_pivot
+
+```
+## Identify variables that need to be mutated
+
+##### col_classes below provide column wise class of  dataframe animal_weight_pivot
+##### 'IPCC Area' and  'animal_name' are character class, and converted to factor class using mutate_at 
+```{r}
+col_classes = data.frame(t(data.frame(lapply(animal_weight_pivot,class))))
+
+
+animal_weight_pivot %>% 
+  mutate_at(c('IPCC Area', 'animal_name'), factor)
+```
+##### col_classes for sanity check
+```{r}
+col_classes = data.frame(t(data.frame(lapply(animal_weight_pivot,class))))
+col_classes
+```
+
