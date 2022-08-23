@@ -1,40 +1,33 @@
 ---
-title: "Your Name"
-image: images/YourName.jpeg
+title: "Ravina Banze"
+image: images/Ravina.jpeg
 about:
   template: solana
   image-width: 15em
   image-shape: round
-  image: images/YourName.jpeg
+  image: images/Ravina.jpeg
   links:
     - icon: github
       text: Github
-      href: https://github.com/github_user
+      href: https://github.com/rbanze-umass
 ---
 
-##Instructions
-
-  - save a copy of this document as *FirstLast.qmd* in the **about** folder
-  - replace *Your Name* in yaml header with your first and last name
-  - save an image (jpeg, png) to use in the **about/images** folder
-  - replace image names in yaml header
-  - replace github user name
-  - fill in information below, as appropriate
-  - commit to github and submit pull request
 
 ## Education/Work Background
+I completed my undergraduation from St. Xaviers College, Mumbai in 2016 majoring in Sociology and Anthropology with a minor in Economics. Ever since then I have been working in the development sector focusing on poverty alleviation and women empowerment. Currently I run an crowdfunding platform in India. 
 
 
 ## R experience
-
+Beginner 
 
 ## Research interests
-
+Startups, Economics and Behavioural Sciences, Gender Studies
 
 ## Hometown
-
+Mumbai, India
 
 ## Hobbies
-
+Reading, Swimming,Gardening
 
 ## Fun fact
+I am scared of Frogs and Horror Movies
