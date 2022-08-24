@@ -40,7 +40,7 @@ Today's challenge is to
 
 The `railroad` data contain 2931 county-level aggregated counts of the number of railroad employees in 2012. *Counties* are embedded within *States*, and all 50 states plus Canada, overseas addresses in Asia and Europe, and Washington, DC are represented.
 
-:::{.callout-tip}
+::: callout-tip
 ## Data Summaries
 
 This is a concise summary of more extensive work we did in Challenge 1, and is an example of how you should describe data in public-facing work. A "public-facing" version of your work contains all critical details needed to replicate your work, but doesn't contain a point-by-point rundown of the mental process you went through to get to that point. (Your internal analysis file should probably walk through that mental process, however!)
@@ -68,7 +68,7 @@ railroad
 
 Now, lets practice grouping our data and using other `dplyr` commands that make data wrangling super easy. First, lets take a closer look at how we counted the number of unique *states* last week. First, we selected the *state* column. Then we used the `n_distinct` command - which replicates the base R commands length(unique(var)).
 
-:::{.callout-tip}
+::: callout-tip
 ## across()
 
 Instead of counting the number of distinct values one at a time, I am doing an operation on two columns at the same time using `across.`
@@ -79,11 +79,11 @@ railroad%>%
   summarise(across(c(state,county), n_distinct))
 ```
 
-Check this out - many counties have the same name! There are 2931 state-county cases, but only 1710 distinct county names. This is one reason it is so critical to understand "what is a case" when you are working with your data - otherwise you might accidently collapse or group information that isn't intenced to be grouped.
+Check this out - many counties have the same name! There are 2931 state-county cases, but only 1710 distinct county names. This is one reason it is so critical to understand "what is a case" when you are working with your data - otherwise you might accidentally collapse or group information that isn't intended to be grouped.
 
 ### How many total X are in group Y?
 
-Suppose we want to know the total number of railroad employees was in 2012, what is the best way to sum up all of the values in the data? The `summarize` function is useful for doing calculcations across some or all of a data set.
+Suppose we want to know the total number of railroad employees was in 2012, what is the best way to sum up all of the values in the data? The `summarize` function is useful for doing calculations across some or all of a data set.
 
 ```{r}
 railroad%>%
@@ -96,12 +96,12 @@ You may notice that the BLS estimates are significantly lower than the ones we a
 
 ### Which X have the most Y?
 
-Suppose we are interested in which county names are duplicated most often, or in which states have the most railroad employees. We can use the same basic approch to answer both *"Which X have the most Y?"* style questions
+Suppose we are interested in which county names are duplicated most often, or in which states have the most railroad employees. We can use the same basic approach to answer both *"Which X have the most Y?"* style questions
 
-:::{.callout-tip}
+::: callout-tip
 ## df-print: paged (YAML)
 
-When you are using `df-print: paged` in your yaml header, or are using tibbles, there is no need to rely on the `head(data)` commmand to limit your results to the top 10 of a list.
+When you are using `df-print: paged` in your yaml header, or are using tibbles, there is no need to rely on the `head(data)` command to limit your results to the top 10 of a list.
 :::
 
 ```{r}
@@ -116,16 +116,15 @@ Looking at the top 10 states in terms of total railroad employment, a few trends
 
 But railroads are spread out along geography, and thus we might also expect square mileage within a state to be related to state railroad employment - not just state population. For example, Texas is around 65% larger (in area) than California, and has around 50% more railroad employees.
 
-There appear to be multiple exceptions to both rules, however. If geography plus population were the primary factors explaining railroad employment, then California would be ranked higher than New York and Illinois, and New York would likely rank higher than ILlinois. However, Illinois - Chicago in particular - is a hub of railroad activity, and thus Illinois' higher ranking is likely reflecting hub activity and employment. New York is a hub for the East Coast in particular. While California may have hubs of train activity in Los Angeles or San Francisco, the Northeast has a higher density of train stations and almost certainly generates more passenger and freight miles than the larger and more populous California.
+There appear to be multiple exceptions to both rules, however. If geography plus population were the primary factors explaining railroad employment, then California would be ranked higher than New York and Illinois, and New York would likely rank higher than Illinois. However, Illinois - Chicago in particular - is a hub of railroad activity, and thus Illinois' higher ranking is likely reflecting hub activity and employment. New York is a hub for the East Coast in particular. While California may have hubs of train activity in Los Angeles or San Francisco, the Northeast has a higher density of train stations and almost certainly generates more passenger and freight miles than the larger and more populous California.
 
-This final factor - the existence of heavily used train routes probably explains the high railroad employment in states like Nebraska, Indiana and Missouri - all of which lay along a major railway route between New York and Chicago, and then out to California. Anyway who has played Ticket to Ride probably recognizes many of these routes! 
+This final factor - the existence of heavily used train routes probably explains the high railroad employment in states like Nebraska, Indiana and Missouri - all of which lay along a major railway route between New York and Chicago, and then out to California. Anyway who has played Ticket to Ride probably recognizes many of these routes!
 
-:::{.callout-note}
+::: callout-note
 ## Go further
 
 A fun exercise once you are comfortable with joins and map-based visualizatinos would be to join the railroad employment data to information about state population and geographic area, and also mapping information about railway routes, to get more insight into the factors driving railroad employment.
 :::
-
 
 ## FAOstat\* ⭐⭐⭐
 
@@ -151,11 +150,12 @@ birds%>%
             med_stocks = median(Value, na.rm=TRUE),
             n_missing = sum(is.na(Value)))
 ```
+
 On average, we can see that countries have far more chickens as livestock ($\bar{x}$=58.4million head) than other livestock birds (average stocks range between 2 and 10 million head). However, the information from the median stock counts suggest that there is significant variation across countries along with a strong right hand skew with regards to chicken stocks. The median number of chickens in a country is 3.8 million head - significantly less than the mean of almost 60 million. Overall, missing data doesn't seem to be a huge issue, so we will just use `na.rm=TRUE` and not worry too much about the missingness for now.
 
-It could be that stock head counts have changed over time, so lets try selecting two points in time and seeing whether or not average livestock counts are changing. 
+It could be that stock head counts have changed over time, so lets try selecting two points in time and seeing whether or not average livestock counts are changing.
 
-:::{.callout-tip}
+::: callout-tip
 ## pivot-wider
 
 It can be difficult to visually report data in tidy format. For example, it is tough to compare two values when they are on different rows. In this example, I use `pivot-wider` to swap a tidy grouping variable into multiple columns to be more "table-like." I then do some manual formatting to make it easy to compare the grouped estimates.
@@ -178,7 +178,7 @@ knitr::kable(t1,
                                  "Median Stock (1000)" = 2))
 ```
 
-:::{.callout-tip}
+::: callout-tip
 ## kable and kableExtra
 
 I manually adjust table formatting (column names, setting significant digits, adding a comma) using `kable` and add a header row using `kableExtra`. Because `df-print=paged` option is set to make it easier to scroll through longer data frames, I need to directly specify that I want to produce an htmltable - not a default kable/rmarkdown table - when I use kable and kableExtra formatting directly.
@@ -186,12 +186,11 @@ I manually adjust table formatting (column names, setting significant digits, ad
 
 Sure enough, it does look like stocks have changed significantly over time. The expansion of country-level chicken stocks over five decades between 1966 and 2016 are most noteworthy, with both average and median stock count going up by a factor of 4. Pigeons have never been very popular, and average stocks have actually decreased over the same time period while the other less popular bird - turkeys - saw significant incrases in stock count. Some countries increased specialization in goose and/or guinea fowl production, as the average stock count went up but the median went down over the same period.
 
-:::{.callout-note}
+::: callout-note
 ## Go further
 
 It could be really interesting to graph the rise and fall of poultry stocks overtime with these data, and match these changes to changes in population size and country GDP. Another option would be to match the countries back to regional groupings available from the UN FAO, a future "data join" challenge.
 :::
-
 
 ## Hotel Bookings ⭐⭐⭐⭐
 
@@ -243,7 +242,7 @@ bookings%>%
 
 Great - now we now that all bookings have arrival dates between June 2015 and August 2017, and can add that to the data description. Just for fun, lets see if we can confirm that the dates are the same for both hotels.
 
-:::{.callout-tip}
+::: callout-tip
 ## slice()
 
 This would be easier to investigate with proper date variables, but I am using `slice` to find the first and last row for each hotel, by position. This avoids printing out a long data list we have to scroll through, but would fail if the hotels had different sets of arrival month-year pairs.
@@ -281,7 +280,7 @@ bookings%>%
 
 The breakdown of rooms by hotel doesn't shed much light on the room codes and what they might mean. Lets see if we can find average number of occupants and average price for each room type, and see if we can learn more about our data.
 
-:::{.callout-tip}
+::: callout-tip
 ## mean(., na.rm=TRUE)
 
 I am using the `mean` function with the option `na.rm=TRUE` to deal with the four NA values in the *children* field, identified in the summary table above.
@@ -308,7 +307,7 @@ knitr::kable(t1,
                                  "Adults" = 2, "Children & Babies" = 2))
 ```
 
-:::{.callout-tip}
+::: callout-tip
 ## kable & kableExtra
 
 I manually adjust table formatting (column names, plus adding a header row) using `kable` and `kableExtra` package, respectively. Also, because `df-print=paged` is the option set in the YAML header, I need to directly specify that I want to produce an htmltable - not a default kable/rmarkdown table.
@@ -316,11 +315,9 @@ I manually adjust table formatting (column names, plus adding a header row) usin
 
 Based on these descriptives broken down by hotel and room type, we can speculate that the "H" and "L" room types at the resort are likely some sort of multi-bedroom suite (because the average number of adults is over 2.) Similarly, we can speculate that the difference between ABC and DEF may be something related to room size or quality (e.g., number and size of beds) and/or related to meals included with the rooms - but this would require further investigation to pin down!
 
-
-:::{.callout-note}
+::: callout-note
 ## Go further
 
 There is lots more to explore in the hotel bookings dataset, but it will be a lot easier once we recode the date fields using `lubridate`.
 :::
-
 :::
