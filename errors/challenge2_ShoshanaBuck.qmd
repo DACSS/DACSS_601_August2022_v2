@@ -1,7 +1,7 @@
 ---
 title: "Challenge 2 "
 author: "Shoshana Buck"
-desription: "Data wrangling: using group() and summarise()"
+description: "Data wrangling: using group() and summarise()"
 date: "08/16/2022"
 format:
   html:
@@ -25,50 +25,53 @@ library(readxl)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Challenge Overview
 
 ## Read in the Data
-
-Read in one (or more) of the following data sets, available in the `posts/_data` folder, using the correct R package and command.
-
--   railroad\*.csv or StateCounty2012.xlsx ⭐
+The state County data is looking at the total railroad employment by state and county in the United States and Canada using the calendar year of 2012. The source of this data is most likely taken from the United States Railroad Retirement Board. There is a total of 2,931 rows which reflect the counties and there are 3 columns which reflect the "State", "County", and the "total employees" within the county.
 
 ```{r}
-StateCounty2012<- read_excel("_data/StateCounty2012.xls") 
-StateCounty2012
+StateCounty<-read_excel("_data/StateCounty2012.xls",
+                     skip = 4,
+                     col_names= c("state", "delete",  "county",
+                                  "delete", "employees"))%>%
+  select(!contains("delete"))%>%
+  filter(!str_detect(state, "Total"))
 
- 
+StateCounty<-head(railroad, -2)%>%
+  mutate(county = ifelse(state=="CANADA", "CANADA", county))
 
+StateCounty
 
 ```
 
 
 ## Describe the data
-
-I imported the StateCounty2012.xsl into R and then used the function Subset() to delete columns to tidy the data. Then I "reassigned the data to New_SateCounty2012 and created new column names "state", "county", and "total."
+Though there are 2,929 state-counties there are only 53 unique States and 1708 unique counties, I found this by including n_distinct in the summarise() function.
 
 ```{r}
 #| label: summary
-subset(StateCounty2012, select = -c(1,3,5))
-New_StateCounty2012=StateCounty2012 
-New_StateCounty2012<- StateCounty2012 [-c(1,3,5)] 
-rename(New_StateCounty2012, state=1,county=2, total=3 )
-new_StateCounty2012<- New_StateCounty2012
 
+StateCounty %>% 
+  summarise(across(c(state), n_distinct))
+StateCounty %>% 
+  summarise(across(c(county), n_distinct))
 
 ```
 
 ## Provide Grouped Summary Statistics
 
-Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
-
 ```{r}
-new_StateCounty2012 %>% 
-  dplyr::group_by(state) %>% 
-  summarise(total1=sum(total))
+StateCounty %>%
+  group_by(state)
+StateCounty %>% 
+  summarise(total.employees=sum(employees))
+StateCounty %>% 
+  group_by(state,county) %>% 
+  summarise(total.employees=sum(employees)) %>% 
+  arrange(desc(total.employees))
   
 ```
 
 ### Explain and Interpret
 
-Be sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included.
+During the calendar year of 2012 the United States Railroad Retirement Board had 255,395 employees in the United States and Canada. I thought it was interesting that Cook county of Illinois had 8207 employees, which was the most employees as of 2012.  

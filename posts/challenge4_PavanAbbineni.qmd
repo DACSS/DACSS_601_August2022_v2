@@ -1,0 +1,74 @@
+---
+title: "Challenge 4"
+author: "Pavan Datta Abbineni "
+desription: "More data wrangling: pivoting"
+date: "08/18/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(lubridate)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+I decided to use the FedFundsRate dataset.
+
+```{r}
+FedFundsRateData<-read_csv("_data/FedFundsRate.csv",
+                        show_col_types = FALSE)
+
+```
+
+### Briefly describe the data
+
+
+```{r visualize-dataset}
+head(FedFundsRateData)
+```
+```{r dimensions}
+dim(FedFundsRateData)
+```
+
+```{r column-names}
+colnames(FedFundsRateData)
+```
+
+## Tidy Data (as needed)
+
+In tidy data each variable has its own column, every observation its own row and each value its own cell.
+
+The current dataset is not tidy. We need to modify the Year, Month and Day column into a single date column.
+Lets create a new column named date which is the addition of the three column names stated above.  
+
+
+
+```{r}
+FedFundsRateData$Date <- str_c(FedFundsRateData$Year,"-",FedFundsRateData$Month,"-",FedFundsRateData$Day)%>%ymd()%>%as.Date()
+
+```
+
+```{r}
+FedFundsRateData<-subset(FedFundsRateData,select=-c(1,2,3))
+```
+
+```{r}
+FedFundsRateData<-pivot_longer(FedFundsRateData, 2:8, names_to = "Rates", values_to = "Value")
+```
+
+```{r}
+head(FedFundsRateData)
+```
+
+

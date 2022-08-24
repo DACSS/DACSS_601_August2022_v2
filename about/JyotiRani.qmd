@@ -1,0 +1,45 @@
+---
+title: "JyotiRani"
+image: images/JyotiRani.jpg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/JyotiRani.jpg
+  links: 
+    - icon: github
+      text: Github
+      href: https://github.com/jyotirani28
+---
+
+## Education/Work Background
+
+Master in Computer Applications Sikkim Manipal University
+
+## R experience
+
+Learning the Basics
+
+## Research interests
+
+Financial Modelling, Trend analysis, Market analysis, Dataq Governance and Management
+
+## Hometown
+
+Jamshedpur, Jharkhand, India
+
+## Hobbies
+
+Gardening, Travelling, Baking
+
+## Funfact
+
+## Love chatting with friends
+
+```{r}
+
+```
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------

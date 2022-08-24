@@ -36,8 +36,7 @@ Today's challenge is to:
 2)  anticipate the shape of pivoted data, and
 3)  pivot the data into tidy format using `pivot_longer`
 
-:::{.panel-tabset}
-
+::: panel-tabset
 ## Example
 
 The first step in pivoting the data is to try to come up with a concrete vision of what the end product *should* look like - that way you will know whether or not your pivoting was successful.
@@ -106,11 +105,10 @@ animal_weight
 
 Because the animal weights data is in tabular format, it is easy to see that $n=9$ regions (categories or cases) in the original data, and that there are $k=16$ types of livestock (categories or columns). Therefore, we expect the pivoted dataset to have $9 * 16$ = `r 9*16` rows and 3 columns (region, animal type, and animal weight.)
 
-:::{.callout-tip}
+::: callout-tip
 ## inline R code
 
-If you check out the code above, you will see that I didn't use a calculator to figure out $9*16=144$, but used inline r code like this: `` `r
-9*16` ``.
+If you check out the code above, you will see that I didn't use a calculator to figure out $9*16=144$, but used inline r code like this: `` `r 9*16` ``.
 :::
 
 ### Pivot the data
@@ -125,28 +123,24 @@ animal_weight_longer<-pivot_longer(animal_weight,
 animal_weight_longer
 ```
 
-
 Yes, it looks like we ended up with 144 rows and 3 columns, exactly as expected!
 
-:::{.callout-note}
 #Go further
 
 `stringr` functions, and `separate` from `tidyr`, would be useful in helping split out additional infromation from the *Livestock* column.
-:::
 
 ## Eggs ⭐⭐/⭐⭐⭐
 
-This section covers pivoting for the organic eggs data, available in both excel and (partially cleaned) .csv format. The data reports the average price per carton paid to the farmer or producer for organic eggs (and organic chicken), reported monthly from 2004 to 20013. Average price is reported by carton type, which can vary in both size (x-large or large) and quantity (half-dozen or dozen.) 
+This section covers pivoting for the organic eggs data, available in both excel and (partially cleaned) .csv format. The data reports the average price per carton paid to the farmer or producer for organic eggs (and organic chicken), reported monthly from 2004 to 20013. Average price is reported by carton type, which can vary in both size (x-large or large) and quantity (half-dozen or dozen.)
 
 If you are using the eggs_tidy.csv, you can skip the first section as your data is in .csv format and already partially cleaned. The first section reviews data read-in and cleaning for the `organicpoultry.xls` file.
 
-:::{.panel-tabset}
-
+::: panel-tabset
 ### Read and Clean the data
 
 There are three sheets in the *organicpoultry.xls* workbook: one titled *Data*, one titled "Organic egg prices, 2004-13" and one with a similar title for chicken prices. While I can tell all of this from inspection, I can also use a ask R to return the sheet names for me.
 
-:::{.callout-tip}
+::: callout-tip
 ## Get sheet names with `excel_sheets()`
 
 Both `readxl` and `googlesheets4` have a function that can return sheet names as a vector. This is really useful if you need to parse and read multiple sheets in the same workbook.
@@ -159,11 +153,11 @@ excel_sheets("_data/organiceggpoultry.xls")
 
 While it may seem like it would be easier to read in the individual egg prices and chicken prices, the amount of formatting introduced into the second and third sheets is pretty intimidating (see the screenshot below.) There are repeated headers to remove, a *year* column to shift, and other formatting issues. Ironically, it may be easier to read in the egg data from the *Data* sheet, with a skip of 5 (to skip the table title, etc), custom column names designed for pivoting to two categories (final section) and only reading in columns B to F.
 
-![Organic Poultry Data](solution_images/organicpoultrydata.png)
+![Organic Poultry Data](solution_images/organicpoultrydata.png){alt="Organic Poultry Data"}
 
-![Organic Poultry Egg Prices](solution_images/organicpoultry.png)
+![Organic Poultry Egg Prices](solution_images/organicpoultry.png){alt="Organic Poultry Egg Prices"}
 
-:::{.callout-tip}
+::: callout-tip
 ## Hard-coding Table Formats
 
 Formatted excel tables are a horrible data source, but may be the only way to get some data. If table formatting is consistent from year to year, hard-coding can be an acceptable approach. If table format is inconsistent, then more powerful tools are needed.
@@ -180,6 +174,7 @@ eggs_orig<-read_excel("_data/organiceggpoultry.xls",
                  )
 eggs_orig
 ```
+
 Sometimes there are notes in the first column of tables, so lets make sure that isn't an issue.
 
 ```{r}
@@ -198,13 +193,13 @@ eggs<-eggs_orig%>%
 
 One final step is needed to split the year variable away from the month. You will often need to separate out two variables from a single column when working with published tables, and also need to use the equivalent of dragging to fill in a normal spreadsheet. Lets look at the easiest way to fix both of these issues.
 
-:::{.callout-tip}
+::: callout-tip
 ## tidyr::separate()
 
 Separate is a fantastic function for working with strings. It will break a string column into multiple new (named) columns, at the indicated separator character (e.g., "," or " "). The old variable is automatically removed, but can be left.
 :::
 
-:::{.callout-tip}
+::: callout-tip
 ## tidyr::fill()
 
 Fill works like dragging to fill functionality in a spreadsheet. You can choose the direction to fill.
@@ -220,7 +215,7 @@ eggs
 
 ### Pivot Type Only
 
-Looking at the data, we can see that each of the original 120 *cases* consist of a year-month combination (e.g., January 2004), while the *values* are the average price (in cents) of four different types of eggs (e.g., large_half_dozen, large_dozen, etc) So to tidy our data, we should create a matrix with a year-month-eggType combination, with a single price *value* for each case. 
+Looking at the data, we can see that each of the original 120 *cases* consist of a year-month combination (e.g., January 2004), while the *values* are the average price (in cents) of four different types of eggs (e.g., large_half_dozen, large_dozen, etc) So to tidy our data, we should create a matrix with a year-month-eggType combination, with a single price *value* for each case.
 
 To do this (and make our data easier to graph and analyze), we can pivot longer - changing our data from 120 rows with 6 variables (2 grouping and 4 values) to 480 rows of 4 variables (with 3 grouping variables and a single *price* value).
 
@@ -234,13 +229,13 @@ eggs_long<-eggs%>%
 eggs_long
 ```
 
-Well, that was super easy. But wait, what if you are interested in egg *size* - you want to know how much more expensive extra-large eggs are compared to large eggs. Right now, that will be annoying, as you will have to keep sorting out the egg *quantity* - whether the price is for a half_dozen or a dozen eggs. 
+Well, that was super easy. But wait, what if you are interested in egg *size* - you want to know how much more expensive extra-large eggs are compared to large eggs. Right now, that will be annoying, as you will have to keep sorting out the egg *quantity* - whether the price is for a half_dozen or a dozen eggs.
 
 ### Pivot Size and Quantity
 
-Wouldn't it be nice if we had two new columns - *size* and *quantity* - in place of the existing *eggType* categorical variable? In other words, to have fully tidy data, we would need 4 grouping variables (year, month, size, and quantity) and the same value (price). So, we want to use pivot longer, but we will be adding **two** new category variables (for a total of 4) and this will cut the number of rows in half (to 240). 
+Wouldn't it be nice if we had two new columns - *size* and *quantity* - in place of the existing *eggType* categorical variable? In other words, to have fully tidy data, we would need 4 grouping variables (year, month, size, and quantity) and the same value (price). So, we want to use pivot longer, but we will be adding **two** new category variables (for a total of 4) and this will cut the number of rows in half (to 240).
 
-How can we let R know what we want it to do?? Thankfully, we created pretty systematic column names for egg types in our original data, following the general pattern: `size-quantity`. Maybe we can use this to our advantage? Working with patterns in the `names_sep` option of the pivot functions makes it easier than you would think to pivot four existing columns into two new columns. 
+How can we let R know what we want it to do?? Thankfully, we created pretty systematic column names for egg types in our original data, following the general pattern: `size-quantity`. Maybe we can use this to our advantage? Working with patterns in the `names_sep` option of the pivot functions makes it easier than you would think to pivot four existing columns into two new columns.
 
 ```{r}
 #| label: eggs7
@@ -252,36 +247,29 @@ eggs_long<- eggs%>%
   )
 eggs_long
 ```
-
 :::
 
 ## Australian Marriage Ballot ⭐⭐⭐
 
 This is another tabular data source published by the [Australian Bureau of Statistics](https://www.abs.gov.au/) that requires a decent amount of cleaning. In 2017, Australia conducted a postal survey to gauge citizens' opinions towards same sex marriage: "Should the law be changed to allow same-sex couples to marry?" All Australian citizens are required to vote in elections, so citizens could respond in one of four ways: vote yes, vote no, vote in an unclear way, or fail to vote. (See the "Explanatory Notes" sheet for more details.)
 
-The provided table includes estimates of the proportion of citizens choosing each of the four options, aggregated by Federal Electoral District, which are nested within one of 8 overarching Electoral Divisions. Here is a quick image showing the original table format. 
+The provided table includes estimates of the proportion of citizens choosing each of the four options, aggregated by Federal Electoral District, which are nested within one of 8 overarching Electoral Divisions. Here is a quick image showing the original table format.
 
-![Australian Marriage Data](solution_images/australiandata.png)
+![Australian Marriage Data](solution_images/australiandata.png){alt="Australian Marriage Data"}
+
 ### Identify desired data structure
 
-Inspection reveals several critical issues to address:
-  - Typical long header (skip = 7)
-  - No single row with variable names
-  - Two redundant values (count and percentage - percentage is easy to recover from complete count data)
-  - Total columns that are redundant (remove)
-  - The sum of "Yes" and "No" votes appears to be redundant with Response Clear in columns I and J
-  - District and Division are in the same column
+Inspection reveals several critical issues to address: - Typical long header (skip = 7) - No single row with variable names - Two redundant values (count and percentage - percentage is easy to recover from complete count data) - Total columns that are redundant (remove) - The sum of "Yes" and "No" votes appears to be redundant with Response Clear in columns I and J - District and Division are in the same column
 
 In this example, we are going to identify the desired structure early in the process, because clever naming of variables makes it much easier to use pivot functions. We will skip reading in redundant data (proportions and "totals" columns), and then can identify four potentially distinct pieces of information. Three grouping variables: *Division* (in column 1), *District* (also in column 1), and citizen *Response* (yes, no, unclear, and non-response), plus one value: aggregated response *Count*.
 
 Our basic data reading and cleaning process should therefore follow these steps:
-  
-  1. Read in data, skipping unneeded columns and renaming variables
-  2. Create *Division* and *District* variables using `separate()` and `fill()`
-  3. pivot_longer() four response variables into 2 new *Response* and *Count* variables (double the number of rows)
 
-:::{.panel-tabset}
+1.  Read in data, skipping unneeded columns and renaming variables
+2.  Create *Division* and *District* variables using `separate()` and `fill()`
+3.  pivot_longer() four response variables into 2 new *Response* and *Count* variables (double the number of rows)
 
+::: panel-tabset
 ### Read Data
 
 It is best to confine serious hard-coding to the initial data read in step, to make it easy to locate and make changes or replicate in the future. So, we will use a combination of tools introduced earlier to read and reformat the data: `skip` and col_names to read in the data, `select` to get rid of unneeded columns, and `filter` to get rid of unneeded rows. We also use the `drop_na` function to filter unwanted rows.
@@ -316,7 +304,7 @@ vote<- filter(vote,!str_detect(District, "Division|Australia"))
 vote
 ```
 
-### Pivot_longer to tidy format
+### Pivot_longer
 
 Supposed we wanted to create a stacked bar chart to compare the % who votes Yes to the people who either said No or didn't vote. Or if we wanted to use division level characteristics to predict the proortion of people voting in a specific way? In both cases, we would need tidy data, which requires us to pivot longer into the original (aggregated) data format: Division, District, Response, Count. We should end up with 600 rows and 4 columns.
 
@@ -333,34 +321,36 @@ vote
 ```
 :::
 
-## USA Households  ⭐⭐⭐⭐
+## USA Households ⭐⭐⭐⭐
 
-The excel workbook "USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019" is clearly a table of census-type household data (e.g., Current Population Study or CPS, American Community Study or ACS, etc.) Row 3 of the workbook provides [a link to more details about the origin of the data used to produce the table.](https://www2.census.gov/programs-surveys/cps/techdocs/cpsmar20.pdf) 
+The excel workbook "USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019" is clearly a table of census-type household data (e.g., Current Population Study or CPS, American Community Study or ACS, etc.) Row 3 of the workbook provides [a link to more details about the origin of the data used to produce the table.](https://www2.census.gov/programs-surveys/cps/techdocs/cpsmar20.pdf)
 
-The cases in this example are essentially year-identity groups, where I use the term identity to refer to the wide range of ways that the census can cluster racial and identity identity. While there are 12 categories in the data, many of these overlap and/or are not available in specific years. For example, one category is "All Races", and it overlaps with all other categories but cannot be easily eliminated because it isn't clear how 
+The cases in this example are essentially year-identity groups, where I use the term identity to refer to the wide range of ways that the census can cluster racial and identity identity. While there are 12 categories in the data, many of these overlap and/or are not available in specific years. For example, one category is "All Races", and it overlaps with all other categories but cannot be easily eliminated because it isn't clear how
 
-![Excel Workbook Screenshot](solution_images/us_hholds.png)
+![Excel Workbook Screenshot](solution_images/us_hholds.png){alt="Excel Workbook Screenshot"}
 
 ### Identify desired data structure
 
-Inspection of the excel workbook reveals several critical features of the data. 
-  - column names (of a sort) are in rows 4 and 5 (skip=5 and rename)
-  - first column includes *year* and *race/hispanic origin* households
-  - first column appears to have notes of some sort (remove notes)
-  - there are end notes starting in row 358 (n_max = 352)
-  - "Total" column appears to be redundant proportion info
+Inspection of the excel workbook reveals several critical features of the data.
 
-The data appears to have two grouping variables (*year* and *identityity*), plus several values:
+-   column names (of a sort) are in rows 4 and 5 (skip=5 and rename)
+-   first column includes *year* and *race/hispanic origin* households
+-   first column appears to have notes of some sort (remove notes)
+-   there are end notes starting in row 358 (n_max = 352)
+-   "Total" column appears to be redundant proportion info
 
-  - a count of number of households
-  - median and mean income (and associated margin of error)
-  - proportion of households with hhold income in one of 9 designated ranges or brackets
-  
-The final data should probably 
+The data appears to have two grouping variables (*year* and *identity*), plus several values:
 
-:::{.panel-tabset}
+-   a count of number of households
+-   median and mean income (and associated margin of error)
+-   proportion of households with hhold income in one of 9 designated ranges or brackets
 
-### Read and clean the data
+The final data should potentially be split into two data tables - one with averages for a group of households, the other with proportions information based on income brackets. There is less clarity about how to handle the potential overlap between *race* and *hispanic* group identity information.
+
+::: panel-tabset
+### Read data
+
+To make it easy to pivot, we will read in income brackets cleanly, along with clear variable names for the estimated average (and standard error) of hhold income for each designated identity group.
 
 ```{r}
 #| label: hh1
@@ -375,20 +365,21 @@ income_brackets <- c(i1 = "Under $15,000",
                      i9 = "$200,000 and over")
 
 ushh_orig <- read_excel("_data/USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx",
-                        skip=5,
-                        n_max = 352,
-                        col_names = c("year", "hholds", "del", 
-                                str_c("income",1:9,sep="_i"),
-                               "median_inc", "median_se", "mean_inc","mean_se"))%>%
+         skip=5,
+         n_max = 352,
+         col_names = c("year", "hholds", "del",
+                       str_c("income",1:9,sep="_i"),
+                       "median_inc", "median_se", 
+                       "mean_inc","mean_se"))%>%
   select(-del)
-   
+  ushh_orig 
 ```
 
-### Clean and separate *year" column
+### Clean and separate *year*
 
-The current year column still has identityity information on the hholds, as well as notes that need to be removed. Because identityity labels have spaces, we will need to remove those first before our typical approach to removing notes using separate is going to work. 
+The current year column has both year and identity information on the hholds, as well as notes that need to be removed. Because identity labels have spaces, we will need to remove those first before our typical approach to removing notes using separate is going to work.
 
-:::{.callout-tip}
+::: callout-tip
 ## Regex and Regexr
 
 [Regular expressions](https://stringr.tidyverse.org/articles/regular-expressions.html) are a critical tool for messy, real world data where you will need to search, replace, and extract information from string variables. Learning regex is tough, but [Regexer](https://regexr.com/) makes it much easier!
@@ -399,9 +390,11 @@ ushh_orig%>%
   filter(str_detect(year, "[[:alpha:]]"))
 ```
 
-Now that we know how to use regular expressions to find the household identityity information, we can quickly separate out the identityity information from the years, then do the standard fill prior to removing the unneeded category rows. 
+Now that we know how to use regular expressions to find the household identity information, we can quickly separate out the identity information from the years, then do the standard fill prior to removing the unneeded category rows.
 
-Once that is done, we can use separate to remove the notes from the year column. Removing notes from the *identityity* column is a bit trickier, and requires regex to find cases where there is a space then at least one numeric digit
+Once that is done, we can use separate to remove the notes from the year column. Removing notes from the *identity* column is a bit trickier, and requires regex to find cases where there is a space then at least one numeric digit. The notes are important for helping orient yourself to the data, and if I were taking my time, I would document the relevant notes in the text at this point, to remind myself if I need to remember details about how the categories were created and/or why they vary over time.
+
+Note that several variables are read in as non-numeric, so I'm fixing them in a single statement!
 
 ```{r}
 ushh_id<-ushh_orig%>%
@@ -415,11 +408,14 @@ ushh_id<-ushh_orig%>%
 ushh_id<-ushh_id%>%
   separate(year, into=c("year", "delete"), sep=" ")%>%
   mutate(identity = str_remove(identity, " [0-9]+"),
-         year = parse_number(year))%>%
+         across(any_of(c("hholds", "mean_inc", "mean_se", "year")), 
+                parse_number))%>%
   select(-delete)
+
+ushh_id
 ```
 
-### Sanity check for *identity*
+### Sanity check *identity*
 
 Even from the detailed notes, it is difficult to fully understand what is going on with the identity variable, and whether all of the values are available in every year. A simple sanity check is to pick out several years mentioned in the notes and see if the number of households are available for all categories, and also check to see if there are specific categories that add up to the "all races" category.
 
@@ -431,23 +427,72 @@ ushh_id%>%
 
 ```
 
-Based on these examples, we can now confirm that the survey did not include a question about Hispanic background prior to 1092^28^, that only "White" and "Black" (and not "Asian") were systematically recorded prior to 2002, and that other mentioned dates of changes are not relevant to the categories represented in the data. Additionally, we can see from the example years that it would be reasonable to create a consistent time series that collapses the "White" and "White Alone" and "Black" and "Black A labels. 
+Based on these examples, we can now confirm that the survey did not include a question about Hispanic background prior to 1972^28^, that only "White" and "Black" (and not "Asian") were systematically recorded prior to 2002, and that other mentioned dates of changes are not relevant to the categories represented in the data. Additionally, we can see from the example years that it would be reasonable to create a consistent time series that collapses the "White" and "White Alone" and "Black" and "Black Alone labels.
 
-Based on this exploratory data, one reasonable option that will streamline future analysis is to create two new variables "race" and "hispanic" as follows. 
-:::{.callout-tip}
+While it might appear plausible to create distinct variables for *race* and *hispanic,* there is an instructive note in the worksheet that suggests this is probably not possible:
+
+> Because Hispanics may be any race, data in this report for Hispanics overlap with data for racial groups. Hispanic origin was reported by 15.6 percent of White householders who reported only one race, 5.0 percent of Black householders who reported only one race, and 2.5 percent of Asian householders who reported only one race. Data users should exercise caution when interpreting aggregate results for the Hispanic population and for race groups because these populations consist of many distinct groups that differ in socioeconomic characteristics, culture, and recency of immigration. Data were first collected for Hispanics in 1972.
+>
+> `r tufte::quote_footer('--- Note 28')`
+
+In fact, when we try to get the various hhouse number estimates to add up to the TOTAL households, it is nearly impossible to do so. For now, the most expeditious and likely acceptable approach may be to simply keep a reasonable set of categories that minimizes category overlaps.
+
+::: callout-tip
 ## Keep your original data
 
 Original data that has been carefully documented can be overly detailed and broken into categories that make systematic analysis difficult. When you simplify data categories for exploratory work, keep the original data so that you can reintroduce it at the appropriate point.
 :::
 
-```{r, eval=FALSE}
+```{r}
 ushh <-ushh_id%>%
-  mutate(id = case_when(
-    identity %in% c("White", "White Alone") ~ "race_white"
-  ))
+  mutate(gp_identity = case_when(
+   identity %in% c("BLACK", "BLACK ALONE") ~ "gp_black",
+    identity %in% c("ASIAN ALONE OR IN COMBINATION",
+                  "ASIAN AND PACIFIC ISLANDER") ~ "gp_asian",
+    identity %in% c("WHITE, NOT HISPANIC", 
+                    "WHITE ALONE, NOT HISPANIC") ~ "gp_white",
+    identity %in% c("HISPANIC (ANY RACE)") ~ "gp_hisp",
+    identity %in% c("ALL RACES") ~ "gp_all"
+  ))%>%
+  filter(!is.na(gp_identity))%>%
+  group_by(year, gp_identity)%>%
+  summarise(across(c(starts_with("inc"),starts_with("me"),
+                     "hholds"), 
+                   ~sum(.x, na.rm=TRUE)))%>%
+  ungroup()
 
+ushh
 ```
 
+```{r}
+ushh%>%
+  filter(year%in%c(1972, 2001, 2002))%>%
+  select(gp_identity, hholds, year)%>%
+  pivot_wider(values_from=hholds, names_from=year)
+```
+### Split the data
 
+We have identified reasonable groups where the parts approximately add up to the whole. They are not perfect, but not horrible given the incomplete and overlapping categories. To get much better, we would need to work with the original ACS or IPUMS microdata.
 
+Now, there may be times we need to split the data - for example, if we want to graph the income brackets as part of the total households. Lets see if we can split and pivot the data.
+
+```{r}
+ushh_brackets <-ushh%>%
+  ungroup()%>%
+  select(year, gp_identity, hholds, starts_with("income"))%>%
+  pivot_longer(cols=starts_with("income"),
+               names_prefix= "income_",
+               names_to = "income_bracket",
+               values_to = "percent")%>%
+  mutate(hholds_bracket = round(hholds*(percent/100)),
+         income_bracket = recode(income_bracket,!!!income_brackets))
+
+ushh_brackets
+```
+:::
+
+```{}
+```
+
+### 
 :::
