@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Roy Yoon">
+<meta name="dcterms.date" content="2022-08-22">
+<meta name="description" content="Introduction to Visualization">
+
+<title>- Challenge 5 Instructions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="../site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="../site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<meta name="twitter:title" content="- Challenge 5 Instructions">
+<meta name="twitter:description" content="Introduction to Visualization">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#challenge-overview" id="toc-challenge-overview" class="nav-link active" data-scroll-target="#challenge-overview">Challenge Overview</a></li>
+  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link" data-scroll-target="#read-in-data">Read in data</a>
+  <ul class="collapse">
+  <li><a href="#briefly-describe-the-data" id="toc-briefly-describe-the-data" class="nav-link" data-scroll-target="#briefly-describe-the-data">Briefly describe the data</a></li>
+  </ul></li>
+  <li><a href="#data-arranged-by-sodium-level" id="toc-data-arranged-by-sodium-level" class="nav-link" data-scroll-target="#data-arranged-by-sodium-level">Data arranged by Sodium level</a></li>
+  <li><a href="#data-arranged-by-sugar-level" id="toc-data-arranged-by-sugar-level" class="nav-link" data-scroll-target="#data-arranged-by-sugar-level">Data arranged by Sugar level</a></li>
+  <li><a href="#univariate-visualizations" id="toc-univariate-visualizations" class="nav-link" data-scroll-target="#univariate-visualizations">Univariate Visualizations</a></li>
+  <li><a href="#bivariate-visualizations" id="toc-bivariate-visualizations" class="nav-link" data-scroll-target="#bivariate-visualizations">Bivariate Visualization(s)</a></li>
+  <li><a href="#observing-realtions-between-sodium-sugar-and-cerealbrand" id="toc-observing-realtions-between-sodium-sugar-and-cerealbrand" class="nav-link" data-scroll-target="#observing-realtions-between-sodium-sugar-and-cerealbrand">Observing realtions between Sodium, Sugar, and Cereal(brand)</a></li>
+  <li><a href="#exploration" id="toc-exploration" class="nav-link" data-scroll-target="#exploration">Exploration</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Challenge 5 Instructions</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">challenge_5</div>
+    <div class="quarto-category">cereal</div>
+    <div class="quarto-category">ggplotly()</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Introduction to Visualization
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Roy Yoon </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 22, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="challenge-overview" class="level2">
+<h2 class="anchored" data-anchor-id="challenge-overview">Challenge Overview</h2>
+<p>Today’s challenge is to:</p>
+<ol type="1">
+<li>read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)</li>
+<li>tidy data (as needed, including sanity checks)</li>
+<li>mutate variables as needed (including sanity checks)</li>
+<li>create at least two univariate visualizations</li>
+</ol>
+<ul>
+<li>try to make them “publication” ready</li>
+<li>Explain why you choose the specific graph type</li>
+</ul>
+<ol start="5" type="1">
+<li>Create at least one bivariate visualization</li>
+</ol>
+<ul>
+<li>try to make them “publication” ready</li>
+<li>Explain why you choose the specific graph type</li>
+</ul>
+</section>
+<section id="read-in-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-data">Read in data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cereal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/cereal.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="briefly-describe-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="briefly-describe-the-data">Briefly describe the data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cereal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  Cereal              Sodium Sugar Type 
+  &lt;chr&gt;                &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+1 Frosted Mini Wheats      0    11 A    
+2 Raisin Bran            340    18 A    
+3 All Bran                70     5 A    
+4 Apple Jacks            140    14 C    
+5 Captain Crunch         200    12 C    
+6 Cheerios               180     1 C    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(cereal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20  4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cereal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Cereal" "Sodium" "Sugar"  "Type"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cereal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Cereal              Sodium          Sugar           Type          
+ Length:20          Min.   :  0.0   Min.   : 0.00   Length:20         
+ Class :character   1st Qu.:137.5   1st Qu.: 4.00   Class :character  
+ Mode  :character   Median :180.0   Median : 9.50   Mode  :character  
+                    Mean   :167.0   Mean   : 8.75                     
+                    3rd Qu.:202.5   3rd Qu.:12.50                     
+                    Max.   :340.0   Max.   :18.00                     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cereal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+   Cereal                Sodium Sugar Type 
+   &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+ 1 Frosted Mini Wheats        0    11 A    
+ 2 Raisin Bran              340    18 A    
+ 3 All Bran                  70     5 A    
+ 4 Apple Jacks              140    14 C    
+ 5 Captain Crunch           200    12 C    
+ 6 Cheerios                 180     1 C    
+ 7 Cinnamon Toast Crunch    210    10 C    
+ 8 Crackling Oat Bran       150    16 A    
+ 9 Fiber One                100     0 A    
+10 Frosted Flakes           130    12 C    
+11 Froot Loops              140    14 C    
+12 Honey Bunches of Oats    180     7 A    
+13 Honey Nut Cheerios       190     9 C    
+14 Life                     160     6 C    
+15 Rice Krispies            290     3 C    
+16 Honey Smacks              50    15 A    
+17 Special K                220     4 A    
+18 Wheaties                 180     4 A    
+19 Corn Flakes              200     3 A    
+20 Honeycomb                210    11 C    </code></pre>
+</div>
+</div>
+<p>The cereal data set contains tabular-style data, with variables representing the cereal name, sodium level, sugar level, and type(A or C) for 20 brands of cereal.</p>
+</section>
+</section>
+<section id="data-arranged-by-sodium-level" class="level2">
+<h2 class="anchored" data-anchor-id="data-arranged-by-sodium-level">Data arranged by Sodium level</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>arranged_sodium <span class="ot">&lt;-</span> cereal <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(cereal, Sodium)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>arranged_sodium</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+   Cereal                Sodium Sugar Type 
+   &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+ 1 All Bran                  70     5 A    
+ 2 Apple Jacks              140    14 C    
+ 3 Captain Crunch           200    12 C    
+ 4 Cheerios                 180     1 C    
+ 5 Cinnamon Toast Crunch    210    10 C    
+ 6 Corn Flakes              200     3 A    
+ 7 Crackling Oat Bran       150    16 A    
+ 8 Fiber One                100     0 A    
+ 9 Froot Loops              140    14 C    
+10 Frosted Flakes           130    12 C    
+11 Frosted Mini Wheats        0    11 A    
+12 Honey Bunches of Oats    180     7 A    
+13 Honey Nut Cheerios       190     9 C    
+14 Honey Smacks              50    15 A    
+15 Honeycomb                210    11 C    
+16 Life                     160     6 C    
+17 Raisin Bran              340    18 A    
+18 Rice Krispies            290     3 C    
+19 Special K                220     4 A    
+20 Wheaties                 180     4 A    </code></pre>
+</div>
+</div>
+</section>
+<section id="data-arranged-by-sugar-level" class="level2">
+<h2 class="anchored" data-anchor-id="data-arranged-by-sugar-level">Data arranged by Sugar level</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>arranged_sugar <span class="ot">&lt;-</span> cereal <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(cereal, Sugar)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>arranged_sugar </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+   Cereal                Sodium Sugar Type 
+   &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+ 1 All Bran                  70     5 A    
+ 2 Apple Jacks              140    14 C    
+ 3 Captain Crunch           200    12 C    
+ 4 Cheerios                 180     1 C    
+ 5 Cinnamon Toast Crunch    210    10 C    
+ 6 Corn Flakes              200     3 A    
+ 7 Crackling Oat Bran       150    16 A    
+ 8 Fiber One                100     0 A    
+ 9 Froot Loops              140    14 C    
+10 Frosted Flakes           130    12 C    
+11 Frosted Mini Wheats        0    11 A    
+12 Honey Bunches of Oats    180     7 A    
+13 Honey Nut Cheerios       190     9 C    
+14 Honey Smacks              50    15 A    
+15 Honeycomb                210    11 C    
+16 Life                     160     6 C    
+17 Raisin Bran              340    18 A    
+18 Rice Krispies            290     3 C    
+19 Special K                220     4 A    
+20 Wheaties                 180     4 A    </code></pre>
+</div>
+</div>
+</section>
+<section id="univariate-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="univariate-visualizations">Univariate Visualizations</h2>
+<p>Plan to show data arranged by Sodium level and data arranged by Sugar level</p>
+</section>
+<section id="bivariate-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="bivariate-visualizations">Bivariate Visualization(s)</h2>
+</section>
+<section id="observing-realtions-between-sodium-sugar-and-cerealbrand" class="level2">
+<h2 class="anchored" data-anchor-id="observing-realtions-between-sodium-sugar-and-cerealbrand">Observing realtions between Sodium, Sugar, and Cereal(brand)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>brand_cereal <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> cereal, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sodium, <span class="at">y =</span> Sugar)) <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Cereal)) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I thought that this visualization would be interesting to make as it shows the relation between the sodium levels and sugar levels of different cereal brands. I would like to continue working on better visualizing the color distinctions between the cereal brands and to spread out the x and y increments.</p>
+</section>
+<section id="exploration" class="level2">
+<h2 class="anchored" data-anchor-id="exploration">Exploration</h2>
+<p>I found that if you use ggplotly(), you are able to build an interactive visualization. This can resolve the issue of determining which color corresponds to which color as when you hover over a point the information about a specific cereal is readily available.To make ggplotly() available, I installed packages plotly and gapminder.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(brand_cereal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-914715aac157d607af72" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-914715aac157d607af72">{"x":{"data":[{"x":[70],"y":[5],"text":"Sodium:  70<br />Sugar:  5<br />Cereal: All Bran","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"All Bran","legendgroup":"All Bran","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[140],"y":[14],"text":"Sodium: 140<br />Sugar: 14<br />Cereal: Apple Jacks","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(234,131,49,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(234,131,49,1)"}},"hoveron":"points","name":"Apple Jacks","legendgroup":"Apple Jacks","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[200],"y":[12],"text":"Sodium: 200<br />Sugar: 12<br />Cereal: Captain Crunch","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(216,144,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(216,144,0,1)"}},"hoveron":"points","name":"Captain Crunch","legendgroup":"Captain Crunch","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[180],"y":[1],"text":"Sodium: 180<br />Sugar:  1<br />Cereal: Cheerios","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(192,155,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(192,155,0,1)"}},"hoveron":"points","name":"Cheerios","legendgroup":"Cheerios","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[210],"y":[10],"text":"Sodium: 210<br />Sugar: 10<br />Cereal: Cinnamon Toast Crunch","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(163,165,0,1)"}},"hoveron":"points","name":"Cinnamon Toast Crunch","legendgroup":"Cinnamon Toast Crunch","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[200],"y":[3],"text":"Sodium: 200<br />Sugar:  3<br />Cereal: Corn Flakes","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(124,174,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(124,174,0,1)"}},"hoveron":"points","name":"Corn Flakes","legendgroup":"Corn Flakes","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[150],"y":[16],"text":"Sodium: 150<br />Sugar: 16<br />Cereal: Crackling Oat Bran","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(57,182,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(57,182,0,1)"}},"hoveron":"points","name":"Crackling Oat Bran","legendgroup":"Crackling Oat Bran","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[100],"y":[0],"text":"Sodium: 100<br />Sugar:  0<br />Cereal: Fiber One","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,187,78,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,187,78,1)"}},"hoveron":"points","name":"Fiber One","legendgroup":"Fiber One","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[140],"y":[14],"text":"Sodium: 140<br />Sugar: 14<br />Cereal: Froot Loops","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,125,1)"}},"hoveron":"points","name":"Froot Loops","legendgroup":"Froot Loops","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[130],"y":[12],"text":"Sodium: 130<br />Sugar: 12<br />Cereal: Frosted Flakes","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,193,163,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,193,163,1)"}},"hoveron":"points","name":"Frosted Flakes","legendgroup":"Frosted Flakes","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0],"y":[11],"text":"Sodium:   0<br />Sugar: 11<br />Cereal: Frosted Mini Wheats","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"hoveron":"points","name":"Frosted Mini Wheats","legendgroup":"Frosted Mini Wheats","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[180],"y":[7],"text":"Sodium: 180<br />Sugar:  7<br />Cereal: Honey Bunches of Oats","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,224,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,186,224,1)"}},"hoveron":"points","name":"Honey Bunches of Oats","legendgroup":"Honey Bunches of Oats","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[190],"y":[9],"text":"Sodium: 190<br />Sugar:  9<br />Cereal: Honey Nut Cheerios","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,176,246,1)"}},"hoveron":"points","name":"Honey Nut Cheerios","legendgroup":"Honey Nut Cheerios","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[50],"y":[15],"text":"Sodium:  50<br />Sugar: 15<br />Cereal: Honey Smacks","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(53,162,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(53,162,255,1)"}},"hoveron":"points","name":"Honey Smacks","legendgroup":"Honey Smacks","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[210],"y":[11],"text":"Sodium: 210<br />Sugar: 11<br />Cereal: Honeycomb","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(149,144,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(149,144,255,1)"}},"hoveron":"points","name":"Honeycomb","legendgroup":"Honeycomb","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[160],"y":[6],"text":"Sodium: 160<br />Sugar:  6<br />Cereal: Life","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(199,124,255,1)"}},"hoveron":"points","name":"Life","legendgroup":"Life","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[340],"y":[18],"text":"Sodium: 340<br />Sugar: 18<br />Cereal: Raisin Bran","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(231,107,243,1)"}},"hoveron":"points","name":"Raisin Bran","legendgroup":"Raisin Bran","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[290],"y":[3],"text":"Sodium: 290<br />Sugar:  3<br />Cereal: Rice Krispies","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(250,98,219,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(250,98,219,1)"}},"hoveron":"points","name":"Rice Krispies","legendgroup":"Rice Krispies","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[220],"y":[4],"text":"Sodium: 220<br />Sugar:  4<br />Cereal: Special K","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,98,188,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,98,188,1)"}},"hoveron":"points","name":"Special K","legendgroup":"Special K","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[180],"y":[4],"text":"Sodium: 180<br />Sugar:  4<br />Cereal: Wheaties","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,106,152,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,106,152,1)"}},"hoveron":"points","name":"Wheaties","legendgroup":"Wheaties","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,4.30379746835443,8.60759493670886,12.9113924050633,17.2151898734177,21.5189873417722,25.8227848101266,30.126582278481,34.4303797468354,38.7341772151899,43.0379746835443,47.3417721518987,51.6455696202532,55.9493670886076,60.253164556962,64.5569620253165,68.8607594936709,73.1645569620253,77.4683544303797,81.7721518987342,86.0759493670886,90.379746835443,94.6835443037975,98.9873417721519,103.291139240506,107.594936708861,111.898734177215,116.20253164557,120.506329113924,124.810126582278,129.113924050633,133.417721518987,137.721518987342,142.025316455696,146.329113924051,150.632911392405,154.936708860759,159.240506329114,163.544303797468,167.848101265823,172.151898734177,176.455696202532,180.759493670886,185.063291139241,189.367088607595,193.670886075949,197.974683544304,202.278481012658,206.582278481013,210.886075949367,215.189873417722,219.493670886076,223.79746835443,228.101265822785,232.405063291139,236.708860759494,241.012658227848,245.316455696203,249.620253164557,253.924050632911,258.227848101266,262.53164556962,266.835443037975,271.139240506329,275.443037974684,279.746835443038,284.050632911392,288.354430379747,292.658227848101,296.962025316456,301.26582278481,305.569620253165,309.873417721519,314.177215189873,318.481012658228,322.784810126582,327.088607594937,331.392405063291,335.696202531646,340],"y":[12.4042581752144,11.9482110451148,11.5190367237201,11.1162989249232,10.7395613626165,10.3883877506929,10.0623418030451,9.76098723356572,9.48388775614748,9.23060708468307,9.0007089330652,8.79375701518656,8.60931504493985,8.44694673621778,8.30621580291303,8.1866859589183,8.0879209181263,8.02738894387658,8.04652929560422,8.13908915753692,8.29639913641645,8.50978983898456,8.77059187198303,9.07013584215363,9.39975235623811,9.75077202097825,10.1145254431158,10.4823432293925,10.8455559865502,11.1954943213306,11.5234888404755,11.9358247954397,12.4494261239692,12.6099104393507,11.9361720481547,10.7161747914869,9.3426743076839,8.20842623508212,7.51812434067493,7.0533951258013,6.74379900923902,6.52516028789924,6.3352324546541,6.20561136013412,6.17495164741724,6.24764473711013,6.42808204981941,6.69875163948658,6.93986424045302,7.12098394449843,7.22830974505398,7.24804063555083,7.20443849432029,7.15330272321199,7.09935070340575,7.04666439509055,6.99932575845535,6.96141675368911,6.93701934098081,6.9302154805194,6.94508713249387,6.98571625709317,7.05618481450627,7.16057476492213,7.30296806852974,7.48744668551804,7.71809257607601,7.99898770039263,8.33421401865684,8.72785349105762,9.18398807778394,9.70669973902476,10.3000704349691,10.9681821258058,11.7151167717239,12.5449563329124,13.4617827695603,14.4696780418564,15.5727241099898,16.7750029341495],"text":["Sodium:   0.000000<br />Sugar: 12.404258","Sodium:   4.303797<br />Sugar: 11.948211","Sodium:   8.607595<br />Sugar: 11.519037","Sodium:  12.911392<br />Sugar: 11.116299","Sodium:  17.215190<br />Sugar: 10.739561","Sodium:  21.518987<br />Sugar: 10.388388","Sodium:  25.822785<br />Sugar: 10.062342","Sodium:  30.126582<br />Sugar:  9.760987","Sodium:  34.430380<br />Sugar:  9.483888","Sodium:  38.734177<br />Sugar:  9.230607","Sodium:  43.037975<br />Sugar:  9.000709","Sodium:  47.341772<br />Sugar:  8.793757","Sodium:  51.645570<br />Sugar:  8.609315","Sodium:  55.949367<br />Sugar:  8.446947","Sodium:  60.253165<br />Sugar:  8.306216","Sodium:  64.556962<br />Sugar:  8.186686","Sodium:  68.860759<br />Sugar:  8.087921","Sodium:  73.164557<br />Sugar:  8.027389","Sodium:  77.468354<br />Sugar:  8.046529","Sodium:  81.772152<br />Sugar:  8.139089","Sodium:  86.075949<br />Sugar:  8.296399","Sodium:  90.379747<br />Sugar:  8.509790","Sodium:  94.683544<br />Sugar:  8.770592","Sodium:  98.987342<br />Sugar:  9.070136","Sodium: 103.291139<br />Sugar:  9.399752","Sodium: 107.594937<br />Sugar:  9.750772","Sodium: 111.898734<br />Sugar: 10.114525","Sodium: 116.202532<br />Sugar: 10.482343","Sodium: 120.506329<br />Sugar: 10.845556","Sodium: 124.810127<br />Sugar: 11.195494","Sodium: 129.113924<br />Sugar: 11.523489","Sodium: 133.417722<br />Sugar: 11.935825","Sodium: 137.721519<br />Sugar: 12.449426","Sodium: 142.025316<br />Sugar: 12.609910","Sodium: 146.329114<br />Sugar: 11.936172","Sodium: 150.632911<br />Sugar: 10.716175","Sodium: 154.936709<br />Sugar:  9.342674","Sodium: 159.240506<br />Sugar:  8.208426","Sodium: 163.544304<br />Sugar:  7.518124","Sodium: 167.848101<br />Sugar:  7.053395","Sodium: 172.151899<br />Sugar:  6.743799","Sodium: 176.455696<br />Sugar:  6.525160","Sodium: 180.759494<br />Sugar:  6.335232","Sodium: 185.063291<br />Sugar:  6.205611","Sodium: 189.367089<br />Sugar:  6.174952","Sodium: 193.670886<br />Sugar:  6.247645","Sodium: 197.974684<br />Sugar:  6.428082","Sodium: 202.278481<br />Sugar:  6.698752","Sodium: 206.582278<br />Sugar:  6.939864","Sodium: 210.886076<br />Sugar:  7.120984","Sodium: 215.189873<br />Sugar:  7.228310","Sodium: 219.493671<br />Sugar:  7.248041","Sodium: 223.797468<br />Sugar:  7.204438","Sodium: 228.101266<br />Sugar:  7.153303","Sodium: 232.405063<br />Sugar:  7.099351","Sodium: 236.708861<br />Sugar:  7.046664","Sodium: 241.012658<br />Sugar:  6.999326","Sodium: 245.316456<br />Sugar:  6.961417","Sodium: 249.620253<br />Sugar:  6.937019","Sodium: 253.924051<br />Sugar:  6.930215","Sodium: 258.227848<br />Sugar:  6.945087","Sodium: 262.531646<br />Sugar:  6.985716","Sodium: 266.835443<br />Sugar:  7.056185","Sodium: 271.139241<br />Sugar:  7.160575","Sodium: 275.443038<br />Sugar:  7.302968","Sodium: 279.746835<br />Sugar:  7.487447","Sodium: 284.050633<br />Sugar:  7.718093","Sodium: 288.354430<br />Sugar:  7.998988","Sodium: 292.658228<br />Sugar:  8.334214","Sodium: 296.962025<br />Sugar:  8.727853","Sodium: 301.265823<br />Sugar:  9.183988","Sodium: 305.569620<br />Sugar:  9.706700","Sodium: 309.873418<br />Sugar: 10.300070","Sodium: 314.177215<br />Sugar: 10.968182","Sodium: 318.481013<br />Sugar: 11.715117","Sodium: 322.784810<br />Sugar: 12.544956","Sodium: 327.088608<br />Sugar: 13.461783","Sodium: 331.392405<br />Sugar: 14.469678","Sodium: 335.696203<br />Sugar: 15.572724","Sodium: 340.000000<br />Sugar: 16.775003"],"type":"scatter","mode":"lines","name":"fitted values","line":{"width":3.77952755905512,"color":"rgba(51,102,255,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,4.30379746835443,8.60759493670886,12.9113924050633,17.2151898734177,21.5189873417722,25.8227848101266,30.126582278481,34.4303797468354,38.7341772151899,43.0379746835443,47.3417721518987,51.6455696202532,55.9493670886076,60.253164556962,64.5569620253165,68.8607594936709,73.1645569620253,77.4683544303797,81.7721518987342,86.0759493670886,90.379746835443,94.6835443037975,98.9873417721519,103.291139240506,107.594936708861,111.898734177215,116.20253164557,120.506329113924,124.810126582278,129.113924050633,133.417721518987,137.721518987342,142.025316455696,146.329113924051,150.632911392405,154.936708860759,159.240506329114,163.544303797468,167.848101265823,172.151898734177,176.455696202532,180.759493670886,185.063291139241,189.367088607595,193.670886075949,197.974683544304,202.278481012658,206.582278481013,210.886075949367,215.189873417722,219.493670886076,223.79746835443,228.101265822785,232.405063291139,236.708860759494,241.012658227848,245.316455696203,249.620253164557,253.924050632911,258.227848101266,262.53164556962,266.835443037975,271.139240506329,275.443037974684,279.746835443038,284.050632911392,288.354430379747,292.658227848101,296.962025316456,301.26582278481,305.569620253165,309.873417721519,314.177215189873,318.481012658228,322.784810126582,327.088607594937,331.392405063291,335.696202531646,340,340,340,335.696202531646,331.392405063291,327.088607594937,322.784810126582,318.481012658228,314.177215189873,309.873417721519,305.569620253165,301.26582278481,296.962025316456,292.658227848101,288.354430379747,284.050632911392,279.746835443038,275.443037974684,271.139240506329,266.835443037975,262.53164556962,258.227848101266,253.924050632911,249.620253164557,245.316455696203,241.012658227848,236.708860759494,232.405063291139,228.101265822785,223.79746835443,219.493670886076,215.189873417722,210.886075949367,206.582278481013,202.278481012658,197.974683544304,193.670886075949,189.367088607595,185.063291139241,180.759493670886,176.455696202532,172.151898734177,167.848101265823,163.544303797468,159.240506329114,154.936708860759,150.632911392405,146.329113924051,142.025316455696,137.721518987342,133.417721518987,129.113924050633,124.810126582278,120.506329113924,116.20253164557,111.898734177215,107.594936708861,103.291139240506,98.9873417721519,94.6835443037975,90.379746835443,86.0759493670886,81.7721518987342,77.4683544303797,73.1645569620253,68.8607594936709,64.5569620253165,60.253164556962,55.9493670886076,51.6455696202532,47.3417721518987,43.0379746835443,38.7341772151899,34.4303797468354,30.126582278481,25.8227848101266,21.5189873417722,17.2151898734177,12.9113924050633,8.60759493670886,4.30379746835443,0,0],"y":[2.35318623904755,2.7406292053735,3.06254024150557,3.31677175298277,3.50192981555689,3.61799694304934,3.66700136219989,3.65355387305787,3.58503919765197,3.47132207218274,3.32399998452642,3.15540728453332,2.97764060713885,2.801810445742,2.63759651060375,2.49307718229362,2.37475204203805,2.31882631989408,2.39833259768434,2.5956834339454,2.88501174407068,3.23880559791195,3.63023246823433,4.03562322063243,4.43691333484091,4.82344900619343,5.19248278447619,5.54807151213158,5.89868957649293,6.25417789022124,6.6224310494023,7.10994189312484,7.64296933379543,7.8327837951839,7.35007449117353,6.2379458002627,4.72138210542983,3.32584658883234,2.58149869424471,2.3048385363585,2.19820673350215,2.09681761160751,2.01889445882034,2.06021918346054,2.23043687818942,2.49116225772697,2.78285965113348,2.98748557025885,2.97720873667867,2.84763828969002,2.65455469010945,2.41353649071507,2.14311339283041,1.88166450418758,1.63531819828377,1.40866895163464,1.20565773995441,1.02987133891943,0.884727893697388,0.773580927156332,0.699760989825593,0.666565879532434,0.677205004950642,0.734699903494543,0.841740554352493,1.00049583252744,1.21237661706963,1.4777526984581,1.79563144692272,2.16331951031279,2.57611060893619,3.02707204318208,3.50703188629641,4.00487828679953,4.50824270016451,5.0045309793415,5.48211484117568,5.9313843461441,6.34538126347082,6.71989325635253,6.71989325635253,26.8301126119465,24.8000669565088,23.0079717375687,21.4414506979449,20.0853816864834,18.9219908432833,17.931485964812,17.0931089836417,16.3863274348674,15.7918655466317,15.2923874718025,14.872796590391,14.5202227023271,14.2238085350824,13.9743975385086,13.764195582707,13.5864496263497,13.4351646240619,13.3048666346539,13.1904132751621,13.0868500338825,12.9893107882642,12.8929621684588,12.7929937769563,12.6846598385465,12.5633832085277,12.4249409422364,12.2657635958102,12.0825447803866,11.8020647999985,11.3943295993068,10.9025197442274,10.4100177087143,10.0733044485053,10.0041272164933,10.1194664166451,10.3510035368077,10.6515704504879,10.953502964191,11.2893912849759,11.8019517152441,12.4547499871052,13.0910058813319,13.963966509938,15.1944037827111,16.5222696051358,17.3870370835176,17.2558829141429,16.7617076977545,16.4245466315487,16.13681075244,15.7924223966075,15.4166149466535,15.0365681017554,14.6780950357631,14.3625913776353,14.1046484636748,13.9109512757317,13.7807740800572,13.7077865287622,13.6824948811284,13.6947259935241,13.7359515678591,13.8010897942145,13.880294735543,13.9748350952223,14.0920830266935,14.2409894827409,14.4321067458398,14.677417881604,14.9898920971834,15.382736314643,15.8684205940736,16.4576822438903,17.1587785583366,17.9771929096762,18.9158260968635,19.9755332059347,21.1557928848561,22.4553301113812,2.35318623904755],"text":["Sodium:   0.000000<br />Sugar: 12.404258","Sodium:   4.303797<br />Sugar: 11.948211","Sodium:   8.607595<br />Sugar: 11.519037","Sodium:  12.911392<br />Sugar: 11.116299","Sodium:  17.215190<br />Sugar: 10.739561","Sodium:  21.518987<br />Sugar: 10.388388","Sodium:  25.822785<br />Sugar: 10.062342","Sodium:  30.126582<br />Sugar:  9.760987","Sodium:  34.430380<br />Sugar:  9.483888","Sodium:  38.734177<br />Sugar:  9.230607","Sodium:  43.037975<br />Sugar:  9.000709","Sodium:  47.341772<br />Sugar:  8.793757","Sodium:  51.645570<br />Sugar:  8.609315","Sodium:  55.949367<br />Sugar:  8.446947","Sodium:  60.253165<br />Sugar:  8.306216","Sodium:  64.556962<br />Sugar:  8.186686","Sodium:  68.860759<br />Sugar:  8.087921","Sodium:  73.164557<br />Sugar:  8.027389","Sodium:  77.468354<br />Sugar:  8.046529","Sodium:  81.772152<br />Sugar:  8.139089","Sodium:  86.075949<br />Sugar:  8.296399","Sodium:  90.379747<br />Sugar:  8.509790","Sodium:  94.683544<br />Sugar:  8.770592","Sodium:  98.987342<br />Sugar:  9.070136","Sodium: 103.291139<br />Sugar:  9.399752","Sodium: 107.594937<br />Sugar:  9.750772","Sodium: 111.898734<br />Sugar: 10.114525","Sodium: 116.202532<br />Sugar: 10.482343","Sodium: 120.506329<br />Sugar: 10.845556","Sodium: 124.810127<br />Sugar: 11.195494","Sodium: 129.113924<br />Sugar: 11.523489","Sodium: 133.417722<br />Sugar: 11.935825","Sodium: 137.721519<br />Sugar: 12.449426","Sodium: 142.025316<br />Sugar: 12.609910","Sodium: 146.329114<br />Sugar: 11.936172","Sodium: 150.632911<br />Sugar: 10.716175","Sodium: 154.936709<br />Sugar:  9.342674","Sodium: 159.240506<br />Sugar:  8.208426","Sodium: 163.544304<br />Sugar:  7.518124","Sodium: 167.848101<br />Sugar:  7.053395","Sodium: 172.151899<br />Sugar:  6.743799","Sodium: 176.455696<br />Sugar:  6.525160","Sodium: 180.759494<br />Sugar:  6.335232","Sodium: 185.063291<br />Sugar:  6.205611","Sodium: 189.367089<br />Sugar:  6.174952","Sodium: 193.670886<br />Sugar:  6.247645","Sodium: 197.974684<br />Sugar:  6.428082","Sodium: 202.278481<br />Sugar:  6.698752","Sodium: 206.582278<br />Sugar:  6.939864","Sodium: 210.886076<br />Sugar:  7.120984","Sodium: 215.189873<br />Sugar:  7.228310","Sodium: 219.493671<br />Sugar:  7.248041","Sodium: 223.797468<br />Sugar:  7.204438","Sodium: 228.101266<br />Sugar:  7.153303","Sodium: 232.405063<br />Sugar:  7.099351","Sodium: 236.708861<br />Sugar:  7.046664","Sodium: 241.012658<br />Sugar:  6.999326","Sodium: 245.316456<br />Sugar:  6.961417","Sodium: 249.620253<br />Sugar:  6.937019","Sodium: 253.924051<br />Sugar:  6.930215","Sodium: 258.227848<br />Sugar:  6.945087","Sodium: 262.531646<br />Sugar:  6.985716","Sodium: 266.835443<br />Sugar:  7.056185","Sodium: 271.139241<br />Sugar:  7.160575","Sodium: 275.443038<br />Sugar:  7.302968","Sodium: 279.746835<br />Sugar:  7.487447","Sodium: 284.050633<br />Sugar:  7.718093","Sodium: 288.354430<br />Sugar:  7.998988","Sodium: 292.658228<br />Sugar:  8.334214","Sodium: 296.962025<br />Sugar:  8.727853","Sodium: 301.265823<br />Sugar:  9.183988","Sodium: 305.569620<br />Sugar:  9.706700","Sodium: 309.873418<br />Sugar: 10.300070","Sodium: 314.177215<br />Sugar: 10.968182","Sodium: 318.481013<br />Sugar: 11.715117","Sodium: 322.784810<br />Sugar: 12.544956","Sodium: 327.088608<br />Sugar: 13.461783","Sodium: 331.392405<br />Sugar: 14.469678","Sodium: 335.696203<br />Sugar: 15.572724","Sodium: 340.000000<br />Sugar: 16.775003","Sodium: 340.000000<br />Sugar: 16.775003","Sodium: 340.000000<br />Sugar: 16.775003","Sodium: 335.696203<br />Sugar: 15.572724","Sodium: 331.392405<br />Sugar: 14.469678","Sodium: 327.088608<br />Sugar: 13.461783","Sodium: 322.784810<br />Sugar: 12.544956","Sodium: 318.481013<br />Sugar: 11.715117","Sodium: 314.177215<br />Sugar: 10.968182","Sodium: 309.873418<br />Sugar: 10.300070","Sodium: 305.569620<br />Sugar:  9.706700","Sodium: 301.265823<br />Sugar:  9.183988","Sodium: 296.962025<br />Sugar:  8.727853","Sodium: 292.658228<br />Sugar:  8.334214","Sodium: 288.354430<br />Sugar:  7.998988","Sodium: 284.050633<br />Sugar:  7.718093","Sodium: 279.746835<br />Sugar:  7.487447","Sodium: 275.443038<br />Sugar:  7.302968","Sodium: 271.139241<br />Sugar:  7.160575","Sodium: 266.835443<br />Sugar:  7.056185","Sodium: 262.531646<br />Sugar:  6.985716","Sodium: 258.227848<br />Sugar:  6.945087","Sodium: 253.924051<br />Sugar:  6.930215","Sodium: 249.620253<br />Sugar:  6.937019","Sodium: 245.316456<br />Sugar:  6.961417","Sodium: 241.012658<br />Sugar:  6.999326","Sodium: 236.708861<br />Sugar:  7.046664","Sodium: 232.405063<br />Sugar:  7.099351","Sodium: 228.101266<br />Sugar:  7.153303","Sodium: 223.797468<br />Sugar:  7.204438","Sodium: 219.493671<br />Sugar:  7.248041","Sodium: 215.189873<br />Sugar:  7.228310","Sodium: 210.886076<br />Sugar:  7.120984","Sodium: 206.582278<br />Sugar:  6.939864","Sodium: 202.278481<br />Sugar:  6.698752","Sodium: 197.974684<br />Sugar:  6.428082","Sodium: 193.670886<br />Sugar:  6.247645","Sodium: 189.367089<br />Sugar:  6.174952","Sodium: 185.063291<br />Sugar:  6.205611","Sodium: 180.759494<br />Sugar:  6.335232","Sodium: 176.455696<br />Sugar:  6.525160","Sodium: 172.151899<br />Sugar:  6.743799","Sodium: 167.848101<br />Sugar:  7.053395","Sodium: 163.544304<br />Sugar:  7.518124","Sodium: 159.240506<br />Sugar:  8.208426","Sodium: 154.936709<br />Sugar:  9.342674","Sodium: 150.632911<br />Sugar: 10.716175","Sodium: 146.329114<br />Sugar: 11.936172","Sodium: 142.025316<br />Sugar: 12.609910","Sodium: 137.721519<br />Sugar: 12.449426","Sodium: 133.417722<br />Sugar: 11.935825","Sodium: 129.113924<br />Sugar: 11.523489","Sodium: 124.810127<br />Sugar: 11.195494","Sodium: 120.506329<br />Sugar: 10.845556","Sodium: 116.202532<br />Sugar: 10.482343","Sodium: 111.898734<br />Sugar: 10.114525","Sodium: 107.594937<br />Sugar:  9.750772","Sodium: 103.291139<br />Sugar:  9.399752","Sodium:  98.987342<br />Sugar:  9.070136","Sodium:  94.683544<br />Sugar:  8.770592","Sodium:  90.379747<br />Sugar:  8.509790","Sodium:  86.075949<br />Sugar:  8.296399","Sodium:  81.772152<br />Sugar:  8.139089","Sodium:  77.468354<br />Sugar:  8.046529","Sodium:  73.164557<br />Sugar:  8.027389","Sodium:  68.860759<br />Sugar:  8.087921","Sodium:  64.556962<br />Sugar:  8.186686","Sodium:  60.253165<br />Sugar:  8.306216","Sodium:  55.949367<br />Sugar:  8.446947","Sodium:  51.645570<br />Sugar:  8.609315","Sodium:  47.341772<br />Sugar:  8.793757","Sodium:  43.037975<br />Sugar:  9.000709","Sodium:  38.734177<br />Sugar:  9.230607","Sodium:  34.430380<br />Sugar:  9.483888","Sodium:  30.126582<br />Sugar:  9.760987","Sodium:  25.822785<br />Sugar: 10.062342","Sodium:  21.518987<br />Sugar: 10.388388","Sodium:  17.215190<br />Sugar: 10.739561","Sodium:  12.911392<br />Sugar: 11.116299","Sodium:   8.607595<br />Sugar: 11.519037","Sodium:   4.303797<br />Sugar: 11.948211","Sodium:   0.000000<br />Sugar: 12.404258","Sodium:   0.000000<br />Sugar: 12.404258"],"type":"scatter","mode":"lines","line":{"width":3.77952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","showlegend":false,"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-17,357],"tickmode":"array","ticktext":["0","100","200","300"],"tickvals":[0,100,200,300],"categoryorder":"array","categoryarray":["0","100","200","300"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Sodium","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.34150563059732,28.1716182425438],"tickmode":"array","ticktext":["0","10","20"],"tickvals":[0,10,20],"categoryorder":"array","categoryarray":["0","10","20"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Sugar","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"Cereal","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"8a6a6c17a439":{"x":{},"y":{},"colour":{},"type":"scatter"},"8a6a41ed1a0":{"x":{},"y":{}}},"cur_data":"8a6a6c17a439","visdat":{"8a6a6c17a439":["function (y) ","x"],"8a6a41ed1a0":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>type_cereal <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> cereal, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sodium, <span class="at">y =</span> Sugar)) <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Type)) <span class="sc">+</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplotly</span>(type_cereal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-9184de7a560ee493c259" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9184de7a560ee493c259">{"x":{"data":[{"x":[0,340,70,150,100,180,50,220,180,200],"y":[11,18,5,16,0,7,15,4,4,3],"text":["Sodium:   0<br />Sugar: 11<br />Type: A","Sodium: 340<br />Sugar: 18<br />Type: A","Sodium:  70<br />Sugar:  5<br />Type: A","Sodium: 150<br />Sugar: 16<br />Type: A","Sodium: 100<br />Sugar:  0<br />Type: A","Sodium: 180<br />Sugar:  7<br />Type: A","Sodium:  50<br />Sugar: 15<br />Type: A","Sodium: 220<br />Sugar:  4<br />Type: A","Sodium: 180<br />Sugar:  4<br />Type: A","Sodium: 200<br />Sugar:  3<br />Type: A"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"A","legendgroup":"A","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[140,200,180,210,130,140,190,160,290,210],"y":[14,12,1,10,12,14,9,6,3,11],"text":["Sodium: 140<br />Sugar: 14<br />Type: C","Sodium: 200<br />Sugar: 12<br />Type: C","Sodium: 180<br />Sugar:  1<br />Type: C","Sodium: 210<br />Sugar: 10<br />Type: C","Sodium: 130<br />Sugar: 12<br />Type: C","Sodium: 140<br />Sugar: 14<br />Type: C","Sodium: 190<br />Sugar:  9<br />Type: C","Sodium: 160<br />Sugar:  6<br />Type: C","Sodium: 290<br />Sugar:  3<br />Type: C","Sodium: 210<br />Sugar: 11<br />Type: C"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"hoveron":"points","name":"C","legendgroup":"C","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,4.30379746835443,8.60759493670886,12.9113924050633,17.2151898734177,21.5189873417722,25.8227848101266,30.126582278481,34.4303797468354,38.7341772151899,43.0379746835443,47.3417721518987,51.6455696202532,55.9493670886076,60.253164556962,64.5569620253165,68.8607594936709,73.1645569620253,77.4683544303797,81.7721518987342,86.0759493670886,90.379746835443,94.6835443037975,98.9873417721519,103.291139240506,107.594936708861,111.898734177215,116.20253164557,120.506329113924,124.810126582278,129.113924050633,133.417721518987,137.721518987342,142.025316455696,146.329113924051,150.632911392405,154.936708860759,159.240506329114,163.544303797468,167.848101265823,172.151898734177,176.455696202532,180.759493670886,185.063291139241,189.367088607595,193.670886075949,197.974683544304,202.278481012658,206.582278481013,210.886075949367,215.189873417722,219.493670886076,223.79746835443,228.101265822785,232.405063291139,236.708860759494,241.012658227848,245.316455696203,249.620253164557,253.924050632911,258.227848101266,262.53164556962,266.835443037975,271.139240506329,275.443037974684,279.746835443038,284.050632911392,288.354430379747,292.658227848101,296.962025316456,301.26582278481,305.569620253165,309.873417721519,314.177215189873,318.481012658228,322.784810126582,327.088607594937,331.392405063291,335.696202531646,340],"y":[12.4042581752144,11.9482110451148,11.5190367237201,11.1162989249232,10.7395613626165,10.3883877506929,10.0623418030451,9.76098723356572,9.48388775614748,9.23060708468307,9.0007089330652,8.79375701518656,8.60931504493985,8.44694673621778,8.30621580291303,8.1866859589183,8.0879209181263,8.02738894387658,8.04652929560422,8.13908915753692,8.29639913641645,8.50978983898456,8.77059187198303,9.07013584215363,9.39975235623811,9.75077202097825,10.1145254431158,10.4823432293925,10.8455559865502,11.1954943213306,11.5234888404755,11.9358247954397,12.4494261239692,12.6099104393507,11.9361720481547,10.7161747914869,9.3426743076839,8.20842623508212,7.51812434067493,7.0533951258013,6.74379900923902,6.52516028789924,6.3352324546541,6.20561136013412,6.17495164741724,6.24764473711013,6.42808204981941,6.69875163948658,6.93986424045302,7.12098394449843,7.22830974505398,7.24804063555083,7.20443849432029,7.15330272321199,7.09935070340575,7.04666439509055,6.99932575845535,6.96141675368911,6.93701934098081,6.9302154805194,6.94508713249387,6.98571625709317,7.05618481450627,7.16057476492213,7.30296806852974,7.48744668551804,7.71809257607601,7.99898770039263,8.33421401865684,8.72785349105762,9.18398807778394,9.70669973902476,10.3000704349691,10.9681821258058,11.7151167717239,12.5449563329124,13.4617827695603,14.4696780418564,15.5727241099898,16.7750029341495],"text":["Sodium:   0.000000<br />Sugar: 12.404258","Sodium:   4.303797<br />Sugar: 11.948211","Sodium:   8.607595<br />Sugar: 11.519037","Sodium:  12.911392<br />Sugar: 11.116299","Sodium:  17.215190<br />Sugar: 10.739561","Sodium:  21.518987<br />Sugar: 10.388388","Sodium:  25.822785<br />Sugar: 10.062342","Sodium:  30.126582<br />Sugar:  9.760987","Sodium:  34.430380<br />Sugar:  9.483888","Sodium:  38.734177<br />Sugar:  9.230607","Sodium:  43.037975<br />Sugar:  9.000709","Sodium:  47.341772<br />Sugar:  8.793757","Sodium:  51.645570<br />Sugar:  8.609315","Sodium:  55.949367<br />Sugar:  8.446947","Sodium:  60.253165<br />Sugar:  8.306216","Sodium:  64.556962<br />Sugar:  8.186686","Sodium:  68.860759<br />Sugar:  8.087921","Sodium:  73.164557<br />Sugar:  8.027389","Sodium:  77.468354<br />Sugar:  8.046529","Sodium:  81.772152<br />Sugar:  8.139089","Sodium:  86.075949<br />Sugar:  8.296399","Sodium:  90.379747<br />Sugar:  8.509790","Sodium:  94.683544<br />Sugar:  8.770592","Sodium:  98.987342<br />Sugar:  9.070136","Sodium: 103.291139<br />Sugar:  9.399752","Sodium: 107.594937<br />Sugar:  9.750772","Sodium: 111.898734<br />Sugar: 10.114525","Sodium: 116.202532<br />Sugar: 10.482343","Sodium: 120.506329<br />Sugar: 10.845556","Sodium: 124.810127<br />Sugar: 11.195494","Sodium: 129.113924<br />Sugar: 11.523489","Sodium: 133.417722<br />Sugar: 11.935825","Sodium: 137.721519<br />Sugar: 12.449426","Sodium: 142.025316<br />Sugar: 12.609910","Sodium: 146.329114<br />Sugar: 11.936172","Sodium: 150.632911<br />Sugar: 10.716175","Sodium: 154.936709<br />Sugar:  9.342674","Sodium: 159.240506<br />Sugar:  8.208426","Sodium: 163.544304<br />Sugar:  7.518124","Sodium: 167.848101<br />Sugar:  7.053395","Sodium: 172.151899<br />Sugar:  6.743799","Sodium: 176.455696<br />Sugar:  6.525160","Sodium: 180.759494<br />Sugar:  6.335232","Sodium: 185.063291<br />Sugar:  6.205611","Sodium: 189.367089<br />Sugar:  6.174952","Sodium: 193.670886<br />Sugar:  6.247645","Sodium: 197.974684<br />Sugar:  6.428082","Sodium: 202.278481<br />Sugar:  6.698752","Sodium: 206.582278<br />Sugar:  6.939864","Sodium: 210.886076<br />Sugar:  7.120984","Sodium: 215.189873<br />Sugar:  7.228310","Sodium: 219.493671<br />Sugar:  7.248041","Sodium: 223.797468<br />Sugar:  7.204438","Sodium: 228.101266<br />Sugar:  7.153303","Sodium: 232.405063<br />Sugar:  7.099351","Sodium: 236.708861<br />Sugar:  7.046664","Sodium: 241.012658<br />Sugar:  6.999326","Sodium: 245.316456<br />Sugar:  6.961417","Sodium: 249.620253<br />Sugar:  6.937019","Sodium: 253.924051<br />Sugar:  6.930215","Sodium: 258.227848<br />Sugar:  6.945087","Sodium: 262.531646<br />Sugar:  6.985716","Sodium: 266.835443<br />Sugar:  7.056185","Sodium: 271.139241<br />Sugar:  7.160575","Sodium: 275.443038<br />Sugar:  7.302968","Sodium: 279.746835<br />Sugar:  7.487447","Sodium: 284.050633<br />Sugar:  7.718093","Sodium: 288.354430<br />Sugar:  7.998988","Sodium: 292.658228<br />Sugar:  8.334214","Sodium: 296.962025<br />Sugar:  8.727853","Sodium: 301.265823<br />Sugar:  9.183988","Sodium: 305.569620<br />Sugar:  9.706700","Sodium: 309.873418<br />Sugar: 10.300070","Sodium: 314.177215<br />Sugar: 10.968182","Sodium: 318.481013<br />Sugar: 11.715117","Sodium: 322.784810<br />Sugar: 12.544956","Sodium: 327.088608<br />Sugar: 13.461783","Sodium: 331.392405<br />Sugar: 14.469678","Sodium: 335.696203<br />Sugar: 15.572724","Sodium: 340.000000<br />Sugar: 16.775003"],"type":"scatter","mode":"lines","name":"fitted values","line":{"width":3.77952755905512,"color":"rgba(51,102,255,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,4.30379746835443,8.60759493670886,12.9113924050633,17.2151898734177,21.5189873417722,25.8227848101266,30.126582278481,34.4303797468354,38.7341772151899,43.0379746835443,47.3417721518987,51.6455696202532,55.9493670886076,60.253164556962,64.5569620253165,68.8607594936709,73.1645569620253,77.4683544303797,81.7721518987342,86.0759493670886,90.379746835443,94.6835443037975,98.9873417721519,103.291139240506,107.594936708861,111.898734177215,116.20253164557,120.506329113924,124.810126582278,129.113924050633,133.417721518987,137.721518987342,142.025316455696,146.329113924051,150.632911392405,154.936708860759,159.240506329114,163.544303797468,167.848101265823,172.151898734177,176.455696202532,180.759493670886,185.063291139241,189.367088607595,193.670886075949,197.974683544304,202.278481012658,206.582278481013,210.886075949367,215.189873417722,219.493670886076,223.79746835443,228.101265822785,232.405063291139,236.708860759494,241.012658227848,245.316455696203,249.620253164557,253.924050632911,258.227848101266,262.53164556962,266.835443037975,271.139240506329,275.443037974684,279.746835443038,284.050632911392,288.354430379747,292.658227848101,296.962025316456,301.26582278481,305.569620253165,309.873417721519,314.177215189873,318.481012658228,322.784810126582,327.088607594937,331.392405063291,335.696202531646,340,340,340,335.696202531646,331.392405063291,327.088607594937,322.784810126582,318.481012658228,314.177215189873,309.873417721519,305.569620253165,301.26582278481,296.962025316456,292.658227848101,288.354430379747,284.050632911392,279.746835443038,275.443037974684,271.139240506329,266.835443037975,262.53164556962,258.227848101266,253.924050632911,249.620253164557,245.316455696203,241.012658227848,236.708860759494,232.405063291139,228.101265822785,223.79746835443,219.493670886076,215.189873417722,210.886075949367,206.582278481013,202.278481012658,197.974683544304,193.670886075949,189.367088607595,185.063291139241,180.759493670886,176.455696202532,172.151898734177,167.848101265823,163.544303797468,159.240506329114,154.936708860759,150.632911392405,146.329113924051,142.025316455696,137.721518987342,133.417721518987,129.113924050633,124.810126582278,120.506329113924,116.20253164557,111.898734177215,107.594936708861,103.291139240506,98.9873417721519,94.6835443037975,90.379746835443,86.0759493670886,81.7721518987342,77.4683544303797,73.1645569620253,68.8607594936709,64.5569620253165,60.253164556962,55.9493670886076,51.6455696202532,47.3417721518987,43.0379746835443,38.7341772151899,34.4303797468354,30.126582278481,25.8227848101266,21.5189873417722,17.2151898734177,12.9113924050633,8.60759493670886,4.30379746835443,0,0],"y":[2.35318623904755,2.7406292053735,3.06254024150557,3.31677175298277,3.50192981555689,3.61799694304934,3.66700136219989,3.65355387305787,3.58503919765197,3.47132207218274,3.32399998452642,3.15540728453332,2.97764060713885,2.801810445742,2.63759651060375,2.49307718229362,2.37475204203805,2.31882631989408,2.39833259768434,2.5956834339454,2.88501174407068,3.23880559791195,3.63023246823433,4.03562322063243,4.43691333484091,4.82344900619343,5.19248278447619,5.54807151213158,5.89868957649293,6.25417789022124,6.6224310494023,7.10994189312484,7.64296933379543,7.8327837951839,7.35007449117353,6.2379458002627,4.72138210542983,3.32584658883234,2.58149869424471,2.3048385363585,2.19820673350215,2.09681761160751,2.01889445882034,2.06021918346054,2.23043687818942,2.49116225772697,2.78285965113348,2.98748557025885,2.97720873667867,2.84763828969002,2.65455469010945,2.41353649071507,2.14311339283041,1.88166450418758,1.63531819828377,1.40866895163464,1.20565773995441,1.02987133891943,0.884727893697388,0.773580927156332,0.699760989825593,0.666565879532434,0.677205004950642,0.734699903494543,0.841740554352493,1.00049583252744,1.21237661706963,1.4777526984581,1.79563144692272,2.16331951031279,2.57611060893619,3.02707204318208,3.50703188629641,4.00487828679953,4.50824270016451,5.0045309793415,5.48211484117568,5.9313843461441,6.34538126347082,6.71989325635253,6.71989325635253,26.8301126119465,24.8000669565088,23.0079717375687,21.4414506979449,20.0853816864834,18.9219908432833,17.931485964812,17.0931089836417,16.3863274348674,15.7918655466317,15.2923874718025,14.872796590391,14.5202227023271,14.2238085350824,13.9743975385086,13.764195582707,13.5864496263497,13.4351646240619,13.3048666346539,13.1904132751621,13.0868500338825,12.9893107882642,12.8929621684588,12.7929937769563,12.6846598385465,12.5633832085277,12.4249409422364,12.2657635958102,12.0825447803866,11.8020647999985,11.3943295993068,10.9025197442274,10.4100177087143,10.0733044485053,10.0041272164933,10.1194664166451,10.3510035368077,10.6515704504879,10.953502964191,11.2893912849759,11.8019517152441,12.4547499871052,13.0910058813319,13.963966509938,15.1944037827111,16.5222696051358,17.3870370835176,17.2558829141429,16.7617076977545,16.4245466315487,16.13681075244,15.7924223966075,15.4166149466535,15.0365681017554,14.6780950357631,14.3625913776353,14.1046484636748,13.9109512757317,13.7807740800572,13.7077865287622,13.6824948811284,13.6947259935241,13.7359515678591,13.8010897942145,13.880294735543,13.9748350952223,14.0920830266935,14.2409894827409,14.4321067458398,14.677417881604,14.9898920971834,15.382736314643,15.8684205940736,16.4576822438903,17.1587785583366,17.9771929096762,18.9158260968635,19.9755332059347,21.1557928848561,22.4553301113812,2.35318623904755],"text":["Sodium:   0.000000<br />Sugar: 12.404258","Sodium:   4.303797<br />Sugar: 11.948211","Sodium:   8.607595<br />Sugar: 11.519037","Sodium:  12.911392<br />Sugar: 11.116299","Sodium:  17.215190<br />Sugar: 10.739561","Sodium:  21.518987<br />Sugar: 10.388388","Sodium:  25.822785<br />Sugar: 10.062342","Sodium:  30.126582<br />Sugar:  9.760987","Sodium:  34.430380<br />Sugar:  9.483888","Sodium:  38.734177<br />Sugar:  9.230607","Sodium:  43.037975<br />Sugar:  9.000709","Sodium:  47.341772<br />Sugar:  8.793757","Sodium:  51.645570<br />Sugar:  8.609315","Sodium:  55.949367<br />Sugar:  8.446947","Sodium:  60.253165<br />Sugar:  8.306216","Sodium:  64.556962<br />Sugar:  8.186686","Sodium:  68.860759<br />Sugar:  8.087921","Sodium:  73.164557<br />Sugar:  8.027389","Sodium:  77.468354<br />Sugar:  8.046529","Sodium:  81.772152<br />Sugar:  8.139089","Sodium:  86.075949<br />Sugar:  8.296399","Sodium:  90.379747<br />Sugar:  8.509790","Sodium:  94.683544<br />Sugar:  8.770592","Sodium:  98.987342<br />Sugar:  9.070136","Sodium: 103.291139<br />Sugar:  9.399752","Sodium: 107.594937<br />Sugar:  9.750772","Sodium: 111.898734<br />Sugar: 10.114525","Sodium: 116.202532<br />Sugar: 10.482343","Sodium: 120.506329<br />Sugar: 10.845556","Sodium: 124.810127<br />Sugar: 11.195494","Sodium: 129.113924<br />Sugar: 11.523489","Sodium: 133.417722<br />Sugar: 11.935825","Sodium: 137.721519<br />Sugar: 12.449426","Sodium: 142.025316<br />Sugar: 12.609910","Sodium: 146.329114<br />Sugar: 11.936172","Sodium: 150.632911<br />Sugar: 10.716175","Sodium: 154.936709<br />Sugar:  9.342674","Sodium: 159.240506<br />Sugar:  8.208426","Sodium: 163.544304<br />Sugar:  7.518124","Sodium: 167.848101<br />Sugar:  7.053395","Sodium: 172.151899<br />Sugar:  6.743799","Sodium: 176.455696<br />Sugar:  6.525160","Sodium: 180.759494<br />Sugar:  6.335232","Sodium: 185.063291<br />Sugar:  6.205611","Sodium: 189.367089<br />Sugar:  6.174952","Sodium: 193.670886<br />Sugar:  6.247645","Sodium: 197.974684<br />Sugar:  6.428082","Sodium: 202.278481<br />Sugar:  6.698752","Sodium: 206.582278<br />Sugar:  6.939864","Sodium: 210.886076<br />Sugar:  7.120984","Sodium: 215.189873<br />Sugar:  7.228310","Sodium: 219.493671<br />Sugar:  7.248041","Sodium: 223.797468<br />Sugar:  7.204438","Sodium: 228.101266<br />Sugar:  7.153303","Sodium: 232.405063<br />Sugar:  7.099351","Sodium: 236.708861<br />Sugar:  7.046664","Sodium: 241.012658<br />Sugar:  6.999326","Sodium: 245.316456<br />Sugar:  6.961417","Sodium: 249.620253<br />Sugar:  6.937019","Sodium: 253.924051<br />Sugar:  6.930215","Sodium: 258.227848<br />Sugar:  6.945087","Sodium: 262.531646<br />Sugar:  6.985716","Sodium: 266.835443<br />Sugar:  7.056185","Sodium: 271.139241<br />Sugar:  7.160575","Sodium: 275.443038<br />Sugar:  7.302968","Sodium: 279.746835<br />Sugar:  7.487447","Sodium: 284.050633<br />Sugar:  7.718093","Sodium: 288.354430<br />Sugar:  7.998988","Sodium: 292.658228<br />Sugar:  8.334214","Sodium: 296.962025<br />Sugar:  8.727853","Sodium: 301.265823<br />Sugar:  9.183988","Sodium: 305.569620<br />Sugar:  9.706700","Sodium: 309.873418<br />Sugar: 10.300070","Sodium: 314.177215<br />Sugar: 10.968182","Sodium: 318.481013<br />Sugar: 11.715117","Sodium: 322.784810<br />Sugar: 12.544956","Sodium: 327.088608<br />Sugar: 13.461783","Sodium: 331.392405<br />Sugar: 14.469678","Sodium: 335.696203<br />Sugar: 15.572724","Sodium: 340.000000<br />Sugar: 16.775003","Sodium: 340.000000<br />Sugar: 16.775003","Sodium: 340.000000<br />Sugar: 16.775003","Sodium: 335.696203<br />Sugar: 15.572724","Sodium: 331.392405<br />Sugar: 14.469678","Sodium: 327.088608<br />Sugar: 13.461783","Sodium: 322.784810<br />Sugar: 12.544956","Sodium: 318.481013<br />Sugar: 11.715117","Sodium: 314.177215<br />Sugar: 10.968182","Sodium: 309.873418<br />Sugar: 10.300070","Sodium: 305.569620<br />Sugar:  9.706700","Sodium: 301.265823<br />Sugar:  9.183988","Sodium: 296.962025<br />Sugar:  8.727853","Sodium: 292.658228<br />Sugar:  8.334214","Sodium: 288.354430<br />Sugar:  7.998988","Sodium: 284.050633<br />Sugar:  7.718093","Sodium: 279.746835<br />Sugar:  7.487447","Sodium: 275.443038<br />Sugar:  7.302968","Sodium: 271.139241<br />Sugar:  7.160575","Sodium: 266.835443<br />Sugar:  7.056185","Sodium: 262.531646<br />Sugar:  6.985716","Sodium: 258.227848<br />Sugar:  6.945087","Sodium: 253.924051<br />Sugar:  6.930215","Sodium: 249.620253<br />Sugar:  6.937019","Sodium: 245.316456<br />Sugar:  6.961417","Sodium: 241.012658<br />Sugar:  6.999326","Sodium: 236.708861<br />Sugar:  7.046664","Sodium: 232.405063<br />Sugar:  7.099351","Sodium: 228.101266<br />Sugar:  7.153303","Sodium: 223.797468<br />Sugar:  7.204438","Sodium: 219.493671<br />Sugar:  7.248041","Sodium: 215.189873<br />Sugar:  7.228310","Sodium: 210.886076<br />Sugar:  7.120984","Sodium: 206.582278<br />Sugar:  6.939864","Sodium: 202.278481<br />Sugar:  6.698752","Sodium: 197.974684<br />Sugar:  6.428082","Sodium: 193.670886<br />Sugar:  6.247645","Sodium: 189.367089<br />Sugar:  6.174952","Sodium: 185.063291<br />Sugar:  6.205611","Sodium: 180.759494<br />Sugar:  6.335232","Sodium: 176.455696<br />Sugar:  6.525160","Sodium: 172.151899<br />Sugar:  6.743799","Sodium: 167.848101<br />Sugar:  7.053395","Sodium: 163.544304<br />Sugar:  7.518124","Sodium: 159.240506<br />Sugar:  8.208426","Sodium: 154.936709<br />Sugar:  9.342674","Sodium: 150.632911<br />Sugar: 10.716175","Sodium: 146.329114<br />Sugar: 11.936172","Sodium: 142.025316<br />Sugar: 12.609910","Sodium: 137.721519<br />Sugar: 12.449426","Sodium: 133.417722<br />Sugar: 11.935825","Sodium: 129.113924<br />Sugar: 11.523489","Sodium: 124.810127<br />Sugar: 11.195494","Sodium: 120.506329<br />Sugar: 10.845556","Sodium: 116.202532<br />Sugar: 10.482343","Sodium: 111.898734<br />Sugar: 10.114525","Sodium: 107.594937<br />Sugar:  9.750772","Sodium: 103.291139<br />Sugar:  9.399752","Sodium:  98.987342<br />Sugar:  9.070136","Sodium:  94.683544<br />Sugar:  8.770592","Sodium:  90.379747<br />Sugar:  8.509790","Sodium:  86.075949<br />Sugar:  8.296399","Sodium:  81.772152<br />Sugar:  8.139089","Sodium:  77.468354<br />Sugar:  8.046529","Sodium:  73.164557<br />Sugar:  8.027389","Sodium:  68.860759<br />Sugar:  8.087921","Sodium:  64.556962<br />Sugar:  8.186686","Sodium:  60.253165<br />Sugar:  8.306216","Sodium:  55.949367<br />Sugar:  8.446947","Sodium:  51.645570<br />Sugar:  8.609315","Sodium:  47.341772<br />Sugar:  8.793757","Sodium:  43.037975<br />Sugar:  9.000709","Sodium:  38.734177<br />Sugar:  9.230607","Sodium:  34.430380<br />Sugar:  9.483888","Sodium:  30.126582<br />Sugar:  9.760987","Sodium:  25.822785<br />Sugar: 10.062342","Sodium:  21.518987<br />Sugar: 10.388388","Sodium:  17.215190<br />Sugar: 10.739561","Sodium:  12.911392<br />Sugar: 11.116299","Sodium:   8.607595<br />Sugar: 11.519037","Sodium:   4.303797<br />Sugar: 11.948211","Sodium:   0.000000<br />Sugar: 12.404258","Sodium:   0.000000<br />Sugar: 12.404258"],"type":"scatter","mode":"lines","line":{"width":3.77952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","showlegend":false,"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-17,357],"tickmode":"array","ticktext":["0","100","200","300"],"tickvals":[0,100,200,300],"categoryorder":"array","categoryarray":["0","100","200","300"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Sodium","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.34150563059732,28.1716182425438],"tickmode":"array","ticktext":["0","10","20"],"tickvals":[0,10,20],"categoryorder":"array","categoryarray":["0","10","20"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Sugar","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"Type","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"8a6a613cfb57":{"x":{},"y":{},"colour":{},"type":"scatter"},"8a6a6a993ea0":{"x":{},"y":{}}},"cur_data":"8a6a613cfb57","visdat":{"8a6a613cfb57":["function (y) ","x"],"8a6a6a993ea0":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>I thought that this visualization would be interesting to make as it shows the relation between the sodium levels and sugar levels of cereal types A and C. Such visualizations could be useful for example, if Type A represented hot cereal and Type C represented cold cereal, then an analysis of the Sodium and Sugar levels in hot and cold cereal could be analyzed.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb20" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 5 Instructions"</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Roy Yoon"</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Introduction to Visualization"</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/22/2022"</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_5</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - cereal</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - ggplotly()</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>Today's challenge is to:</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>2)  tidy data (as needed, including sanity checks)</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>3)  mutate variables as needed (including sanity checks)</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>4)  create at least two univariate visualizations</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>try to make them "publication" ready</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Explain why you choose the specific graph type</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>5)  Create at least one bivariate visualization</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>try to make them "publication" ready</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Explain why you choose the specific graph type</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>cereal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/cereal.csv"</span>)</span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Briefly describe the data</span></span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cereal)</span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(cereal)</span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cereal)</span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cereal)</span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a>cereal</span>
+<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a>The cereal data set contains tabular-style data, with variables representing the cereal name, sodium level, sugar level, and type(A or C) for 20 brands of cereal.</span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data arranged by Sodium level</span></span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a>arranged_sodium <span class="ot">&lt;-</span> cereal <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(cereal, Sodium)</span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a>arranged_sodium</span>
+<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data arranged by Sugar level</span></span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a>arranged_sugar <span class="ot">&lt;-</span> cereal <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(cereal, Sugar)</span>
+<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a>arranged_sugar </span>
+<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a><span class="fu">## Univariate Visualizations</span></span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a>Plan to show data arranged by Sodium level and data arranged by Sugar level</span>
+<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bivariate Visualization(s)</span></span>
+<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Observing realtions between Sodium, Sugar, and Cereal(brand)</span></span>
+<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a>brand_cereal <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> cereal, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sodium, <span class="at">y =</span> Sugar)) <span class="sc">+</span> </span>
+<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Cereal)) <span class="sc">+</span> </span>
+<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-106"><a href="#cb20-106" aria-hidden="true" tabindex="-1"></a>I thought that this visualization would be interesting to make as it shows the relation between the sodium levels and sugar levels of different cereal brands. I would like to continue working on better visualizing the color distinctions between the cereal brands and to spread out the x and y increments. </span>
+<span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exploration</span></span>
+<span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a>I found that if you use ggplotly(), you are able to build an interactive visualization. This can resolve the issue of determining which color corresponds to which color as when you hover over a point the information about a specific cereal is readily available.To make ggplotly() available, I installed packages plotly and gapminder.</span>
+<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(brand_cereal)</span>
+<span id="cb20-116"><a href="#cb20-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a>type_cereal <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> cereal, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sodium, <span class="at">y =</span> Sugar)) <span class="sc">+</span> </span>
+<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Type)) <span class="sc">+</span> </span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() </span>
+<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplotly</span>(type_cereal)</span>
+<span id="cb20-127"><a href="#cb20-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-128"><a href="#cb20-128" aria-hidden="true" tabindex="-1"></a>I thought that this visualization would be interesting to make as it shows the relation between the sodium levels and sugar levels of cereal types A and C. Such visualizations could be useful for example, if Type A represented hot cereal and Type C represented cold cereal, then an analysis of the Sodium and Sugar levels in hot and cold cereal could be analyzed.</span>
+<span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

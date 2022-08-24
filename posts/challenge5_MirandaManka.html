@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy Data</a></li>
   <li><a href="#univariate-visualizations" id="toc-univariate-visualizations" class="nav-link" data-scroll-target="#univariate-visualizations">Univariate Visualizations</a></li>
-  <li><a href="#bivariate-visualizations" id="toc-bivariate-visualizations" class="nav-link" data-scroll-target="#bivariate-visualizations">Bivariate Visualization(s)</a></li>
+  <li><a href="#bivariate-visualization" id="toc-bivariate-visualization" class="nav-link" data-scroll-target="#bivariate-visualization">Bivariate Visualization</a></li>
   </ul>
 </nav>
     </div>
@@ -393,12 +393,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="bivariate-visualizations" class="level2">
-<h2 class="anchored" data-anchor-id="bivariate-visualizations">Bivariate Visualization(s)</h2>
+<section id="bivariate-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="bivariate-visualization">Bivariate Visualization</h2>
 <p>This visualization is a histogram of price (continuous) with room_type (discrete) as the fill. I chose this combination because I thought it showed these variables well together and gave some interesting insights. As expected, the shared rooms generally cost the least, while private rooms go for slightly more than shared rooms (however they have a fairly large range and some go for more), and the entire home/apt listings generally cost the most (but also have a wide range of prices).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(air_bnb, <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">fill =</span> room_type)) <span class="sc">+</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"lightgrey"</span>) <span class="sc">+</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">25</span>) <span class="sc">+</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">600</span>) <span class="sc">+</span> </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Airbnb Price and Room Type"</span>, <span class="at">x =</span> <span class="st">"Price"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, </span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="st">"Room Type"</span>)) <span class="sc">+</span> </span>
@@ -780,13 +780,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-127"><a href="#cb13-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
 <span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-129"><a href="#cb13-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bivariate Visualization(s)</span></span>
+<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bivariate Visualization</span></span>
 <span id="cb13-131"><a href="#cb13-131" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-132"><a href="#cb13-132" aria-hidden="true" tabindex="-1"></a>This visualization is a histogram of price (continuous) with room_type (discrete) as the fill. I chose this combination because I thought it showed these variables well together and gave some interesting insights. As expected, the shared rooms generally cost the least, while private rooms go for slightly more than shared rooms (however they have a fairly large range and some go for more), and the entire home/apt listings generally cost the most (but also have a wide range of prices).</span>
 <span id="cb13-133"><a href="#cb13-133" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-136"><a href="#cb13-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb13-137"><a href="#cb13-137" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(air_bnb, <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">fill =</span> room_type)) <span class="sc">+</span> </span>
-<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"lightgrey"</span>) <span class="sc">+</span> </span>
+<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">25</span>) <span class="sc">+</span> </span>
 <span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">600</span>) <span class="sc">+</span> </span>
 <span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Airbnb Price and Room Type"</span>, <span class="at">x =</span> <span class="st">"Price"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, </span>
 <span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="st">"Room Type"</span>)) <span class="sc">+</span> </span>
