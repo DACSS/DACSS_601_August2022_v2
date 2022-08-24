@@ -1,0 +1,83 @@
+---
+title: "Homework 2"
+author: "Young Soo Choi"
+desription: "Reading in data"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - HW2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in the Data
+
+I read data set about debt in trillions to show how much debt people have.
+
+```{r}
+debt <- read_xlsx("_data/debt_in_trillions.xlsx")
+debt
+```
+
+## Describe the data
+
+This data set shows amount of debt people have from 2003 by the type of debt in trillions. It has 74 rows and 8 columns. The types of debts are 6 and end of the column. It shows total amount of debt.
+
+
+## Tidy the data
+
+Firstly, I changed column names and added column 'order' to make time series line graph.(original year variables are characteristic variables so R told me that it cannot be made into graph. Maybe there are other better way to do this, but now I don't know about it. I'll try to find out.)
+
+```{r}
+colnames(debt) = c("year_and_quarter", "mortgage","HE_revolving", "auto_loan","credit_card","student_loan","other","total")
+debt<-mutate(debt, 'order'=1:74)
+colnames(debt)
+```
+
+It has many columns so cannot easily recognized. So I pivoted it.
+
+```{r}
+pivot_debt<-pivot_longer(debt,col=c(mortgage, HE_revolving, auto_loan, credit_card,student_loan,other, total), names_to="types", values_to="amount_of_debt")
+pivot_debt
+```
+
+Now, I can see it at one glance. Its column reduced 8 to 3 and row increased 74 to 518.
+
+## Narrative about the data set 
+
+I made a time series line graph of total debt by quarter.
+
+```{r}
+debt_tot<-filter(pivot_debt, types=="total")
+debt_tot
+
+ggplot(debt_tot, aes(x=order, y=amount_of_debt)) + 
+  geom_line() +
+  ggtitle("Quarterly Total Debt")
+```
+
+In the same way, I can draw a time series graph according to the type of debt.
+
+```{r}
+debt_mort<-filter(pivot_debt, types=="mortgage")
+
+ggplot(debt_mort, aes(x=order, y=amount_of_debt)) + 
+  geom_line()+
+  ggtitle("Quarterly Mortgage Debt")
+```
+
+Using this data, changes in debt related to the financial crisis in the late 2000s can be reviewed by type. We can find out what type of debt was sensitive to the financial crisis.
+In addition, research problems such as identifying which of the various debt types is most closely linked to the total debt can be established.
