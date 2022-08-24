@@ -54,7 +54,7 @@ aus_marriage
 
 ## Univariate Visualizations
 
-The simplest univariate vizualization for this data set seems to be a bar graph. I decided to display the "yes" votes for each territory.
+The simplest univariate vizualization for this data set seems to be a bar graph. I decided to display the number of "yes" votes for each territory.
 
 ```{r}
 #top 10 territories voting "yes"
