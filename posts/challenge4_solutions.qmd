@@ -1,7 +1,7 @@
 ---
 title: "Challenge 4 Solutions"
 author: "Meredith Rolfe"
-description: "More data wrangling: pivoting"
+description: "More data wrangling: mutate"
 date: "08/21/2022"
 format:
   html:
@@ -81,7 +81,7 @@ table(abc_poll_orig$QPID)
 
 #mutate
 abc_poll<-abc_poll_orig%>%
-  mutate(partyid = str_remove(QPID, "A "),
+  mutate(partyid = str_remove(QPID, "A[n]* "),
          partyid = na_if(partyid, "Skipped"))%>%
   select(-QPID)
 
@@ -121,7 +121,7 @@ map(select(abc_poll, starts_with("Q1")), table)
 
 Finally, what if you would like the categories of your variable to appear in a specific order, like the education variable that is currently in alphabetical order?
 
-:::{.callout-tip}
+::: callout-tip
 ## factor()
 
 The `factor` variable type links variable labels to an underlying numeric order, and allows you to maintain the specified order for tables and graphics. Character strings always appear in alphabetical order.
@@ -134,18 +134,17 @@ edulabs
 
 abc_poll<-abc_poll%>%
   mutate(educ = factor(ppeducat, 
-                       labels=edulabs[c(4,1,3,2)]))%>%
+                       levels=edulabs[c(4,1,3,2)]))%>%
   select(-ppeducat)
 rm(edulabs)
 
 table(abc_poll$educ)
 ```
-
 :::
 
 ## Eggs ⭐⭐
 
-This section builds on the code available in the solution to Challenge 3, where we pivoted the organic eggs pricing data. The data reports the average price per carton paid to the farmer or producer for organic eggs (and organic chicken), reported monthly from 2004 to 20013. Average price is reported by carton type, which can vary in both size (x-large or large) and quantity (half-dozen or dozen.) 
+This section builds on the code available in the solution to Challenge 3, where we pivoted the organic eggs pricing data. The data reports the average price per carton paid to the farmer or producer for organic eggs (and organic chicken), reported monthly from 2004 to 20013. Average price is reported by carton type, which can vary in both size (x-large or large) and quantity (half-dozen or dozen.)
 
 ### Read Data
 
@@ -191,10 +190,11 @@ select(eggs, month, year, date)
 
 Interesting - `lubridate` automatically fills in the first day of the month. Maybe we would prefer the last day, or even the middle of the month?
 
+Note that we can't easily use `make_datetime()` for this example, as we would then need to transform the irregular month names into numeric values.
+
 ```{r}
 eggs<-eggs%>%
-  mutate(date = str_c(month, "15", year, sep="-"),
-         date = mdy(date))
+  mutate(date = make_datetime(month, "15", year))
 
 select(eggs, month, year, date)
 ```
@@ -203,7 +203,7 @@ select(eggs, month, year, date)
 
 This data set runs from July 1954 to March 2017, and includes daily macroeconomic indicators related to the *effective federal funds rate* - or [the interest rate at which banks lend money to each other](https://en.wikipedia.org/wiki/Federal_funds_rate) in order to meet mandated reserve requirements.
 
-A single case is a year-month-day, and there are 7 values that can be pivoted or not depending on the needs of the analyst. 4 values are related to the federal funds rate: *target*, *upper target*, *lower target*, and *effective*), while 3 are related macroeconomic indicators (*inflation*, $\bigtriangleup$ *GDP*, and *unemployment* rate.) 
+A single case is a year-month-day, and there are 7 values that can be pivoted or not depending on the needs of the analyst. 4 values are related to the federal funds rate: *target*, *upper target*, *lower target*, and *effective*), while 3 are related macroeconomic indicators (*inflation*, $\bigtriangleup$ *GDP*, and *unemployment* rate.)
 
 For now, lets just focus on mutating the date.
 
@@ -212,7 +212,8 @@ fed_rates_orig<-read_csv("_data/FedFundsRate.csv")
 
 fed_rates_orig
 ```
-Once again, it looks like we will need to combine the year, month and date using `stringr::str_c()`, then we can use `lubridate` to transform into a date.
+
+Once again, it looks like we will need to combine the year, month and date using `stringr::str_c()`, then we can use `lubridate` to transform into a date. Alternatively, because both month and day are numeric variables, we can use `make_datetime()`.
 
 ```{r}
 fed_rates<-fed_rates_orig%>%
@@ -222,10 +223,10 @@ fed_rates<-fed_rates_orig%>%
 summary(fed_rates$date)
 ```
 
-:::{.callout-note}
+::: callout-note
 ## Going Further
 
-You can now go through and figure out whether there are patterns in the missing-ness of specific indicators by date (maybe the values are only measured once a month or once a quarter, and we need to use `fill()`, or maybe there is something else going on?) 
+You can now go through and figure out whether there are patterns in the missing-ness of specific indicators by date (maybe the values are only measured once a month or once a quarter, and we need to use `fill()`, or maybe there is something else going on?)
 :::
 
 ## Hotel Bookings ⭐⭐⭐⭐
@@ -253,7 +254,7 @@ bookings<-bookings_orig%>%
 summary(bookings$date_arrival)
 ```
 
-There are other relevant time variables in the data set that may be worth exploring. For example, we are given a *lead time* measure in days (integer), but we could recover a date with lubridate. This would allow us to more easily visually explore, for example, if some people were more likely to make bookings over the winter for summer trips, but in fall for winter trips - or some other seasonal pattern.
+There are other relevant time variables in the data set that may be worth exploring. For example, we are given a *lead time* measure in days (integer), but we could recover a date with `lubridate`. This would allow us to more easily visually explore, for example, if some people were more likely to make bookings over the winter for summer trips, but in fall for winter trips - or some other seasonal pattern.
 
 ```{r}
 bookings<-bookings%>%
@@ -292,9 +293,8 @@ debt<-debt_orig%>%
   mutate(date = parse_date_time(`Year and Quarter`, 
                            orders="yq"))
 
-summary(debt$year)
+summary(debt$date)
 ```
 
 Wow, isn't that super simple!
-
 :::
