@@ -68,16 +68,14 @@ fed_funds_rate$Dates <- as.Date(fed_funds_rate$Date, format="%Y-%m-%d")
 str(fed_funds_rate$Dates) # the data type is date
 
 fed_funds_rate_final <- fed_funds_rate %>%
-  select(-Date, -Year, -Month, -Day,-'Federal Funds Upper Target', -'Federal Funds Lower Target')
+  select(-Date, -Year, -Month, -Day)
 ```
-After combining the three columns ('Year','Month','Day') into a new column 'Date', its data type was still 'character'. I used the as.Date() function to convert the values to the date type and stored them in a new column, 'Dates'. I removed the 'Year','Month','Day', and (old) 'Date' columns as well.
-
-We could remove the 'Federal Funds Upper Target' and 'Federal Funds Lower Target' columns because they have a lot of missing values (801 of 904 total rows) and the 'Federal Funds Target Rate' seems to be providing the same information. I'm also reordering the columns such that 'Dates' is the first one.
+After combining the three columns ('Year','Month','Day') into a new column 'Date', its data type was still 'character'. I used the as.Date() function to convert the values to the date type and stored them in a new column, 'Dates'. I removed the 'Year','Month','Day', and (old) 'Date' columns as well. I'm also reordering the columns such that 'Dates' is the first one.
 
 ```{r}
 #| label: tidying the data 2
 
-fed_funds_rate_final <- fed_funds_rate_final[, c(6,1,2,3,4,5)]
+fed_funds_rate_final <- fed_funds_rate_final[, c(8,1,2,3,4,5,6,7)]
 ```
 
 Besides this, I think that the dataset is tidy enough to work with.
