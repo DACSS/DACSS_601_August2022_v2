@@ -134,7 +134,7 @@ Yes, once it is pivoted long, our resulting data are $12x5$ - exactly what we ex
 Document your work here. What will a new "case" be once you have pivoted the data? How does it meet requirements for tidy data?
 
 ```{r}
-newPivotedData<-pivot_longer(animal_weight, col = c(2:17),
+newPivotedData<-pivot_longer(animalWeights, col = c(2:17),
                  names_to="animal_type",
                  values_to = "weight")
 
