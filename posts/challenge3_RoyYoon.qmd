@@ -1,0 +1,112 @@
+---
+title: "Challenge 3 Instructions"
+author: "Roy Yoon"
+desription: "Tidy Data: Pivoting"
+date: "08/17/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+  - eggs_tidy.csv
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1.  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2.  identify what needs to be done to tidy the current data
+3.  anticipate the shape of pivoted data
+4.  pivot the data into tidy format using `pivot_longer`
+
+## Read in data
+
+```{r}
+eggs<-read_csv("_data/eggs_tidy.csv")
+```
+
+### About eggs_tidy.csv data set
+
+```{r}
+eggs
+colnames(eggs)
+dim(eggs)
+```
+
+The eggs data set has 120 rows and 6 columns.
+
+The data examines the monthly price of different egg sizes and amounts from 2004 to 2013.
+
+## Anticipate the End Result
+
+
+### Example: find current and future data dimensions
+
+Lets see if this works with a simple example.
+
+```{r}
+#| tbl-cap: Example
+
+df<-eggs
+
+df
+
+#existing rows/cases
+nrow(df)
+
+#existing columns/cases
+ncol(df)
+
+#expected rows/cases
+nrow(df) * (ncol(df)-2)
+
+# expected columns 
+5
+```
+
+## eggs data set pivot longer (month, year, size, amount, price)
+```{r}
+
+eggs_tidy_longer<- eggs%>%
+  pivot_longer(cols=contains("large"),
+               names_to = c("size", "amount"),
+               names_sep="_",
+               values_to = "price"
+  )
+eggs_tidy_longer
+```
+
+New variable the size and amount are now separated and independent variables of each other and price is also aviable as its own variable
+
+
+## Describing Pivoted Data
+
+```{r}
+dim(eggs_tidy_longer)
+
+colnames(eggs_tidy_longer)
+
+```
+The eggs_tidy_longer data set contains 480 rows and 5 columns.
+
+The columns distinguish month, year, size, amount, and price as variable.
+
+The variables organized in this manner allows us to better understand and analyze how the variable are indepent from each other when looking at, size, amount, and price.
+
+
+
