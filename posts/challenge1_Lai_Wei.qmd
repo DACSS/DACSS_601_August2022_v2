@@ -2,7 +2,7 @@
 title: "Challenge 1"
 author: "Lai Wei "
 desription: "Reading in data and creating a post"
-date: "08/15 /2022"
+date: "08/22 /2022"
 format:
   html:
     toc: true
@@ -45,8 +45,9 @@ Find the `_data` folder, located inside the `posts` folder. Then you can read in
 
 ```{r}
 library(readxl)
-railroad <- read_csv("_data/railroad_2012_clean_country")
+railroad <- read_csv("_data/railroad_2012_clean_county.csv")
 railroad
+#import the railroad 2012 data into R
 ```
 
 Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
@@ -57,5 +58,8 @@ Using a combination of words and results of R commands, can you provide a high l
 
 ```{r}
 #| label: summary
-
+spec(railroad)
+dim(railroad)
+colnames(railroad)
+filter(railroad)
 ```
