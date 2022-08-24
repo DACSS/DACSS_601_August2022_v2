@@ -1,0 +1,83 @@
+---
+title: "Challenge 6"
+author: "Lindsay Jones"
+description: "Visualizing Time and Relationships"
+date: "08/23/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - fed_rate
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+
+```{r}
+library(readr)
+FedFundsRate <- read_csv("_data/FedFundsRate.csv")
+
+FedFundsRate
+```
+
+### Briefly describe the data
+
+## Tidy Data (as needed)
+
+First I will rename the columns and add a new date column.
+
+```{r}
+#rename columns
+FedFundsRate <- rename(FedFundsRate, 
+                       "Target Rate" = "Federal Funds Target Rate",
+                       "Upper Target" = "Federal Funds Upper Target",
+                       "Lower Target" = "Federal Funds Lower Target",
+                       "Effective Rate" = "Effective Federal Funds Rate",
+                       "Real GDP Δ" = "Real GDP (Percent Change)",
+                       "Unemployment" = "Unemployment Rate",
+                       "Inflation" = "Inflation Rate")
+
+#mutate to create a new date column
+fed_rates_tidy <- FedFundsRate%>%
+  mutate(Date = str_c(Year, Month, Day, sep = "-"),
+         Date = ymd(Date))
+
+#remove excess date columns
+fed_rates_tidy <- fed_rates_tidy%>%
+  select(-Year, -Month, -Day)
+
+#move new date column to the front
+fed_rates_tidy <- fed_rates_tidy%>%
+  relocate(Date)
+
+fed_rates_tidy
+```
+
+
+## Time Dependent Visualization
+Plotting unemployment and inflation over time. I chose a line chart because I felt it most accurately displays change over time.
+```{r}
+ggplot(fed_rates_tidy, aes(x=Date, y=Unemployment, group = 1))+
+  geom_line()+
+  xlab("")+
+  ggtitle("Federal Unemployment Rate",
+          subtitle = "1954 - 2017")+
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
+```
+
