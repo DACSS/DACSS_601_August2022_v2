@@ -61,4 +61,5 @@ Using a combination of words and results of R commands, can you provide a high l
 spec(railroad)
 dim(railroad)
 colnames(railroad)
+filter(railroad)
 ```
