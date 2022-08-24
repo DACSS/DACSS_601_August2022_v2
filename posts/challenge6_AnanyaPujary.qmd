@@ -1,0 +1,109 @@
+---
+title: "Challenge 6"
+author: "Ananya Pujary"
+description: "Visualizing Time and Relationships"
+date: "08/23/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+library(skimr)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+Reading in the 'debt_in_trillions.xslx' dataset.
+
+```{r}
+#| label: reading in the data
+
+debt <- read_excel("_data/debt_in_trillions.xlsx")
+
+```
+
+### Briefly describe the data
+
+```{r}
+#| label: data description
+
+skim(debt)
+
+```
+This dataset gives us information on different loan amounts such as student loans, mortgage, and credit card through different years (2003-2021) and quarters. There are 74 rows and 8 columns, of which 1 is character type and 7 are numeric. There aren't any missing values in the columns.
+
+## Tidy Data (as needed)
+
+The 'Year and Quarter' column can be parsed into a date type column.
+
+```{r}
+#| label: tidying the data
+
+debt_final <-debt %>%
+  mutate(date = parse_date_time(`Year and Quarter`, 
+                           orders="yq"))
+```
+
+## Time Dependent Visualization
+
+First, I want to look at how total debt varies with time.
+
+```{r}
+#| label: time dependent visualization 1
+
+ggplot(data=debt_final) +
+  geom_line(aes(x=date, y=Total)) + labs(title = "Total debt increases with time", x = "Time", y = "Total Debt") 
+
+```
+
+The graph shows a linear increase between 2003 to around 2007, with debt decreasing from 2007 to about 2014, and again increasing through 2021.
+
+Now, looking specifically at how each loan type varies with time:
+
+```{r}
+#| label: time dependent visualization 2
+debt_long <- debt_final %>%
+  pivot_longer(cols = Mortgage:Other, names_to = "loan_type", values_to = "totals") %>%
+  select(-Total) %>% mutate(loan_type = as.factor(loan_type))
+
+ggplot(debt_long, aes(x = date,y = totals,color = loan_type)) + geom_point() + facet_grid(rows = vars(loan_type)) + labs(title = "Debt Types over the Years", x = "Date", y = "Amount") + theme(strip.text = element_text(size = 5))
+
+```
+Mortgage in general is higher than any other loan type.
+
+
+## Visualizing Part-Whole Relationships
+
+I want to visualize the proportion of each loan type as a whole using a pie chart.
+
+```{r}
+#| label: part-whole visualization
+
+debt_long <- debt_long %>% 
+  mutate(loan_type = fct_relevel(loan_type, "Mortgage", "HE Revolving",
+                            "Auto Loan", "Student Loan",  
+                            "Credit Card","Other")) %>%
+  mutate(perc = totals/ sum(totals))
+
+ggplot(debt_long, aes(x="", y=totals, fill=loan_type)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) + labs(title = "Proportion of Loan Types", x = "Date", y = "Amount") + theme_void() + scale_fill_brewer(palette="Blues") 
+
+```
+Mortgage takes up the most space proportionally. I also wanted to add in percentage labels to this chart but couldn't get the code right, will keep working on it.
