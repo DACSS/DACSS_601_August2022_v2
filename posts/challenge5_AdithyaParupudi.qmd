@@ -1,0 +1,66 @@
+---
+title: "Challenge 5 - Adithya Parupudi"
+author: "Adithya Parupudi"
+description: "Introduction to Visualization"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - ggplot
+  - australian_marriage
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+We are choosing the australian marriages dataset
+
+```{r}
+
+australia <- read_csv('_data/australian_marriage_tidy.csv')
+```
+
+### Briefly describe the data
+
+## Tidy Data (as needed)
+
+Dataset is already tidy
+
+```{r}
+head(australia)
+```
+
+## Univariate Visualizations
+
+This is plotted against count vs percent, which is grouped by territory
+
+```{r}
+
+australia %>% 
+  group_by(territory) %>% 
+  ggplot(aes(count,percent, color=resp)) +
+  geom_point(size=2,alpha=0.5) +
+  geom_line(color='black') +
+  facet_wrap(~resp, nrow=1) +
+  labs(title='Australian Marriages') +
+  theme_bw()
+```
+
+## Bivariate Visualization(s)
+
+NA

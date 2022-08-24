@@ -1,0 +1,59 @@
+---
+title: "Challenge 6 - Adithya Parupudi"
+author: "Adithya Parupudi"
+description: "Visualizing Time and Relationships"
+date: "08/23/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - ggplot
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(summarytools)
+library(readxl)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+We will be reading the debt excel sheet
+
+```{r}
+
+debt <- read_excel('_data/debt_in_trillions.xlsx')
+debt
+```
+
+### Briefly describe the data
+
+```{r}
+debt_new <- debt %>%
+  mutate(date = parse_date_time(`Year and Quarter`, orders="yq"))
+debt_new
+```
+
+
+## Time Dependent Visualization
+
+```{r}
+debt_new %>% 
+  ggplot(aes(date,Total)) +
+  geom_point(size=.5) +
+  geom_line() 
+```
+
+## Visualizing Part-Whole Relationships
+
+Not sure about this part. Have to study on this more.
