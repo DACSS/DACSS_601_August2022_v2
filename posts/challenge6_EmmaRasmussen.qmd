@@ -1,0 +1,106 @@
+---
+title: "Challenge 6 Emma Rasmussen"
+author: "Emma Rasmussen"
+description: "Visualizing Time and Relationships"
+date: "08/23/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - debt
+
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+debt<-read_excel("_data/debt_in_trillions.xlsx")
+debt
+debtOrig<-debt
+```
+
+### Briefly describe the data
+This data represents debt in trillions over time, broken down by particular categories (ex: mortgage, student loans, credit card debt etc). Assume this is some amalgamation of debt owed by Americans but I could not find the original data source (again I know nothing about economics).
+
+```{r}
+print(summarytools::dfSummary(debt,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.8, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+## Tidy Data (as needed)
+
+```{r}
+#fixing date variable
+debtNEW<-debt%>%
+  mutate(YearQuarter=parse_date_time(`Year and Quarter`, 
+                                     orders="yq"))
+debtNEW
+
+#pivoting debt categories
+debtNEWPIVOT<-pivot_longer(debtNEW, c("Mortgage", "HE Revolving", "Auto Loan", "Credit Card", "Student Loan", "Other"),
+             names_to="DebtCategory", values_to="DebtByCategory")
+
+debtNEWPIVOT
+
+#selecting for 2021 row only. I used tail() because filter was not working for me.
+debt2021<-tail(debtNEWPIVOT, n=6)
+debt2021
+
+#data frame with 2 variables debt category and debt in trillions for 2021.
+select(debt2021, 4, 5)
+
+#creating a new df of my select manually. debt2021 did not work with gg plot so i created a data frame by type in the values which doesn't feel right. Then the graph worked though. I feel like this code is very inefficient
+debt2021df <- data.frame(
+  name=c("Mortgage","Revolving","Auto Loan","Credit Card","Student Loan", "Other") ,  
+  value=c(10.442, 0.322, 1.415, 0.787, 1.570, 0.421)
+  )
+
+debt2021df
+
+```
+
+## Time Dependent Visualization
+```{r}
+ggplot(debtNEW, aes(YearQuarter, Total))+geom_line()+
+  labs(x="Date", y="Debt in Trillions", title="Debt 2003-2021")
+
+```
+I chose a line graph to help visualize change over time. Easier to visualize increase and deacrease in debt over the date variable
+## Visualizing Part-Whole Relationships
+```{r}
+#Creating bar graph to transform into pie chart
+ggplot(debt2021df, aes(x=name, y=value)) + 
+  geom_bar(stat = "identity")+
+  labs(x="Debt Category", y="Debt in Trillions", title= "2021 Quarter 2 Debt in Trillions")
+
+#trying to create pie chart
+ggplot(debt2021df, aes(x=name, y=value)) + 
+  geom_bar(stat = "identity")+
+  labs(x="Debt Category", y="Debt in Trillions", title= "2021 Quarter 2 Debt in Trillions")+
+  coord_polar()
+#I don't know what happened. I need help. I was trying to make a simple pie chart
+  
+```
+I chose a pie chart (what was meant to be a pie chart) to help visualize proportion of debt (Bar graph was just precursor to make pie chart with ggplot). I think this paints a clearer picture than a bar graph of how debt falls proportionally by category.
