@@ -1,0 +1,84 @@
+---
+title: "Challenge 6"
+author: "Young Soo Choi"
+desription: "Visualizing Time and Relationships"
+date: "08/23/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+Read Fedral Funds Rate data. I changed column names and added date column to make analyse easy.
+
+```{r}
+ffr<-read_csv("_data/FedFundsRate.csv",
+              show_col_types = FALSE,
+              col_names = c("year","month","day","federal_funds_target_rate", "federal_funds_upper_target", "federal_funds_lower_target","effective_federal_funds_rate", "real_gdp", "unemployment_rate","inflation_rate"),
+              skip=1)
+
+library(lubridate)
+
+ffr <- mutate(ffr, date = make_datetime(year, month, day))
+
+ffr
+colnames(ffr)
+```
+
+
+## Tidy Data
+
+I'd like to check the time series of Real GDP and relation between Real GDP and Unemployment Rate after 2000.
+So I filtered after 2000 then selected Real GDP column and Unemployment column. 
+
+```{r}
+ffr2<-filter(ffr, year>=2000)
+ffr2<-select(ffr2, year, real_gdp, unemployment_rate, date)
+ffr2
+```
+
+
+## Time Dependent Visualization
+
+To make time series line graph, I removed the rows that has NA.
+
+```{r}
+ffr2<-filter(ffr2, !is.na(real_gdp))
+ffr2
+```
+
+Then I drawed time line graph of real gdp.
+
+```{r}
+ggplot(ffr2, aes(x=date, y=real_gdp)) +
+  geom_line()
+```
+
+The line is usually between zero and five points during the period, but it hit a low during the financial crisis in the late 2000s.
+
+## Visualizing Part-Whole Relationships
+
+What I concerned is that the relation of real gdp growth and umemployment rate. So I drawed scatter plot of two variable. But according to the scatter plot, it looks like there are no clear relation between those two.
+
+```{r}
+ggplot(ffr2, aes(x=real_gdp, y=unemployment_rate))+
+  geom_point()
+```
+
