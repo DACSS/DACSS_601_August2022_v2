@@ -1,0 +1,70 @@
+---
+title: "Challenge 3"
+author: "Shoshana Buck"
+description: "Tidy Data: Pivoting"
+date: "08/17/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+  - eggs_tidy
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+
+```{r}
+eggs<-read_excel("_data/organiceggpoultry.xls",
+                      sheet="Data",
+                      range =cell_limits(c(6,2),c(NA,6)),
+                      col_names = c("date", "xlarge_dozen",
+                               "xlarge_halfdozen", "large_dozen",
+                               "large_halfdozen")
+     )
+new_eggs<-eggs %>%  
+  mutate(date = str_remove(date, "/1")
+  )
+head(new_eggs)
+
+```
+
+### Briefly describe the data
+
+The U.S Department of Agriculture conducted monthly reports about the amount, size, and price of organic eggs starting in 2004 and ending in 2013. There are 120 observations, which are the prices of the organic eggs and 6 variables (month, year, xlarge_dozen, xlarge_halfdozen, large_dozen, and large_halfdozen), within this data set. To better understand the data set it is best to tidy the data first and then use the function pivot_longer() which collapses multiple columns into one column and flips the columns to rows. 
+```{r}
+
+new_eggs<-new_eggs%>%
+  separate(date, into=c("month", "year"), sep=" ")%>%
+  fill(year)
+new_eggs
+```
+
+## Pivot the Data
+The date set has n= 120 rows and k= 6 columns, which means that when using the function pivot_longer() the k-6 values are going to pivot to the rows using the 'names_to' variable and the current values will move using the 'values_to' variable. The data set is complex because the 120 cases have a month-year combination, whereas the 6 columns have four different prices based off the size of the organic eggs.  
+
+The dimension of the data can be calculated using the formula n*(k-2). In this case, k=6 so k-2 = 4 and n = 120. So, it can be expected that the new_eggs_long data should have 480 rows.
+```{r}
+
+new_eggs_long<-new_eggs %>% 
+  pivot_longer(cols= contains("large"),
+names_to = "eggtype",
+values_to = "avgprice" 
+)
+
+```
