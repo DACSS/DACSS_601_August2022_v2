@@ -1,0 +1,30 @@
+---
+title: "Ravina Banze"
+image: images/Ravina Banze.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/Ravina Banze.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/github_user
+---
+
+## Education/Work Background
+
+
+## R experience
+
+
+## Research interests
+
+
+## Hometown
+
+
+## Hobbies
+
+
+## Fun fact
