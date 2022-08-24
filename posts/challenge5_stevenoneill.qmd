@@ -4,6 +4,8 @@ author: "Steve O'Neill"
 description: "Introduction to Visualization"
 date: "08/22/2022"
 df-print: paged
+execute:
+  freeze: true  
 format:
   html:
     toc: true
@@ -129,6 +131,7 @@ asian_alone <- households %>% filter(year %in% 2002:2019 ) %>% filter(race == "A
 asian_alone %>% ggplot(aes(x=year, y=median_income_estimate)) + 
   geom_bar(stat = "identity")
 ```
+
 Although incomes are at different levels, we can see the effect of the financial recession (2008-2011) in both groups.
 
 ## Bivariate Visualization
@@ -141,4 +144,3 @@ alone_demographics <- households %>% filter(race %in% c("ASIAN ALONE ","WHITE AL
 alone_demographics %>% ggplot(aes(x=year, y=median_income_estimate, fill = race)) + 
   geom_bar(stat = "identity")
 ```
-

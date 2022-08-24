@@ -43,7 +43,12 @@ The data describes two hotels - one 'city' and one 'resort'-style.
 
 Before I begin, I should establish some terminology based on research online:
 
-TA: Travel Agent TO: Tour Operator Distribution channel: HB (meal): Half Board (breakfast + other meal) FB (meal): Full Board (3 meals a day)
+| Term | Meaning                              |
+|------|--------------------------------------|
+| TA   | Travel Agent                         |
+| TO   | Tour Operator (distribution channel) |
+| HB   | Half Board (breakfast + other meal)  |
+| FB   | Full Board (3 meals a day)           |
 
 ## Provide Grouped Summary Statistics
 
@@ -57,7 +62,6 @@ It is straightforward to give basic descriptive statistics on the Average Daily 
 
 ```{r}
 hotel_bookings %>% select(adr) %>% summary(adr)
-
 ```
 
 I can also demonstrate some more interesting stats based on included values like visitor nationality and lead time:
