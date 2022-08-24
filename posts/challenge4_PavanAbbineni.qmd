@@ -64,7 +64,7 @@ FedFundsRateData<-subset(FedFundsRateData,select=-c(1,2,3))
 ```
 
 ```{r}
-FedFundsRateData<-pivot_longer(FedFundsRateData, 2:8, names_to = "Rates", values_to = "Value")
+FedFundsRateData<-pivot_longer(FedFundsRateData, 1:7, names_to = "Rates", values_to = "Value")
 ```
 
 ```{r}
