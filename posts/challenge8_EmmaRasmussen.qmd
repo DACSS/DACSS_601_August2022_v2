@@ -1,0 +1,107 @@
+---
+title: "Challenge 8"
+author: "Emma Rasmussen"
+description: "Joining Data"
+date: "08/25/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - snl
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(scales)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+if(! require(scales))
+  install.packages("scales", repos=
+                     "http://cran.us.r-project.org")
+```
+
+## Read in data
+
+Reading in the three SNL data sets. I am interested in gender makeup of cast over time, and possibly air time(season fraction) if I have more time.
+
+```{r}
+#filter by cast members, and only selecting the columns from this df that I am interested in
+snl_actors <- read_csv("_data/snl_actors.csv") %>% 
+  filter(type=="cast") %>% 
+  select(aid, type, gender)
+snl_actors
+
+#selecting columns from snl_casts useful for analysis
+snl_casts <- read_csv("_data/snl_casts.csv") %>% 
+  select(aid, sid, n_episodes, season_fraction)
+snl_casts
+
+#selecting columns date/season info for time variable
+snl_seasons <- read_csv("_data/snl_seasons.csv") %>% 
+  select(sid, year, n_episodes)
+snl_seasons
+
+```
+
+### Briefly describe the data
+
+Data sets include data starting at season 1 of snl, and give information about number of episodes in a season, years of seasons, cast members over the seasons, gender of cast members, episode fraction of cast members etc. There are a couple variables in common, cast member name, and season number. This is where I will join the data sets. I think this data will be useful to look at cast member makeup of seasons over time.
+
+## Tidy Data (as needed)
+
+(see above and after join)
+
+## Join Data
+
+Joining 3 datasets
+
+```{r}
+#joining first two datasets
+snl1<-snl_actors %>% 
+  full_join(snl_casts, by="aid")
+snl1
+
+#joining new data set to previous join
+snl2<-snl1 %>% 
+  full_join(snl_seasons, by="sid")
+snl2
+
+```
+
+More Tidying
+
+```{r}
+#Reducing columns further to simplify analysis, arranging data in order of season1->46, and removing NA rows
+snl2<-snl2 %>% 
+  select("gender", "sid") %>% 
+  arrange(sid) %>% 
+  na.omit(.)
+snl2
+
+#grouping data set by season, then generating a count of gender by season
+snl2<-snl2 %>% 
+  group_by(sid) %>% 
+  count(gender)
+snl2
+```
+
+Analyzing Joined Dataset
+
+```{r}
+#Creating a grouped barchart. I use the scales package for this code chunk
+ggplot(snl2, aes(fill=gender, y=n, x=sid)) +
+  geom_bar(position="dodge", stat="identity", width=.85, space=0.5)+
+  labs(x="Season Number", y="Number of Cast Members", fill="Gender", title="Gender Makeup of SNL Cast Members Over Time")+
+  scale_y_continuous(breaks= pretty_breaks())+
+  scale_fill_manual(values = c("#FF1466", "#9ED6FF", "#B37BFF"))+
+  theme_classic()
+```
+
+I did not expect a gender disparity in snl casts to persist so long over time. I'm surprised it is not 1:1 or closer to that by now.
