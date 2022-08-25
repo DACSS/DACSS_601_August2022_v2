@@ -12,6 +12,7 @@ editor: visual
 library(tidyr)
 library(tidyverse)
 library(dplyr)
+library(ggplot2)
 
 animal_weight <- read.csv("_data/animal_weight.csv")
 
@@ -75,8 +76,16 @@ animal_weightr8 %>%
 ```
 
 ```{r}
-#I don't know what happened, but as I filtered down to one animal in one geographic region, the tables only showed ONE weight (not the range that's in the original table). I tried goats and sheep and it happened both times.
+#Since the average weight (kg) for goats in Eastern Europe is 38.5kg, I'm going to add in a different geographical area for the purpose of visuals
+
+animal_weight_final <- animal_weightr8 %>%
+  select(ipcc_area, standard_farm, `Standard Weight kg`) %>%
+  filter(ipcc_area == c("Eastern Europe","Indian Subcontinent"), standard_farm == "standard_goats") %>%
+  view()
 ```
 
+```{r}
+ggplot(animal_weight_final, mapping = aes(ipcc_area, 'Standard Weight kg')) + geom_jitter()
+```
 
 
