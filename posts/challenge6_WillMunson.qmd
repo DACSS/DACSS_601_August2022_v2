@@ -102,6 +102,6 @@ ggplot(fed_rate2, aes(x = full_date, y = `Effective Federal Funds Rate`)) +
        y = "Effective Federal Funds Rate")
 ```
 
-
+When looking at the time series graph for the Federal Funds rate, I was surprised by how much federal funds just dropped to zero after around 2008. This is probably easier to explain, since right around that time, the US went through the Great Recession. It's even stranger how federal funds didn't seem to recover much since then.  
 ## Visualizing Part-Whole Relationships
 
