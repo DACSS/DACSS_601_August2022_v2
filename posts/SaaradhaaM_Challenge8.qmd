@@ -1,0 +1,123 @@
+---
+title: "Challenge 8"
+author: "Saaradhaa M"
+description: "Joining Data"
+date: "08/25/2022"
+format:
+  html:
+    df-print: paged
+    toc: true
+    code-copy: true
+    code-tools: true
+    css: "styles.css"
+categories:
+  - challenge_8
+  - snl
+  - tidyverse
+  - summarytools
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+I'm gonna try to put together 3 SNL datasets - let's read both of them in.
+
+```{r}
+#| label: read in
+snl_actors <- (read_csv("_data/snl_actors.csv", show_col_types = FALSE) [,-2])
+snl_actors <- complete(snl_actors)
+
+snl_casts <- read_csv("_data/snl_casts.csv", show_col_types = FALSE)
+snl_casts <- complete(snl_casts)
+
+snl_seasons <- read_csv("_data/snl_seasons.csv", show_col_types = FALSE)
+snl_seasons <- complete(snl_seasons)
+```
+
+### Briefly describe and tidy data
+
+```{r}
+#| label: summary
+print(dfSummary(snl_actors, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.30, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+print(dfSummary(snl_casts, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.30, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+```
+
+-   Tidying snl_actors (2306 rows, 3 columns):
+    -   No missing data.
+    -   We can leave "aid" as a character column and convert type and gender to factors.
+-   Tidying snl_casts (614 rows, 8 columns):
+    -   Missing data in first_epid and last_epid - this is fine because we used complete() to make the NAs explicit.
+    -   "aid" is also present in this dataset, which hopefully makes it intuitive to put the 2 datasets together (no renaming needed). There are much fewer values for Actor ID, so this might just be a subset of the other dataset.
+-   Tidying snl_seasons (46 rows, 5 columns):
+  -    No tidying needed for now - I'll come back to this later.
+
+```{r}
+#| label: tidy
+# mutation.
+snl_actors <- snl_actors %>% mutate(type = as.factor(type), gender = as.factor(gender))
+                                    
+# sanity check.
+head(snl_actors)
+```
+
+## Join Data (Attempt 1)
+
+```{r}
+#| label: join
+snl_mega <- snl_actors %>%
+  left_join(snl_casts, by = "aid")
+print(dfSummary(snl_mega, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.30, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+```
+
+After joining, we have 10 columns, which was expected (3 + 8 - 1 = 10). We have a lot more missing values, which was also expected - the snl_casts dataset, which has more columns, has much fewer rows. How did we get 2764 rows, though --> 2306 + 614 - 2764 = 156. I think there are only 156 overlaps in both datasets - let's try to verify this.
+
+```{r}
+#| label: backtrace
+snl_casts %>% select(aid) %>%
+  filter(snl_casts$aid %in% snl_actors$aid) %>% unique()
+```
+
+Ok, we've verified that. I want to map over the values from snl_mega just for these 156 actors, so as to minimize the number of NA values. I would usually do an index/match on Excel for this - **how would I do this in R?**
+
+## Join Data (Attempt 2)
+
+I'm also going to try to add 1 column from snl_mega to snl_seasons (another dataset) --> number of actors per season.
+
+```{r}
+#| label: create subset with number of actors per season
+# create subset.
+sub <- snl_mega %>% select(aid, sid) %>%  
+  filter(! is.na(aid)) %>% 
+  group_by(sid) %>% unique()
+
+# get number of actors per season.
+sub_final <- sub %>% group_by(sid) %>% summarise("actors_per_season"=n())
+
+# sanity check.
+sum(sub_final$actors_per_season)
+```
+
+Ok, now let me try joining them.
+
+```{r}
+#| label: join 2
+snl_szns <- snl_seasons %>%
+  right_join(sub_final, by = "sid")
+print(dfSummary(snl_szns, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.30, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+```
+
+Ok - from the univariate graph produced by summarytools, it looks like the seasons in the middle had the most actors. We do need to qualify this statement, because we filtered out NA values when calculating actors per season.
