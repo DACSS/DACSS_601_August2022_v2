@@ -1,0 +1,143 @@
+---
+title: "Challenge 6"
+author: "Animesh Sengupta"
+description: "Visualizing Time and Relationships"
+date: "08/23/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - usa_hh
+  - Animesh Sengupta
+
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(summarytools)
+library(plotly)
+library(stringr)
+library(ggalluvial)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least one graph including time (evolution)
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+5)  Create at least one graph depicting part-whole or flow relationships
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+  - usa_hh ⭐⭐⭐
+
+
+```{r}
+#! label: Data loading
+US_household_data <- read_excel("../posts/_data/USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx",skip = 5, n_max = 353, col_names = c( "Year", "Number","Total","pd_<15000","pd_15000-24999","pd_25000-34999","pd_35000-49999","pd_50000-74999","pd_75000-99999","pd_100000-149999","pd_150000-199999","pd_>200000","median_income_estimate","median_income_moe","mean_income_estimate","mean_income_moe"))
+
+head(US_household_data,5)
+```
+
+### Briefly describe the data
+
+## Tidy Data (as needed)
+
+The US household data is anything but tidy. Here are the following few operations that have been performed to make it tidy:
+1. Separating Race and Year from one column
+2. Mutating dataframe to include race column
+3. Removing trailing character from both race and column
+4. Converting Number and Year Numerical columns from character to number.
+5. pivoting percent distribution into 2 columns[income_Range and percent_distribution] from 9 different income range feature of data .
+6. Grouped multi sub + common races into more generic races
+
+```{r}
+#! label: Data processing
+US_processed_data <- US_household_data%>%
+  rowwise()%>% #to ensure the following operation runs row wise
+  mutate(Race=case_when(
+    is.na(Number) ~ Year
+  ))%>%
+  ungroup()%>% # to stop rowwise operation
+  fill(Race,.direction = "down")%>%
+  subset(!is.na(Number))%>%
+  rowwise()%>%
+  mutate(
+    Year=strsplit(Year,' ')[[1]][1],
+    Race=ifelse(grepl("[0-9]", Race ,perl=TRUE)[1],strsplit(Race," \\s*(?=[^ ]+$)",perl=TRUE)[[1]][1],Race),
+    mean_income_estimate=as.numeric(mean_income_estimate),
+    Number=as.numeric(Number),
+    Year=as.numeric(Year),
+    CombinedRace=case_when(
+      str_detect(Race,"ASIAN")~"ASIAN",
+      str_detect(Race,"BLACK")~"BLACK",
+      str_detect(Race,"WHITE")~"WHITE",
+      TRUE ~ Race
+    )
+  )%>%
+  pivot_longer(
+    cols = starts_with("pd"),
+    names_to = "income_range",
+    values_to = "percent_distribution",
+    names_prefix="pd_"
+  )
+view(dfSummary(US_processed_data))
+
+```
+
+## Time Dependent Visualization
+```{r}
+#!label: Time dependent visualization
+time_viz<-ggplot(US_processed_data,aes(x=Year,y=percent_distribution,fill=factor(income_range, levels=c(">200000","150000-199999","100000-149999","75000-99999","50000-74999","35000-49999","25000-34999","15000-24999","<15000"
+))))+
+  geom_bar(position="stack",stat="identity")+
+  facet_wrap(vars(CombinedRace))+
+  theme(legend.position = "bottom")+
+  labs(title="Income range percent distribution change across Years for every Race Category")
+time_viz
+```
+This above graph shows the change in income range percentage distribution for multiple years. The total stacked value should be 100 but there are multiple places where for a year it is going beyond 100, this means there are multiple data for that Race, Year group. We need to sanitise the data. This graph was chosen to efficiently convey the change in income distribution for mulitple races across multiple years.
+
+Further work:
+eliminate redundant Data.
+Increase facet_wrap size
+Fix the legend and wrap text
+
+
+## Visualizing Part-Whole Relationships
+```{r}
+alluvial_viz<-ggplot(US_processed_data,aes(axis1=CombinedRace,axis2=income_range,y=percent_distribution))+
+  geom_alluvium(aes(fill=CombinedRace))+
+  geom_stratum()+
+  geom_stratum(aes(fill = CombinedRace))+
+  geom_text(stat = "stratum",size=3,
+            aes(label = after_stat(stratum)))+
+  theme_void()+
+  labs(title="Income range distribution across different races")
+alluvial_viz
+```
+
+The above plot shows a Part-whole visualization using flow data. I wanted to analyse the percent distribution trend to the income range across multiple races. The alluvial graph is the most intuitive and creative due to its unique relational mapping. Due to its relational mapping aesthetics made me choose this. 

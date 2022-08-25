@@ -90,8 +90,6 @@ debt_checks<-debt_data1%>%rowwise()%>%
   Difference=abs(Total-Expected_sum))
 
 head(debt_checks,10)
-
-
 ```
 
 Any additional comments?
