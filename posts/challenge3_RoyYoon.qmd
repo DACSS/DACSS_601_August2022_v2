@@ -38,6 +38,8 @@ Today's challenge is to:
 
 ```{r}
 eggs<-read_csv("_data/eggs_tidy.csv")
+
+eggs
 ```
 
 ### About eggs_tidy.csv data set
@@ -82,6 +84,9 @@ nrow(df) * (ncol(df)-2)
 ## eggs data set pivot longer (month, year, size, amount, price)
 ```{r}
 
+
+eggs <- rename(eggs, large_halfdozen = large_half_dozen, xlarge_halfdozen = extra_large_half_dozen, xlarge_dozen = extra_large_dozen)
+
 eggs_tidy_longer<- eggs%>%
   pivot_longer(cols=contains("large"),
                names_to = c("size", "amount"),
@@ -89,6 +94,7 @@ eggs_tidy_longer<- eggs%>%
                values_to = "price"
   )
 eggs_tidy_longer
+
 ```
 
 New variable the size and amount are now separated and independent variables of each other and price is also aviable as its own variable
