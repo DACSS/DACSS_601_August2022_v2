@@ -4,8 +4,6 @@ author: "Steve O'Neill"
 description: "Introduction to Visualization"
 date: "08/22/2022"
 df-print: paged
-execute:
-  freeze: true  
 format:
   html:
     toc: true
@@ -98,7 +96,12 @@ There are still some "race" data that have multiple years, like 2017. Mostly, ac
 By combing year and race, I can remove duplicates. I'll use `separate` to put things back as they were.
 
 ```{r}
-households <- households %>% unite("race_year", year:race) %>% filter(!duplicated(race_year)) %>% separate(race_year, into=c("race", "year"), sep="_")
+households <- households %>% unite("race_year", year:race) %>% filter(!duplicated(race_year)) 
+households
+```
+
+```{r}
+households <- households %>% separate(race_year, into=c("race", "year"), sep="_")
 households
 ```
 
