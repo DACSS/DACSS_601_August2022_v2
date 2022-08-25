@@ -1,0 +1,77 @@
+---
+title: "Challenge 4 Instructions"
+author: "Shoshana Buck"
+description: "More data wrangling: pivoting"
+date: "08/18/2022"
+format:
+  html:
+    df-print: paged
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    css: "styles.css"
+categories:
+  - challenge_4
+  - FedFundRate
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readr)
+library(lubridate)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in data
+
+```{r}
+fedfundrate <- read_csv("_data/FedFundsRate.csv",
+                        show_col_types = FALSE, col_names = c("Year", "Month", "Day", "federal_funds_target_rate", "federal_funds_upper_target", "federal_funds_lower_target", "effective_federal_funds_rate", "real_GDP_percent_change", "unemployment_rate", "inflation_rate"),
+                        skip=1
+)
+fedfundrate
+
+```
+
+### Briefly describe the data
+This data has been collected monthly since July 1st of 1954 and ended on march 16, 2017. There is a year-month-day combination that looks at 4 different Federal Funds Rates, while the other variables are indicators that effect the federal fund rate (inflation, unemployment and GDP changes).
+
+## Tidy Data (as needed)
+```{r}
+colnames(fedfundrate)
+
+print(summarytools::dfSummary(fedfundrate,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+
+```
+
+## Description of the variables
+I think that the summary tools function is really great because it captures the stats/values within each variable. Additionally it displays a graph of the data from each observation. One thing that I think is interesting to point out is that 
+
+## Identify variables that need to be mutated
+
+```{r}
+ffr_long <- fedfundrate %>% 
+  pivot_longer(cols = c( "federal_funds_target_rate", "federal_funds_upper_target", "federal_funds_lower_target", "effective_federal_funds_rate", "real_GDP_percent_change", "unemployment_rate", "inflation_rate"),
+               names_to = "ffr_type",
+               values_to = "value",
+               values_drop_na = TRUE)
+
+ffr_long
+
+```
+I think that using the function pivot_longer() is a great way to tidy the data and be able to get a better understanding/read of the data.  

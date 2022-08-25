@@ -11,7 +11,7 @@ format:
     code-tools: true
 categories:
   - challenge_2
-  - StateCounty2012
+  - Railroad
 ---
 
 ```{r}
@@ -30,6 +30,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 The state County data is looking at the total railroad employment by state and county in the United States and Canada using the calendar year of 2012. The source of this data is most likely taken from the United States Railroad Retirement Board. There is a total of 2,931 rows which reflect the counties and there are 3 columns which reflect the "State", "County", and the "total employees" within the county.
 
 ```{r}
+# | Label: Reading in data
 StateCounty<-read_excel("_data/StateCounty2012.xls",
                      skip = 4,
                      col_names= c("state", "delete",  "county",
@@ -37,7 +38,7 @@ StateCounty<-read_excel("_data/StateCounty2012.xls",
   select(!contains("delete"))%>%
   filter(!str_detect(state, "Total"))
 
-StateCounty<-head(railroad, -2)%>%
+StateCounty<-head(StateCounty, -2)%>%
   mutate(county = ifelse(state=="CANADA", "CANADA", county))
 
 StateCounty
