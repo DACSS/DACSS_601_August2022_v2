@@ -73,19 +73,34 @@ Is your data already tidy, or is there work to be done? Be sure to anticipate yo
 ```{r}
 fed_rate %>%
   select(-contains("Target")) %>%
-  na.omit()
+  na.omit() %>%
+  mutate(full_date = paste(Year,Month,Day,sep="-")) %>%
+  mutate(full_date = as.Date(full_date))
 
+fed_rate2 <- fed_rate %>%
+  select(-contains("Target")) %>%
+  na.omit() %>%
+  mutate(full_date = paste(Year,Month,Day,sep="-")) %>%
+  mutate(full_date = as.Date(full_date))
 ```
 
 Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
 
 Document your work here.
 
+I just did that... Oops. 
 ```{r}
 
 ```
 
 ## Time Dependent Visualization
+```{r}
+ggplot(fed_rate2, aes(x = full_date, y = `Effective Federal Funds Rate`)) +
+  geom_line() +
+  labs(title = "Trimonthly Inflation",
+       x = "Date",
+       y = "Effective Federal Funds Rate")
+```
 
 
 ## Visualizing Part-Whole Relationships
