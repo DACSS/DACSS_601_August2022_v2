@@ -121,7 +121,7 @@ time_viz
 ```
 This above graph shows the change in income range percentage distribution for multiple years. The total stacked value should be 100 but there are multiple places where for a year it is going beyond 100, this means there are multiple data for that Race, Year group. We need to sanitise the data. This graph was chosen to efficiently convey the change in income distribution for mulitple races across multiple years.
 
-Further work:
+Further work that i need help with:
 eliminate redundant Data.
 Increase facet_wrap size
 Fix the legend and wrap text
@@ -129,6 +129,7 @@ Fix the legend and wrap text
 
 ## Visualizing Part-Whole Relationships
 ```{r}
+#| label: Part-whole Visualization
 alluvial_viz<-ggplot(US_processed_data,aes(axis1=CombinedRace,axis2=income_range,y=percent_distribution))+
   geom_alluvium(aes(fill=CombinedRace))+
   geom_stratum()+
