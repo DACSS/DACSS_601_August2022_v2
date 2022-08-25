@@ -1,0 +1,77 @@
+---
+title: "Challenge 7"
+author: "Young Soo Choi"
+desription: "Visualizing Multiple Dimensions"
+date: "08/24/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_7
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+Read the data abot organic eggs' price.
+
+```{r}
+library(readxl)
+
+eggs <- read_xls("_data/organiceggpoultry.xls",
+                 sheet="Data",
+                 range="B6:F125",
+                 col_names = c("date", "xld", "xlhd", "ld", "lhd"))
+eggs
+```
+
+
+## Tidy Data
+
+I tried various methods, but I still couldn't find a suitable method to change the year and month into one variable. So instead, I gave each row an order and tidy the data.
+
+```{r}
+eggs<-eggs%>%
+  mutate(order=1:120)
+eggs
+```
+
+## Visualization with Multiple Dimensions
+
+I drew a scatter plot of extra large dozen and large dozen.
+
+```{r}
+ggplot(data=eggs)+
+  geom_point(mapping=aes(x=xld, y=ld))+
+  geom_smooth(mapping=aes(x=xld, y=ld))
+```
+
+It looks like they have a strong relation.
+
+The relationship between extra large and its half, large and its half, also seems similar.
+
+```{r}
+ggplot(data=eggs)+
+  geom_point(mapping=aes(x=xld, y=xlhd))+
+  geom_smooth(mapping=aes(x=xld, y=xlhd))
+```
+
+```{r}
+ggplot(data=eggs)+
+  geom_point(mapping=aes(x=ld, y=lhd))+
+  geom_smooth(mapping=aes(x=ld, y=lhd))
+```
+
