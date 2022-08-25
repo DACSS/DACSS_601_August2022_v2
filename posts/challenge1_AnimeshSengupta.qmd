@@ -1,5 +1,5 @@
 ---
-title: "Challenge 1 Instructions"
+title: "Challenge 1"
 author: "Animesh Sengupta"
 desription: "Reading in data and creating a post"
 date: "08/15/2022"
@@ -11,6 +11,8 @@ format:
     code-tools: true
 categories:
   - challenge_1
+  - Animesh Sengupta
+  - Debt in Trillions data
 ---
 
 ```{r}
