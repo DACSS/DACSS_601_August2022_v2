@@ -1,0 +1,107 @@
+---
+title: "Challenge 6 Will Munson"
+author: "Will Munson"
+description: "Visualizing Time and Relationships"
+date: "08/23/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - hotel_bookings
+  - air_bnb
+  - fed_rate
+  - debt
+  - usa_hh
+  - abc_poll
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least one graph including time (evolution)
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+5)  Create at least one graph depicting part-whole or flow relationships
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+  - debt  ⭐
+  - fed_rate ⭐⭐
+  - abc_poll ⭐⭐⭐
+  - usa_hh ⭐⭐⭐
+  - hotel_bookings ⭐⭐⭐⭐
+  - air_bnb  ⭐⭐⭐⭐⭐
+
+```{r}
+fed_rate <- read_csv("_data/fedfundsrate.csv", show_col_types = FALSE)
+```
+
+### Briefly describe the data
+
+So, the data appears to be about the changes in federal funding, and how that impacts the overall GDP, unemployment, and inflation. However, much of the data is missing, so we'll need to remove some rows and maybe even a few columns in order to continue working with this. 
+
+## Tidy Data (as needed)
+
+Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+
+```{r}
+fed_rate %>%
+  select(-contains("Target")) %>%
+  na.omit() %>%
+  mutate(full_date = paste(Year,Month,Day,sep="-")) %>%
+  mutate(full_date = as.Date(full_date))
+
+fed_rate2 <- fed_rate %>%
+  select(-contains("Target")) %>%
+  na.omit() %>%
+  mutate(full_date = paste(Year,Month,Day,sep="-")) %>%
+  mutate(full_date = as.Date(full_date))
+```
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+Document your work here.
+
+I just did that... Oops. 
+```{r}
+
+```
+
+## Time Dependent Visualization
+```{r}
+ggplot(fed_rate2, aes(x = full_date, y = `Effective Federal Funds Rate`)) +
+  geom_line() +
+  labs(title = "Trimonthly Inflation",
+       x = "Date",
+       y = "Effective Federal Funds Rate")
+```
+
+When looking at the time series graph for the Federal Funds rate, I was surprised by how much federal funds just dropped to zero after around 2008. This is probably easier to explain, since right around that time, the US went through the Great Recession. It's even stranger how federal funds didn't seem to recover much since then.  
+## Visualizing Part-Whole Relationships
+
