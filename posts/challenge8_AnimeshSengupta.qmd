@@ -1,0 +1,189 @@
+---
+title: "Challenge 8"
+author: "Animesh Sengupta"
+description: "Joining Data"
+date: "08/25/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - Animesh Sengupta
+  - usa_hh
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(readr)
+library(summarytools)
+library(plotly)
+library(stringr)
+library(ggalluvial)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in multiple data sets, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  join two or more data sets and analyze some aspect of the joined data
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+  - us_hh ⭐⭐⭐⭐
+  - US Cancer Statistics
+
+## Briefly describe the data
+
+## Dataset 1 - USCS Data
+For this challenge, The first dataset I chose the US Cancer Incidence and Mortality Data, a part of US Cancer statistics published CDC and National cancer Institute. This data was extracted from the CDC's WONDER Query engine for the time frame of 1999-2018. This Dataset was grouped Area/State wise and talks about the cancer's incidence and mortality rate across features like age,race and ethnicity.
+
+The USCS data came in .TXT format hence, all the data was in character format. We have initially converted all numerical columns to the proper type. From an initial look, the dataset looks very tidy in nature. 
+
+## Dataset 2 US Household Data
+
+For the second dataset, I chose the USA Household income dataset which provides the income range distribution grouped by Race from 1967-2018. This particular dataset is maintained and published by Census Bureau of USA. This particular group of data is a subset query of the Census data and is grouped by Income, Race and origin of Hispanic household.
+```{r}
+USCS <- read_delim("../posts/_data/USCS_byArea.txt", 
+    delim = "|", escape_double = FALSE, trim_ws = TRUE)
+
+US_household_data <- read_excel("../posts/_data/USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx",skip = 5, n_max = 353, col_names = c( "Year", "Number","Total","pd_<15000","pd_15000-24999","pd_25000-34999","pd_35000-49999","pd_50000-74999","pd_75000-99999","pd_100000-149999","pd_150000-199999","pd_>200000","median_income_estimate","median_income_moe","mean_income_estimate","mean_income_moe"))
+```
+
+#Data Processing
+
+
+
+Document your work here.
+```{r}
+#! label: Data processing USCS
+USCS_tidy<-USCS%>%
+  select(AREA, EVENT_TYPE, SITE,YEAR,RACE,SEX,POPULATION,COUNT)%>%
+  mutate(
+    COUNT=as.numeric(COUNT),
+    YEAR=as.numeric(YEAR),
+    POPULATION=as.numeric(POPULATION),
+    RACE=toupper(RACE)
+  )%>%
+  mutate(
+     CombinedRace=case_when(
+      str_detect(RACE,"ASIAN")~"ASIAN",
+      TRUE~RACE
+    )
+  )%>%
+  filter(
+    EVENT_TYPE=="Mortality"
+  )%>%
+  group_by(CombinedRace,YEAR,SITE)%>%
+  summarise(COUNT=sum(COUNT))%>%
+  ungroup()
+
+#head(USCS_tidy%>%filter(CombinedRace=="HISPANIC"),50)
+view(dfSummary(USCS_tidy))
+unique(USCS_tidy$RACE)
+
+```
+```{r}
+USCS_graph<-ggplot(USCS_tidy%>%filter(YEAR==2018), aes(x=COUNT,y=SITE))+
+  geom_bar(stat = "identity")
+USCS_graph
+#ggplotly(USCS_graph)
+
+```
+
+
+```{r}
+#! label: Data processing USHH
+US_processed_data <- US_household_data%>%
+  rowwise()%>% #to ensure the following operation runs row wise
+  mutate(Race=case_when(
+    is.na(Number) ~ Year
+  ))%>%
+  ungroup()%>% # to stop rowwise operation
+  fill(Race,.direction = "down")%>%
+  subset(!is.na(Number))%>%
+  rowwise()%>%
+  mutate(
+    Year=strsplit(Year,' ')[[1]][1],
+    Race=ifelse(grepl("[0-9]", Race ,perl=TRUE)[1],strsplit(Race," \\s*(?=[^ ]+$)",perl=TRUE)[[1]][1],Race),
+    mean_income_estimate=as.numeric(mean_income_estimate),
+    Number=as.numeric(Number),
+    Year=as.numeric(Year),
+    CombinedRace=case_when(
+      str_detect(Race,"ASIAN")~"ASIAN",
+      str_detect(Race,"BLACK")~"BLACK",
+      str_detect(Race,"WHITE")~"WHITE",
+      str_detect(Race,"HISPANIC")~"HISPANIC",
+      TRUE ~ Race
+    )
+  )%>%
+  pivot_longer(
+    cols = starts_with("pd"),
+    names_to = "income_range",
+    values_to = "percent_distribution",
+    names_prefix="pd_"
+  )%>%
+  filter(
+    Year>1998
+  )%>%
+  select(CombinedRace,income_range,percent_distribution,Year)
+view(dfSummary(US_processed_data))
+```
+##Data Tidy process
+
+The US household data is anything but tidy. Here are the following few operations that have been performed to make it tidy:
+1. Separating Race and Year from one column
+2. Mutating dataframe to include race column
+3. Removing trailing character from both race and column
+4. Converting Number and Year Numerical columns from character to number.
+5. pivoting percent distribution into 2 columns[income_Range and percent_distribution] from 9 different income range feature of data .
+6. Filtered the dataset only from Year 1999.
+7. Selected the Year, Race, Income_Range and Percent_Distribution columns
+
+For the USCS Data, Here are the following operations that have been performed to make it tidy:\
+0. I will analyse the US Cancer Statistics on mortality cases only hence in filtered.
+1. Converted all the Number data which were in character type into Numeric
+2. Converted the Race to Uppercase to matchcase with USHH data
+3. Strimmed ASIAN race value to fit the USHH Race type.
+4. Removed statistical measure columns from the dataset for analysis.
+
+## Join Data
+
+Be sure to include a sanity check, and double-check that case count is correct!
+```{r}
+joined_data<-merge(USCS_tidy,US_processed_data,by.x = c("CombinedRace","YEAR"),by.y = c("CombinedRace","Year"))
+Analysis<-joined_data%>%
+  drop_na(COUNT)%>%
+  mutate(
+    ApproxCount=round((percent_distribution*COUNT)/100,0)
+  )%>%
+  select(YEAR,SITE,income_range,ApproxCount,CombinedRace)
+#head(Analysis,20)
+view(dfSummary(Analysis))
+```
+
+##Data Visualization
+```{r}
+Analysis_viz<-ggplot(Analysis%>%filter(SITE=="All Cancer Sites Combined"),aes(x=YEAR,y=ApproxCount,fill=income_range))+
+  geom_bar(stat="identity")+
+  labs(title="Change in All cancer Site mortality rate across Year")
+ggplotly(Analysis_viz)
+
+```
+One of the interesting thing about Cancer data , was to analyse and visualise how cancer affects diffrent income groups over a period of time. I measured this using a Bar plot with income range as fill. We can see that during 2013 and 2017, the cancer mortality is highest in general. But there seems to be no correlation visually between income range and cancer mortality.
