@@ -1,0 +1,113 @@
+---
+title: "Challenge 8"
+author: "Lindsay Jones"
+description: "Joining Data"
+date: "08/25/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - snl
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in multiple data sets, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  join two or more data sets and analyze some aspect of the joined data
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+  - faostat ⭐⭐
+  - railroads  ⭐⭐⭐
+  - fed_rate ⭐⭐⭐
+  - debt ⭐⭐⭐
+  - us_hh ⭐⭐⭐⭐
+  - snl ⭐⭐⭐⭐⭐
+
+```{r}
+library(readr)
+seasons <- read_csv("_data/snl_seasons.csv", show_col_types = FALSE)
+
+casts <- read_csv("_data/snl_casts.csv", show_col_types = FALSE)
+
+actors <- read_csv("_data/snl_actors.csv", show_col_types = FALSE)
+
+```
+
+### Briefly describe the data
+
+## Tidy Data (as needed)
+
+"Seasons" and "Casts" both use the column title "n_episodes", but they mean different things- the former refers to number of episodes aired in the season, the latter refers to the number of episodes a cast member appeared in during the season. Similarly, they both use "first_epid" and "last_epid". I will rename the columns accordingly. 
+
+```{r}
+#rename columns
+seasons <- rename(seasons, "n_eps_aired" = "n_episodes")
+
+casts <- rename(casts, "n_eps_seen" = "n_episodes",
+                      "first_seen" = "first_epid",
+                      "last_seen" = "last_epid")
+
+```
+
+
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+Document your work here.
+
+```{r}
+#mutate season dates for readability
+seasons %>%
+  mutate(first_epid = ymd(first_epid), last_epid = ymd(last_epid))
+
+casts %>%
+  mutate(first_seen = ymd(first_seen), last_seen = ymd(last_seen))
+```
+
+## Join Data
+
+```{r}
+snl <- inner_join(seasons, casts, "sid")
+snl <- inner_join(snl, actors, "aid")
+snl
+```
+Apparently the mutating of dates doesn't carry over to the join, so I'll do that again.
+```{r}
+#remove year column
+snl <- snl%>%
+  select(-year)
+
+#mutate season dates for readability
+snl %>%
+  mutate(first_epid = ymd(first_epid), 
+         last_epid = ymd(last_epid),
+         first_seen = ymd(first_seen), 
+         last_seen = ymd(last_seen))
+```
+
+
+
