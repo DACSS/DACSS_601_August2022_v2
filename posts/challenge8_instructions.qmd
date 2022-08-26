@@ -42,6 +42,7 @@ Today's challenge is to:
 
 Read in one (or more) of the following datasets, using the correct R package and command.
 
+  - military marriages ⭐⭐
   - faostat ⭐⭐
   - railroads  ⭐⭐⭐
   - fed_rate ⭐⭐⭐
