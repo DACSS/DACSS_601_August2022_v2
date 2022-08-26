@@ -105,3 +105,10 @@ ggplot(fed_rate2, aes(x = full_date, y = `Effective Federal Funds Rate`)) +
 When looking at the time series graph for the Federal Funds rate, I was surprised by how much federal funds just dropped to zero after around 2008. This is probably easier to explain, since right around that time, the US went through the Great Recession. It's even stranger how federal funds didn't seem to recover much since then.  
 ## Visualizing Part-Whole Relationships
 
+Now, let's take a look at how inflation and funds rates correlate with one another. 
+```{r}
+ggplot(fed_rate2, aes(x = `Inflation Rate`, y = `Effective Federal Funds Rate`)) +
+  geom_point() + geom_smooth(method = lm)
+```
+
+As we can see, there's a strong correlation between inflation and funding. During a recession, it appears that most financial operations seem to shut down in response, including inflation and funding. This shows that whenever we have a recession, inflation is low because companies and financial firms need to catch up with the rising costs. However, the government might also have financial issues, and might be forced to make financial cuts in order to bring the country out of financial ruin. We nearly went into default during the Great Recession, and in order to avoid this situation, the government was forced to cut funding for numerous programs, such as the EPA, and even a few towns and major cities that filed for bankruptcy had to cut pensions in order to pull themselves out.
