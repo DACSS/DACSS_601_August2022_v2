@@ -1,0 +1,85 @@
+---
+title: "Challenge 4 Instructions"
+author: "Yakub Rabiutheen"
+desription: "More data wrangling: pivoting"
+date: "08/18/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  identify variables that need to be mutated
+4)  mutate variables and sanity check all mutations
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+-   abc_poll.csv ⭐
+-   poultry_tidy.csv⭐⭐
+-   FedFundsRate.csv⭐⭐⭐
+-   hotel_bookings.csv⭐⭐⭐⭐
+-   debt_in_trillions ⭐⭐⭐⭐⭐
+
+
+Column Names
+
+```{r}
+colnames(abc_poll_2021)
+```
+
+### Briefly describe the data
+
+## Tidy Data (as needed)
+
+This Data is already tidy, perhaps I will compare data about education and Political Identification.
+
+It is also interesting to note that there seems to be a high frequency of working full-time and having a Bachelors degree.
+
+```{r}
+table(abc_poll_2021$ppeducat,abc_poll_2021$ppemploy)
+```
+
+Cleaned Up Party id similar to how Meredith did it. Removed all Skipped answers and Removed the An.
+
+```{r}
+abc_poll_2021<-abc_poll_2011%>%
+  mutate(partyid = str_remove(QPID, "A[n]* "),
+         partyid = na_if(partyid, "Skipped"))%>%
+  select(-QPID)
+table(abc_poll_2021$QID)
+```
+
+
+
+
+Table below demonstrates the general trend that Democrats are more likely to have a Bachelor's Degree or Higher
+
+```{r}
+table(abc_poll_2021$partyid,abc_poll_2021$ppeducat)
+```
+
+
+```
+
