@@ -127,4 +127,4 @@ yg %>%
   labs(title = "The gender analysis based on year")
 ```
 
-As per the graph, the male are more then female as casts in different seasons as the year passes on.
+As per the graph, the male are more than female as casts in different seasons as the year passes on.
