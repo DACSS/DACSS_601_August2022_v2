@@ -1,0 +1,114 @@
+---
+title: "Challenge 8"
+author: "Young Soo Choi"
+desription: "Joining Data"
+date: "08/25/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data 1
+
+Read the data about FAO.
+
+```{r}
+fao_egg<-read_csv("_data/FAOSTAT_egg_chicken.csv",show_col_types = FALSE)
+fao_egg
+fao_livestock<-read_csv("_data/FAOSTAT_livestock.csv",show_col_types = FALSE)
+fao_livestock
+fao_cattle<-read_csv("_data/FAOSTAT_cattle_dairy.csv",show_col_types = FALSE)
+fao_cattle
+fao_country<-read_csv("_data/FAOSTAT_country_groups.csv",show_col_types = FALSE)
+fao_country
+
+```
+
+It looks like data about egg, chicken, livestock, and cattle. And country data file is maybe the direction of the interpret the domains, and countries that contained in the each data set. So I would like to join all the data except the country data. To do so, I looked up the column names of data.
+
+```{r}
+colnames(fao_cattle)
+colnames(fao_livestock)
+colnames(fao_egg)
+```
+Fortunately, It all have same column names. So I don't need to transform data to join them.
+
+## Join data 1
+
+First of all, I joined cattle and livestock data.
+
+```{r}
+cat_live<-full_join(fao_cattle, fao_livestock)
+cat_live
+```
+They were joined successfully. The joined data now have 118,565rows. This is exactly the same as livestock and cattle combined. 
+Then, I joined the egg and chicken data into that data.
+
+```{r}
+tot_fao<-full_join(cat_live, fao_egg)
+tot_fao
+
+```
+
+Now, It has 156,735 rows that is exactly same as all the number of data is summed.
+
+## Read in data 2
+
+I read the data about snl.
+```{r}
+snl_seasons<-read_csv("_data/snl_seasons.csv",show_col_types = FALSE)
+snl_seasons
+snl_casts<-read_csv("_data/snl_casts.csv",show_col_types = FALSE)
+snl_casts
+snl_actors<-read_csv("_data/snl_actors.csv",show_col_types = FALSE)
+snl_actors
+```
+
+1. Seasons data contains each seasons' year, period, and number of episode.
+2. Cast data contains data on each cast and the season they appeared in.
+3. Actor data contains their names, type, gender, and url. But I don't know what the url means.
+
+## Join data 2
+
+What I wonder is that the number of casts by each season. So I tidied the data.
+
+```{r}
+sc<-snl_casts%>%
+  select(aid,sid)
+noc<- count(group_by(sc, sid))
+colnames(noc)<-c('sid', 'number_of_cast')
+noc
+
+```
+
+New data were created by dividing the number of casts that appeared by season.
+Then I joined this data with the existing season data by using join function.
+
+```{r}
+j_snl<-full_join(snl_seasons, noc, key='sid')
+j_snl
+```
+```{r}
+ggplot(j_snl, mapping=aes(x=year, y=number_of_cast))+
+  geom_line()
+```
+
+The graph shows that the number of casts appearing per season during SNL 46 seasons is gradually increasing.
+
+
