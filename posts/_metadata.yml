@@ -1,0 +1,9 @@
+comments:
+  giscus:
+    repo: DACSS/dacss601_august2022
+    category: Announcements
+toc-location: right
+search: true
+execute:
+  freeze: auto
+  error: true
