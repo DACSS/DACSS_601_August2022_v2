@@ -141,13 +141,12 @@ all_joined <- left_join(merged_casts_seasons,actors,
 all_joined
 ```
 
-It found an exact match in `aid` for all 614 names. Not surprising, given that the three .CSVs probably came from the same original source.
-
-If there were fewer, I could check them by `anti_join`ing them
+No castmembers are listed as actors, so `anti_join`ing them confirms that:
 
 ```{r}
 anti_joined <- anti_join(merged_casts_seasons,actors,
           by = "aid")
+anti_joined
 ```
 
 As far as I know, this is the most "joined" the data can be.
