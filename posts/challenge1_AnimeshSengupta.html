@@ -2,21 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.132">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Animesh Sengupta">
 <meta name="dcterms.date" content="2022-08-15">
 
-<title>- Challenge 1 Instructions</title>
+<title>- Challenge 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -55,7 +60,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -68,7 +73,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -123,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 
 
-<meta name="twitter:title" content="- Challenge 1 Instructions">
+<meta name="twitter:title" content="- Challenge 1">
 <meta name="twitter:description" content="Today’s challenge is to">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
@@ -135,9 +140,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../index.html">
-    <img src="../images/UMass White Wordmark Horiz.png" alt="">
-  </a>
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -171,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -186,9 +193,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Challenge 1 Instructions</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Challenge 1</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
   <div class="quarto-categories">
     <div class="quarto-category">challenge_1</div>
+    <div class="quarto-category">Animesh Sengupta</div>
+    <div class="quarto-category">Debt in Trillions data</div>
   </div>
   </div>
 
@@ -366,6 +375,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       }
     }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
   }
   const isFileUrl = () => { 
     return window.location.protocol === 'file:';
@@ -518,7 +537,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
@@ -546,10 +566,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+<script src="https://giscus.app/client.js" data-repo="DACSS/dacss601_august2022" data-repo-id="R_kgDOHwIF-g" data-category="Announcements" data-category-id="DIC_kwDOHwIF-s4CQsld" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 1 Instructions"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 1"</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Animesh Sengupta"</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Reading in data and creating a post"</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/15/2022"</span></span>
@@ -561,57 +581,59 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_1</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Animesh Sengupta</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - Debt in Trillions data</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>Today's challenge is to</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
 <span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>1)  read in a dataset, and</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>Today's challenge is to</span>
 <span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>2)  describe the dataset using both words and any supporting information (e.g., tables, etc)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>1)  read in a dataset, and</span>
 <span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>2)  describe the dataset using both words and any supporting information (e.g., tables, etc)</span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>Read in one (or more) of the following data sets, using the correct R package and command.</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
 <span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>railroad_2012_clean_county.csv ⭐</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>birds.csv ⭐⭐</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FAOstat<span class="sc">\*</span>.csv ⭐⭐</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>wild_bird_data.xlsx ⭐⭐⭐</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>StateCounty2012.xlsx ⭐⭐⭐⭐</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>Find the <span class="in">`_data`</span> folder, located inside the <span class="in">`posts`</span> folder. Then you can read in the data, using either one of the <span class="in">`readr`</span> standard tidy read commands, or a specialized package such as <span class="in">`readxl`</span>.</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>Read in one (or more) of the following data sets, using the correct R package and command.</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>railroad_2012_clean_county.csv ⭐</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>birds.csv ⭐⭐</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FAOstat<span class="sc">\*</span>.csv ⭐⭐</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>wild_bird_data.xlsx ⭐⭐⭐</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>StateCounty2012.xlsx ⭐⭐⭐⭐</span>
 <span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Export Data</span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>debt_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"../posts/_data/debt_in_trillions.xlsx"</span>)</span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>Find the <span class="in">`_data`</span> folder, located inside the <span class="in">`posts`</span> folder. Then you can read in the data, using either one of the <span class="in">`readr`</span> standard tidy read commands, or a specialized package such as <span class="in">`readxl`</span>.</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Export Data</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>debt_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"../posts/_data/debt_in_trillions.xlsx"</span>)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.</span>
 <span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
 <span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(debt_data)</span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(debt_data)</span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(debt_data,<span class="dv">5</span>)</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(debt_data)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(debt_data)</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(debt_data,<span class="dv">5</span>)</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

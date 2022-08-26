@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.132">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Saaradhaa M">
+<meta name="dcterms.date" content="2022-08-25">
+<meta name="description" content="Joining Data">
+
+<title>- Challenge 8</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta name="twitter:title" content="- Challenge 8">
+<meta name="twitter:description" content="Joining Data">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link active" data-scroll-target="#read-in-data">Read in data</a>
+  <ul class="collapse">
+  <li><a href="#briefly-describe-and-tidy-data" id="toc-briefly-describe-and-tidy-data" class="nav-link" data-scroll-target="#briefly-describe-and-tidy-data">Briefly describe and tidy data</a></li>
+  </ul></li>
+  <li><a href="#join-data-attempt-1" id="toc-join-data-attempt-1" class="nav-link" data-scroll-target="#join-data-attempt-1">Join Data (Attempt 1)</a></li>
+  <li><a href="#join-data-attempt-2" id="toc-join-data-attempt-2" class="nav-link" data-scroll-target="#join-data-attempt-2">Join Data (Attempt 2)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Challenge 8</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">challenge_8</div>
+    <div class="quarto-category">snl</div>
+    <div class="quarto-category">tidyverse</div>
+    <div class="quarto-category">summarytools</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Joining Data
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Saaradhaa M </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 25, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="read-in-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-data">Read in data</h2>
+<p>I’m gonna try to put together 3 SNL datasets - let’s read both of them in.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>snl_actors <span class="ot">&lt;-</span> (<span class="fu">read_csv</span>(<span class="st">"_data/snl_actors.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) [,<span class="sc">-</span><span class="dv">2</span>])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>snl_actors <span class="ot">&lt;-</span> <span class="fu">complete</span>(snl_actors)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>snl_casts <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/snl_casts.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>snl_casts <span class="ot">&lt;-</span> <span class="fu">complete</span>(snl_casts)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>snl_seasons <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/snl_seasons.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>snl_seasons <span class="ot">&lt;-</span> <span class="fu">complete</span>(snl_seasons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="briefly-describe-and-tidy-data" class="level3">
+<h3 class="anchored" data-anchor-id="briefly-describe-and-tidy-data">Briefly describe and tidy data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(snl_actors, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">snl_actors</h4>
+<strong>Dimensions</strong>: 2306 x 3
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">aid
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. 'N Sync</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. 070 Shake</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. 10,000 Maniacs</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. 14 Karat Soul</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. 2 Chainz</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. 3-D</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. 3RDEYEGIRL</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. 50 Cent</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. A Tribe Called Quest</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. A. Whitney Brown</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 2296 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2296</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">99.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADkAAABVCAQAAABZJ4QvAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAj0lEQVRo3u3aQQqAIBCFYSe8YyfrEJ7Sts82U8IoNP9rFUIfNr2FkPWyOsdyMQlZulxX2GBVyfFiISEhISEhISEhISFfxfQYYmGMKsMu445BmhyzhAwKJYGEdEJJICGdUBJISCeUBBLSCSWBhHSyoSRVFwJLIrup48oZ4rXhLsfns4F8zLLNPeVTjF+MfkPeWvIq26IO+5AAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDAcKRABAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwbXSovQAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. cast</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. crew</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. guest</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. unknown</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">154</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">170</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1926</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">83.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">56</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADIAAAAjCAQAAAB8vJEEAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAcUlEQVRIx2P8z0B7wEQHO4aRJSzInGnQCMpmpNxg5LhG80k4QzgNfDJ84mT4WMKCyl05dH0ymoRHqCV0ScIs2ASnUqO6RCrJ0SyhVgJGDZHhE/HDx5KBScLUaEQwMDAwZCGxh0+cjFpCEmAc7ToMOksApP4ME0UcZMgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDAcKRABAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwbXSovQAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">gender
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. andy</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. female</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. male</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. unknown</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">21</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">671</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">29.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1226</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">53.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">388</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">16.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACQAAAAjCAQAAABWDGCrAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAbklEQVRIx2P8z0AdwEQlcwahQQz/keBUEgMMWe/g89qoQYQBCyoXdwLIZiTJoHAcylbSz2vD2CC0wCYcqEQahBtgTRiMOA0KZyAeoLp+8AX24DOIPtFPKMdn4TYIOfpJc93gC+zBF2uMo80aggAAWN0ZQVx9IL4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDAcKRABAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwbXSovQAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-25</p>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(snl_casts, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">snl_casts</h4>
+<strong>Dimensions</strong>: 614 x 8
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">aid
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Kenan Thompson</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Darrell Hammond</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Seth Meyers</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Al Franken</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Fred Armisen</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Kate McKinnon</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Tim Meadows</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Aidy Bryant</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Bobby Moynihan</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Cecily Strong</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 146 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">18</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">14</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">13</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">500</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">81.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADEAAABVCAQAAABK8MTbAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAmElEQVRo3u3ZwQ2AIAyF4dawo0M4D+7glHgFD4ZDS2jz90ZM+JS+Qw3axLsOdyEJUfrF3UQutdi273COg4KAgICAgICAgNiW0H76NBlnReRnpq2tOvzR5OgFxGQRWohwBKGFCEesD63HV+ToBcRkEVqIcAShhQhHLAjtcOlmGNrubcv45DTZ/xlWOdq9+o71e4o2pVypb0O84o0lEwnNWS0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDAcKRABAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwbXSovQAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">sid
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 25.5 (13.1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 26 ≤ 46</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 22 (0.5)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">46 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAq0lEQVRYw+2X0Q2AIAxEW+OO7KDz4A5MqT+iDSoWKBhJ78eYNLwchy3iCi01NKV1jhvpCz6W2SPiGSOr3dbR0zECUwYAAFxhHRsXl2UecCEc130mjpulmDtulkK4q88quHD5NJfJuLxN9Pqyq1yVlkwxrnTzojhpL6/uzP50wq68+p53ilOc4kDwrhKKNERyvaiGO9shVd/ZKU5QSAf4UmWaT+RDQP1Z/i1uA7xoH+B03G6/AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwHCkQAQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMG10qL0AAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">featured
+[logical]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. FALSE</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. TRUE</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">451</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">73.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">163</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">26.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAC0AAAAVCAQAAAB4Oq/RAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAUklEQVQ4y2P8z0ArwEQzk4eo0SzInGkUB3wWIw6jGRjCKTJ4Jb0CZGgajRbWK8kzhRijcYFsRuLUZeE2GnsKIc8vQzMah6bRNEx8jKNVAd2MBgB0mAhbgfqHkAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMBwpEAEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDBtdKi9AAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">first_epid
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 19909634 (111264.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">19770115 ≤ 19901110 ≤ 20141025</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 156624.2 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">35 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAo0lEQVRYw2P8z0BPwERX24a5dSzIHEYk9lSkSM1mJNI0rAA5dbDgVhYOpVdS0XfDO+6Gt3UspCimPLWSZB3lqXV4x92odaPWjVo37K1DKTOnktAKRKiFFdbEFOBoRXQ4nEWoEMZWWBMuwImqEUjxNRYdSD4lyjrSqx1coTS8U+ZgbqtgB6QkJCpYR0pCGt5xx4gc8NNo0pXNQsrmjKOd5SFrHQDlvhyu/pRxPQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMBwpEAEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDBtdKi9AAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">564
+(91.9%)</td>
+    </tr>
+    <tr>
+      <td align="left">last_epid
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 19944038 (126122.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">19751011 ≤ 19950225 ≤ 20140201</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 190005 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">17 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAnElEQVRYw2P8z0BPwERX24a5dSzIHEaitU1FivJsAtqQUwcLA5kgHEqvJEnX8I67UeuGrnUoGWEqSgFKKD9RbB0iN5Gan4gFwzvuRq2jIiCiRiBU2Uwl1P5A0kNUBYS/skHIYrLQ9QzvuBu1jooAT8rElsAJJnryrcOW/MlrfyHA8I67UeuGrnWMyBlpGk26sllIFRDjaGd5yFoHAFiEGRZ5/kxWAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwHCkQAQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMG10qL0AAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">597
+(97.2%)</td>
+    </tr>
+    <tr>
+      <td align="left">update_anchor
+[logical]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. FALSE</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. TRUE</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">541</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">88.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">73</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADQAAAAVCAQAAACjgQXzAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAU0lEQVRIx2P8z0AfwEQne4ahRSzInGlUjrAsRhwWMTCEU9GalSi84RdHA5MY0MOVhhYhQDYjKcZgB1m4LYKlOur7bPglhuFnEd2SN+NoxTfoLQIAUoAIW4pngBIAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDAcKRABAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwbXSovQAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">n_episodes
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 18.7 (4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 20 ≤ 24</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2 (0.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">22 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAm0lEQVRYw+2XUQrAIAiG/0Z37A7rPO0OnXJ72BYFM4qpD+H/EETllyiK7oSmNlXa4jhfb9wvU6mkQWwM1dnhh60NKAAAcufG2rEznOEMZzhesZboV3dviB8NRsS78PQGJRwtwxnOcGCqKml40GDyjq4jIjhl70Y1Hbs2TnFyrPC0KUoBQH7W3otyVn3J1fcPkVF2p3DyWjszlXEXkw8XAtD5I4oAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDAcKRABAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwbXSovQAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">season_fraction
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.9 (0.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 1 ≤ 1</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (0.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">36 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAaUlEQVRYw2P8z0BPwERX24a5dSzIHEaqGTsVKUlkIRnLQrpRxIFwKL0SRXR4x92odaPWjVo3at2odaPWjVo3at2odaPWDQPrCPQREF2LbEbs4uggG2+/hhFZ3zSadGWRe0CMo53lIWsdAGZZDE/L3wkgAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwHCkQAQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMG10qL0AAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-25</p>
+</div>
+</div>
+</div>
+<ul>
+<li>Tidying snl_actors (2306 rows, 3 columns):
+<ul>
+<li>No missing data.</li>
+<li>We can leave “aid” as a character column and convert type and gender to factors.</li>
+</ul></li>
+<li>Tidying snl_casts (614 rows, 8 columns):
+<ul>
+<li>Missing data in first_epid and last_epid - this is fine because we used complete() to make the NAs explicit.</li>
+<li>“aid” is also present in this dataset, which hopefully makes it intuitive to put the 2 datasets together (no renaming needed). There are much fewer values for Actor ID, so this might just be a subset of the other dataset.</li>
+</ul></li>
+<li>Tidying snl_seasons (46 rows, 5 columns):</li>
+<li>No tidying needed for now - I’ll come back to this later.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mutation.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>snl_actors <span class="ot">&lt;-</span> snl_actors <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">as.factor</span>(type), <span class="at">gender =</span> <span class="fu">as.factor</span>(gender))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                    </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(snl_actors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["aid"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["fct"],"align":["left"]},{"label":["gender"],"name":[3],"type":["fct"],"align":["left"]}],"data":[{"1":"Kate McKinnon","2":"cast","3":"female"},{"1":"Alex Moffat","2":"cast","3":"male"},{"1":"Ego Nwodim","2":"cast","3":"unknown"},{"1":"Chris Redd","2":"cast","3":"male"},{"1":"Kenan Thompson","2":"cast","3":"male"},{"1":"Carey Mulligan","2":"guest","3":"andy"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="join-data-attempt-1" class="level2">
+<h2 class="anchored" data-anchor-id="join-data-attempt-1">Join Data (Attempt 1)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>snl_mega <span class="ot">&lt;-</span> snl_actors <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(snl_casts, <span class="at">by =</span> <span class="st">"aid"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(snl_mega, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">snl_mega</h4>
+<strong>Dimensions</strong>: 2764 x 10
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">aid
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Kenan Thompson</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Darrell Hammond</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Seth Meyers</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Al Franken</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Fred Armisen</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Kate McKinnon</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Tim Meadows</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Aidy Bryant</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Bobby Moynihan</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Cecily Strong</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 2296 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">18</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">14</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">13</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2650</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">95.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAABVCAQAAABH7rScAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAjklEQVRo3u3aQQqAMAxE0Yn0jp7MQ/SUdZu4EmkChh9XEvDRprMoaEuVdZRqzTkt91wpg/RC782Eg4ODg4ODg4ODa8CZvxZYCuGFsLqcK4mv3rOD21gEAQ5OBAEOThJBgIOTRBDg4CQRBDg4SeVBGL6RFAS3ihE753ZrhrfeR6WYe8xufvvK6zJ+j/ktdwMYTSrbuVqnRQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMBwpEAEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDBtdKi9AAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">type
+[factor]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. cast</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. crew</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. guest</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. unknown</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">607</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">22.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">170</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1926</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">69.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">61</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACwAAAAjCAQAAABF2yBfAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAdklEQVRIx2P8z0AbwEQjc4egwSzInGlYAzybkVjDkLWzoEqFYyheOdiCYtRgOECLPHKjiqDBEEB8AiM6KMKxJDiqGEw9MGowHNA3uU0lt1pBSqYESzfiAapvh17kDT2D6ZfcKCnZsugRFKMG095gxtFmLM0NBgBokAzVBGu/HAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMBwpEAEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDBtdKi9AAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">gender
+[factor]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. andy</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. female</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. male</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. unknown</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">21</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">813</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">29.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1540</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">55.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">390</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">14.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACYAAAAjCAQAAABS+bCWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAcUlEQVRIx2P8z0A9wERFswaxYQz/keBUMgIQWf/g9eaoYaQDFlQu7sSRzUiyYeE4lK2kvzdHiGFoEUBcQBNpGG6AM9EgJRkikwYugOqTwRsBg9cweiUNYsoJBoYs3IYhkgY5bhy8ETB4Y5NxtElFMgAA5jYZQUxHCm4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDAcKRABAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwbXSovQAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">sid
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 25.5 (13.1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 26 ≤ 46</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 22 (0.5)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">46 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAq0lEQVRYw+2X0Q2AIAxEW+OO7KDz4A5MqT+iDSoWKBhJ78eYNLwchy3iCi01NKV1jhvpCz6W2SPiGSOr3dbR0zECUwYAAFxhHRsXl2UecCEc130mjpulmDtulkK4q88quHD5NJfJuLxN9Pqyq1yVlkwxrnTzojhpL6/uzP50wq68+p53ilOc4kDwrhKKNERyvaiGO9shVd/ZKU5QSAf4UmWaT+RDQP1Z/i1uA7xoH+B03G6/AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwHCkQAQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMG10qL0AAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">2150
+(77.8%)</td>
+    </tr>
+    <tr>
+      <td align="left">featured
+[logical]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. FALSE</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. TRUE</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">451</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">73.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">163</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">26.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAC0AAAAVCAQAAAB4Oq/RAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAUklEQVQ4y2P8z0ArwEQzk4eo0SzInGkUB3wWIw6jGRjCKTJ4Jb0CZGgajRbWK8kzhRijcYFsRuLUZeE2GnsKIc8vQzMah6bRNEx8jKNVAd2MBgB0mAhbgfqHkAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMBwpEAEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDBtdKi9AAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">2150
+(77.8%)</td>
+    </tr>
+    <tr>
+      <td align="left">first_epid
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 19909634 (111264.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">19770115 ≤ 19901110 ≤ 20141025</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 156624.2 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">35 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAo0lEQVRYw2P8z0BPwERX24a5dSzIHEYk9lSkSM1mJNI0rAA5dbDgVhYOpVdS0XfDO+6Gt3UspCimPLWSZB3lqXV4x92odaPWjVo37K1DKTOnktAKRKiFFdbEFOBoRXQ4nEWoEMZWWBMuwImqEUjxNRYdSD4lyjrSqx1coTS8U+ZgbqtgB6QkJCpYR0pCGt5xx4gc8NNo0pXNQsrmjKOd5SFrHQDlvhyu/pRxPQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMBwpEAEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDBtdKi9AAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">2714
+(98.2%)</td>
+    </tr>
+    <tr>
+      <td align="left">last_epid
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 19944038 (126122.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">19751011 ≤ 19950225 ≤ 20140201</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 190005 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">17 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAnElEQVRYw2P8z0BPwERX24a5dSzIHEaitU1FivJsAtqQUwcLA5kgHEqvJEnX8I67UeuGrnUoGWEqSgFKKD9RbB0iN5Gan4gFwzvuRq2jIiCiRiBU2Uwl1P5A0kNUBYS/skHIYrLQ9QzvuBu1jooAT8rElsAJJnryrcOW/MlrfyHA8I67UeuGrnWMyBlpGk26sllIFRDjaGd5yFoHAFiEGRZ5/kxWAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwHCkQAQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMG10qL0AAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">2747
+(99.4%)</td>
+    </tr>
+    <tr>
+      <td align="left">update_anchor
+[logical]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. FALSE</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. TRUE</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">541</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">88.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">73</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADQAAAAVCAQAAACjgQXzAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAU0lEQVRIx2P8z0AfwEQne4ahRSzInGlUjrAsRhwWMTCEU9GalSi84RdHA5MY0MOVhhYhQDYjKcZgB1m4LYKlOur7bPglhuFnEd2SN+NoxTfoLQIAUoAIW4pngBIAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDAcKRABAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwbXSovQAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">2150
+(77.8%)</td>
+    </tr>
+    <tr>
+      <td align="left">n_episodes
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 18.7 (4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 20 ≤ 24</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2 (0.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">22 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAm0lEQVRYw+2XUQrAIAiG/0Z37A7rPO0OnXJ72BYFM4qpD+H/EETllyiK7oSmNlXa4jhfb9wvU6mkQWwM1dnhh60NKAAAcufG2rEznOEMZzhesZboV3dviB8NRsS78PQGJRwtwxnOcGCqKml40GDyjq4jIjhl70Y1Hbs2TnFyrPC0KUoBQH7W3otyVn3J1fcPkVF2p3DyWjszlXEXkw8XAtD5I4oAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDUrMDA6MDAcKRABAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwbXSovQAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">2150
+(77.8%)</td>
+    </tr>
+    <tr>
+      <td align="left">season_fraction
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.9 (0.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 1 ≤ 1</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (0.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">36 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQU1d3s4AAAAaUlEQVRYw2P8z0BPwERX24a5dSzIHEaqGTsVKUlkIRnLQrpRxIFwKL0SRXR4x92odaPWjVo3at2odaPWjVo3at2odaPWDQPrCPQREF2LbEbs4uggG2+/hhFZ3zSadGWRe0CMo53lIWsdAGZZDE/L3wkgAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQxOjA1KzAwOjAwHCkQAQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MTowNSswMDowMG10qL0AAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">2150
+(77.8%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-25</p>
+</div>
+</div>
+</div>
+<p>After joining, we have 10 columns, which was expected (3 + 8 - 1 = 10). We have a lot more missing values, which was also expected - the snl_casts dataset, which has more columns, has much fewer rows. How did we get 2764 rows, though –&gt; 2306 + 614 - 2764 = 156. I think there are only 156 overlaps in both datasets - let’s try to verify this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>snl_casts <span class="sc">%&gt;%</span> <span class="fu">select</span>(aid) <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(snl_casts<span class="sc">$</span>aid <span class="sc">%in%</span> snl_actors<span class="sc">$</span>aid) <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["aid"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"A. Whitney Brown"},{"1":"Alan Zweibel"},{"1":"Sasheer Zamata"},{"1":"Bowen Yang"},{"1":"Fred Wolf"},{"1":"Casey Wilson"},{"1":"Kristen Wiig"},{"1":"Brooks Wheelan"},{"1":"Noel Wells"},{"1":"Patrick Weathers"},{"1":"Damon Wayans"},{"1":"Michaela Watkins"},{"1":"Nancy Walls"},{"1":"Dan Vitale"},{"1":"Melissa Villasenor"},{"1":"Danitra Vance"},{"1":"Kenan Thompson"},{"1":"Terry Sweeney"},{"1":"Julia Sweeney"},{"1":"Jason Sudeikis"},{"1":"Cecily Strong"},{"1":"Ben Stiller"},{"1":"Pamela Stephenson"},{"1":"David Spade"},{"1":"Robert Smigel"},{"1":"Jenny Slate"},{"1":"Sarah Silverman"},{"1":"Martin Short"},{"1":"Harry Shearer"},{"1":"Molly Shannon"},{"1":"Paul Shaffer"},{"1":"Rob Schneider"},{"1":"Tom Schiller"},{"1":"Horatio Sanz"},{"1":"Adam Sandler"},{"1":"Andy Samberg"},{"1":"Maya Rudolph"},{"1":"Jon Rudnitsky"},{"1":"Tony Rosato"},{"1":"Charles Rocket"},{"1":"Chris Rock"},{"1":"Tim Robinson"},{"1":"Ann Risley"},{"1":"Rob Riggle"},{"1":"Jeff Richards"},{"1":"Chris Redd"},{"1":"Gilda Radner"},{"1":"Colin Quinn"},{"1":"Randy Quaid"},{"1":"Emily Prager"},{"1":"Amy Poehler"},{"1":"Joe Piscopo"},{"1":"Jay Pharoah"},{"1":"Nasim Pedrad"},{"1":"Chris Parnell"},{"1":"Cheri Oteri"},{"1":"Michael O'Donoghue"},{"1":"Mike O'Brien"},{"1":"Ego Nwodim"},{"1":"Luke Null"},{"1":"Don Novello"},{"1":"Laraine Newman"},{"1":"Kevin Nealon"},{"1":"Mike Myers"},{"1":"Bill Murray"},{"1":"Eddie Murphy"},{"1":"Bobby Moynihan"},{"1":"Garrett Morris"},{"1":"Tracy Morgan"},{"1":"Kyle Mooney"},{"1":"Jay Mohr"},{"1":"Alex Moffat"},{"1":"Finesse Mitchell"},{"1":"Jerry Minor"},{"1":"Dennis Miller"},{"1":"John Milhiser"},{"1":"Seth Meyers"},{"1":"Laurie Metcalf"},{"1":"Tim Meadows"},{"1":"Kate McKinnon"},{"1":"Mark McKinney"},{"1":"Michael McKean"},{"1":"Gail Matthius"},{"1":"Norm MacDonald"},{"1":"Jon Lovitz"},{"1":"Julia Louis-Dreyfus"},{"1":"Matthew Laurance"},{"1":"Gary Kroeger"},{"1":"David Koechner"},{"1":"Taran Killam"},{"1":"Laura Kightlinger"},{"1":"Tim Kazurinsky"},{"1":"Chris Kattan"},{"1":"Colin Jost"},{"1":"Leslie Jones"},{"1":"Punkie Johnson"},{"1":"Victoria Jackson"},{"1":"Melanie Hutsell"},{"1":"Yvonne Hudson"},{"1":"Jan Hooks"},{"1":"Lauren Holt"},{"1":"Phil Hartman"},{"1":"Darrell Hammond"},{"1":"Rich Hall"},{"1":"Brad Hall"},{"1":"Anthony Michael Hall"},{"1":"Bill Hader"},{"1":"Christopher Guest"},{"1":"Mary Gross"},{"1":"Gilbert Gottfried"},{"1":"Ana Gasteyer"},{"1":"Janeane Garofalo"},{"1":"Heidi Gardner"},{"1":"Al Franken"},{"1":"Will Forte"},{"1":"Chloe Fineman"},{"1":"Tina Fey"},{"1":"Will Ferrell"},{"1":"Chris Farley"},{"1":"Siobhan Fallon"},{"1":"Jimmy Fallon"},{"1":"Chris Elliott"},{"1":"Abby Elliott"},{"1":"Dean Edwards"},{"1":"Christine Ebersole"},{"1":"Nora Dunn"},{"1":"Robin Duke"},{"1":"Rachel Dratch"},{"1":"Brian Doyle-Murray"},{"1":"Robert Downey Jr."},{"1":"Jim Downey"},{"1":"Andrew Dismukes"},{"1":"Denny Dillon"},{"1":"Mikey Day"},{"1":"Tom Davis"},{"1":"Pete Davidson"},{"1":"Joan Cusack"},{"1":"Jane Curtin"},{"1":"Billy Crystal"},{"1":"George Coe"},{"1":"Ellen Cleghorne"},{"1":"Michael Che"},{"1":"Chevy Chase"},{"1":"Dana Carvey"},{"1":"Beth Cahill"},{"1":"Aidy Bryant"},{"1":"Paul Brittain"},{"1":"Jim Breuer"},{"1":"Beck Bennett"},{"1":"John Belushi"},{"1":"Jim Belushi"},{"1":"Vanessa Bayer"},{"1":"Morwenna Banks"},{"1":"Peter Aykroyd"},{"1":"Dan Aykroyd"},{"1":"Fred Armisen"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Ok, we’ve verified that. I want to map over the values from snl_mega just for these 156 actors, so as to minimize the number of NA values. I would usually do an index/match on Excel for this - <strong>how would I do this in R?</strong></p>
+</section>
+<section id="join-data-attempt-2" class="level2">
+<h2 class="anchored" data-anchor-id="join-data-attempt-2">Join Data (Attempt 2)</h2>
+<p>I’m also going to try to add 1 column from snl_mega to snl_seasons (another dataset) –&gt; number of actors per season.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create subset.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> snl_mega <span class="sc">%&gt;%</span> <span class="fu">select</span>(aid, sid) <span class="sc">%&gt;%</span>  </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span> <span class="fu">is.na</span>(aid)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sid) <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># get number of actors per season.</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>sub_final <span class="ot">&lt;-</span> sub <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sid) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">"actors_per_season"</span><span class="ot">=</span><span class="fu">n</span>())</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sub_final<span class="sc">$</span>actors_per_season)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2764</code></pre>
+</div>
+</div>
+<p>Ok, now let me try joining them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>snl_szns <span class="ot">&lt;-</span> snl_seasons <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(sub_final, <span class="at">by =</span> <span class="st">"sid"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(snl_szns, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">snl_szns</h4>
+<strong>Dimensions</strong>: 47 x 6
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">sid
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 23.5 (13.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 23.5 ≤ 46</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 22.5 (0.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">46 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQasfiqCAAAAcUlEQVRYw2P8z0BPwERX24a5dSzInGlUjMhsRhgL2VAWVEXhUHollEU+jR0M77gbtW7UulHrRq0btW7UulHrRq0bzNaxUG4EdjAV0bxkRIjSzDpEixUZDO+4G97WMSL3T6jZA0KALKSUyTjaWR6y1gEAezAT5j2XIRMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDYrMDA6MDAtwQqcAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA2KzAwOjAwXJyyIAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">1
+(2.1%)</td>
+    </tr>
+    <tr>
+      <td align="left">year
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1997.5 (13.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1975 ≤ 1997.5 ≤ 2020</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 22.5 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">46 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQasfiqCAAAAcUlEQVRYw2P8z0BPwERX24a5dSzInGlIEZnNSC0rkFMHC6pUOJReSSPfDe+4G8ikggymUi//IyU6nNYhEk04Ck2aCHqiG95xN2rdqHWj1o1aN2rdqHWj1o1aN2odHDAit16n0aQrm4XUrGUc7SwPWesArdsS5qcO7cwAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDYrMDA6MDAtwQqcAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA2KzAwOjAwXJyyIAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">1
+(2.1%)</td>
+    </tr>
+    <tr>
+      <td align="left">first_epid
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 19975965 (134209.3)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">19751011 ≤ 19975926 ≤ 20201003</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 224910.2 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">46 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQasfiqCAAAAcUlEQVRYw2P8z0BPwERX24a5dSzInGlUjMhsRhgL2VAWVEXhUHollEU+jR0M77gbtW7UulHrRq0btW7UulHrRq0bzNaxUG4EdjAV0bxkRIjSzDpEixUZDO+4G97WMSL3T6jZA0KALKSUyTjaWR6y1gEAezAT5j2XIRMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDYrMDA6MDAtwQqcAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA2KzAwOjAwXJyyIAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">1
+(2.1%)</td>
+    </tr>
+    <tr>
+      <td align="left">last_epid
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 19985509 (134223.9)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">19760731 ≤ 19985512 ≤ 20210410</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 225066.2 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">46 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQasfiqCAAAAgUlEQVRYw2P8z0BPwERX24a5dSzIHEY4ayrFUZoNNwzZKBZcysMZGBgYGFaSTWMHwzvuhrd1KEmF8vRIknWw9Ig7ZVEKhnfcjVo3at2odfS3joVyI7ADpPIX0UignXXYS9/hHXej1o1aN2od/a1jRG5aTqNJOzMLqcxkHO0sD1nrAIjBFX59gWtuAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQxOjA2KzAwOjAwLcEKnAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MTowNiswMDowMFycsiAAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">1
+(2.1%)</td>
+    </tr>
+    <tr>
+      <td align="left">n_episodes
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 19.7 (2.3)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">12 ≤ 20 ≤ 24</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1 (0.1)</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">12</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">13</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">4.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">17</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">4.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">18</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">2</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">4.3%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">19</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">3</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">6.5%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">20</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">23</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">50.0%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">21</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">7</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">15.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">22</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">5</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">10.9%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 2px 0 7px;margin:0;border:0" align="right">24</td><td style="padding:0 2px;border:0;" align="left">:</td><td style="padding:0 4px 0 6px;margin:0;border:0" align="right">1</td><td style="padding:0;border:0" align="left">(</td><td style="padding:0 2px;margin:0;border:0" align="right">2.2%</td><td style="padding:0 4px 0 0;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACMAAABHCAQAAAAntTaeAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQasfiqCAAAApElEQVRYw+2YYQqAIAxGNbxjd6jz1B06pf0StDS2sdFHbf8MfGzfo9BiDho1qVDAMKle7DmENVK31qliDeUYBmYTvR0XzAw21AcxB1Q3Ltwc48J/hlEULvmo34TLlENH/DImtUup8NR7SFQehxi67rZvrIixMJbCSz2f2JcxphbO6QwrYiyMtXD69ayDKcK5XWFFjIWxEs4TrTyUY8wx0X9KDesEyjkVYPph7r8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDYrMDA6MDAtwQqcAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA2KzAwOjAwXJyyIAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">1
+(2.1%)</td>
+    </tr>
+    <tr>
+      <td align="left">actors_per_season
+[integer]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 58.8 (311.7)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8 ≤ 14 ≤ 2150</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 5 (5.3)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">13 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADcAAAAnCAQAAAABBBhWAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKQasfiqCAAAAYklEQVRYw2P8z0BPwERX24a5dSzInGlYIjKbkVIrkA1lQZUKR1O6ksq+G95xN2rdqHWj1o1aN2rdqHWj1o1aN2rdqHXDwDoWyo1ABlOx9U6ROjVo1q0kzgCyAeNoZ3nIWgcAXc4KJeUSsi4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDE6MDYrMDA6MDAtwQqcAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQxOjA2KzAwOjAwXJyyIAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-25</p>
+</div>
+</div>
+</div>
+<p>Ok - from the univariate graph produced by summarytools, it looks like the seasons in the middle had the most actors. We do need to qualify this statement, because we filtered out NA values when calculating actors per season.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/dacss601_august2022" data-repo-id="R_kgDOHwIF-g" data-category="Announcements" data-category-id="DIC_kwDOHwIF-s4CQsld" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 8"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Saaradhaa M"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Joining Data"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/25/2022"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">    css: "styles.css"</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_8</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - snl</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - tidyverse</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">  - summarytools</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>I'm gonna try to put together 3 SNL datasets - let's read both of them in.</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: read in</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>snl_actors <span class="ot">&lt;-</span> (<span class="fu">read_csv</span>(<span class="st">"_data/snl_actors.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) [,<span class="sc">-</span><span class="dv">2</span>])</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>snl_actors <span class="ot">&lt;-</span> <span class="fu">complete</span>(snl_actors)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>snl_casts <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/snl_casts.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>snl_casts <span class="ot">&lt;-</span> <span class="fu">complete</span>(snl_casts)</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>snl_seasons <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/snl_seasons.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>snl_seasons <span class="ot">&lt;-</span> <span class="fu">complete</span>(snl_seasons)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### Briefly describe and tidy data</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(snl_actors, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(snl_casts, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Tidying snl_actors (2306 rows, 3 columns):</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>No missing data.</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>We can leave "aid" as a character column and convert type and gender to factors.</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Tidying snl_casts (614 rows, 8 columns):</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Missing data in first_epid and last_epid - this is fine because we used complete() to make the NAs explicit.</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>"aid" is also present in this dataset, which hopefully makes it intuitive to put the 2 datasets together (no renaming needed). There are much fewer values for Actor ID, so this might just be a subset of the other dataset.</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Tidying snl_seasons (46 rows, 5 columns):</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a><span class="ss">  -    </span>No tidying needed for now - I'll come back to this later.</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tidy</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a><span class="co"># mutation.</span></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>snl_actors <span class="ot">&lt;-</span> snl_actors <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">as.factor</span>(type), <span class="at">gender =</span> <span class="fu">as.factor</span>(gender))</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>                                    </span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(snl_actors)</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Join Data (Attempt 1)</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: join</span></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>snl_mega <span class="ot">&lt;-</span> snl_actors <span class="sc">%&gt;%</span></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(snl_casts, <span class="at">by =</span> <span class="st">"aid"</span>)</span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(snl_mega, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>After joining, we have 10 columns, which was expected (3 + 8 - 1 = 10). We have a lot more missing values, which was also expected - the snl_casts dataset, which has more columns, has much fewer rows. How did we get 2764 rows, though --&gt; 2306 + 614 - 2764 = 156. I think there are only 156 overlaps in both datasets - let's try to verify this.</span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: backtrace</span></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>snl_casts <span class="sc">%&gt;%</span> <span class="fu">select</span>(aid) <span class="sc">%&gt;%</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(snl_casts<span class="sc">$</span>aid <span class="sc">%in%</span> snl_actors<span class="sc">$</span>aid) <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>Ok, we've verified that. I want to map over the values from snl_mega just for these 156 actors, so as to minimize the number of NA values. I would usually do an index/match on Excel for this - **how would I do this in R?**</span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a><span class="fu">## Join Data (Attempt 2)</span></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>I'm also going to try to add 1 column from snl_mega to snl_seasons (another dataset) --&gt; number of actors per season.</span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: create subset with number of actors per season</span></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="co"># create subset.</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> snl_mega <span class="sc">%&gt;%</span> <span class="fu">select</span>(aid, sid) <span class="sc">%&gt;%</span>  </span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span> <span class="fu">is.na</span>(aid)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sid) <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a><span class="co"># get number of actors per season.</span></span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>sub_final <span class="ot">&lt;-</span> sub <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sid) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">"actors_per_season"</span><span class="ot">=</span><span class="fu">n</span>())</span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sub_final<span class="sc">$</span>actors_per_season)</span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>Ok, now let me try joining them.</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: join 2</span></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>snl_szns <span class="ot">&lt;-</span> snl_seasons <span class="sc">%&gt;%</span></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(sub_final, <span class="at">by =</span> <span class="st">"sid"</span>)</span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(snl_szns, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a>Ok - from the univariate graph produced by summarytools, it looks like the seasons in the middle had the most actors. We do need to qualify this statement, because we filtered out NA values when calculating actors per season.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

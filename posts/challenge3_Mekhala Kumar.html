@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.132">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -55,7 +60,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -68,7 +73,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -135,9 +140,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../index.html">
-    <img src="../images/UMass White Wordmark Horiz.png" alt="">
-  </a>
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -171,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -237,8 +244,14 @@ Following which, the data needs to be pivoted in such a manner that the years be
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>eggpoul <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/organiceggpoultry.xls"</span>,<span class="at">skip=</span><span class="dv">4</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(eggpoul)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in .External2(C_dataviewer, x, title): unable to start data viewer</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "...1"                            "Extra Large \nDozen"            
@@ -250,8 +263,8 @@ Following which, the data needs to be pivoted in such a manner that the years be
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">=</span><span class="fu">subset</span>(eggpoul,<span class="at">select=</span><span class="sc">-</span><span class="fu">c</span>(...<span class="dv">6</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(eggpoul, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">=</span><span class="fu">subset</span>(eggpoul,<span class="at">select=</span><span class="sc">-</span><span class="fu">c</span>(...<span class="dv">6</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(eggpoul, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 10
@@ -273,7 +286,7 @@ Following which, the data needs to be pivoted in such a manner that the years be
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 10
@@ -291,7 +304,7 @@ Following which, the data needs to be pivoted in such a manner that the years be
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [120 × 10] (S3: tbl_df/tbl/data.frame)
@@ -312,22 +325,22 @@ Dozen                  : num [1:120] 230 226 225 225 225 ...
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span>eggpoul<span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Bone-in Breast</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">parse_number</span>(<span class="fu">na_if</span>(<span class="st">`</span><span class="at">Bone-in Breast</span><span class="st">`</span>, <span class="st">"too few"</span>)),</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">Thighs =</span> <span class="fu">parse_number</span>(<span class="fu">na_if</span>(Thighs, <span class="st">"too few"</span>)))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span>eggpoul <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="st">"Month"</span>, <span class="st">"Year"</span>), <span class="at">extra =</span> <span class="st">"drop"</span>, <span class="at">fill =</span> <span class="st">"right"</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>vec<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>),<span class="at">each=</span><span class="dv">12</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2004</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">2005</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">2006</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">2007</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">2008</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="dv">2009</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="dv">2010</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="dv">2011</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="dv">2012</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="dv">2013</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span>eggpoul<span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Bone-in Breast</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">parse_number</span>(<span class="fu">na_if</span>(<span class="st">`</span><span class="at">Bone-in Breast</span><span class="st">`</span>, <span class="st">"too few"</span>)),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">Thighs =</span> <span class="fu">parse_number</span>(<span class="fu">na_if</span>(Thighs, <span class="st">"too few"</span>)))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span>eggpoul <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="st">"Month"</span>, <span class="st">"Year"</span>), <span class="at">extra =</span> <span class="st">"drop"</span>, <span class="at">fill =</span> <span class="st">"right"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>vec<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>),<span class="at">each=</span><span class="dv">12</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2004</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">2005</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">2006</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">2007</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">2008</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="dv">2009</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="dv">2010</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="dv">2011</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="dv">2012</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="dv">2013</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 120  11</code></pre>
@@ -339,32 +352,32 @@ Dozen                  : num [1:120] 230 226 225 225 225 ...
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#existing rows/cases</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#existing rows/cases</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 120</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#existing columns/cases</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#existing columns/cases</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#expected rows/cases</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(eggpoul) <span class="sc">*</span> (<span class="fu">ncol</span>(eggpoul)<span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#expected rows/cases</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(eggpoul) <span class="sc">*</span> (<span class="fu">ncol</span>(eggpoul)<span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1080</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># expected columns </span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11-9</span>)<span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># expected columns </span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11-9</span>)<span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
@@ -377,16 +390,19 @@ Dozen                  : num [1:120] 230 226 225 225 225 ...
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(eggpoul, <span class="dv">3</span><span class="sc">:</span><span class="dv">11</span>, <span class="at">names_to =</span> <span class="st">"Type of Poultry"</span>, <span class="at">values_to =</span> <span class="st">"Amount"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(eggpoul, <span class="dv">3</span><span class="sc">:</span><span class="dv">11</span>, <span class="at">names_to =</span> <span class="st">"Type of Poultry"</span>, <span class="at">values_to =</span> <span class="st">"Amount"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1080    4</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(eggpoul)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in .External2(C_dataviewer, x, title): unable to start data viewer</code></pre>
+</div>
 </div>
 
 
@@ -466,6 +482,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           toggle.classList.remove("alternate");
         }
       }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
     }
   }
   const isFileUrl = () => { 
@@ -619,7 +645,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
@@ -647,95 +674,95 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+<script src="https://giscus.app/client.js" data-repo="DACSS/dacss601_august2022" data-repo-id="R_kgDOHwIF-g" data-category="Announcements" data-category-id="DIC_kwDOHwIF-s4CQsld" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb23" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 3 "</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Mekhala Kumar"</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Tidy Data: Pivoting"</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/17/2022"</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_3</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - organicpoultry</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning data and the reasoning for using pivot</span></span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>The dataset used was organicpoultry. It contains information about the quantity of different poultry types for all months across the years 2004 to 2013. Currently the month and year data all fall under a single column. In order to make the data easy to interpret, first, the column with the data of the month and year need to be separated into two columns.\</span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>Following which, the data needs to be pivoted in such a manner that the years become columns and the types of poultry become rows. This format will make it easier to select a subgroup within the types of poultry and compare the changes across years.\</span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>eggpoul <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/organiceggpoultry.xls"</span>,<span class="at">skip=</span><span class="dv">4</span>)</span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(eggpoul)</span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(eggpoul)</span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">=</span><span class="fu">subset</span>(eggpoul,<span class="at">select=</span><span class="sc">-</span><span class="fu">c</span>(...<span class="dv">6</span>))</span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(eggpoul, <span class="dv">10</span>)</span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(eggpoul)</span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(eggpoul)</span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span>eggpoul<span class="sc">%&gt;%</span></span>
-<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Bone-in Breast</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">parse_number</span>(<span class="fu">na_if</span>(<span class="st">`</span><span class="at">Bone-in Breast</span><span class="st">`</span>, <span class="st">"too few"</span>)),</span>
-<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>           <span class="at">Thighs =</span> <span class="fu">parse_number</span>(<span class="fu">na_if</span>(Thighs, <span class="st">"too few"</span>)))</span>
-<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span>eggpoul <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="st">"Month"</span>, <span class="st">"Year"</span>), <span class="at">extra =</span> <span class="st">"drop"</span>, <span class="at">fill =</span> <span class="st">"right"</span>)</span>
-<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>vec<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>),<span class="at">each=</span><span class="dv">12</span>)</span>
-<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2004</span></span>
-<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">2005</span></span>
-<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">2006</span></span>
-<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">2007</span></span>
-<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">2008</span></span>
-<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="dv">2009</span></span>
-<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="dv">2010</span></span>
-<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="dv">2011</span></span>
-<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="dv">2012</span></span>
-<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="dv">2013</span></span>
-<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggpoul)</span>
-<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### Challenge: Describe the final dimensions</span></span>
-<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a>The original dataset has 120 rows and 11 columns. 2 of the variables are being used to identify a case. Hence,after pivoting, we expect to have 1080 rows and 4 columns. It is anticipated that the data will be long (taller).</span>
-<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-71"><a href="#cb23-71" aria-hidden="true" tabindex="-1"></a><span class="co">#existing rows/cases</span></span>
-<span id="cb23-72"><a href="#cb23-72" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(eggpoul)</span>
-<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a><span class="co">#existing columns/cases</span></span>
-<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(eggpoul)</span>
-<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a><span class="co">#expected rows/cases</span></span>
-<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(eggpoul) <span class="sc">*</span> (<span class="fu">ncol</span>(eggpoul)<span class="sc">-</span><span class="dv">2</span>)</span>
-<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a><span class="co"># expected columns </span></span>
-<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11-9</span>)<span class="sc">+</span><span class="dv">2</span></span>
-<span id="cb23-82"><a href="#cb23-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-83"><a href="#cb23-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-84"><a href="#cb23-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-85"><a href="#cb23-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### Challenge: Pivot the Chosen Data</span></span>
-<span id="cb23-86"><a href="#cb23-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-87"><a href="#cb23-87" aria-hidden="true" tabindex="-1"></a>After pivoting, the data has become taller. Pivoting has also ensured that all the variables of poultry types have been kept in a single column and the values corresponding to them are easy to access.</span>
-<span id="cb23-88"><a href="#cb23-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb23-92"><a href="#cb23-92" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(eggpoul, <span class="dv">3</span><span class="sc">:</span><span class="dv">11</span>, <span class="at">names_to =</span> <span class="st">"Type of Poultry"</span>, <span class="at">values_to =</span> <span class="st">"Amount"</span>)</span>
-<span id="cb23-93"><a href="#cb23-93" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggpoul)</span>
-<span id="cb23-94"><a href="#cb23-94" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(eggpoul)</span>
-<span id="cb23-95"><a href="#cb23-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb26" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 3 "</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Mekhala Kumar"</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Tidy Data: Pivoting"</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/17/2022"</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_3</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - organicpoultry</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning data and the reasoning for using pivot</span></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>The dataset used was organicpoultry. It contains information about the quantity of different poultry types for all months across the years 2004 to 2013. Currently the month and year data all fall under a single column. In order to make the data easy to interpret, first, the column with the data of the month and year need to be separated into two columns.\</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>Following which, the data needs to be pivoted in such a manner that the years become columns and the types of poultry become rows. This format will make it easier to select a subgroup within the types of poultry and compare the changes across years.\</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>eggpoul <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/organiceggpoultry.xls"</span>,<span class="at">skip=</span><span class="dv">4</span>)</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(eggpoul)</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(eggpoul)</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">=</span><span class="fu">subset</span>(eggpoul,<span class="at">select=</span><span class="sc">-</span><span class="fu">c</span>(...<span class="dv">6</span>))</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(eggpoul, <span class="dv">10</span>)</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(eggpoul)</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(eggpoul)</span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span>eggpoul<span class="sc">%&gt;%</span></span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Bone-in Breast</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">parse_number</span>(<span class="fu">na_if</span>(<span class="st">`</span><span class="at">Bone-in Breast</span><span class="st">`</span>, <span class="st">"too few"</span>)),</span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>           <span class="at">Thighs =</span> <span class="fu">parse_number</span>(<span class="fu">na_if</span>(Thighs, <span class="st">"too few"</span>)))</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span>eggpoul <span class="sc">%&gt;%</span> <span class="fu">separate</span>(<span class="dv">1</span>, <span class="fu">c</span>(<span class="st">"Month"</span>, <span class="st">"Year"</span>), <span class="at">extra =</span> <span class="st">"drop"</span>, <span class="at">fill =</span> <span class="st">"right"</span>)</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>vec<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>),<span class="at">each=</span><span class="dv">12</span>)</span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">2004</span></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="dv">2005</span></span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">2006</span></span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">2007</span></span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">2008</span></span>
+<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="dv">2009</span></span>
+<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="dv">2010</span></span>
+<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="dv">2011</span></span>
+<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="dv">2012</span></span>
+<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="sc">$</span>Year[vec<span class="sc">==</span><span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="dv">2013</span></span>
+<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggpoul)</span>
+<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### Challenge: Describe the final dimensions</span></span>
+<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>The original dataset has 120 rows and 11 columns. 2 of the variables are being used to identify a case. Hence,after pivoting, we expect to have 1080 rows and 4 columns. It is anticipated that the data will be long (taller).</span>
+<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a><span class="co">#existing rows/cases</span></span>
+<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(eggpoul)</span>
+<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a><span class="co">#existing columns/cases</span></span>
+<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(eggpoul)</span>
+<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a><span class="co">#expected rows/cases</span></span>
+<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(eggpoul) <span class="sc">*</span> (<span class="fu">ncol</span>(eggpoul)<span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a><span class="co"># expected columns </span></span>
+<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a>(<span class="dv">11-9</span>)<span class="sc">+</span><span class="dv">2</span></span>
+<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### Challenge: Pivot the Chosen Data</span></span>
+<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a>After pivoting, the data has become taller. Pivoting has also ensured that all the variables of poultry types have been kept in a single column and the values corresponding to them are easy to access.</span>
+<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a>eggpoul<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(eggpoul, <span class="dv">3</span><span class="sc">:</span><span class="dv">11</span>, <span class="at">names_to =</span> <span class="st">"Type of Poultry"</span>, <span class="at">values_to =</span> <span class="st">"Amount"</span>)</span>
+<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggpoul)</span>
+<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(eggpoul)</span>
+<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

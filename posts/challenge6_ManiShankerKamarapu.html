@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.132">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mani Shanker Kamarapu">
+<meta name="dcterms.date" content="2022-08-23">
+<meta name="description" content="Visualizing Time and Relationships">
+
+<title>- Challenge 6</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta name="twitter:title" content="- Challenge 6">
+<meta name="twitter:description" content="Visualizing Time and Relationships">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link active" data-scroll-target="#read-in-data">Read in data</a></li>
+  <li><a href="#time-dependent-visualization" id="toc-time-dependent-visualization" class="nav-link" data-scroll-target="#time-dependent-visualization">Time Dependent Visualization</a></li>
+  <li><a href="#visualizing-part-whole-relationships" id="toc-visualizing-part-whole-relationships" class="nav-link" data-scroll-target="#visualizing-part-whole-relationships">Visualizing Part-Whole Relationships</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Challenge 6</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">challenge_6</div>
+    <div class="quarto-category">airbnb</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Visualizing Time and Relationships
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mani Shanker Kamarapu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 23, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="read-in-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-data">Read in data</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/AB_NYC_2019.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(airbnb, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style =</span> <span class="st">"grid"</span>, </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">airbnb</h4>
+<strong>Dimensions</strong>: 48895 x 16
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">id
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 19017143 (10983108)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2539 ≤ 19677284 ≤ 36487245</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 19680234 (0.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">48895 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAa1ZRvDAAABSElEQVR42u2ZWxLCIAxFxekeuwddT92Dq9Qfp40jTIGkNDfe8+NrKhzzAGx6XaJyPXsCVKOaZJIv0tmzaWARTeK+Tlx2jqnh25wxfx6fhc8DJyTVEKEaIlRDJLDa15KdX+GtGTPKz25kb4W3YcwoEButvjhDqPXFOXAboRoigdVA2sjGUv0XXJdarhmPWojre2Vn1HIDjFmI62GtaSlVyPa+fRI3qNUXcI55fVabxLrxGqM2upp04wWuNaohsltrmmLuuVbbPBrUdMXcc61Vs/rHhLRLDHdqmrTw8bMcstHysVF2c16zj7QbNftIB+6QVENEXWs+Gv0haj4afY7ACUk1RKiGCNUQoRoiVEMksJqbU7YGcfoQt7JCqOVPH4ETkmqIUA0RqiFCNUSohgjVEKEaIkneQ3q4vaFUy00cRRO8TZHACUk1RN4R2jq4WZZg8QAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MDowNiswMDowMMIDYaIAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDA6MDYrMDA6MDCzXtkeAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">name
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Hillside Hotel</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Home away from home</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. New york Multi-unit build</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Brooklyn Apartment</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Loft Suite @ The Box Hous</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Private Room</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Artsy Private BR in Fort </td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Private room</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Beautiful Brooklyn Browns</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Cozy Brooklyn Apartment</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 47884 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">18</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">17</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">16</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">48758</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">99.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHUAAAC9CAQAAAAntvruAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAfCYitVAAABP0lEQVR42u3XQQrCQBQFQSPe0ZN5CE+p24ngRoVg/S5XISBpMoJve5ymOB/9AKWW+pXH8rlxP9y1btBbLVVUqqhUUamiUkWligalbutu245+mp9b6wa91V2qN83fptpKFZUqKlVUqqhUUamiQalNc1HTXFSqqFRRqaJSRaWKShW1V0XtVVGpolJFpYpKFZUqKlU0KLVpLmqai0oVlSoqVVSqqFRRqaJBqU1zUdNcVKqoVFGpolJFpYpKFbVXRe1VUamiUkWlikoVlSoqVTQotWkuapqLShWVKipVVKqoVFGpovaqqL0qKlVUqqhUUamiUkWligalNs1FTXNRqaJSRaWKShWVKipVNCi1aS66rBfgNF8O6mV/53r0o/3UfXc16ACXKipVVKqoVFGpopf/wPfPvuUvbN6YeWfQAS5V9AQ/lDZhDrIF9wAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MDowNyswMDowMGR0ahYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDA6MDcrMDA6MDAVKdKqAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">16
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">host_id
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 67620011 (78610967)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2438 ≤ 30793816 ≤ 274321313</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 99612390 (1.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">37457 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAfCYitVAAABCElEQVR42u3bQQ6CMBQAUTG9o3fQ85Q7eEpd2prQlNKI8zOz0qAJDz/goiyvS9SuZ++ANGllqXyzfp14j+Xs3dtbCUj1plvx+nn2fh4s8EBKIyaNmDRi0ohJIyaNmDRi0ohJIyaNmDRi0ohJIyaNmDRi0ohJIyaNmDRi0ogFpqXWxlwseeKt12rSPiu2iOu1Ag+kNGLSiEkjFpiWej+Yq9XkhP8m3TTeWvLAAymNmDRi3VfIOsKtYJBGuBUM0rbLf/Og2BRazal/0bHRnXGAptBa4zkKPX6Apg/knoOQux8v7v5egf4xrbXD/ZemW9e3At/XAtOWcmxX/KP19+JcW/CazQIPpDRib0F7K3BNAEP3AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQwOjA3KzAwOjAwZHRqFgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MDowNyswMDowMBUp0qoAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">host_name
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Michael</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. David</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Sonder (NYC)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. John</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Alex</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Blueground</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Sarah</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Daniel</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Jessica</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Maria</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 11442 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">417</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">403</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">327</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">294</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">279</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">232</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">227</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">226</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">205</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">204</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">46060</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">94.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG8AAAC9CAQAAAAXOuvPAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAABUElEQVR42u3YQWrCUBhG0ZeSPXYRXY/dg6u00yg4qZT0/p4zC4K8S0Lwc7utyT7OPoA8ec/sx4vv21pf29lHetXxbTL87skrk1cmr0xembwyeWXD87bjfMhvobXW+w6iy+0y7J+ld7p788grk1cmr0xembwyeWXmbNnDnD37OH+aN4+8Mnll8srklckrk1dm75XZe2XyyuSVySuTVyavTF7Z8DxztsycLZNXJq9MXpm8Mnll8sqG55mzZeZsmbwyeWXyyuSVySuTV2bvldl7ZfLK5JXJK5NXJq9MXtnwPHO2zJwtk1cmr0xembwyeWXyyuy9MnuvTF6ZvDJ5ZfLK5JXJKxueZ86WmbNl8srklckrk1cmr0xe2fA8c7ZsP14MmbOHh3C//+Tz7KO97Hp3NfzhlFcmr0xembwyeWUPvzmvv/uWf2ubMRKeGf5wyiv7Aa/BLXFQyuZTAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQwOjA4KzAwOjAwkjwa/wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MDowOCswMDowMONhokMAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">21
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">neighbourhood_group
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Bronx</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Brooklyn</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Manhattan</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Queens</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Staten Island</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1091</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">20104</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">41.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">21661</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">44.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5666</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">373</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADsAAABaCAQAAACshObHAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAAuUlEQVRo3u3asQ2AIBCF4cOwo0M4j+7glFhoAWKMhXec8r+O6gsCeWgMSVpkaKJ2xsZ8sCQRkSnoUPkuOs12NJptX2sLCwsL+yl2NWJDXkdKjXfkpvisUtT8rHSfqy8OsRxq1PzVfvGxk2FhYWFhRaoqoOY1YlLzR7KHaVDze8pd09cBgoWFhfXNUvMGeVjzb3/If1Tz7694XwcIFhYW1jdLzRukYOek/D7varawsLCwsE3ZwJ9/v2U3FDscdfEV2FoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDA6MDgrMDA6MDCSPBr/AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQwOjA4KzAwOjAw42GiQwAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">neighbourhood
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Williamsburg</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Bedford-Stuyvesant</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Harlem</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Bushwick</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Upper West Side</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Hell's Kitchen</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. East Village</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Upper East Side</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Crown Heights</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Midtown</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 211 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3920</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3714</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2658</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2465</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1971</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1958</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1853</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1798</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1564</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1545</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">25449</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">52.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEMAAAC9CAQAAABCWwiRAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAABJ0lEQVR42u3cyw2CQBSGUTH0SBHWoz1YpS4dXoZkwr0z5Pw744IThoRvo8Pn1sLu2QCM9cbyw2v1oDyG8y5dXmycfzXNPr3D7kYjh4KBgYGBcQHG4tUW9zKbbyhftye+1TdWXrnFQ3mGZs8uQ/ZkAzAwMDAw6id7esqeqODZYPyyJ/oZaeRQMDAwMDBqpjf0xiGG3sgGYGBgYGDUT/b0kz2x0bOTPfFPSCOHgoGBgYFxAYbskT2HGLInG4CBgYHRNUNv6I1DDL2RDcDAwMDAqJ/skT2HGLInG4CBgYHRNUNv9NIb0bWxuhvT4tfSSYysYWBgYGBcgCF7ZM/eZA8GBgYGxsUYsqeX7AlacfP//jPemZs/hY0cCgYGBgZGzVrsjbw1cigY5b4fRD/VPtqTGgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MDowOCswMDowMJI8Gv8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDA6MDgrMDA6MDDjYaJDAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">latitude
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 40.7 (0.1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">40.5 ≤ 40.7 ≤ 40.9</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0.1 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">19048 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAABPElEQVR42u2aSw7CMAwFE9Q79g5wnnIHTgkbQqNKRU1ix37Wmw1iQzIi/tRpfqeo3Kw3QDWq1Sz1l6y82PYL7IfSUnXmWLp/pUtpTSml9Jqx6By1uUqFwLFGNUSohgjVEJlU147o9yVmauv3U7OIBz6QVEOEaohQDRGjurZTird86TZX03v+NlcryLdebtTkW6/AaYRqiFANEaohQjVEFLuRzfiaXLXRmjG3OifwgaQaIlRDhGqIUA0RqiESWM3NHPLI+MjVrdr4yNyhmtRznkM1qQuOwGmEaogoxJr1uEdRzeZN40lqsvQWbwC13pFf4DRCNUSohohYhvRSqBXUZtzLtL3PBVDXdtq6HMaaL661Xt1qlmnjWlQP/Gvl5Pvo84fVvKX4fzkz13t9Ott4O/dKMcPbnBI4+VMNkQ9DHzLZW4DhGwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MDowOCswMDowMJI8Gv8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDA6MDgrMDA6MDDjYaJDAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">longitude
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : -74 (0)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">-74.2 ≤ -74 ≤ -73.7</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">14718 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAA4klEQVR42u3bwRGCMBQAUePQIz1oPdgDVeo1wqiA/CSb2XfLxbj61Zkg6Xnp1bX2EzDNtNyQL1LQJtPqA30P2irfaDj8KLuMb6u5yJ4dD6RpRKYRmUZkGpFpRKYRmUZkGpFpRKYRdZxW6LBuqcTJZKW0cbGOOJnseCBNIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIwq4lj01crdfyGX6Ehfhf3Mg453/T5Jm0s4fYgeyhn9HtOG09Yjui204bUvsNyl/IR6N/Nged8vexYSv+ajjb0jTiF5cVRhDZs76hgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MDowOCswMDowMJI8Gv8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDA6MDgrMDA6MDDjYaJDAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">room_type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Entire home/apt</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Private room</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Shared room</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">25409</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">52.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">22326</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">45.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1160</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEMAAAA5CAQAAADHel5fAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAAlElEQVRYw+3YzQ2AIAyGYWrc0R1kHt2BKfWKP3CosVR8vxsXeNKS0CBb8JChNQDGNWO+WE0vyiwFRgiTGSIdVk6aAgMGDBgwOmCcnrak2+VxJH/bRb2NJvnJHpuyvDz2xGK5Dcee2r1z0hQYMGDAgNEBg7HnG2NPtC3KXTXsfnuqjFaBAQMGDBj9MVyMPe3isyk/Z+yIwhDLp89FmQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MDowOCswMDowMJI8Gv8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDA6MDgrMDA6MDDjYaJDAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">price
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 152.7 (240.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 106 ≤ 10000</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 106 (1.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">674 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAAsElEQVR42u3bQQ5AMBBA0an0jg7hPHUHp2QnI2yIpPnNfzts5ofaTdljVFPvAUwzLav5Yj0P3lJ6D/ZN/nPU66M5IiK23hP+YuAP0jQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDSi+ny74Rdib2n3BdjGWrdPL6KwJn9j4LNmGtEBKyoK4fenXP4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDA6MDgrMDA6MDCSPBr/AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQwOjA4KzAwOjAw42GiQwAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">minimum_nights
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 7 (20.5)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 3 ≤ 1250</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 4 (2.9)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">109 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAAqklEQVR42u3bsQ3CMBBAUYKyI0MwD+zAlNA6qUAU1rfeq2yluS855W3vy6qusweQJm20j5fn6ce7b7PH+9UYsB8/3Ybza/acf1r4QUorklYkrUhakbQiaUXSiqQVSSuSViStSFqRtCJpRdKKpBVJK5JWJK1IWpG0ImlF0oqkFUkrklYkrUhakbQiaUXSiqQVSStaOO20BntcfX30Vu2HneStN/23Fn6Q0oo+D1oI3+zpWNIAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDA6MDgrMDA6MDCSPBr/AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQwOjA4KzAwOjAw42GiQwAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">number_of_reviews
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 23.3 (44.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 5 ≤ 629</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 23 (1.9)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">394 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAAw0lEQVR42u3bQQ5AMBQAUZXe0R04D3dwSra/EpLGoqZmVqSbPj67pmPotbH1BqRJi+V4s10+vCW13l5tEZDLpSlc7633+bKOB1IaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEOqblp8UVfZ7tkTYVd7TzbH8dyGvlgH59PKtorOOWVbSyr7/DFPe34Y/Wz+EBJ7zmto7/kNKInSoIEafiChCHAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQwOjA4KzAwOjAwkjwa/wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MDowOCswMDowMONhokMAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">last_review
+[Date]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min : 2011-03-28</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">med : 2019-05-19</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">max : 2019-07-08</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">range : 8y 3m 10d</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">1764 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAA5klEQVR42u3bQQ6CMBBAUWu4o3fQ8+AdPKXuzHTRpIWQ9k/+X6EL5WUaYEHL95a1++wTkCYttsUPZfbZHGivLhbPQNhGf2q9Hv+jT/V94gUpjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSOWmIZ8QXfv2pyApLXfN44lXpDSiEkjlpiGufj33cuQtL57WcwFOafxRYihjS/C5WjnprMErSa8wg7BOJ0zk5pGqwnXzGoarcVE0q6eTbsS//mN31ofd/gWvKZZ4qcRacR+21IbKyl4Xf0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDA6MDgrMDA6MDCSPBr/AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQwOjA4KzAwOjAw42GiQwAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">10052
+(20.6%)</td>
+    </tr>
+    <tr>
+      <td align="left">reviews_per_month
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1.4 (1.7)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0.7 ≤ 58.5</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1.8 (1.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">937 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAAtElEQVR42u3bsQ2AIBQAUTHs6A46j+zglNp+NGqMBTly1xEaXgS7n/ah18bWB5AmLZbjolwe3pJaH/BbEZDrralaba1P+quOL6Q0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjVjHtPy8vZ6mR0mzoy808uxoip+l4Efr53CrEl5zW8e/EWnEDsukDKEuUmSCAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQwOjA4KzAwOjAwkjwa/wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MDowOCswMDowMONhokMAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">10052
+(20.6%)</td>
+    </tr>
+    <tr>
+      <td align="left">calculated_host_listings_count
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 7.1 (33)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 1 ≤ 327</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1 (4.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">47 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAAsUlEQVR42u3bsQ3CMBRAQYK8I0MwT9iBKaGhMAgKEFJ00bsmitz8p9jpvNwOe3XceoDSSpuN+eUyHbzzsvVov5j/HON56fR4Xree8Q92vCFLE5UmKk1Umqg0UWmi0kSliUoTlSYqTVSaqDRRaaLSRKWJShOVJipNVJqoNFFpotJEpYlKE5UmKk1Umqg0UWmi0kSliUoTjU8LK38l9iXt/fXX1blyP32ExZn6Wzs+a6WJ7h3YCuFYACBLAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQwOjA4KzAwOjAwkjwa/wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MDowOCswMDowMONhokMAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">availability_365
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 112.8 (131.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 45 ≤ 365</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 227 (1.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">366 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAhS3TbEAAAA/klEQVR42u3bQQ6CMBQAUWt6R+6g5yl38JS6MVBjsQSrZcjMRg0J+S9W4uaH++monXsPIE1aXsw/jNkP7xp6j7al/MkRXy8Nz9db7xkbdOADKY2YNGLSiEkjJo2YNGLSiEkjJo2YNGLSiEkjJo2YNGLSiEkjJo2YNGLSiEkjJo2YNGLSiEkjJo2YNGLSiEkjJo2YNGJx6UKa9qXe173SDpbBUnkTNJtmkTave5Vu0msZLJ9lnqE8TazfrnaLdYN88+2WQbVW0P4xSKosGm85Jc1oNdD64befksa0eeTPgwzTu3bD/5i23+3SkJ+TEb9af8keVgGvWezA/0akEXsAwCMv4PByyb8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDA6MDgrMDA6MDCSPBr/AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQwOjA4KzAwOjAw42GiQwAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-25</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="ot">&lt;-</span> airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"neighbourhood_group"</span>, <span class="st">"room_type"</span>, <span class="st">"price"</span>, <span class="st">"number_of_reviews"</span>, <span class="st">"last_review"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(airbnb, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style =</span> <span class="st">"grid"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">airbnb</h4>
+<strong>Dimensions</strong>: 48895 x 5
+  <br><strong>Duplicates</strong>: 9104
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">neighbourhood_group
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Bronx</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Brooklyn</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Manhattan</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Queens</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Staten Island</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1091</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">20104</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">41.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">21661</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">44.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5666</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">373</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADsAAABaCAQAAACshObHAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAkl2gZSAAAAuUlEQVRo3u3asQ2AIBCF4cOwo0M4j+7glFhoAWKMhXec8r+O6gsCeWgMSVpkaKJ2xsZ8sCQRkSnoUPkuOs12NJptX2sLCwsL+yl2NWJDXkdKjXfkpvisUtT8rHSfqy8OsRxq1PzVfvGxk2FhYWFhRaoqoOY1YlLzR7KHaVDze8pd09cBgoWFhfXNUvMGeVjzb3/If1Tz7694XwcIFhYW1jdLzRukYOek/D7varawsLCwsE3ZwJ9/v2U3FDscdfEV2FoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDA6MDkrMDA6MDA0SxFLAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQwOjA5KzAwOjAwRRap9wAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">room_type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Entire home/apt</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Private room</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Shared room</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">25409</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">52.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">22326</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">45.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1160</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEMAAAA5CAQAAADHel5fAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAkl2gZSAAAAlElEQVRYw+3YzQ2AIAyGYWrc0R1kHt2BKfWKP3CosVR8vxsXeNKS0CBb8JChNQDGNWO+WE0vyiwFRgiTGSIdVk6aAgMGDBgwOmCcnrak2+VxJH/bRb2NJvnJHpuyvDz2xGK5Dcee2r1z0hQYMGDAgNEBg7HnG2NPtC3KXTXsfnuqjFaBAQMGDBj9MVyMPe3isyk/Z+yIwhDLp89FmQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo0MDowOSswMDowMDRLEUsAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NDA6MDkrMDA6MDBFFqn3AAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">price
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 152.7 (240.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 106 ≤ 10000</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 106 (1.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">674 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAkl2gZSAAAAsElEQVR42u3bQQ5AMBBA0an0jg7hPHUHp2QnI2yIpPnNfzts5ofaTdljVFPvAUwzLav5Yj0P3lJ6D/ZN/nPU66M5IiK23hP+YuAP0jQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDQi04hMIzKNyDSi+ny74Rdib2n3BdjGWrdPL6KwJn9j4LNmGtEBKyoK4fenXP4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDA6MDkrMDA6MDA0SxFLAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQwOjA5KzAwOjAwRRap9wAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">number_of_reviews
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 23.3 (44.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 5 ≤ 629</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 23 (1.9)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">394 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAkl2gZSAAAAw0lEQVR42u3bQQ5AMBQAUZXe0R04D3dwSra/EpLGoqZmVqSbPj67pmPotbH1BqRJi+V4s10+vCW13l5tEZDLpSlc7633+bKOB1IaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEOqblp8UVfZ7tkTYVd7TzbH8dyGvlgH59PKtorOOWVbSyr7/DFPe34Y/Wz+EBJ7zmto7/kNKInSoIEafiChCHAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjQwOjA5KzAwOjAwNEsRSwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo0MDowOSswMDowMEUWqfcAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">last_review
+[Date]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min : 2011-03-28</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">med : 2019-05-19</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">max : 2019-07-08</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">range : 8y 3m 10d</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">1764 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDKAkl2gZSAAAA5klEQVR42u3bQQ6CMBBAUWu4o3fQ8+AdPKXuzHTRpIWQ9k/+X6EL5WUaYEHL95a1++wTkCYttsUPZfbZHGivLhbPQNhGf2q9Hv+jT/V94gUpjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSMmjZg0YtKISSOWmIZ8QXfv2pyApLXfN44lXpDSiEkjlpiGufj33cuQtL57WcwFOafxRYihjS/C5WjnprMErSa8wg7BOJ0zk5pGqwnXzGoarcVE0q6eTbsS//mN31ofd/gWvKZZ4qcRacR+21IbKyl4Xf0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NDA6MDkrMDA6MDA0SxFLAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjQwOjA5KzAwOjAwRRap9wAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="center">10052
+(20.6%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-25</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="ot">&lt;-</span> airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="time-dependent-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="time-dependent-visualization">Time Dependent Visualization</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, <span class="at">fill =</span> neighbourhood_group)) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.9</span>, <span class="at">adjust =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(neighbourhood_group)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Last Review dates of different neighbourhood groups"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="challenge6_ManiShankerKamarapu_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, <span class="at">fill =</span> room_type)) <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(room_type)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Last Review dates of different rooms"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="challenge6_ManiShankerKamarapu_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, number_of_reviews)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Last review date of AB_NYC_2019"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="challenge6_ManiShankerKamarapu_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="visualizing-part-whole-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-part-whole-relationships">Visualizing Part-Whole Relationships</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, price, <span class="at">color =</span> room_type)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Price in differnt years according to room types"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="challenge6_ManiShankerKamarapu_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, price, <span class="at">color =</span> neighbourhood_group)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Price in different years according to neighbourhood groups"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="challenge6_ManiShankerKamarapu_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(room_type, price, <span class="at">color =</span> room_type)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(neighbourhood_group)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>,<span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Price in different rooms according to neighbourhood groups"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="challenge6_ManiShankerKamarapu_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/dacss601_august2022" data-repo-id="R_kgDOHwIF-g" data-category="Announcements" data-category-id="DIC_kwDOHwIF-s4CQsld" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 6"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Mani Shanker Kamarapu"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Visualizing Time and Relationships"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/23/2022"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: styles.css</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_6</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - airbnb</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>airbnb <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/AB_NYC_2019.csv"</span>)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(airbnb, </span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style =</span> <span class="st">"grid"</span>, </span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, </span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>airbnb <span class="ot">&lt;-</span> airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"neighbourhood_group"</span>, <span class="st">"room_type"</span>, <span class="st">"price"</span>, <span class="st">"number_of_reviews"</span>, <span class="st">"last_review"</span>)</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(airbnb, </span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style =</span> <span class="st">"grid"</span>, </span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, </span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>airbnb <span class="ot">&lt;-</span> airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Time Dependent Visualization</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, <span class="at">fill =</span> neighbourhood_group)) <span class="sc">+</span> </span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.9</span>, <span class="at">adjust =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(neighbourhood_group)) <span class="sc">+</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Last Review dates of different neighbourhood groups"</span>)</span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, <span class="at">fill =</span> room_type)) <span class="sc">+</span> </span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(room_type)) <span class="sc">+</span></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Last Review dates of different rooms"</span>)</span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, number_of_reviews)) <span class="sc">+</span></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Last review date of AB_NYC_2019"</span>)</span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualizing Part-Whole Relationships</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, price, <span class="at">color =</span> room_type)) <span class="sc">+</span></span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Price in differnt years according to room types"</span>)</span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(last_review, price, <span class="at">color =</span> neighbourhood_group)) <span class="sc">+</span></span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Price in different years according to neighbourhood groups"</span>)  </span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a>airbnb <span class="sc">%&gt;%</span></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(room_type, price, <span class="at">color =</span> room_type)) <span class="sc">+</span></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(neighbourhood_group)) <span class="sc">+</span></span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>,<span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Price in different rooms according to neighbourhood groups"</span>)</span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

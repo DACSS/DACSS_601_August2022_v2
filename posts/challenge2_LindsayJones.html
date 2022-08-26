@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.132">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -14,10 +14,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -56,7 +61,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -69,7 +74,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -136,9 +141,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../index.html">
-    <img src="../images/UMass White Wordmark Horiz.png" alt="">
-  </a>
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -172,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -258,6 +265,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span><span class="dv">3</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Railroad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in .External2(C_dataviewer, x, title): unable to start data viewer</code></pre>
+</div>
 </div>
 </section>
 <section id="describe-the-data" class="level2">
@@ -267,11 +277,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Railroad <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"_data/StateCounty2012.xls"</span>, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span><span class="dv">3</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Railroad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Railroad <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"_data/StateCounty2012.xls"</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span><span class="dv">3</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Railroad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in .External2(C_dataviewer, x, title): unable to start data viewer</code></pre>
+</div>
 </div>
 </section>
 <section id="provide-grouped-summary-statistics" class="level2">
@@ -281,10 +294,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>state_totals <span class="ot">=</span> Railroad <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Total"</span>, STATE)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Grand"</span>, STATE))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(state_totals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>state_totals <span class="ot">=</span> Railroad <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Total"</span>, STATE)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Grand"</span>, STATE))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(state_totals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 53 × 5
@@ -308,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">median</span>(TOTAL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">median</span>(TOTAL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -321,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">mean</span>(TOTAL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">mean</span>(TOTAL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -334,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">min</span>(TOTAL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">min</span>(TOTAL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -347,7 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">max</span>(TOTAL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">max</span>(TOTAL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -360,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(state_totals<span class="sc">$</span>TOTAL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(state_totals<span class="sc">$</span>TOTAL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4781.829</code></pre>
@@ -447,6 +460,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           toggle.classList.remove("alternate");
         }
       }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
     }
   }
   const isFileUrl = () => { 
@@ -600,7 +623,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
@@ -628,109 +652,109 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+<script src="https://giscus.app/client.js" data-repo="DACSS/dacss601_august2022" data-repo-id="R_kgDOHwIF-g" data-category="Announcements" data-category-id="DIC_kwDOHwIF-s4CQsld" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2"</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Lindsay Jones"</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Data wrangling: using group() and summarise("</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/16/2022"</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - StateCounty</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>Today's challenge is to</span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>2)  provide summary statistics for different interesting groups within the data, and interpret those statistics</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>Read in one (or more) of the following data sets, available in the <span class="in">`posts/_data`</span> folder, using the correct R package and command.</span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>railroad<span class="sc">\*</span>.csv or StateCounty2012.xlsx ⭐</span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>hotel_bookings ⭐⭐⭐</span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FAOstat<span class="sc">\*</span>.csv ⭐⭐⭐⭐⭐ (join FAOSTAT_country_groups)</span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>Railroad <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"_data/StateCounty2012.xls"</span>, </span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span><span class="dv">3</span>)</span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Railroad)</span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
-<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
-<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>Total railroad employment by state and county for calendar year 2012.</span>
-<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
-<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>Railroad <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"_data/StateCounty2012.xls"</span>, </span>
-<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span><span class="dv">3</span>)</span>
-<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Railroad)</span>
-<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
-<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>Conduct some exploratory data analysis, using dplyr commands such as <span class="in">`group_by()`</span>, <span class="in">`select()`</span>, <span class="in">`filter()`</span>, and <span class="in">`summarise()`</span>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</span>
-<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>The total number of railroad employees for each state/territory are shown below. </span>
-<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>state_totals <span class="ot">=</span> Railroad <span class="sc">%&gt;%</span> </span>
-<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Total"</span>, STATE)) <span class="sc">%&gt;%</span></span>
-<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Grand"</span>, STATE))</span>
-<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(state_totals)</span>
-<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>Here is the median number of railroad employees per state:</span>
-<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">median</span>(TOTAL))</span>
-<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a>The mean number railroad employees in each state is:</span>
-<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-94"><a href="#cb16-94" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">mean</span>(TOTAL))</span>
-<span id="cb16-95"><a href="#cb16-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-96"><a href="#cb16-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-97"><a href="#cb16-97" aria-hidden="true" tabindex="-1"></a>The Armed Forces Pacific (AP) is the territory with the fewest employees:</span>
-<span id="cb16-100"><a href="#cb16-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-101"><a href="#cb16-101" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">min</span>(TOTAL))</span>
-<span id="cb16-102"><a href="#cb16-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-103"><a href="#cb16-103" aria-hidden="true" tabindex="-1"></a>And Texas is the territory with the most employees:</span>
-<span id="cb16-106"><a href="#cb16-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-107"><a href="#cb16-107" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">max</span>(TOTAL))</span>
-<span id="cb16-108"><a href="#cb16-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-109"><a href="#cb16-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-110"><a href="#cb16-110" aria-hidden="true" tabindex="-1"></a>Standard deviation of employees is:</span>
-<span id="cb16-113"><a href="#cb16-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb16-114"><a href="#cb16-114" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(state_totals<span class="sc">$</span>TOTAL)</span>
-<span id="cb16-115"><a href="#cb16-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb16-116"><a href="#cb16-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-117"><a href="#cb16-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
-<span id="cb16-118"><a href="#cb16-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-119"><a href="#cb16-119" aria-hidden="true" tabindex="-1"></a>I chose the states because I found some of the totals for each state surprising, based on what I know about the size of those states' populations. </span>
+<div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Lindsay Jones"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Data wrangling: using group() and summarise("</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/16/2022"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - StateCounty</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Challenge Overview</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>Today's challenge is to</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>1)  read in a data set, and describe the data using both words and any supporting information (e.g., tables, etc)</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>2)  provide summary statistics for different interesting groups within the data, and interpret those statistics</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>Read in one (or more) of the following data sets, available in the <span class="in">`posts/_data`</span> folder, using the correct R package and command.</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>railroad<span class="sc">\*</span>.csv or StateCounty2012.xlsx ⭐</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>hotel_bookings ⭐⭐⭐</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>FAOstat<span class="sc">\*</span>.csv ⭐⭐⭐⭐⭐ (join FAOSTAT_country_groups)</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>Railroad <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"_data/StateCounty2012.xls"</span>, </span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span><span class="dv">3</span>)</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Railroad)</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>Total railroad employment by state and county for calendar year 2012.</span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>Railroad <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"_data/StateCounty2012.xls"</span>, </span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span><span class="dv">3</span>)</span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Railroad)</span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>Conduct some exploratory data analysis, using dplyr commands such as <span class="in">`group_by()`</span>, <span class="in">`select()`</span>, <span class="in">`filter()`</span>, and <span class="in">`summarise()`</span>. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.</span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>The total number of railroad employees for each state/territory are shown below. </span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>state_totals <span class="ot">=</span> Railroad <span class="sc">%&gt;%</span> </span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Total"</span>, STATE)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Grand"</span>, STATE))</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(state_totals)</span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a>Here is the median number of railroad employees per state:</span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">median</span>(TOTAL))</span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>The mean number railroad employees in each state is:</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">mean</span>(TOTAL))</span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>The Armed Forces Pacific (AP) is the territory with the fewest employees:</span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">min</span>(TOTAL))</span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a>And Texas is the territory with the most employees:</span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(state_totals,<span class="fu">max</span>(TOTAL))</span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>Standard deviation of employees is:</span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(state_totals<span class="sc">$</span>TOTAL)</span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>I chose the states because I found some of the totals for each state surprising, based on what I know about the size of those states' populations. </span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
