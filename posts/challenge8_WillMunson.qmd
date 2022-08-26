@@ -1,6 +1,6 @@
 ---
-title: "Challenge 8 Instructions"
-author: "Meredith Rolfe"
+title: "Challenge 8 Will Munson"
+author: "Will Munson"
 description: "Joining Data"
 date: "08/25/2022"
 format:
@@ -50,13 +50,19 @@ Read in one (or more) of the following datasets, using the correct R package and
   - snl ⭐⭐⭐⭐⭐
 
 ```{r}
+faostat_country <- read_csv("_data/FAOSTAT_country_groups.csv", show_col_types = FALSE)
+faostat_livestock <- read_csv("_data/FAOSTAT_livestock.csv", show_col_types = FALSE)
 ```
 
 ### Briefly describe the data
 
+So, the datasets I'll be using are basically for livestock, and I'll also be adding the country codes to this data to get a better understanding of how these values work. 
+
 ## Tidy Data (as needed)
 
 Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+
+The data, surprisingly enough, is tidy! 
 
 ```{r}
 
