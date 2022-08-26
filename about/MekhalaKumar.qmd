@@ -19,7 +19,7 @@ Moreover, I interned at the WageIndicator Foundation for two years, as an intern
 
 ## R experience
 
-I attended a two week R Workshop at FLAME University where we learnt about operations in R and how to handle datasets. Additionally, I utilised R for statistical analysis in a few courses at FLAME University.
+I attended a two week R Workshop at FLAME University where we learnt about operations in R and how to handle datasets. Additionally, I utilised R for statistical analysis in a few courses at FLAME University .
 
 ## Research interests
 
