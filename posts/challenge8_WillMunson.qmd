@@ -73,6 +73,7 @@ Are there any variables that require mutation to be usable in your analysis stre
 
 Document your work here.
 
+As far as I'm concerned, I don't see any problems, other than the fact that I might not end up using every variable in this dataset. The only thing that concerns me is the fact that the Country Groups dataset contains the same country in multiple categories, and I'm a bit concerned that this would complicate the process. 
 ```{r}
 
 ```
@@ -81,5 +82,16 @@ Document your work here.
 
 Be sure to include a sanity check, and double-check that case count is correct!
 
+```{r}
+FAOstat <- merge(faostat_livestock, faostat_country, by.x = "Area Code", by.y = "Country Code")
 
+FAOstat
+```
+
+The dataset is... really big, but I think it works for my purposes. 
+
+```{r}
+FAOstat %>%
+  filter(`Flag Description` == 'Official data' & `Country Group Code` == 5305)
+```
 
