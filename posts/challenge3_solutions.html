@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.132">
+<meta name="generator" content="quarto-1.0.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -14,15 +14,10 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
-  vertical-align: middle;
-}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -61,7 +56,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -74,7 +69,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -146,11 +141,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
-    </a>
-  </div>
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -250,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="find-current-and-future-data-dimensions" class="level3">
 <h3 class="anchored" data-anchor-id="find-current-and-future-data-dimensions">Find current and future data dimensions</h3>
 <p>Lets see if this works with a simple example.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/example1_150d7e15ff6f6937b591d9823155de28">
+<div class="cell" data-tbl-cap="Example" data-hash="challenge3_solutions_cache/html/example1_d48879cc5f48342db8d12be1439feeeb">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">country =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Mexico"</span>, <span class="st">"USA"</span>, <span class="st">"France"</span>),<span class="dv">2</span>),</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">year =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1980</span>,<span class="dv">1990</span>), <span class="dv">3</span>), </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">trade =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"NAFTA"</span>, <span class="st">"NAFTA"</span>, <span class="st">"EU"</span>),<span class="dv">2</span>),</span>
@@ -260,9 +253,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div data-pagedtable="false"> <div class="table-caption">Example</div>
+<div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["trade"],"name":[3],"type":["chr"],"align":["left"]},{"label":["outgoing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["incoming"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Mexico","2":"1980","3":"NAFTA","4":"1558.2810","5":"2842.9955"},{"1":"USA","2":"1990","3":"NAFTA","4":"1205.5919","5":"938.2131"},{"1":"France","2":"1980","3":"EU","4":"1237.2703","5":"1374.2806"},{"1":"Mexico","2":"1990","3":"NAFTA","4":"683.2418","5":"1053.3331"},{"1":"USA","2":"1980","3":"NAFTA","4":"842.4376","5":"1988.7110"},{"1":"France","2":"1990","3":"EU","4":"912.7925","5":"873.1899"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["trade"],"name":[3],"type":["chr"],"align":["left"]},{"label":["outgoing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["incoming"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Mexico","2":"1980","3":"NAFTA","4":"1757.6646","5":"1308.8181"},{"1":"USA","2":"1990","3":"NAFTA","4":"750.9876","5":"792.8970"},{"1":"France","2":"1980","3":"EU","4":"747.0810","5":"2677.7723"},{"1":"Mexico","2":"1990","3":"NAFTA","4":"717.6975","5":"831.9529"},{"1":"USA","2":"1980","3":"NAFTA","4":"1566.5296","5":"1307.2482"},{"1":"France","2":"1990","3":"EU","4":"1108.3033","5":"2747.8254"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -291,16 +284,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="pivot-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="pivot-the-data">Pivot the data</h3>
-<div class="cell" data-hash="challenge3_solutions_cache/html/example2_05ff764a9a7576e26e5b75a995ba0012">
+<div class="cell" data-tbl-cap="Pivoted Example" data-hash="challenge3_solutions_cache/html/example2_545d2794d39c42c2e2b4081eae137456">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(df, <span class="at">col =</span> <span class="fu">c</span>(outgoing, incoming),</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to=</span><span class="st">"trade_direction"</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"trade_value"</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div data-pagedtable="false"> <div class="table-caption">Pivoted Example</div>
+<div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["trade"],"name":[3],"type":["chr"],"align":["left"]},{"label":["trade_direction"],"name":[4],"type":["chr"],"align":["left"]},{"label":["trade_value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Mexico","2":"1980","3":"NAFTA","4":"outgoing","5":"1558.2810"},{"1":"Mexico","2":"1980","3":"NAFTA","4":"incoming","5":"2842.9955"},{"1":"USA","2":"1990","3":"NAFTA","4":"outgoing","5":"1205.5919"},{"1":"USA","2":"1990","3":"NAFTA","4":"incoming","5":"938.2131"},{"1":"France","2":"1980","3":"EU","4":"outgoing","5":"1237.2703"},{"1":"France","2":"1980","3":"EU","4":"incoming","5":"1374.2806"},{"1":"Mexico","2":"1990","3":"NAFTA","4":"outgoing","5":"683.2418"},{"1":"Mexico","2":"1990","3":"NAFTA","4":"incoming","5":"1053.3331"},{"1":"USA","2":"1980","3":"NAFTA","4":"outgoing","5":"842.4376"},{"1":"USA","2":"1980","3":"NAFTA","4":"incoming","5":"1988.7110"},{"1":"France","2":"1990","3":"EU","4":"outgoing","5":"912.7925"},{"1":"France","2":"1990","3":"EU","4":"incoming","5":"873.1899"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["trade"],"name":[3],"type":["chr"],"align":["left"]},{"label":["trade_direction"],"name":[4],"type":["chr"],"align":["left"]},{"label":["trade_value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Mexico","2":"1980","3":"NAFTA","4":"outgoing","5":"1757.6646"},{"1":"Mexico","2":"1980","3":"NAFTA","4":"incoming","5":"1308.8181"},{"1":"USA","2":"1990","3":"NAFTA","4":"outgoing","5":"750.9876"},{"1":"USA","2":"1990","3":"NAFTA","4":"incoming","5":"792.8970"},{"1":"France","2":"1980","3":"EU","4":"outgoing","5":"747.0810"},{"1":"France","2":"1980","3":"EU","4":"incoming","5":"2677.7723"},{"1":"Mexico","2":"1990","3":"NAFTA","4":"outgoing","5":"717.6975"},{"1":"Mexico","2":"1990","3":"NAFTA","4":"incoming","5":"831.9529"},{"1":"USA","2":"1980","3":"NAFTA","4":"outgoing","5":"1566.5296"},{"1":"USA","2":"1980","3":"NAFTA","4":"incoming","5":"1307.2482"},{"1":"France","2":"1990","3":"EU","4":"outgoing","5":"1108.3033"},{"1":"France","2":"1990","3":"EU","4":"incoming","5":"2747.8254"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -310,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <p>The animal weights dataset contains tabular-style data, with cells representing the average live animal weight (in kg) of 16 types of livestock for each of 9 geographic areas as defined by the <a href="https://www.ipcc.ch/">Intergovernmental Panel on Climate Change (IPCC</a>. Livestock weights are a critical part of the <a href="https://www.fao.org/fileadmin/user_upload/gleam/docs/GLEAM_1.0_Model_description.pdf">Global Livestock Envrionmental Assessment Model</a> used by the FAO.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/animal1_ad0b1f5861d2892a48d2d6dcc0f0dcc6">
+<div class="cell" data-hash="challenge3_solutions_cache/html/animal1_407b54cb44436dddfd3e897bb6396164">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>animal_weight<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/animal_weight.csv"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>animal_weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -338,7 +331,7 @@ inline R code
 </div>
 <section id="pivot-the-data-1" class="level3">
 <h3 class="anchored" data-anchor-id="pivot-the-data-1">Pivot the data</h3>
-<div class="cell" data-hash="challenge3_solutions_cache/html/animal2_c6d192b4effaae9767726644b40b66a5">
+<div class="cell" data-hash="challenge3_solutions_cache/html/animal2_20330ee9f472697e31c37c18c61df367">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>animal_weight_longer<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(animal_weight, </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">col=</span><span class="sc">-</span><span class="st">`</span><span class="at">IPCC Area</span><span class="st">`</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">names_to =</span> <span class="st">"Livestock"</span>,</span>
@@ -379,7 +372,7 @@ Get sheet names with <code>excel_sheets()</code>
 <p>Both <code>readxl</code> and <code>googlesheets4</code> have a function that can return sheet names as a vector. This is really useful if you need to parse and read multiple sheets in the same workbook.</p>
 </div>
 </div>
-<div class="cell" data-hash="challenge3_solutions_cache/html/eggs1_f88c5f3e7ed35f69f88629c7df27e1bb">
+<div class="cell" data-hash="challenge3_solutions_cache/html/eggs1_0bb01ced833ecf8f539418bc314b8025">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"_data/organiceggpoultry.xls"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Data"                            "Organic egg prices, 2004-13"    
@@ -412,7 +405,7 @@ Hard-coding Table Formats
 <p>Formatted excel tables are a horrible data source, but may be the only way to get some data. If table formatting is consistent from year to year, hard-coding can be an acceptable approach. If table format is inconsistent, then more powerful tools are needed.</p>
 </div>
 </div>
-<div class="cell" data-hash="challenge3_solutions_cache/html/eggs2_5e00ed72777cc8fabfafe74a65537a19">
+<div class="cell" data-hash="challenge3_solutions_cache/html/eggs2_b446eabdba2ea914d0c301c48c656d3d">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>eggs_orig<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"_data/organiceggpoultry.xls"</span>,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sheet=</span><span class="st">"Data"</span>,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">range =</span><span class="fu">cell_limits</span>(<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">2</span>),<span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">6</span>)),</span>
@@ -431,7 +424,7 @@ Hard-coding Table Formats
 </div>
 </div>
 <p>Sometimes there are notes in the first column of tables, so lets make sure that isn’t an issue.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/eggs3_671cbfd9ba4e9f6f96a09aff73760b8a">
+<div class="cell" data-hash="challenge3_solutions_cache/html/eggs3_68ff7201b9453c8a2bff45fbdc17a4ba">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>eggs_orig<span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -444,7 +437,7 @@ Hard-coding Table Formats
 </div>
 </div>
 <p>We need to remove the “note” indicators in two of the rows. Some characters require an <a href="https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html">escape</a> to be included in regular expressions, but this time it is straightforward to find ” /1”.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/eggs4_d0ef3a529d49cf1d3a2d94bff2428cd4">
+<div class="cell" data-hash="challenge3_solutions_cache/html/eggs4_dcafaed7e941bf18a5e9c5c7dc87a786">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>eggs<span class="ot">&lt;-</span>eggs_orig<span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">str_remove</span>(date, <span class="st">" /1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -475,7 +468,7 @@ tidyr::fill()
 <p>Fill works like dragging to fill functionality in a spreadsheet. You can choose the direction to fill.</p>
 </div>
 </div>
-<div class="cell" data-hash="challenge3_solutions_cache/html/eggs5_9049ef6bee3e1336453e1ce6c466314a">
+<div class="cell" data-hash="challenge3_solutions_cache/html/eggs5_f86df88b08c9602afabda8cbba6a638a">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>eggs<span class="ot">&lt;-</span>eggs<span class="sc">%&gt;%</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(date, <span class="at">into=</span><span class="fu">c</span>(<span class="st">"month"</span>, <span class="st">"year"</span>), <span class="at">sep=</span><span class="st">" "</span>)<span class="sc">%&gt;%</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(year)</span>
@@ -493,7 +486,7 @@ tidyr::fill()
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Looking at the data, we can see that each of the original 120 <em>cases</em> consist of a year-month combination (e.g., January 2004), while the <em>values</em> are the average price (in cents) of four different types of eggs (e.g., large_half_dozen, large_dozen, etc) So to tidy our data, we should create a matrix with a year-month-eggType combination, with a single price <em>value</em> for each case.</p>
 <p>To do this (and make our data easier to graph and analyze), we can pivot longer - changing our data from 120 rows with 6 variables (2 grouping and 4 values) to 480 rows of 4 variables (with 3 grouping variables and a single <em>price</em> value).</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/eggs6_b944ad3f39aac4c00ac5b57f151355b9">
+<div class="cell" data-hash="challenge3_solutions_cache/html/eggs6_174fca1f803fef775156438fda27a8b0">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>eggs_long<span class="ot">&lt;-</span>eggs<span class="sc">%&gt;%</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">contains</span>(<span class="st">"large"</span>), </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"eggType"</span>,</span>
@@ -514,7 +507,7 @@ tidyr::fill()
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p>Wouldn’t it be nice if we had two new columns - <em>size</em> and <em>quantity</em> - in place of the existing <em>eggType</em> categorical variable? In other words, to have fully tidy data, we would need 4 grouping variables (year, month, size, and quantity) and the same value (price). So, we want to use pivot longer, but we will be adding <strong>two</strong> new category variables (for a total of 4) and this will cut the number of rows in half (to 240).</p>
 <p>How can we let R know what we want it to do?? Thankfully, we created pretty systematic column names for egg types in our original data, following the general pattern: <code>size-quantity</code>. Maybe we can use this to our advantage? Working with patterns in the <code>names_sep</code> option of the pivot functions makes it easier than you would think to pivot four existing columns into two new columns.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/eggs7_b575a31f89b04d33fc6f3df364e679ff">
+<div class="cell" data-hash="challenge3_solutions_cache/html/eggs7_657ec26826d8a480d0f397c56a55ea4f">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>eggs_long<span class="ot">&lt;-</span> eggs<span class="sc">%&gt;%</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">contains</span>(<span class="st">"large"</span>),</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"size"</span>, <span class="st">"quantity"</span>),</span>
@@ -559,7 +552,7 @@ tidyr::fill()
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>It is best to confine serious hard-coding to the initial data read in step, to make it easy to locate and make changes or replicate in the future. So, we will use a combination of tools introduced earlier to read and reformat the data: <code>skip</code> and col_names to read in the data, <code>select</code> to get rid of unneeded columns, and <code>filter</code> to get rid of unneeded rows. We also use the <code>drop_na</code> function to filter unwanted rows.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/australia1_cc01b3ecbcad1dcaba595b656adcfa6d">
+<div class="cell" data-hash="challenge3_solutions_cache/html/australia1_039f2e113eb76a920cb9a6f68e09dc86">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>vote_orig <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/australian_marriage_law_postal_survey_2017_-_response_final.xls"</span>,</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">sheet=</span><span class="st">"Table 2"</span>,</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">skip=</span><span class="dv">7</span>,</span>
@@ -581,7 +574,7 @@ tidyr::fill()
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>The most glaring remaining issue is that the administrative <em>Division</em> is not in its own column, but is on its own row within the <em>District</em> column. The following code uses case_when to make a new <em>Division</em> variable with an entry (e.g., New South Wales Division) where there is a Division name in the <em>District</em> column, and otherwise it create just an empty space. After that, <code>fill</code> can be used to fill in empty spaces with the most recent Division name. We then filter out rows with only the title information.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/australia2_6528638da13118b0bb6699c4753e4c2c">
+<div class="cell" data-hash="challenge3_solutions_cache/html/australia2_304f4e46362919ea0bdccae6393bd41f">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>vote<span class="ot">&lt;-</span> vote_orig<span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Division =</span> <span class="fu">case_when</span>(</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_ends</span>(District, <span class="st">"Divisions"</span>) <span class="sc">~</span> District,</span>
@@ -601,7 +594,7 @@ tidyr::fill()
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>Supposed we wanted to create a stacked bar chart to compare the % who votes Yes to the people who either said No or didn’t vote. Or if we wanted to use division level characteristics to predict the proortion of people voting in a specific way? In both cases, we would need tidy data, which requires us to pivot longer into the original (aggregated) data format: Division, District, Response, Count. We should end up with 600 rows and 4 columns.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/australia3_7276c0ea506a91b7dcaab9001b458ba8">
+<div class="cell" data-hash="challenge3_solutions_cache/html/australia3_5109345f2d7f076a8cce3c22701842b1">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>vote_long<span class="ot">&lt;-</span> vote<span class="sc">%&gt;%</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> Yes<span class="sc">:</span><span class="st">`</span><span class="at">No Response</span><span class="st">`</span>,</span>
@@ -654,7 +647,7 @@ tidyr::fill()
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>To make it easy to pivot, we will read in income brackets cleanly, along with clear variable names for the estimated average (and standard error) of hhold income for each designated identity group.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/hh1_3c71e6f43036a0ddde8fbeeb243e4930">
+<div class="cell" data-hash="challenge3_solutions_cache/html/hh1_4399f38c73e4b9076a6b84a353ea36cb">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>income_brackets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">i1 =</span> <span class="st">"Under $15,000"</span>,</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">i2 =</span> <span class="st">"$15,000 to $24,999"</span>,</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">i3 =</span> <span class="st">"$25,000 to $34,999"</span>,</span>
@@ -699,7 +692,7 @@ Regex and Regexr
 <p><a href="https://stringr.tidyverse.org/articles/regular-expressions.html">Regular expressions</a> are a critical tool for messy, real world data where you will need to search, replace, and extract information from string variables. Learning regex is tough, but <a href="https://regexr.com/">Regexer</a> makes it much easier!</p>
 </div>
 </div>
-<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-17_d7aa9a55540b98c2b6106bd9d136f6ff">
+<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-17_f082a14533cd8e57a1c4679f1b38d804">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ushh_orig<span class="sc">%&gt;%</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(year, <span class="st">"[[:alpha:]]"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -714,7 +707,7 @@ Regex and Regexr
 <p>Now that we know how to use regular expressions to find the household identity information, we can quickly separate out the identity information from the years, then do the standard fill prior to removing the unneeded category rows.</p>
 <p>Once that is done, we can use separate to remove the notes from the year column. Removing notes from the <em>identity</em> column is a bit trickier, and requires regex to find cases where there is a space then at least one numeric digit. The notes are important for helping orient yourself to the data, and if I were taking my time, I would document the relevant notes in the text at this point, to remind myself if I need to remember details about how the categories were created and/or why they vary over time.</p>
 <p>Note that several variables are read in as non-numeric, so I’m fixing them in a single statement!</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-18_18724a286bd2d3f00d8bf23fba37efc3">
+<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-18_a21841437fce6a2e973cba9c0efdef58">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ushh_id<span class="ot">&lt;-</span>ushh_orig<span class="sc">%&gt;%</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">identity =</span> <span class="fu">case_when</span>(</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(year, <span class="st">"[[:alpha:]]"</span>) <span class="sc">~</span> year,</span>
@@ -743,7 +736,7 @@ Regex and Regexr
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
 <p>Even from the detailed notes, it is difficult to fully understand what is going on with the identity variable, and whether all of the values are available in every year. A simple sanity check is to pick out several years mentioned in the notes and see if the number of households are available for all categories, and also check to see if there are specific categories that add up to the “all races” category.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-19_4ca228e9967458ae25129fbc995e02a3">
+<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-19_0e64ef2407c2c639d110bb18c299fa0f">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ushh_id<span class="sc">%&gt;%</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">%in%</span><span class="fu">c</span>(<span class="dv">1970</span>, <span class="dv">1972</span>, <span class="dv">1980</span>, <span class="dv">2001</span>, <span class="dv">2002</span>))<span class="sc">%&gt;%</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(identity, hholds, year)<span class="sc">%&gt;%</span></span>
@@ -752,7 +745,7 @@ Regex and Regexr
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["identity"],"name":[1],"type":["chr"],"align":["left"]},{"label":["2002"],"name":[2],"type":["chr"],"align":["left"]},{"label":["2001"],"name":[3],"type":["chr"],"align":["left"]},{"label":["1980"],"name":[4],"type":["chr"],"align":["left"]},{"label":["1972"],"name":[5],"type":["chr"],"align":["left"]},{"label":["1970"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"ALL RACES","2":"111278","3":"109297","4":"82368","5":"68251","6":"64778"},{"1":"WHITE ALONE","2":"91645","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"WHITE","2":"NA","3":"90682","4":"71872","5":"60618","6":"57575"},{"1":"WHITE ALONE, NOT HISPANIC","2":"81166","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"WHITE, NOT HISPANIC","2":"NA","3":"80818","4":"68106","5":"58005","6":"NA"},{"1":"BLACK ALONE OR IN COMBINATION","2":"13778","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"BLACK ALONE","2":"13465","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"BLACK","2":"NA","3":"13315","4":"8847","5":"6809","6":"6180"},{"1":"ASIAN ALONE OR IN COMBINATION","2":"4079","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"ASIAN ALONE","2":"3917","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"ASIAN AND PACIFIC ISLANDER","2":"NA","3":"4071","4":"NA","5":"NA","6":"NA"},{"1":"HISPANIC (ANY RACE)","2":"11339","3":"10499","4":"3906","5":"2655","6":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["identity"],"name":[1],"type":["chr"],"align":["left"]},{"label":["2002"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["2001"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["1980"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["1972"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["1970"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"ALL RACES","2":"111278","3":"109297","4":"82368","5":"68251","6":"64778"},{"1":"WHITE ALONE","2":"91645","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"WHITE","2":"NA","3":"90682","4":"71872","5":"60618","6":"57575"},{"1":"WHITE ALONE, NOT HISPANIC","2":"81166","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"WHITE, NOT HISPANIC","2":"NA","3":"80818","4":"68106","5":"58005","6":"NA"},{"1":"BLACK ALONE OR IN COMBINATION","2":"13778","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"BLACK ALONE","2":"13465","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"BLACK","2":"NA","3":"13315","4":"8847","5":"6809","6":"6180"},{"1":"ASIAN ALONE OR IN COMBINATION","2":"4079","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"ASIAN ALONE","2":"3917","3":"NA","4":"NA","5":"NA","6":"NA"},{"1":"ASIAN AND PACIFIC ISLANDER","2":"NA","3":"4071","4":"NA","5":"NA","6":"NA"},{"1":"HISPANIC (ANY RACE)","2":"11339","3":"10499","4":"3906","5":"2655","6":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -779,7 +772,7 @@ Keep your original data
 <p>Original data that has been carefully documented can be overly detailed and broken into categories that make systematic analysis difficult. When you simplify data categories for exploratory work, keep the original data so that you can reintroduce it at the appropriate point.</p>
 </div>
 </div>
-<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-20_8f5c7c4d9549551148c0145f516a9ef3">
+<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-20_19cdf467831e04058b39fc8f45558b74">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ushh <span class="ot">&lt;-</span>ushh_id<span class="sc">%&gt;%</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gp_identity =</span> <span class="fu">case_when</span>(</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>   identity <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BLACK"</span>, <span class="st">"BLACK ALONE"</span>) <span class="sc">~</span> <span class="st">"gp_black"</span>,</span>
@@ -807,7 +800,7 @@ Keep your original data
 </div>
 </div>
 </div>
-<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-21_52aec2cde97ee5eb51dc249ce0ce1980">
+<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-21_d2ebb791f09b9fc5a1ec9e7f307dd772">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ushh<span class="sc">%&gt;%</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year<span class="sc">%in%</span><span class="fu">c</span>(<span class="dv">1972</span>, <span class="dv">2001</span>, <span class="dv">2002</span>))<span class="sc">%&gt;%</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gp_identity, hholds, year)<span class="sc">%&gt;%</span></span>
@@ -816,7 +809,7 @@ Keep your original data
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["gp_identity"],"name":[1],"type":["chr"],"align":["left"]},{"label":["1972"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["2001"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["2002"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"identity_black","2":"6809","3":"13315","4":"13465"},{"1":"identity_hisp","2":"2655","3":"10499","4":"11339"},{"1":"identity_white","2":"58005","3":"80818","4":"81166"},{"1":"NA","2":"128869","3":"199979","4":"220618"},{"1":"identity_asian","2":"NA","3":"4071","4":"4079"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["gp_identity"],"name":[1],"type":["chr"],"align":["left"]},{"label":["1972"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["2001"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["2002"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"gp_all","2":"68251","3":"109297","4":"111278"},{"1":"gp_black","2":"6809","3":"13315","4":"13465"},{"1":"gp_hisp","2":"2655","3":"10499","4":"11339"},{"1":"gp_white","2":"58005","3":"80818","4":"81166"},{"1":"gp_asian","2":"NA","3":"4071","4":"4079"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -825,7 +818,7 @@ Keep your original data
 <div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
 <p>We have identified reasonable groups where the parts approximately add up to the whole. They are not perfect, but not horrible given the incomplete and overlapping categories. To get much better, we would need to work with the original ACS or IPUMS microdata.</p>
 <p>Now, there may be times we need to split the data - for example, if we want to graph the income brackets as part of the total households. Lets see if we can split and pivot the data.</p>
-<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-22_bbc4ff8b9c9c2a5033dba8e2e374153a">
+<div class="cell" data-hash="challenge3_solutions_cache/html/unnamed-chunk-22_efdae532b0a057b947543fe9f86eab12">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ushh_brackets <span class="ot">&lt;-</span>ushh<span class="sc">%&gt;%</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()<span class="sc">%&gt;%</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, gp_identity, hholds, <span class="fu">starts_with</span>(<span class="st">"income"</span>))<span class="sc">%&gt;%</span></span>
@@ -934,16 +927,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           toggle.classList.remove("alternate");
         }
       }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
     }
   }
   const isFileUrl = () => { 
@@ -1097,8 +1080,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      let href = ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

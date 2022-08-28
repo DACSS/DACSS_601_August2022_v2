@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.132">
+<meta name="generator" content="quarto-1.0.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -14,15 +14,10 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
-  vertical-align: middle;
-}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -61,7 +56,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -74,7 +69,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -144,11 +139,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
-    </a>
-  </div>
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -182,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -310,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1986.7 (17.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1954 ≤ 1987.5 ≤ 2017</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 28 (0)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">64 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiI5SwXJAAABGUlEQVR42u2aSw7CMAwFCcoduQOcp9yBU8ISp1JRFJzGY71ZtZuko/rXT3lfsnJdfQFSk5ql2pMyebNtl9gP9w3tBnV4lSFu5vg1ea/EASk1IlIjMrlCbgvnuOnF/8xy35I4IKVGJLHayTNkLx6DdFA1j8qqgJxDG3beT29L1ea288QBmVgtbIVsGclKiNpIVgZS834ACqTmXS8TlxGpEZEakUAVsh/bJo7bd+1bIBbfNvGrSdTeJdqu03+2jsS5JjUiUiMiNSJSIyI1IlIjIjUiUiMiNSJSIyI1IlIjkliteTEe9y3/32orf6cdZXc7zHcb5Ecoy/HNSJxrUiMiNSJSIyI1IsXOKU/8DHk3g1bB2xySOCClRuQDWJUmooDcavcAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NTA6MzQrMDA6MDAanaioAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjUwOjM0KzAwOjAwa8AQFAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAIdJREFUWMPt1W0KgCAMBmCPUJ2g7Abt/ndrskQDQzckyN73jx/0MFFM58bP/BDPKc1PFbcTHXB93MJnYHJEBFdzYXc3i+PRO04WqHcCvuTS30bn0u42ulDI4rIGrq+To89cuJj3FJ2UzF3hEzg4ODi4QZw8B3p3zbQ5rrFaHPfg/u28MtGNnBMKdOtreLlQwgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yOFQxOTozOToyMiswMDowMCaVDX4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjhUMTk6Mzk6MjIrMDA6MDBXyLXCAAAAAElFTkSuQmCC"></td>
       <td align="center">0
 (0.0%)</td>
     </tr>
@@ -319,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 6.6 (3.5)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 7 ≤ 12</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 6 (0.5)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">12 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiI5SwXJAAAA9klEQVR42u3bQQ6CMBQAUWu4I3fQ85Q7cErdFivSCqRMM7MjGvIf1rj4MbxuvXZvPYA0aWlDejFlX7xnaD1gXSlgWL40Lq7m1pPuquMDKY2YNGLSiEkjJo2YNGLSiEkjJo2YNGLSiEkjJo1Yx7Rh/y3aFfOVbrJZQtN+b5YuQvvy/LPdXqxcu2/Q4iHLxJKhxo/r+c/3FNO2b1byvPODUzJk7adUSSspH3PvUGv3PZl21OE6v2raNcYuqeOfbGnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRkwaMWnEpBGTRqxjWkiXnBP+r/WPZIse8JrVOj6Q0oi9AWrQIyYrO+CUAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjUwOjM0KzAwOjAwGp2oqAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo1MDozNCswMDowMGvAEBQAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAHhJREFUWMPt1VEKgCAQRVGXUK6gdAfN/vdWMzhCCmH9BHIfCIO8I/NnCPMnXdnX8SzFZRHB4XA4HO4Pp3/X9sFpd8xF/x5taJ3epW4ji5Rnow6t03PUum9kt+LPPjobfKPqbkPnvF4bg65r4HA4HA6Ha116GXcz5wRiPdU5+m0ICAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yOFQxOTozOToyMiswMDowMCaVDX4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjhUMTk6Mzk6MjIrMDA6MDBXyLXCAAAAAElFTkSuQmCC"></td>
       <td align="center">0
 (0.0%)</td>
     </tr>
@@ -328,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 3.6 (6.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 1 ≤ 31</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (1.9)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">29 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiI5SwXJAAAAt0lEQVR42u3bvQ2AIBQAYTHs6A46j+zglNqZZ2GEWJAj91X+UHAJlC+d06jm3hswzbQox5fyuHhb6r25djEgP38t99PRe5e/DXwgTSMyjcg0ItOITCMyjcg0ItOITCMyjcg0ItOITCMyjcg0ItOITCMyjcg0ItOITCMyjcg0ItOITCMyjcg0ItOITCMyjcg0ItOITCPKNYv2l/HYuu+tvsdv96px3RRXFfxo/RoyE77m1cB3zTSiCx9mEZ9VtaUaAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjUwOjM0KzAwOjAwGp2oqAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo1MDozNCswMDowMGvAEBQAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAEdJREFUWMPt17ENACAIBVFG0A30OwL772aBEltbclcQmkePWf0kzf5RO26543A4HA6Hw+FwOBwOV8TFd5zzLa/Gfp0+G1a/DRuzB6mhir3lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI4VDE5OjM5OjIyKzAwOjAwJpUNfgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yOFQxOTozOToyMiswMDowMFfItcIAAAAASUVORK5CYII="></td>
       <td align="center">0
 (0.0%)</td>
     </tr>
@@ -337,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 5.7 (2.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 5.5 ≤ 11.5</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 4 (0.5)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">63 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiI5SwXJAAABGklEQVR42u2aWxaCIBRFo+Ucm0ONx+bQKOuXQCXi4T137f3HD7LliOA1vC9euZ49ANRQi1niRujS5brx+D76dF0kvvTydy8H3JL2a45XguNAoqYIaoqgpghqiqCmCGqKoKYIaoqgpghqiqCmCGqKoKYIaoqgpshXfS0v+s0q+Q1XS4t+55T8euE4kI7VhtSy6xlR2jeiNqK036y2mv0TqsOs2fiVIodlpJU0tjO2ApPUztgKEMjezFhXC2qjNswzVtWCWj4Eu++xSrVfZEfRmhgzG62c1pvoeIVETRHUFEFNEdQUQU0R1BRxrGb4UJNTd4KTUqs7wRFIq2QRjQIqrnb06dZxIEM8o0+ZD3F73KNABnmbXRwHEjVFPtFsJhCLyXcfAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjUwOjM0KzAwOjAwGp2oqAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo1MDozNCswMDowMGvAEBQAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAIpJREFUWMPt1sENgCAMBVBGECfQuoHsv5uUhIN8SaAmGMn/p0r61PQAODd/fJlVYnZfy1J1IYaOjo6Ojm5uB6dkozvKrl86vCQ0Ovj4o9O3i8Hpw/mFy+PodXl1pIPhgksd4GBI4FKHWosLZXEbrhhcKujo6N67vMP1Oi1GO/3XzeC0eOukM9nNnAs2ao8pUem0tgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yOFQxOTozOToyMiswMDowMCaVDX4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjhUMTk6Mzk6MjIrMDA6MDBXyLXCAAAAAElFTkSuQmCC"></td>
       <td align="center">442
 (48.9%)</td>
     </tr>
@@ -346,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.3 (0.1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0.2 ≤ 0.2 ≤ 1</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (0.5)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">4 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGMAAABJCAQAAACDBVBOAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiI5SwXJAAAA0ElEQVRo3u3aQQqDMBBA0aT0jr1De570Dp5SV4UoaMXN/Iz/79xIHiaQAetcMvSIXoCMfIxn//Ad6qC86w6jlFf02k43rZ6SbCoZpGSQkkFKBikZpDZ3qunaW8Kr/aW2Xn5NRP3KM26qdjBvfNCf6uS8QT8zSTaVDFIySMkgJYOUDFJJGI5N0d1nbGIPSX8Yv7FpvBOSZFPJICWDlAxSMkjJIJWE4dgUXcKxacVocxvq/7YdxrjJICWDlAxSMkjJICWDVBJGHfRmvinJ15BBagFDiBa+CYRnCAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo1MDozNCswMDowMBqdqKgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NTA6MzQrMDA6MDBrwBAUAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGMAAABJBAMAAADbIoX2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAFtJREFUSMft09EJACAIBNBGqA3KNqj9d+sjBziNCuTu24cIZ0qxIniqkj7hkJC8Io4mFzzZT3SphezzBwnJNeKoJTL7hYg0K+mThOQucdQSnT8j0NeTkEQkUbIAj7MdrIhLHwEAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjhUMTk6Mzk6MjIrMDA6MDAmlQ1+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI4VDE5OjM5OjIyKzAwOjAwV8i1wgAAAABJRU5ErkJggg=="></td>
       <td align="center">801
 (88.6%)</td>
     </tr>
@@ -355,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.1 (0.1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0 ≤ 0.8</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (2.4)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">4 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGMAAABJCAQAAACDBVBOAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiI5SwXJAAAA0ElEQVRo3u3aQQqDMBBA0aT0jr1De570Dp5SV4UoaMXN/Iz/79xIHiaQAetcMvSIXoCMfIxn//Ad6qC86w6jlFf02k43rZ6SbCoZpGSQkkFKBikZpDZ3qunaW8Kr/aW2Xn5NRP3KM26qdjBvfNCf6uS8QT8zSTaVDFIySMkgJYOUDFJJGI5N0d1nbGIPSX8Yv7FpvBOSZFPJICWDlAxSMkjJIJWE4dgUXcKxacVocxvq/7YdxrjJICWDlAxSMkjJICWDVBJGHfRmvinJ15BBagFDiBa+CYRnCAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo1MDozNCswMDowMBqdqKgAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NTA6MzQrMDA6MDBrwBAUAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGMAAABJBAMAAADbIoX2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAFtJREFUSMft09EJACAIBNBGqA3KNqj9d+sjBziNCuTu24cIZ0qxIniqkj7hkJC8Io4mFzzZT3SphezzBwnJNeKoJTL7hYg0K+mThOQucdQSnT8j0NeTkEQkUbIAj7MdrIhLHwEAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjhUMTk6Mzk6MjIrMDA6MDAmlQ1+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI4VDE5OjM5OjIyKzAwOjAwV8i1wgAAAABJRU5ErkJggg=="></td>
       <td align="center">801
 (88.6%)</td>
     </tr>
@@ -364,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 4.9 (3.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0.1 ≤ 4.7 ≤ 19.1</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 4.2 (0.7)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">466 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiI5SwXJAAABFElEQVR42u2aUQ7CIBAFxfSO3kHPU+/gKfXLZA1bi0iB2bz5axMaJmxZYEnPU1TOozsgNalZFvuQipqs7u95K2t8MLZrS80HLtmbx2gnh8ABKTUiUiMSWO1j8vcy1hz56m+1PGPNmK9KCRyQUiMSWG13ebxit+G7aoxVvkfggJQaEakRkRoRqRGRGhGpEZEaEakRkRoRqRGRGpGqGwge+VHs6PJVM7X5ylfN1HJGFyIPVBt9pB54GpEaEakRkRoRqRGRGhGpEZEakcBqB25FPXruvDur9dx5Bw5IqRGRGpHOM6RH2e3m31PEBGr5kXqbFDGBWi3uaJuxxah5It9LKMm2uGPv9L+5mlFLeJtNAk/+UiPyAhciIHYYUc4sAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjUwOjM0KzAwOjAwGp2oqAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo1MDozNCswMDowMGvAEBQAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAHxJREFUWMPt18EJwCAMBVBHqJ2gjRvU/XdrFZIexEjioUX+P+Sij4CikBDWT+TsVBJH2RqXn1xwHzm5NaNLvBuudfVQHS5LgYODg4PzufIBnw5XiteR1lRxSWsKBwf3X9d79CPXawo34Uhic+/ijKsT8GFzMimwI2PYrZwbLS6QijvliaoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjhUMTk6Mzk6MjIrMDA6MDAmlQ1+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI4VDE5OjM5OjIyKzAwOjAwV8i1wgAAAABJRU5ErkJggg=="></td>
       <td align="center">152
 (16.8%)</td>
     </tr>
@@ -373,7 +366,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 3.1 (3.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">-10 ≤ 3.1 ≤ 16.5</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 3.5 (1.1)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">113 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiNOTDVfAAAA4ElEQVR42u3bUQ6CMBAAUWu4o3fQ88gdPKX+VqJuoJUym3l/xgQYqWZjSnmesjqPvgDTTKtN9YvSeLB7+MW9tZ4iUF/AtPkoH11+vvv4b9dC4gVpGpFpRKYRmUZkGpFpRKYRmUZkGpFpRKYRmUZkGpFpRKYRmUZkGpFpRKYRmUZkGlHitM7bzyLR3rueO+92Tttz513iBWkakWlEphGZRrRqGokfUTiSlYPWkR5RiCRekKYRmUZkGpFpRG/TyPhBquc/XotBa/Qg1fP8pf6Y5uF3rdW1uqsFX/NV4p8R04heCnwU0SADHEYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjZUMDM6NTA6MzUrMDA6MDC86qMcAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI2VDAzOjUwOjM1KzAwOjAwzbcboAAAAD10RVh0aWNjOmNvcHlyaWdodABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLp5m3CkAAAAjdEVYdGljYzpkZXNjcmlwdGlvbgBHZW5lcmljIFJHQiBQcm9maWxlGqc4jgAAAABJRU5ErkJggg=="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAF5JREFUWMPt1rENwCAMBVGPEDaAZAT23w2hxI3FF6G17hoantxYCLP8ldD91cq6S7inv+FwOBwOh8Phcjj1L9w5NReHm/lenbp4H4dbObVffsZ3zZ26r+bGeX+rlr8BeFFbGGuHQ68AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjhUMTk6Mzk6MjIrMDA6MDAmlQ1+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI4VDE5OjM5OjIyKzAwOjAwV8i1wgAAAABJRU5ErkJggg=="></td>
       <td align="center">654
 (72.3%)</td>
     </tr>
@@ -382,7 +375,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 6 (1.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3.4 ≤ 5.7 ≤ 10.8</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2.1 (0.3)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">71 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiNOTDVfAAABNklEQVR42u2ZQQ7CMAwECeof+QO8p/yBV8INuUUVCY4T77JzAg5RRl3bCS3PEyvn2RuQmtQsi/1SHAutm6K9eZZyYDex/LzKB5f3p8ccrx3EgZQaIlJDRGqIEKu5Rvaa+trgPI1kO4FYiAMpNUSkhojUECFWax7ZuU8gLrXcJxALcSClhojUEJEaIlJDRGqIdHy/9p2xrxeHqo09Wv97IHHuaM1qOHc0C3EgidXCO+S8Oh3Q/GfV6aEaZlesUsPsihbiNkKsFtRGMlRqkFqGOiUOpNQQIVYbfMu22C4a8WfCRLXoLkocSKkhIjVEJnZIS8QgSKJmB0EvzY1ahqtIP83dU8twGem1nySBrKH1CQKptT5BNf9s1IQTVK0mnApkZjbT2ISz2N/vKUa2h+uRGhfEtSY1RF68yDJwPa6FpAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yNlQwMzo1MDozNSswMDowMLzqoxwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjZUMDM6NTA6MzUrMDA6MDDNtxugAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAJ1JREFUWMPt1dsNgCAMBVBGkA0UR2D/3SRpqMijUDUkQO//SXmUotT80c8YYw5NZcu701pxqznXLK+cQ+JWc9AsfAdInLghXOkDrblS4X8cPj6mQzSWIz4m0hENELjwMDkuRAM5enCXHf2gxNnsqGhw2ZLivrj0KtpcSr2LhkSVeldF0UaZDksyHZbs52CpfAcluzq31P2+d1a8mzkX4o10HOx8OGQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjhUMTk6Mzk6MjIrMDA6MDAmlQ1+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI4VDE5OjM5OjIyKzAwOjAwV8i1wgAAAABJRU5ErkJggg=="></td>
       <td align="center">152
 (16.8%)</td>
     </tr>
@@ -391,13 +384,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [numeric]</td>
       <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 3.7 (2.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0.6 ≤ 2.8 ≤ 13.6</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2.7 (0.7)</td></tr></tbody></table></td>
       <td align="left" style="vertical-align:middle">106 distinct values</td>
-      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPCAQAAABLlYPgAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCBoDMiNOTDVfAAABIElEQVR42u2bUQ7CIBAFxfSO3kHPU+/gKfXTpQmEIJSd9c2XxmoY++ijIU3vS1SuqwcgNalZNvsmFQ/bD1PyUT50KXaYW+uXbub1a7VBE4EDKTUiUiMiNSKVXtvhK+dqZX9rmlHSOYEDKTUiUiMiNSJSIyI1IlIjIjUiUiMiNSJSIyI1IoHVmndFy3jdDB6g5nUzOHAgpUZEakSkRqSz1wibwZ1qPks6J3AgpUZEakSkRmTIrWiZlXfgk9VWlnvgQAZWmxBIL0vnCWpels6BAxlYLQukl1kyQc3PPBnBvwRyJeOXZG7UapOhT9uRWp+2S7X69fj3q/XJavmAa+ei9pn9lXI4T1YbUy5tD8Qk+zc+8ZV9N+cw4W2KBK5sqRH5ANGXKs0IWAIVAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI2VDAzOjUwOjM1KzAwOjAwvOqjHAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yNlQwMzo1MDozNSswMDowMM23G6AAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggcEycWFgfrxAAAAJFJREFUWMPt1cENgCAMBVBGECfQugHdfzdT4SCKtHChkv5Lg/EFkRKcmz/+ygoAu5dkyR0imvupo03vcojBnDlz5syNcILruuz4ac1pdSC6rt/uELWbOf2uduyrrjKtGse096djfusoF5fT7uJrahwto8fRKONtLhWZo2NBo1RkLrXb7WH8VM6VSnjse0s2N39O3CRVDOTy3YUAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjhUMTk6Mzk6MjIrMDA6MDAmlQ1+AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI4VDE5OjM5OjIyKzAwOjAwV8i1wgAAAABJRU5ErkJggg=="></td>
       <td align="center">194
 (21.5%)</td>
     </tr>
   </tbody>
 </table>
-<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-25</p>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-28</p>
 </div>
 </div>
 </div>
@@ -581,16 +574,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       }
     }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
   }
   const isFileUrl = () => { 
     return window.location.protocol === 'file:';
@@ -743,8 +726,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      let href = ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

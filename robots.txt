@@ -1,1 +1,1 @@
-Sitemap: https://dacss.github.io/DACSS_601_August2022_v2/sitemap.xml
+Sitemap: https://DACSS.github.io/DACSS_601_August2022_v2/sitemap.xml

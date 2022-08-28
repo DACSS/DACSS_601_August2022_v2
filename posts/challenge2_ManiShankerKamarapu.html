@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.132">
+<meta name="generator" content="quarto-1.0.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,15 +13,10 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
-  vertical-align: middle;
-}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -60,7 +55,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -73,7 +68,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -140,11 +135,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
-    </a>
-  </div>
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -178,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -242,9 +235,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>FAOSTAT_cattle_dairy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/FAOSTAT_cattle_dairy.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(FAOSTAT_cattle_dairy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in .External2(C_dataviewer, x, title): unable to start data viewer</code></pre>
-</div>
 </div>
 <p>As we read the data, there are many interesting variables and a lot of observations based on yearly analysis of the various cattle products.</p>
 </section>
@@ -253,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(FAOSTAT_cattle_dairy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(FAOSTAT_cattle_dairy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 36449    14</code></pre>
@@ -263,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(FAOSTAT_cattle_dairy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(FAOSTAT_cattle_dairy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Domain Code"      "Domain"           "Area Code"        "Area"            
@@ -276,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">filter</span>(<span class="fu">select</span>(FAOSTAT_cattle_dairy, Value)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">filter</span>(<span class="fu">select</span>(FAOSTAT_cattle_dairy, Value)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Value          
@@ -293,12 +283,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Area_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Area)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Element_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Element)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Year_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Year)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Flag_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Flag)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Distinct_count <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">nrow</span>(Area_num), <span class="fu">nrow</span>(Element_num), <span class="fu">nrow</span>(Year_num), <span class="fu">nrow</span>(Flag_num))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Distinct_count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Area_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Area)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Element_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Element)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Year_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Year)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Flag_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Flag)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Distinct_count <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">nrow</span>(Area_num), <span class="fu">nrow</span>(Element_num), <span class="fu">nrow</span>(Year_num), <span class="fu">nrow</span>(Flag_num))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Distinct_count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 232   3  58   7</code></pre>
@@ -309,9 +299,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>FLag_info <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Flag,<span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(FLag_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>FLag_info <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Flag,<span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(FLag_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 2
@@ -335,10 +325,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>AE_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area, Element) <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>AE_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>AE_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area, Element) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>AE_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 695 × 8
@@ -367,10 +357,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>YE_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Element) <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>YE_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>YE_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Element) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>YE_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 174 × 8
@@ -399,11 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>E_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Element) <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>E_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>E_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Element) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>E_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 7
@@ -421,11 +411,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>A_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>A_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>A_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 232 × 7
@@ -453,11 +443,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Y_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>Y_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Y_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>Y_analysis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 58 × 7
@@ -560,16 +550,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           toggle.classList.remove("alternate");
         }
       }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
     }
   }
   const isFileUrl = () => { 
@@ -723,8 +703,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      let href = ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
@@ -754,152 +733,152 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/dacss601_august2022" data-repo-id="R_kgDOHwIF-g" data-category="Announcements" data-category-id="DIC_kwDOHwIF-s4CQsld" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2"</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Mani Shanker Kamarapu"</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/16/2022"</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - FAOSTAT_cattle_dairy.csv</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Reading data</span></span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>FAOSTAT_cattle_dairy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/FAOSTAT_cattle_dairy.csv"</span>)</span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(FAOSTAT_cattle_dairy)</span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>As we read the data, there are many interesting variables and a lot of observations based on yearly analysis of the various cattle products.</span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
-<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="co">#| label : Dimensions of data set</span></span>
-<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(FAOSTAT_cattle_dairy)</span>
-<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>We can see that there are 36449 rows and 14 columns in the data. We can see from observations from different variables that "Value" variable is pretty much the only real valuable data we are getting from this data set and remaining variables are either unchanged(Domain and Item) or grouping variables(Area, Element, Year and Flag) which can be used to summarize data and find the categories we are interested in and also can be used to find specific information we need and let's try to get to some more useful info using some other functions.</span>
-<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Diff variables of data set</span></span>
-<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(FAOSTAT_cattle_dairy)</span>
-<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>These are the variables available in the data set.</span>
-<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Summary</span></span>
-<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">filter</span>(<span class="fu">select</span>(FAOSTAT_cattle_dairy, Value)))</span>
-<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a>It is the summary of the Value variable of the data set which is the only real data variable in data set.</span>
-<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a><span class="co">#| label : Grouping variables</span></span>
-<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a>Area_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Area)</span>
-<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a>Element_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Element)</span>
-<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a>Year_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Year)</span>
-<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a>Flag_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Flag)</span>
-<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a>Distinct_count <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">nrow</span>(Area_num), <span class="fu">nrow</span>(Element_num), <span class="fu">nrow</span>(Year_num), <span class="fu">nrow</span>(Flag_num))</span>
-<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>Distinct_count</span>
-<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a>We can observe that data set has the data from 1961-2018 on 3 elements at 232 different areas.</span>
-<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>I am interested in finding in more information about Flag and how it corresponds to the description they have given and can we group the values by using it.</span>
-<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a><span class="co">#| label : Flag information</span></span>
-<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a>FLag_info <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Flag,<span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
-<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(FLag_info)</span>
-<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a>From the above observation we got to know there are 7 types of flags and it is based on data provided and type of data and values they are and how is has been taken.</span>
-<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
-<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Area and Element wise analysis</span></span>
-<span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a>AE_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area, Element) <span class="sc">%&gt;%</span></span>
-<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a>AE_analysis</span>
-<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a>As per the analysis, in each area the we have three kinds of elements and there are a lot of variations and mean value is not dependent to element itself in any area but it differs in each area and we can get a deeper understanding when we analyse the area and element separately.</span>
-<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Year and Element wise analysis</span></span>
-<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a>YE_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Element) <span class="sc">%&gt;%</span></span>
-<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a>YE_analysis</span>
-<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a>As per the data, we can say that the elements has been increased by passing year, there are some fluctuations in between but there is an overall increase by the year.</span>
-<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Element-wise analysis</span></span>
-<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a>E_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Element) <span class="sc">%&gt;%</span></span>
-<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
-<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a>E_analysis</span>
-<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a>As per the above observation, the mean value of the production is maximum and yield is the minimum. It shows that the production value is more with the less yield and it leads to an overall profit.</span>
-<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Area-wise analysis</span></span>
-<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a>A_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span></span>
-<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
-<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a>A_analysis</span>
-<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a>As per the analysis, Europe has the highest cattle dairy and British Virgin Islands has the minimum, we can say none. </span>
-<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Year-wise analysis</span></span>
-<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a>Y_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
-<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
-<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a>Y_analysis</span>
-<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a>As per the data, the cattle dairy production has been increased by the passing year, there are some fluctuations in middle but the overall it is increasing, we can see from the data that the increase is nearly 85 percentage from 1961 to 2018.</span>
-<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-168"><a href="#cb24-168" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
-<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a>I chose Element, Area and Year subgroups from data set. The reason for choosing them is there importance in analysis and also tried to analysis using two variables to know the dependency of values on different variables. So I have done Area and Element wise analysis, Year and Element wise analysis, Element-wise analysis, Area-wise analysis and Year-wise analysis. Conclusion to my analysis would be Europe has the highest of the cattle dairy and the production of the dairy is increasing gradually as by the year. </span>
+<div class="sourceCode" id="cb23" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 2"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Mani Shanker Kamarapu"</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Data wrangling: using group() and summarise()"</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/16/2022"</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_2</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - FAOSTAT_cattle_dairy.csv</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Data</span></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Reading data</span></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>FAOSTAT_cattle_dairy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/FAOSTAT_cattle_dairy.csv"</span>)</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(FAOSTAT_cattle_dairy)</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>As we read the data, there are many interesting variables and a lot of observations based on yearly analysis of the various cattle products.</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a><span class="co">#| label : Dimensions of data set</span></span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(FAOSTAT_cattle_dairy)</span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>We can see that there are 36449 rows and 14 columns in the data. We can see from observations from different variables that "Value" variable is pretty much the only real valuable data we are getting from this data set and remaining variables are either unchanged(Domain and Item) or grouping variables(Area, Element, Year and Flag) which can be used to summarize data and find the categories we are interested in and also can be used to find specific information we need and let's try to get to some more useful info using some other functions.</span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Diff variables of data set</span></span>
+<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(FAOSTAT_cattle_dairy)</span>
+<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a>These are the variables available in the data set.</span>
+<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Summary</span></span>
+<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">filter</span>(<span class="fu">select</span>(FAOSTAT_cattle_dairy, Value)))</span>
+<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a>It is the summary of the Value variable of the data set which is the only real data variable in data set.</span>
+<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a><span class="co">#| label : Grouping variables</span></span>
+<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a>Area_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Area)</span>
+<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a>Element_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Element)</span>
+<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a>Year_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Year)</span>
+<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a>Flag_num <span class="ot">&lt;-</span> <span class="fu">distinct</span>(FAOSTAT_cattle_dairy, Flag)</span>
+<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a>Distinct_count <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">nrow</span>(Area_num), <span class="fu">nrow</span>(Element_num), <span class="fu">nrow</span>(Year_num), <span class="fu">nrow</span>(Flag_num))</span>
+<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a>Distinct_count</span>
+<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-82"><a href="#cb23-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-83"><a href="#cb23-83" aria-hidden="true" tabindex="-1"></a>We can observe that data set has the data from 1961-2018 on 3 elements at 232 different areas.</span>
+<span id="cb23-84"><a href="#cb23-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-85"><a href="#cb23-85" aria-hidden="true" tabindex="-1"></a>I am interested in finding in more information about Flag and how it corresponds to the description they have given and can we group the values by using it.</span>
+<span id="cb23-86"><a href="#cb23-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-89"><a href="#cb23-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-90"><a href="#cb23-90" aria-hidden="true" tabindex="-1"></a><span class="co">#| label : Flag information</span></span>
+<span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a>FLag_info <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb23-92"><a href="#cb23-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Flag,<span class="st">`</span><span class="at">Flag Description</span><span class="st">`</span>)</span>
+<span id="cb23-93"><a href="#cb23-93" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(FLag_info)</span>
+<span id="cb23-94"><a href="#cb23-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-95"><a href="#cb23-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-96"><a href="#cb23-96" aria-hidden="true" tabindex="-1"></a>From the above observation we got to know there are 7 types of flags and it is based on data provided and type of data and values they are and how is has been taken.</span>
+<span id="cb23-97"><a href="#cb23-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-98"><a href="#cb23-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide Grouped Summary Statistics</span></span>
+<span id="cb23-99"><a href="#cb23-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-100"><a href="#cb23-100" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Area and Element wise analysis</span></span>
+<span id="cb23-101"><a href="#cb23-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-104"><a href="#cb23-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-105"><a href="#cb23-105" aria-hidden="true" tabindex="-1"></a>AE_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb23-106"><a href="#cb23-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area, Element) <span class="sc">%&gt;%</span></span>
+<span id="cb23-107"><a href="#cb23-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb23-108"><a href="#cb23-108" aria-hidden="true" tabindex="-1"></a>AE_analysis</span>
+<span id="cb23-109"><a href="#cb23-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-110"><a href="#cb23-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-111"><a href="#cb23-111" aria-hidden="true" tabindex="-1"></a>As per the analysis, in each area the we have three kinds of elements and there are a lot of variations and mean value is not dependent to element itself in any area but it differs in each area and we can get a deeper understanding when we analyse the area and element separately.</span>
+<span id="cb23-112"><a href="#cb23-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-113"><a href="#cb23-113" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Year and Element wise analysis</span></span>
+<span id="cb23-114"><a href="#cb23-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-117"><a href="#cb23-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-118"><a href="#cb23-118" aria-hidden="true" tabindex="-1"></a>YE_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb23-119"><a href="#cb23-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Element) <span class="sc">%&gt;%</span></span>
+<span id="cb23-120"><a href="#cb23-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb23-121"><a href="#cb23-121" aria-hidden="true" tabindex="-1"></a>YE_analysis</span>
+<span id="cb23-122"><a href="#cb23-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-123"><a href="#cb23-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-124"><a href="#cb23-124" aria-hidden="true" tabindex="-1"></a>As per the data, we can say that the elements has been increased by passing year, there are some fluctuations in between but there is an overall increase by the year.</span>
+<span id="cb23-125"><a href="#cb23-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-126"><a href="#cb23-126" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Element-wise analysis</span></span>
+<span id="cb23-127"><a href="#cb23-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-130"><a href="#cb23-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-131"><a href="#cb23-131" aria-hidden="true" tabindex="-1"></a>E_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb23-132"><a href="#cb23-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Element) <span class="sc">%&gt;%</span></span>
+<span id="cb23-133"><a href="#cb23-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-134"><a href="#cb23-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
+<span id="cb23-135"><a href="#cb23-135" aria-hidden="true" tabindex="-1"></a>E_analysis</span>
+<span id="cb23-136"><a href="#cb23-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-137"><a href="#cb23-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-138"><a href="#cb23-138" aria-hidden="true" tabindex="-1"></a>As per the above observation, the mean value of the production is maximum and yield is the minimum. It shows that the production value is more with the less yield and it leads to an overall profit.</span>
+<span id="cb23-139"><a href="#cb23-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-140"><a href="#cb23-140" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Area-wise analysis</span></span>
+<span id="cb23-141"><a href="#cb23-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-144"><a href="#cb23-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-145"><a href="#cb23-145" aria-hidden="true" tabindex="-1"></a>A_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb23-146"><a href="#cb23-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Area) <span class="sc">%&gt;%</span></span>
+<span id="cb23-147"><a href="#cb23-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-148"><a href="#cb23-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
+<span id="cb23-149"><a href="#cb23-149" aria-hidden="true" tabindex="-1"></a>A_analysis</span>
+<span id="cb23-150"><a href="#cb23-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-151"><a href="#cb23-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-152"><a href="#cb23-152" aria-hidden="true" tabindex="-1"></a>As per the analysis, Europe has the highest cattle dairy and British Virgin Islands has the minimum, we can say none. </span>
+<span id="cb23-153"><a href="#cb23-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-154"><a href="#cb23-154" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Year-wise analysis</span></span>
+<span id="cb23-155"><a href="#cb23-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-158"><a href="#cb23-158" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-159"><a href="#cb23-159" aria-hidden="true" tabindex="-1"></a>Y_analysis <span class="ot">&lt;-</span> FAOSTAT_cattle_dairy <span class="sc">%&gt;%</span></span>
+<span id="cb23-160"><a href="#cb23-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb23-161"><a href="#cb23-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_value=</span><span class="fu">mean</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">median_value=</span><span class="fu">median</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd_value=</span><span class="fu">sd</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">min_value=</span><span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">max_value=</span><span class="fu">max</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_value=</span><span class="fu">IQR</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-162"><a href="#cb23-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_value))</span>
+<span id="cb23-163"><a href="#cb23-163" aria-hidden="true" tabindex="-1"></a>Y_analysis</span>
+<span id="cb23-164"><a href="#cb23-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-165"><a href="#cb23-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-166"><a href="#cb23-166" aria-hidden="true" tabindex="-1"></a>As per the data, the cattle dairy production has been increased by the passing year, there are some fluctuations in middle but the overall it is increasing, we can see from the data that the increase is nearly 85 percentage from 1961 to 2018.</span>
+<span id="cb23-167"><a href="#cb23-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-168"><a href="#cb23-168" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explain and Interpret</span></span>
+<span id="cb23-169"><a href="#cb23-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-170"><a href="#cb23-170" aria-hidden="true" tabindex="-1"></a>I chose Element, Area and Year subgroups from data set. The reason for choosing them is there importance in analysis and also tried to analysis using two variables to know the dependency of values on different variables. So I have done Area and Element wise analysis, Year and Element wise analysis, Element-wise analysis, Area-wise analysis and Year-wise analysis. Conclusion to my analysis would be Europe has the highest of the cattle dairy and the production of the dairy is increasing gradually as by the year. </span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
