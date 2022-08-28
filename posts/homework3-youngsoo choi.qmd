@@ -1,0 +1,82 @@
+---
+title: "Homework 3"
+author: "Young Soo Choi"
+desription: "Read and descrive the data"
+date: "08/28/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read and tidy the Data
+
+Use debt data following homework 2. After creating a date column in the imported data, I tidied the data.
+
+```{r}
+debt_raw <- read_xlsx("_data/debt_in_trillions.xlsx")
+debt<-debt_raw%>%
+  mutate(date = parse_date_time(`Year and Quarter`, 
+                           orders="yq"))
+tidy_debt<-debt%>%
+  pivot_longer(Mortgage:Total, names_to = 'types', values_to = 'debts')
+tidy_debt<-tidy_debt%>%
+  select(-'Year and Quarter')
+tidy_debt
+```
+
+## Descriptive Statistics
+
+Using functions group_by and summarise, the average value and standard deviation of the total amount of debt and the amount of debt by type from the first quarter of 2003 to the second quarter of 2021 were calculated.
+
+```{r}
+ds_debt<-tidy_debt%>%
+  group_by(types)%>%
+  summarise(mean=mean(debts),
+            se=sd(debts))
+ds_debt
+```
+```{r}
+pro_debt<-ds_debt%>%
+  mutate(pro=round(mean/11.7793751,5), percent=pro*100)
+pro_debt
+```
+
+```{r}
+pro_debt %>% filter(types!='Total')%>%
+  ggplot(aes(x=types, y=mean)) +
+  geom_bar(stat = 'identity')+
+  geom_text(aes(label=round(mean,5)), vjust=-0.3)
+```
+
+```{r}
+pro_debt %>% filter(types!='Total')%>%
+  ggplot(aes(x=types, y=percent)) +
+  geom_bar(stat = 'identity')+
+  geom_text(aes(label=round(percent,5)), vjust=-0.3)
+
+```
+
+Looking at the average data for 18 years, it can be seen that the proportion of mortgage is the largest among the total debt. Mortgage accounts for about 70.2% of the total, followed by auto loan with 7.9% and student loan with 7.8%.
+
+However, looking at the average value, it is difficult to see how the proportion of each type of debt has changed year by year. 
+In the final report, I will add titles, categories, etc. to the graph and use colors to complement the graph to make it easier to recognize.
+
+
+
