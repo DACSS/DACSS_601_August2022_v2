@@ -1,0 +1,23 @@
+---
+title: "Formula 1 Data" ## Rename!
+author: "Nick Boonstra" 
+description: "Analyzing Formula 1 Data Using R"
+editor: visual
+---
+
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+
+
