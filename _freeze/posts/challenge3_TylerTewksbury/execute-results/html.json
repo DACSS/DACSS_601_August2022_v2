@@ -1,0 +1,14 @@
+{
+  "hash": "12cc08ff558e47fedd4f5d49ae79611c",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 3\"\nauthor: \"Tyler Tewksbury\"\ndesription: \"Tidy Data: Pivoting\"\ndate: \"08/25/2022\"\nformat:\n  html:\n    toc: true\n    code-fold: true\n    code-copy: true\n    code-tools: true\ncategories:\n  - challenge_3\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n```\n:::\n\n\n## Challenge Overview\n\n## Read in data\n\n\n::: {.cell}\n\n```{.r .cell-code}\neggs <-read_csv(\"_data/eggs_tidy.csv\",\n                        show_col_types = FALSE)\n```\n:::\n\n\n### Briefly describe the data\n\nThe dataset is pre-tidy, with 120 rows and 6 columns. The data shows the price of eggs based on their size across different months and years.\n\n### Challenge: Describe the final dimensions\n\n\n::: {.cell}\n\n```{.r .cell-code}\nnrow(eggs)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 120\n```\n:::\n\n```{.r .cell-code}\nncol(eggs)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 6\n```\n:::\n\n```{.r .cell-code}\nnrow(eggs) * (ncol(eggs)-2)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 480\n```\n:::\n:::\n\n\nThe dataset has 120 rows and 6 columns. Because there are two grouping variables, in the nrow - ncol calculation we subtract 2 from col. This gives 480, the amount of expected rows when pivoting the dataset longer.\n\n### Challenge: Pivot the Chosen Data\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlong_eggs <- eggs%>%\n  pivot_longer(cols=contains (\"large\"),\n               names_to = c(\"size\", \"quantity\"),\n               names_sep=\"_\",\n               values_to = \"price\")\n```\n:::\n\n\n\nIn the long dataset, are now new cases that show the price per size and quantity. There are 4 identifiers/category variables (two more than the previous dataset) and 1 value per row, which makes the dataset far easier to work with and simply look at. Visualizations and other analysis can be done now without unnecessary steps in each simple analysis, because the data now has that 1 value per row. ",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
