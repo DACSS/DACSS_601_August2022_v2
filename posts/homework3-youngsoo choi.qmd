@@ -31,13 +31,17 @@ Use debt data following homework 2. After creating a date column in the imported
 
 ```{r}
 debt_raw <- read_xlsx("_data/debt_in_trillions.xlsx")
+
 debt<-debt_raw%>%
   mutate(date = parse_date_time(`Year and Quarter`, 
                            orders="yq"))
+
 tidy_debt<-debt%>%
   pivot_longer(Mortgage:Total, names_to = 'types', values_to = 'debts')
+
 tidy_debt<-tidy_debt%>%
   select(-'Year and Quarter')
+
 tidy_debt
 ```
 
@@ -49,14 +53,23 @@ Using functions group_by and summarise, the average value and standard deviation
 ds_debt<-tidy_debt%>%
   group_by(types)%>%
   summarise(mean=mean(debts),
-            se=sd(debts))
+            sd=sd(debts))
 ds_debt
 ```
+In order to find out the proportion of each type of debt, the proportion and the percentage column were added using the mutate function.
+
 ```{r}
 pro_debt<-ds_debt%>%
   mutate(pro=round(mean/11.7793751,5), percent=pro*100)
 pro_debt
 ```
+Looking at the average data for 18 years, it can be seen that the proportion of mortgage is the largest among the total debt. 'Mortgage' accounts for about 70.2% of the total, followed by 'Auto Loan' with 7.9% and 'Student Loan' with 7.8%.
+
+In the case of volatility, it can be identified using the standard deviation, and the standard deviation of 'Mortgage' was the highest at 1.18, and the next largest change was 'Student Loan', and the standard deviation was 0.42.
+
+## Visualization
+
+Based on the above data, I drew the total amount and proportion of debt by debt type on a bar graph, respectively.
 
 ```{r}
 pro_debt %>% filter(types!='Total')%>%
@@ -73,10 +86,9 @@ pro_debt %>% filter(types!='Total')%>%
 
 ```
 
-Looking at the average data for 18 years, it can be seen that the proportion of mortgage is the largest among the total debt. Mortgage accounts for about 70.2% of the total, followed by auto loan with 7.9% and student loan with 7.8%.
+However, looking at the graph, it is difficult to see how the proportion of each type of debt has changed year by year. 
 
-However, looking at the average value, it is difficult to see how the proportion of each type of debt has changed year by year. 
-In the final report, I will add titles, categories, etc. to the graph and use colors to complement the graph to make it easier to recognize.
+In the final report, I'll expand the scope of the analysis. And for effective visualization, I will add titles, categories, etc. to the graph and use colors to complement the graph to make it easier to recognize.
 
 
 
