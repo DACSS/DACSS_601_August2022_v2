@@ -1,0 +1,88 @@
+---
+title: "Challenge 1 Roy Yoon"
+author: "Roy Yoon"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+  - birds.csv
+  - submission 2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Reading Data
+
+```{r reading data file}
+library(readr)
+birds <- read_csv("_data/birds.csv")
+
+```
+
+Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.
+
+## A Quick Look at 'birds'
+```{r}
+head(birds)
+```
+## Dimensions
+
+```{r data dimension}
+#| label: summary
+
+#understanding the dimensions of data set 'birds'
+dim(birds)
+
+```
+
+## Column Names
+
+There are 30977 rows and 14 column in the data set
+
+```{r column names}
+#column names in  data set 'birds'
+
+colnames(birds)
+
+```
+
+## Cases when 'birds' data 'Value' is greater then 10000
+
+```{r Value greater than 10000}
+
+#looking at 'birds' data set that has 'Value' column value greater than 10000
+more_than_10000 <- filter(birds, Value > 10000)
+
+more_than_10000 
+
+arrange(more_than_10000, Value)
+
+```
+
+The data above shows 'birds' for if the Value column was greater than 10000. The data is arranged by the 'Value' column values.
+
+## Data for Algeria in 'bird'
+
+```{r Algeria Data}
+#looking at 'birds' data set that has 'Value' column value greater than 10000 specifically for Algeria 
+more_than_10000_ALG <- filter(more_than_10000, Area == "Algeria")
+
+more_than_10000_ALG 
+```
+
+The data above examines the data for Algeria by looking at 'birds' data set that haa values greater than 10000.

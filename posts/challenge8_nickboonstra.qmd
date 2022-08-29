@@ -1,0 +1,189 @@
+---
+title: "Challenge 8"
+author: "Nick Boonstra"
+description: "Joining Data"
+date: "08/25/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - snl
+---
+
+```{r setup}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Introduction
+
+This is a fun one! Today I am going to be joining, mutating, and analyzing data of *SNL* cast members and seasons.
+
+## Read in data
+
+The data for this challenge are contained within three related .csv files.
+
+```{r read in}
+
+snl_actors_orig<-read_csv("_data/snl_actors.csv")
+snl_casts_orig<-read_csv("_data/snl_casts.csv")
+snl_seasons_orig<-read_csv("_data/snl_seasons.csv")
+
+```
+
+### Briefly describe the data
+
+```{r describe}
+
+snl_actors_orig
+snl_casts_orig
+snl_seasons_orig
+
+```
+
+The "actors" dataframe appears to record every individual who has made an appearance on *Saturday Night Live*, whether that was as a cast member, a guest (including musical guests), or someone with a "crew" designation (the meaning of which is not entirely clear). The urls aren't very pretty, so I will remove them from the dataframe at the tidying stage.
+
+The "casts" dataframe focusses on individuals who have appeared as cast members on the show, excluding guests from the list. Specification is made for whether or not a cast member was a featured player (a designation below a full repertory cast member) for a given season, as well as whether or not they served as a "Weekend Update" anchor. In certain cases, this dataframe will also give the date of the first and/or last episode on which a given cast member appeared; however, these cases are inconsistent at best. With this being the case, and given the analysis I intend to do, I will be removing these first and last episode columns when I tidy the data. I will also delete and recreate the season_fraction column, just to make sure all values are correct with no mistakes.
+
+Lastly, the "seasons" dataframe is a simple table of basic data for every season of *SNL*. This table has its own first and last episode dates, for the start and end of each season; these columns are consistent throughout, and I will keep them in the dataframe.
+
+## Tidying Data
+
+In my own exploratory analysis, I had done most of my tidying and joining together, but both for the sake of clarity and of being careful I will split up those steps here.
+
+The only real tidying that needs to be done on these dataframes is the removal or cleanup of pesky columns; the data themselves are all tidy. (Recreating the sesason_fraction variable will actually not come until the data are joined.) Additionally, two of the dataframes have columns named "n_episodes" which track different variables, so I will rename these to prepare for clean joining.
+
+```{r tidying}
+
+snl_actors<-snl_actors_orig %>% 
+  select(-url)
+
+snl_casts<-snl_casts_orig %>% 
+  select(-c(contains("epid"),season_fraction)) %>% 
+  rename("n_episodes_player"="n_episodes")
+
+snl_seasons<-snl_seasons_orig %>% 
+  mutate(first_epid=ymd(first_epid)) %>% 
+  mutate(last_epid=ymd(last_epid)) %>% 
+  rename("n_episodes_season"="n_episodes")
+
+head(snl_actors)
+head(snl_casts)
+head(snl_seasons)
+
+
+```
+
+## Join Data
+
+### Keys and Case Counts
+
+Before we start joining data, we want to make sure we know what the case counts are for each dataframe, and also make sure that we know which variables or combinations of variables serve as the unique keys for each dataframe.
+
+"snl_actors" has `r nrow(snl_actors)` rows and `r ncol(snl_actors)` columns. "snl_casts" has `r nrow(snl_casts)` rows and `r ncol(snl_casts)` columns. "snl_seasons" has `r nrow(snl_seasons)` rows and `r ncol(snl_seasons)` columns.
+
+```{r keys}
+
+snl_actors %>% 
+  count(aid) %>% 
+  filter(n>1)
+
+snl_casts %>% 
+  count(aid,sid) %>% 
+  filter(n>1)
+
+snl_seasons %>% 
+  count(sid) %>% 
+  filter(n>1)
+
+
+```
+
+The unique keys are the variables "aid" (actor ID) for snl_actors and "sid" (season ID) for snl_seasons, with the snl_casts dataframe taking each joint aid-sid case as its unique key.
+
+### Joins
+
+#### snl_casts and snl_seasons
+
+It would be interesting to see the information from the snl_seasons dataframe listed on the snl_casts dataframe. This can be accomplished with a simple join.
+
+Before we perform this join, we can preemptively do a simple sanity check. These dataframes only share one key -- the "sid" variable -- so the final joined dataframe will have as many columns as snl_casts and snl_seasons combined, less one -- without adding any rows. In other words, this means that we should end up with `r nrow(snl_casts)` rows and `r ncol(snl_casts) + ncol(snl_seasons) - 1` columns.
+
+```{r year join}
+
+nrow(snl_casts)
+ncol(snl_casts) + ncol(snl_seasons) - 1
+
+snl_casts_seas <- snl_casts %>% 
+  left_join(snl_seasons,by="sid")
+
+snl_casts_seas
+dim(snl_casts_seas)
+
+
+```
+
+Perfect!
+
+Now that we've completed this join, we can recreate what had been called the "season_fraction" variable in the snl_casts_orig dataframe. This variable recorded the percentage of a given season's episodes in which a given player appeared. For clarity, I am going to call this variable the "player_appearance_rate" in this dataframe.
+
+```{r appearance rate}
+
+snl_casts_seas<-snl_casts_seas %>% 
+  mutate(player_appearance_rate=(n_episodes_player/n_episodes_season))
+
+snl_casts_seas
+
+
+```
+
+## Observations
+
+Having performed these joins and mutations, we can find some interesting information. For example, which cast member had the lowest average appearance rate over the course of their career?
+
+```{r highest app rate}
+
+snl_casts_seas %>% 
+  group_by(aid) %>% 
+  summarise(mean_app_rate=mean(player_appearance_rate)) %>% 
+  arrange(mean_app_rate) %>% 
+  slice(1:10)
+
+
+```
+
+The answer is George Coe, who is an interesting case of having only been credited for his appearance in the very first episode of *SNL*, despite featuring in various subsequent episodes as well.
+
+We can also visualize how the average appearance rate changed from season to season.
+
+```{r app rate by season}
+
+snl_casts_seas %>% 
+  group_by(year) %>% 
+  summarize(mean_seas_app_rate=mean(player_appearance_rate)) %>% 
+  ggplot(aes(year,mean_seas_app_rate)) +
+  geom_point() +
+  geom_line() +
+  theme_bw() +
+  scale_y_continuous(labels = scales::percent) +
+  labs(title="Average Player Apperance Rate by Year",
+       x="Year",
+       y="Average Player Appearance Rate")
+
+
+
+
+
+```
+
+It is very interesting to observe that the last six seasons have all had every player feature in every episode! It is also interesting to observe the distinct drop in 1979 and 1980, and I wonder at the reasons behind this drop.

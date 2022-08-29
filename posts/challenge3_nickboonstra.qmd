@@ -1,0 +1,138 @@
+---
+title: "Nick Boonstra Challenge 3"
+author: "Nick Boonstra"
+desription: "Tidy Data: Pivoting"
+date: "08/17/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+  - boonstra
+  - week_1
+---
+
+## Introduction
+
+In this challenge, I will be tackling the notorious Australian Marriage Data set!
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Reading In
+
+```{r}
+#| label: read in
+
+ozzie <- read_excel("_data/australian_marriage_law_postal_survey_2017_-_response_final.xls",
+                   sheet = 3,
+                   skip = 7,
+                   col_names=c("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p"))
+
+```
+
+### Description of Data
+
+According to the Australian Bureau of Statistics, these data record the results of a postal survey distributed to eligible Australians asking their opinion on whether or not the law should be changed to allow same-sex couples to marry.
+
+This data set comes in *messy*. There are three sheets in the .xls file, which can make things a bit tricky, but the actual data live in the third sheet. The sheet has useless header rows that may be somewhat helpful to a human looking over the spreadsheet, but which give R a hard time; I skipped the first 7 rows when reading in the data, keeping an untouched copy of the spreadsheet open separately so I could keep track of what each column corresponded to. Rather than let R assume (or fill in) the header names, I gave the sixteen columns alphabetical names, from "a" to "p"; I assume there exists a more efficient way to solve this naming problem, but here we are.
+
+## Anticipating the End Result
+
+In order for data to be considered "tidy," it must meet three criteria:
+
+-   Each column contains values of one variable;
+-   Each row contains values for one observation; and,
+-   Each cell contains one value.
+
+The original spreadsheet breaks the data down into valid and invalid responses, with valid responses being subdivided into "Yes" and "No" responses, and each response type being given two values: the number of respondents providing this response, and the percent value of that number of respondents within the given unit (i.e. parliamentary division, state/federal territory, Commonwealth).
+
+The variable of note in this data set is the number of respondents for each response type, with there being a total of four unique response types (i.e. "Yes," "No," an invalid response, and a non-response). The tidy-compliant of this data set will have a single column recording number of respondents, and another recording response type. Each division will appear four times, one for each response type. As such, a tidy-compliant "observation" in this data set is a division-response type, such as Greenway-Yes or Batman-No response.
+
+Beyond the strict definition of tidy-compliance, there are a number of extraneous columns in this data set. The percent values, for example, are completely unnecessary, since these can be extrapolated from the raw response numbers at any point. The column counting the total number of valid responses is also unnecessary, because it double-counts the "Yes" and "No" responses, and a simple valid/invalid dummy variable can easily be introduced later if this information is still necessary. Lastly, the empty column dividing the valid and total responses is obviously unnecessary.
+
+This means that the tidy-compliant version of these data will, upon initial transformation, have just three columns: division, response type, and number of respondents. Since the values for response type will all be character-type, I will also create a fourth column assigning numerical categorical values to the four response types.
+
+## Tidy transformations
+
+```{r}
+#| label: transformations
+
+ozzie <- ozzie %>% 
+  pivot_longer(
+    cols = c(
+      "b", # YES
+      "d", # NO
+      "k", # UNCLEAR
+      "m" # NON-RESPONDING
+    ),
+    values_to = "num_respondents",
+    names_to = "response_type"
+  )
+
+ozzie <- ozzie %>% 
+  select(-c(c:p)) %>% 
+  rename(division = a) %>% 
+  mutate(response_type = case_when(
+    response_type == "b" ~ "Yes",
+    response_type == "d" ~ "No",
+    response_type == "k" ~ "Unclear",
+    response_type == "m" ~ "No response"
+  )) %>% 
+  mutate(response_type_code = case_when(
+    response_type == "Yes" ~ 1,
+    response_type == "No" ~ 2,
+    response_type == "Unclear" ~ 3,
+    response_type == "No response" ~ 4
+  ))
+
+ozzie
+
+```
+
+Voila! Looks much better already.
+
+As an aside, we can create that valid/invalid dummy variable that was mentioned earlier:
+
+```{r}
+#| label: dummy
+
+ozzie <- ozzie %>% # dummy
+  mutate(valid = case_when(
+    response_type_code < 3 ~ 1,
+    T ~ 0
+  ))
+
+ozzie
+
+```
+
+This can help when it comes to grouping and visualizing these data.
+
+```{r}
+#| label: grouping
+
+ozzie %>% 
+  group_by(response_type_code) %>% 
+  summarise("Mean number of respondents"=mean(num_respondents,na.rm=T))
+
+ozzie %>% 
+  group_by(valid) %>% 
+  summarise("Mean number of respondents"=mean(num_respondents,na.rm=T))
+
+```
+
+### Shortcomings in Transformation
+
+Despite these transformations, this data frame leaves a lot to be desired at this point. There are still a number of useless rows, some of which served as headers for the different federal divisions, and some of which are just empty for visual division of the original spreadsheet. These rows, as well as other "footnote" rows at the bottom of the df, still need to be deleted. Before doing that, though, I would like to be able to pivot_wider (or something to that effect) to create a column that tracks which state or federal territory each division lives in. However, at present I can't figure out how to do that given the data set as it is.

@@ -1,0 +1,117 @@
+---
+title: "Challenge 8"
+author: "Miranda Manka"
+description: "Joining Data"
+date: "08/25/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - snl
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in multiple data sets, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  join two or more data sets and analyze some aspect of the joined data
+
+## Read in data
+
+```{r}
+snl_seasons = read_csv("_data/snl_seasons.csv", show_col_types = FALSE)
+
+snl_casts = read_csv("_data/snl_casts.csv", show_col_types = FALSE)
+```
+
+### Briefly describe the data
+
+The first dataset, snl_seasons is about the show "Saturday Night Live" which I can see started in 1975 and is still going. This dataset contains 46 observations with information about the different seasons. The variables are "sid" (season), "year" (year the season took place), "first_epid" (first episode of the season in the format YYYYMMDD), "last_epid" (last episode of the season in the format YYYYMMDD), and "n_episodes" (number of episodes in the season). 
+The mean number of episodes per season is 19.7, the minimum is 12 episodes in 2007, and the maximum is 24 episodes in the first season.
+
+```{r}
+print(summarytools::dfSummary(snl_seasons,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+The second dataset, snl_casts has 614 observations, where each row contains a cast member for each different season they are in. The variables are "aid" (the person), "sid" (season), "featured" (true or false, not sure what this specifically represents - maybe if they were featured or a side part), "first_epid" (first episode they appear in for that season in the format YYYYMMDD), "last_epid" (last episode they appear in for that season in the format YYYYMMDD), "update_anchor" (true or false for weekend update anchor), "n_episodes" (number of episodes they appear in for that season), and "season_fraction" (the fraction of the number of episodes they appear in out of the total number of episodes in the season).
+
+```{r}
+print(summarytools::dfSummary(snl_casts,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+## Tidy Data
+
+To tidy the data, first I renamed the first_epid, last-epid, and n_episodes variables found in both datasets to differentiate them so that when the join is complete, there is a name difference between the variables.
+
+```{r}
+snl_seasons = snl_seasons %>% 
+  rename(first_epid_s = first_epid, last_epid_s = last_epid, 
+     n_episodes_s = n_episodes)
+
+snl_casts = snl_casts %>% 
+  rename(name = aid, first_epid_c = first_epid, last_epid_c = last_epid,
+     n_episodes_c = n_episodes)
+```
+
+Next, I converted the first_epid and last_epid variables in each dataset (now already renamed) to dates because they are currently in YYYYMMDD format but not actually dates.
+
+```{r}
+snl_seasons = snl_seasons %>%
+  mutate(first_epid_s = ymd(first_epid_s), last_epid_s = ymd(last_epid_s))
+
+snl_casts = snl_casts %>%
+  mutate(first_epid_c = ymd(first_epid_c), last_epid_c = ymd(last_epid_c))
+```
+
+## Join Data
+
+Both datasets seem ready to join now. To do this, I will use a left join. I will be joining snl_casts (614 observations) into snl_seasons (46 observations). I will use every variable for both datasets, and I will be joining on the variable "sid" (the key variable) because in snl_seasons it uniquely describes the data and is available in snl_casts. After the join there should be 614 rows and 12 columns (the sum of both datasets columns minus one because the key variable is not counted twice).
+
+```{r}
+snl_joined = left_join(snl_seasons, snl_casts, by = "sid")
+```
+
+After joining, I can see that the new dataset is as expected, 614 rows and 12 columns.
+
+```{r}
+print(summarytools::dfSummary(snl_joined,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```

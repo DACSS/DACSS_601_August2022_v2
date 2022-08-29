@@ -1,0 +1,38 @@
+---
+title: "Kimberly Darkenwald"
+image: images/KimDarkenwald.jpg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/KimDarkenwald.jpg
+  links: 
+    - icon: github
+      text: Github
+      href: https://github.com/kdarkenwald
+---
+
+
+## Education/Work Background
+I currently hold a B.A. in Journalism and Mass Communication with an emphasis in public relations.  Shortly after graduating college, many years ago, my grandmother fell ill and required around-the-clock.   For this reason, I placed my professional life on hold to care for her. Since her passing at the age of 105 years old, I have decided to change course and pursue a career in data analytics.  
+
+
+## R experience
+The DACSS 601 class will be my introduction to R and I am looking forward to learning the program. 
+
+
+## Research interests
+I have a strong interest in Environmental, Social, Governance (ESG) issues. 
+
+
+## Hometown
+Valhalla, NY
+
+
+## Hobbies
+Playing with my dog, sailing, skiing, anything to do with comedy.
+
+
+## Fun fact
+Sharks never stop growing.
+

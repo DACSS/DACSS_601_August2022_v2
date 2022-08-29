@@ -1,0 +1,78 @@
+---
+title: "Challenge 2 "
+author: "Shoshana Buck"
+description: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - Railroad
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+## Read in the Data
+The state County data is looking at the total railroad employment by state and county in the United States and Canada using the calendar year of 2012. The source of this data is most likely taken from the United States Railroad Retirement Board. There is a total of 2,931 rows which reflect the counties and there are 3 columns which reflect the "State", "County", and the "total employees" within the county.
+
+```{r}
+# | Label: Reading in data
+StateCounty<-read_excel("_data/StateCounty2012.xls",
+                     skip = 4,
+                     col_names= c("state", "delete",  "county",
+                                  "delete", "employees"))%>%
+  select(!contains("delete"))%>%
+  filter(!str_detect(state, "Total"))
+
+StateCounty<-head(StateCounty, -2)%>%
+  mutate(county = ifelse(state=="CANADA", "CANADA", county))
+
+StateCounty
+
+```
+
+
+## Describe the data
+Though there are 2,929 state-counties there are only 53 unique States and 1708 unique counties, I found this by including n_distinct in the summarise() function.
+
+```{r}
+#| label: summary
+
+StateCounty %>% 
+  summarise(across(c(state), n_distinct))
+StateCounty %>% 
+  summarise(across(c(county), n_distinct))
+
+```
+
+## Provide Grouped Summary Statistics
+
+```{r}
+StateCounty %>%
+  group_by(state)
+StateCounty %>% 
+  summarise(total.employees=sum(employees))
+StateCounty %>% 
+  group_by(state,county) %>% 
+  summarise(total.employees=sum(employees)) %>% 
+  arrange(desc(total.employees))
+  
+```
+
+### Explain and Interpret
+
+During the calendar year of 2012 the United States Railroad Retirement Board had 255,395 employees in the United States and Canada. I thought it was interesting that Cook county of Illinois had 8207 employees, which was the most employees as of 2012.  

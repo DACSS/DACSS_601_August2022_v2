@@ -1,0 +1,108 @@
+---
+title: "Challenge 5"
+author: "Saaradhaa M"
+description: "Intro to Visualization"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+    df-print: paged
+categories:
+  - challenge_5
+  - psc
+  - tidyverse
+  - ggplot2
+  - summarytools
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(summarytools)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+I've previously worked with the households dataset, so I'll be working with the Public School Characteristics dataset for this challenge. Using complete(), I'll set all missing values to NA.
+
+```{r}
+#| label: read in
+
+# read in dataset.
+psc <- read_csv("_data/Public_School_Characteristics_2017-18.csv")
+
+# fill in NA.
+complete(psc)
+
+# view dataset.
+psc
+```
+
+### Briefly describe data
+
+The dataset has 100,729 rows and 79 columns. I found a codebook [here](https://data-nces.opendata.arcgis.com/datasets/nces::public-school-characteristics-2017-18/about). This dataset describes the characteristics of public schools from 2017 to 2018 by the National Center for Education Statistics. There is a mix of numeric, character and logical columns.
+
+The data definitely needs to be tidied! Due to time constraints and how massive the dataset is, I'll first identify the visualisations I want to produce using the codebook. I'll then work on a subset of the original dataset. I specifically want to look at the following:
+
+-   Univariate: American Indian
+
+-   Univariate: Black
+
+-   Bivariate: state, American Indian
+
+## Tidy data
+
+The variables I need are AM, BL and LSTATE.
+
+```{r}
+#| label: tidy
+
+# creating subset.
+subset <- psc %>% select(AM, BL, LSTATE)
+
+# sanity check.
+subset
+```
+
+We need to change STATE to a factor.
+
+```{r}
+#| label: tidy 2
+
+# change type to factor.
+subset$LSTATE <- as.factor(subset$LSTATE)
+
+# view dataset using summarytools.
+print(summarytools::dfSummary(subset, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.50, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+```
+
+Normally, I would pivot ethnicity into 1 column, but we don't want to do that so that we can run the visualisations. We also have some missing values. This is expected, as not all students may wish to report their ethnicity, or some school districts may have opted not to share this data, etc.
+
+## Univariate Visualizations
+
+The univariate visualizations I want to work on are the distributions of students of American Indian and Black ethnicity. These are numeric variables, so we should use histograms.
+
+```{r}
+#| label: uni
+subset %>% filter(! is.na(AM)) %>% ggplot(aes(AM)) + geom_histogram() + theme_minimal() + labs(title = "American Indian Students in Public Schools (2017-2018)")
+subset %>% filter(! is.na(BL)) %>% ggplot(aes(BL)) + geom_histogram() + theme_minimal() + labs(title = "Black Students in Public Schools (2017-2018)")
+```
+
+## Bivariate Visualization
+
+I want to plot American Indian (numeric) against state (categorical).
+
+```{r}
+#| label: bivariate
+subset %>% filter(! is.na(LSTATE)) %>% ggplot(aes(LSTATE, AM)) + geom_boxplot() + theme_minimal() + labs(title = "American Indian Students in Public Schools By State (2017-2018)", x = "Number of American Indian Students", y = "State") + theme(axis.text.x=element_text(angle=90,hjust=1))
+```
+I notice an error in my boxplot - I should have summed up the number of American Indian students by state before doing this! It's close to 11pm so I'm turning this in first - let me try to fix this within the week.

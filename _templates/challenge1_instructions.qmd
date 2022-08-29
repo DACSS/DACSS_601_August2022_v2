@@ -1,8 +1,8 @@
 ---
-title: "Challenge 1 Instructions"
-author: "Meredith Rolfe"
+title: "Challenge 1"
+author: "Lai Wei "
 desription: "Reading in data and creating a post"
-date: "08/15/2022"
+date: "08/15 /2022"
 format:
   html:
     toc: true
@@ -44,7 +44,9 @@ Read in one (or more) of the following data sets, using the correct R package an
 Find the `_data` folder, located inside the `posts` folder. Then you can read in the data, using either one of the `readr` standard tidy read commands, or a specialized package such as `readxl`.
 
 ```{r}
-
+library(readxl)
+railroad <- read_csv("_data/railroad_2012_clean_country")
+railroad
 ```
 
 Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.

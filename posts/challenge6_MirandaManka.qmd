@@ -1,0 +1,108 @@
+---
+title: "Challenge 6"
+author: "Miranda Manka"
+description: "Visualizing Time and Relationships"
+date: "08/23/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - air_bnb
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least one graph including time (evolution)
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+5)  Create at least one graph depicting part-whole or flow relationships
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+
+## Read in data
+
+```{r}
+air_bnb = read_csv("_data/AB_NYC_2019.csv", show_col_types = FALSE)
+```
+
+### Briefly describe the data
+
+This is a dataset containing information about Airbnb listings in New York City. The variables include id and name of the listing, id and name of the host, neighborhood (including neighborhood group), latitude and longitude, room type, price, the minimum number of nights someone must book, number of reviews, last review date, reviews per month, the calculated count of host listings, and the availability (number out of 365/a year). Each row is a different listing.
+
+```{r}
+#Replace in future with summarytools::dfSummary
+summary(air_bnb)
+```
+
+## Tidy Data
+
+The dataset seems to be pretty tidy already, I won't make any changes for now.
+
+## Time Dependent Visualizations
+
+This first graph is a density graph which is good for looking at a time variable. This is a visualization of last_review, where there are 3 graphs (one for each room type). While each one isn't too different, there are some small differences for example the peak density value highest point for entire home/apt is greater than the peak for the other two room types.
+
+```{r}
+ggplot(air_bnb, aes(x = last_review, fill = room_type)) +
+  geom_density(alpha = 0.2) + 
+  labs(title = "Last Review Date for Airbnb Listings by Room Type", 
+     x = "Date of Last Review", y = "Density", fill = guide_legend("Room Type")) + 
+  theme_bw() + 
+  facet_wrap(~ room_type, ncol = 2)
+```
+
+This next graph is also a density graph, since I am still looking at a time variable. This is a visualization of last_review, where there are 5 graphs (one for each neighborhood type). Similar to the last visualization, there are some small differences between each, like the shape and the highest density value reached (for example Staten Island reaches the highest point of almost 0.020, but Manhattan's highest density point is only 0.005).
+
+```{r}
+ggplot(air_bnb, aes(x = last_review, fill = neighbourhood_group)) +
+  geom_density(alpha = 0.2) + 
+  labs(title = "Last Review Date for Airbnb Listings by Neighborhood Group", 
+     x = "Date of Last Review", y = "Density", 
+     fill = guide_legend("Neighborhood Group")) + 
+  theme_bw() + 
+  scale_x_date(limits = as.Date(c("2015-01-01","2019-07-08"))) + 
+  facet_wrap(~ neighbourhood_group, nrow = 3)
+```
+
+## Visualizing Part-Whole Relationships
+
+I wanted to show similar plots for the same variables. I thought it would be interesting to display some of the available options to see how they are similar and differ. I think the grouped bar chart and the percent bar chart are the most clear and useful for determining proportions and totals. The stacked bar chart is just a little harder to read and determine the proportions without looking closely at the numbers.
+
+```{r}
+ggplot(air_bnb, aes(x = neighbourhood_group, fill = room_type)) + 
+  geom_bar(position = "dodge") + 
+  labs(title = "Airbnb Listings Grouped Bar Chart", x = "Neighborhood Group", 
+     y = "Frequency", fill = guide_legend("Room Type")) + 
+  theme_bw()
+
+ggplot(air_bnb, aes(x = neighbourhood_group, fill = room_type)) + 
+  geom_bar(position = "stack") + 
+  labs(title = "Airbnb Listings Stacked Bar Chart", x = "Neighborhood Group", 
+     y = "Frequency ", fill = guide_legend("Room Type")) + 
+  theme_bw()
+
+ggplot(air_bnb, aes(x = neighbourhood_group, fill = room_type)) + 
+  geom_bar(position = "fill") + 
+  labs(title = "Airbnb Listings Percent Bar Chart", x = "Neighborhood Group", 
+     y = "Percent", fill = guide_legend("Room Type")) + 
+  theme_bw()
+```

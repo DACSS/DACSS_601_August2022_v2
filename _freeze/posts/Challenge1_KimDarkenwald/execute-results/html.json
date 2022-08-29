@@ -1,0 +1,16 @@
+{
+  "hash": "fa056b80e51cc5e5a6584b896d7cb5e0",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 1 Instructions\"\nauthor: \"Kim Darkenwald\"\ndesription: \"Reading in data and creating a post\"\ndate: \"08/15/2022\"\nformat:\n  html:\n    toc: true\n    code-fold: true\n    code-copy: true\n    code-tools: true\ncategories:\n  - challenge_1\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(readr)\nrailroad_2012_clean_county <- read_csv(\"_data/railroad_2012_clean_county.csv\")\nView(railroad_2012_clean_county)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\ndim(railroad_2012_clean_county)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2930    3\n```\n:::\n\n```{.r .cell-code}\ncolnames(railroad_2012_clean_county)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] \"state\"           \"county\"          \"total_employees\"\n```\n:::\n\n```{.r .cell-code}\nselect(railroad_2012_clean_county, \"state\", \"county\")\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 2,930 × 2\n   state county              \n   <chr> <chr>               \n 1 AE    APO                 \n 2 AK    ANCHORAGE           \n 3 AK    FAIRBANKS NORTH STAR\n 4 AK    JUNEAU              \n 5 AK    MATANUSKA-SUSITNA   \n 6 AK    SITKA               \n 7 AK    SKAGWAY MUNICIPALITY\n 8 AL    AUTAUGA             \n 9 AL    BALDWIN             \n10 AL    BARBOUR             \n# … with 2,920 more rows\n# ℹ Use `print(n = ...)` to see more rows\n```\n:::\n\n```{.r .cell-code}\nselect(railroad_2012_clean_county, \"state\", starts_with(\"M\"))\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 2,930 × 1\n   state\n   <chr>\n 1 AE   \n 2 AK   \n 3 AK   \n 4 AK   \n 5 AK   \n 6 AK   \n 7 AK   \n 8 AL   \n 9 AL   \n10 AL   \n# … with 2,920 more rows\n# ℹ Use `print(n = ...)` to see more rows\n```\n:::\n:::\n\n\n## Describe the data\n\nFound within this dataset are three columns: \"state,\" \"county,\" and \"total_employees\".  There are 2390 rows containing information for these three columns.  \n\n::: {.cell}\n\n:::\n\n\nData was collected in the year 2012 determining the amount of railroad employees across the country.  According to the data, there are 2930 counties within the country that contain railroad employees.  Some states have multiple counties with railroad employees.\n ",
+    "supporting": [
+      "Challenge1_KimDarkenwald_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

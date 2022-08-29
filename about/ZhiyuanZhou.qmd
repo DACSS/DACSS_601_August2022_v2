@@ -1,0 +1,44 @@
+---
+title: "Zhiyuan Zhou"
+image: images/ZhiyuanZhou.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/ZhiyuanZhou.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/zhou2447
+---
+
+##Instructions
+
+  - save a copy of this document as *FirstLast.qmd* in the **about** folder
+  - replace *Your Name* in yaml header with your first and last name
+  - save an image (jpeg, png) to use in the **about/images** folder
+  - replace image names in yaml header
+  - replace github user name
+  - fill in information below, as appropriate
+  - commit to github and submit pull request
+
+## Education/Work Background
+The Ohio State University, Columbus   2017 - 2021
+Bachelor of Science
+Major in Computer Science & Engineering
+Minor in Mathematics
+
+## R experience
+Introductory
+
+## Research interests
+Big data, AI, Cellular Automaton
+
+## Hometown
+Chengdu, Sichuan, China
+
+## Hobbies
+Walk my Dog, Video Games
+
+## Fun fact
+Average Daily Steps > 10k

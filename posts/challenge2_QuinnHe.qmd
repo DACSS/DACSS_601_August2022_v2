@@ -1,0 +1,112 @@
+---
+title: "Challenge 2"
+author: "Quinn He"
+description: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+```{r}
+
+h_bookings <- read.csv("_data/hotel_bookings.csv")
+
+h_bookings
+```
+
+## Describe the data
+
+The data includes information on two separate hotels "Resort Hotel" and "City Hotel". Just from summarizing it we can see many variables with tons of information. From this I can see the data set spans from 2015 to 2017. I'm sure there would be another easier way to visualize this, but for now I'm only looking through the "summary" function.
+
+This just lets me glance at some interesting numbers without getting too in depth. For example, someone waited 391 days on the wait list for one of the hotels which is bizarre. You can tell there was a guest that had previously cancelled rooms 26 times! Now what the data doe
+
+```{r}
+#| label: summary
+
+summary(h_bookings)
+
+```
+
+With booking data, I think it is important to really know what types of customers are booking rooms because some of the data is hard to understand if you don't know who's booking it. For example, if I see a booking with 50+ adults, it's nice to know what kind of customer is do that. This function lets me see all the types of customers there are within the data set.
+
+If I do it with the "agent" column I'll be able to see how many agents are working for a booking agency or the hotel.
+
+```{r}
+
+h_bookings %>%
+  select("customer_type") %>%
+  distinct()
+
+```
+
+## Provide Grouped Summary Statistics
+
+Conduct some exploratory data analysis, using dplyr commands such as `group_by()`, `select()`, `filter()`, and `summarise()`. Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.
+
+Here I just want to look at the amount of adults in a booking because then I see some bookings have multiple children or even babies in a single booking, but no adults. This could be because the adults are in another room, think a family booking two rooms, but aside from that I'm unsure if this is common or not in the hotel industry.
+
+```{r}
+
+no_adults <- filter(h_bookings, adults < 1)
+
+alot_adults <- filter(h_bookings, adults > 20)
+
+no_adults
+
+alot_adults
+
+```
+
+In this function, I'm trying to figure out if the hotels are international based off the countries the bookings come from. Here I will admit I'm a bit stuck as to where to go with the interpretation. It appears that both of them have a robust array of international guests.
+
+```{r}
+
+internationalhotel <- h_bookings %>%
+ select("country") %>%
+ distinct()
+
+internationalhotel
+```
+
+With this function, I want to see at which hotel do the guests usually stay in on week nights. I would almost expect people to stay in less in a city hotel when compared to a resort hotel, but it may also depend on what time of year a guest is at the hotel.
+
+```{r}
+
+h_bookings %>% 
+  group_by(hotel) %>%
+  summarise(mean = mean(stays_in_weekend_nights), sd = sd(stays_in_weekend_nights), 
+  mode = mode(stays_in_weekend_nights))
+
+avg_lead_time <- h_bookings %>% 
+  group_by(hotel) %>%
+  summarise(mean = mean(lead_time), sd = sd(lead_time), median = median(lead_time))
+
+avg_lead_time
+```
+
+Above the variable "avg_lead_time" is created to see what the average time between when someone makes a reservation to the time they actually arrive. Guests typically book 17 days more in advance at City Hotel than at Resort Hotel. By looking at the summary from the beginning, it shows there was a max lead time of 737, so someone booked a little over 2 years in advance.
+
+### Explain and Interpret
+
+The variables "no_adults" and "alot_adults" was interesting to see. I assume "alot_adults" is for conventions of some sort, but all these reservations occurred in September 2015, except for 2 in October of the same year. They were also all cancelled.
+
+What I find even odder is "no_adults". These are bookings with only children or even babies with no adults present. Now this could have a simple explanation, like parents are in the next room over, but I don't think that is always the case with 403 instances within the variable.
+
+I think the most interesting data to look at is the lead time between hotels and maybe even between guests. I just find it interesting how far in advance people may plan a trip, but then what is the story with the walk-ins with 0 days lead time? I look forward to exploring this data set more in other challenges.

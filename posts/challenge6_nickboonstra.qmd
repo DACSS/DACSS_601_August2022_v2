@@ -1,0 +1,154 @@
+---
+title: "Challenge 6"
+author: "Nick Boonstrsa"
+description: "Visualizing Time and Relationships"
+date: "08/24/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - fed_rate
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(summarytools)
+library(lubridate)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least one graph including time (evolution)
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+5)  Create at least one graph depicting part-whole or flow relationships
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+```{r read in}
+
+fed_orig<-read_csv("_data/FedFundsRate.csv",
+                   skip=1,
+                   col_names=c("year","month","day","fedfunds_target","fedfunds_upper","fedfunds_lower","fedfunds_eff","realgdp_change","unemploy_rate","inflation_rate"))
+
+fed_orig
+
+
+```
+
+### Briefly describe the data
+
+```{r summary}
+
+print(dfSummary(fed_orig, varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+
+
+```
+
+
+## Tidy Data (as needed)
+
+There was just a little bit of tidying needed, to clean up the date.
+
+```{r tidying}
+
+fed<-fed_orig %>% 
+  mutate(date=make_date(year,month,day)) %>% 
+  select(-c(year,month,day))
+
+fed
+
+```
+
+## Time Dependent Visualization
+
+I was curious to analyze some of these macroeconomic indicators around the 2008 economic crisis, so I created another new data set that narrows the date range down to the five years before and after 2008.
+
+```{r crisis}
+
+fed_crisis<-fed %>% 
+  filter(date>=ymd("2003-01-01")) %>% 
+  filter(date<ymd("2013-01-01")) 
+
+fed_crisis
+
+```
+
+
+I wanted to plot Inflation, Unemployment, and Effective Federal Funds Rate on top of each other for this time period (2003-2013). I was able to plot these, but I was not able to successfully create a legend that clearly identifies which one is which.
+
+```{r time plot}
+
+fed_crisis %>% 
+  ggplot(aes(x=date)) + 
+  geom_line(aes(y=unemploy_rate,color="maroon")) +
+  geom_line(aes(y=inflation_rate,color="blue")) +
+  geom_line(aes(y=fedfunds_eff,color="dark green")) +
+  expand_limits(y=0) +
+  theme_bw() +
+  labs(title="Unemployment, Inflation, and the Federal Funds Rate Around 2008",
+       x="Date",
+       y="Rate (%)")
+
+
+
+```
+
+
+
+
+## Visualizing Part-Whole Relationships
+
+After the 2008 crisis, the Fed adjusted the way they dealt with the Federal Funds Rate, setting upper and lower targets for the effective rate. I wanted to plot these upper, lower, and effective rates from 2009 onwards. Once again, I was not sure how to create a legend for this graph; however, the upper-lower-effective nature of the data does make it somewhat intuitive to interpret, at least for someone familiar with the ideas of the data.
+
+
+```{r fedfunds}
+
+fed_post <- fed %>% 
+  filter(date>=ymd("2009-01-01")) 
+
+fed_post
+
+fed_post %>% 
+  ggplot(aes(x=date)) + 
+  geom_line(aes(y=fedfunds_upper)) +
+  geom_line(aes(y=fedfunds_lower)) +
+  geom_line(aes(y=fedfunds_eff)) +
+  expand_limits(y=0) +
+  theme_bw() +
+  labs(title="Upper, Lower, and Effective Federal Funds Rates from 2009",
+       x="Date",
+       y="Rate (%)")
+
+
+```
+
+
+

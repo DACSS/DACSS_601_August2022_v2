@@ -1,0 +1,176 @@
+---
+title: "Challenge 5"
+author: "Ananya Pujary"
+description: "Introduction to Visualization"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - air_bnb
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(skimr)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+Reading in the 'AB_NYC_2019.csv' dataset.
+```{r}
+#| label: reading in the data
+
+airbnb <- read_csv("_data/AB_NYC_2019.csv")
+
+```
+
+### Briefly describe the data
+
+```{r}
+#| label: data description 1
+
+skim(airbnb)
+
+table(distinct(airbnb,room_type))
+
+```
+The dimensions of this dataset are `r nrow(airbnb)` and `r ncol(airbnb)`. It has 5 character-type columns, 10 numeric type, and 1 date-type column.
+It describes the airbnbs available in the New York bouroughs: Bronx, Brooklyn, Manhattan, Queens, and Staten Island, along with information such as the hosts' names, price, days available, type of room, and so on. The three room types are entire home, private room, and shared room. Some columns have missing values (name = 16, host_name = 21, reviews_per_month = 10052, last_review = 10052).
+
+```{r}
+#| label: data description 2
+
+airbnb %>% 
+  select(neighbourhood_group)  %>% 
+  group_by(neighbourhood_group) %>% 
+  tally()
+
+airbnb %>% 
+  select(neighbourhood_group,neighbourhood)  %>% 
+  group_by(neighbourhood_group) %>% 
+  count(neighbourhood) %>%
+  slice(which.max(n))
+
+```
+
+Manhattan has the highest number of airbnbs (21661) while Staten Island has the lowest (373). The neighbourhoods with the most airbnbs in the boroughs are: Kingsbridge in Bronx (70), Williamsburg in Brooklyn (3920), Harlem in Manhattan (2658), Astoria in Queens (900), and St. George in Staten Island (48).
+
+```{r}
+#| label: data description 3
+
+airbnb %>% 
+  select(neighbourhood_group,neighbourhood, price)  %>% 
+  group_by(neighbourhood_group) %>% 
+  summarize(mean_price = mean(price))
+```
+This dataset suggests that the mean price of Manhattan airbnbs are the highest (196.875) and that of Bronx airbnbs are the lowest (87.497).
+
+## Univariate Visualizations
+
+First, I want to visualize the number of airbnbs in each borough using a bar graph, since we're interested in the frequency of certain categories in the data.
+
+```{r}
+#| label: univariate visualization 1
+
+airbnb_grouped <- airbnb %>% 
+  select(neighbourhood_group)  %>% 
+  group_by(neighbourhood_group) %>% 
+  tally()
+
+airbnb_grouped <- airbnb_grouped %>% mutate(percentage = scales::percent(n/sum(n), accuracy = .1, trim = FALSE))
+
+ggplot(airbnb_grouped, aes(x = n, y = neighbourhood_group)) + geom_col(fill = "gray70") + geom_text(aes(label = percentage)) + labs(title = "Airbnb Distribution Across NYC Boroughs", x = "Borough", y = "Frequency") + theme_minimal()
+
+```
+
+I also want to look at the distribution of prices in the dataset using a histogram because 'price' is a continuous variable.
+
+```{r}
+#| label: univariate visualization 2
+
+ggplot(airbnb, aes(price)) + geom_histogram(binwidth=15) + labs(title = "NYC Airbnb Prices Distribution",x = "Price",y = "Frequency") + theme_minimal()
+
+```
+From this histogram, it's clear that the prices are heavily skewed to the right, suggesting that there are a lot of airbnbs valued below around $500 per night.
+
+I'm also interested in the frequency of the room types in the five boroughs.
+
+```{r}
+#| label: univariate visualization 3
+
+airbnb_rooms <- airbnb %>% 
+  select(room_type)  %>% 
+  group_by(room_type) %>% 
+  tally()
+
+airbnb_rooms <- airbnb_rooms %>% dplyr::mutate(percents = scales::percent(n/sum(n), accuracy = .1, trim = FALSE))
+
+ggplot(airbnb_rooms,aes(x = n, y = room_type)) + geom_col(fill = "gray70") + geom_text(aes(label = percents)) + labs(title = "Airbnb Room Types Distribution", x = "Room Type", y = "Frequency") + theme_minimal()
+
+```
+
+The most common airbnb type is the entire apartment/home (52%), followed by private room (45.7%) and shared room (2.4%).
+
+## Bivariate Visualization(s)
+
+I'll be looking at the distribution of airbnbs across the boroughs and the proportion of each room type in each. Here, the 'fill' parameter of the ggplot() function would allow me to incorporate the 'room_type' variable into the bar graph.
+
+```{r}
+#| label: bivariate visualization 1
+
+ggplot(airbnb, aes(y = neighbourhood_group)) + geom_bar(aes(fill = room_type), position = position_stack(reverse = TRUE)) + theme(legend.position = "right") + labs(title = "Room Types by Borough", x = "Frequency", y = "Borough") + theme_minimal() + scale_fill_grey()
+
+```
+
+I wonder whether the minimum nights an airbnb is available varies with boroughs:
+
+```{r}
+#| label: bivariate visualization 2(1)
+ggplot(data=airbnb) +
+  geom_point(mapping=aes(x=neighbourhood_group, y=minimum_nights)) + labs(title = "Airbnb Minimum Nights by Borough", x = "Borough", y = "Number of Nights") + theme_minimal()
+
+```
+I used a point plot to show the variation of the numeric 'minimum_nights' variable by borough. (One airbnb in Manhattan offers more than 1200 days of stay!)
+The points are pretty clustered together here, so I'll try a log transformation on the y-axis to make the distinction between points more clear.
+
+```{r}
+#| label: bivariate visualization 2(2)
+
+ggplot(data=airbnb) +
+  geom_point(mapping=aes(x=neighbourhood_group, y=log(minimum_nights))) + labs(title = "Airbnb Minimum Nights by Borough", x = "Borough", y = "Number of Nights") + theme_minimal()
+
+```
+
+The graph suggests that Brooklyn and Manhattan offered longer stays on average. Interestingly, all boroughs had airbnbs that were available for 0 nights.
+
+For the last visualization, I'm interested in how airbnb prices vary by room types. I'll be using a violin plot since I want to look at the distribution of numeric values across certain categories.
+
+```{r}
+#| label: bivariate visualization 3(1)
+
+ggplot(airbnb, aes(room_type, price)) + geom_violin() + labs(title = "Prices by Room Type",x = "Room Type",y = "Price") + theme_minimal()
+
+```
+
+Again, most of the values are not clearly visible in this graph, so I'll perform a log transformation of the y-axis.
+
+```{r}
+#| label: bivariate visualization 3(2)
+
+ggplot(airbnb, aes(room_type, log(price))) + geom_violin() + labs(title = "Prices by Room Type",x = "Room Type",y = "Price") + theme_minimal()
+
+```
+
+This graph is clearer. As expected, the prices of entire homes are the highest, followed by private rooms, then shared rooms.

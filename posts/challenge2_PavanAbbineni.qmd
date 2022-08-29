@@ -1,0 +1,109 @@
+---
+title: "Challenge 2"
+author: "Pavan Datta Abbineni "
+desription: "Data wrangling: using group() and summarise()"
+date: "08/16/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in the Data
+
+I've decided to use the hotel bookings dataset for this challenge.
+
+```{r reading-data}
+hotelBookingsCompleteData <- read_csv("_data/hotel_bookings.csv")
+
+```
+
+
+## Describe the data
+
+Let's get a  brief understanding of our dataset.
+
+```{r head-visualize}
+head(hotelBookingsCompleteData)
+```
+
+```{r tail-visualize}
+tail(hotelBookingsCompleteData)
+```
+
+```{r dimensions}
+dim(hotelBookingsCompleteData)
+```
+The dataset contains a total of 119390 observations with a total of 32 columns, lets see the column names next.
+```{r colnames}
+colnames(hotelBookingsCompleteData)
+```
+To get the dispersion values of the data set let's call the summary function.
+```{r summary}
+summary(hotelBookingsCompleteData)
+```
+
+## Provide Grouped Summary Statistics
+
+To find which hotels are accomodating more guests lets find the mean for both the stays_in_week_nights and stays_in_weekend_nights.
+
+```{r mean-of-week}
+hotelBookingsCompleteData %>%
+  group_by(hotel) %>%
+  summarise(mean = mean(stays_in_week_nights))
+
+```
+
+```{r mean-of-weekend}
+hotelBookingsCompleteData %>%
+  group_by(hotel) %>%
+  summarise(mean = mean(stays_in_weekend_nights))
+
+```
+We can see that the resort hotel is generally more popular with guests both during the week and on the weekends, in general both hotels are more popular during the week than the weekends. 
+
+```{r cancelled-reservations}
+hotelBookingsCompleteData %>%       
+  group_by(hotel) %>%
+  summarise(totalCancellations = sum(is_canceled))
+```
+We can see that the City Hotel had more cancellations when compared to a resort hotel.  
+
+
+Let's find out which countries are more popular 
+```{r popular-country}
+countryTableData<-hotelBookingsCompleteData %>% group_by(country) %>% summarise(hotel = n())
+
+countryTableData %>% group_by(country) %>% arrange(desc(hotel))
+
+```
+From the above results we can find the countries with highest hotel bookings and the ones with the least hotel bookings.  
+
+But some of reservations are cancelled so let's find the actual number of stays.
+
+```{r cancelled-reservations-country}
+hotelBookingsCompleteData %>%       
+  group_by(country) %>%
+  summarise(totalCancellations = sum(is_canceled))%>%
+  arrange(desc(totalCancellations))
+```
+
+### Explain and Interpret
+
+Firstly I wanted to find which of the hotels is more popular ( City Hotel or the Resort Hotel ), from the data obtained it is very clear that the Resort Hotel on an average has more reservations both during the weekends and week-days, it also has less cancellations when compared to City Hotel.  
+
+I decided to find which country has a more successfull hotel business, it is clear that PRT has the highest number of hotel bookings.

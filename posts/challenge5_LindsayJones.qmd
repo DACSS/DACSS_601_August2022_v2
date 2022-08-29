@@ -1,0 +1,75 @@
+---
+title: "Challenge 5"
+author: "Lindsay Jones"
+description: "Introduction to Visualization"
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - australian_marriage
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+```{r}
+library(readr)
+aus_marriage <- read_csv("_data/australian_marriage_tidy.csv")
+print(aus_marriage)
+```
+
+### Briefly describe the data
+Data set contains the results of the Australian Marriage Law Postal Survey (2017), designed to gauge support for legalizing same-sex marriage in Australia.
+
+## Tidy Data (as needed)
+
+
+```{r}
+#simplify territory values
+aus_marriage <- mutate(aus_marriage, territory = recode(territory, "New South Wales" = "NSW",
+                                                                    "Victoria" = "Vic",
+                                                                    "Queensland" = "Qld",
+                                                                    "South Australia" = "SA",
+                                                                    "Western Australia" = "WA",
+                                                                    "Tasmania" = "Tas",
+                                                                    "Northern Territory(b)" = "NT",
+                                                                    "Australian Capital Territory(c)" = "ACT"))
+aus_marriage
+
+
+```
+
+## Univariate Visualizations
+
+The simplest univariate vizualization for this data set seems to be a bar graph. I decided to display the number of "yes" votes for each territory.
+
+```{r}
+#top 10 territories voting "yes"
+yes_vote <- aus_marriage %>% filter(resp == "yes")
+ggplot(yes_vote, aes(x = reorder(territory, -count), y = count))+
+  geom_bar(stat = "identity")
+
+```
+## Bivariate Visualization(s)
+
+For the bivariate visualization, I chose a stacked bar chart to show the proportion of yes to no votes in each territory.
+```{r}
+#Stacked Bar Chart
+ggplot(aus_marriage, aes(fill=resp, y=percent, x=territory)) +
+  geom_bar(position = "fill", stat = "identity")
+
+```
+

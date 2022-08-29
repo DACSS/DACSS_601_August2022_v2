@@ -1,0 +1,82 @@
+---
+title: "Challenge 3"
+author: "Young Soo Choi"
+desription: "Tidy Data: Pivoting"
+date: "08/17/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1.  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2.  identify what needs to be done to tidy the current data
+3.  anticipate the shape of pivoted data
+4.  pivot the data into tidy format using `pivot_longer`
+
+## Read in data
+
+Read the data regarding eggs
+
+```{r}
+eggs <- read_csv("_data/eggs_tidy.csv")
+eggs
+```
+
+### Briefly describe the data
+
+This dataset shows that the price of eggs categorizied by their size from 2004 I think. Because this data has 6 columns, it cannot be easily recognized at once. So I will pivot it. The 4 columns about the types will be pivoted to "types" column.
+
+## Anticipate the End Result
+
+In this 'eggs' dataset 2 of the variables are used to identify a case. So expected rows are 480 and columns are 4.
+
+```{r}
+#existing rows/cases
+nrow(eggs)
+
+#existing columns/cases
+ncol(eggs)
+
+#expected rows/cases
+nrow(eggs) * (ncol(eggs)-2)
+
+# expected columns 
+2 + 2
+```
+
+
+## Pivot the Data
+
+```{r}
+#pivot data
+
+pivot_eggs<-pivot_longer(eggs,col=c(large_half_dozen, large_dozen, extra_large_half_dozen, extra_large_dozen), names_to="types", values_to="price")
+pivot_eggs
+
+#change the order of columns
+pivot_eggs<-pivot_eggs[c(2,1,3,4)]
+pivot_eggs
+```
+
+Any additional comments?
+
+It has changed to 480 rows and 4 columns dataset.

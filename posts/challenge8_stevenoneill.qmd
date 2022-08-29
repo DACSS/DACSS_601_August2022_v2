@@ -1,0 +1,152 @@
+---
+title: "Challenge 8"
+author: "Steve O'Neill"
+description: "Joining Data"
+date: "08/25/2022"
+df-print: paged
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - snl
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+I am choosing the "SNL" dataset.
+
+  - snl ⭐⭐⭐⭐⭐
+
+```{r}
+actors <- read.csv("_data/snl_actors.csv")
+casts <- read.csv("_data/snl_casts.csv")
+seasons <- read.csv("_data/snl_seasons.csv")
+```
+
+### Seasons
+
+This table shows `sid` (season ID), year, first and last episode IDs, and number of episodes.
+
+Let's bookmark the existence of `epid` as a uniquie identifiers for episodes. It looks like they are secretly dates!
+
+E.g., 19751011 was 10/11/1975. 
+
+I will keep them as `epid` values for now, at least until the join.
+
+
+```{r}
+seasons
+```
+### Casts 
+
+This includes the cast members, with one row per season they  appeared. The `epid`s have returned. 
+
+Between `first_epid` and `last_epid`, we unfortunately can't see every episode the castmember was in. But we do see `n_episodes` - the number of episodes they were in.
+
+`last_epid` is not listed if the castmember is active. The `update anchor` row tells us if they played a news anchor on "Weekend Update", the famous satirical news show. 
+
+```{r}
+casts
+```
+```{r}
+print(summarytools::dfSummary(casts,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+Interestingly, there are more `last_epid`s than `first_epid`s. Harry Shearer is an example of this phenomenon:
+
+```{r}
+casts %>% filter(str_detect(aid, "Harry Shearer"))
+```
+
+### Actors
+
+*Actors** includes  stage names, band names, a URL column, and unreliable gender information.
+
+```{r}
+actors
+```
+
+
+The **Casts** dataset seems to be a subset of **Actors**. It also includes crewmembers. 
+
+First, here is a summary table:
+
+```{r}
+print(summarytools::dfSummary(actors,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+In the data, the confusing "andy" gender stands out:
+
+```{r}
+actors %>% distinct(gender)
+```
+```{r}
+actors <- actors %>% filter(str_detect(gender, "andy"))
+actors
+```
+
+It seems like all these people are guests. I can't just rule out all gender data as guests as inaccurate. 83% of the rows are guests.
+
+There are only 21 "andy"-gendered people so I am just going to write NAs to those observations.
+
+I am not replacing "andy" with "unknown". I feel there is a difference between "unknown to the publisher of the dataset" and "unknown to *me*, the person reviewing it".
+
+```{r}
+actors <- actors %>% mutate(gender = na_if(gender, "andy"))
+actors
+```
+
+## Joining Data
+
+This joins casts (614 values) and seasons (46 values) based on season ID:
+
+```{r}
+merged_casts_seasons <- left_join(casts, seasons,
+          by = "sid",
+          suffix = c("_castmember", "_full_season"),)
+merged_casts_seasons
+```
+As expected, it returns all 614 rows from casts, with extra season information at the end.
+
+After that, this merges the result with actors, adding their gender and type (e.g. "cast")
+
+```{r}
+all_joined <- left_join(merged_casts_seasons,actors,
+          by = "aid")
+all_joined
+```
+
+No castmembers are listed as actors, so `anti_join`ing them confirms that:
+
+```{r}
+anti_joined <- anti_join(merged_casts_seasons,actors,
+          by = "aid")
+anti_joined
+```
+
+As far as I know, this is the most "joined" the data can be.

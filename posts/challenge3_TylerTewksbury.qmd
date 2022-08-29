@@ -1,0 +1,65 @@
+---
+title: "Challenge 3"
+author: "Tyler Tewksbury"
+desription: "Tidy Data: Pivoting"
+date: "08/25/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_3
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+## Read in data
+
+```{r}
+eggs <-read_csv("_data/eggs_tidy.csv",
+                        show_col_types = FALSE)
+```
+
+### Briefly describe the data
+
+The dataset is pre-tidy, with 120 rows and 6 columns. The data shows the price of eggs based on their size across different months and years.
+
+### Challenge: Describe the final dimensions
+
+```{r}
+
+nrow(eggs)
+ncol(eggs)
+nrow(eggs) * (ncol(eggs)-2)
+
+```
+
+The dataset has 120 rows and 6 columns. Because there are two grouping variables, in the nrow - ncol calculation we subtract 2 from col. This gives 480, the amount of expected rows when pivoting the dataset longer.
+
+### Challenge: Pivot the Chosen Data
+
+
+```{r}
+
+long_eggs <- eggs%>%
+  pivot_longer(cols=contains ("large"),
+               names_to = c("size", "quantity"),
+               names_sep="_",
+               values_to = "price")
+
+```
+
+
+In the long dataset, are now new cases that show the price per size and quantity. There are 4 identifiers/category variables (two more than the previous dataset) and 1 value per row, which makes the dataset far easier to work with and simply look at. Visualizations and other analysis can be done now without unnecessary steps in each simple analysis, because the data now has that 1 value per row. 

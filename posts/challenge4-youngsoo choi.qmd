@@ -1,0 +1,64 @@
+---
+title: "Challenge 4"
+author: "Young Soo Choi"
+desription: "More data wrangling: pivoting"
+date: "08/18/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+Read Fed Funds Rate
+
+```{r}
+ffr<-read_csv("_data/FedFundsRate.csv",
+              show_col_types = FALSE)
+ffr
+
+```
+
+### Briefly describe the data
+
+This data set is regarding various national economic variables from July of 1954 to March of 2017. It has 904 rows and 10 columns. But it also has many missing values and the recorded date is not even constant.
+
+## Tidy Data (as needed)
+
+Year, Month, Day are seperated. So I mutated Date column newly.(thanks to Nayan)
+```{r}
+
+library(lubridate)
+
+ffr2 <- ffr %>% 
+  mutate(Date = make_datetime(Year, Month, Day))
+
+ffr2
+
+```
+
+Then, I selected date, unemployment rate, and inflation rate to checked Phillip Curve's validity. To check it I created scatter plot of unemployment and inflation.(thanks again Nayan)
+
+```{r}
+pc<-select(ffr2, "Date", "Inflation Rate", "Unemployment Rate")
+pc
+
+ggplot(pc ,mapping=aes(x=ffr$`Unemployment Rate`, y=ffr$`Inflation Rate`)) + geom_point()
+```
+
+It maybe too long period so I cannot see Phillip Curve clearly. 
