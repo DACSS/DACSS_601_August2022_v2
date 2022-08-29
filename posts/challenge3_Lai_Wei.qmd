@@ -45,7 +45,6 @@ Read in one (or more) of the following datasets, using the correct R package and
 ```{r}
 animal_weight<-read_csv("_data/animal_weight.csv",
                         show_col_types = FALSE)
-
 ```
 
 ### Briefly describe the data
