@@ -1,0 +1,214 @@
+---
+title: "Final Project [WIP]"
+author: "Saaradhaa M"
+description: "Crime and Drug Usage"
+date: "08/28/2022"
+format:
+  html:
+    df-print: paged
+    toc: true
+    code-copy: true
+    code-tools: true
+    css: "styles.css"
+categories:
+  - final_project
+  - tidyverse
+  - ggplot2
+  - summarytools
+  - lubridate
+  - sf
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(summarytools)
+library(lubridate)
+library(sf)
+
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Introduction
+
+Brooklyn Nine-Nine, which is about a police precinct in New York City, is one of my favourite TV shows. It made me want to learn more about actual crime statistics in the city.
+
+Specifically, this project examines how crime intersects with other social issues. Past research has revealed an association between crime and drug usage (Pierce et al., 2017). This is crucial given the ongoing opioid crisis in the US, with a rise in fatalities due to drug overdoses in recent years (Young, 2022).
+
+::: callout-tip
+## Research Question
+
+Suppose you were walking through a borough in New York City, and you see syringe litter. Does this necessarily mean that the borough in question is unsafe -- or is this merely a bias that we have?
+
+*In simpler terms, where are syringes likely to be found? Is there an overlap with where crimes (especially drug-related crimes) occur?*
+:::
+
+Crime is operationalized as [arrest](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc) [data](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u) (New York Police Department, 2022a; New York Police Department, 2022b), and drug usage as [syringe litter data](https://data.cityofnewyork.us/Public-Safety/Summary-of-Syringe-Data-in-NYC-Parks/t8xi-d5wb) (NYC Parks, 2022a). The data spans from 2017 to 2022. Codebooks are provided [here](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc) (New York Police Department, 2022a) and [here](https://docs.google.com/spreadsheets/d/1VSUqd1peSc-4D2XnBZNiLdxa0Jg4z62D/edit#gid=150342678) (NYC Parks, 2022b).
+
+If time permits, I will attempt an additional question: What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?
+
+## Read In Data
+
+```{r}
+#| label: read in
+# read in 3 main datasets.
+arrest_historic <- read_csv("~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrests_Data_Historic.csv", 
+                   show_col_types = FALSE, 
+                   col_names = c("del", "date", "del", "del", "del", "a_desc", "del", "a_offenselevel", "a_boro", "del", "a_juriscode", "a_age", "a_sex", "a_race", "del", "del", "a_lat", "a_long", "del"), skip=1) %>% 
+  select(!starts_with("del"))
+
+arrest_ytd <- read_csv("~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrest_Data_Year_to_Date.csv", 
+                   show_col_types = FALSE, 
+                   col_names = c("del", "date", "del", "del", "del", "a_desc", "del", "a_offenselevel", "a_boro", "del", "a_juriscode", "a_age", "a_sex", "a_race", "del", "del", "a_lat", "a_long", "del"), skip=1) %>% 
+  select(!starts_with("del"))
+
+syringe <- read_csv("~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Summary_of_Syringe_Data_in_NYC_Parks.csv", show_col_types = FALSE, col_names = c("del", "gispropnum", "del", "date", "del", "del", "del", "del", "del", "del", "s_location", "s_groundsyringes", "s_kiosksyringes", "s_totalsyringes", "del", "s_kiosktype", "del", "s_boro", "del", "s_propertytype", "s_kioskavailable", "del", "del"), skip=1) %>%
+  select(!starts_with("del"))
+
+# make any implicit missing values explicit.
+arrest_historic <- complete(arrest_historic)
+arrest_ytd <- complete(arrest_ytd)
+syringe <- complete(syringe)
+
+# summarise the 3 datasets.
+dim(arrest_historic)
+dim(arrest_ytd)
+print(dfSummary(syringe, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.30, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+
+#read in shapefile for syringe dataset.
+park <- st_read("~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Parks_Properties", quiet = TRUE) %>% select("gispropnum", "geometry")
+```
+
+In the code chunk above, all datasets have been loaded, unnecessary columns removed, columns renamed where needed and all missing values labelled "NA".
+
+**arrest_historic** contains 5,308,876 rows, while **arrest_ytd** contains 93,238 rows. Each row represents a single arrest and associated information (e.g., description of crime, arrest location, demographic profile of suspect). Both have the same 10 columns and only differ in time frame: **arrest_historic** contains data from Jan 2006 to Dec 2021, while **arrest_ytd** contains data from Jan to Jun 2022. I will interpret their descriptive statistics after combining them.
+
+Meanwhile, **syringe** contains 19,778 rows and 10 columns. Each row represents a date when syringes were collected and information on where they were found. It ranges from Jan 2017 to Jul 2022. I have also loaded the [**park**](https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve) shapefile (Department of Parks and Recreation, 2022), which will be used derive location coordinates for **syringe**.
+
+*I haven't written the descriptive statistics for the syringe dataset yet because i realise that i need to sum up the values for each date - there are some dates/locations that are the same but have been split up. would this best be done in the read-in step?*
+
+## Tidy Data
+
+[Steps to tidy **arrest_historic** and **arrest_ytd**:]{.underline}
+
+1.  Convert *date* to "date" column type.
+
+2.  Create a separate column, *year*.
+
+3.  Remove rows before 2017 in **arrest_historic**.
+
+4.  Join both datasets into **arrest** dataset (93,238 + 1,043,535 = 1,136,773 rows; 10 + 1 = 11 columns).
+
+```{r}
+#| label: tidy arrests 1
+# change 'date' to date column type.
+arrest_historic <- arrest_historic %>% mutate(date = as_date(parse_date_time(date, c('mdy'))))
+
+arrest_ytd <- arrest_ytd %>% mutate(date = as_date(parse_date_time(date, c('mdy'))))
+```
+
+```{r}
+#| label: tidy arrests 2
+# create 'year'.
+arrest_historic$"year" <- year(arrest_historic$date)
+
+arrest_ytd$"year" <- year(arrest_ytd$date)
+
+# remove rows before 2017 in arrest_historic.
+arrest_historic <- arrest_historic %>% filter(year > 2016)
+
+# join datasets.
+arrest <- rbind(arrest_historic, arrest_ytd)
+
+# spell out borough names in full.
+arrest$a_boro <- recode(arrest$a_boro, B = 'Bronx', S = 'Staten Island', K = 'Brooklyn', M = 'Manhattan', Q = 'Queens')
+
+# sanity check.
+print(dfSummary(arrest, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.30, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+
+```
+
+The sanity check demonstrates that steps 1 to 4 are complete.
+
+[Steps to tidy **syringe**:]{.underline}
+
+1.  Convert *date* to "date" type.
+
+2.  Extract latitude and longitude columns from **park** shapefile and convert them into a dataframe.
+
+3.  Combine that dataframe with **syringe**.
+
+```{r}
+#| label: tidy syringe
+# remove timestamp from 'date'.
+syringe$date <- str_remove(syringe$date, "12:00:00 AM")
+
+# convert 'date' to date column type.
+syringe <- syringe %>% mutate(date = as_date(parse_date_time(date, c('mdy'))))
+
+# extract latitude and longitude from park shapefile into park_ll.
+sf_use_s2(FALSE)
+park_ll <- st_coordinates(st_centroid(park$geometry))
+
+# convert park and park_ll to dataframes.
+park_ll <- as_tibble(park_ll)
+park <- as_tibble(park)
+
+# remove multipolygon column from park.
+park <- select(park, -2)
+
+# combine park and park_ll.
+park <- cbind(park, park_ll)
+
+# rename long and lat columns in park.
+park <- rename(park, "s_long" = "X", "s_lat" = "Y")
+
+# combine park and syringe.
+syringe <- syringe %>%
+  left_join(park, by = "gispropnum")
+
+# sanity check.
+head(syringe)
+```
+
+The sanity check shows that steps 1 to 3 are complete. I will now combine **syringe** with **arrest** by doing a full_join using the *date* column.
+
+```{r}
+# perform join.
+mega <- full_join(syringe, arrest, by = "date")
+
+# sanity check.
+dim(mega)
+```
+
+As expected, there are 22 columns (11 + 12 - 1 = 22).
+
+## Analysis
+
+*TBD. Planning to make stacked bar graphs (proportion of syringes/arrests in different boroughs) and heatmap.*
+
+## Bibliography
+
+Department of Parks and Recreation. (2022). *Parks Properties*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve.
+
+New York Police Department. (2022). *NYPD Arrest Data (Year to Date)*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc.
+
+New York Police Department. (2022). *NYPD Arrests Data (Historic)*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u.
+
+NYC Parks. (2022). *NYC Parks Syringe Litter Data Dictionary and UserGuide*. Google Docs. Retrieved from https://docs.google.com/spreadsheets/d/1VSUqd1peSc-4D2XnBZNiLdxa0Jg4z62D/edit#gid=150342678.
+
+NYC Parks. (2022). *Summary of Syringe Data in NYC Parks*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/Summary-of-Syringe-Data-in-NYC-Parks/t8xi-d5wb.
+
+Pierce, M., Hayhurst, K., Bird, S., Hickman, M., Seddon, T., Dunn, G., & Millar, T. (2017). Insights into the link between drug use and criminality: Lifetime offending of criminally-active opiate users. *Drug And Alcohol Dependence*, *179*, 309-316.
+
+R Core Team. (2022). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing.
+
+Wickham, H., & Grolemund, G. (2017). *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data* (1st ed.). O'Reilly Media.
+
+Young, S. (2022). *New York experiment with government-approved drug use could become a national model*. POLITICO. Retrieved from https://www.politico.com/news/2022/05/14/new-york-experiment-drug-use-national-model-00031876.
