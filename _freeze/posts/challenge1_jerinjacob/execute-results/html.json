@@ -1,0 +1,14 @@
+{
+  "hash": "90775215b9c743693919a382da3ccacd",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 1\"\nauthor: \"Jerin Jacob\"\ndescription: \"Reading in data and creating a post\"\ndate: \"08/16/2022\"\nformat:\n  html:\n    toc: true\n    code-fold: true\n    code-copy: true\n    code-tools: true\ncategories:\n  - challenge_1\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(readxl)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\n```\n:::\n\n\n## Reading Railroad Employees Dataset\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nrailroad <- read_csv(\"_data/railroad_2012_clean_county.csv\")\n```\n:::\n\n\nThis is a data set of the rail road employees working in 2930 counties of the states in US in the year of 2012. \nThere are 3 variables in the dataset; state, county and total number of employees.\n\n\n## Describing Railroad Data\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nview(railroad)\nrailroad%>%\n  select(state)%>%\n  n_distinct(.)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 53\n```\n:::\n\n```{.r .cell-code}\nrailroad%>%\n  select(state)%>%\n  distinct()\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 53 × 1\n   state\n   <chr>\n 1 AE   \n 2 AK   \n 3 AL   \n 4 AP   \n 5 AR   \n 6 AZ   \n 7 CA   \n 8 CO   \n 9 CT   \n10 DC   \n# … with 43 more rows\n# ℹ Use `print(n = ...)` to see more rows\n```\n:::\n:::\n\n\nThere are 53 distinct values in the variable column named state. This means that there are certain additional values other than the name of the states. The variable 'state' contains all the states along with armed forces, DC etc. To find what values are included other than the name of the states, the distinct values of the variable 'state' is taken.\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
