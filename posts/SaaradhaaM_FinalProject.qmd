@@ -90,7 +90,7 @@ In the code chunk above, all datasets have been loaded, unnecessary columns remo
 
 Meanwhile, **syringe** contains 19,778 rows and 10 columns. Each row represents a date when syringes were collected and information on where they were found. It ranges from Jan 2017 to Jul 2022. I have also loaded the [**park**](https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve) shapefile (Department of Parks and Recreation, 2022), which will be used derive location coordinates for **syringe**.
 
-*i haven't written the descriptive statistics for the syringe dataset yet because i realise that i need to sum up the values for each date - there are some dates/locations that are the same but have been split up. would this best be done in the read-in step?*
+*I haven't written the descriptive statistics for the syringe dataset yet because i realise that i need to sum up the values for each date - there are some dates/locations that are the same but have been split up. would this best be done in the read-in step?*
 
 ## Tidy Data
 
