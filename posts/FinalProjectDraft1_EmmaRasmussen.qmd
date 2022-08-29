@@ -1,0 +1,121 @@
+---
+title: "FinalProject"
+author: "Emma Rasmussen"
+description: "FinalProjectDRAFT1"
+date: "08/26/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final project
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(googlesheets4)
+library(lubridate)
+library(stringr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+Reading In the Data
+```{r}
+#creating a vector of new column names
+mass_names<- c("incident_id", "incident_date", "state", "city_or_county", "address", "number_killed", "number_injured", "delete")
+
+#creating a function to read in the data sets with new column names, skip the first row, and remove the "operation" column which contains links to news articles in original data source, and creating a "Year" column for ease of analysis
+read_shootings<-function(sheet_name){read_sheet("https://docs.google.com/spreadsheets/d/1rCnIYPQSkcZDCulp5KXAxmZUBad4QtrERi4_7tUMXqs/edit#gid=10931567", 
+                                                sheet=sheet_name,
+                                                col_names=mass_names, 
+                                                skip=1) %>%
+    mutate("YearSheet"=sheet_name) %>% 
+    mutate(Year=recode(YearSheet, "MassShootings2014"="2014", "MassShootings2015"="2015", "MassShootings2016"="2016", "MassShootings2017"="2017", "MassShootings2018"="2018", "MassShootings2019"="2019", "MassShootings2020"="2020", "MassShootings2021"="2021", "MassShootings2022"="2022")) %>% 
+  select(-delete, -YearSheet)
+           }
+
+#using purrr/map_dfr to join data sheets for 2014 through 2021, applying the function read_shootings for consistent formatting
+mass_shootings_all <- map_dfr(
+  sheet_names("https://docs.google.com/spreadsheets/d/1rCnIYPQSkcZDCulp5KXAxmZUBad4QtrERi4_7tUMXqs/edit#gid=10931567")[1:9],
+  read_shootings)
+
+#sanity check
+mass_shootings_all
+
+```
+The number of rows in the df is equal to the sum of the rows from the original google sheets data (-9 for column names in google sheets)
+```{r}
+#Can now use "year" column to easily analyze data by year
+filter(mass_shootings_all, Year=="2014")
+
+#Counting number of shootings per year and generating a new table
+mass_shootings_all_hist<-mass_shootings_all %>%
+    group_by(Year) %>%
+    summarise(Count = n())
+
+#creating plot of shootings/year
+ggplot(mass_shootings_all_hist, aes(x=Year, y=Count))+
+  geom_bar(stat="identity")+
+  labs(title="Mass Shootings 2014-2022*", caption="*2022 data goes up to August 27, 2022")
+
+#converting S3: POSIXc to date format
+mass_shootings_all$incident_date_new<-as.Date(mass_shootings_all$incident_date)
+mass_shootings_all
+
+#creating a month column and converting to factors
+mass_shootings_all<-mass_shootings_all %>% 
+  mutate(month=as.factor(month(incident_date_new)))
+
+#creating a new table with month data
+mass_shootings_all_months<-mass_shootings_all %>%
+    group_by(month) %>%
+    summarise(Count = n())
+mass_shootings_all_months
+
+#creating plot by month
+ggplot(mass_shootings_all_months, aes(x=month, y=Count))+geom_bar(stat="identity")+labs(title="Mass Shootings 2014-2022 By Month")
+
+
+```
+In addition to mass shootings increasing over time, it appears that shootings could be correlated with temperature/season given the data set when filtered by month is highest in summer months an lowest in winter months. 
+
+I am curious if a less seasonally varying state would have the same distrubtion. Below I create the same plot for FL and MA
+```{r}
+#Doing above for 1 State
+#creating a new table with month data for FL
+mass_shootings_all_florida<-filter(mass_shootings_all, state=="Florida")
+mass_shootings_all_florida
+
+mass_shootings_all_months_FL<-mass_shootings_all_florida %>%
+    group_by(month, .drop=FALSE) %>%
+    summarise(Count = n())
+mass_shootings_all_months_FL
+
+ggplot(mass_shootings_all_months_FL, aes(x=month, y=Count))+geom_bar(stat="identity")+labs(title="Mass Shootings 2014-2022 By Month in Florida")
+
+#Doing same as FL for MA
+mass_shootings_all_mass<-filter(mass_shootings_all, state=="Massachusetts")
+mass_shootings_all_mass
+
+mass_shootings_all_months_MA<-mass_shootings_all_mass %>%
+    group_by(month, .drop=FALSE) %>%
+    summarise(Count = n())
+mass_shootings_all_months_MA
+
+ggplot(mass_shootings_all_months_MA, aes(x=month, y=Count))+geom_bar(stat="identity")+labs(title="Mass Shootings 2014-2022 By Month in Massachusetts")
+```
+Going forward, I think I will try to create these plots for different states to see if this trend holds true across different states. I am also curious if i can find a dataset with typical temp ranges/state and seeing if there is correlation between temp variation and mass shootings.Am also curious to figure out what kind of distribution best describes the graph with all states.
+
+Whats going on??? rant:
+There are a number of confounding factors that could explain the apparent correlation with season/temp- people more/less likely to leave the house based on weather, more public gatherings during seasons with higher temps... also wondering if covid affects this. I could create the same graph by state and year (but there probaly isnt enough events to see a correlation, but maybe for a state with a high population?) And wondering if the average number killed also increases with higher temperatures as there may be more opportunities/gatherings of people
+```{r}
+n_distinct(mass_shootings_all, "Year")
+```
+
