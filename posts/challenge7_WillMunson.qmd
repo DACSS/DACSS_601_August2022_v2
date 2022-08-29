@@ -85,5 +85,15 @@ I believe that everything is taken care of in terms of the data.
 
 ## Visualization with Multiple Dimensions
 
+```{r}
+eggs %>%
+  mutate(month = match(month, month.name)) %>%
+  mutate(MonthnYear = paste(year, month, "01", sep = "-")) %>%
+  mutate(MonthnYear = as.Date(MonthnYear)) %>%
+  ggplot(aes(x = MonthnYear, y = `Average Price`)) + 
+  geom_line(aes(colour = `Egg Package Type`))
+```
+
+So, while observing the prices of eggs, we notice that prices immediately hiked up right around the time the Great Recession started. The only eggs that decreased in price since then were large dozen eggs. 
 
 
