@@ -111,7 +111,7 @@ ilga_PR_Cont_PivP
 
 ilga_PR_Cont_PivPR <- pivot_longer(ilga_PR_Cont_PivP, R_SameSexMarriage:R_SecondParentAdoption, names_to = "Recognition", values_to = "Recognition_Value")
 
-#Sanity Check (this creates extra rows...so i am not sane...and idk)
+#Sanity Check (this creates extra rows...so i am not sane); but here I know what my issues are; I need think of a way to pivot the data wiht both variables at once, or find a way to clenup my data after; later on in my work I did do something where both variables are under one variable...but does that make sense?
 ilga_PR_Cont_PivPR
 ```
 
@@ -138,11 +138,12 @@ shoudl the p/r tage be separate?
 should 
 ```{r}
 
-#is this the right thing I AM SO CONFUSED AHHHHHHHHH; i have ot figure out which visulization works..or even if i undertsand pivoting 
+#is this the right thing?; i have out figure out which visualization works.
 TEST <- pivot_longer(ilga_PR_Cont, P_Const:R_SecondParentAdoption, names_to = "Type", values_to = "Yes/No/Limited")
 
 TEST
 
+#this makes it so that the P and R is both under Type; this is just a test and not a final...but I am not sure what I want 
 
 
 ```
