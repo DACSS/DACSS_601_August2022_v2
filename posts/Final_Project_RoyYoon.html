@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Roy Yoon">
+<meta name="dcterms.date" content="2022-08-27">
+<meta name="description" content="Final Project Work in Progress">
+
+<title>Final</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content=" - Final">
+<meta name="twitter:description" content="Final Project Work in Progress">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">
+ August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">
+ DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link active" data-scroll-target="#read-in-data">Read in data</a></li>
+  <li><a href="#data-set-specific-to-protections-and-recognition" id="toc-data-set-specific-to-protections-and-recognition" class="nav-link" data-scroll-target="#data-set-specific-to-protections-and-recognition">Data set Specific to Protections and Recognition</a></li>
+  <li><a href="#recoding-values" id="toc-recoding-values" class="nav-link" data-scroll-target="#recoding-values">Recoding Values</a></li>
+  <li><a href="#pivoting-dataframe" id="toc-pivoting-dataframe" class="nav-link" data-scroll-target="#pivoting-dataframe">Pivoting Dataframe</a></li>
+  <li><a href="#read-in-data-1" id="toc-read-in-data-1" class="nav-link" data-scroll-target="#read-in-data-1">Read in data</a></li>
+  <li><a href="#recoding-values-1" id="toc-recoding-values-1" class="nav-link" data-scroll-target="#recoding-values-1">Recoding Values</a></li>
+  <li><a href="#pivoting-dataframe-1" id="toc-pivoting-dataframe-1" class="nav-link" data-scroll-target="#pivoting-dataframe-1">Pivoting Dataframe</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Final</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">challenge_5</div>
+    <div class="quarto-category">cereal</div>
+    <div class="quarto-category">ggplotly()</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Final Project Work in Progress
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Roy Yoon </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 27, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="read-in-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-data">Read in data</h2>
+<p>The</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Original Data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ilga_base <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ILGA_State_Sponsored_Homophobia_2020_dataset.xlsx"</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ilga_base,<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 16
+      N    CN COUNTRY     CSSSA…¹ DATE …² MAX P…³ CONST. BROAD…⁴ EMPLOY. HATE …⁵
+  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+1     1     1 Algeria     NO      -       2       NO     NO      NO      NO     
+2     2     2 Angola      YES     2021    -       NO     YES     YES     YES    
+3     3     3 Benin       YES     NEVER … -       NO     NO      NO      NO     
+4     4     4 Botswana    YES     2019    -       NO     NO      YES     NO     
+5     5     5 Burkina Fa… YES     NEVER … -       NO     NO      NO      NO     
+6     6     6 Burundi     NO      -       2       NO     NO      NO      NO     
+# … with 6 more variables: INCITEMENT &lt;chr&gt;, `BAN CONV. THERAPIES` &lt;chr&gt;,
+#   `SAME SEX MARRIAGE` &lt;chr&gt;, `CIVIL UNIONS` &lt;chr&gt;, `JOINT ADOPTION` &lt;chr&gt;,
+#   `SECOND PARENT ADOPTION` &lt;chr&gt;, and abbreviated variable names
+#   ¹​`CSSSA LEGAL?`, ²​`DATE OF DECRIM`, ³​`MAX PENALTY`, ⁴​`BROAD PROT.`,
+#   ⁵​`HATE CRIME`
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ilga_base)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 241  16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ilga_base)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "N"                      "CN"                     "COUNTRY"               
+ [4] "CSSSA LEGAL?"           "DATE OF DECRIM"         "MAX PENALTY"           
+ [7] "CONST."                 "BROAD PROT."            "EMPLOY."               
+[10] "HATE CRIME"             "INCITEMENT"             "BAN CONV. THERAPIES"   
+[13] "SAME SEX MARRIAGE"      "CIVIL UNIONS"           "JOINT ADOPTION"        
+[16] "SECOND PARENT ADOPTION"</code></pre>
+</div>
+</div>
+</section>
+<section id="data-set-specific-to-protections-and-recognition" class="level2">
+<h2 class="anchored" data-anchor-id="data-set-specific-to-protections-and-recognition">Data set Specific to Protections and Recognition</h2>
+<p><strong>P</strong> is added in front of variables pertaining to Protection and <strong>R</strong> is added to variables pertaining to Recognition</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Data set specific to Protection and Recognition</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ilga_PR <span class="ot">&lt;-</span> ilga_base<span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(N<span class="sc">:</span>COUNTRY, <span class="st">"CONST."</span><span class="sc">:</span><span class="st">"SECOND PARENT ADOPTION"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">P_Const =</span> CONST.,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">P_BroadProt =</span> <span class="st">"BROAD PROT."</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">P_Employ =</span> EMPLOY.,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">P_HateCrime =</span> <span class="st">"HATE CRIME"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">P_Incitement =</span> INCITEMENT,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">P_BanConvTherapies =</span> <span class="st">"BAN CONV. THERAPIES"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">R_SameSexMarriage =</span> <span class="st">"SAME SEX MARRIAGE"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">R_CivilUnion =</span> <span class="st">"CIVIL UNIONS"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">R_JointAdoptions =</span> <span class="st">"JOINT ADOPTION"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">R_SecondParentAdoption =</span> <span class="st">"SECOND PARENT ADOPTION"</span> )</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>ilga_PR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 241 × 13
+       N    CN COUNTRY   P_Const P_Bro…¹ P_Emp…² P_Hat…³ P_Inc…⁴ P_Ban…⁵ R_Sam…⁶
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1     1     1 Algeria   NO      NO      NO      NO      NO      NO      NO     
+ 2     2     2 Angola    NO      YES     YES     YES     YES     NO      NO     
+ 3     3     3 Benin     NO      NO      NO      NO      NO      NO      NO     
+ 4     4     4 Botswana  NO      NO      YES     NO      NO      NO      NO     
+ 5     5     5 Burkina … NO      NO      NO      NO      NO      NO      NO     
+ 6     6     6 Burundi   NO      NO      NO      NO      NO      NO      NO     
+ 7     7     7 Cameroon  NO      NO      NO      NO      NO      NO      NO     
+ 8     8     8 Cabo Ver… NO      NO      YES     YES     NO      NO      NO     
+ 9     9     9 Central … NO      NO      NO      NO      NO      NO      NO     
+10    10    10 Chad      NO      NO      NO      YES     NO      NO      NO     
+# … with 231 more rows, 3 more variables: R_CivilUnion &lt;chr&gt;,
+#   R_JointAdoptions &lt;chr&gt;, R_SecondParentAdoption &lt;chr&gt;, and abbreviated
+#   variable names ¹​P_BroadProt, ²​P_Employ, ³​P_HateCrime, ⁴​P_Incitement,
+#   ⁵​P_BanConvTherapies, ⁶​R_SameSexMarriage
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section id="recoding-values" class="level2">
+<h2 class="anchored" data-anchor-id="recoding-values">Recoding Values</h2>
+<p>The orignal data specifies the continent name under a large tab with all the countries to the continent.</p>
+<p>I want to be able to express data grouped by the continent, so I made a continent Column that would specify the continent.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Recoding Values to Specify Continent</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont<span class="ot">&lt;-</span>ilga_PR<span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Continent =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">54</span> <span class="sc">~</span> <span class="st">"Africa"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">55</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">87</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">88</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">89</span> <span class="sc">~</span> <span class="st">"North America"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">90</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">131</span> <span class="sc">~</span> <span class="st">"Asia"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">132</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">179</span> <span class="sc">~</span> <span class="st">"Europe"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">180</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">193</span> <span class="sc">~</span> <span class="st">"Oceania"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Brings the newly created Continent column to the front </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont <span class="ot">&lt;-</span> ilga_PR_Cont<span class="sc">%&gt;%</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(N, CN, Continent, <span class="fu">everything</span>())</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Sanity Check</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 241 × 14
+       N    CN Continent COUNTRY P_Const P_Bro…¹ P_Emp…² P_Hat…³ P_Inc…⁴ P_Ban…⁵
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1     1     1 Africa    Algeria NO      NO      NO      NO      NO      NO     
+ 2     2     2 Africa    Angola  NO      YES     YES     YES     YES     NO     
+ 3     3     3 Africa    Benin   NO      NO      NO      NO      NO      NO     
+ 4     4     4 Africa    Botswa… NO      NO      YES     NO      NO      NO     
+ 5     5     5 Africa    Burkin… NO      NO      NO      NO      NO      NO     
+ 6     6     6 Africa    Burundi NO      NO      NO      NO      NO      NO     
+ 7     7     7 Africa    Camero… NO      NO      NO      NO      NO      NO     
+ 8     8     8 Africa    Cabo V… NO      NO      YES     YES     NO      NO     
+ 9     9     9 Africa    Centra… NO      NO      NO      NO      NO      NO     
+10    10    10 Africa    Chad    NO      NO      NO      YES     NO      NO     
+# … with 231 more rows, 4 more variables: R_SameSexMarriage &lt;chr&gt;,
+#   R_CivilUnion &lt;chr&gt;, R_JointAdoptions &lt;chr&gt;, R_SecondParentAdoption &lt;chr&gt;,
+#   and abbreviated variable names ¹​P_BroadProt, ²​P_Employ, ³​P_HateCrime,
+#   ⁴​P_Incitement, ⁵​P_BanConvTherapies
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+</section>
+<section id="pivoting-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="pivoting-dataframe">Pivoting Dataframe</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting Protection Column</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont_PivP <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(ilga_PR_Cont, P_Const<span class="sc">:</span>P_BanConvTherapies, <span class="at">names_to =</span> <span class="st">"Protection"</span>, <span class="at">values_to =</span> <span class="st">"Protection_Value"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Sanity Check</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont_PivP</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,446 × 10
+       N    CN Continent COUNTRY R_Sam…¹ R_Civ…² R_Joi…³ R_Sec…⁴ Prote…⁵ Prote…⁶
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1     1     1 Africa    Algeria NO      NO      NO      NO      P_Const NO     
+ 2     1     1 Africa    Algeria NO      NO      NO      NO      P_Broa… NO     
+ 3     1     1 Africa    Algeria NO      NO      NO      NO      P_Empl… NO     
+ 4     1     1 Africa    Algeria NO      NO      NO      NO      P_Hate… NO     
+ 5     1     1 Africa    Algeria NO      NO      NO      NO      P_Inci… NO     
+ 6     1     1 Africa    Algeria NO      NO      NO      NO      P_BanC… NO     
+ 7     2     2 Africa    Angola  NO      NO      NO      NO      P_Const NO     
+ 8     2     2 Africa    Angola  NO      NO      NO      NO      P_Broa… YES    
+ 9     2     2 Africa    Angola  NO      NO      NO      NO      P_Empl… YES    
+10     2     2 Africa    Angola  NO      NO      NO      NO      P_Hate… YES    
+# … with 1,436 more rows, and abbreviated variable names ¹​R_SameSexMarriage,
+#   ²​R_CivilUnion, ³​R_JointAdoptions, ⁴​R_SecondParentAdoption, ⁵​Protection,
+#   ⁶​Protection_Value
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting Recognition Column</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont_PivPR <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(ilga_PR_Cont_PivP, R_SameSexMarriage<span class="sc">:</span>R_SecondParentAdoption, <span class="at">names_to =</span> <span class="st">"Recognition"</span>, <span class="at">values_to =</span> <span class="st">"Recognition_Value"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Sanity Check (this creates extra rows...so i am not sane); but here I know what my issues are; I need think of a way to pivot the data wiht both variables at once, or find a way to clenup my data after; later on in my work I did do something where both variables are under one variable...but does that make sense?</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont_PivPR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5,784 × 8
+       N    CN Continent COUNTRY Protection  Protection_Value Recognit…¹ Recog…²
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt;  
+ 1     1     1 Africa    Algeria P_Const     NO               R_SameSex… NO     
+ 2     1     1 Africa    Algeria P_Const     NO               R_CivilUn… NO     
+ 3     1     1 Africa    Algeria P_Const     NO               R_JointAd… NO     
+ 4     1     1 Africa    Algeria P_Const     NO               R_SecondP… NO     
+ 5     1     1 Africa    Algeria P_BroadProt NO               R_SameSex… NO     
+ 6     1     1 Africa    Algeria P_BroadProt NO               R_CivilUn… NO     
+ 7     1     1 Africa    Algeria P_BroadProt NO               R_JointAd… NO     
+ 8     1     1 Africa    Algeria P_BroadProt NO               R_SecondP… NO     
+ 9     1     1 Africa    Algeria P_Employ    NO               R_SameSex… NO     
+10     1     1 Africa    Algeria P_Employ    NO               R_CivilUn… NO     
+# … with 5,774 more rows, and abbreviated variable names ¹​Recognition,
+#   ²​Recognition_Value
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#used this to see where I would have NA</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(ilga_PR,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                        <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">ilga_PR</h4>
+<strong>Dimensions</strong>: 241 x 13
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">N
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 97 (55.9)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 97 ≤ 193</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 96 (0.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">193 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAFBJREFUWMPt16ENACAMRFFGgA0IbMDtvxs0QYAERco/caZ5tmlD8J9ykDQSp6uSmraqWy1DHA6H+93ZDs0XzgqHw+FwOBwO96Y7+afXe9BzOqcNiHF87c6PAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwfIPnJwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yOVQxNjoyODozMSswMDowMA3eX5sAAAAASUVORK5CYII="></td>
+      <td align="center">48
+(19.9%)</td>
+    </tr>
+    <tr>
+      <td align="left">CN
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 21.9 (14.1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 21 ≤ 54</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 23 (0.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">54 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAH9JREFUWMPt1MEJgDAMBdCOoBvYuIHZfzcNGDCkYNqDhfg/FHp5lzS/peQPXalrPMvtdmbO7mQ2NODkHF+74EM6x7EBwSV09EyNO3PJ7tq/wLtrtxluinMLHnSuXXDTnClihzOLA/cvp8XvdbqocHBRJ7u2DTi5wOVw1Bl1mXMCYN75P7r/SIEAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjlUMTY6Mjg6MzErMDA6MDB8g+cnAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwDd5fmwAAAABJRU5ErkJggg=="></td>
+      <td align="center">48
+(19.9%)</td>
+    </tr>
+    <tr>
+      <td align="left">COUNTRY
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Afghanistan</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Albania</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Algeria</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. American Samoa (USA)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Andorra</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Angola</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Anguilla (UK)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Antigua and Barbuda</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Argentina</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Armenia</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 231 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">231</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">95.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHEAAAC8BAMAAAC9JlyJAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAHlJREFUaN7t07kNgEAUQ0FKgA44SqD/3khowAiBrB3nE/zVvmkaZ9uSbibJIWUMX5BdL0SSjTKGyibJAhnD0jtJslHGUNkkWSBjqGyS/EzGUJ8kWSBjqGySLJAxLL2TJBtlDJVNkgUyhi/IPd56y+NMR5L/y+c/foRd7FbAu/FT4/0AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjlUMTY6Mjg6MzErMDA6MDB8g+cnAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwDd5fmwAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">P_Const
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. N/A</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">44</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">18.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">186</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">77.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAF0AAAA5BAMAAACmOjq8AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAE5JREFUSMdjYBj6QAkOBPECAah6ZWMoMBpVP6qe9upJTZ+CRAJy1SsRCRTQ/UsAjKofVU8N9aSmTzrkF5LUKxMqGEbVj6qnonpS0+dQBgAwsuYrOVacEwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yOVQxNjoyODozMSswMDowMHyD5ycAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjlUMTY6Mjg6MzErMDA6MDAN3l+bAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">P_BroadProt
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. LIMITED</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">147</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">61.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">86</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">35.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEwAAAA5BAMAAABuVtBqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAERJREFUSMdjYBjcQElJEC+AKlM2GlU2QpURmUIEBampTIkAgHnBGC8wGlU2bJURmUJoniyx5ixMV48qGxnKiEwhgxUAAAjUyBaDVRgIAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwfIPnJwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yOVQxNjoyODozMSswMDowMA3eX5sAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">P_Employ
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. LIMITED</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">114</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">47.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">117</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">48.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAD8AAAA5BAMAAABzKO7xAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAERJREFUOMtjYBgcQElJURArEIAqUDYeVTBkFBCMTUFcgGgFSrgAwpHYgdGogsGngGBs0jDBKBBwpPGogsGngGBsDjQAAMB4tH1gve2KAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwfIPnJwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yOVQxNjoyODozMSswMDowMA3eX5sAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">P_HateCrime
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. LIMITED</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">13</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">160</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">66.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">68</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">28.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFIAAAA5BAMAAABXMWExAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAEZJREFUSMdjYBg6QElJSZAAgKpUNjYaVTmqEo9K4tMSIWXkqFQiDOA+IgSMRlWOaJXEpyU6pGS8eRPF9aMqR1WSnZaGAgAAecXR2a4hHBsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjlUMTY6Mjg6MzErMDA6MDB8g+cnAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwDd5fmwAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">P_Incitement
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. LIMITED</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">167</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">69.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">66</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">27.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFUAAAA5BAMAAAC17XpIAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAEtJREFUSMdjYBh6QElJkCAQgKpVNhpVO6qWPLWkpDPCKslTq0QEUID5zZgwGFU7qhabWlLSGX3SuiL+fIzii1G1o2qJV0tKOhtKAADyN9hIs6K/YgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yOVQxNjoyODozMSswMDowMHyD5ycAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjlUMTY6Mjg6MzErMDA6MDAN3l+bAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">P_BanConvTherapies
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. LIMITED</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">10</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">226</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">93.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG8AAAA5BAMAAADKPGi5AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAExJREFUSMdjYBgZQElJUZAkIADVqGw8qnFU4zDXSHbuIE0XNTQqkQoU4IFDIhjVOKpxqGkkO3cMQEYmschBlHKjGkc1DneNZOeO4Q4AKoMDoQE+L1oAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjlUMTY6Mjg6MzErMDA6MDB8g+cnAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwDd5fmwAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">R_SameSexMarriage
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">183</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">75.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">58</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">24.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFwAAAAnBAMAAABwJDJpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAADhJREFUOMtjYBjaQIlIAFWubEwUMBpVPqocppzEJCZIJKCLchQHElaOHDJGo8pHlROhnMQkNlQBALPErEORtQKlAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwfIPnJwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yOVQxNjoyODozMSswMDowMA3eX5sAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">R_CivilUnion
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. LIMITED</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">182</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">75.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">56</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">23.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFwAAAA5BAMAAABJ+FGCAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAENJREFUSMdjYBjaQEmQODCqfFT5oFROpGoylSsRCaDKlY2JAkajykeVk6mcxBRJv+yhSFg5sldHlY8qp4FyElPkUAUA3zPjG1qQPqQAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMjlUMTY6Mjg6MzErMDA6MDB8g+cnAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwDd5fmwAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">R_JointAdoptions
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. -</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. LIMITED</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">186</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">77.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">53</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">22.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAF0AAABJBAMAAACtGDd9AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAFNJREFUSMdjYBj6QFGQOCAwqn5U/RBQT6RystUPNv+Oqh9Vj6yeSOV0U69EJFCAqlc2Jg6Mqh9Vj009qemNnumfGPVI/jUaVT+qntbqSU2fQxkAAOSRDTtmMxkqAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTI5VDE2OjI4OjMxKzAwOjAwfIPnJwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0yOVQxNjoyODozMSswMDowMA3eX5sAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">R_SecondParentAdoption
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. -</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. LIMITED</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. NO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. YES</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">181</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">75.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">58</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">24.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFsAAABJBAMAAACgBkc6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggdEBwf6ZNlZAAAAFFJREFUSMdjYBjaQFGQKCAwqnxU+aBUTpxqcpUPKq+OKh9VTuP0TqJyJeKAAlS5sjFRYFT5qHK4chKTGB3TO2HlyF41GlU+qpz6yklMkUMVAADnWAkMAU06eQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0yOVQxNjoyODozMSswMDowMHyD5ycAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMjlUMTY6Mjg6MzErMDA6MDAN3l+bAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-29</p>
+</div>
+</div>
+</div>
+<p>Here is the issue:</p>
+<p>i do not know which way og pivoting and visual representation of my data makes sense from the material that i have</p>
+<p>should protection and recognition be under type? shoudl the p/r tage be separate?</p>
+<p>should</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#is this the right thing?; i have out figure out which visualization works.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>TEST <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(ilga_PR_Cont, P_Const<span class="sc">:</span>R_SecondParentAdoption, <span class="at">names_to =</span> <span class="st">"Type"</span>, <span class="at">values_to =</span> <span class="st">"Yes/No/Limited"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>TEST</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,410 × 6
+       N    CN Continent COUNTRY Type                   `Yes/No/Limited`
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;                  &lt;chr&gt;           
+ 1     1     1 Africa    Algeria P_Const                NO              
+ 2     1     1 Africa    Algeria P_BroadProt            NO              
+ 3     1     1 Africa    Algeria P_Employ               NO              
+ 4     1     1 Africa    Algeria P_HateCrime            NO              
+ 5     1     1 Africa    Algeria P_Incitement           NO              
+ 6     1     1 Africa    Algeria P_BanConvTherapies     NO              
+ 7     1     1 Africa    Algeria R_SameSexMarriage      NO              
+ 8     1     1 Africa    Algeria R_CivilUnion           NO              
+ 9     1     1 Africa    Algeria R_JointAdoptions       NO              
+10     1     1 Africa    Algeria R_SecondParentAdoption NO              
+# … with 2,400 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this makes it so that the P and R is both under Type; this is just a test and not a final...but I am not sure what I want </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<pre><code>
+## Describe Data
+
+::: {.cell}
+
+:::
+
+
+
+
+:::{#quarto-navigation-envelope .hidden}
+[Final]{.hidden render-id="quarto-int-sidebar-title"}
+[Final]{.hidden render-id="quarto-int-navbar-title"}
+[August 2022 Posts]{.hidden render-id="quarto-int-navbar:August 2022 Posts"}
+[Contributors]{.hidden render-id="quarto-int-navbar:Contributors"}
+[DACSS]{.hidden render-id="quarto-int-navbar:DACSS"}
+:::
+
+
+
+:::{#quarto-meta-markdown .hidden}
+[ - Final]{.hidden render-id="quarto-metatitle"}
+[Final Project Work in Progress]{.hidden render-id="quarto-metadesc"}
+:::
+
+
+
+
+&lt;!-- --&gt;
+
+::: {.quarto-embedded-source-code}
+```````````````````{.markdown shortcodes="false"}
+---
+title: "Final"
+author: "Roy Yoon"
+description: "Final Project Work in Progress"
+date: "08/27/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - cereal
+  - ggplotly()
+---
+
+quarto-executable-code-5450563D
+
+```r
+#| label: setup
+#| warning: false
+#| message: false
+
+
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(gapminder)
+library(readxl)
+
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)</code></pre>
+</section>
+<section id="read-in-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-data-1">Read in data</h2>
+<p>The</p>
+<p>```{r Read in Data}</p>
+<p>#Original Data ilga_base &lt;- read_excel(“_data/ILGA_State_Sponsored_Homophobia_2020_dataset.xlsx”, skip = 1)</p>
+<p>head(ilga_base,6)</p>
+<p>dim(ilga_base)</p>
+<p>colnames(ilga_base)</p>
+<pre><code>
+## Data set Specific to Protections and Recognition
+
+**P** is added in front of variables pertaining to Protection and **R** is added to variables pertaining to Recognition
+
+```{r Prot and Recog Specific Data set}
+
+#Data set specific to Protection and Recognition
+ilga_PR &lt;- ilga_base%&gt;%
+  select(N:COUNTRY, "CONST.":"SECOND PARENT ADOPTION")%&gt;%
+  rename(P_Const = CONST.,
+         P_BroadProt = "BROAD PROT.",
+         P_Employ = EMPLOY.,
+         P_HateCrime = "HATE CRIME",
+         P_Incitement = INCITEMENT,
+         P_BanConvTherapies = "BAN CONV. THERAPIES",
+         R_SameSexMarriage = "SAME SEX MARRIAGE",
+         R_CivilUnion = "CIVIL UNIONS",
+         R_JointAdoptions = "JOINT ADOPTION",
+         R_SecondParentAdoption = "SECOND PARENT ADOPTION" )
+
+ilga_PR
+
+</code></pre>
+</section>
+<section id="recoding-values-1" class="level2">
+<h2 class="anchored" data-anchor-id="recoding-values-1">Recoding Values</h2>
+<p>The orignal data specifies the continent name under a large tab with all the countries to the continent.</p>
+<p>I want to be able to express data grouped by the continent, so I made a continent Column that would specify the continent. quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Recoding Values to Specify Continent</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont<span class="ot">&lt;-</span>ilga_PR<span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Continent =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">54</span> <span class="sc">~</span> <span class="st">"Africa"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">55</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">87</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">88</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">89</span> <span class="sc">~</span> <span class="st">"North America"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">90</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">131</span> <span class="sc">~</span> <span class="st">"Asia"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">132</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">179</span> <span class="sc">~</span> <span class="st">"Europe"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>         N <span class="sc">&gt;=</span> <span class="dv">180</span> <span class="sc">&amp;</span> N <span class="sc">&lt;=</span> <span class="dv">193</span> <span class="sc">~</span> <span class="st">"Oceania"</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Brings the newly created Continent column to the front </span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont <span class="ot">&lt;-</span> ilga_PR_Cont<span class="sc">%&gt;%</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(N, CN, Continent, <span class="fu">everything</span>())</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Sanity Check</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>ilga_PR_Cont</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pivoting-dataframe-1" class="level2">
+<h2 class="anchored" data-anchor-id="pivoting-dataframe-1">Pivoting Dataframe</h2>
+<p>```{r Pivot}</p>
+<p>#Pivoting Protection Column</p>
+<p>ilga_PR_Cont_PivP &lt;- pivot_longer(ilga_PR_Cont, P_Const:P_BanConvTherapies, names_to = “Protection”, values_to = “Protection_Value”)</p>
+<p>#Sanity Check ilga_PR_Cont_PivP</p>
+<p>#Pivoting Recognition Column</p>
+<p>ilga_PR_Cont_PivPR &lt;- pivot_longer(ilga_PR_Cont_PivP, R_SameSexMarriage:R_SecondParentAdoption, names_to = “Recognition”, values_to = “Recognition_Value”)</p>
+<p>#Sanity Check (this creates extra rows…so i am not sane); but here I know what my issues are; I need think of a way to pivot the data wiht both variables at once, or find a way to clenup my data after; later on in my work I did do something where both variables are under one variable…but does that make sense? ilga_PR_Cont_PivPR</p>
+<pre><code>
+quarto-executable-code-5450563D
+
+```r
+#used this to see where I would have NA
+print(summarytools::dfSummary(ilga_PR,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+</code></pre>
+<p>Here is the issue:</p>
+<p>i do not know which way og pivoting and visual representation of my data makes sense from the material that i have</p>
+<p>should protection and recognition be under type? shoudl the p/r tage be separate?</p>
+<p>should quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#is this the right thing?; i have out figure out which visualization works.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>TEST <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(ilga_PR_Cont, P_Const<span class="sc">:</span>R_SecondParentAdoption, <span class="at">names_to =</span> <span class="st">"Type"</span>, <span class="at">values_to =</span> <span class="st">"Yes/No/Limited"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>TEST</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#this makes it so that the P and R is both under Type; this is just a test and not a final...but I am not sure what I want </span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>
+## Describe Data
+
+quarto-executable-code-5450563D
+
+```r</code></pre>
+<p>``````````````````` :::</p>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
