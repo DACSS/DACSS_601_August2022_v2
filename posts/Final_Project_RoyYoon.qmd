@@ -1,0 +1,162 @@
+---
+title: "Final"
+author: "Roy Yoon"
+description: "Final Project Work in Progress"
+date: "08/27/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - cereal
+  - ggplotly()
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+library(gapminder)
+library(readxl)
+
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+The 
+
+```{r Read in Data}
+
+#Original Data
+ilga_base <- read_excel("_data/ILGA_State_Sponsored_Homophobia_2020_dataset.xlsx", skip = 1)
+
+head(ilga_base,6)
+
+dim(ilga_base)
+
+colnames(ilga_base)
+```
+
+## Data set Specific to Protections and Recognition
+
+**P** is added in front of variables pertaining to Protection and **R** is added to variables pertaining to Recognition
+
+```{r Prot and Recog Specific Data set}
+
+#Data set specific to Protection and Recognition
+ilga_PR <- ilga_base%>%
+  select(N:COUNTRY, "CONST.":"SECOND PARENT ADOPTION")%>%
+  rename(P_Const = CONST.,
+         P_BroadProt = "BROAD PROT.",
+         P_Employ = EMPLOY.,
+         P_HateCrime = "HATE CRIME",
+         P_Incitement = INCITEMENT,
+         P_BanConvTherapies = "BAN CONV. THERAPIES",
+         R_SameSexMarriage = "SAME SEX MARRIAGE",
+         R_CivilUnion = "CIVIL UNIONS",
+         R_JointAdoptions = "JOINT ADOPTION",
+         R_SecondParentAdoption = "SECOND PARENT ADOPTION" )
+
+ilga_PR
+
+
+```
+## Recoding Values 
+
+The orignal data specifies the continent name under a large tab with all the countries to the continent.
+
+I want to be able to express data grouped by the continent, so I made a continent Column that would specify the continent.
+```{r}
+
+#Recoding Values to Specify Continent
+ilga_PR_Cont<-ilga_PR%>%
+  mutate(Continent = case_when(
+         N >= 1 & N <= 54 ~ "Africa",
+         N >= 55 & N <= 87 ~ "South America",
+         N >= 88 & N <= 89 ~ "North America",
+         N >= 90 & N <= 131 ~ "Asia",
+         N >= 132 & N <= 179 ~ "Europe",
+         N >= 180 & N <= 193 ~ "Oceania")
+  )
+
+#Brings the newly created Continent column to the front 
+ilga_PR_Cont <- ilga_PR_Cont%>%
+  select(N, CN, Continent, everything())
+
+#Sanity Check
+ilga_PR_Cont
+
+```
+
+## Pivoting Dataframe 
+```{r Pivot}
+
+#Pivoting Protection Column
+
+ilga_PR_Cont_PivP <- pivot_longer(ilga_PR_Cont, P_Const:P_BanConvTherapies, names_to = "Protection", values_to = "Protection_Value")
+
+#Sanity Check
+ilga_PR_Cont_PivP
+
+#Pivoting Recognition Column
+
+ilga_PR_Cont_PivPR <- pivot_longer(ilga_PR_Cont_PivP, R_SameSexMarriage:R_SecondParentAdoption, names_to = "Recognition", values_to = "Recognition_Value")
+
+#Sanity Check (this creates extra rows...so i am not sane...and idk)
+ilga_PR_Cont_PivPR
+```
+
+```{r}
+
+#used this to see where I would have NA
+print(summarytools::dfSummary(ilga_PR,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+
+```
+Here is the issue:
+
+i do not know which way og pivoting and visual representation of my data makes sense from the material that i have
+
+should protection and recognition be under type?
+shoudl the p/r tage be separate?
+
+should 
+```{r}
+
+#is this the right thing I AM SO CONFUSED AHHHHHHHHH; i have ot figure out which visulization works..or even if i undertsand pivoting 
+TEST <- pivot_longer(ilga_PR_Cont, P_Const:R_SecondParentAdoption, names_to = "Type", values_to = "Yes/No/Limited")
+
+TEST
+
+
+
+```
+
+```{r}
+
+
+```
+
+```
+
+## Describe Data
+
+```{r}
+
+
+```
