@@ -1,0 +1,205 @@
+---
+title: "FinalProject"
+author: "Emma Rasmussen"
+description: "FinalProjectDRAFT1"
+date: "08/26/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final project
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(googlesheets4)
+library(lubridate)
+library(stringr)
+library(scales)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+Reading In the Data
+```{r}
+gs4_deauth()
+
+#creating a vector of new column names
+mass_names<- c("incident_id", "incident_date", "state", "city_or_county", "address", "number_killed", "number_injured", "delete")
+
+#creating a function to read in the data sets with new column names, skip the first row, and remove the "operation" column which contains links to news articles in original data source, and creating a "Year" column for ease of analysis
+read_shootings<-function(sheet_name){read_sheet("https://docs.google.com/spreadsheets/d/1rCnIYPQSkcZDCulp5KXAxmZUBad4QtrERi4_7tUMXqs/edit?usp=sharing", 
+                                                sheet=sheet_name,
+                                                col_names=mass_names, 
+                                                skip=1) %>%
+    mutate("YearSheet"=sheet_name) %>% 
+    mutate(Year=recode(YearSheet, "MassShootings2014"="2014", "MassShootings2015"="2015", "MassShootings2016"="2016", "MassShootings2017"="2017", "MassShootings2018"="2018", "MassShootings2019"="2019", "MassShootings2020"="2020", "MassShootings2021"="2021", "MassShootings2022"="2022")) %>% 
+  select(-delete, -YearSheet)
+           }
+
+#using purrr/map_dfr to join data sheets for 2014 through 2021, applying the function read_shootings for consistent formatting
+mass_shootings_all <- map_dfr(
+  sheet_names("https://docs.google.com/spreadsheets/d/1rCnIYPQSkcZDCulp5KXAxmZUBad4QtrERi4_7tUMXqs/edit?usp=sharing")[1:9],
+  read_shootings)
+
+```
+
+```{r}
+#converting incident_date from "POSIXct" to "date" format
+mass_shootings_all
+
+mass_shootings_all$incident_date<-as.Date(mass_shootings_all$incident_date)
+
+#creating a month column and converting to factors
+mass_shootings_all<-mass_shootings_all%>% 
+  mutate(month=as.factor(month(incident_date))) %>% 
+    mutate(month=recode(month, `1`="Jan", `2`="Feb", `3`="Mar", `4`="Apr", `5`="May", `6`="Jun", `7`="Jul", `8`="Aug", `9`="Sept", `10`="Oct", `11`="Nov", `12`="Dec"))
+
+#sanity check
+mass_shootings_all
+
+```
+
+The number of rows in the df is equal to the sum of the rows from the original google sheets data (-9 for column names in google sheets)
+
+```{r}
+#Can now use "year" column to easily analyze data by year
+filter(mass_shootings_all, Year=="2014")
+
+#creating plot of shootings/year
+ggplot(mass_shootings_all, aes(Year))+
+  geom_bar(stat="Count")+
+  labs(title="Mass Shootings 2014-2022*", caption="*2022 data goes up to August 27, 2022")
+
+#creating plot by month
+ggplot(mass_shootings_all, aes(x=month))+
+  geom_point(stat="count")+geom_line(stat="count", group=1)+
+  labs(title="Mass Shootings 2014-2022 By Month")
+
+#creating line plot by year and month
+ggplot(mass_shootings_all, aes(x=month, group=Year, color=Year))+
+  geom_line(stat="count")+
+  geom_point(stat="count")+
+  labs(title="Mass Shootings by Month 2014-2022*", caption="*2022 data is only up until August 27, 2022")
+
+
+```
+Graph appears to jump to new heights/monthly max in May 2020. The two lines that generally trend above it are 2021 and 2022.
+
+In addition to mass shootings increasing over time, it appears that shootings could be correlated with temperature/season given the data set when filtered by month is highest in summer months an lowest in winter months.
+
+I am curious if a less seasonally varying state would have the same distribution. Below I create the same plot for FL and MA
+
+```{r}
+#Distribution of shootings by month in FL
+filter(mass_shootings_all, state=="Florida") %>% 
+    ggplot(aes(month))+geom_point(stat="Count")+geom_line(stat="count", group=1) +labs(title="Mass Shootings 2014-2022 By Month in Florida")
+
+#Distribution of shootings by month in mA
+filter(mass_shootings_all, state=="Massachusetts") %>% 
+    ggplot(aes(month))+geom_point(stat="Count")+geom_line(stat="count", group=1)+labs(title="Mass Shootings 2014-2022 By Month in Massachusetts")
+
+#Mass has some months where count=0, which is omitted from the histogram when filtering out mass. Below I created a table and then created a bar graph from this to preserve the months where count=0
+mass_shootings_all_mass<-filter(mass_shootings_all, state=="Massachusetts") %>% 
+    group_by(month, .drop=FALSE) %>%
+    summarise(Count = n())
+mass_shootings_all_mass
+
+ggplot(mass_shootings_all_mass, aes(x=month, y=Count))+geom_point(stat="identity")+geom_line(stat="identity", group=1)
+
+#creating month distribution by state. This table DOES preserve the months where the count=0, I think histogram makes more sense here?
+ggplot(mass_shootings_all, aes(month))+geom_histogram(stat="count")+ facet_wrap(~state, scales = "free_y")+theme(strip.text = element_text(size=6))+labs(title="Mass Shootings 2014-2022 by Month Across U.S. States")
+
+#creating month distribution by state. This table DOES NOT preserve the months where the count=0 but easier to visualize patterns than with histogram
+ggplot(mass_shootings_all, aes(month))+geom_line(stat="count", group=1)+ facet_wrap(~state, scales = "free_y")+theme(strip.text = element_text(size=6))+labs(title="Mass Shootings 2014-2022 by Month Across U.S. States")
+```
+
+Going forward, I think I will try to create these plots for different states to see if this trend holds true across different states. I am also curious if i can find a dataset with typical temp ranges/state and seeing if there is correlation between temp variation and mass shootings.Am also curious to figure out what kind of distribution best describes the graph with all states.
+
+Whats going on??? rant: There are a number of confounding factors that could explain the apparent correlation with season/temp- people more/less likely to leave the house based on weather, more public gatherings during seasons with higher temps... also wondering if covid affects this. I could create the same graph by state and year (but there probaly isnt enough events to see a correlation, but maybe for a state with a high population?) And wondering if the average number killed also increases with higher temperatures as there may be more opportunities/gatherings of people
+
+Below, looking into how many people on average are shot during incidents
+```{r}
+#Looking at distinct values for number killed
+distinct(mass_shootings_all, number_killed) %>% 
+  arrange(number_killed)
+
+#Looking at distinct values for number injured
+distinct(mass_shootings_all, number_injured) %>% 
+  arrange(number_injured)
+
+#creating a new column/variable to measure severity based on above variables, number shot= number killed+number injured
+mass_shootings_all<-mass_shootings_all %>% 
+  mutate(number_shot= number_injured+number_killed)
+
+#Looking at distinct values for new variable
+distinct(mass_shootings_all, number_shot) %>% 
+  arrange(number_shot)
+
+#Graphing distribution of number shot (killed or injured) in mass shootings
+#filtering out where number shot>30
+mass_shootings_all %>% 
+  filter(number_shot<30) %>% 
+  ggplot(aes(number_shot))+geom_histogram(binwidth = 1)
+
+#creating a new variable, severity, by categorizing the number shot into low, mid, high
+mass_shootings_all<-mass_shootings_all %>% 
+  mutate(severity= case_when(number_shot <= 9 ~ "low", number_shot >= 10 & number_shot <= 29 ~ "mid",
+    number_shot >= 30 ~ "high"))
+mass_shootings_all
+
+#2D histogram, depicting incidents by year based on number killed, and a count for how many incidents in a particular year
+mass_shootings_all %>% 
+  filter(number_shot<100) %>% 
+  ggplot(aes(Year, number_shot))+geom_bin2d()+labs(title="Mass Shootings by Number of People Killed or Injured (2014-2022)*", caption="*Shootings with over 100 killed/injured are exluded for readability")
+
+#boxplot with number_shot by year
+mass_shootings_all %>% 
+  filter(number_shot<100) %>% 
+  ggplot(aes(Year, number_shot))+geom_boxplot()+labs(title="Mass Shootings by Number of People Killed or Injured (2014-2022)", caption="*Shootings with over 100 killed/injured are exluded for readability")
+
+#violin plot with number_shot by year
+mass_shootings_all %>% 
+  filter(number_shot<100) %>% 
+  ggplot(aes(Year, number_shot))+geom_violin()+labs(title="Mass Shootings by Number of People Killed or Injured (2014-2022)", caption="*Shootings with over 100 killed/injured are exluded for readability")
+
+#scatterplot
+filter(mass_shootings_all, number_shot<100) %>% 
+  ggplot(aes(x=incident_date, y=number_shot))+geom_point()+labs(title="Shootings 2014-2022", caption="*Shootings with over 100 killed/injured are exluded for readability")
+
+#stacked bar chart with severity by year
+ggplot(mass_shootings_all, aes(Year, fill=severity))+geom_bar(stat="count")+labs(title="Severity of Shootings by Year")
+
+#high severity shootings by year
+filter(mass_shootings_all, severity=="high") %>% 
+  ggplot(aes(Year))+geom_histogram(stat="count")+labs(title="High Severity Shootings by Year")
+
+#mid severity shootings by year
+filter(mass_shootings_all, severity=="mid") %>% 
+  ggplot(aes(Year))+geom_histogram(stat="count")+labs(title="Mid Severity Shootings by Year")
+
+#mid severity shootings by month
+filter(mass_shootings_all, severity=="mid") %>% 
+  ggplot(aes(month))+geom_histogram(stat="count")+labs(title="Mid Severity Shootings by Month")
+
+#mid severity shootings by month line plot
+filter(mass_shootings_all, severity=="mid") %>% 
+  ggplot(aes(month))+geom_line(stat="count", group=1)+geom_point(stat="count")+labs(title="Mid Severity Shootings by Month")
+
+#high severity shootings by month
+filter(mass_shootings_all, severity=="high") %>% 
+  ggplot(aes(month))+geom_histogram(stat="count")+labs(title="High Severity Shootings by Month")
+
+#Scatterplot of the mid/highest severity shootings
+filter(mass_shootings_all, severity=="mid" | severity=="high") %>% 
+  ggplot(aes(x=incident_date, y=number_shot))+geom_point()+labs(title="Mid Severity Shootings 2014-2022")
+```
+From these graphs, it looks like mass shootings are increasing in number over time, and "mid" severity shootings are also increasing slightly
