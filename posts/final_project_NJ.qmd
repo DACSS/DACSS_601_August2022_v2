@@ -1,0 +1,276 @@
+---
+title: "Final Project"
+author: "Nayan Jani "
+description: "Analysis of EA Sports FIFA Data"
+date: "08/25/2022"
+format:
+  html:
+    df-print: paged
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final
+  - FIFA
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(stringr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in multiple data sets, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  join two or more data sets and analyze some aspect of the joined data
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+
+```{r}
+file_path <- "_data/_players/"
+
+csv_file_names <- list.files(path="_data/_players/", pattern="players*")
+
+csv_file_names
+```
+
+### Briefly describe the data
+
+## Tidy Data (as needed)
+
+Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+
+```{r}
+
+csv_file_names %>%
+  purrr::map(function(file_name){ 
+  assign(x = str_remove(file_name, ".csv"), 
+         value = read_csv(paste0(file_path, file_name)),
+         envir = .GlobalEnv)
+})
+  
+
+```
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+Document your work here.
+
+```{r}
+
+players_15 <- players_15 %>%
+  mutate(fifa_type = "15") %>%
+  select(-c(player_url, long_name, body_type, real_face,release_clause_eur,
+            player_tags,team_position, team_jersey_number, loaned_from, nation_position,nation_jersey_number,
+            player_traits,mentality_composure,ls,st,rs,lw,lf,cf,rf,rw,lam,cam,ram,lm,lcm,cm,rcm,rm,lwb,ldm,cdm,rdm,
+            rwb,lb,lcb,cb,rcb,rb))
+
+players_16 <-players_16 %>%
+  mutate(fifa_type = "16") %>%
+  select(-c(player_url, long_name, body_type, real_face,release_clause_eur,
+            player_tags,team_position, team_jersey_number, loaned_from, nation_position,nation_jersey_number,
+            player_traits,mentality_composure,ls,st,rs,lw,lf,cf,rf,rw,lam,cam,ram,lm,lcm,cm,rcm,rm,lwb,ldm,cdm,rdm,
+            rwb,lb,lcb,cb,rcb,rb))
+
+players_17<- players_17 %>%
+  mutate(fifa_type = "17") %>%
+  select(-c(player_url, long_name, body_type, real_face,release_clause_eur,
+            player_tags,team_position, team_jersey_number, loaned_from, nation_position,nation_jersey_number,
+            player_traits,mentality_composure,ls,st,rs,lw,lf,cf,rf,rw,lam,cam,ram,lm,lcm,cm,rcm,rm,lwb,ldm,cdm,rdm,
+            rwb,lb,lcb,cb,rcb,rb))
+
+players_18 <- players_18 %>%
+  mutate(fifa_type = "18") %>%
+  select(-c(player_url, long_name, body_type, real_face,release_clause_eur,
+            player_tags,team_position, team_jersey_number, loaned_from, nation_position,nation_jersey_number,
+            player_traits,mentality_composure,ls,st,rs,lw,lf,cf,rf,rw,lam,cam,ram,lm,lcm,cm,rcm,rm,lwb,ldm,cdm,rdm,
+            rwb,lb,lcb,cb,rcb,rb))
+
+players_19<- players_19 %>%
+  mutate(fifa_type = "19") %>%
+  select(-c(player_url, long_name, body_type, real_face,release_clause_eur,
+            player_tags,team_position, team_jersey_number, loaned_from, nation_position,nation_jersey_number,
+            player_traits,mentality_composure,ls,st,rs,lw,lf,cf,rf,rw,lam,cam,ram,lm,lcm,cm,rcm,rm,lwb,ldm,cdm,rdm,
+            rwb,lb,lcb,cb,rcb,rb))
+
+players_20<- players_20 %>%
+  mutate(fifa_type = "20") %>%
+  select(-c(player_url, long_name, body_type, real_face,release_clause_eur,
+            player_tags,team_position, team_jersey_number, loaned_from, nation_position,nation_jersey_number,
+            player_traits,mentality_composure,ls,st,rs,lw,lf,cf,rf,rw,lam,cam,ram,lm,lcm,cm,rcm,rm,lwb,ldm,cdm,rdm,
+            rwb,lb,lcb,cb,rcb,rb))
+
+
+```
+
+## Join Data
+
+Be sure to include a sanity check, and double-check that case count is correct!
+
+
+```{r}
+players_15
+
+players_16
+
+players_17
+players_18
+
+players_19
+
+players_20
+
+```
+
+
+
+```{r}
+
+vars_mut<- players_15%>%
+  select(-c(sofifa_id, short_name, age, dob, height_cm, weight_kg, nationality, club , overall,
+            potential, value_eur, wage_eur, player_positions, preferred_foot, international_reputation
+            ,weak_foot,skill_moves, work_rate, joined ,contract_valid_until, pace, shooting, passing
+            ,dribbling, defending, physic, gk_diving, gk_handling, gk_kicking ,gk_reflexes,
+            gk_speed,gk_positioning, fifa_type)) 
+
+
+col_var_mut <- colnames(vars_mut)
+
+
+
+
+#players_15
+
+```
+```{r}
+
+sub.var <- function(x, na.rm=FALSE) (str_sub(x,start = 1, end = 2))
+
+players_15_tidy<- players_15%>%
+  mutate_at(col_var_mut, sub.var) %>%
+  mutate_at(col_var_mut, as.double)
+  
+  
+  
+players_16_tidy <- players_16%>%
+  mutate_at(col_var_mut, sub.var) %>%
+  mutate_at(col_var_mut, as.double)
+
+players_17_tidy <- players_17%>%
+  mutate_at(col_var_mut, sub.var) %>%
+  mutate_at(col_var_mut, as.double)
+
+players_18_tidy <- players_18%>%
+  mutate_at(col_var_mut, sub.var) %>%
+  mutate_at(col_var_mut, as.double)
+
+players_19_tidy <- players_19%>%
+  mutate_at(col_var_mut, sub.var) %>%
+  mutate_at(col_var_mut, as.double)
+
+
+
+
+```
+
+here i scraped the characters off all stats.
+
+
+```{r}
+
+#players_15_tidy
+#players_16_tidy
+#players_17_tidy
+#players_18_tidy
+#players_19_tidy
+#players_20
+
+
+
+```
+
+
+```{r}
+FIFA<- full_join(players_15_tidy,players_16_tidy) %>%
+  full_join(players_17_tidy) %>%
+  full_join(players_18_tidy) %>%
+  full_join(players_19_tidy) %>%
+  full_join(players_20)
+
+# FIFA
+  
+```
+
+
+
+```{r}
+sub.var1 <- function(x, na.rm=FALSE) (str_sub(x,start = 1, end = 3))
+
+vis1<- FIFA %>%
+  select(fifa_type,player_positions, height_cm) %>%
+  group_by(fifa_type, player_positions) %>%
+  mutate_at("player_positions",sub.var1)%>%
+  summarise(avg = mean(height_cm)) %>%
+  mutate(player_positions = str_replace(player_positions, "[:punct:]", "+"))
+  
+vis1
+
+
+ggplot(vis1, aes(x=fifa_type, y=avg, group=player_positions, color =player_positions )) +
+  geom_point(size=1) +
+  geom_line() +
+  theme(legend.position = "right") +
+  labs(title = "Average Height of all postions Over Years",
+     x = "Year of FIFA", y = "Average Height") + 
+  theme_bw()
+  
+```
+
+
+
+
+
+
+
+```{r}
+FIFA_tidy<- FIFA %>%
+  pivot_longer(col =-c(sofifa_id, short_name, age, dob, height_cm, weight_kg, nationality, club , overall,
+            potential, value_eur, wage_eur, player_positions, preferred_foot, international_reputation
+            ,weak_foot,skill_moves, work_rate, joined ,contract_valid_until, fifa_type) , names_to = "stat",
+            values_to = "value", values_drop_na = TRUE )
+
+
+#FIFA_tidy
+```
+
+
+possible ideas:
+
+Historical comparison between Messi and Ronaldo (what skill attributes changed the most during time - compared to real-life stats);
+
+Ideal budget to create a competitive team (at the level of top n teams in Europe) and at which point the budget does not allow to buy significantly better players for the 11-men lineup. An extra is the same comparison with the Potential attribute for the lineup instead of the Overall attribute;
+
+Sample analysis of top n% players (e.g. top 5% of the player) to see if some important attributes as Agility or BallControl or Strength have been popular or not acroos the FIFA versions. An example would be seeing that the top 5% players of FIFA 20 are more fast (higher Acceleration and Agility) compared to FIFA 15. The trend of attributes is also an important indication of how some attributes are necessary for players to win games (a version with more top 5% players with high BallControl stats would indicate that the game is more focused on the technique rather than the physicial aspect).
+
+height of cbs over the years
+
+```{r}
+FIFA_tidy %>%
+  select(fifa_type,player_positions, height_cm) %>%
+  filter(player_positions == "CB")
+```
+
