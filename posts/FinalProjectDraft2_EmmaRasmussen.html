@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Emma Rasmussen">
+<meta name="dcterms.date" content="2022-08-26">
+<meta name="description" content="FinalProjectDRAFT1">
+
+<title>- FinalProject</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- FinalProject">
+<meta name="twitter:description" content="FinalProjectDRAFT1">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">FinalProject</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">final project</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    FinalProjectDRAFT1
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Emma Rasmussen </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 26, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Reading In the Data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_deauth</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a vector of new column names</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mass_names<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"incident_id"</span>, <span class="st">"incident_date"</span>, <span class="st">"state"</span>, <span class="st">"city_or_county"</span>, <span class="st">"address"</span>, <span class="st">"number_killed"</span>, <span class="st">"number_injured"</span>, <span class="st">"delete"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a function to read in the data sets with new column names, skip the first row, and remove the "operation" column which contains links to news articles in original data source, and creating a "Year" column for ease of analysis</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>read_shootings<span class="ot">&lt;-</span><span class="cf">function</span>(sheet_name){<span class="fu">read_sheet</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1rCnIYPQSkcZDCulp5KXAxmZUBad4QtrERi4_7tUMXqs/edit?usp=sharing"</span>, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">sheet=</span>sheet_name,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">col_names=</span>mass_names, </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">"YearSheet"</span><span class="ot">=</span>sheet_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Year=</span><span class="fu">recode</span>(YearSheet, <span class="st">"MassShootings2014"</span><span class="ot">=</span><span class="st">"2014"</span>, <span class="st">"MassShootings2015"</span><span class="ot">=</span><span class="st">"2015"</span>, <span class="st">"MassShootings2016"</span><span class="ot">=</span><span class="st">"2016"</span>, <span class="st">"MassShootings2017"</span><span class="ot">=</span><span class="st">"2017"</span>, <span class="st">"MassShootings2018"</span><span class="ot">=</span><span class="st">"2018"</span>, <span class="st">"MassShootings2019"</span><span class="ot">=</span><span class="st">"2019"</span>, <span class="st">"MassShootings2020"</span><span class="ot">=</span><span class="st">"2020"</span>, <span class="st">"MassShootings2021"</span><span class="ot">=</span><span class="st">"2021"</span>, <span class="st">"MassShootings2022"</span><span class="ot">=</span><span class="st">"2022"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>delete, <span class="sc">-</span>YearSheet)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>           }</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#using purrr/map_dfr to join data sheets for 2014 through 2021, applying the function read_shootings for consistent formatting</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sheet_names</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1rCnIYPQSkcZDCulp5KXAxmZUBad4QtrERi4_7tUMXqs/edit?usp=sharing"</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>],</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  read_shootings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#converting incident_date from "POSIXct" to "date" format</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mass_shootings_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,835 × 8
+   incident_id incident_date       state   city_…¹ address numbe…² numbe…³ Year 
+         &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;
+ 1      271363 2014-12-29 00:00:00 Louisi… New Or… Poydra…       0       4 2014 
+ 2      269679 2014-12-27 00:00:00 Califo… Los An… 8800 b…       1       3 2014 
+ 3      270036 2014-12-27 00:00:00 Califo… Sacram… 4000 b…       0       4 2014 
+ 4      269167 2014-12-26 00:00:00 Illino… East S… 2500 b…       1       3 2014 
+ 5      268598 2014-12-24 00:00:00 Missou… Saint … 18th a…       1       3 2014 
+ 6      267792 2014-12-23 00:00:00 Kentuc… Winche… 260 Ox…       1       3 2014 
+ 7      268282 2014-12-22 00:00:00 Michig… Detroit Charle…       1       3 2014 
+ 8      282186 2014-12-22 00:00:00 New Yo… Webster 191 La…       4       2 2014 
+ 9      267721 2014-12-22 00:00:00 Illino… Chicago 5700 b…       0       5 2014 
+10      266570 2014-12-21 00:00:00 Florida Saraso… 4034 N…       2       2 2014 
+# … with 3,825 more rows, and abbreviated variable names ¹​city_or_county,
+#   ²​number_killed, ³​number_injured
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mass_shootings_all<span class="sc">$</span>incident_date<span class="ot">&lt;-</span><span class="fu">as.Date</span>(mass_shootings_all<span class="sc">$</span>incident_date)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a month column and converting to factors</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>mass_shootings_all<span class="ot">&lt;-</span>mass_shootings_all<span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month=</span><span class="fu">as.factor</span>(<span class="fu">month</span>(incident_date))) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">month=</span><span class="fu">recode</span>(month, <span class="st">`</span><span class="at">1</span><span class="st">`</span><span class="ot">=</span><span class="st">"Jan"</span>, <span class="st">`</span><span class="at">2</span><span class="st">`</span><span class="ot">=</span><span class="st">"Feb"</span>, <span class="st">`</span><span class="at">3</span><span class="st">`</span><span class="ot">=</span><span class="st">"Mar"</span>, <span class="st">`</span><span class="at">4</span><span class="st">`</span><span class="ot">=</span><span class="st">"Apr"</span>, <span class="st">`</span><span class="at">5</span><span class="st">`</span><span class="ot">=</span><span class="st">"May"</span>, <span class="st">`</span><span class="at">6</span><span class="st">`</span><span class="ot">=</span><span class="st">"Jun"</span>, <span class="st">`</span><span class="at">7</span><span class="st">`</span><span class="ot">=</span><span class="st">"Jul"</span>, <span class="st">`</span><span class="at">8</span><span class="st">`</span><span class="ot">=</span><span class="st">"Aug"</span>, <span class="st">`</span><span class="at">9</span><span class="st">`</span><span class="ot">=</span><span class="st">"Sept"</span>, <span class="st">`</span><span class="at">10</span><span class="st">`</span><span class="ot">=</span><span class="st">"Oct"</span>, <span class="st">`</span><span class="at">11</span><span class="st">`</span><span class="ot">=</span><span class="st">"Nov"</span>, <span class="st">`</span><span class="at">12</span><span class="st">`</span><span class="ot">=</span><span class="st">"Dec"</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#sanity check</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>mass_shootings_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,835 × 9
+   incident_id incident_date state   city_…¹ address numbe…² numbe…³ Year  month
+         &lt;dbl&gt; &lt;date&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;fct&gt;
+ 1      271363 2014-12-29    Louisi… New Or… Poydra…       0       4 2014  Dec  
+ 2      269679 2014-12-27    Califo… Los An… 8800 b…       1       3 2014  Dec  
+ 3      270036 2014-12-27    Califo… Sacram… 4000 b…       0       4 2014  Dec  
+ 4      269167 2014-12-26    Illino… East S… 2500 b…       1       3 2014  Dec  
+ 5      268598 2014-12-24    Missou… Saint … 18th a…       1       3 2014  Dec  
+ 6      267792 2014-12-23    Kentuc… Winche… 260 Ox…       1       3 2014  Dec  
+ 7      268282 2014-12-22    Michig… Detroit Charle…       1       3 2014  Dec  
+ 8      282186 2014-12-22    New Yo… Webster 191 La…       4       2 2014  Dec  
+ 9      267721 2014-12-22    Illino… Chicago 5700 b…       0       5 2014  Dec  
+10      266570 2014-12-21    Florida Saraso… 4034 N…       2       2 2014  Dec  
+# … with 3,825 more rows, and abbreviated variable names ¹​city_or_county,
+#   ²​number_killed, ³​number_injured
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>The number of rows in the df is equal to the sum of the rows from the original google sheets data (-9 for column names in google sheets)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Can now use "year" column to easily analyze data by year</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, Year<span class="sc">==</span><span class="st">"2014"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 272 × 9
+   incident_id incident_date state   city_…¹ address numbe…² numbe…³ Year  month
+         &lt;dbl&gt; &lt;date&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;fct&gt;
+ 1      271363 2014-12-29    Louisi… New Or… Poydra…       0       4 2014  Dec  
+ 2      269679 2014-12-27    Califo… Los An… 8800 b…       1       3 2014  Dec  
+ 3      270036 2014-12-27    Califo… Sacram… 4000 b…       0       4 2014  Dec  
+ 4      269167 2014-12-26    Illino… East S… 2500 b…       1       3 2014  Dec  
+ 5      268598 2014-12-24    Missou… Saint … 18th a…       1       3 2014  Dec  
+ 6      267792 2014-12-23    Kentuc… Winche… 260 Ox…       1       3 2014  Dec  
+ 7      268282 2014-12-22    Michig… Detroit Charle…       1       3 2014  Dec  
+ 8      282186 2014-12-22    New Yo… Webster 191 La…       4       2 2014  Dec  
+ 9      267721 2014-12-22    Illino… Chicago 5700 b…       0       5 2014  Dec  
+10      266570 2014-12-21    Florida Saraso… 4034 N…       2       2 2014  Dec  
+# … with 262 more rows, and abbreviated variable names ¹​city_or_county,
+#   ²​number_killed, ³​number_injured
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating plot of shootings/year</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(Year))<span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"Count"</span>)<span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022*"</span>, <span class="at">caption=</span><span class="st">"*2022 data goes up to August 27, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating plot by month</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(<span class="at">x=</span>month))<span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 By Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating line plot by year and month</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(<span class="at">x=</span>month, <span class="at">group=</span>Year, <span class="at">color=</span>Year))<span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings by Month 2014-2022*"</span>, <span class="at">caption=</span><span class="st">"*2022 data is only up until August 27, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Graph appears to jump to new heights/monthly max in May 2020. The two lines that generally trend above it are 2021 and 2022.</p>
+<p>In addition to mass shootings increasing over time, it appears that shootings could be correlated with temperature/season given the data set when filtered by month is highest in summer months an lowest in winter months.</p>
+<p>I am curious if a less seasonally varying state would have the same distribution. Below I create the same plot for FL and MA</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of shootings by month in FL</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, state<span class="sc">==</span><span class="st">"Florida"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"Count"</span>)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 By Month in Florida"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of shootings by month in mA</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, state<span class="sc">==</span><span class="st">"Massachusetts"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"Count"</span>)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 By Month in Massachusetts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Mass has some months where count=0, which is omitted from the histogram when filtering out mass. Below I created a table and then created a bar graph from this to preserve the months where count=0</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mass_shootings_all_mass<span class="ot">&lt;-</span><span class="fu">filter</span>(mass_shootings_all, state<span class="sc">==</span><span class="st">"Massachusetts"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(month, <span class="at">.drop=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>mass_shootings_all_mass</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   month Count
+   &lt;fct&gt; &lt;int&gt;
+ 1 Jan       2
+ 2 Feb       0
+ 3 Mar       1
+ 4 Apr       2
+ 5 May       4
+ 6 Jun       5
+ 7 Jul       8
+ 8 Aug       6
+ 9 Sept      0
+10 Oct       3
+11 Nov       0
+12 Dec       2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all_mass, <span class="fu">aes</span>(<span class="at">x=</span>month, <span class="at">y=</span>Count))<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"identity"</span>)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">group=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating month distribution by state. This table DOES preserve the months where the count=0, I think histogram makes more sense here?</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>state, <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span><span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>))<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 by Month Across U.S. States"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating month distribution by state. This table DOES NOT preserve the months where the count=0 but easier to visualize patterns than with histogram</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>)<span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>state, <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span><span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>))<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 by Month Across U.S. States"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Going forward, I think I will try to create these plots for different states to see if this trend holds true across different states. I am also curious if i can find a dataset with typical temp ranges/state and seeing if there is correlation between temp variation and mass shootings.Am also curious to figure out what kind of distribution best describes the graph with all states.</p>
+<p>Whats going on??? rant: There are a number of confounding factors that could explain the apparent correlation with season/temp- people more/less likely to leave the house based on weather, more public gatherings during seasons with higher temps… also wondering if covid affects this. I could create the same graph by state and year (but there probaly isnt enough events to see a correlation, but maybe for a state with a high population?) And wondering if the average number killed also increases with higher temperatures as there may be more opportunities/gatherings of people</p>
+<p>Below, looking into how many people on average are shot during incidents</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Looking at distinct values for number killed</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(mass_shootings_all, number_killed) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(number_killed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 1
+   number_killed
+           &lt;dbl&gt;
+ 1             0
+ 2             1
+ 3             2
+ 4             3
+ 5             4
+ 6             5
+ 7             6
+ 8             7
+ 9             8
+10             9
+11            10
+12            11
+13            13
+14            16
+15            17
+16            22
+17            23
+18            27
+19            50
+20            59</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Looking at distinct values for number injured</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(mass_shootings_all, number_injured) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(number_injured)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28 × 1
+   number_injured
+            &lt;dbl&gt;
+ 1              0
+ 2              1
+ 3              2
+ 4              3
+ 5              4
+ 6              5
+ 7              6
+ 8              7
+ 9              8
+10              9
+# … with 18 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a new column/variable to measure severity based on above variables, number shot= number killed+number injured</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>mass_shootings_all<span class="ot">&lt;-</span>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">number_shot=</span> number_injured<span class="sc">+</span>number_killed)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Looking at distinct values for new variable</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(mass_shootings_all, number_shot) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(number_shot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 1
+   number_shot
+         &lt;dbl&gt;
+ 1           4
+ 2           5
+ 3           6
+ 4           7
+ 5           8
+ 6           9
+ 7          10
+ 8          11
+ 9          12
+10          13
+# … with 21 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Graphing distribution of number shot (killed or injured) in mass shootings</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#filtering out where number shot&gt;30</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(number_shot<span class="sc">&lt;</span><span class="dv">30</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(number_shot))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a new variable, severity, by categorizing the number shot into low, mid, high</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>mass_shootings_all<span class="ot">&lt;-</span>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">severity=</span> <span class="fu">case_when</span>(number_shot <span class="sc">&lt;=</span> <span class="dv">9</span> <span class="sc">~</span> <span class="st">"low"</span>, number_shot <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">&amp;</span> number_shot <span class="sc">&lt;=</span> <span class="dv">29</span> <span class="sc">~</span> <span class="st">"mid"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    number_shot <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">"high"</span>))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>mass_shootings_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,835 × 11
+   incide…¹ incident…² state city_…³ address numbe…⁴ numbe…⁵ Year  month numbe…⁶
+      &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;fct&gt;   &lt;dbl&gt;
+ 1   271363 2014-12-29 Loui… New Or… Poydra…       0       4 2014  Dec         4
+ 2   269679 2014-12-27 Cali… Los An… 8800 b…       1       3 2014  Dec         4
+ 3   270036 2014-12-27 Cali… Sacram… 4000 b…       0       4 2014  Dec         4
+ 4   269167 2014-12-26 Illi… East S… 2500 b…       1       3 2014  Dec         4
+ 5   268598 2014-12-24 Miss… Saint … 18th a…       1       3 2014  Dec         4
+ 6   267792 2014-12-23 Kent… Winche… 260 Ox…       1       3 2014  Dec         4
+ 7   268282 2014-12-22 Mich… Detroit Charle…       1       3 2014  Dec         4
+ 8   282186 2014-12-22 New … Webster 191 La…       4       2 2014  Dec         6
+ 9   267721 2014-12-22 Illi… Chicago 5700 b…       0       5 2014  Dec         5
+10   266570 2014-12-21 Flor… Saraso… 4034 N…       2       2 2014  Dec         4
+# … with 3,825 more rows, 1 more variable: severity &lt;chr&gt;, and abbreviated
+#   variable names ¹​incident_id, ²​incident_date, ³​city_or_county,
+#   ⁴​number_killed, ⁵​number_injured, ⁶​number_shot
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2D histogram, depicting incidents by year based on number killed, and a count for how many incidents in a particular year</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(number_shot<span class="sc">&lt;</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year, number_shot))<span class="sc">+</span><span class="fu">geom_bin2d</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings by Number of People Killed or Injured (2014-2022)*"</span>, <span class="at">caption=</span><span class="st">"*Shootings with over 100 killed/injured are exluded for readability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#boxplot with number_shot by year</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(number_shot<span class="sc">&lt;</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year, number_shot))<span class="sc">+</span><span class="fu">geom_boxplot</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings by Number of People Killed or Injured (2014-2022)"</span>, <span class="at">caption=</span><span class="st">"*Shootings with over 100 killed/injured are exluded for readability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#violin plot with number_shot by year</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(number_shot<span class="sc">&lt;</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year, number_shot))<span class="sc">+</span><span class="fu">geom_violin</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings by Number of People Killed or Injured (2014-2022)"</span>, <span class="at">caption=</span><span class="st">"*Shootings with over 100 killed/injured are exluded for readability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#scatterplot</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, number_shot<span class="sc">&lt;</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>incident_date, <span class="at">y=</span>number_shot))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Shootings 2014-2022"</span>, <span class="at">caption=</span><span class="st">"*Shootings with over 100 killed/injured are exluded for readability"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#stacked bar chart with severity by year</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(Year, <span class="at">fill=</span>severity))<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Severity of Shootings by Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#high severity shootings by year</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"high"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"High Severity Shootings by Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mid severity shootings by year</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"mid"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mid Severity Shootings by Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mid severity shootings by month</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"mid"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mid Severity Shootings by Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-9.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mid severity shootings by month line plot</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"mid"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mid Severity Shootings by Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-10.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#high severity shootings by month</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"high"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"High Severity Shootings by Month"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-11.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot of the mid/highest severity shootings</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"mid"</span> <span class="sc">|</span> severity<span class="sc">==</span><span class="st">"high"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>incident_date, <span class="at">y=</span>number_shot))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mid Severity Shootings 2014-2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProjectDraft2_EmmaRasmussen_files/figure-html/unnamed-chunk-6-12.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From these graphs, it looks like mass shootings are increasing in number over time, and “mid” severity shootings are also increasing slightly</p>
+
+
+<!-- -->
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb39" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "FinalProject"</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Emma Rasmussen"</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "FinalProjectDRAFT1"</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/26/2022"</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co">  - final project</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>Reading In the Data</span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_deauth</span>()</span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a vector of new column names</span></span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>mass_names<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"incident_id"</span>, <span class="st">"incident_date"</span>, <span class="st">"state"</span>, <span class="st">"city_or_county"</span>, <span class="st">"address"</span>, <span class="st">"number_killed"</span>, <span class="st">"number_injured"</span>, <span class="st">"delete"</span>)</span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a function to read in the data sets with new column names, skip the first row, and remove the "operation" column which contains links to news articles in original data source, and creating a "Year" column for ease of analysis</span></span>
+<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>read_shootings<span class="ot">&lt;-</span><span class="cf">function</span>(sheet_name){<span class="fu">read_sheet</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1rCnIYPQSkcZDCulp5KXAxmZUBad4QtrERi4_7tUMXqs/edit?usp=sharing"</span>, </span>
+<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">sheet=</span>sheet_name,</span>
+<span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">col_names=</span>mass_names, </span>
+<span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-47"><a href="#cb39-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="st">"YearSheet"</span><span class="ot">=</span>sheet_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-48"><a href="#cb39-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Year=</span><span class="fu">recode</span>(YearSheet, <span class="st">"MassShootings2014"</span><span class="ot">=</span><span class="st">"2014"</span>, <span class="st">"MassShootings2015"</span><span class="ot">=</span><span class="st">"2015"</span>, <span class="st">"MassShootings2016"</span><span class="ot">=</span><span class="st">"2016"</span>, <span class="st">"MassShootings2017"</span><span class="ot">=</span><span class="st">"2017"</span>, <span class="st">"MassShootings2018"</span><span class="ot">=</span><span class="st">"2018"</span>, <span class="st">"MassShootings2019"</span><span class="ot">=</span><span class="st">"2019"</span>, <span class="st">"MassShootings2020"</span><span class="ot">=</span><span class="st">"2020"</span>, <span class="st">"MassShootings2021"</span><span class="ot">=</span><span class="st">"2021"</span>, <span class="st">"MassShootings2022"</span><span class="ot">=</span><span class="st">"2022"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-49"><a href="#cb39-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>delete, <span class="sc">-</span>YearSheet)</span>
+<span id="cb39-50"><a href="#cb39-50" aria-hidden="true" tabindex="-1"></a>           }</span>
+<span id="cb39-51"><a href="#cb39-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-52"><a href="#cb39-52" aria-hidden="true" tabindex="-1"></a><span class="co">#using purrr/map_dfr to join data sheets for 2014 through 2021, applying the function read_shootings for consistent formatting</span></span>
+<span id="cb39-53"><a href="#cb39-53" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(</span>
+<span id="cb39-54"><a href="#cb39-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sheet_names</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1rCnIYPQSkcZDCulp5KXAxmZUBad4QtrERi4_7tUMXqs/edit?usp=sharing"</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>],</span>
+<span id="cb39-55"><a href="#cb39-55" aria-hidden="true" tabindex="-1"></a>  read_shootings)</span>
+<span id="cb39-56"><a href="#cb39-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-57"><a href="#cb39-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-58"><a href="#cb39-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-61"><a href="#cb39-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-62"><a href="#cb39-62" aria-hidden="true" tabindex="-1"></a><span class="co">#converting incident_date from "POSIXct" to "date" format</span></span>
+<span id="cb39-63"><a href="#cb39-63" aria-hidden="true" tabindex="-1"></a>mass_shootings_all</span>
+<span id="cb39-64"><a href="#cb39-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-65"><a href="#cb39-65" aria-hidden="true" tabindex="-1"></a>mass_shootings_all<span class="sc">$</span>incident_date<span class="ot">&lt;-</span><span class="fu">as.Date</span>(mass_shootings_all<span class="sc">$</span>incident_date)</span>
+<span id="cb39-66"><a href="#cb39-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-67"><a href="#cb39-67" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a month column and converting to factors</span></span>
+<span id="cb39-68"><a href="#cb39-68" aria-hidden="true" tabindex="-1"></a>mass_shootings_all<span class="ot">&lt;-</span>mass_shootings_all<span class="sc">%&gt;%</span> </span>
+<span id="cb39-69"><a href="#cb39-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month=</span><span class="fu">as.factor</span>(<span class="fu">month</span>(incident_date))) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-70"><a href="#cb39-70" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">month=</span><span class="fu">recode</span>(month, <span class="st">`</span><span class="at">1</span><span class="st">`</span><span class="ot">=</span><span class="st">"Jan"</span>, <span class="st">`</span><span class="at">2</span><span class="st">`</span><span class="ot">=</span><span class="st">"Feb"</span>, <span class="st">`</span><span class="at">3</span><span class="st">`</span><span class="ot">=</span><span class="st">"Mar"</span>, <span class="st">`</span><span class="at">4</span><span class="st">`</span><span class="ot">=</span><span class="st">"Apr"</span>, <span class="st">`</span><span class="at">5</span><span class="st">`</span><span class="ot">=</span><span class="st">"May"</span>, <span class="st">`</span><span class="at">6</span><span class="st">`</span><span class="ot">=</span><span class="st">"Jun"</span>, <span class="st">`</span><span class="at">7</span><span class="st">`</span><span class="ot">=</span><span class="st">"Jul"</span>, <span class="st">`</span><span class="at">8</span><span class="st">`</span><span class="ot">=</span><span class="st">"Aug"</span>, <span class="st">`</span><span class="at">9</span><span class="st">`</span><span class="ot">=</span><span class="st">"Sept"</span>, <span class="st">`</span><span class="at">10</span><span class="st">`</span><span class="ot">=</span><span class="st">"Oct"</span>, <span class="st">`</span><span class="at">11</span><span class="st">`</span><span class="ot">=</span><span class="st">"Nov"</span>, <span class="st">`</span><span class="at">12</span><span class="st">`</span><span class="ot">=</span><span class="st">"Dec"</span>))</span>
+<span id="cb39-71"><a href="#cb39-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-72"><a href="#cb39-72" aria-hidden="true" tabindex="-1"></a><span class="co">#sanity check</span></span>
+<span id="cb39-73"><a href="#cb39-73" aria-hidden="true" tabindex="-1"></a>mass_shootings_all</span>
+<span id="cb39-74"><a href="#cb39-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-75"><a href="#cb39-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-76"><a href="#cb39-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-77"><a href="#cb39-77" aria-hidden="true" tabindex="-1"></a>The number of rows in the df is equal to the sum of the rows from the original google sheets data (-9 for column names in google sheets)</span>
+<span id="cb39-78"><a href="#cb39-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-81"><a href="#cb39-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-82"><a href="#cb39-82" aria-hidden="true" tabindex="-1"></a><span class="co">#Can now use "year" column to easily analyze data by year</span></span>
+<span id="cb39-83"><a href="#cb39-83" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, Year<span class="sc">==</span><span class="st">"2014"</span>)</span>
+<span id="cb39-84"><a href="#cb39-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-85"><a href="#cb39-85" aria-hidden="true" tabindex="-1"></a><span class="co">#creating plot of shootings/year</span></span>
+<span id="cb39-86"><a href="#cb39-86" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(Year))<span class="sc">+</span></span>
+<span id="cb39-87"><a href="#cb39-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"Count"</span>)<span class="sc">+</span></span>
+<span id="cb39-88"><a href="#cb39-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022*"</span>, <span class="at">caption=</span><span class="st">"*2022 data goes up to August 27, 2022"</span>)</span>
+<span id="cb39-89"><a href="#cb39-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-90"><a href="#cb39-90" aria-hidden="true" tabindex="-1"></a><span class="co">#creating plot by month</span></span>
+<span id="cb39-91"><a href="#cb39-91" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(<span class="at">x=</span>month))<span class="sc">+</span></span>
+<span id="cb39-92"><a href="#cb39-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb39-93"><a href="#cb39-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 By Month"</span>)</span>
+<span id="cb39-94"><a href="#cb39-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-95"><a href="#cb39-95" aria-hidden="true" tabindex="-1"></a><span class="co">#creating line plot by year and month</span></span>
+<span id="cb39-96"><a href="#cb39-96" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(<span class="at">x=</span>month, <span class="at">group=</span>Year, <span class="at">color=</span>Year))<span class="sc">+</span></span>
+<span id="cb39-97"><a href="#cb39-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb39-98"><a href="#cb39-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span></span>
+<span id="cb39-99"><a href="#cb39-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings by Month 2014-2022*"</span>, <span class="at">caption=</span><span class="st">"*2022 data is only up until August 27, 2022"</span>)</span>
+<span id="cb39-100"><a href="#cb39-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-101"><a href="#cb39-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-102"><a href="#cb39-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-103"><a href="#cb39-103" aria-hidden="true" tabindex="-1"></a>Graph appears to jump to new heights/monthly max in May 2020. The two lines that generally trend above it are 2021 and 2022.</span>
+<span id="cb39-104"><a href="#cb39-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-105"><a href="#cb39-105" aria-hidden="true" tabindex="-1"></a>In addition to mass shootings increasing over time, it appears that shootings could be correlated with temperature/season given the data set when filtered by month is highest in summer months an lowest in winter months.</span>
+<span id="cb39-106"><a href="#cb39-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-107"><a href="#cb39-107" aria-hidden="true" tabindex="-1"></a>I am curious if a less seasonally varying state would have the same distribution. Below I create the same plot for FL and MA</span>
+<span id="cb39-108"><a href="#cb39-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-111"><a href="#cb39-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-112"><a href="#cb39-112" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of shootings by month in FL</span></span>
+<span id="cb39-113"><a href="#cb39-113" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, state<span class="sc">==</span><span class="st">"Florida"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-114"><a href="#cb39-114" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"Count"</span>)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>) <span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 By Month in Florida"</span>)</span>
+<span id="cb39-115"><a href="#cb39-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-116"><a href="#cb39-116" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of shootings by month in mA</span></span>
+<span id="cb39-117"><a href="#cb39-117" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, state<span class="sc">==</span><span class="st">"Massachusetts"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-118"><a href="#cb39-118" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"Count"</span>)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 By Month in Massachusetts"</span>)</span>
+<span id="cb39-119"><a href="#cb39-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-120"><a href="#cb39-120" aria-hidden="true" tabindex="-1"></a><span class="co">#Mass has some months where count=0, which is omitted from the histogram when filtering out mass. Below I created a table and then created a bar graph from this to preserve the months where count=0</span></span>
+<span id="cb39-121"><a href="#cb39-121" aria-hidden="true" tabindex="-1"></a>mass_shootings_all_mass<span class="ot">&lt;-</span><span class="fu">filter</span>(mass_shootings_all, state<span class="sc">==</span><span class="st">"Massachusetts"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-122"><a href="#cb39-122" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(month, <span class="at">.drop=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-123"><a href="#cb39-123" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>())</span>
+<span id="cb39-124"><a href="#cb39-124" aria-hidden="true" tabindex="-1"></a>mass_shootings_all_mass</span>
+<span id="cb39-125"><a href="#cb39-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-126"><a href="#cb39-126" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all_mass, <span class="fu">aes</span>(<span class="at">x=</span>month, <span class="at">y=</span>Count))<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"identity"</span>)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">group=</span><span class="dv">1</span>)</span>
+<span id="cb39-127"><a href="#cb39-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-128"><a href="#cb39-128" aria-hidden="true" tabindex="-1"></a><span class="co">#creating month distribution by state. This table DOES preserve the months where the count=0, I think histogram makes more sense here?</span></span>
+<span id="cb39-129"><a href="#cb39-129" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>state, <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span><span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>))<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 by Month Across U.S. States"</span>)</span>
+<span id="cb39-130"><a href="#cb39-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-131"><a href="#cb39-131" aria-hidden="true" tabindex="-1"></a><span class="co">#creating month distribution by state. This table DOES NOT preserve the months where the count=0 but easier to visualize patterns than with histogram</span></span>
+<span id="cb39-132"><a href="#cb39-132" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>)<span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>state, <span class="at">scales =</span> <span class="st">"free_y"</span>)<span class="sc">+</span><span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>))<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings 2014-2022 by Month Across U.S. States"</span>)</span>
+<span id="cb39-133"><a href="#cb39-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-134"><a href="#cb39-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-135"><a href="#cb39-135" aria-hidden="true" tabindex="-1"></a>Going forward, I think I will try to create these plots for different states to see if this trend holds true across different states. I am also curious if i can find a dataset with typical temp ranges/state and seeing if there is correlation between temp variation and mass shootings.Am also curious to figure out what kind of distribution best describes the graph with all states.</span>
+<span id="cb39-136"><a href="#cb39-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-137"><a href="#cb39-137" aria-hidden="true" tabindex="-1"></a>Whats going on??? rant: There are a number of confounding factors that could explain the apparent correlation with season/temp- people more/less likely to leave the house based on weather, more public gatherings during seasons with higher temps... also wondering if covid affects this. I could create the same graph by state and year (but there probaly isnt enough events to see a correlation, but maybe for a state with a high population?) And wondering if the average number killed also increases with higher temperatures as there may be more opportunities/gatherings of people</span>
+<span id="cb39-138"><a href="#cb39-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-139"><a href="#cb39-139" aria-hidden="true" tabindex="-1"></a>Below, looking into how many people on average are shot during incidents</span>
+<span id="cb39-142"><a href="#cb39-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-143"><a href="#cb39-143" aria-hidden="true" tabindex="-1"></a><span class="co">#Looking at distinct values for number killed</span></span>
+<span id="cb39-144"><a href="#cb39-144" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(mass_shootings_all, number_killed) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-145"><a href="#cb39-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(number_killed)</span>
+<span id="cb39-146"><a href="#cb39-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-147"><a href="#cb39-147" aria-hidden="true" tabindex="-1"></a><span class="co">#Looking at distinct values for number injured</span></span>
+<span id="cb39-148"><a href="#cb39-148" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(mass_shootings_all, number_injured) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-149"><a href="#cb39-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(number_injured)</span>
+<span id="cb39-150"><a href="#cb39-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-151"><a href="#cb39-151" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a new column/variable to measure severity based on above variables, number shot= number killed+number injured</span></span>
+<span id="cb39-152"><a href="#cb39-152" aria-hidden="true" tabindex="-1"></a>mass_shootings_all<span class="ot">&lt;-</span>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb39-153"><a href="#cb39-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">number_shot=</span> number_injured<span class="sc">+</span>number_killed)</span>
+<span id="cb39-154"><a href="#cb39-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-155"><a href="#cb39-155" aria-hidden="true" tabindex="-1"></a><span class="co">#Looking at distinct values for new variable</span></span>
+<span id="cb39-156"><a href="#cb39-156" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(mass_shootings_all, number_shot) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-157"><a href="#cb39-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(number_shot)</span>
+<span id="cb39-158"><a href="#cb39-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-159"><a href="#cb39-159" aria-hidden="true" tabindex="-1"></a><span class="co">#Graphing distribution of number shot (killed or injured) in mass shootings</span></span>
+<span id="cb39-160"><a href="#cb39-160" aria-hidden="true" tabindex="-1"></a><span class="co">#filtering out where number shot&gt;30</span></span>
+<span id="cb39-161"><a href="#cb39-161" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb39-162"><a href="#cb39-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(number_shot<span class="sc">&lt;</span><span class="dv">30</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-163"><a href="#cb39-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(number_shot))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>)</span>
+<span id="cb39-164"><a href="#cb39-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-165"><a href="#cb39-165" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a new variable, severity, by categorizing the number shot into low, mid, high</span></span>
+<span id="cb39-166"><a href="#cb39-166" aria-hidden="true" tabindex="-1"></a>mass_shootings_all<span class="ot">&lt;-</span>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb39-167"><a href="#cb39-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">severity=</span> <span class="fu">case_when</span>(number_shot <span class="sc">&lt;=</span> <span class="dv">9</span> <span class="sc">~</span> <span class="st">"low"</span>, number_shot <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">&amp;</span> number_shot <span class="sc">&lt;=</span> <span class="dv">29</span> <span class="sc">~</span> <span class="st">"mid"</span>,</span>
+<span id="cb39-168"><a href="#cb39-168" aria-hidden="true" tabindex="-1"></a>    number_shot <span class="sc">&gt;=</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">"high"</span>))</span>
+<span id="cb39-169"><a href="#cb39-169" aria-hidden="true" tabindex="-1"></a>mass_shootings_all</span>
+<span id="cb39-170"><a href="#cb39-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-171"><a href="#cb39-171" aria-hidden="true" tabindex="-1"></a><span class="co">#2D histogram, depicting incidents by year based on number killed, and a count for how many incidents in a particular year</span></span>
+<span id="cb39-172"><a href="#cb39-172" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb39-173"><a href="#cb39-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(number_shot<span class="sc">&lt;</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-174"><a href="#cb39-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year, number_shot))<span class="sc">+</span><span class="fu">geom_bin2d</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings by Number of People Killed or Injured (2014-2022)*"</span>, <span class="at">caption=</span><span class="st">"*Shootings with over 100 killed/injured are exluded for readability"</span>)</span>
+<span id="cb39-175"><a href="#cb39-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-176"><a href="#cb39-176" aria-hidden="true" tabindex="-1"></a><span class="co">#boxplot with number_shot by year</span></span>
+<span id="cb39-177"><a href="#cb39-177" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb39-178"><a href="#cb39-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(number_shot<span class="sc">&lt;</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-179"><a href="#cb39-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year, number_shot))<span class="sc">+</span><span class="fu">geom_boxplot</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings by Number of People Killed or Injured (2014-2022)"</span>, <span class="at">caption=</span><span class="st">"*Shootings with over 100 killed/injured are exluded for readability"</span>)</span>
+<span id="cb39-180"><a href="#cb39-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-181"><a href="#cb39-181" aria-hidden="true" tabindex="-1"></a><span class="co">#violin plot with number_shot by year</span></span>
+<span id="cb39-182"><a href="#cb39-182" aria-hidden="true" tabindex="-1"></a>mass_shootings_all <span class="sc">%&gt;%</span> </span>
+<span id="cb39-183"><a href="#cb39-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(number_shot<span class="sc">&lt;</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-184"><a href="#cb39-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year, number_shot))<span class="sc">+</span><span class="fu">geom_violin</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mass Shootings by Number of People Killed or Injured (2014-2022)"</span>, <span class="at">caption=</span><span class="st">"*Shootings with over 100 killed/injured are exluded for readability"</span>)</span>
+<span id="cb39-185"><a href="#cb39-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-186"><a href="#cb39-186" aria-hidden="true" tabindex="-1"></a><span class="co">#scatterplot</span></span>
+<span id="cb39-187"><a href="#cb39-187" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, number_shot<span class="sc">&lt;</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-188"><a href="#cb39-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>incident_date, <span class="at">y=</span>number_shot))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Shootings 2014-2022"</span>, <span class="at">caption=</span><span class="st">"*Shootings with over 100 killed/injured are exluded for readability"</span>)</span>
+<span id="cb39-189"><a href="#cb39-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-190"><a href="#cb39-190" aria-hidden="true" tabindex="-1"></a><span class="co">#stacked bar chart with severity by year</span></span>
+<span id="cb39-191"><a href="#cb39-191" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mass_shootings_all, <span class="fu">aes</span>(Year, <span class="at">fill=</span>severity))<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Severity of Shootings by Year"</span>)</span>
+<span id="cb39-192"><a href="#cb39-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-193"><a href="#cb39-193" aria-hidden="true" tabindex="-1"></a><span class="co">#high severity shootings by year</span></span>
+<span id="cb39-194"><a href="#cb39-194" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"high"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-195"><a href="#cb39-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"High Severity Shootings by Year"</span>)</span>
+<span id="cb39-196"><a href="#cb39-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-197"><a href="#cb39-197" aria-hidden="true" tabindex="-1"></a><span class="co">#mid severity shootings by year</span></span>
+<span id="cb39-198"><a href="#cb39-198" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"mid"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-199"><a href="#cb39-199" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mid Severity Shootings by Year"</span>)</span>
+<span id="cb39-200"><a href="#cb39-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-201"><a href="#cb39-201" aria-hidden="true" tabindex="-1"></a><span class="co">#mid severity shootings by month</span></span>
+<span id="cb39-202"><a href="#cb39-202" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"mid"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-203"><a href="#cb39-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mid Severity Shootings by Month"</span>)</span>
+<span id="cb39-204"><a href="#cb39-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-205"><a href="#cb39-205" aria-hidden="true" tabindex="-1"></a><span class="co">#mid severity shootings by month line plot</span></span>
+<span id="cb39-206"><a href="#cb39-206" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"mid"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-207"><a href="#cb39-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">group=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mid Severity Shootings by Month"</span>)</span>
+<span id="cb39-208"><a href="#cb39-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-209"><a href="#cb39-209" aria-hidden="true" tabindex="-1"></a><span class="co">#high severity shootings by month</span></span>
+<span id="cb39-210"><a href="#cb39-210" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"high"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-211"><a href="#cb39-211" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(month))<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">stat=</span><span class="st">"count"</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"High Severity Shootings by Month"</span>)</span>
+<span id="cb39-212"><a href="#cb39-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-213"><a href="#cb39-213" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot of the mid/highest severity shootings</span></span>
+<span id="cb39-214"><a href="#cb39-214" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(mass_shootings_all, severity<span class="sc">==</span><span class="st">"mid"</span> <span class="sc">|</span> severity<span class="sc">==</span><span class="st">"high"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-215"><a href="#cb39-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>incident_date, <span class="at">y=</span>number_shot))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Mid Severity Shootings 2014-2022"</span>)</span>
+<span id="cb39-216"><a href="#cb39-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-217"><a href="#cb39-217" aria-hidden="true" tabindex="-1"></a>From these graphs, it looks like mass shootings are increasing in number over time, and "mid" severity shootings are also increasing slightly</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

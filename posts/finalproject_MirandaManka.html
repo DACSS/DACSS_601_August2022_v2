@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Miranda Manka">
+<meta name="dcterms.date" content="2022-08-29">
+<meta name="description" content="Working on my final project - Progress 1">
+
+<title>- Final Project Draft/Work in Progress</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Final Project Draft/Work in Progress">
+<meta name="twitter:description" content="Working on my final project - Progress 1">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introductionresearch-questions" id="toc-introductionresearch-questions" class="nav-link active" data-scroll-target="#introductionresearch-questions">Introduction/Research Question(s)</a></li>
+  <li><a href="#this-is-just-starting-to-lay-out-some-of-what-i-need-for-my-final-project.-i-will-be-editing-removing-and-adding-a-lot-over-the-next-few-days.-most-of-this-right-now-is-unpolished-and-is-just-laying-the-ground-work-to-build-on." id="toc-this-is-just-starting-to-lay-out-some-of-what-i-need-for-my-final-project.-i-will-be-editing-removing-and-adding-a-lot-over-the-next-few-days.-most-of-this-right-now-is-unpolished-and-is-just-laying-the-ground-work-to-build-on." class="nav-link" data-scroll-target="#this-is-just-starting-to-lay-out-some-of-what-i-need-for-my-final-project.-i-will-be-editing-removing-and-adding-a-lot-over-the-next-few-days.-most-of-this-right-now-is-unpolished-and-is-just-laying-the-ground-work-to-build-on.">This is just starting to lay out some of what I need for my final project. I will be editing, removing, and adding a lot over the next few days. Most of this right now is unpolished and is just laying the ground work to build on.</a>
+  <ul class="collapse">
+  <li><a href="#read-in-the-datasets" id="toc-read-in-the-datasets" class="nav-link" data-scroll-target="#read-in-the-datasets">Read in the datasets</a></li>
+  <li><a href="#clean-the-data" id="toc-clean-the-data" class="nav-link" data-scroll-target="#clean-the-data">Clean the data</a></li>
+  </ul></li>
+  <li><a href="#nmse-data-cleaning" id="toc-nmse-data-cleaning" class="nav-link" data-scroll-target="#nmse-data-cleaning">NMSE DATA CLEANING</a></li>
+  <li><a href="#ffa-data-cleaning" id="toc-ffa-data-cleaning" class="nav-link" data-scroll-target="#ffa-data-cleaning">FFA DATA CLEANING</a></li>
+  <li><a href="#merging" id="toc-merging" class="nav-link" data-scroll-target="#merging">MERGING</a></li>
+  <li><a href="#abbreviations-data-cleaning" id="toc-abbreviations-data-cleaning" class="nav-link" data-scroll-target="#abbreviations-data-cleaning">ABBREVIATIONS DATA CLEANING</a></li>
+  <li><a href="#merging-1" id="toc-merging-1" class="nav-link" data-scroll-target="#merging-1">MERGING</a></li>
+  <li><a href="#question-here" id="toc-question-here" class="nav-link" data-scroll-target="#question-here">QUESTION HERE!</a>
+  <ul class="collapse">
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#provide-a-narrative-about-the-data-set-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code" id="toc-provide-a-narrative-about-the-data-set-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code" class="nav-link" data-scroll-target="#provide-a-narrative-about-the-data-set-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code">Provide a narrative about the data set and the variables in your dataset, including what type of data each variable is (communicate in a visually appealing way to non-experts - not to replicate r-code)</a></li>
+  </ul></li>
+  <li><a href="#variable-descriptions-for-reference-update-later-from-httpsdata.transportation.govdatasetnon-major-safety-eventsurir-txqm" id="toc-variable-descriptions-for-reference-update-later-from-httpsdata.transportation.govdatasetnon-major-safety-eventsurir-txqm" class="nav-link" data-scroll-target="#variable-descriptions-for-reference-update-later-from-httpsdata.transportation.govdatasetnon-major-safety-eventsurir-txqm">Variable descriptions for reference, update later (from https://data.transportation.gov/dataset/Non-major-Safety-Events/urir-txqm)</a>
+  <ul class="collapse">
+  <li><a href="#basic-descriptive-statistics-mean-median-and-standard-deviation-for-numerical-variables-and-frequencies-for-categorical-variables" id="toc-basic-descriptive-statistics-mean-median-and-standard-deviation-for-numerical-variables-and-frequencies-for-categorical-variables" class="nav-link" data-scroll-target="#basic-descriptive-statistics-mean-median-and-standard-deviation-for-numerical-variables-and-frequencies-for-categorical-variables">Basic descriptive statistics (mean, median, and standard deviation for numerical variables, and frequencies for categorical variables)</a></li>
+  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">Visualizations</a></li>
+  <li><a href="#descriptive-statistics-andor-visualizations-for-any-relevant-groupings-use-group_by-and-summarise" id="toc-descriptive-statistics-andor-visualizations-for-any-relevant-groupings-use-group_by-and-summarise" class="nav-link" data-scroll-target="#descriptive-statistics-andor-visualizations-for-any-relevant-groupings-use-group_by-and-summarise">Descriptive statistics and/or visualizations for any relevant groupings (use group_by() and summarise())</a></li>
+  <li><a href="#statistical-analysis" id="toc-statistical-analysis" class="nav-link" data-scroll-target="#statistical-analysis">Statistical Analysis</a></li>
+  </ul></li>
+  <li><a href="#instructions-for-reference" id="toc-instructions-for-reference" class="nav-link" data-scroll-target="#instructions-for-reference">Instructions for Reference</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Final Project Draft/Work in Progress</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">final_project</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Working on my final project - Progress 1
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miranda Manka </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 29, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="introductionresearch-questions" class="level2">
+<h2 class="anchored" data-anchor-id="introductionresearch-questions">Introduction/Research Question(s)</h2>
+</section>
+<section id="this-is-just-starting-to-lay-out-some-of-what-i-need-for-my-final-project.-i-will-be-editing-removing-and-adding-a-lot-over-the-next-few-days.-most-of-this-right-now-is-unpolished-and-is-just-laying-the-ground-work-to-build-on." class="level1">
+<h1>This is just starting to lay out some of what I need for my final project. I will be editing, removing, and adding a lot over the next few days. Most of this right now is unpolished and is just laying the ground work to build on.</h1>
+<p>I will be working with a dataset from the U.S. Department of Transportation on Non-Major Safety Events. This contains the transit agency name, the location, the type of event, the number of events/injuries, etc. I will be joining it with 2 other datases, one for city/state and population info, and one for transit agency abbreviations.</p>
+<p>A previous summer I did an internship at a transit company, so I have worked with some transit data before and have an interest in it.</p>
+<p>ADD MORE HERE</p>
+<section id="read-in-the-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-the-datasets">Read in the datasets</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/non_major_safety_events.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/Federal_Funding_Allocation.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>abb <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/abbreviations.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="clean-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="clean-the-data">Clean the data</h2>
+</section>
+</section>
+<section id="nmse-data-cleaning" class="level1">
+<h1>NMSE DATA CLEANING</h1>
+<p>Rename variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="ot">=</span> nmse <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ntd_id_5 =</span> <span class="st">`</span><span class="at">5 Digit NTD ID</span><span class="st">`</span>, <span class="at">ntd_id_4 =</span> <span class="st">`</span><span class="at">4 Digit NTD ID</span><span class="st">`</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">agency =</span> Agency, <span class="at">mode =</span> Mode, <span class="at">service_type =</span> <span class="st">`</span><span class="at">Type of Service</span><span class="st">`</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">month =</span> Month, <span class="at">year =</span> Year, <span class="at">sft_sec =</span> <span class="st">`</span><span class="at">Safety/Security</span><span class="st">`</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">event_type =</span> <span class="st">`</span><span class="at">Event Type</span><span class="st">`</span>, <span class="at">location =</span> Location, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">location_group =</span> <span class="st">`</span><span class="at">Location Group</span><span class="st">`</span>, <span class="at">total_events =</span> <span class="st">`</span><span class="at">Total Events</span><span class="st">`</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">customer_injuries =</span> <span class="st">`</span><span class="at">Customer Injuries</span><span class="st">`</span>, <span class="at">worker_injuries =</span> <span class="st">`</span><span class="at">Worker Injuries</span><span class="st">`</span>, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">other_injuries =</span> <span class="st">`</span><span class="at">Other Injuries</span><span class="st">`</span>, <span class="at">total_injuries =</span> <span class="st">`</span><span class="at">Total Injuries</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Make date field and reorder</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="ot">=</span> nmse <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">"date"</span> <span class="ot">=</span> <span class="fu">make_date</span>(<span class="at">year =</span> year, <span class="at">month =</span> month)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">relocate</span>(date, <span class="at">.after =</span> year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Drop ntd id 4</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="ot">=</span> nmse <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(ntd_id_4))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ffa-data-cleaning" class="level1">
+<h1>FFA DATA CLEANING</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"5 Digit NTD ID"</span>, <span class="st">"Agency"</span>, <span class="st">"Primary UZA Code"</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Primary UZA Name"</span>, <span class="st">"Primary  UZA Population"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ntd_id_5 =</span> <span class="st">`</span><span class="at">5 Digit NTD ID</span><span class="st">`</span>, <span class="at">agency_ffa =</span> Agency, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">prim_uza_code =</span> <span class="st">`</span><span class="at">Primary UZA Code</span><span class="st">`</span>, <span class="at">prim_uza_name =</span> <span class="st">`</span><span class="at">Primary UZA Name</span><span class="st">`</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">prim_uza_pop =</span> <span class="st">`</span><span class="at">Primary  UZA Population</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Still have to type out and explain what I do here and why.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">"ntd_id_5"</span>, as.numeric)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ntd_id_5))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(prim_uza_code) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(prim_uza_name) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(prim_uza_pop))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">440</span>, <span class="dv">445</span>, <span class="dv">470</span>, <span class="dv">501</span>, <span class="dv">512</span>, <span class="dv">516</span>, <span class="dv">732</span>, <span class="dv">764</span>, <span class="dv">911</span>, <span class="dv">912</span>, <span class="dv">1124</span>))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">53</span>, <span class="dv">236</span>, <span class="dv">382</span>, <span class="dv">542</span>, <span class="dv">543</span>, <span class="dv">574</span>, <span class="dv">934</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="merging" class="level1">
+<h1>MERGING</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>join <span class="ot">=</span> <span class="fu">left_join</span>(nmse, ffa, <span class="at">by =</span> <span class="st">"ntd_id_5"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>join <span class="ot">=</span> join <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(agency_ffa))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="abbreviations-data-cleaning" class="level1">
+<h1>ABBREVIATIONS DATA CLEANING</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>abb <span class="ot">=</span> abb <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">agency =</span> Full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>abb <span class="ot">=</span> abb <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Abbreviation =</span> <span class="fu">str_trim</span>(Abbreviation, <span class="at">side =</span> <span class="st">"both"</span>))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>abb <span class="ot">=</span> abb <span class="sc">%&gt;%</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agency =</span> <span class="fu">str_trim</span>(agency, <span class="at">side =</span> <span class="st">"both"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="merging-1" class="level1">
+<h1>MERGING</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>join <span class="ot">=</span> join <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agency =</span> <span class="fu">str_trim</span>(agency, <span class="at">side =</span> <span class="st">"both"</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>transit <span class="ot">=</span> <span class="fu">left_join</span>(join, abb, <span class="at">by =</span> <span class="st">"agency"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>transit <span class="ot">=</span> transit <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">abbrev =</span> Abbreviation) <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(abbrev, <span class="at">.after =</span> agency)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#transit = transit %&gt;%</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#  mutate(abbrev = case_when(</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#         agency == "County of Miami-Dade" ~ "MDT"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-here" class="level1">
+<h1>QUESTION HERE!</h1>
+<p>I stopped here, basically I was able to join the abbreviation data (into the already joined other 2 datasets) but some of them I realized were a little weird. For example the agency name of “County of Miami-Dade” in my dataset did not match up with an abbreviation, but looking in the abbreviation dataset, there is “Miami-Dade Transit” with the abbreviation “MDT” that should have been matched but wasn’t. My guess is the abbreviation dataset is from 2013 so some names may have changed. Also, some names got doubled up in the abbreviation dataset like “Bi-State Development Agency; Metropolitan Transit Authority of Harris County, Texas” with the abbrev “METRO” but in my dataset only has the name “Metropolitan Transit Authority of Harris County, Texas” so they didn’t match but they should. I couldn’t figure out an exact join/merge solution so I was going to match a few by hand but case_when doesn’t seem to be the correct solution because I need to just replace certain values; when I do that though it makes all the other ones empty and right now I can’t figure out the best way.</p>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(transit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    ntd_id_5        agency             abbrev              mode          
+ Min.   :    1   Length:81857       Length:81857       Length:81857      
+ 1st Qu.:30013   Class :character   Class :character   Class :character  
+ Median :40097   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :47354                                                           
+ 3rd Qu.:70006                                                           
+ Max.   :99425                                                           
+                                                                         
+ service_type           month            year           date           
+ Length:81857       Min.   : 1.00   Min.   :2008   Min.   :2008-01-01  
+ Class :character   1st Qu.: 3.00   1st Qu.:2009   1st Qu.:2009-10-01  
+ Mode  :character   Median : 6.00   Median :2013   Median :2013-05-01  
+                    Mean   : 6.36   Mean   :2014   Mean   :2013-12-15  
+                    3rd Qu.: 9.00   3rd Qu.:2017   3rd Qu.:2017-11-01  
+                    Max.   :12.00   Max.   :2022   Max.   :2022-08-01  
+                                                                       
+   sft_sec           event_type          location         location_group    
+ Length:81857       Length:81857       Length:81857       Length:81857      
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+  total_events     customer_injuries  worker_injuries  other_injuries   
+ Min.   :   1.00   Min.   :   0.000   Min.   : 0.000   Min.   :  0.000  
+ 1st Qu.:   1.00   1st Qu.:   1.000   1st Qu.: 0.000   1st Qu.:  0.000  
+ Median :   1.00   Median :   1.000   Median : 0.000   Median :  0.000  
+ Mean   :  12.51   Mean   :   2.644   Mean   : 0.273   Mean   :  0.108  
+ 3rd Qu.:   3.00   3rd Qu.:   2.000   3rd Qu.: 0.000   3rd Qu.:  0.000  
+ Max.   :5386.00   Max.   :1385.000   Max.   :36.000   Max.   :170.000  
+                   NA's   :13372      NA's   :13372    NA's   :13372    
+ total_injuries     prim_uza_code    prim_uza_name       prim_uza_pop     
+ Min.   :   1.000   Min.   :  1.00   Length:81857       Min.   :   50996  
+ 1st Qu.:   1.000   1st Qu.:  6.00   Class :character   1st Qu.: 1060061  
+ Median :   1.000   Median : 15.00   Mode  :character   Median : 2956746  
+ Mean   :   3.025   Mean   : 42.07                      Mean   : 4394923  
+ 3rd Qu.:   3.000   3rd Qu.: 41.00                      3rd Qu.: 5121892  
+ Max.   :1385.000   Max.   :601.00                      Max.   :18351295  
+ NA's   :13372      NA's   :444                         NA's   :444       </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(transit,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style        =</span> <span class="st">"grid"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">transit</h4>
+<strong>Dimensions</strong>: 81857 x 20
+  <br><strong>Duplicates</strong>: 17
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">ntd_id_5
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 47354.4 (28531)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 40097 ≤ 99425</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 39993 (0.6)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">612 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoF2/qt/QAAAIFJREFUWMPt1cEJwCAMBVBHqE7Qxg2a/XcracESkBLjper/Bw/iIwQSDGH+RHsS0RE3h2OGg4OD63JE5HKZz3FcpUmTqxT9kUvSlccVAtfp7t/b4+R2MaeX0O500aWcTJfHZXn9jGa7Y4aDG9MlvTF2J/de925aoysH3Lejxuxh/lybAFHK/QT89wAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0zMFQwMzo1ODowNSswMDowMPWFRqwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMzBUMDM6NTg6MDUrMDA6MDCE2P4QAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">agency
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Massachusetts Bay Transpo</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. MTA New York City Transit</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Chicago Transit Authority</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Los Angeles County Metrop</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Southeastern Pennsylvania</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Metropolitan Atlanta Rapi</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. County of Miami-Dade</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Washington Metropolitan A</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. City and County of San Fr</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Maryland Transit Administ</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 602 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3211</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2970</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2679</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2636</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2454</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2116</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2003</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1976</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1722</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1598</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">58492</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">71.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFcAAAC8BAMAAAD/ZS8eAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoF2/qt/QAAAIRJREFUaN7t1MENgCAQRFFK0A4EOpD+e/OiNw07RnAJf87vssnPhjDmUoprdcuJcwGD77EUUl2+xfQM7o/dxC/gvIPBH2CpOgOlZ/CfuF3PEiZ+cH/sJf6oHAgGP2ApJAOlZ/AwmPjB0+J28dMzuD/mmYOnxV7it2y7DiyGgafEUkij7QBaMh9s5ssRRwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0zMFQwMzo1ODowNSswMDowMPWFRqwAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMzBUMDM6NTg6MDUrMDA6MDCE2P4QAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">abbrev
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. MBTA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. NYCT</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. CTA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. LACMTA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. SEPTA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. MARTA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. WMATA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. GCRTA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. TriMet</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. DART</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 21 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3211</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">9.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2970</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2679</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2636</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2454</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2116</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1976</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1467</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1426</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1378</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12249</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">35.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADIAAAC8BAMAAADIq+AqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoF2/qt/QAAAH9JREFUWMPt09EJgDAMhOGu0BFiN2j2300EETRe1RhKC3ev30vJT1Pqt2VbPm2XoqqV8lnwRbPdo7DPzOUEvoASKfjW7DOCePq0y91LMV+b8k/wrZ3lBL6A4hB8UfYZW6LLCZCilFjBt2afEcTTBwvLzVvO7HjBdZXyQvBFe2wF54g/sIq6X44AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMzBUMDM6NTg6MDUrMDA6MDD1hUasAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTMwVDAzOjU4OjA1KzAwOjAwhNj+EAAAAABJRU5ErkJggg=="></td>
+      <td align="center">47295
+(57.8%)</td>
+    </tr>
+    <tr>
+      <td align="left">mode
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. MB</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. HR</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. DR</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. LR</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. FB</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. TB</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. RB</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. MG</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. SR</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. CB</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 7 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">45959</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">56.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">12711</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">15.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9702</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8963</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">10.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1121</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">952</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">641</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">536</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">402</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">392</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">478</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEcAAAC8BAMAAADYy672AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoGQvP8RwAAAINJREFUWMPt1LENgDAMRFFGwBsQsgHsvxsSIgUFh4NSGOtf/WQ5ysnTFDOrynKhuouAQiPXB5vK3IPa5KJQWxyUFLlaYCofSlc0qs9rgzIgVwtM5T7pBZ07baC0yNUCU+krHQjkQzYMRXwdiD6B0iMbhgoI5EM2bBIIxBEDUTrQz1G0HMDYw1W/4PK5AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTMwVDAzOjU4OjA2KzAwOjAwxG1cMQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0zMFQwMzo1ODowNiswMDowMLUw5I0AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">service_type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. DO</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. PT</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. TX</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">67490</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">82.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">14213</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">17.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">154</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGMAAAA5BAMAAADQAIg3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoGQvP8RwAAAEhJREFUSMdjYBheQIl4oADVomxMNBjVMqqFXlrISMmCxAMB8rXArVUkWgvc+6NaRrUMHi1kpGSCCqmihbB7RrWMahmmWoYLAAAvWPDchOK8YwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0zMFQwMzo1ODowNiswMDowMMRtXDEAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMzBUMDM6NTg6MDYrMDA6MDC1MOSNAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">month
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 6.4 (3.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 6 ≤ 12</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 6 (0.5)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">12 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoGQvP8RwAAAH1JREFUWMPt0sENgCAMBVBGsEwgZQO7/25SgXqxiXgwhPx/ahsegaQhrB+6EplrwaUoTSIvW3P1TJRDTaJciiiSyLPdZTGnpTlt7BWPTm92nE5dZyfmcPoNvj/62vXp365tw7ir27B/clng4ODg4ODg4ODg4OBmdzyY7lbOCdiGywfDbYsdAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTMwVDAzOjU4OjA2KzAwOjAwxG1cMQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0zMFQwMzo1ODowNiswMDowMLUw5I0AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">year
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 2013.5 (4.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2008 ≤ 2013 ≤ 2022</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 8 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">15 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoGQvP8RwAAAHZJREFUWMPt1lEKgCAMBmCPUJ6gthvo/e/WYkqWmSx6sv9/mTg/BUHQufFDktmQKTmOMcDBwcHBwcHBwT07y1erdJYj4eC+dHTK2ndppc7HVJpO9/QVOJzXV3Nx0ttPqQCXvXDruFvgGk5udXnjZPQXR8ZkN3I24uFWIOj2MhcAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMzBUMDM6NTg6MDYrMDA6MDDEbVwxAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTMwVDAzOjU4OjA2KzAwOjAwtTDkjQAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">date
+[Date]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min : 2008-01-01</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">med : 2013-05-01</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">max : 2022-08-01</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">range : 14y 7m 0d</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">176 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoHNfTM0QAAAHxJREFUWMPt1MEJwCAMBVBHqBu0doTsv1vNIfAR0eihhfR/yEHJI3rQlOIn15SaK/tygLtFhI6Oji6K8/6FrfPOpKOje8+173nmrL/dnzlb7zidueKsH/ft3D2Hd8LCuT2HPb1CN+obOa+ho6P7l9M/5dxwWl+5shhzkfMAJCeTcG7kQO8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMzBUMDM6NTg6MDcrMDA6MDBiGleFAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTMwVDAzOjU4OjA3KzAwOjAwE0fvOQAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">sft_sec
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. SEC</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. SFT</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">17345</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">21.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">64512</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">78.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAF8AAAAnBAMAAACbE4lqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoHNfTM0QAAADtJREFUOMtjYBgeQAkBFAXxAQGoBmVjOBjVMKqBIg0kJz5BYgH9NCgRCxQwQwk/GNUwqoGABpIT31AHAFI4sGCejuR/AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTMwVDAzOjU4OjA3KzAwOjAwYhpXhQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0zMFQwMzo1ODowNyswMDowMBNH7zkAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">event_type
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Not Otherwise Classified </td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Fire</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Larceny</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Non-Aggravated Assault</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Robbery</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Other Arrests</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Trespassing</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Vandalism</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Fare Evasion</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Motor Vehicle Theft</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 2 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">60484</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">73.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">4028</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3611</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2712</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2189</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2183</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2178</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1500</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">1488</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">669</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">815</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">1.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFoAAAC8BAMAAAAKm6SuAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoHNfTM0QAAAItJREFUaN7t1bENwCAQQ1FWyAgcG8D+uyVFipQ2IhKXfNdPICRblJI3oeXWbSjp6J9rr1WHlil93WLoNjoavVh7HVTorI6o1ivR6NXa66BCn2c7ukkjRqMd7XVQsqwBnVSzBvSXNf1GozdcQ7VeiUYv114HJUu/0dvoN/vtae3bQaN30RpmDeicOmNOiLUugjks8hcAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMzBUMDM6NTg6MDcrMDA6MDBiGleFAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTMwVDAzOjU4OjA3KzAwOjAwE0fvOQAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">location
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Not a securement issue</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Boarding / alighting: Wit</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Boarding / alighting: Wit</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Other</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Boarding / alighting: Wit</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Revenue facility: transit</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Securement issue</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. In transit vehicle</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. No Location Specified</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Non-revenue facility</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 10 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">18196</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">22.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8564</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">10.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">8117</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">9.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">7412</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">9.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5840</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5160</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5063</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">4888</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">6.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">4154</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3327</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">11136</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">13.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACQAAAC8BAMAAADiGxGFAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoHNfTM0QAAAIRJREFUSMftltEJwDAIRLOCI9huYPffrdCWaPECFvJRNPf5IAc+DNja3GwmD9qPHsmKwNhkMkb3kxe66qUcAiY+KGRfXw8BEyNf5LqkHgIm4itHrl4KImAirJB9fXoExl6+lsJfKjRfW7ukIgImoivHvr4kAiaiCvWs0Y3ux09WBMaelRNGjOuRIFa9/AAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0zMFQwMzo1ODowNyswMDowMGIaV4UAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMzBUMDM6NTg6MDcrMDA6MDATR+85AAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">location_group
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Facility</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Other</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Vehicle</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">46425</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">56.7%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">9355</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">26077</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">31.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEgAAAA5BAMAAABnvXAQAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoHNfTM0QAAAEhJREFUSMdjYBicQAkvgCpSNsYDjEYVDXlFRKUCQbyAFEUQYxXxK4I4fFTRsFVEVCoQxAtIT3RIALfDkTLIqKLhpYioVDDYAABFycKRQNoVVwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0zMFQwMzo1ODowNyswMDowMGIaV4UAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMzBUMDM6NTg6MDcrMDA6MDATR+85AAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">total_events
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 12.5 (133.3)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 1 ≤ 5386</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2 (10.7)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">699 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoIpUvRQAAAADpJREFUWMPtyzEBwCAMALBK2BxAJ6H+vcGBgPFC8ififDn1979nva+qPM/zPM/zPM/zPO/Wl5tanG8A6WQPDOherSoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMzBUMDM6NTg6MDcrMDA6MDBiGleFAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTMwVDAzOjU4OjA4KzAwOjAw5Q+f0AAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">customer_injuries
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 2.6 (8.3)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 1 ≤ 1385</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1 (3.1)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">121 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoIpUvRQAAAADhJREFUWMPty7ERABAQALAfgQ0cG/j9d6OwgJakT8T7+lYvlPNG5vQ8z/M8z/M8z/O8X1+/1OJ9C+2gCmf2Ic+0AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTMwVDAzOjU4OjA4KzAwOjAwlFInbAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0zMFQwMzo1ODowOCswMDowMOUPn9AAAAAASUVORK5CYII="></td>
+      <td align="center">13372
+(16.3%)</td>
+    </tr>
+    <tr>
+      <td align="left">worker_injuries
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.3 (1.3)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0 ≤ 36</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (4.8)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">37 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoIpUvRQAAAADxJREFUWMPty0EVgDAMBbBKAAfwcTD8e9tlBnrtS+6pmi/J3XGd9/3L8zzP8zzP8zzP8ya85O2/ND013wYi8QFeewEyfQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOC0zMFQwMzo1ODowOCswMDowMJRSJ2wAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDgtMzBUMDM6NTg6MDgrMDA6MDDlD5/QAAAAAElFTkSuQmCC"></td>
+      <td align="center">13372
+(16.3%)</td>
+    </tr>
+    <tr>
+      <td align="left">other_injuries
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.1 (2.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0 ≤ 170</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0 (22.5)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">53 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoIpUvRQAAAADhJREFUWMPtyzENACAMALBJAAdkOAD/3ngwsBfavxHvy8xe0e6be3me53me53me53nety+LRrzvAOLRASxE1XugAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTMwVDAzOjU4OjA4KzAwOjAwlFInbAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0zMFQwMzo1ODowOCswMDowMOUPn9AAAAAASUVORK5CYII="></td>
+      <td align="center">13372
+(16.3%)</td>
+    </tr>
+    <tr>
+      <td align="left">total_injuries
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 3 (8.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 1 ≤ 1385</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2 (2.9)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">129 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoIpUvRQAAAADhJREFUWMPty7ERABAQALAfgQ0cG/j9d6OwgJakT8T7+lYvlPNG5vQ8z/M8z/M8z/O8X1+/1OJ9C+2gCmf2Ic+0AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA4LTMwVDAzOjU4OjA4KzAwOjAwlFInbAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOC0zMFQwMzo1ODowOCswMDowMOUPn9AAAAAASUVORK5CYII="></td>
+      <td align="center">13372
+(16.3%)</td>
+    </tr>
+    <tr>
+      <td align="left">prim_uza_code
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 42.1 (71.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 ≤ 15 ≤ 601</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 35 (1.7)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">350 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoIpUvRQAAAAFhJREFUWMPt17EJACEMQNGMoBvc6QZm/90uhYKFRXJWyv9g+RCSKiL3V6wcKHVXVRsOh8PhcDgcDofD4fZc5CabnQb+PNXZaN4/zp5rrAvnWslwJdgj9/cBo/cQakrbhPIAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMzBUMDM6NTg6MDgrMDA6MDCUUidsAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTMwVDAzOjU4OjA4KzAwOjAw5Q+f0AAAAABJRU5ErkJggg=="></td>
+      <td align="center">444
+(0.5%)</td>
+    </tr>
+    <tr>
+      <td align="left">prim_uza_name
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. New York-Newark, NY-NJ-CT</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Los Angeles-Long Beach-An</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. San Francisco-Oakland, CA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. Philadelphia, PA-NJ-DE-MD</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. Boston, MA-NH-RI</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. Chicago, IL-IN</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. Miami, FL</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. Seattle, WA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. Washington, DC-VA-MD</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. Atlanta, GA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 340 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5932</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">7.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">4520</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">4378</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">5.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3554</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3377</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">3367</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">4.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2783</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2536</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2509</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">3.1%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">2375</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.9%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">46082</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">56.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEgAAAC8BAMAAAApwPV7AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoIpUvRQAAAAIhJREFUWMPt1MENgCAQRFFa2BKQDqD/3uSg3lyHhCjgn/OLkvA1hDG31dntDpRKyaA5kXTB5q4F1bdF5eCglZFUgblrjO4ZJe9jAc2PpArM3fWkqJwJtDSSKjB3RAciOtB36PWeBJQyaGkkVWDWCxEdqGd09ATiJwb6Q3TezoMXZxk0MpIueLTtMaTA3ya3RP8AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMzBUMDM6NTg6MDgrMDA6MDCUUidsAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTMwVDAzOjU4OjA4KzAwOjAw5Q+f0AAAAABJRU5ErkJggg=="></td>
+      <td align="center">444
+(0.5%)</td>
+    </tr>
+    <tr>
+      <td align="left">prim_uza_pop
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 4394923 (4899281)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">50996 ≤ 2956746 ≤ 18351295</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 4061831 (1.1)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">350 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5ggeAzoJ0kzh1gAAAHNJREFUWMPt1sEJgEAMBMArQa8CXTsw/fcmghKCn+SIoGH3kUdgPgdZrrX6ATBHMl1uk52Ojo7uLQesQ06Ejo4uyfl+CE/nu/xU52gM43DG90LG6aD7g+vAMuREarluL8Tv7OZjThsq5rRp6OhyHIK5XeUc43tExxnJlgUAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDgtMzBUMDM6NTg6MDkrMDA6MDAyJSzYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA4LTMwVDAzOjU4OjA5KzAwOjAwQ3iUZAAAAABJRU5ErkJggg=="></td>
+      <td align="center">444
+(0.5%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-08-29</p>
+</div>
+</div>
+</div>
+</section>
+<section id="provide-a-narrative-about-the-data-set-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="provide-a-narrative-about-the-data-set-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code">Provide a narrative about the data set and the variables in your dataset, including what type of data each variable is (communicate in a visually appealing way to non-experts - not to replicate r-code)</h2>
+<p>TBD</p>
+</section>
+</section>
+<section id="variable-descriptions-for-reference-update-later-from-httpsdata.transportation.govdatasetnon-major-safety-eventsurir-txqm" class="level1">
+<h1>Variable descriptions for reference, update later (from https://data.transportation.gov/dataset/Non-major-Safety-Events/urir-txqm)</h1>
+<p>ntd_id_5 [NUM] = A five-digit identifying number for each agency used in the current NTD system.</p>
+<p>agency [CHAR] = The legal name of the entity reporting to the National Transit Database.</p>
+<p>mode [CHAR] = A system for carrying transit passengers described by specific right-of-way (ROW), technology and operational features.</p>
+<p>service_type [CHAR] = Describes how public transportation services are provided by the transit agency: directly operated (DO) or purchased transportation which also includes from Taxi Operators and Transportation Network Companies (PT, TX, TN) services.</p>
+<p>month [NUM] = The month in which the Non-major incident occurred.</p>
+<p>year [NUM] = The year in which the Non-major incident occurred.</p>
+<p>date [DATE] = The date in which the Non-major incident occurred (combined month and year, each was given a “day” value of 1 (first of the month)).</p>
+<p>sft_sec [CHAR] = Identifier of a Safety (SFT) or (Security Event). [Safety Event: A collision, derailment, fire, hazardous material spill, act of nature (Act of God), evacuation, or OSONOC occurring on transit right-of-way, in a transit revenue facility, in a transit maintenance facility, or involving a transit revenue vehicle and meeting established NTD thresholds.] OR [Security event: An occurrence of a bomb threat, bombing, arson, hijacking, sabotage, cyber security event, assault, robbery, rape, burglary, suicide, attempted suicide (not involving a transit vehicle), larceny, theft, vandalism, homicide, CBR (chemical/biological/radiological) or nuclear release, or other event.]</p>
+<p>event_type [CHAR] = The type of event that occurred.</p>
+<p>location [CHAR] = The area in facility, vehicle, or other where the event took place.</p>
+<p>location_group [CHAR] = General grouping of the location column that can fall into either facility, vehicle, or other.</p>
+<p>total_events [NUM] = Less severe incidents or events that do not meet the requirements of Reportable Events: Other safety occurrences not otherwise classified (injuries); and Fires. The number is determined by mode, type of service, month, and location.</p>
+<p>customer_injuries [NUM] = Count of Customer Injuries for the given event.</p>
+<p>worker_injuries [NUM] = Count of Worker Injuries for the given event.</p>
+<p>other_injuries [NUM] = Count of Other Injuries for the given event.</p>
+<p>total_injuries [NUM] = Sum of the Count of all person type injuries for the given event.</p>
+<section id="basic-descriptive-statistics-mean-median-and-standard-deviation-for-numerical-variables-and-frequencies-for-categorical-variables" class="level2">
+<h2 class="anchored" data-anchor-id="basic-descriptive-statistics-mean-median-and-standard-deviation-for-numerical-variables-and-frequencies-for-categorical-variables">Basic descriptive statistics (mean, median, and standard deviation for numerical variables, and frequencies for categorical variables)</h2>
+<p>Mostly shown already in summary above but I did these before and I don’t want to remove them just yet if I decide I want to keep a few.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_events, customer_injuries, worker_injuries, other_injuries, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>     total_injuries) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(<span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">median =</span> median, <span class="at">sd =</span> sd), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 15
+  total_events…¹ custo…² worke…³ other…⁴ total…⁵ total…⁶ custo…⁷ worke…⁸ other…⁹
+           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1           12.5    2.64   0.273   0.108    3.02       1       1       0       0
+# … with 6 more variables: total_injuries_median &lt;dbl&gt;, total_events_sd &lt;dbl&gt;,
+#   customer_injuries_sd &lt;dbl&gt;, worker_injuries_sd &lt;dbl&gt;,
+#   other_injuries_sd &lt;dbl&gt;, total_injuries_sd &lt;dbl&gt;, and abbreviated variable
+#   names ¹​total_events_mean, ²​customer_injuries_mean, ³​worker_injuries_mean,
+#   ⁴​other_injuries_mean, ⁵​total_injuries_mean, ⁶​total_events_median,
+#   ⁷​customer_injuries_median, ⁸​worker_injuries_median, ⁹​other_injuries_median
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(agency) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+   agency                                                   count proportion
+   &lt;chr&gt;                                                    &lt;int&gt;      &lt;dbl&gt;
+ 1 Massachusetts Bay Transportation Authority                3211     0.0392
+ 2 MTA New York City Transit                                 2970     0.0363
+ 3 Chicago Transit Authority                                 2679     0.0327
+ 4 Los Angeles County Metropolitan Transportation Authority  2636     0.0322
+ 5 Southeastern Pennsylvania Transportation Authority        2454     0.0300
+ 6 Metropolitan Atlanta Rapid Transit Authority              2116     0.0258
+ 7 County of Miami-Dade                                      2003     0.0245
+ 8 Washington Metropolitan Area Transit Authority            1976     0.0241
+ 9 City and County of San Francisco                          1722     0.0210
+10 Maryland Transit Administration                           1598     0.0195</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mode) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 17 × 3
+   mode  count proportion
+   &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt;
+ 1 MB    45959  0.561    
+ 2 HR    12711  0.155    
+ 3 DR     9702  0.119    
+ 4 LR     8963  0.109    
+ 5 FB     1121  0.0137   
+ 6 TB      952  0.0116   
+ 7 RB      641  0.00783  
+ 8 MG      536  0.00655  
+ 9 SR      402  0.00491  
+10 CB      392  0.00479  
+11 AG      171  0.00209  
+12 YR      100  0.00122  
+13 VP       91  0.00111  
+14 PB       55  0.000672 
+15 CC       52  0.000635 
+16 IP        8  0.0000977
+17 MO        1  0.0000122</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(service_type) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  service_type count proportion
+  &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;
+1 DO           67490    0.824  
+2 PT           14213    0.174  
+3 TX             154    0.00188</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sft_sec) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  sft_sec count proportion
+  &lt;chr&gt;   &lt;int&gt;      &lt;dbl&gt;
+1 SFT     64512      0.788
+2 SEC     17345      0.212</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(event_type) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 3
+   event_type                             count proportion
+   &lt;chr&gt;                                  &lt;int&gt;      &lt;dbl&gt;
+ 1 Not Otherwise Classified Safety Events 60484    0.739  
+ 2 Fire                                    4028    0.0492 
+ 3 Larceny                                 3611    0.0441 
+ 4 Non-Aggravated Assault                  2712    0.0331 
+ 5 Robbery                                 2189    0.0267 
+ 6 Other Arrests                           2183    0.0267 
+ 7 Trespassing                             2178    0.0266 
+ 8 Vandalism                               1500    0.0183 
+ 9 Fare Evasion                            1488    0.0182 
+10 Motor Vehicle Theft                      669    0.00817
+11 Non-Violent Civil Disturbance            483    0.00590
+12 Burglary                                 332    0.00406</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 3
+   location                                     count proportion
+   &lt;chr&gt;                                        &lt;int&gt;      &lt;dbl&gt;
+ 1 Not a securement issue                       18196   0.222   
+ 2 Boarding / alighting: With stairs             8564   0.105   
+ 3 Boarding / alighting: With other              8117   0.0992  
+ 4 Other                                         7412   0.0905  
+ 5 Boarding / alighting: With lift or ramp       5840   0.0713  
+ 6 Revenue facility: transit station             5160   0.0630  
+ 7 Securement issue                              5063   0.0619  
+ 8 In transit vehicle                            4888   0.0597  
+ 9 No Location Specified                         4154   0.0507  
+10 Non-revenue facility                          3327   0.0406  
+11 Escalators                                    2145   0.0262  
+12 Stairs                                        2035   0.0249  
+13 Of roadway / right-of-way / parking facility  1681   0.0205  
+14 In or on vehicle                              1353   0.0165  
+15 On right-of-way                               1062   0.0130  
+16 Revenue facilities                            1056   0.0129  
+17 Of private vehicles from parking facility      614   0.00750 
+18 Ramps                                          578   0.00706 
+19 Elevators                                      557   0.00680 
+20 Of vehicles (Motor Vehicle Theft)               55   0.000672</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location_group) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  location_group count proportion
+  &lt;chr&gt;          &lt;int&gt;      &lt;dbl&gt;
+1 Facility       46425      0.567
+2 Vehicle        26077      0.319
+3 Other           9355      0.114</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Prefer prop.table?? I think it looks worse though, but I can do either</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location_group) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>()<span class="sc">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>location_group
+Facility    Other  Vehicle 
+56.71476 11.42847 31.85677 </code></pre>
+</div>
+</div>
+</section>
+<section id="visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
+<p>Be sure to use faceting, coloring, and titles as needed. Each visualization should be accompanied by descriptive text that highlights: the variable(s) used, what questions might be answered with the visualizations, and what conclusions you can draw</p>
+<p>TBD</p>
+</section>
+<section id="descriptive-statistics-andor-visualizations-for-any-relevant-groupings-use-group_by-and-summarise" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics-andor-visualizations-for-any-relevant-groupings-use-group_by-and-summarise">Descriptive statistics and/or visualizations for any relevant groupings (use group_by() and summarise())</h2>
+<p>For example, if you were interested in how average income varies by state, you might compute mean income for all states combined, and then compare this to the range and distribution of mean income for each individual state in the US. Identify limitations of your visualization, such as: -What questions are left unanswered with your visualizations -What about the visualizations may be unclear to a naive viewer -How could you improve the visualizations for the final project</p>
+<p>TBD</p>
+</section>
+<section id="statistical-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="statistical-analysis">Statistical Analysis</h2>
+<p>TBD</p>
+</section>
+</section>
+<section id="instructions-for-reference" class="level1">
+<h1>Instructions for Reference</h1>
+<p>The paper should include: -Introduction (1-2 pages): Define your research question. -Data: (2-3 pages) Describe your dataset, and include the code that generated the data import and cleaning. -Visualization (2-3 pages) Develop multiple visualizations that can help answer your research question. Describe the process that led you to the visualizations, explain the visuations, and explain what you learned from them. -Reflection (2-3 pages) Describe your process/experience with the project, including the decisions you made, what was most challenging, and what you wish you would have known. You can also discuss what the next steps would be, were you to continue with the project. -Conclusion (1-2) Explain what conclusions you can draw from your work, and what questions are still left unanswered. -Bibliography Include all relevant citations (Hint, at minimum you should cite the source of the dataset, R as a programming language, and the course textbook).</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb34" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project Draft/Work in Progress"</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Miranda Manka"</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Working on my final project - Progress 1"</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/29/2022"</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">  - final_project</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction/Research Question(s)</span></span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="fu"># This is just starting to lay out some of what I need for my final project. I will be editing, removing, and adding a lot over the next few days. Most of this right now is unpolished and is just laying the ground work to build on.</span></span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>I will be working with a dataset from the U.S. Department of Transportation on Non-Major Safety Events. This contains the transit agency name, the location, the type of event, the number of events/injuries, etc. I will be joining it with 2 other datases, one for city/state and population info, and one for transit agency abbreviations.</span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>A previous summer I did an internship at a transit company, so I have worked with some transit data before and have an interest in it.</span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>ADD MORE HERE</span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the datasets</span></span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a>nmse <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/non_major_safety_events.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/Federal_Funding_Allocation.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a>abb <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"_data/abbreviations.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Clean the data</span></span>
+<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># NMSE DATA CLEANING</span></span>
+<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a>Rename variables</span>
+<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a>nmse <span class="ot">=</span> nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ntd_id_5 =</span> <span class="st">`</span><span class="at">5 Digit NTD ID</span><span class="st">`</span>, <span class="at">ntd_id_4 =</span> <span class="st">`</span><span class="at">4 Digit NTD ID</span><span class="st">`</span>, </span>
+<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a>     <span class="at">agency =</span> Agency, <span class="at">mode =</span> Mode, <span class="at">service_type =</span> <span class="st">`</span><span class="at">Type of Service</span><span class="st">`</span>, </span>
+<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a>     <span class="at">month =</span> Month, <span class="at">year =</span> Year, <span class="at">sft_sec =</span> <span class="st">`</span><span class="at">Safety/Security</span><span class="st">`</span>, </span>
+<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a>     <span class="at">event_type =</span> <span class="st">`</span><span class="at">Event Type</span><span class="st">`</span>, <span class="at">location =</span> Location, </span>
+<span id="cb34-64"><a href="#cb34-64" aria-hidden="true" tabindex="-1"></a>     <span class="at">location_group =</span> <span class="st">`</span><span class="at">Location Group</span><span class="st">`</span>, <span class="at">total_events =</span> <span class="st">`</span><span class="at">Total Events</span><span class="st">`</span>, </span>
+<span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a>     <span class="at">customer_injuries =</span> <span class="st">`</span><span class="at">Customer Injuries</span><span class="st">`</span>, <span class="at">worker_injuries =</span> <span class="st">`</span><span class="at">Worker Injuries</span><span class="st">`</span>, </span>
+<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a>     <span class="at">other_injuries =</span> <span class="st">`</span><span class="at">Other Injuries</span><span class="st">`</span>, <span class="at">total_injuries =</span> <span class="st">`</span><span class="at">Total Injuries</span><span class="st">`</span>)</span>
+<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a>Make date field and reorder</span>
+<span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a>nmse <span class="ot">=</span> nmse <span class="sc">%&gt;%</span> </span>
+<span id="cb34-74"><a href="#cb34-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">"date"</span> <span class="ot">=</span> <span class="fu">make_date</span>(<span class="at">year =</span> year, <span class="at">month =</span> month)) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-75"><a href="#cb34-75" aria-hidden="true" tabindex="-1"></a>     <span class="fu">relocate</span>(date, <span class="at">.after =</span> year)</span>
+<span id="cb34-76"><a href="#cb34-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-77"><a href="#cb34-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-78"><a href="#cb34-78" aria-hidden="true" tabindex="-1"></a>Drop ntd id 4</span>
+<span id="cb34-81"><a href="#cb34-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-82"><a href="#cb34-82" aria-hidden="true" tabindex="-1"></a>nmse <span class="ot">=</span> nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-83"><a href="#cb34-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(ntd_id_4))</span>
+<span id="cb34-84"><a href="#cb34-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-85"><a href="#cb34-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-86"><a href="#cb34-86" aria-hidden="true" tabindex="-1"></a><span class="fu"># FFA DATA CLEANING</span></span>
+<span id="cb34-87"><a href="#cb34-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-90"><a href="#cb34-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-91"><a href="#cb34-91" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span></span>
+<span id="cb34-92"><a href="#cb34-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"5 Digit NTD ID"</span>, <span class="st">"Agency"</span>, <span class="st">"Primary UZA Code"</span>, </span>
+<span id="cb34-93"><a href="#cb34-93" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Primary UZA Name"</span>, <span class="st">"Primary  UZA Population"</span>))</span>
+<span id="cb34-94"><a href="#cb34-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-95"><a href="#cb34-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-98"><a href="#cb34-98" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-99"><a href="#cb34-99" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span></span>
+<span id="cb34-100"><a href="#cb34-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ntd_id_5 =</span> <span class="st">`</span><span class="at">5 Digit NTD ID</span><span class="st">`</span>, <span class="at">agency_ffa =</span> Agency, </span>
+<span id="cb34-101"><a href="#cb34-101" aria-hidden="true" tabindex="-1"></a>     <span class="at">prim_uza_code =</span> <span class="st">`</span><span class="at">Primary UZA Code</span><span class="st">`</span>, <span class="at">prim_uza_name =</span> <span class="st">`</span><span class="at">Primary UZA Name</span><span class="st">`</span>, </span>
+<span id="cb34-102"><a href="#cb34-102" aria-hidden="true" tabindex="-1"></a>     <span class="at">prim_uza_pop =</span> <span class="st">`</span><span class="at">Primary  UZA Population</span><span class="st">`</span>)</span>
+<span id="cb34-103"><a href="#cb34-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-104"><a href="#cb34-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-105"><a href="#cb34-105" aria-hidden="true" tabindex="-1"></a>Still have to type out and explain what I do here and why.</span>
+<span id="cb34-108"><a href="#cb34-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-109"><a href="#cb34-109" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span></span>
+<span id="cb34-110"><a href="#cb34-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb34-111"><a href="#cb34-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-112"><a href="#cb34-112" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb34-113"><a href="#cb34-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="st">"ntd_id_5"</span>, as.numeric)</span>
+<span id="cb34-114"><a href="#cb34-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-115"><a href="#cb34-115" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb34-116"><a href="#cb34-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ntd_id_5))</span>
+<span id="cb34-117"><a href="#cb34-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-118"><a href="#cb34-118" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb34-119"><a href="#cb34-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(prim_uza_code) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(prim_uza_name) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(prim_uza_pop))</span>
+<span id="cb34-120"><a href="#cb34-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-121"><a href="#cb34-121" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb34-122"><a href="#cb34-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">440</span>, <span class="dv">445</span>, <span class="dv">470</span>, <span class="dv">501</span>, <span class="dv">512</span>, <span class="dv">516</span>, <span class="dv">732</span>, <span class="dv">764</span>, <span class="dv">911</span>, <span class="dv">912</span>, <span class="dv">1124</span>))</span>
+<span id="cb34-123"><a href="#cb34-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-124"><a href="#cb34-124" aria-hidden="true" tabindex="-1"></a>ffa <span class="ot">=</span> ffa <span class="sc">%&gt;%</span> </span>
+<span id="cb34-125"><a href="#cb34-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">row_number</span>() <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">53</span>, <span class="dv">236</span>, <span class="dv">382</span>, <span class="dv">542</span>, <span class="dv">543</span>, <span class="dv">574</span>, <span class="dv">934</span>))</span>
+<span id="cb34-126"><a href="#cb34-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-127"><a href="#cb34-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-128"><a href="#cb34-128" aria-hidden="true" tabindex="-1"></a><span class="fu"># MERGING</span></span>
+<span id="cb34-129"><a href="#cb34-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-132"><a href="#cb34-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-133"><a href="#cb34-133" aria-hidden="true" tabindex="-1"></a>join <span class="ot">=</span> <span class="fu">left_join</span>(nmse, ffa, <span class="at">by =</span> <span class="st">"ntd_id_5"</span>)</span>
+<span id="cb34-134"><a href="#cb34-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-135"><a href="#cb34-135" aria-hidden="true" tabindex="-1"></a>join <span class="ot">=</span> join <span class="sc">%&gt;%</span></span>
+<span id="cb34-136"><a href="#cb34-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(agency_ffa))</span>
+<span id="cb34-137"><a href="#cb34-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-138"><a href="#cb34-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-139"><a href="#cb34-139" aria-hidden="true" tabindex="-1"></a><span class="fu"># ABBREVIATIONS DATA CLEANING</span></span>
+<span id="cb34-140"><a href="#cb34-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-143"><a href="#cb34-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-144"><a href="#cb34-144" aria-hidden="true" tabindex="-1"></a>abb <span class="ot">=</span> abb <span class="sc">%&gt;%</span></span>
+<span id="cb34-145"><a href="#cb34-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">agency =</span> Full)</span>
+<span id="cb34-146"><a href="#cb34-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-147"><a href="#cb34-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-150"><a href="#cb34-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-151"><a href="#cb34-151" aria-hidden="true" tabindex="-1"></a>abb <span class="ot">=</span> abb <span class="sc">%&gt;%</span> </span>
+<span id="cb34-152"><a href="#cb34-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Abbreviation =</span> <span class="fu">str_trim</span>(Abbreviation, <span class="at">side =</span> <span class="st">"both"</span>))</span>
+<span id="cb34-153"><a href="#cb34-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-154"><a href="#cb34-154" aria-hidden="true" tabindex="-1"></a>abb <span class="ot">=</span> abb <span class="sc">%&gt;%</span> </span>
+<span id="cb34-155"><a href="#cb34-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agency =</span> <span class="fu">str_trim</span>(agency, <span class="at">side =</span> <span class="st">"both"</span>))</span>
+<span id="cb34-156"><a href="#cb34-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-157"><a href="#cb34-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-158"><a href="#cb34-158" aria-hidden="true" tabindex="-1"></a><span class="fu"># MERGING</span></span>
+<span id="cb34-159"><a href="#cb34-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-162"><a href="#cb34-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-163"><a href="#cb34-163" aria-hidden="true" tabindex="-1"></a>join <span class="ot">=</span> join <span class="sc">%&gt;%</span> </span>
+<span id="cb34-164"><a href="#cb34-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agency =</span> <span class="fu">str_trim</span>(agency, <span class="at">side =</span> <span class="st">"both"</span>))</span>
+<span id="cb34-165"><a href="#cb34-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-166"><a href="#cb34-166" aria-hidden="true" tabindex="-1"></a>transit <span class="ot">=</span> <span class="fu">left_join</span>(join, abb, <span class="at">by =</span> <span class="st">"agency"</span>)</span>
+<span id="cb34-167"><a href="#cb34-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-168"><a href="#cb34-168" aria-hidden="true" tabindex="-1"></a>transit <span class="ot">=</span> transit <span class="sc">%&gt;%</span></span>
+<span id="cb34-169"><a href="#cb34-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">abbrev =</span> Abbreviation) <span class="sc">%&gt;%</span></span>
+<span id="cb34-170"><a href="#cb34-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(abbrev, <span class="at">.after =</span> agency)</span>
+<span id="cb34-171"><a href="#cb34-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-172"><a href="#cb34-172" aria-hidden="true" tabindex="-1"></a><span class="co">#transit = transit %&gt;%</span></span>
+<span id="cb34-173"><a href="#cb34-173" aria-hidden="true" tabindex="-1"></a><span class="co">#  mutate(abbrev = case_when(</span></span>
+<span id="cb34-174"><a href="#cb34-174" aria-hidden="true" tabindex="-1"></a><span class="co">#         agency == "County of Miami-Dade" ~ "MDT"))</span></span>
+<span id="cb34-175"><a href="#cb34-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-176"><a href="#cb34-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-177"><a href="#cb34-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-178"><a href="#cb34-178" aria-hidden="true" tabindex="-1"></a><span class="fu"># QUESTION HERE!</span></span>
+<span id="cb34-179"><a href="#cb34-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-180"><a href="#cb34-180" aria-hidden="true" tabindex="-1"></a>I stopped here, basically I was able to join the abbreviation data (into the already joined other 2 datasets) but some of them I realized were a little weird. For example the agency name of "County of Miami-Dade" in my dataset did not match up with an abbreviation, but looking in the abbreviation dataset, there is "Miami-Dade Transit" with the abbreviation "MDT" that should have been matched but wasn't. My guess is the abbreviation dataset is from 2013 so some names may have changed. Also, some names got doubled up in the abbreviation dataset like "Bi-State Development Agency; Metropolitan Transit Authority of Harris County, Texas" with the abbrev "METRO" but in my dataset only has the name "Metropolitan Transit Authority of Harris County, Texas" so they didn't match but they should. I couldn't figure out an exact join/merge solution so I was going to match a few by hand but case_when doesn't seem to be the correct solution because I need to just replace certain values; when I do that though it makes all the other ones empty and right now I can't figure out the best way.</span>
+<span id="cb34-181"><a href="#cb34-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-182"><a href="#cb34-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-183"><a href="#cb34-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-184"><a href="#cb34-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-185"><a href="#cb34-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-186"><a href="#cb34-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-187"><a href="#cb34-187" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summary</span></span>
+<span id="cb34-188"><a href="#cb34-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-191"><a href="#cb34-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-192"><a href="#cb34-192" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(transit)</span>
+<span id="cb34-193"><a href="#cb34-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-194"><a href="#cb34-194" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(transit,</span>
+<span id="cb34-195"><a href="#cb34-195" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb34-196"><a href="#cb34-196" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb34-197"><a href="#cb34-197" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style        =</span> <span class="st">"grid"</span>,</span>
+<span id="cb34-198"><a href="#cb34-198" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>,</span>
+<span id="cb34-199"><a href="#cb34-199" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb34-200"><a href="#cb34-200" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb34-201"><a href="#cb34-201" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb34-202"><a href="#cb34-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-203"><a href="#cb34-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-204"><a href="#cb34-204" aria-hidden="true" tabindex="-1"></a><span class="fu">## Provide a narrative about the data set and the variables in your dataset, including what type of data each variable is (communicate in a visually appealing way to non-experts - not to replicate r-code)</span></span>
+<span id="cb34-205"><a href="#cb34-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-206"><a href="#cb34-206" aria-hidden="true" tabindex="-1"></a>TBD</span>
+<span id="cb34-207"><a href="#cb34-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-208"><a href="#cb34-208" aria-hidden="true" tabindex="-1"></a><span class="fu"># Variable descriptions for reference, update later (from https://data.transportation.gov/dataset/Non-major-Safety-Events/urir-txqm)</span></span>
+<span id="cb34-209"><a href="#cb34-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-210"><a href="#cb34-210" aria-hidden="true" tabindex="-1"></a>ntd_id_5 <span class="co">[</span><span class="ot">NUM</span><span class="co">]</span> = A five-digit identifying number for each agency used in the current NTD system.</span>
+<span id="cb34-211"><a href="#cb34-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-212"><a href="#cb34-212" aria-hidden="true" tabindex="-1"></a>agency <span class="co">[</span><span class="ot">CHAR</span><span class="co">]</span> = The legal name of the entity reporting to the National Transit Database.</span>
+<span id="cb34-213"><a href="#cb34-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-214"><a href="#cb34-214" aria-hidden="true" tabindex="-1"></a>mode <span class="co">[</span><span class="ot">CHAR</span><span class="co">]</span> = A system for carrying transit passengers described by specific right-of-way (ROW), technology and operational features.</span>
+<span id="cb34-215"><a href="#cb34-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-216"><a href="#cb34-216" aria-hidden="true" tabindex="-1"></a>service_type <span class="co">[</span><span class="ot">CHAR</span><span class="co">]</span> = Describes how public transportation services are provided by the transit agency: directly operated (DO) or purchased transportation which also includes from Taxi Operators and Transportation Network Companies (PT, TX, TN) services.</span>
+<span id="cb34-217"><a href="#cb34-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-218"><a href="#cb34-218" aria-hidden="true" tabindex="-1"></a>month <span class="co">[</span><span class="ot">NUM</span><span class="co">]</span> = The month in which the Non-major incident occurred.</span>
+<span id="cb34-219"><a href="#cb34-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-220"><a href="#cb34-220" aria-hidden="true" tabindex="-1"></a>year <span class="co">[</span><span class="ot">NUM</span><span class="co">]</span> = The year in which the Non-major incident occurred.</span>
+<span id="cb34-221"><a href="#cb34-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-222"><a href="#cb34-222" aria-hidden="true" tabindex="-1"></a>date <span class="co">[</span><span class="ot">DATE</span><span class="co">]</span> = The date in which the Non-major incident occurred (combined month and year, each was given a "day" value of 1 (first of the month)).</span>
+<span id="cb34-223"><a href="#cb34-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-224"><a href="#cb34-224" aria-hidden="true" tabindex="-1"></a>sft_sec <span class="co">[</span><span class="ot">CHAR</span><span class="co">]</span> = Identifier of a Safety (SFT) or (Security Event). <span class="co">[</span><span class="ot">Safety Event: A collision, derailment, fire, hazardous material spill, act of nature (Act of God), evacuation, or OSONOC occurring on transit right-of-way, in a transit revenue facility, in a transit maintenance facility, or involving a transit revenue vehicle and meeting established NTD thresholds.</span><span class="co">]</span> OR <span class="co">[</span><span class="ot">Security event: An occurrence of a bomb threat, bombing, arson, hijacking, sabotage, cyber security event, assault, robbery, rape, burglary, suicide, attempted suicide (not involving a transit vehicle), larceny, theft, vandalism, homicide, CBR (chemical/biological/radiological) or nuclear release, or other event.</span><span class="co">]</span></span>
+<span id="cb34-225"><a href="#cb34-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-226"><a href="#cb34-226" aria-hidden="true" tabindex="-1"></a>event_type <span class="co">[</span><span class="ot">CHAR</span><span class="co">]</span> = The type of event that occurred.</span>
+<span id="cb34-227"><a href="#cb34-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-228"><a href="#cb34-228" aria-hidden="true" tabindex="-1"></a>location <span class="co">[</span><span class="ot">CHAR</span><span class="co">]</span> = The area in facility, vehicle, or other where the event took place.</span>
+<span id="cb34-229"><a href="#cb34-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-230"><a href="#cb34-230" aria-hidden="true" tabindex="-1"></a>location_group <span class="co">[</span><span class="ot">CHAR</span><span class="co">]</span> = General grouping of the location column that can fall into either facility, vehicle, or other.</span>
+<span id="cb34-231"><a href="#cb34-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-232"><a href="#cb34-232" aria-hidden="true" tabindex="-1"></a>total_events <span class="co">[</span><span class="ot">NUM</span><span class="co">]</span> = Less severe incidents or events that do not meet the requirements of Reportable Events: Other safety occurrences not otherwise classified (injuries); and Fires. The number is determined by mode, type of service, month, and location.</span>
+<span id="cb34-233"><a href="#cb34-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-234"><a href="#cb34-234" aria-hidden="true" tabindex="-1"></a>customer_injuries   <span class="co">[</span><span class="ot">NUM</span><span class="co">]</span> = Count of Customer Injuries for the given event.</span>
+<span id="cb34-235"><a href="#cb34-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-236"><a href="#cb34-236" aria-hidden="true" tabindex="-1"></a>worker_injuries <span class="co">[</span><span class="ot">NUM</span><span class="co">]</span> = Count of Worker Injuries for the given event.</span>
+<span id="cb34-237"><a href="#cb34-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-238"><a href="#cb34-238" aria-hidden="true" tabindex="-1"></a>other_injuries <span class="co">[</span><span class="ot">NUM</span><span class="co">]</span> = Count of Other Injuries for the given event.</span>
+<span id="cb34-239"><a href="#cb34-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-240"><a href="#cb34-240" aria-hidden="true" tabindex="-1"></a>total_injuries <span class="co">[</span><span class="ot">NUM</span><span class="co">]</span> = Sum of the Count of all person type injuries for the given event.</span>
+<span id="cb34-241"><a href="#cb34-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-242"><a href="#cb34-242" aria-hidden="true" tabindex="-1"></a><span class="fu">## Basic descriptive statistics (mean, median, and standard deviation for numerical variables, and frequencies for categorical variables)</span></span>
+<span id="cb34-243"><a href="#cb34-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-244"><a href="#cb34-244" aria-hidden="true" tabindex="-1"></a>Mostly shown already in summary above but I did these before and I don't want to remove them just yet if I decide I want to keep a few.</span>
+<span id="cb34-245"><a href="#cb34-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-248"><a href="#cb34-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-249"><a href="#cb34-249" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-250"><a href="#cb34-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(total_events, customer_injuries, worker_injuries, other_injuries, </span>
+<span id="cb34-251"><a href="#cb34-251" aria-hidden="true" tabindex="-1"></a>     total_injuries) <span class="sc">%&gt;%</span></span>
+<span id="cb34-252"><a href="#cb34-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(<span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">median =</span> median, <span class="at">sd =</span> sd), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb34-253"><a href="#cb34-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-254"><a href="#cb34-254" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-255"><a href="#cb34-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(agency) <span class="sc">%&gt;%</span></span>
+<span id="cb34-256"><a href="#cb34-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb34-257"><a href="#cb34-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-258"><a href="#cb34-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-259"><a href="#cb34-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>)</span>
+<span id="cb34-260"><a href="#cb34-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-261"><a href="#cb34-261" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-262"><a href="#cb34-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mode) <span class="sc">%&gt;%</span></span>
+<span id="cb34-263"><a href="#cb34-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb34-264"><a href="#cb34-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-265"><a href="#cb34-265" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span>
+<span id="cb34-266"><a href="#cb34-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-267"><a href="#cb34-267" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-268"><a href="#cb34-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(service_type) <span class="sc">%&gt;%</span></span>
+<span id="cb34-269"><a href="#cb34-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb34-270"><a href="#cb34-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-271"><a href="#cb34-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span>
+<span id="cb34-272"><a href="#cb34-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-273"><a href="#cb34-273" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-274"><a href="#cb34-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sft_sec) <span class="sc">%&gt;%</span></span>
+<span id="cb34-275"><a href="#cb34-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb34-276"><a href="#cb34-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-277"><a href="#cb34-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span>
+<span id="cb34-278"><a href="#cb34-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-279"><a href="#cb34-279" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-280"><a href="#cb34-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(event_type) <span class="sc">%&gt;%</span></span>
+<span id="cb34-281"><a href="#cb34-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb34-282"><a href="#cb34-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-283"><a href="#cb34-283" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span>
+<span id="cb34-284"><a href="#cb34-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-285"><a href="#cb34-285" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-286"><a href="#cb34-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">%&gt;%</span></span>
+<span id="cb34-287"><a href="#cb34-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb34-288"><a href="#cb34-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-289"><a href="#cb34-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span>
+<span id="cb34-290"><a href="#cb34-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-291"><a href="#cb34-291" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-292"><a href="#cb34-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location_group) <span class="sc">%&gt;%</span></span>
+<span id="cb34-293"><a href="#cb34-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb34-294"><a href="#cb34-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> count <span class="sc">/</span> <span class="fu">sum</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-295"><a href="#cb34-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span>
+<span id="cb34-296"><a href="#cb34-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-297"><a href="#cb34-297" aria-hidden="true" tabindex="-1"></a><span class="do">## Prefer prop.table?? I think it looks worse though, but I can do either</span></span>
+<span id="cb34-298"><a href="#cb34-298" aria-hidden="true" tabindex="-1"></a>nmse <span class="sc">%&gt;%</span></span>
+<span id="cb34-299"><a href="#cb34-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(location_group) <span class="sc">%&gt;%</span></span>
+<span id="cb34-300"><a href="#cb34-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-301"><a href="#cb34-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>()<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb34-302"><a href="#cb34-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-303"><a href="#cb34-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-304"><a href="#cb34-304" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualizations</span></span>
+<span id="cb34-305"><a href="#cb34-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-306"><a href="#cb34-306" aria-hidden="true" tabindex="-1"></a>Be sure to use faceting, coloring, and titles as needed. Each visualization should be accompanied by descriptive text that highlights: the variable(s) used, what questions might be answered with the visualizations, and what conclusions you can draw</span>
+<span id="cb34-307"><a href="#cb34-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-308"><a href="#cb34-308" aria-hidden="true" tabindex="-1"></a>TBD</span>
+<span id="cb34-309"><a href="#cb34-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-310"><a href="#cb34-310" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive statistics and/or visualizations for any relevant groupings (use group_by() and summarise())</span></span>
+<span id="cb34-311"><a href="#cb34-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-312"><a href="#cb34-312" aria-hidden="true" tabindex="-1"></a>For example, if you were interested in how average income varies by state, you might compute mean income for all states combined, and then compare this to the range and distribution of mean income for each individual state in the US.</span>
+<span id="cb34-313"><a href="#cb34-313" aria-hidden="true" tabindex="-1"></a>Identify limitations of your visualization, such as:</span>
+<span id="cb34-314"><a href="#cb34-314" aria-hidden="true" tabindex="-1"></a>-What questions are left unanswered with your visualizations</span>
+<span id="cb34-315"><a href="#cb34-315" aria-hidden="true" tabindex="-1"></a>-What about the visualizations may be unclear to a naive viewer</span>
+<span id="cb34-316"><a href="#cb34-316" aria-hidden="true" tabindex="-1"></a>-How could you improve the visualizations for the final project</span>
+<span id="cb34-317"><a href="#cb34-317" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb34-318"><a href="#cb34-318" aria-hidden="true" tabindex="-1"></a>TBD</span>
+<span id="cb34-319"><a href="#cb34-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-320"><a href="#cb34-320" aria-hidden="true" tabindex="-1"></a><span class="fu">## Statistical Analysis</span></span>
+<span id="cb34-321"><a href="#cb34-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-322"><a href="#cb34-322" aria-hidden="true" tabindex="-1"></a>TBD</span>
+<span id="cb34-323"><a href="#cb34-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-324"><a href="#cb34-324" aria-hidden="true" tabindex="-1"></a><span class="fu"># Instructions for Reference</span></span>
+<span id="cb34-325"><a href="#cb34-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-326"><a href="#cb34-326" aria-hidden="true" tabindex="-1"></a>The paper should include:</span>
+<span id="cb34-327"><a href="#cb34-327" aria-hidden="true" tabindex="-1"></a>-Introduction (1-2 pages): Define your research question.</span>
+<span id="cb34-328"><a href="#cb34-328" aria-hidden="true" tabindex="-1"></a>-Data: (2-3 pages) Describe your dataset, and include the code that generated the data import and cleaning.</span>
+<span id="cb34-329"><a href="#cb34-329" aria-hidden="true" tabindex="-1"></a>-Visualization (2-3 pages) Develop multiple visualizations that can help answer your research question.</span>
+<span id="cb34-330"><a href="#cb34-330" aria-hidden="true" tabindex="-1"></a>Describe the process that led you to the visualizations, explain the visuations, and explain what you learned</span>
+<span id="cb34-331"><a href="#cb34-331" aria-hidden="true" tabindex="-1"></a>from them.</span>
+<span id="cb34-332"><a href="#cb34-332" aria-hidden="true" tabindex="-1"></a>-Reflection (2-3 pages) Describe your process/experience with the project, including the decisions you made, what was most challenging, and what you wish you would have known. You can also discuss what the next steps would be, were you to continue with the project.</span>
+<span id="cb34-333"><a href="#cb34-333" aria-hidden="true" tabindex="-1"></a>-Conclusion (1-2) Explain what conclusions you can draw from your work, and what questions are still left unanswered.</span>
+<span id="cb34-334"><a href="#cb34-334" aria-hidden="true" tabindex="-1"></a>-Bibliography Include all relevant citations (Hint, at minimum you should cite the source of the dataset, R as a programming language, and the course textbook).</span>
+<span id="cb34-335"><a href="#cb34-335" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
