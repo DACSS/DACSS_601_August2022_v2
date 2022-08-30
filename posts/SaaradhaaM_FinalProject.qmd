@@ -1,8 +1,8 @@
 ---
-title: "Final Project [WIP]"
+title: "Final Project [WIP] - Update 2"
 author: "Saaradhaa M"
-description: "Crime and Drug Usage"
-date: "08/28/2022"
+description: "Crime, Drug Usage and Demographics"
+date: "08/29/2022"
 format:
   html:
     df-print: paged
@@ -37,37 +37,36 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 Brooklyn Nine-Nine, which is about a police precinct in New York City, is one of my favourite TV shows. It made me want to learn more about actual crime statistics in the city.
 
-Specifically, this project examines how crime intersects with other social issues. Past research has revealed an association between crime and drug usage (Pierce et al., 2017). This is crucial given the ongoing opioid crisis in the US, with a rise in fatalities due to drug overdoses in recent years (Young, 2022).
+Specifically, this project examines how crime intersects with other social issues. The disparities in arrest rates across demographic groups have been well-documented (Jahn et al., 2022; Schleiden et al., 2020). Past research has also revealed a positive association between crime and drug usage (Pierce et al., 2017).
 
 ::: callout-tip
-## Research Question
+## Research Questions
 
-Suppose you were walking through a borough in New York City, and you see syringe litter. Does this necessarily mean that the borough in question is unsafe -- or is this merely a bias that we have?
-
-*In simpler terms, where are syringes likely to be found? Is there an overlap with where crimes (especially drug-related crimes) occur?*
+1.  What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?
+2.  Suppose you were walking through a borough in New York City, and you see syringe litter. Does this necessarily mean that the borough in question is unsafe -- or is this merely a bias that we have? *In simpler terms: where are syringes likely to be found? Is there an overlap with where crimes (especially drug-related crimes) occur?*
 :::
 
 Crime is operationalized as [arrest](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc) [data](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u) (New York Police Department, 2022a; New York Police Department, 2022b), and drug usage as [syringe litter data](https://data.cityofnewyork.us/Public-Safety/Summary-of-Syringe-Data-in-NYC-Parks/t8xi-d5wb) (NYC Parks, 2022a). The data spans from 2017 to 2022. Codebooks are provided [here](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc) (New York Police Department, 2022a) and [here](https://docs.google.com/spreadsheets/d/1VSUqd1peSc-4D2XnBZNiLdxa0Jg4z62D/edit#gid=150342678) (NYC Parks, 2022b).
-
-If time permits, I will attempt an additional question: What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?
 
 ## Read In Data
 
 ```{r}
 #| label: read in
 # read in 3 main datasets.
-arrest_historic <- read_csv("~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrests_Data_Historic.csv", 
+arrest_historic <- read_csv("_data/NYPD_ArrestData_Historic.csv", 
                    show_col_types = FALSE, 
-                   col_names = c("del", "date", "del", "del", "del", "a_desc", "del", "a_offenselevel", "a_boro", "del", "a_juriscode", "a_age", "a_sex", "a_race", "del", "del", "a_lat", "a_long", "del"), skip=1) %>% 
+                   col_names = c("del", "date", "del", "del", "del", "a_desc", "del", "a_offenselevel", "a_boro", "del", "del", "a_age", "a_sex", "a_race", "del", "del", "a_lat", "a_long", "del"), skip=1) %>% 
   select(!starts_with("del"))
 
-arrest_ytd <- read_csv("~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrest_Data_Year_to_Date.csv", 
+arrest_ytd <- read_csv("_data/NYPD_ArrestData_YTD.csv", 
                    show_col_types = FALSE, 
-                   col_names = c("del", "date", "del", "del", "del", "a_desc", "del", "a_offenselevel", "a_boro", "del", "a_juriscode", "a_age", "a_sex", "a_race", "del", "del", "a_lat", "a_long", "del"), skip=1) %>% 
+                   col_names = c("del", "date", "del", "del", "del", "a_desc", "del", "a_offenselevel", "a_boro", "del", "del", "a_age", "a_sex", "a_race", "del", "del", "a_lat", "a_long", "del"), skip=1) %>% 
   select(!starts_with("del"))
+arrest_ytd$a_offenselevel <- na_if(arrest_ytd$a_offenselevel, "9")
 
-syringe <- read_csv("~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Summary_of_Syringe_Data_in_NYC_Parks.csv", show_col_types = FALSE, col_names = c("del", "gispropnum", "del", "date", "del", "del", "del", "del", "del", "del", "s_location", "s_groundsyringes", "s_kiosksyringes", "s_totalsyringes", "del", "s_kiosktype", "del", "s_boro", "del", "s_propertytype", "s_kioskavailable", "del", "del"), skip=1) %>%
-  select(!starts_with("del"))
+syringe <- read_csv("_data/SyringeData_Parks.csv", show_col_types = FALSE, col_names = c("del", "gispropnum", "del", "date", "del", "del", "del", "del", "del", "del", "s_location", "s_groundsyringes", "s_kiosksyringes", "s_totalsyringes", "del", "s_kiosktype", "del", "s_boro", "del", "del", "s_kioskavailable", "del", "del"), skip=1) %>% 
+  select(!starts_with("del")) %>%
+  filter(s_totalsyringes > 0)
 
 # make any implicit missing values explicit.
 arrest_historic <- complete(arrest_historic)
@@ -75,22 +74,32 @@ arrest_ytd <- complete(arrest_ytd)
 syringe <- complete(syringe)
 
 # summarise the 3 datasets.
-dim(arrest_historic)
-dim(arrest_ytd)
+print(dfSummary(arrest_historic, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.30, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+print(dfSummary(arrest_ytd, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.30, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
 print(dfSummary(syringe, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.30, style = "grid", valid.col = FALSE), 
       method = 'render', table.classes = 'table-condensed')
 
 #read in shapefile for syringe dataset.
-park <- st_read("~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Parks_Properties", quiet = TRUE) %>% select("gispropnum", "geometry")
+park <- st_read("_data/ParksProperties", quiet = TRUE) %>% select("gispropnum", "geometry")
 ```
 
-In the code chunk above, all datasets have been loaded, unnecessary columns removed, columns renamed where needed and all missing values labelled "NA".
+In the code chunk above, all datasets have been loaded, unnecessary columns removed, columns renamed where needed and all missing values labelled NA. Some missing values were labelled "9" in **arrest_ytd** and have also been converted to NA.
 
-**arrest_historic** contains 5,308,876 rows, while **arrest_ytd** contains 93,238 rows. Each row represents a single arrest and associated information (e.g., description of crime, arrest location, demographic profile of suspect). Both have the same 10 columns and only differ in time frame: **arrest_historic** contains data from Jan 2006 to Dec 2021, while **arrest_ytd** contains data from Jan to Jun 2022. I will interpret their descriptive statistics after combining them.
+**arrest_historic** contains 5,308,876 rows, while **arrest_ytd** contains 93,238 rows. Each row represents a single arrest and associated information (e.g., description of crime, arrest location, demographic profile of suspect). Both have the same 9 columns and only differ in time frame - **arrest_historic** contains data from Jan 2006 to Dec 2021, while **arrest_ytd** contains data from Jan to Jun 2022.
 
-Meanwhile, **syringe** contains 19,778 rows and 10 columns. Each row represents a date when syringes were collected and information on where they were found. It ranges from Jan 2017 to Jul 2022. I have also loaded the [**park**](https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve) shapefile (Department of Parks and Recreation, 2022), which will be used derive location coordinates for **syringe**.
+I will interpret their descriptive statistics again after combining them, but these are some initial observations:
 
-*I haven't written the descriptive statistics for the syringe dataset yet because i realise that i need to sum up the values for each date - there are some dates/locations that are the same but have been split up. would this best be done in the read-in step?*
+-   Dangerous drugs are in the list of top 5 offenses in both datasets, highlighting the importance of our research question.
+
+-   Arrests seem to occur the least often in Staten Island - it would be interesting to see if this is where the least number of syringes are collected as well.
+
+-   Black individuals represent \~50% of all arrests in both datasets, despite only being \~20% of the population in NYC (U.S. Census Bureau, 2022).
+
+Meanwhile, **syringe** contains 17,531 rows and 9 columns. Rows where **s_totalsyringes** were 0 were removed in the read-in step, as they do not contain meaningful information for analysis. The dataset ranges from Jan 2017 to Jul 2022. It contains information on syringe collection, including date, location and number of syringes. Each row does not yet represent a single date/location combination where syringes were collected, so it needs to be tidied before descriptives can be interpreted. The one thing that stands out to me is that [no syringes were collected in Brooklyn]{.underline} - hopefully the analysis later can unpack why this might be the case.
+
+I have also loaded the [**park**](https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve) shapefile (Department of Parks and Recreation, 2022), which will be used derive location coordinates for **syringe**.
 
 ## Tidy Data
 
@@ -102,7 +111,7 @@ Meanwhile, **syringe** contains 19,778 rows and 10 columns. Each row represents 
 
 3.  Remove rows before 2017 in **arrest_historic**.
 
-4.  Join both datasets into **arrest** dataset (93,238 + 1,043,535 = 1,136,773 rows; 10 + 1 = 11 columns).
+4.  Join both datasets into **arrest** dataset (93,238 + 1,043,535 = 1,136,773 rows; 9 + 1 = 10 columns).
 
 ```{r}
 #| label: tidy arrests 1
@@ -140,9 +149,11 @@ The sanity check demonstrates that steps 1 to 4 are complete.
 
 1.  Convert *date* to "date" type.
 
-2.  Extract latitude and longitude columns from **park** shapefile and convert them into a dataframe.
+2.  Sum syringe count values in **syringe** into 1 row per date/location combination.
 
-3.  Combine that dataframe with **syringe**.
+3.  Extract latitude and longitude columns from **park** shapefile and convert them into a dataframe.
+
+4.  Combine that dataframe with **syringe**.
 
 ```{r}
 #| label: tidy syringe
@@ -151,6 +162,11 @@ syringe$date <- str_remove(syringe$date, "12:00:00 AM")
 
 # convert 'date' to date column type.
 syringe <- syringe %>% mutate(date = as_date(parse_date_time(date, c('mdy'))))
+
+# sum values into 1 row per date/location combo.
+syringe <- syringe %>% 
+  group_by(s_location, date, gispropnum, s_kiosktype, s_boro, s_kioskavailable) %>%
+summarise(across(contains("syringes"), ~sum(.x, na.rm = TRUE)))
 
 # extract latitude and longitude from park shapefile into park_ll.
 sf_use_s2(FALSE)
@@ -177,25 +193,46 @@ syringe <- syringe %>%
 head(syringe)
 ```
 
-The sanity check shows that steps 1 to 3 are complete. I will now combine **syringe** with **arrest** by doing a full_join using the *date* column.
+The sanity check shows that steps 1 to 3 are complete. For now, the basic tidying is complete - further transformations may be required for each visualisation as we go along.
+
+## Analysis: Question 1
+
+To recap, this was my first research question:
+
+::: callout-tip
+## Question 1
+What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?
+:::
+
+Age, sex and race data are available. We can combine them together to create the demographic profiles, then make a bar graph.
 
 ```{r}
-# perform join.
-mega <- full_join(syringe, arrest, by = "date")
+#| label: qn 1 bar graph
+arrest <- arrest %>% unite(demo, a_race, a_sex, a_age, sep = "_", remove = FALSE, na.rm = TRUE)
 
-# sanity check.
-dim(mega)
+arrest %>%
+  count(demo) %>%
+  slice_max(n, n = 5, with_ties = FALSE) %>%
+  ggplot(aes(demo, n)) + 
+  geom_col() +
+  theme_minimal() + 
+  labs(title = "Profiles of Arrestees in NYC (2017-Present)", x = "Profile", y = "Count") +
+  theme(axis.text.x=element_text(angle=90,hjust=1))
+
+  
+
 ```
 
-As expected, there are 22 columns (11 + 12 - 1 = 22).
+My first graph! This is a start. I want to change count to percent and add in a fill for different boroughs.
 
-## Analysis
-
-*TBD. Planning to make stacked bar graphs (proportion of syringes/arrests in different boroughs) and heatmap.*
+## Analysis: Question 2
+*TBD. Planning to make stacked bar graph (proportion of syringes in different boroughs) and heatmap. For the heatmap, I need to make a combined dataset of counts from arrest (same as how I did counts for syringe) and then combine that with syringe.*
 
 ## Bibliography
 
 Department of Parks and Recreation. (2022). *Parks Properties*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve.
+
+Jahn, J., Simes, J., Cowger, T., & Davis, B. (2022). Racial Disparities in Neighborhood Arrest Rates during the COVID-19 Pandemic. *Journal Of Urban Health*, *99*(1), 67-76.
 
 New York Police Department. (2022). *NYPD Arrest Data (Year to Date)*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc.
 
@@ -209,6 +246,8 @@ Pierce, M., Hayhurst, K., Bird, S., Hickman, M., Seddon, T., Dunn, G., & Millar,
 
 R Core Team. (2022). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing.
 
-Wickham, H., & Grolemund, G. (2017). *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data* (1st ed.). O'Reilly Media.
+Schleiden, C., Soloski, K., Milstead, K., & Rhynehart, A. (2020). Racial Disparities in Arrests: A Race Specific Model Explaining Arrest Rates Across Black and White Young Adults. *Child And Adolescent Social Work Journal*, *37*(1), 1-14.
 
-Young, S. (2022). *New York experiment with government-approved drug use could become a national model*. POLITICO. Retrieved from https://www.politico.com/news/2022/05/14/new-york-experiment-drug-use-national-model-00031876.
+U.S. Census Bureau. (2022). *U.S. Census Bureau QuickFacts: New York City, New York*. Census Bureau QuickFacts. Retrieved from https://www.census.gov/quickfacts/newyorkcitynewyork.
+
+Wickham, H., & Grolemund, G. (2017). *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data* (1st ed.). O'Reilly Media.
