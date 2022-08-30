@@ -1,0 +1,37 @@
+---
+title: "Final Project Vertical Farming"
+author: "Will Munson"
+date: "8/29/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+---
+
+For my final project, I will be looking at data related to soil health. This data will involve a large-scale vertical farm in Brisbane, Australia. 
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+Vertical farming is set to be the future of farming and agriculture. While it won't replace traditional agriculture, it will make it so that farming can be done easily in urban areas, and without the need for extra land. This could also help reduce the need to transport goods across the country. Now, the dataset is a bit large, so I might have to limit the size of the data. 
+
+```{r}
+SoilHealth <- read_csv("_data/SoilHealthDB_V0.csv", show_col_types = FALSE)
+
+SoilHealth
+```
+
+```{r}
+SoilHealth %>%
+  select_if(~!(all(is.na(.)) | all(. == ""))) %>%
+  select(-contains("Comments"))
+```
+
