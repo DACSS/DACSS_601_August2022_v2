@@ -1,0 +1,308 @@
+---
+title: "Final Project Draft/Work in Progress"
+author: "Miranda Manka"
+description: "Working on my final project - Progress 1"
+date: "08/29/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final_project
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Introduction/Research Question(s)
+
+# This is just starting to lay out some of what I need for my final project. I will be editing, removing, and adding a lot over the next few days. Most of this right now is unpolished and is just laying the ground work to build on.
+
+I will be working with a dataset from the U.S. Department of Transportation on Non-Major Safety Events. This contains the transit agency name, the location, the type of event, the number of events/injuries, etc. I will be joining it with 2 other datases, one for city/state and population info, and one for transit agency abbreviations.
+
+
+
+A previous summer I did an internship at a transit company, so I have worked with some transit data before and have an interest in it.
+
+ADD MORE HERE
+
+## Read in the datasets
+
+```{r}
+nmse = read_csv("_data/non_major_safety_events.csv", show_col_types = FALSE)
+ffa = read_csv("_data/Federal_Funding_Allocation.csv", show_col_types = FALSE)
+abb = read_csv("_data/abbreviations.csv", show_col_types = FALSE)
+```
+
+## Clean the data
+
+# NMSE DATA CLEANING
+
+Rename variables
+```{r}
+nmse = nmse %>%
+  rename(ntd_id_5 = `5 Digit NTD ID`, ntd_id_4 = `4 Digit NTD ID`, 
+     agency = Agency, mode = Mode, service_type = `Type of Service`, 
+     month = Month, year = Year, sft_sec = `Safety/Security`, 
+     event_type = `Event Type`, location = Location, 
+     location_group = `Location Group`, total_events = `Total Events`, 
+     customer_injuries = `Customer Injuries`, worker_injuries = `Worker Injuries`, 
+     other_injuries = `Other Injuries`, total_injuries = `Total Injuries`)
+```
+
+Make date field and reorder
+```{r}
+nmse = nmse %>% 
+  mutate("date" = make_date(year = year, month = month)) %>% 
+     relocate(date, .after = year)
+```
+
+Drop ntd id 4
+```{r}
+nmse = nmse %>%
+  select(-c(ntd_id_4))
+```
+
+# FFA DATA CLEANING
+
+```{r}
+ffa = ffa %>%
+  select(c("5 Digit NTD ID", "Agency", "Primary UZA Code", 
+     "Primary UZA Name", "Primary  UZA Population"))
+```
+
+```{r}
+ffa = ffa %>%
+  rename(ntd_id_5 = `5 Digit NTD ID`, agency_ffa = Agency, 
+     prim_uza_code = `Primary UZA Code`, prim_uza_name = `Primary UZA Name`, 
+     prim_uza_pop = `Primary  UZA Population`)
+```
+
+Still have to type out and explain what I do here and why.
+```{r}
+ffa = ffa %>%
+  distinct()
+
+ffa = ffa %>% 
+  mutate_at("ntd_id_5", as.numeric)
+
+ffa = ffa %>% 
+  filter(!is.na(ntd_id_5))
+
+ffa = ffa %>% 
+  filter(!is.na(prim_uza_code) & !is.na(prim_uza_name) & !is.na(prim_uza_pop))
+
+ffa = ffa %>% 
+  filter(!row_number() %in% c(440, 445, 470, 501, 512, 516, 732, 764, 911, 912, 1124))
+
+ffa = ffa %>% 
+  filter(!row_number() %in% c(53, 236, 382, 542, 543, 574, 934))
+```
+
+# MERGING
+
+```{r}
+join = left_join(nmse, ffa, by = "ntd_id_5")
+
+join = join %>%
+  select(-c(agency_ffa))
+```
+
+# ABBREVIATIONS DATA CLEANING
+
+```{r}
+abb = abb %>%
+  rename(agency = Full)
+```
+
+```{r}
+abb = abb %>% 
+  mutate(Abbreviation = str_trim(Abbreviation, side = "both"))
+
+abb = abb %>% 
+  mutate(agency = str_trim(agency, side = "both"))
+```
+
+# MERGING
+
+```{r}
+join = join %>% 
+  mutate(agency = str_trim(agency, side = "both"))
+
+transit = left_join(join, abb, by = "agency")
+
+transit = transit %>%
+  rename(abbrev = Abbreviation) %>%
+  relocate(abbrev, .after = agency)
+
+#transit = transit %>%
+#  mutate(abbrev = case_when(
+#         agency == "County of Miami-Dade" ~ "MDT"))
+
+```
+
+# QUESTION HERE!
+
+I stopped here, basically I was able to join the abbreviation data (into the already joined other 2 datasets) but some of them I realized were a little weird. For example the agency name of "County of Miami-Dade" in my dataset did not match up with an abbreviation, but looking in the abbreviation dataset, there is "Miami-Dade Transit" with the abbreviation "MDT" that should have been matched but wasn't. My guess is the abbreviation dataset is from 2013 so some names may have changed. Also, some names got doubled up in the abbreviation dataset like "Bi-State Development Agency; Metropolitan Transit Authority of Harris County, Texas" with the abbrev "METRO" but in my dataset only has the name "Metropolitan Transit Authority of Harris County, Texas" so they didn't match but they should. I couldn't figure out an exact join/merge solution so I was going to match a few by hand but case_when doesn't seem to be the correct solution because I need to just replace certain values; when I do that though it makes all the other ones empty and right now I can't figure out the best way.
+
+
+
+
+
+
+## Summary
+
+```{r}
+summary(transit)
+
+print(summarytools::dfSummary(transit,
+                              varnumbers = FALSE,
+                              plain.ascii  = FALSE,
+                              style        = "grid",
+                              graph.magnif = 0.70,
+                              valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+## Provide a narrative about the data set and the variables in your dataset, including what type of data each variable is (communicate in a visually appealing way to non-experts - not to replicate r-code)
+
+TBD
+
+# Variable descriptions for reference, update later (from https://data.transportation.gov/dataset/Non-major-Safety-Events/urir-txqm)
+
+ntd_id_5 [NUM] = A five-digit identifying number for each agency used in the current NTD system.
+
+agency [CHAR] = The legal name of the entity reporting to the National Transit Database.
+
+mode [CHAR] = A system for carrying transit passengers described by specific right-of-way (ROW), technology and operational features.
+
+service_type [CHAR] = Describes how public transportation services are provided by the transit agency: directly operated (DO) or purchased transportation which also includes from Taxi Operators and Transportation Network Companies (PT, TX, TN) services.
+
+month [NUM] = The month in which the Non-major incident occurred.
+
+year [NUM] = The year in which the Non-major incident occurred.
+
+date [DATE] = The date in which the Non-major incident occurred (combined month and year, each was given a "day" value of 1 (first of the month)).
+
+sft_sec [CHAR] = Identifier of a Safety (SFT) or (Security Event). [Safety Event: A collision, derailment, fire, hazardous material spill, act of nature (Act of God), evacuation, or OSONOC occurring on transit right-of-way, in a transit revenue facility, in a transit maintenance facility, or involving a transit revenue vehicle and meeting established NTD thresholds.] OR [Security event: An occurrence of a bomb threat, bombing, arson, hijacking, sabotage, cyber security event, assault, robbery, rape, burglary, suicide, attempted suicide (not involving a transit vehicle), larceny, theft, vandalism, homicide, CBR (chemical/biological/radiological) or nuclear release, or other event.]
+
+event_type [CHAR] = The type of event that occurred.
+
+location [CHAR] = The area in facility, vehicle, or other where the event took place.
+
+location_group [CHAR] = General grouping of the location column that can fall into either facility, vehicle, or other.
+
+total_events [NUM] = Less severe incidents or events that do not meet the requirements of Reportable Events: Other safety occurrences not otherwise classified (injuries); and Fires. The number is determined by mode, type of service, month, and location.
+
+customer_injuries	[NUM] = Count of Customer Injuries for the given event.
+
+worker_injuries	[NUM] = Count of Worker Injuries for the given event.
+
+other_injuries [NUM] = Count of Other Injuries for the given event.
+
+total_injuries [NUM] = Sum of the Count of all person type injuries for the given event.
+
+## Basic descriptive statistics (mean, median, and standard deviation for numerical variables, and frequencies for categorical variables)
+
+Mostly shown already in summary above but I did these before and I don't want to remove them just yet if I decide I want to keep a few.
+
+```{r}
+nmse %>%
+  select(total_events, customer_injuries, worker_injuries, other_injuries, 
+     total_injuries) %>%
+  summarise_all(list(mean = mean, median = median, sd = sd), na.rm = TRUE)
+
+nmse %>%
+  group_by(agency) %>%
+  summarise(count = n()) %>%
+  mutate(proportion = count / sum(count)) %>%
+  arrange(desc(proportion)) %>%
+  top_n(10)
+
+nmse %>%
+  group_by(mode) %>%
+  summarise(count = n()) %>%
+  mutate(proportion = count / sum(count)) %>%
+  arrange(desc(proportion))
+
+nmse %>%
+  group_by(service_type) %>%
+  summarise(count = n()) %>%
+  mutate(proportion = count / sum(count)) %>%
+  arrange(desc(proportion))
+
+nmse %>%
+  group_by(sft_sec) %>%
+  summarise(count = n()) %>%
+  mutate(proportion = count / sum(count)) %>%
+  arrange(desc(proportion))
+
+nmse %>%
+  group_by(event_type) %>%
+  summarise(count = n()) %>%
+  mutate(proportion = count / sum(count)) %>%
+  arrange(desc(proportion))
+
+nmse %>%
+  group_by(location) %>%
+  summarise(count = n()) %>%
+  mutate(proportion = count / sum(count)) %>%
+  arrange(desc(proportion))
+
+nmse %>%
+  group_by(location_group) %>%
+  summarise(count = n()) %>%
+  mutate(proportion = count / sum(count)) %>%
+  arrange(desc(proportion))
+
+## Prefer prop.table?? I think it looks worse though, but I can do either
+nmse %>%
+  select(location_group) %>%
+  table() %>%
+  prop.table()*100
+```
+
+## Visualizations
+
+Be sure to use faceting, coloring, and titles as needed. Each visualization should be accompanied by descriptive text that highlights: the variable(s) used, what questions might be answered with the visualizations, and what conclusions you can draw
+
+TBD
+
+## Descriptive statistics and/or visualizations for any relevant groupings (use group_by() and summarise())
+
+For example, if you were interested in how average income varies by state, you might compute mean income for all states combined, and then compare this to the range and distribution of mean income for each individual state in the US.
+Identify limitations of your visualization, such as:
+-What questions are left unanswered with your visualizations
+-What about the visualizations may be unclear to a naive viewer
+-How could you improve the visualizations for the final project
+    
+TBD
+
+## Statistical Analysis
+
+TBD
+
+# Instructions for Reference
+
+The paper should include:
+-Introduction (1-2 pages): Define your research question.
+-Data: (2-3 pages) Describe your dataset, and include the code that generated the data import and cleaning.
+-Visualization (2-3 pages) Develop multiple visualizations that can help answer your research question.
+Describe the process that led you to the visualizations, explain the visuations, and explain what you learned
+from them.
+-Reflection (2-3 pages) Describe your process/experience with the project, including the decisions you made, what was most challenging, and what you wish you would have known. You can also discuss what the next steps would be, were you to continue with the project.
+-Conclusion (1-2) Explain what conclusions you can draw from your work, and what questions are still left unanswered.
+-Bibliography Include all relevant citations (Hint, at minimum you should cite the source of the dataset, R as a programming language, and the course textbook).
+
+
