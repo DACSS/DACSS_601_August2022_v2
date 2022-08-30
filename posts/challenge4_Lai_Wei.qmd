@@ -63,6 +63,10 @@ abc_poll %>%
   colnames(.)
 #number of ethnicity 
 n_distinct(abc_poll$ppethm)
+#Table with selecting  five variables
+Table1 <- select(abc_poll, "ppage", "ppeducat", "ppethm", "pprent", "ppemploy") 
+Table1
+
 ```
 
 Any additional comments?
@@ -74,7 +78,13 @@ Are there any variables that require mutation to be usable in your analysis stre
 Document your work here.
 
 ```{r}
-
+#Table for checking pollers' age and sex
+Table2 <- abc_poll %>%
+  mutate(abc_poll,
+         elder = (ppage > 60),
+         gender = (ppgender == 'Female')
+         )
+Table2
 ```
 
 Any additional comments?
