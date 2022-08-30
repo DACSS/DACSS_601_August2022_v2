@@ -1,0 +1,155 @@
+---
+title: "Final Project DRAFT"
+author: "Lindsay Jones"
+description: "Baby Names in the US"
+date: "09/02/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Introduction
+
+
+## Tidying the Data
+
+The data I've chosen to use is fairly clean. However, it came in separate CSV files for each state (and Washington DC). First, I have to read in all 51 files. 
+
+```{r}
+library(readr)
+AK <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/AK.csv", 
+    col_names = FALSE)
+AL <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/AL.csv", 
+    col_names = FALSE)
+AR <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/AR.csv", 
+    col_names = FALSE)
+AZ <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/AZ.csv",
+    col_names = FALSE)
+CA <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/CA.csv", 
+    col_names = FALSE)
+CO <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/CO.csv", 
+    col_names = FALSE)
+CT <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/CT.csv", 
+    col_names = FALSE)
+DC <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/DC.csv", 
+    col_names = FALSE)
+DE <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/DE.csv", 
+    col_names = FALSE)
+FL <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/FL.csv", 
+    col_names = FALSE)
+GA <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/GA.csv", 
+    col_names = FALSE)
+HI <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/HI.csv", 
+    col_names = FALSE)
+IA <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/IA.csv", 
+    col_names = FALSE)
+ID <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/ID.csv", 
+    col_names = FALSE)
+IL <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/IL.csv", 
+    col_names = FALSE)
+IN <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/IN.csv", 
+    col_names = FALSE)
+KS <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/KS.csv", 
+    col_names = FALSE)
+KY <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/KY.csv", 
+    col_names = FALSE)
+LA <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/LA.csv", 
+    col_names = FALSE)
+MA <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/MA.csv", 
+    col_names = FALSE)
+MD <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/MD.csv", 
+    col_names = FALSE)
+ME <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/ME.csv", 
+    col_names = FALSE)
+MI <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/MI.csv", 
+    col_names = FALSE)
+MN <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/MN.csv", 
+    col_names = FALSE)
+MO <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/MO.csv", 
+    col_names = FALSE)
+MS <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/MS.csv", 
+    col_names = FALSE)
+MT <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/MT.csv", 
+    col_names = FALSE)
+NC <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/NC.csv", 
+    col_names = FALSE)
+ND <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/ND.csv", 
+    col_names = FALSE)
+NE <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/NE.csv", 
+    col_names = FALSE)
+NH <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/NH.csv", 
+    col_names = FALSE)
+NJ <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/NJ.csv", 
+    col_names = FALSE)
+NM <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/NM.csv", 
+    col_names = FALSE)
+NV <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/NV.csv", 
+    col_names = FALSE)
+NY <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/NY.csv", 
+    col_names = FALSE)
+OH <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/OH.csv", 
+    col_names = FALSE)
+OK <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/OK.csv", 
+    col_names = FALSE)
+OR <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/OR.csv", 
+    col_names = FALSE)
+PA <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/PA.csv", 
+    col_names = FALSE)
+RI <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/RI.csv", 
+    col_names = FALSE)
+SC <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/SC.csv", 
+    col_names = FALSE)
+SD <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/SD.csv", 
+    col_names = FALSE)
+TN <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/TN.csv", 
+    col_names = FALSE)
+TX <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/TX.csv", 
+    col_names = FALSE)
+UT <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/UT.csv", 
+    col_names = FALSE)
+VA <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/VA.csv", 
+    col_names = FALSE)
+VT <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/VT.csv", 
+    col_names = FALSE)
+WA <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/WA.csv", 
+    col_names = FALSE)
+WI <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/WI.csv", 
+    col_names = FALSE)
+WV <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/WV.csv", 
+    col_names = FALSE)
+WY <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/WY.csv", 
+    col_names = FALSE)
+```
+
+
+Now that I've read in all those data sets, I need to combine them into one data frame and give them column names (since none of the files had column names). Once that's done, I'll sort by year. 
+```{r}
+#bind all data frames
+states <- bind_rows(AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY)
+
+#rename columns
+states <- rename(states, "State" = "X1", "Sex" = "X2", "Year" = "X3", "Name" = "X4", "Count" = "X5")
+
+states
+```
+
+
+```{r}
+states %>% arrange("Year", "Count")
+```
