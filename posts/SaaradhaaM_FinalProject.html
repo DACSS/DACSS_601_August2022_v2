@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Saaradhaa M">
-<meta name="dcterms.date" content="2022-08-28">
-<meta name="description" content="Crime and Drug Usage">
+<meta name="dcterms.date" content="2022-08-29">
+<meta name="description" content="Crime, Drug Usage and Demographics">
 
-<title>- Final Project [WIP]</title>
+<title>- Final Project [WIP] - Update 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -128,8 +128,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="- Final Project [WIP]">
-<meta name="twitter:description" content="Crime and Drug Usage">
+<meta name="twitter:title" content="- Final Project [WIP] - Update 2">
+<meta name="twitter:description" content="Crime, Drug Usage and Demographics">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
 </head>
@@ -183,7 +183,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link" data-scroll-target="#read-in-data">Read In Data</a></li>
   <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy Data</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#analysis-question-1" id="toc-analysis-question-1" class="nav-link" data-scroll-target="#analysis-question-1">Analysis: Question 1</a></li>
+  <li><a href="#analysis-question-2" id="toc-analysis-question-2" class="nav-link" data-scroll-target="#analysis-question-2">Analysis: Question 2</a></li>
   <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Bibliography</a></li>
   </ul>
 </nav>
@@ -193,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Final Project [WIP]</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Final Project [WIP] - Update 2</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
   <div class="quarto-categories">
     <div class="quarto-category">final_project</div>
     <div class="quarto-category">tidyverse</div>
@@ -206,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div>
   <div class="description">
-    Crime and Drug Usage
+    Crime, Drug Usage and Demographics
   </div>
 </div>
 
@@ -223,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 28, 2022</p>
+      <p class="date">August 29, 2022</p>
     </div>
   </div>
     
@@ -244,84 +245,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Brooklyn Nine-Nine, which is about a police precinct in New York City, is one of my favourite TV shows. It made me want to learn more about actual crime statistics in the city.</p>
-<p>Specifically, this project examines how crime intersects with other social issues. Past research has revealed an association between crime and drug usage (Pierce et al., 2017). This is crucial given the ongoing opioid crisis in the US, with a rise in fatalities due to drug overdoses in recent years (Young, 2022).</p>
+<p>Specifically, this project examines how crime intersects with other social issues. The disparities in arrest rates across demographic groups have been well-documented (Jahn et al., 2022; Schleiden et al., 2020). Past research has also revealed a positive association between crime and drug usage (Pierce et al., 2017).</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Research Question
+Research Questions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Suppose you were walking through a borough in New York City, and you see syringe litter. Does this necessarily mean that the borough in question is unsafe – or is this merely a bias that we have?</p>
-<p><em>In simpler terms, where are syringes likely to be found? Is there an overlap with where crimes (especially drug-related crimes) occur?</em></p>
+<ol type="1">
+<li>What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?</li>
+<li>Suppose you were walking through a borough in New York City, and you see syringe litter. Does this necessarily mean that the borough in question is unsafe – or is this merely a bias that we have? <em>In simpler terms: where are syringes likely to be found? Is there an overlap with where crimes (especially drug-related crimes) occur?</em></li>
+</ol>
 </div>
 </div>
 <p>Crime is operationalized as <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc">arrest</a> <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u">data</a> (New York Police Department, 2022a; New York Police Department, 2022b), and drug usage as <a href="https://data.cityofnewyork.us/Public-Safety/Summary-of-Syringe-Data-in-NYC-Parks/t8xi-d5wb">syringe litter data</a> (NYC Parks, 2022a). The data spans from 2017 to 2022. Codebooks are provided <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc">here</a> (New York Police Department, 2022a) and <a href="https://docs.google.com/spreadsheets/d/1VSUqd1peSc-4D2XnBZNiLdxa0Jg4z62D/edit#gid=150342678">here</a> (NYC Parks, 2022b).</p>
-<p>If time permits, I will attempt an additional question: What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?</p>
 </section>
 <section id="read-in-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-in-data">Read In Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in 3 main datasets.</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrests_Data_Historic.csv"</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/NYPD_ArrestData_Historic.csv"</span>, </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_desc"</span>, <span class="st">"del"</span>, <span class="st">"a_offenselevel"</span>, <span class="st">"a_boro"</span>, <span class="st">"del"</span>, <span class="st">"a_juriscode"</span>, <span class="st">"a_age"</span>, <span class="st">"a_sex"</span>, <span class="st">"a_race"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_lat"</span>, <span class="st">"a_long"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_desc"</span>, <span class="st">"del"</span>, <span class="st">"a_offenselevel"</span>, <span class="st">"a_boro"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_age"</span>, <span class="st">"a_sex"</span>, <span class="st">"a_race"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_lat"</span>, <span class="st">"a_long"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error: '~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrests_Data_Historic.csv' does not exist.</code></pre>
+<pre><code>Error: '_data/NYPD_ArrestData_Historic.csv' does not exist in current working directory ('C:/Users/srika/OneDrive/Desktop/DACSS/DACSS_601_August2022_v2/posts').</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrest_Data_Year_to_Date.csv"</span>, </span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/NYPD_ArrestData_YTD.csv"</span>, </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_desc"</span>, <span class="st">"del"</span>, <span class="st">"a_offenselevel"</span>, <span class="st">"a_boro"</span>, <span class="st">"del"</span>, <span class="st">"a_juriscode"</span>, <span class="st">"a_age"</span>, <span class="st">"a_sex"</span>, <span class="st">"a_race"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_lat"</span>, <span class="st">"a_long"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_desc"</span>, <span class="st">"del"</span>, <span class="st">"a_offenselevel"</span>, <span class="st">"a_boro"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_age"</span>, <span class="st">"a_sex"</span>, <span class="st">"a_race"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_lat"</span>, <span class="st">"a_long"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error: '~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrest_Data_Year_to_Date.csv' does not exist.</code></pre>
+<pre><code>Error: '_data/NYPD_ArrestData_YTD.csv' does not exist in current working directory ('C:/Users/srika/OneDrive/Desktop/DACSS/DACSS_601_August2022_v2/posts').</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Summary_of_Syringe_Data_in_NYC_Parks.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"gispropnum"</span>, <span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"s_location"</span>, <span class="st">"s_groundsyringes"</span>, <span class="st">"s_kiosksyringes"</span>, <span class="st">"s_totalsyringes"</span>, <span class="st">"del"</span>, <span class="st">"s_kiosktype"</span>, <span class="st">"del"</span>, <span class="st">"s_boro"</span>, <span class="st">"del"</span>, <span class="st">"s_propertytype"</span>, <span class="st">"s_kioskavailable"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>arrest_ytd<span class="sc">$</span>a_offenselevel <span class="ot">&lt;-</span> <span class="fu">na_if</span>(arrest_ytd<span class="sc">$</span>a_offenselevel, <span class="st">"9"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error: '~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Summary_of_Syringe_Data_in_NYC_Parks.csv' does not exist.</code></pre>
+<pre><code>Error in length_x %in% c(1L, n): object 'arrest_ytd' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make any implicit missing values explicit.</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> <span class="fu">complete</span>(arrest_historic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/SyringeData_Parks.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"gispropnum"</span>, <span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"s_location"</span>, <span class="st">"s_groundsyringes"</span>, <span class="st">"s_kiosksyringes"</span>, <span class="st">"s_totalsyringes"</span>, <span class="st">"del"</span>, <span class="st">"s_kiosktype"</span>, <span class="st">"del"</span>, <span class="st">"s_boro"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"s_kioskavailable"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(s_totalsyringes <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: '_data/SyringeData_Parks.csv' does not exist in current working directory ('C:/Users/srika/OneDrive/Desktop/DACSS/DACSS_601_August2022_v2/posts').</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make any implicit missing values explicit.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> <span class="fu">complete</span>(arrest_historic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in complete(arrest_historic): object 'arrest_historic' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> <span class="fu">complete</span>(arrest_ytd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> <span class="fu">complete</span>(arrest_ytd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in complete(arrest_ytd): object 'arrest_ytd' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> <span class="fu">complete</span>(syringe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> <span class="fu">complete</span>(syringe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in complete(syringe): object 'syringe' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise the 3 datasets.</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(arrest_historic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise the 3 datasets.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(arrest_historic, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'arrest_historic' not found</code></pre>
+<pre><code>Error in dfSummary(arrest_historic, varnumbers = FALSE, plain.ascii = FALSE, : object 'arrest_historic' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(arrest_ytd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'arrest_ytd' not found</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(syringe, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(arrest_ytd, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in dfSummary(arrest_ytd, varnumbers = FALSE, plain.ascii = FALSE, : object 'arrest_ytd' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(syringe, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in dfSummary(syringe, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.3, : object 'syringe' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read in shapefile for syringe dataset.</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Parks_Properties"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"gispropnum"</span>, <span class="st">"geometry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read in shapefile for syringe dataset.</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"_data/ParksProperties"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"gispropnum"</span>, <span class="st">"geometry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error: Cannot open "~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Parks_Properties"; The file doesn't seem to exist.</code></pre>
+<pre><code>Error: Cannot open "_data/ParksProperties"; The file doesn't seem to exist.</code></pre>
 </div>
 </div>
-<p>In the code chunk above, all datasets have been loaded, unnecessary columns removed, columns renamed where needed and all missing values labelled “NA”.</p>
-<p><strong>arrest_historic</strong> contains 5,308,876 rows, while <strong>arrest_ytd</strong> contains 93,238 rows. Each row represents a single arrest and associated information (e.g., description of crime, arrest location, demographic profile of suspect). Both have the same 10 columns and only differ in time frame: <strong>arrest_historic</strong> contains data from Jan 2006 to Dec 2021, while <strong>arrest_ytd</strong> contains data from Jan to Jun 2022. I will interpret their descriptive statistics after combining them.</p>
-<p>Meanwhile, <strong>syringe</strong> contains 19,778 rows and 10 columns. Each row represents a date when syringes were collected and information on where they were found. It ranges from Jan 2017 to Jul 2022. I have also loaded the <a href="https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve"><strong>park</strong></a> shapefile (Department of Parks and Recreation, 2022), which will be used derive location coordinates for <strong>syringe</strong>.</p>
-<p><em>I haven’t written the descriptive statistics for the syringe dataset yet because i realise that i need to sum up the values for each date - there are some dates/locations that are the same but have been split up. would this best be done in the read-in step?</em></p>
+<p>In the code chunk above, all datasets have been loaded, unnecessary columns removed, columns renamed where needed and all missing values labelled NA. Some missing values were labelled “9” in <strong>arrest_ytd</strong> and have also been converted to NA.</p>
+<p><strong>arrest_historic</strong> contains 5,308,876 rows, while <strong>arrest_ytd</strong> contains 93,238 rows. Each row represents a single arrest and associated information (e.g., description of crime, arrest location, demographic profile of suspect). Both have the same 9 columns and only differ in time frame - <strong>arrest_historic</strong> contains data from Jan 2006 to Dec 2021, while <strong>arrest_ytd</strong> contains data from Jan to Jun 2022.</p>
+<p>I will interpret their descriptive statistics again after combining them, but these are some initial observations:</p>
+<ul>
+<li><p>Dangerous drugs are in the list of top 5 offenses in both datasets, highlighting the importance of our research question.</p></li>
+<li><p>Arrests seem to occur the least often in Staten Island - it would be interesting to see if this is where the least number of syringes are collected as well.</p></li>
+<li><p>Black individuals represent ~50% of all arrests in both datasets, despite only being ~20% of the population in NYC (U.S. Census Bureau, 2022).</p></li>
+</ul>
+<p>Meanwhile, <strong>syringe</strong> contains 17,531 rows and 9 columns. Rows where <strong>s_totalsyringes</strong> were 0 were removed in the read-in step, as they do not contain meaningful information for analysis. The dataset ranges from Jan 2017 to Jul 2022. It contains information on syringe collection, including date, location and number of syringes. Each row does not yet represent a single date/location combination where syringes were collected, so it needs to be tidied before descriptives can be interpreted. The one thing that stands out to me is that <u>no syringes were collected in Brooklyn</u> - hopefully the analysis later can unpack why this might be the case.</p>
+<p>I have also loaded the <a href="https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve"><strong>park</strong></a> shapefile (Department of Parks and Recreation, 2022), which will be used derive location coordinates for <strong>syringe</strong>.</p>
 </section>
 <section id="tidy-data" class="level2">
 <h2 class="anchored" data-anchor-id="tidy-data">Tidy Data</h2>
@@ -330,47 +345,47 @@ Research Question
 <li><p>Convert <em>date</em> to “date” column type.</p></li>
 <li><p>Create a separate column, <em>year</em>.</p></li>
 <li><p>Remove rows before 2017 in <strong>arrest_historic</strong>.</p></li>
-<li><p>Join both datasets into <strong>arrest</strong> dataset (93,238 + 1,043,535 = 1,136,773 rows; 10 + 1 = 11 columns).</p></li>
+<li><p>Join both datasets into <strong>arrest</strong> dataset (93,238 + 1,043,535 = 1,136,773 rows; 9 + 1 = 10 columns).</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change 'date' to date column type.</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> arrest_historic <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change 'date' to date column type.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> arrest_historic <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in mutate(., date = as_date(parse_date_time(date, c("mdy")))): object 'arrest_historic' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> arrest_ytd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> arrest_ytd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in mutate(., date = as_date(parse_date_time(date, c("mdy")))): object 'arrest_ytd' not found</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create 'year'.</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>arrest_historic<span class="sc">$</span><span class="st">"year"</span> <span class="ot">&lt;-</span> <span class="fu">year</span>(arrest_historic<span class="sc">$</span>date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create 'year'.</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>arrest_historic<span class="sc">$</span><span class="st">"year"</span> <span class="ot">&lt;-</span> <span class="fu">year</span>(arrest_historic<span class="sc">$</span>date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in year(arrest_historic$date): object 'arrest_historic' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>arrest_ytd<span class="sc">$</span><span class="st">"year"</span> <span class="ot">&lt;-</span> <span class="fu">year</span>(arrest_ytd<span class="sc">$</span>date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>arrest_ytd<span class="sc">$</span><span class="st">"year"</span> <span class="ot">&lt;-</span> <span class="fu">year</span>(arrest_ytd<span class="sc">$</span>date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in year(arrest_ytd$date): object 'arrest_ytd' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove rows before 2017 in arrest_historic.</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> arrest_historic <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">2016</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove rows before 2017 in arrest_historic.</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> arrest_historic <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">2016</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in filter(., year &gt; 2016): object 'arrest_historic' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join datasets.</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> <span class="fu">rbind</span>(arrest_historic, arrest_ytd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join datasets.</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> <span class="fu">rbind</span>(arrest_historic, arrest_ytd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in rbind(arrest_historic, arrest_ytd): object 'arrest_historic' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spell out borough names in full.</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>arrest<span class="sc">$</span>a_boro <span class="ot">&lt;-</span> <span class="fu">recode</span>(arrest<span class="sc">$</span>a_boro, <span class="at">B =</span> <span class="st">'Bronx'</span>, <span class="at">S =</span> <span class="st">'Staten Island'</span>, <span class="at">K =</span> <span class="st">'Brooklyn'</span>, <span class="at">M =</span> <span class="st">'Manhattan'</span>, <span class="at">Q =</span> <span class="st">'Queens'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spell out borough names in full.</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>arrest<span class="sc">$</span>a_boro <span class="ot">&lt;-</span> <span class="fu">recode</span>(arrest<span class="sc">$</span>a_boro, <span class="at">B =</span> <span class="st">'Bronx'</span>, <span class="at">S =</span> <span class="st">'Staten Island'</span>, <span class="at">K =</span> <span class="st">'Brooklyn'</span>, <span class="at">M =</span> <span class="st">'Manhattan'</span>, <span class="at">Q =</span> <span class="st">'Queens'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in recode(arrest$a_boro, B = "Bronx", S = "Staten Island", K = "Brooklyn", : object 'arrest' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(arrest, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(arrest, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in dfSummary(arrest, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.3, : object 'arrest' not found</code></pre>
 </div>
@@ -379,92 +394,125 @@ Research Question
 <p><u>Steps to tidy <strong>syringe</strong>:</u></p>
 <ol type="1">
 <li><p>Convert <em>date</em> to “date” type.</p></li>
+<li><p>Sum syringe count values in <strong>syringe</strong> into 1 row per date/location combination.</p></li>
 <li><p>Extract latitude and longitude columns from <strong>park</strong> shapefile and convert them into a dataframe.</p></li>
 <li><p>Combine that dataframe with <strong>syringe</strong>.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove timestamp from 'date'.</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>syringe<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(syringe<span class="sc">$</span>date, <span class="st">"12:00:00 AM"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove timestamp from 'date'.</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>syringe<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(syringe<span class="sc">$</span>date, <span class="st">"12:00:00 AM"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in stri_replace_first_regex(string, pattern, fix_replacement(replacement), : object 'syringe' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert 'date' to date column type.</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert 'date' to date column type.</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in mutate(., date = as_date(parse_date_time(date, c("mdy")))): object 'syringe' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract latitude and longitude from park shapefile into park_ll.</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>park_ll <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(park<span class="sc">$</span>geometry))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sum values into 1 row per date/location combo.</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(s_location, date, gispropnum, s_kiosktype, s_boro, s_kioskavailable) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">contains</span>(<span class="st">"syringes"</span>), <span class="sc">~</span><span class="fu">sum</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in group_by(., s_location, date, gispropnum, s_kiosktype, s_boro, : object 'syringe' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract latitude and longitude from park shapefile into park_ll.</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>park_ll <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(park<span class="sc">$</span>geometry))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in st_centroid(park$geometry): object 'park' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert park and park_ll to dataframes.</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>park_ll <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(park_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert park and park_ll to dataframes.</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>park_ll <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(park_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in as_tibble(park_ll): object 'park_ll' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(park)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(park)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in as_tibble(park): object 'park' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove multipolygon column from park.</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">select</span>(park, <span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove multipolygon column from park.</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">select</span>(park, <span class="sc">-</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in select(park, -2): object 'park' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine park and park_ll.</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">cbind</span>(park, park_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine park and park_ll.</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">cbind</span>(park, park_ll)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in cbind(park, park_ll): object 'park' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename long and lat columns in park.</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">rename</span>(park, <span class="st">"s_long"</span> <span class="ot">=</span> <span class="st">"X"</span>, <span class="st">"s_lat"</span> <span class="ot">=</span> <span class="st">"Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename long and lat columns in park.</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">rename</span>(park, <span class="st">"s_long"</span> <span class="ot">=</span> <span class="st">"X"</span>, <span class="st">"s_lat"</span> <span class="ot">=</span> <span class="st">"Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in rename(park, s_long = "X", s_lat = "Y"): object 'park' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine park and syringe.</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(park, <span class="at">by =</span> <span class="st">"gispropnum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine park and syringe.</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(park, <span class="at">by =</span> <span class="st">"gispropnum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in left_join(., park, by = "gispropnum"): object 'syringe' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(syringe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(syringe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in head(syringe): object 'syringe' not found</code></pre>
 </div>
 </div>
-<p>The sanity check shows that steps 1 to 3 are complete. I will now combine <strong>syringe</strong> with <strong>arrest</strong> by doing a full_join using the <em>date</em> column.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform join.</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>mega <span class="ot">&lt;-</span> <span class="fu">full_join</span>(syringe, arrest, <span class="at">by =</span> <span class="st">"date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in full_join(syringe, arrest, by = "date"): object 'syringe' not found</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mega)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'mega' not found</code></pre>
-</div>
-</div>
-<p>As expected, there are 22 columns (11 + 12 - 1 = 22).</p>
+<p>The sanity check shows that steps 1 to 3 are complete. For now, the basic tidying is complete - further transformations may be required for each visualisation as we go along.</p>
 </section>
-<section id="analysis" class="level2">
-<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
-<p><em>TBD. Planning to make stacked bar graphs (proportion of syringes/arrests in different boroughs) and heatmap.</em></p>
+<section id="analysis-question-1" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-question-1">Analysis: Question 1</h2>
+<p>To recap, this was my first research question:</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Question 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?</p>
+</div>
+</div>
+<p>Age, sex and race data are available. We can combine them together to create the demographic profiles, then make a bar graph.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> arrest <span class="sc">%&gt;%</span> <span class="fu">unite</span>(demo, a_race, a_sex, a_age, <span class="at">sep =</span> <span class="st">"_"</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in unite(., demo, a_race, a_sex, a_age, sep = "_", remove = FALSE, : object 'arrest' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>arrest <span class="sc">%&gt;%</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(demo) <span class="sc">%&gt;%</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(demo, n)) <span class="sc">+</span> </span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Profiles of Arrestees in NYC (2017-Present)"</span>, <span class="at">x =</span> <span class="st">"Profile"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>,<span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in count(., demo): object 'arrest' not found</code></pre>
+</div>
+</div>
+<p>My first graph! This is a start. I want to change count to percent and add in a fill for different boroughs.</p>
+</section>
+<section id="analysis-question-2" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-question-2">Analysis: Question 2</h2>
+<p><em>TBD. Planning to make stacked bar graph (proportion of syringes in different boroughs) and heatmap. For the heatmap, I need to make a combined dataset of counts from arrest (same as how I did counts for syringe) and then combine that with syringe.</em></p>
 </section>
 <section id="bibliography" class="level2">
 <h2 class="anchored" data-anchor-id="bibliography">Bibliography</h2>
 <p>Department of Parks and Recreation. (2022). <em>Parks Properties</em>. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve.</p>
+<p>Jahn, J., Simes, J., Cowger, T., &amp; Davis, B. (2022). Racial Disparities in Neighborhood Arrest Rates during the COVID-19 Pandemic. <em>Journal Of Urban Health</em>, <em>99</em>(1), 67-76.</p>
 <p>New York Police Department. (2022). <em>NYPD Arrest Data (Year to Date)</em>. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc.</p>
 <p>New York Police Department. (2022). <em>NYPD Arrests Data (Historic)</em>. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u.</p>
 <p>NYC Parks. (2022). <em>NYC Parks Syringe Litter Data Dictionary and UserGuide</em>. Google Docs. Retrieved from https://docs.google.com/spreadsheets/d/1VSUqd1peSc-4D2XnBZNiLdxa0Jg4z62D/edit#gid=150342678.</p>
 <p>NYC Parks. (2022). <em>Summary of Syringe Data in NYC Parks</em>. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/Summary-of-Syringe-Data-in-NYC-Parks/t8xi-d5wb.</p>
 <p>Pierce, M., Hayhurst, K., Bird, S., Hickman, M., Seddon, T., Dunn, G., &amp; Millar, T. (2017). Insights into the link between drug use and criminality: Lifetime offending of criminally-active opiate users. <em>Drug And Alcohol Dependence</em>, <em>179</em>, 309-316.</p>
 <p>R Core Team. (2022). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing.</p>
+<p>Schleiden, C., Soloski, K., Milstead, K., &amp; Rhynehart, A. (2020). Racial Disparities in Arrests: A Race Specific Model Explaining Arrest Rates Across Black and White Young Adults. <em>Child And Adolescent Social Work Journal</em>, <em>37</em>(1), 1-14.</p>
+<p>U.S. Census Bureau. (2022). <em>U.S. Census Bureau QuickFacts: New York City, New York</em>. Census Bureau QuickFacts. Retrieved from https://www.census.gov/quickfacts/newyorkcitynewyork.</p>
 <p>Wickham, H., &amp; Grolemund, G. (2017). <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em> (1st ed.). O’Reilly Media.</p>
-<p>Young, S. (2022). <em>New York experiment with government-approved drug use could become a national model</em>. POLITICO. Retrieved from https://www.politico.com/news/2022/05/14/new-york-experiment-drug-use-national-model-00031876.</p>
 
 
 <!-- -->
@@ -725,220 +773,259 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb62" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project [WIP]"</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Saaradhaa M"</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Crime and Drug Usage"</span></span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/28/2022"</span></span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
-<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a><span class="co">    css: "styles.css"</span></span>
-<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - final_project</span></span>
-<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - tidyverse</span></span>
-<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - ggplot2</span></span>
-<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a><span class="co">  - summarytools</span></span>
-<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a><span class="co">  - lubridate</span></span>
-<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a><span class="co">  - sf</span></span>
-<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-24"><a href="#cb62-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb62-25"><a href="#cb62-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb62-26"><a href="#cb62-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb62-27"><a href="#cb62-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb62-28"><a href="#cb62-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-29"><a href="#cb62-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb62-30"><a href="#cb62-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb62-31"><a href="#cb62-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
-<span id="cb62-32"><a href="#cb62-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb62-33"><a href="#cb62-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb62-34"><a href="#cb62-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-35"><a href="#cb62-35" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb62-36"><a href="#cb62-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb62-37"><a href="#cb62-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-38"><a href="#cb62-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
-<span id="cb62-39"><a href="#cb62-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-40"><a href="#cb62-40" aria-hidden="true" tabindex="-1"></a>Brooklyn Nine-Nine, which is about a police precinct in New York City, is one of my favourite TV shows. It made me want to learn more about actual crime statistics in the city.</span>
-<span id="cb62-41"><a href="#cb62-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-42"><a href="#cb62-42" aria-hidden="true" tabindex="-1"></a>Specifically, this project examines how crime intersects with other social issues. Past research has revealed an association between crime and drug usage (Pierce et al., 2017). This is crucial given the ongoing opioid crisis in the US, with a rise in fatalities due to drug overdoses in recent years (Young, 2022).</span>
-<span id="cb62-43"><a href="#cb62-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-44"><a href="#cb62-44" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb62-45"><a href="#cb62-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
-<span id="cb62-46"><a href="#cb62-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-47"><a href="#cb62-47" aria-hidden="true" tabindex="-1"></a>Suppose you were walking through a borough in New York City, and you see syringe litter. Does this necessarily mean that the borough in question is unsafe -- or is this merely a bias that we have?</span>
-<span id="cb62-48"><a href="#cb62-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-49"><a href="#cb62-49" aria-hidden="true" tabindex="-1"></a>*In simpler terms, where are syringes likely to be found? Is there an overlap with where crimes (especially drug-related crimes) occur?*</span>
-<span id="cb62-50"><a href="#cb62-50" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb62-51"><a href="#cb62-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-52"><a href="#cb62-52" aria-hidden="true" tabindex="-1"></a>Crime is operationalized as <span class="co">[</span><span class="ot">arrest</span><span class="co">](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc)</span> <span class="co">[</span><span class="ot">data</span><span class="co">](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u)</span> (New York Police Department, 2022a; New York Police Department, 2022b), and drug usage as <span class="co">[</span><span class="ot">syringe litter data</span><span class="co">](https://data.cityofnewyork.us/Public-Safety/Summary-of-Syringe-Data-in-NYC-Parks/t8xi-d5wb)</span> (NYC Parks, 2022a). The data spans from 2017 to 2022. Codebooks are provided <span class="co">[</span><span class="ot">here</span><span class="co">](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc)</span> (New York Police Department, 2022a) and <span class="co">[</span><span class="ot">here</span><span class="co">](https://docs.google.com/spreadsheets/d/1VSUqd1peSc-4D2XnBZNiLdxa0Jg4z62D/edit#gid=150342678)</span> (NYC Parks, 2022b).</span>
-<span id="cb62-53"><a href="#cb62-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-54"><a href="#cb62-54" aria-hidden="true" tabindex="-1"></a>If time permits, I will attempt an additional question: What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?</span>
-<span id="cb62-55"><a href="#cb62-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-56"><a href="#cb62-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read In Data</span></span>
-<span id="cb62-57"><a href="#cb62-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-60"><a href="#cb62-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb62-61"><a href="#cb62-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: read in</span></span>
-<span id="cb62-62"><a href="#cb62-62" aria-hidden="true" tabindex="-1"></a><span class="co"># read in 3 main datasets.</span></span>
-<span id="cb62-63"><a href="#cb62-63" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrests_Data_Historic.csv"</span>, </span>
-<span id="cb62-64"><a href="#cb62-64" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb62-65"><a href="#cb62-65" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_desc"</span>, <span class="st">"del"</span>, <span class="st">"a_offenselevel"</span>, <span class="st">"a_boro"</span>, <span class="st">"del"</span>, <span class="st">"a_juriscode"</span>, <span class="st">"a_age"</span>, <span class="st">"a_sex"</span>, <span class="st">"a_race"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_lat"</span>, <span class="st">"a_long"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb62-66"><a href="#cb62-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>))</span>
-<span id="cb62-67"><a href="#cb62-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-68"><a href="#cb62-68" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/NYPD_Arrest_Data_Year_to_Date.csv"</span>, </span>
-<span id="cb62-69"><a href="#cb62-69" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb62-70"><a href="#cb62-70" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_desc"</span>, <span class="st">"del"</span>, <span class="st">"a_offenselevel"</span>, <span class="st">"a_boro"</span>, <span class="st">"del"</span>, <span class="st">"a_juriscode"</span>, <span class="st">"a_age"</span>, <span class="st">"a_sex"</span>, <span class="st">"a_race"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_lat"</span>, <span class="st">"a_long"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb62-71"><a href="#cb62-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>))</span>
-<span id="cb62-72"><a href="#cb62-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-73"><a href="#cb62-73" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Summary_of_Syringe_Data_in_NYC_Parks.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"gispropnum"</span>, <span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"s_location"</span>, <span class="st">"s_groundsyringes"</span>, <span class="st">"s_kiosksyringes"</span>, <span class="st">"s_totalsyringes"</span>, <span class="st">"del"</span>, <span class="st">"s_kiosktype"</span>, <span class="st">"del"</span>, <span class="st">"s_boro"</span>, <span class="st">"del"</span>, <span class="st">"s_propertytype"</span>, <span class="st">"s_kioskavailable"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb62-74"><a href="#cb62-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>))</span>
-<span id="cb62-75"><a href="#cb62-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-76"><a href="#cb62-76" aria-hidden="true" tabindex="-1"></a><span class="co"># make any implicit missing values explicit.</span></span>
-<span id="cb62-77"><a href="#cb62-77" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> <span class="fu">complete</span>(arrest_historic)</span>
-<span id="cb62-78"><a href="#cb62-78" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> <span class="fu">complete</span>(arrest_ytd)</span>
-<span id="cb62-79"><a href="#cb62-79" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> <span class="fu">complete</span>(syringe)</span>
-<span id="cb62-80"><a href="#cb62-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-81"><a href="#cb62-81" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise the 3 datasets.</span></span>
-<span id="cb62-82"><a href="#cb62-82" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(arrest_historic)</span>
-<span id="cb62-83"><a href="#cb62-83" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(arrest_ytd)</span>
-<span id="cb62-84"><a href="#cb62-84" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(syringe, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
-<span id="cb62-85"><a href="#cb62-85" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
-<span id="cb62-86"><a href="#cb62-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-87"><a href="#cb62-87" aria-hidden="true" tabindex="-1"></a><span class="co">#read in shapefile for syringe dataset.</span></span>
-<span id="cb62-88"><a href="#cb62-88" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"~/Desktop/umass/2022_01_Summer/1. DACSS 601/Final Project/Parks_Properties"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"gispropnum"</span>, <span class="st">"geometry"</span>)</span>
-<span id="cb62-89"><a href="#cb62-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb62-90"><a href="#cb62-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-91"><a href="#cb62-91" aria-hidden="true" tabindex="-1"></a>In the code chunk above, all datasets have been loaded, unnecessary columns removed, columns renamed where needed and all missing values labelled "NA".</span>
-<span id="cb62-92"><a href="#cb62-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-93"><a href="#cb62-93" aria-hidden="true" tabindex="-1"></a>**arrest_historic** contains 5,308,876 rows, while **arrest_ytd** contains 93,238 rows. Each row represents a single arrest and associated information (e.g., description of crime, arrest location, demographic profile of suspect). Both have the same 10 columns and only differ in time frame: **arrest_historic** contains data from Jan 2006 to Dec 2021, while **arrest_ytd** contains data from Jan to Jun 2022. I will interpret their descriptive statistics after combining them.</span>
-<span id="cb62-94"><a href="#cb62-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-95"><a href="#cb62-95" aria-hidden="true" tabindex="-1"></a>Meanwhile, **syringe** contains 19,778 rows and 10 columns. Each row represents a date when syringes were collected and information on where they were found. It ranges from Jan 2017 to Jul 2022. I have also loaded the [**park**](https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve) shapefile (Department of Parks and Recreation, 2022), which will be used derive location coordinates for **syringe**.</span>
-<span id="cb62-96"><a href="#cb62-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-97"><a href="#cb62-97" aria-hidden="true" tabindex="-1"></a>*I haven't written the descriptive statistics for the syringe dataset yet because i realise that i need to sum up the values for each date - there are some dates/locations that are the same but have been split up. would this best be done in the read-in step?*</span>
-<span id="cb62-98"><a href="#cb62-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-99"><a href="#cb62-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tidy Data</span></span>
-<span id="cb62-100"><a href="#cb62-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-101"><a href="#cb62-101" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Steps to tidy **arrest_historic** and **arrest_ytd**:</span><span class="co">]</span>{.underline}</span>
-<span id="cb62-102"><a href="#cb62-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-103"><a href="#cb62-103" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Convert *date* to "date" column type.</span>
-<span id="cb62-104"><a href="#cb62-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-105"><a href="#cb62-105" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Create a separate column, *year*.</span>
-<span id="cb62-106"><a href="#cb62-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-107"><a href="#cb62-107" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Remove rows before 2017 in **arrest_historic**.</span>
-<span id="cb62-108"><a href="#cb62-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-109"><a href="#cb62-109" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Join both datasets into **arrest** dataset (93,238 + 1,043,535 = 1,136,773 rows; 10 + 1 = 11 columns).</span>
-<span id="cb62-110"><a href="#cb62-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-113"><a href="#cb62-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb62-114"><a href="#cb62-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tidy arrests 1</span></span>
-<span id="cb62-115"><a href="#cb62-115" aria-hidden="true" tabindex="-1"></a><span class="co"># change 'date' to date column type.</span></span>
-<span id="cb62-116"><a href="#cb62-116" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> arrest_historic <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span>
-<span id="cb62-117"><a href="#cb62-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-118"><a href="#cb62-118" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> arrest_ytd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span>
-<span id="cb62-119"><a href="#cb62-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb62-120"><a href="#cb62-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-123"><a href="#cb62-123" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb62-124"><a href="#cb62-124" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tidy arrests 2</span></span>
-<span id="cb62-125"><a href="#cb62-125" aria-hidden="true" tabindex="-1"></a><span class="co"># create 'year'.</span></span>
-<span id="cb62-126"><a href="#cb62-126" aria-hidden="true" tabindex="-1"></a>arrest_historic<span class="sc">$</span><span class="st">"year"</span> <span class="ot">&lt;-</span> <span class="fu">year</span>(arrest_historic<span class="sc">$</span>date)</span>
-<span id="cb62-127"><a href="#cb62-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-128"><a href="#cb62-128" aria-hidden="true" tabindex="-1"></a>arrest_ytd<span class="sc">$</span><span class="st">"year"</span> <span class="ot">&lt;-</span> <span class="fu">year</span>(arrest_ytd<span class="sc">$</span>date)</span>
-<span id="cb62-129"><a href="#cb62-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-130"><a href="#cb62-130" aria-hidden="true" tabindex="-1"></a><span class="co"># remove rows before 2017 in arrest_historic.</span></span>
-<span id="cb62-131"><a href="#cb62-131" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> arrest_historic <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">2016</span>)</span>
-<span id="cb62-132"><a href="#cb62-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-133"><a href="#cb62-133" aria-hidden="true" tabindex="-1"></a><span class="co"># join datasets.</span></span>
-<span id="cb62-134"><a href="#cb62-134" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> <span class="fu">rbind</span>(arrest_historic, arrest_ytd)</span>
-<span id="cb62-135"><a href="#cb62-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-136"><a href="#cb62-136" aria-hidden="true" tabindex="-1"></a><span class="co"># spell out borough names in full.</span></span>
-<span id="cb62-137"><a href="#cb62-137" aria-hidden="true" tabindex="-1"></a>arrest<span class="sc">$</span>a_boro <span class="ot">&lt;-</span> <span class="fu">recode</span>(arrest<span class="sc">$</span>a_boro, <span class="at">B =</span> <span class="st">'Bronx'</span>, <span class="at">S =</span> <span class="st">'Staten Island'</span>, <span class="at">K =</span> <span class="st">'Brooklyn'</span>, <span class="at">M =</span> <span class="st">'Manhattan'</span>, <span class="at">Q =</span> <span class="st">'Queens'</span>)</span>
-<span id="cb62-138"><a href="#cb62-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-139"><a href="#cb62-139" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
-<span id="cb62-140"><a href="#cb62-140" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(arrest, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
-<span id="cb62-141"><a href="#cb62-141" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
-<span id="cb62-142"><a href="#cb62-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-143"><a href="#cb62-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb62-144"><a href="#cb62-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-145"><a href="#cb62-145" aria-hidden="true" tabindex="-1"></a>The sanity check demonstrates that steps 1 to 4 are complete.</span>
-<span id="cb62-146"><a href="#cb62-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-147"><a href="#cb62-147" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Steps to tidy **syringe**:</span><span class="co">]</span>{.underline}</span>
-<span id="cb62-148"><a href="#cb62-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-149"><a href="#cb62-149" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Convert *date* to "date" type.</span>
-<span id="cb62-150"><a href="#cb62-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-151"><a href="#cb62-151" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Extract latitude and longitude columns from **park** shapefile and convert them into a dataframe.</span>
-<span id="cb62-152"><a href="#cb62-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-153"><a href="#cb62-153" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Combine that dataframe with **syringe**.</span>
-<span id="cb62-154"><a href="#cb62-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-157"><a href="#cb62-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb62-158"><a href="#cb62-158" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tidy syringe</span></span>
-<span id="cb62-159"><a href="#cb62-159" aria-hidden="true" tabindex="-1"></a><span class="co"># remove timestamp from 'date'.</span></span>
-<span id="cb62-160"><a href="#cb62-160" aria-hidden="true" tabindex="-1"></a>syringe<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(syringe<span class="sc">$</span>date, <span class="st">"12:00:00 AM"</span>)</span>
-<span id="cb62-161"><a href="#cb62-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-162"><a href="#cb62-162" aria-hidden="true" tabindex="-1"></a><span class="co"># convert 'date' to date column type.</span></span>
-<span id="cb62-163"><a href="#cb62-163" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span>
-<span id="cb62-164"><a href="#cb62-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-165"><a href="#cb62-165" aria-hidden="true" tabindex="-1"></a><span class="co"># extract latitude and longitude from park shapefile into park_ll.</span></span>
-<span id="cb62-166"><a href="#cb62-166" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
-<span id="cb62-167"><a href="#cb62-167" aria-hidden="true" tabindex="-1"></a>park_ll <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(park<span class="sc">$</span>geometry))</span>
-<span id="cb62-168"><a href="#cb62-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-169"><a href="#cb62-169" aria-hidden="true" tabindex="-1"></a><span class="co"># convert park and park_ll to dataframes.</span></span>
-<span id="cb62-170"><a href="#cb62-170" aria-hidden="true" tabindex="-1"></a>park_ll <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(park_ll)</span>
-<span id="cb62-171"><a href="#cb62-171" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(park)</span>
-<span id="cb62-172"><a href="#cb62-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-173"><a href="#cb62-173" aria-hidden="true" tabindex="-1"></a><span class="co"># remove multipolygon column from park.</span></span>
-<span id="cb62-174"><a href="#cb62-174" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">select</span>(park, <span class="sc">-</span><span class="dv">2</span>)</span>
-<span id="cb62-175"><a href="#cb62-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-176"><a href="#cb62-176" aria-hidden="true" tabindex="-1"></a><span class="co"># combine park and park_ll.</span></span>
-<span id="cb62-177"><a href="#cb62-177" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">cbind</span>(park, park_ll)</span>
-<span id="cb62-178"><a href="#cb62-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-179"><a href="#cb62-179" aria-hidden="true" tabindex="-1"></a><span class="co"># rename long and lat columns in park.</span></span>
-<span id="cb62-180"><a href="#cb62-180" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">rename</span>(park, <span class="st">"s_long"</span> <span class="ot">=</span> <span class="st">"X"</span>, <span class="st">"s_lat"</span> <span class="ot">=</span> <span class="st">"Y"</span>)</span>
-<span id="cb62-181"><a href="#cb62-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-182"><a href="#cb62-182" aria-hidden="true" tabindex="-1"></a><span class="co"># combine park and syringe.</span></span>
-<span id="cb62-183"><a href="#cb62-183" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span></span>
-<span id="cb62-184"><a href="#cb62-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(park, <span class="at">by =</span> <span class="st">"gispropnum"</span>)</span>
-<span id="cb62-185"><a href="#cb62-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-186"><a href="#cb62-186" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
-<span id="cb62-187"><a href="#cb62-187" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(syringe)</span>
-<span id="cb62-188"><a href="#cb62-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb62-189"><a href="#cb62-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-190"><a href="#cb62-190" aria-hidden="true" tabindex="-1"></a>The sanity check shows that steps 1 to 3 are complete. I will now combine **syringe** with **arrest** by doing a full_join using the *date* column.</span>
-<span id="cb62-191"><a href="#cb62-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-194"><a href="#cb62-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb62-195"><a href="#cb62-195" aria-hidden="true" tabindex="-1"></a><span class="co"># perform join.</span></span>
-<span id="cb62-196"><a href="#cb62-196" aria-hidden="true" tabindex="-1"></a>mega <span class="ot">&lt;-</span> <span class="fu">full_join</span>(syringe, arrest, <span class="at">by =</span> <span class="st">"date"</span>)</span>
-<span id="cb62-197"><a href="#cb62-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-198"><a href="#cb62-198" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
-<span id="cb62-199"><a href="#cb62-199" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mega)</span>
-<span id="cb62-200"><a href="#cb62-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb62-201"><a href="#cb62-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-202"><a href="#cb62-202" aria-hidden="true" tabindex="-1"></a>As expected, there are 22 columns (11 + 12 - 1 = 22).</span>
-<span id="cb62-203"><a href="#cb62-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-204"><a href="#cb62-204" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis</span></span>
-<span id="cb62-205"><a href="#cb62-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-206"><a href="#cb62-206" aria-hidden="true" tabindex="-1"></a>*TBD. Planning to make stacked bar graphs (proportion of syringes/arrests in different boroughs) and heatmap.*</span>
-<span id="cb62-207"><a href="#cb62-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-208"><a href="#cb62-208" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliography</span></span>
-<span id="cb62-209"><a href="#cb62-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-210"><a href="#cb62-210" aria-hidden="true" tabindex="-1"></a>Department of Parks and Recreation. (2022). *Parks Properties*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve.</span>
-<span id="cb62-211"><a href="#cb62-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-212"><a href="#cb62-212" aria-hidden="true" tabindex="-1"></a>New York Police Department. (2022). *NYPD Arrest Data (Year to Date)*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc.</span>
-<span id="cb62-213"><a href="#cb62-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-214"><a href="#cb62-214" aria-hidden="true" tabindex="-1"></a>New York Police Department. (2022). *NYPD Arrests Data (Historic)*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u.</span>
-<span id="cb62-215"><a href="#cb62-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-216"><a href="#cb62-216" aria-hidden="true" tabindex="-1"></a>NYC Parks. (2022). *NYC Parks Syringe Litter Data Dictionary and UserGuide*. Google Docs. Retrieved from https://docs.google.com/spreadsheets/d/1VSUqd1peSc-4D2XnBZNiLdxa0Jg4z62D/edit#gid=150342678.</span>
-<span id="cb62-217"><a href="#cb62-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-218"><a href="#cb62-218" aria-hidden="true" tabindex="-1"></a>NYC Parks. (2022). *Summary of Syringe Data in NYC Parks*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/Summary-of-Syringe-Data-in-NYC-Parks/t8xi-d5wb.</span>
-<span id="cb62-219"><a href="#cb62-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-220"><a href="#cb62-220" aria-hidden="true" tabindex="-1"></a>Pierce, M., Hayhurst, K., Bird, S., Hickman, M., Seddon, T., Dunn, G., &amp; Millar, T. (2017). Insights into the link between drug use and criminality: Lifetime offending of criminally-active opiate users. *Drug And Alcohol Dependence*, *179*, 309-316.</span>
-<span id="cb62-221"><a href="#cb62-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-222"><a href="#cb62-222" aria-hidden="true" tabindex="-1"></a>R Core Team. (2022). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing.</span>
-<span id="cb62-223"><a href="#cb62-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-224"><a href="#cb62-224" aria-hidden="true" tabindex="-1"></a>Wickham, H., &amp; Grolemund, G. (2017). *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data* (1st ed.). O'Reilly Media.</span>
-<span id="cb62-225"><a href="#cb62-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-226"><a href="#cb62-226" aria-hidden="true" tabindex="-1"></a>Young, S. (2022). *New York experiment with government-approved drug use could become a national model*. POLITICO. Retrieved from https://www.politico.com/news/2022/05/14/new-york-experiment-drug-use-national-model-00031876.</span>
+<div class="sourceCode" id="cb66" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project [WIP] - Update 2"</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Saaradhaa M"</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Crime, Drug Usage and Demographics"</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/29/2022"</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a><span class="co">    css: "styles.css"</span></span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - final_project</span></span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - tidyverse</span></span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - ggplot2</span></span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a><span class="co">  - summarytools</span></span>
+<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a><span class="co">  - lubridate</span></span>
+<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a><span class="co">  - sf</span></span>
+<span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb66-21"><a href="#cb66-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-24"><a href="#cb66-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb66-25"><a href="#cb66-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb66-26"><a href="#cb66-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb66-27"><a href="#cb66-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb66-28"><a href="#cb66-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-29"><a href="#cb66-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb66-30"><a href="#cb66-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb66-31"><a href="#cb66-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb66-32"><a href="#cb66-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb66-33"><a href="#cb66-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb66-34"><a href="#cb66-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-35"><a href="#cb66-35" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb66-36"><a href="#cb66-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb66-37"><a href="#cb66-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-38"><a href="#cb66-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb66-39"><a href="#cb66-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-40"><a href="#cb66-40" aria-hidden="true" tabindex="-1"></a>Brooklyn Nine-Nine, which is about a police precinct in New York City, is one of my favourite TV shows. It made me want to learn more about actual crime statistics in the city.</span>
+<span id="cb66-41"><a href="#cb66-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-42"><a href="#cb66-42" aria-hidden="true" tabindex="-1"></a>Specifically, this project examines how crime intersects with other social issues. The disparities in arrest rates across demographic groups have been well-documented (Jahn et al., 2022; Schleiden et al., 2020). Past research has also revealed a positive association between crime and drug usage (Pierce et al., 2017).</span>
+<span id="cb66-43"><a href="#cb66-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-44"><a href="#cb66-44" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb66-45"><a href="#cb66-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Questions</span></span>
+<span id="cb66-46"><a href="#cb66-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-47"><a href="#cb66-47" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?</span>
+<span id="cb66-48"><a href="#cb66-48" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Suppose you were walking through a borough in New York City, and you see syringe litter. Does this necessarily mean that the borough in question is unsafe -- or is this merely a bias that we have? *In simpler terms: where are syringes likely to be found? Is there an overlap with where crimes (especially drug-related crimes) occur?*</span>
+<span id="cb66-49"><a href="#cb66-49" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb66-50"><a href="#cb66-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-51"><a href="#cb66-51" aria-hidden="true" tabindex="-1"></a>Crime is operationalized as <span class="co">[</span><span class="ot">arrest</span><span class="co">](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc)</span> <span class="co">[</span><span class="ot">data</span><span class="co">](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u)</span> (New York Police Department, 2022a; New York Police Department, 2022b), and drug usage as <span class="co">[</span><span class="ot">syringe litter data</span><span class="co">](https://data.cityofnewyork.us/Public-Safety/Summary-of-Syringe-Data-in-NYC-Parks/t8xi-d5wb)</span> (NYC Parks, 2022a). The data spans from 2017 to 2022. Codebooks are provided <span class="co">[</span><span class="ot">here</span><span class="co">](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc)</span> (New York Police Department, 2022a) and <span class="co">[</span><span class="ot">here</span><span class="co">](https://docs.google.com/spreadsheets/d/1VSUqd1peSc-4D2XnBZNiLdxa0Jg4z62D/edit#gid=150342678)</span> (NYC Parks, 2022b).</span>
+<span id="cb66-52"><a href="#cb66-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-53"><a href="#cb66-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read In Data</span></span>
+<span id="cb66-54"><a href="#cb66-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-57"><a href="#cb66-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb66-58"><a href="#cb66-58" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: read in</span></span>
+<span id="cb66-59"><a href="#cb66-59" aria-hidden="true" tabindex="-1"></a><span class="co"># read in 3 main datasets.</span></span>
+<span id="cb66-60"><a href="#cb66-60" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/NYPD_ArrestData_Historic.csv"</span>, </span>
+<span id="cb66-61"><a href="#cb66-61" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb66-62"><a href="#cb66-62" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_desc"</span>, <span class="st">"del"</span>, <span class="st">"a_offenselevel"</span>, <span class="st">"a_boro"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_age"</span>, <span class="st">"a_sex"</span>, <span class="st">"a_race"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_lat"</span>, <span class="st">"a_long"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-63"><a href="#cb66-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>))</span>
+<span id="cb66-64"><a href="#cb66-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-65"><a href="#cb66-65" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/NYPD_ArrestData_YTD.csv"</span>, </span>
+<span id="cb66-66"><a href="#cb66-66" aria-hidden="true" tabindex="-1"></a>                   <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb66-67"><a href="#cb66-67" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_desc"</span>, <span class="st">"del"</span>, <span class="st">"a_offenselevel"</span>, <span class="st">"a_boro"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_age"</span>, <span class="st">"a_sex"</span>, <span class="st">"a_race"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"a_lat"</span>, <span class="st">"a_long"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-68"><a href="#cb66-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>))</span>
+<span id="cb66-69"><a href="#cb66-69" aria-hidden="true" tabindex="-1"></a>arrest_ytd<span class="sc">$</span>a_offenselevel <span class="ot">&lt;-</span> <span class="fu">na_if</span>(arrest_ytd<span class="sc">$</span>a_offenselevel, <span class="st">"9"</span>)</span>
+<span id="cb66-70"><a href="#cb66-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-71"><a href="#cb66-71" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/SyringeData_Parks.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"del"</span>, <span class="st">"gispropnum"</span>, <span class="st">"del"</span>, <span class="st">"date"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"s_location"</span>, <span class="st">"s_groundsyringes"</span>, <span class="st">"s_kiosksyringes"</span>, <span class="st">"s_totalsyringes"</span>, <span class="st">"del"</span>, <span class="st">"s_kiosktype"</span>, <span class="st">"del"</span>, <span class="st">"s_boro"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>, <span class="st">"s_kioskavailable"</span>, <span class="st">"del"</span>, <span class="st">"del"</span>), <span class="at">skip=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-72"><a href="#cb66-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"del"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb66-73"><a href="#cb66-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(s_totalsyringes <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb66-74"><a href="#cb66-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-75"><a href="#cb66-75" aria-hidden="true" tabindex="-1"></a><span class="co"># make any implicit missing values explicit.</span></span>
+<span id="cb66-76"><a href="#cb66-76" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> <span class="fu">complete</span>(arrest_historic)</span>
+<span id="cb66-77"><a href="#cb66-77" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> <span class="fu">complete</span>(arrest_ytd)</span>
+<span id="cb66-78"><a href="#cb66-78" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> <span class="fu">complete</span>(syringe)</span>
+<span id="cb66-79"><a href="#cb66-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-80"><a href="#cb66-80" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise the 3 datasets.</span></span>
+<span id="cb66-81"><a href="#cb66-81" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(arrest_historic, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb66-82"><a href="#cb66-82" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb66-83"><a href="#cb66-83" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(arrest_ytd, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb66-84"><a href="#cb66-84" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb66-85"><a href="#cb66-85" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(syringe, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb66-86"><a href="#cb66-86" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb66-87"><a href="#cb66-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-88"><a href="#cb66-88" aria-hidden="true" tabindex="-1"></a><span class="co">#read in shapefile for syringe dataset.</span></span>
+<span id="cb66-89"><a href="#cb66-89" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"_data/ParksProperties"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"gispropnum"</span>, <span class="st">"geometry"</span>)</span>
+<span id="cb66-90"><a href="#cb66-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb66-91"><a href="#cb66-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-92"><a href="#cb66-92" aria-hidden="true" tabindex="-1"></a>In the code chunk above, all datasets have been loaded, unnecessary columns removed, columns renamed where needed and all missing values labelled NA. Some missing values were labelled "9" in **arrest_ytd** and have also been converted to NA.</span>
+<span id="cb66-93"><a href="#cb66-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-94"><a href="#cb66-94" aria-hidden="true" tabindex="-1"></a>**arrest_historic** contains 5,308,876 rows, while **arrest_ytd** contains 93,238 rows. Each row represents a single arrest and associated information (e.g., description of crime, arrest location, demographic profile of suspect). Both have the same 9 columns and only differ in time frame - **arrest_historic** contains data from Jan 2006 to Dec 2021, while **arrest_ytd** contains data from Jan to Jun 2022.</span>
+<span id="cb66-95"><a href="#cb66-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-96"><a href="#cb66-96" aria-hidden="true" tabindex="-1"></a>I will interpret their descriptive statistics again after combining them, but these are some initial observations:</span>
+<span id="cb66-97"><a href="#cb66-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-98"><a href="#cb66-98" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Dangerous drugs are in the list of top 5 offenses in both datasets, highlighting the importance of our research question.</span>
+<span id="cb66-99"><a href="#cb66-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-100"><a href="#cb66-100" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Arrests seem to occur the least often in Staten Island - it would be interesting to see if this is where the least number of syringes are collected as well.</span>
+<span id="cb66-101"><a href="#cb66-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-102"><a href="#cb66-102" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Black individuals represent \~50% of all arrests in both datasets, despite only being \~20% of the population in NYC (U.S. Census Bureau, 2022).</span>
+<span id="cb66-103"><a href="#cb66-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-104"><a href="#cb66-104" aria-hidden="true" tabindex="-1"></a>Meanwhile, **syringe** contains 17,531 rows and 9 columns. Rows where **s_totalsyringes** were 0 were removed in the read-in step, as they do not contain meaningful information for analysis. The dataset ranges from Jan 2017 to Jul 2022. It contains information on syringe collection, including date, location and number of syringes. Each row does not yet represent a single date/location combination where syringes were collected, so it needs to be tidied before descriptives can be interpreted. The one thing that stands out to me is that <span class="co">[</span><span class="ot">no syringes were collected in Brooklyn</span><span class="co">]</span>{.underline} - hopefully the analysis later can unpack why this might be the case.</span>
+<span id="cb66-105"><a href="#cb66-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-106"><a href="#cb66-106" aria-hidden="true" tabindex="-1"></a>I have also loaded the <span class="co">[</span><span class="ot">**park**</span><span class="co">](https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve)</span> shapefile (Department of Parks and Recreation, 2022), which will be used derive location coordinates for **syringe**.</span>
+<span id="cb66-107"><a href="#cb66-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-108"><a href="#cb66-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tidy Data</span></span>
+<span id="cb66-109"><a href="#cb66-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-110"><a href="#cb66-110" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Steps to tidy **arrest_historic** and **arrest_ytd**:</span><span class="co">]</span>{.underline}</span>
+<span id="cb66-111"><a href="#cb66-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-112"><a href="#cb66-112" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Convert *date* to "date" column type.</span>
+<span id="cb66-113"><a href="#cb66-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-114"><a href="#cb66-114" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Create a separate column, *year*.</span>
+<span id="cb66-115"><a href="#cb66-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-116"><a href="#cb66-116" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Remove rows before 2017 in **arrest_historic**.</span>
+<span id="cb66-117"><a href="#cb66-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-118"><a href="#cb66-118" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Join both datasets into **arrest** dataset (93,238 + 1,043,535 = 1,136,773 rows; 9 + 1 = 10 columns).</span>
+<span id="cb66-119"><a href="#cb66-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-122"><a href="#cb66-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb66-123"><a href="#cb66-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tidy arrests 1</span></span>
+<span id="cb66-124"><a href="#cb66-124" aria-hidden="true" tabindex="-1"></a><span class="co"># change 'date' to date column type.</span></span>
+<span id="cb66-125"><a href="#cb66-125" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> arrest_historic <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span>
+<span id="cb66-126"><a href="#cb66-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-127"><a href="#cb66-127" aria-hidden="true" tabindex="-1"></a>arrest_ytd <span class="ot">&lt;-</span> arrest_ytd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span>
+<span id="cb66-128"><a href="#cb66-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb66-129"><a href="#cb66-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-132"><a href="#cb66-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb66-133"><a href="#cb66-133" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tidy arrests 2</span></span>
+<span id="cb66-134"><a href="#cb66-134" aria-hidden="true" tabindex="-1"></a><span class="co"># create 'year'.</span></span>
+<span id="cb66-135"><a href="#cb66-135" aria-hidden="true" tabindex="-1"></a>arrest_historic<span class="sc">$</span><span class="st">"year"</span> <span class="ot">&lt;-</span> <span class="fu">year</span>(arrest_historic<span class="sc">$</span>date)</span>
+<span id="cb66-136"><a href="#cb66-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-137"><a href="#cb66-137" aria-hidden="true" tabindex="-1"></a>arrest_ytd<span class="sc">$</span><span class="st">"year"</span> <span class="ot">&lt;-</span> <span class="fu">year</span>(arrest_ytd<span class="sc">$</span>date)</span>
+<span id="cb66-138"><a href="#cb66-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-139"><a href="#cb66-139" aria-hidden="true" tabindex="-1"></a><span class="co"># remove rows before 2017 in arrest_historic.</span></span>
+<span id="cb66-140"><a href="#cb66-140" aria-hidden="true" tabindex="-1"></a>arrest_historic <span class="ot">&lt;-</span> arrest_historic <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">2016</span>)</span>
+<span id="cb66-141"><a href="#cb66-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-142"><a href="#cb66-142" aria-hidden="true" tabindex="-1"></a><span class="co"># join datasets.</span></span>
+<span id="cb66-143"><a href="#cb66-143" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> <span class="fu">rbind</span>(arrest_historic, arrest_ytd)</span>
+<span id="cb66-144"><a href="#cb66-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-145"><a href="#cb66-145" aria-hidden="true" tabindex="-1"></a><span class="co"># spell out borough names in full.</span></span>
+<span id="cb66-146"><a href="#cb66-146" aria-hidden="true" tabindex="-1"></a>arrest<span class="sc">$</span>a_boro <span class="ot">&lt;-</span> <span class="fu">recode</span>(arrest<span class="sc">$</span>a_boro, <span class="at">B =</span> <span class="st">'Bronx'</span>, <span class="at">S =</span> <span class="st">'Staten Island'</span>, <span class="at">K =</span> <span class="st">'Brooklyn'</span>, <span class="at">M =</span> <span class="st">'Manhattan'</span>, <span class="at">Q =</span> <span class="st">'Queens'</span>)</span>
+<span id="cb66-147"><a href="#cb66-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-148"><a href="#cb66-148" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
+<span id="cb66-149"><a href="#cb66-149" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dfSummary</span>(arrest, <span class="at">varnumbers =</span> <span class="cn">FALSE</span>, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">graph.magnif =</span> <span class="fl">0.30</span>, <span class="at">style =</span> <span class="st">"grid"</span>, <span class="at">valid.col =</span> <span class="cn">FALSE</span>), </span>
+<span id="cb66-150"><a href="#cb66-150" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>, <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb66-151"><a href="#cb66-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-152"><a href="#cb66-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb66-153"><a href="#cb66-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-154"><a href="#cb66-154" aria-hidden="true" tabindex="-1"></a>The sanity check demonstrates that steps 1 to 4 are complete.</span>
+<span id="cb66-155"><a href="#cb66-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-156"><a href="#cb66-156" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Steps to tidy **syringe**:</span><span class="co">]</span>{.underline}</span>
+<span id="cb66-157"><a href="#cb66-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-158"><a href="#cb66-158" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Convert *date* to "date" type.</span>
+<span id="cb66-159"><a href="#cb66-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-160"><a href="#cb66-160" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Sum syringe count values in **syringe** into 1 row per date/location combination.</span>
+<span id="cb66-161"><a href="#cb66-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-162"><a href="#cb66-162" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Extract latitude and longitude columns from **park** shapefile and convert them into a dataframe.</span>
+<span id="cb66-163"><a href="#cb66-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-164"><a href="#cb66-164" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Combine that dataframe with **syringe**.</span>
+<span id="cb66-165"><a href="#cb66-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-168"><a href="#cb66-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb66-169"><a href="#cb66-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tidy syringe</span></span>
+<span id="cb66-170"><a href="#cb66-170" aria-hidden="true" tabindex="-1"></a><span class="co"># remove timestamp from 'date'.</span></span>
+<span id="cb66-171"><a href="#cb66-171" aria-hidden="true" tabindex="-1"></a>syringe<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(syringe<span class="sc">$</span>date, <span class="st">"12:00:00 AM"</span>)</span>
+<span id="cb66-172"><a href="#cb66-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-173"><a href="#cb66-173" aria-hidden="true" tabindex="-1"></a><span class="co"># convert 'date' to date column type.</span></span>
+<span id="cb66-174"><a href="#cb66-174" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">parse_date_time</span>(date, <span class="fu">c</span>(<span class="st">'mdy'</span>))))</span>
+<span id="cb66-175"><a href="#cb66-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-176"><a href="#cb66-176" aria-hidden="true" tabindex="-1"></a><span class="co"># sum values into 1 row per date/location combo.</span></span>
+<span id="cb66-177"><a href="#cb66-177" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span> </span>
+<span id="cb66-178"><a href="#cb66-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(s_location, date, gispropnum, s_kiosktype, s_boro, s_kioskavailable) <span class="sc">%&gt;%</span></span>
+<span id="cb66-179"><a href="#cb66-179" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">contains</span>(<span class="st">"syringes"</span>), <span class="sc">~</span><span class="fu">sum</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb66-180"><a href="#cb66-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-181"><a href="#cb66-181" aria-hidden="true" tabindex="-1"></a><span class="co"># extract latitude and longitude from park shapefile into park_ll.</span></span>
+<span id="cb66-182"><a href="#cb66-182" aria-hidden="true" tabindex="-1"></a><span class="fu">sf_use_s2</span>(<span class="cn">FALSE</span>)</span>
+<span id="cb66-183"><a href="#cb66-183" aria-hidden="true" tabindex="-1"></a>park_ll <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(park<span class="sc">$</span>geometry))</span>
+<span id="cb66-184"><a href="#cb66-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-185"><a href="#cb66-185" aria-hidden="true" tabindex="-1"></a><span class="co"># convert park and park_ll to dataframes.</span></span>
+<span id="cb66-186"><a href="#cb66-186" aria-hidden="true" tabindex="-1"></a>park_ll <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(park_ll)</span>
+<span id="cb66-187"><a href="#cb66-187" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(park)</span>
+<span id="cb66-188"><a href="#cb66-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-189"><a href="#cb66-189" aria-hidden="true" tabindex="-1"></a><span class="co"># remove multipolygon column from park.</span></span>
+<span id="cb66-190"><a href="#cb66-190" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">select</span>(park, <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb66-191"><a href="#cb66-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-192"><a href="#cb66-192" aria-hidden="true" tabindex="-1"></a><span class="co"># combine park and park_ll.</span></span>
+<span id="cb66-193"><a href="#cb66-193" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">cbind</span>(park, park_ll)</span>
+<span id="cb66-194"><a href="#cb66-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-195"><a href="#cb66-195" aria-hidden="true" tabindex="-1"></a><span class="co"># rename long and lat columns in park.</span></span>
+<span id="cb66-196"><a href="#cb66-196" aria-hidden="true" tabindex="-1"></a>park <span class="ot">&lt;-</span> <span class="fu">rename</span>(park, <span class="st">"s_long"</span> <span class="ot">=</span> <span class="st">"X"</span>, <span class="st">"s_lat"</span> <span class="ot">=</span> <span class="st">"Y"</span>)</span>
+<span id="cb66-197"><a href="#cb66-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-198"><a href="#cb66-198" aria-hidden="true" tabindex="-1"></a><span class="co"># combine park and syringe.</span></span>
+<span id="cb66-199"><a href="#cb66-199" aria-hidden="true" tabindex="-1"></a>syringe <span class="ot">&lt;-</span> syringe <span class="sc">%&gt;%</span></span>
+<span id="cb66-200"><a href="#cb66-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(park, <span class="at">by =</span> <span class="st">"gispropnum"</span>)</span>
+<span id="cb66-201"><a href="#cb66-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-202"><a href="#cb66-202" aria-hidden="true" tabindex="-1"></a><span class="co"># sanity check.</span></span>
+<span id="cb66-203"><a href="#cb66-203" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(syringe)</span>
+<span id="cb66-204"><a href="#cb66-204" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb66-205"><a href="#cb66-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-206"><a href="#cb66-206" aria-hidden="true" tabindex="-1"></a>The sanity check shows that steps 1 to 3 are complete. For now, the basic tidying is complete - further transformations may be required for each visualisation as we go along.</span>
+<span id="cb66-207"><a href="#cb66-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-208"><a href="#cb66-208" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis: Question 1</span></span>
+<span id="cb66-209"><a href="#cb66-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-210"><a href="#cb66-210" aria-hidden="true" tabindex="-1"></a>To recap, this was my first research question:</span>
+<span id="cb66-211"><a href="#cb66-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-212"><a href="#cb66-212" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb66-213"><a href="#cb66-213" aria-hidden="true" tabindex="-1"></a><span class="fu">## Question 1</span></span>
+<span id="cb66-214"><a href="#cb66-214" aria-hidden="true" tabindex="-1"></a>What is the demographic profile of those arrested for drug-related crimes? Does it differ from that of general arrestees?</span>
+<span id="cb66-215"><a href="#cb66-215" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb66-216"><a href="#cb66-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-217"><a href="#cb66-217" aria-hidden="true" tabindex="-1"></a>Age, sex and race data are available. We can combine them together to create the demographic profiles, then make a bar graph.</span>
+<span id="cb66-218"><a href="#cb66-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-221"><a href="#cb66-221" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb66-222"><a href="#cb66-222" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: qn 1 bar graph</span></span>
+<span id="cb66-223"><a href="#cb66-223" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> arrest <span class="sc">%&gt;%</span> <span class="fu">unite</span>(demo, a_race, a_sex, a_age, <span class="at">sep =</span> <span class="st">"_"</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb66-224"><a href="#cb66-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-225"><a href="#cb66-225" aria-hidden="true" tabindex="-1"></a>arrest <span class="sc">%&gt;%</span></span>
+<span id="cb66-226"><a href="#cb66-226" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(demo) <span class="sc">%&gt;%</span></span>
+<span id="cb66-227"><a href="#cb66-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb66-228"><a href="#cb66-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(demo, n)) <span class="sc">+</span> </span>
+<span id="cb66-229"><a href="#cb66-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb66-230"><a href="#cb66-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb66-231"><a href="#cb66-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Profiles of Arrestees in NYC (2017-Present)"</span>, <span class="at">x =</span> <span class="st">"Profile"</span>, <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb66-232"><a href="#cb66-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>,<span class="at">hjust=</span><span class="dv">1</span>))</span>
+<span id="cb66-233"><a href="#cb66-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-234"><a href="#cb66-234" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb66-235"><a href="#cb66-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-236"><a href="#cb66-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb66-237"><a href="#cb66-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-238"><a href="#cb66-238" aria-hidden="true" tabindex="-1"></a>My first graph! This is a start. I want to change count to percent and add in a fill for different boroughs.</span>
+<span id="cb66-239"><a href="#cb66-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-240"><a href="#cb66-240" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis: Question 2</span></span>
+<span id="cb66-241"><a href="#cb66-241" aria-hidden="true" tabindex="-1"></a>*TBD. Planning to make stacked bar graph (proportion of syringes in different boroughs) and heatmap. For the heatmap, I need to make a combined dataset of counts from arrest (same as how I did counts for syringe) and then combine that with syringe.*</span>
+<span id="cb66-242"><a href="#cb66-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-243"><a href="#cb66-243" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliography</span></span>
+<span id="cb66-244"><a href="#cb66-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-245"><a href="#cb66-245" aria-hidden="true" tabindex="-1"></a>Department of Parks and Recreation. (2022). *Parks Properties*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Recreation/Parks-Properties/enfh-gkve.</span>
+<span id="cb66-246"><a href="#cb66-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-247"><a href="#cb66-247" aria-hidden="true" tabindex="-1"></a>Jahn, J., Simes, J., Cowger, T., &amp; Davis, B. (2022). Racial Disparities in Neighborhood Arrest Rates during the COVID-19 Pandemic. *Journal Of Urban Health*, *99*(1), 67-76.</span>
+<span id="cb66-248"><a href="#cb66-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-249"><a href="#cb66-249" aria-hidden="true" tabindex="-1"></a>New York Police Department. (2022). *NYPD Arrest Data (Year to Date)*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc.</span>
+<span id="cb66-250"><a href="#cb66-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-251"><a href="#cb66-251" aria-hidden="true" tabindex="-1"></a>New York Police Department. (2022). *NYPD Arrests Data (Historic)*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u.</span>
+<span id="cb66-252"><a href="#cb66-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-253"><a href="#cb66-253" aria-hidden="true" tabindex="-1"></a>NYC Parks. (2022). *NYC Parks Syringe Litter Data Dictionary and UserGuide*. Google Docs. Retrieved from https://docs.google.com/spreadsheets/d/1VSUqd1peSc-4D2XnBZNiLdxa0Jg4z62D/edit#gid=150342678.</span>
+<span id="cb66-254"><a href="#cb66-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-255"><a href="#cb66-255" aria-hidden="true" tabindex="-1"></a>NYC Parks. (2022). *Summary of Syringe Data in NYC Parks*. NYC Open Data. Retrieved from https://data.cityofnewyork.us/Public-Safety/Summary-of-Syringe-Data-in-NYC-Parks/t8xi-d5wb.</span>
+<span id="cb66-256"><a href="#cb66-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-257"><a href="#cb66-257" aria-hidden="true" tabindex="-1"></a>Pierce, M., Hayhurst, K., Bird, S., Hickman, M., Seddon, T., Dunn, G., &amp; Millar, T. (2017). Insights into the link between drug use and criminality: Lifetime offending of criminally-active opiate users. *Drug And Alcohol Dependence*, *179*, 309-316.</span>
+<span id="cb66-258"><a href="#cb66-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-259"><a href="#cb66-259" aria-hidden="true" tabindex="-1"></a>R Core Team. (2022). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing.</span>
+<span id="cb66-260"><a href="#cb66-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-261"><a href="#cb66-261" aria-hidden="true" tabindex="-1"></a>Schleiden, C., Soloski, K., Milstead, K., &amp; Rhynehart, A. (2020). Racial Disparities in Arrests: A Race Specific Model Explaining Arrest Rates Across Black and White Young Adults. *Child And Adolescent Social Work Journal*, *37*(1), 1-14.</span>
+<span id="cb66-262"><a href="#cb66-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-263"><a href="#cb66-263" aria-hidden="true" tabindex="-1"></a>U.S. Census Bureau. (2022). *U.S. Census Bureau QuickFacts: New York City, New York*. Census Bureau QuickFacts. Retrieved from https://www.census.gov/quickfacts/newyorkcitynewyork.</span>
+<span id="cb66-264"><a href="#cb66-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-265"><a href="#cb66-265" aria-hidden="true" tabindex="-1"></a>Wickham, H., &amp; Grolemund, G. (2017). *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data* (1st ed.). O'Reilly Media.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
