@@ -34,6 +34,13 @@ Now, this is a large dataset, and it'll require a lot of cleaning up in order to
 ```{r}
 SoilHealth %>%
   select_if(~!(all(is.na(.)) | all(. == ""))) %>%
-  select(-contains("Comments") & -contains("Author"))
+  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal"))
+```
+
+```{r}
+SoilHealth %>%
+  filter(!is.na(CoverCropGroup)) %>%
+  ggplot(aes(x = CoverCropGroup)) +
+  geom_bar()
 ```
 
