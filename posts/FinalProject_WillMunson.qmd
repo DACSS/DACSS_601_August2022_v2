@@ -71,4 +71,31 @@ SoilHealth %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-Again, we notice a similar pattern, except the legumes appear to show less of a difference between silt loam samples and sandy loam samples. This must indicate that legumes thrive within sandy loam or silty loam environments.
+Again, we notice a similar pattern, except the legumes appear to show less of a difference between silt loam samples and sandy loam samples. This must indicate that legumes thrive within sandy loam or silty loam environments, which usually retain more water. 
+
+Let's take a look at where these samples were studied too.
+```{r}
+SoilHealth %>%
+  filter(!is.na(Country)) %>%
+  filter(!is.na(CoverCropGroup)) %>%
+  filter(!is.na(Texture)) %>%
+  filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
+  filter(!str_detect(Texture, 'NotAvailable')) %>%
+  ggplot(aes(x = Country)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
+So, setting up the data so that it excludes any data that isn't readily available or is empty is essential to getting more accurate results. This is interesting, 
+
+```{r}
+SoilHealth %>%
+  filter(!is.na(CoverCropGroup)) %>%
+  #filter(str_detect(CoverCropGroup, 'Rye')) %>%
+  filter(str_detect(Country, 'USA')) %>%
+  filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
+  ggplot(aes(x = CoverCropGroup)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
