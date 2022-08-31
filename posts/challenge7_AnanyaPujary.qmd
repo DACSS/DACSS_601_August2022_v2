@@ -1,0 +1,216 @@
+---
+title: "Challenge 7"
+author: "Ananya Pujary"
+description: "Visualizing Multiple Dimensions"
+date: "08/24/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_7
+  - australian_marriage
+  - abc_poll
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(skimr)
+library(summarytools)
+library(readxl)
+if(!require(janitor))
+  install.packages("janitor",repos = "https://cran.us.r-project.org")
+library(purrr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+   
+::: panel-tabset
+
+# Australian Marriage Dataset
+
+## Read in data
+
+Reading in the 'australian_marriage_tidy.csv' dataset.
+
+```{r}
+#| label: reading in the data (aus)
+
+australian_marriage <- read_csv("_data/australian_marriage_tidy.csv")
+```
+
+### Briefly describe the data
+
+```{r}
+#| label: data description (aus)
+
+print(summarytools::dfSummary(australian_marriage, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.50, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+
+skim(australian_marriage)
+
+```
+This dataset has 16 rows and 4 columns, of which 2 are character type and 2 are numeric. There are no missing values. It describes the number of people who support/don't support same sex marriage in 8 Australian regions.
+
+## Tidy Data
+
+The entries in the 'territory' column can be turned into factors to aid visualization. Also, the 'resp' column values of "yes" and "no" can be converted to "2" and "1" respectively.
+
+```{r}
+#| label: tidy data (aus)
+
+australian_marriage$territory <- as.factor(australian_marriage$territory)
+class(australian_marriage$territory)
+
+australian_marriage$resp <- as.numeric(as.factor(australian_marriage$resp))
+
+```
+
+## Visualization with Multiple Dimensions
+
+I used a pie chart to figure out the proportion of married to not-married people in the different Australian states.
+
+```{r}
+#| label: visualization (aus)
+
+australian_marriage$resp <- as.factor(australian_marriage$resp)
+
+marriage_pie <- ggplot(australian_marriage, aes(x="", y=percent, fill=resp)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) + labs(title = "Support for Same-Sex Marriage Across Australian States") + theme_void() + 
+  theme(strip.text = element_text(size = 5)) + guides(fill=guide_legend(title="Responses")) + scale_fill_manual(values = unique(australian_marriage$resp), labels = c("No","Yes")) + geom_text(aes(label = paste0(round(percent), "%")),
+                position = position_stack(vjust = 0.5))
+
+marriage_pie <- marriage_pie+facet_wrap(~ territory)
+marriage_pie
+
+```
+The Australian Capital Territory (c) overall seems to support same-sex marriage the most, while New South Wales has lesser people that support it.
+
+:::
+
+# ABC Poll
+
+## Read in data
+
+```{r}
+#| label: reading in the data (abc)
+
+abc_poll <- read_csv("_data/abc_poll_2021.csv")
+
+```
+### Briefly describe the data
+
+```{r}
+#| label: data description (abc)
+
+print(summarytools::dfSummary(abc_poll, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.50, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+
+skim(abc_poll)
+```
+
+This dataset seems to be a national sample survey from 2019 that includes questions related to respondents' political attitudes and demographics, along with some survey administration questions. There are 527 rows and 31 columns in this dataset, of which 28 are character type and 3 are numeric. No missing values are present. `ppeducat` seems to have more complete information than `ppeduc5`, so I'll be using this column for further visualization of respondents' educational background.
+
+## Tidy Data
+
+First, I'll be ordering `ppeducat` values by increasing educational level instead of alphabetically.
+
+```{r}
+#| label: tidy data 1 (abc)
+
+education_levels <- unique(abc_poll$ppeducat)
+education_levels
+
+abc_poll_new <- abc_poll %>%
+  mutate(education = factor(ppeducat, levels =  education_levels[c(4,1,3,2)])) %>%
+  select(-ppeducat)
+
+table(abc_poll_new$education)
+
+```
+
+
+```{r}
+#| label: tidy data 2 (abc)
+
+unique(abc_poll$QPID)
+
+# removing extra characters such as "A" and "An"
+abc_poll_new <- abc_poll_new %>%
+  mutate(partyid = str_remove(QPID, "A[n]* "),
+         partyid = na_if(partyid, "Skipped")) %>%
+  select(-QPID)
+
+table(abc_poll_new$partyid)
+```
+
+Then, I replaced all "Skipped" entries across columns with NA:
+
+```{r}
+#| label: tidy data 3 (abc)
+
+abc_poll_new <-abc_poll_new%>%
+  mutate(across(starts_with("Q"), ~ na_if(.x, "Skipped")))
+
+map(select(abc_poll_new, starts_with("Q")), table)
+
+```
+Finally, I shortened some entries in the `ppethm` column by removing the redundant "Non-Hispanic" part.
+
+```{r}
+#| label: tidy data 4 (abc)
+
+unique(abc_poll_new$ppethm)
+
+# shortening 
+abc_poll_new <- abc_poll_new %>%
+  mutate(ethnicity = str_remove(ppethm,", Non-Hispanic")) %>%
+  select(-ppethm)
+
+unique(abc_poll_new$ethnicity)
+
+```
+
+## Visualization with Multiple Dimensions
+
+First, I look at the distribution of party affiliations by age using `geom_point()` and percentage labels for easy comparison:
+
+```{r}
+#| label: visualization 1 (abc)
+
+abc_poll_viz <- abc_poll_new %>%
+  select(partyid,ABCAGE) %>%
+  group_by(partyid,ABCAGE) %>%
+  tally()
+abc_poll_viz
+
+abc_table <- ggplot(abc_poll_viz, aes(partyid, ABCAGE)) + geom_point(aes(size = n), colour = "orange") + xlab("") + ylab("")
+abc_table + scale_size_continuous(range=c(10,20)) + geom_text(aes(label = scales::percent(n/sum(n), accuracy = .1, trim = FALSE)), size = 3) + theme(panel.background=element_blank(), panel.grid.major = element_line(color = "red", size = 0.5),legend.position="none") + labs(title = "Distribution of Party Affiliations by Age")
+
+```
+Then, I wanted to see how the proportion of people who were optimistic about the next 12 months with the current party by age and party affiliation, but I wasn't able to properly visualize it beyond these tables:
+
+```{r}
+#| label: visualization 2 (abc)
+
+abc_poll_table <- abc_poll_new %>%
+  tabyl(partyid,ABCAGE,Q5, show_missing_levels = FALSE) %>%
+  adorn_totals("row") %>%
+  adorn_percentages("all") %>%
+  adorn_pct_formatting(digits = 1) %>%
+  adorn_ns %>%
+  adorn_title()
+
+abc_poll_table
+
+```
+
+:::
+

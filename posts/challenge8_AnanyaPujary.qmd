@@ -1,0 +1,234 @@
+---
+title: "Challenge 8"
+author: "Ananya Pujary"
+description: "Joining Data"
+date: "08/25/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - faostat
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(summarytools)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+Reading in the faostat datasets.
+
+```{r}
+#| label: reading in the data
+
+faostat_egg <- read_csv("_data/FAOSTAT_egg_chicken.csv")
+faostat_livestock <- read_csv("_data/FAOSTAT_livestock.csv")
+faostat_cattle <- read_csv("_data/FAOSTAT_cattle_dairy.csv")
+faostat_country <- read_csv ("_data/FAOSTAT_country_groups.csv")
+
+```
+
+### Briefly describe the data
+
+
+```{r}
+#| label: data description 1
+
+print(summarytools::dfSummary(faostat_egg, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.50, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+
+dim(faostat_egg)
+```
+
+The `faostat_egg` dataset has 38170 rows and 13 columns. There are 40 missing values in the 'Values' column and 7548 missing values in 'Flag'.
+
+```{r}
+
+#| label: data description 2
+
+print(summarytools::dfSummary(faostat_livestock, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.50, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+
+dim(faostat_livestock)
+
+```
+
+There are 82116 rows and 13 columns in the `faostat_livestock` dataset. It has missing values too (1301 in 'Value' and 38270 in 'Flag').
+
+```{r}
+
+#| label: data description 3
+
+print(summarytools::dfSummary(faostat_country, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.50, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+
+dim(faostat_country)
+
+```
+
+The `faostat_country` dataset has 1943 rows and 7 columns. It contains information on each country name and unique code, the country groups they belong to, as well as codes for 'M49', 'ISO2', and 'ISO3'. Only the 'ISO2' column has 8 missing values.
+
+## Tidy Data
+
+### Tidying `faostat_country`
+
+`faostat_country` seems tidy enough to work with.
+
+### Tidying `faostat_egg`
+
+```{r}
+#| label: tidy data 1
+
+# turning 'Element' and 'Flag Description' into factor type
+
+faostat_egg$Element <- as.factor(faostat_egg$Element)
+faostat_egg$'Flag Description' <- as.factor(faostat_egg$'Flag Description')
+
+
+# deleting 'Year Code'
+
+faostat_egg <- faostat_egg %>%
+  select(-'Year Code')
+
+```
+
+### Tidying `faostat_livestock`
+
+```{r}
+#| label: tidy data 2
+
+# turning 'Element' and 'Flag Description' into factor type
+faostat_livestock$Element <- as.factor(faostat_livestock$Element)
+faostat_livestock$'Flag Description' <- as.factor(faostat_livestock$'Flag Description')
+
+
+# deleting 'Year Code'
+faostat_livestock <- faostat_livestock %>%
+  select(-'Year Code')
+
+```
+
+
+### Tidying `faostat_cattle`
+
+```{r}
+#| label: tidy data 3
+
+# turning 'Element' and 'Flag Description' into factor type
+
+faostat_cattle$Element <- as.factor(faostat_cattle$Element)
+faostat_cattle$'Flag Description' <- as.factor(faostat_cattle$'Flag Description')
+
+
+# deleting 'Year Code'
+
+faostat_cattle <- faostat_cattle %>%
+  select(-'Year Code')
+
+```
+
+## Join Data
+
+Be sure to include a sanity check, and double-check that case count is correct!
+
+Joining `faostat_egg` and `faostat_livestock` by rowbinding:
+
+```{r}
+#| label: join data 1
+
+egg_livestock <- bind_rows(faostat_egg,faostat_livestock)
+
+dim(egg_livestock)
+```
+
+Both datasets had 13 columns and the combined number of rows in the new dataset is $$38170 + 82116 = 120286$$.
+
+Joining `faostat_cattle` and `faostat_livestock`by rowbinding:
+
+```{r}
+#| label: join data 2
+
+cattle_livestock <- bind_rows(faostat_cattle,faostat_livestock)
+
+dim(cattle_livestock)
+```
+
+Both datasets had 13 columns and the combined number of rows in the new dataset is $$36449 + 82116 = 118565$$.
+
+
+```{r}
+#| label: join data 3
+
+#figuring out the primary key for 'faostat_country'
+faostat_country %>% 
+  count('Country Code') %>% 
+  filter(n > 1)
+faostat_country
+
+egg_livestock %>% 
+  count('Area Code') %>% 
+  filter(n > 1)
+
+unique(faostat_country$`Country Code`)
+unique(egg_livestock$`Area Code`)
+
+```
+
+So 'Country Code' can be used as the primary key for the `faostat_country` dataset to connect to the `egg_livestock` dataset.
+
+```{r}
+#| label: join data 4
+
+join_anti <- egg_livestock %>%
+  anti_join(faostat_country, by = c("Area Code"="Country Code")) 
+
+dim(join_anti)
+unique(join_anti$`Area Code`)
+unique(egg_livestock$`Area Code`)
+
+check1 <- join_anti %>% 
+  select(`Area Code`,`Area`) %>% 
+  group_by(`Area Code`,`Area`) %>% 
+  tally()
+check1
+
+```
+
+The anti_join() on `egg_livestock` and `faostat_country` reveals that there are 17346 observations in `egg_livestock` that did not find a match in `faostat_country`. `join_anti` has 13 columns, the same as the `egg_livestock` dataset.
+
+
+## Analyze Data
+
+I'm looking to compare egg production to camel livestock production in Bahrain and Qatar using a line graph with facet wrap.
+
+```{r}
+#| label: analyze data 1
+
+egg_livestock_filt <- egg_livestock %>%
+  select(Year,Area,Item,Element,Value) %>%
+  filter(Area=="Bahrain"|Area=="Qatar") %>%
+  filter(Element=="Production"| Item=="Camels")
+egg_livestock_filt
+
+```
+```{r}
+#| label: analyze data 2
+
+egg_livestock_filt %>%
+  ggplot(aes(x=Year, y=Value, color=Area)) +
+    geom_line() + labs(title = "Egg Production versus Camel Stocks (1961-2018)", x = "Year", y = "Value") + facet_wrap(~ Element) + theme_minimal()
+
+```
+Over time, egg production in Qatar exceeded that in Bahrain. Camel livestock production in Qatar evidently far-exceeds stocks in Bahrain too.
