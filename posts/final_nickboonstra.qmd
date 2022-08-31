@@ -2,7 +2,15 @@
 title: "Formula 1 Data" ## Rename!
 author: "Nick Boonstra" 
 description: "Analyzing Formula 1 Data Using R"
+date: "`r Sys.Date()`"
 editor: visual
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final
 ---
 
 
