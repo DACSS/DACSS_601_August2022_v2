@@ -37,10 +37,13 @@ SoilHealth %>%
   select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal"))
 ```
 
+Alright, now, let's take a look at the crop cover groups that our soil has. 
+
 ```{r}
 SoilHealth %>%
   filter(!is.na(CoverCropGroup)) %>%
   ggplot(aes(x = CoverCropGroup)) +
-  geom_bar()
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
 ```
 
