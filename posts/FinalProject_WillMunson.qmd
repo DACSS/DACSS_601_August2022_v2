@@ -37,13 +37,38 @@ SoilHealth %>%
   select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal"))
 ```
 
-Alright, now, let's take a look at the crop cover groups that our soil has. 
+Alright, now, let's take a look at some bar graphs to see how each of these samples differ. Let's start with the crop cover groups that our soil has. 
 
 ```{r}
 SoilHealth %>%
   filter(!is.na(CoverCropGroup)) %>%
+  filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
   ggplot(aes(x = CoverCropGroup)) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 270))
 ```
 
+As we can see here, the full majority of cover crops are within the legume group.
+
+```{r}
+SoilHealth %>%
+  filter(!is.na(Texture)) %>%
+  filter(!str_detect(Texture, 'NotAvailable')) %>%
+  ggplot(aes(x = Texture)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
+The majority of the samples taken in this study were sandy loam or silty loam, or a mix of the three soil compositions, sand, silt and clay. Now let's take a look at which soil textures are most common with legumes. 
+
+```{r}
+SoilHealth %>%
+  filter(!is.na(Texture)) %>%
+  filter(str_detect(CoverCropGroup, 'Legume')) %>%
+  filter(!str_detect(Texture, 'NotAvailable')) %>%
+  ggplot(aes(x = Texture)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
+Again, we notice a similar pattern, except the legumes appear to show less of a difference between silt loam samples and sandy loam samples. This must indicate that legumes thrive within sandy loam or silty loam environments.
