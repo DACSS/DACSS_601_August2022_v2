@@ -176,14 +176,6 @@ m_natl <- Y$M
 arrange(f_natl, Year, desc(Count))
 ```
 
-##Things to Graph
-top baby names by generation
-the rise of Jalen (and state prevalence)
-compare Jalen to Jaden
-most state-specific baby names
-top names by state
-
-
 ```{r}
 #top female names nationally, arranged by year
 f_natl %>%
