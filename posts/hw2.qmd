@@ -38,7 +38,7 @@ Homework 2: Reading in Data
 library(readxl)
 wild_bird_data <- read_excel("_data/wild_bird_data.xlsx",
                              skip = 2,
-                             col_names = c("Body Weight", "Population Size"))
+                             col_names = c("Body_Weight", "Population_Size"))
 wild_bird_data
 ```
 
@@ -48,25 +48,31 @@ wild_bird_data
 colnames(wild_bird_data)
 #Get the dimensions of electric
 dim(wild_bird_data)
+#Get the last 10 rows
+tail(wild_bird_data, 10)
 ```
-## Select the Birds Weight which is greater than 20
+## Select the Data
 Using filter() function to get cases.
 ```{r}
 #Filter the rows in Weight that are greater than 25
-filter(wild_bird_data, 'Body Weight' > 25.0)
+   filter(wild_bird_data, Body_Weight > 25)
 
 ```
-## Arrange Data 
+## Arrange the Data 
 Listing Population values in descending order from highest to lowest. 
 ```{r}
-#Summary of Population Size variables
-summary(population)
-
-arrange(wild_bird_data, desc('Population Size'))
-  
+#Set the Body_Weight from highest to lowest
+Table_1 <- arrange(wild_bird_data, desc(Body_Weight)) 
+#Get the lowest 10 rows
+tail(Table_1, 10)
 ```
 
-## Homework Goal
+## Summary the Data
+```{r}
+#Get the agerage and median of Body_Weight variable
+wild_bird_data %>%
+  summarise(avg_weight = mean(Body_Weight, na.rm = TRUE),
+            med_weight = median(Body_Weight, na.rm = TRUE),
+            )
 
-Re-arrange data in order, and get some basic information about wild_bird. 
-:::
+```
