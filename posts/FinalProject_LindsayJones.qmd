@@ -20,6 +20,7 @@ categories:
 library(tidyverse)
 library(ggplot2)
 library(lubridate)
+library(usmap)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
@@ -29,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 
 ## Tidying the Data
 
-The data I've chosen to use is fairly clean. However, it came in separate CSV files for each state (and Washington DC). First, I have to read in all 51 files. 
+The data I've chosen to use is fairly clean. However, it came in separate CSV files for each state (and Washington DC). First, I have to read in all 51 files. I'm also going to cheat and read in a data set I found that has the national data already cleaned up, becaues I already spent so much time reading in 51 other data sets. 
 
 ```{r}
 library(readr)
@@ -135,6 +136,8 @@ WV <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/WV.csv",
     col_names = FALSE)
 WY <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/WY.csv", 
     col_names = FALSE)
+
+us_names <- read_csv("~/School/UMASS/DACSS601/Final/names.csv")
 ```
 
 
@@ -151,5 +154,202 @@ states
 
 
 ```{r}
-states %>% arrange("Year", "Count")
+#split state data into separate tibbles by sex
+X <- split(states, states$Sex)
+
+#assign each tibble a name for ease
+f_state <- X$F
+m_state <- X$M
 ```
+
+```{r}
+#split national data into separate tibbles by sex
+Y <- split(us_names, us_names$Sex)
+
+#assign each tibble a name for ease
+f_natl <- Y$F
+m_natl <- Y$M
+```
+
+
+```{r}
+arrange(f_natl, Year, desc(Count))
+```
+
+##Things to Graph
+top baby names by generation
+the rise of Jalen (and state prevalence)
+compare Jalen to Jaden
+most state-specific baby names
+top names by state
+
+
+```{r}
+#top female names nationally, arranged by year
+f_natl %>%
+  group_by(Year) %>%
+  top_n(1, Count) %>%
+  arrange(Year)
+
+#setting up data frame to compare top female names
+top_f <- f_natl %>%
+  filter(Name %in% c("Mary", "Linda", "Lisa", "Jennifer", "Jessica", "Ashley", "Emily", "Emma", "Isabella", "Sophia", "Olivia"))
+
+#line plot
+fgens <- top_f %>%
+  ggplot(aes(x=Year, y=Count, group=Name, color=Name)) +
+    geom_line(size=1.25) +
+    theme_bw()+
+    ggtitle("Top Baby Girl Names") +
+    ylab("Number of Babies Born") +
+    #add bars to highlight generations
+    geom_rect(data = top_f,
+            aes(xmin = 1883, xmax = 1900, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    geom_rect(data = top_f,
+            aes(xmin = 1928, xmax = 1945, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    geom_rect(data = top_f,
+            aes(xmin = 1965, xmax = 1980, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    geom_rect(data = top_f,
+            aes(xmin = 1997, xmax = 2012, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    annotate("text", x=1892, y=100000, label="Lost")+
+    annotate("text", x=1914, y=95000, label="Greatest")+
+    annotate("text", x=1936, y=100000, label="Silent")+
+    annotate("text", x=1955, y=95000, label="Boomers")+
+    annotate("text", x=1973, y=100000, label="X")+
+    annotate("text", x=1988, y=95000, label="Millennials")+
+    annotate("text", x=2005, y=100000, label="Z")+
+    annotate("text", x=2017, y=95000, label="Alpha")
+
+m_natl %>%
+  group_by(Year) %>%
+  top_n(1, Count) %>%
+  arrange(Year)
+
+#top male names nationally, arranged by year
+top_m <- m_natl %>%
+  filter(Name %in% c("John", "Robert", "James", "Michael", "David", "Jacob", "Liam"))
+
+#line plot
+mgens <- top_m %>%
+  ggplot(aes(x=Year, y=Count, group=Name, color=Name)) +
+    geom_line(size=1.25) +
+    theme_bw()+
+    ggtitle("Top Baby Boy Names") +
+    ylab("Number of Babies Born") +
+    #add bars to highlight generations
+    geom_rect(data = top_m,
+            aes(xmin = 1883, xmax = 1900, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    geom_rect(data = top_m,
+            aes(xmin = 1928, xmax = 1945, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    geom_rect(data = top_m,
+            aes(xmin = 1965, xmax = 1980, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    geom_rect(data = top_m,
+            aes(xmin = 1997, xmax = 2012, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    annotate("text", x=1892, y=100000, label="Lost")+
+    annotate("text", x=1914, y=95000, label="Greatest")+
+    annotate("text", x=1936, y=100000, label="Silent")+
+    annotate("text", x=1955, y=95000, label="Boomers")+
+    annotate("text", x=1973, y=100000, label="X")+
+    annotate("text", x=1988, y=95000, label="Millennials")+
+    annotate("text", x=2005, y=100000, label="Z")+
+    annotate("text", x=2017, y=95000, label="Alpha")
+
+par(mfrow= c(1,2) )
+plot(fgens)
+plot(mgens)
+```
+
+```{r}
+#name popularity by generation
+f_natl %>%
+  filter(Year %in% c(1883:1900)) %>%
+  group_by(Year) %>%
+  top_n(1, Count)
+  
+```
+
+```{r}
+#create top male gen z names data frame
+top_genz_m <- m_state %>%
+  filter(Year %in% c(1997:2012)) %>%
+  group_by(State) %>%
+  top_n(1, Count) %>%
+  rename(state = State)
+
+#plot
+mmap <- plot_usmap(data = top_genz_m, values = "Name") +
+  labs(title = "Top Male Gen Z Names") +
+  theme(plot.title=element_text(hjust=0.5, size = 20))+
+  theme(legend.position = "right")
+
+#create top female gen z names data frame
+top_genz_f <- f_state %>%
+  filter(Year %in% c(1997:2012)) %>%
+  group_by(State) %>%
+  top_n(1, Count) %>%
+  rename(state = State)
+
+#plot
+fmap <- plot_usmap(data = top_genz_f, values = "Name") +
+  labs(title = "Top Female Gen Z Names") +
+  theme(plot.title=element_text(hjust=0.5, size = 20))+
+  theme(legend.position = "right")
+
+par(mfrow= c(1,2) )
+plot(fmap)
+plot(mmap)
+```
+
+
+```{r}
+#filter out all the Jalens
+jalen_natl <- us_names %>%
+  filter(Name %in% c("Jalen", "Jalin", "Jalyn", "Jalon", "Jaylen", "Jaylyn", "Jaylynn", "Jaylin", "Jaylon", "Jaelen", "Jaelyn", "Jaelynn", "Jailyn", "Jailynn", "Jailen", "Jailon")) %>%
+  arrange(Year)
+#find the sum of all Jalens (and variants) by year
+jalen_natl <- aggregate(jalen_natl["Count"],by=jalen_natl["Year"],sum)
+
+#plot
+ggplot(jalen_natl, aes(x=Year, y=Count)) +
+  geom_line(color="#69b3a2", size=2, alpha=0.9) +
+  labs(title = "The Rise and Fall of Jalen*",
+              subtitle = "*and variants",
+              caption = str_wrap("spelling variants include: Jalen, Jalin, Jalyn, Jalon, Jaylen, Jaylyn, Jaylynn, Jaylin,   Jaylon, Jaelen, Jaelyn, Jaelynn, Jailyn, Jailynn, Jailen, Jailon")) +
+  theme(plot.title=element_text(hjust=0.5, size = 20),
+        plot.subtitle=element_text(hjust=0.5))
+```
+
+```{r}
+#filter out all the Jadens
+jaden_natl <- us_names %>%
+  filter(Name %in% c("Jaden", "Jadin", "Jadyn", "Jayden", "Jaydon", "Jaydyn", "Jaydin", "Jaeden", "Jaedyn", "Jaedon", "Jaidyn", "Jaidon", "Jaiden")) %>%
+  arrange(Year)
+#find the sum of all Jalens (and variants) by year
+jaden_natl <- aggregate(jaden_natl["Count"],by=jaden_natl["Year"],sum)
+
+jaden_natl
+```
+
+```{r}
+#plot Jaden vs. Jalen
+ggplot() +               
+  geom_area(data = jaden_natl, aes(x=Year, y=Count, fill="Jaden"))+
+  geom_area(data = jalen_natl, aes(x=Year,y=Count, fill ="Jalen"))+
+  #removing years with few data points from the x-axis to enhance visibility
+  xlim(1990,2021)+
+  labs(title = "Jalen* vs. Jaden*",
+       subtitle = "*and variants")+
+  theme(plot.title=element_text(hjust=0.5, size = 20),
+        plot.subtitle=element_text(hjust=0.5))
+```
+
+
+

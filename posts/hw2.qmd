@@ -1,0 +1,78 @@
+---
+title: "hw 2"
+author: "Lai Wei"
+desription: "Howmework 2"
+date: "08/20/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw2
+  - Lai Wei
+  - dataset
+  - ggplot2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+Homework 2: Reading in Data
+-Read in a dataset from the _data folder in the course blog repository, or choose your own data. If you decide to use one of the datasets we have provided, please use a challenging dataset - check with us if you are not sure. 
+-Clean the data as needed using dplyr and related tidyverse packages.
+-Provide a narrative about the data set (look it up if you aren't sure what you have got) and the variables in your dataset, including what type of data each variable is. The goal of this step is to communicate in a visually appealing way to non-experts - not to replicate r-code.
+-Identify potential research questions that your dataset can help answer
+
+
+```{r}
+#Import Wild_bird data from pasts
+library(readxl)
+wild_bird_data <- read_excel("_data/wild_bird_data.xlsx",
+                             skip = 2,
+                             col_names = c("Body_Weight", "Population_Size"))
+wild_bird_data
+```
+
+## describe the data 
+```{r}
+#Show the colname of Wild_bird_data
+colnames(wild_bird_data)
+#Get the dimensions of electric
+dim(wild_bird_data)
+#Get the last 10 rows
+tail(wild_bird_data, 10)
+```
+## Select the Data
+Using filter() function to get cases.
+```{r}
+#Filter the rows in Weight that are greater than 25
+   filter(wild_bird_data, Body_Weight > 25)
+
+```
+## Arrange the Data 
+Listing Population values in descending order from highest to lowest. 
+```{r}
+#Set the Body_Weight from highest to lowest
+Table_1 <- arrange(wild_bird_data, desc(Body_Weight)) 
+#Get the lowest 10 rows
+tail(Table_1, 10)
+```
+
+## Summary the Data
+```{r}
+#Get the agerage and median of Body_Weight variable
+wild_bird_data %>%
+  summarise(avg_weight = mean(Body_Weight, na.rm = TRUE),
+            med_weight = median(Body_Weight, na.rm = TRUE),
+            )
+
+```

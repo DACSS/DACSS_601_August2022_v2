@@ -1,0 +1,35 @@
+---
+title: "Karen Detter"
+image: images/KarenDetter.jpeg
+about:
+  template: solana
+  image-width: 15em
+  image-shape: round
+  image: images/KarenDetter.jpeg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/kdetter
+---
+
+## Education/Work Background
+-12 years database/network administration
+
+-master of library and information science degree (University of Maryland)
+
+## R experience
+none
+
+## Research interests
+technology ethics & policy studies
+gender equality, especially in the workplace
+
+## Hometown
+Wilmington, Delaware 
+(currently living in Ocean City, Maryland)
+
+## Hobbies
+anime & manga, crochet, raising animals 
+
+## Fun fact
+I've cared for several exotic pets, including Fire-Bellied newts, African Dwarf frogs, a gerbil, guinea pigs, an Eastern American toad, and a Bearded Dragon lizard!  
