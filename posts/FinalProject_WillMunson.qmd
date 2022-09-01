@@ -74,7 +74,9 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-The majority of the samples taken in this study were sandy loam or silty loam, or a mix of the three soil compositions, sand, silt and clay. Now let's take a look at which soil textures are most common with legumes AND corn. 
+The majority of the samples taken in this study were sandy loam or silty loam, or a mix of the three soil compositions, sand, silt and clay. 
+
+Now let's take a look at which soil textures are most common with legumes AND corn. 
 
 ```{r}
 SoilHealthFixed %>%
@@ -95,19 +97,27 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-So, setting up the data so that it excludes any data that isn't readily available or is empty is essential to getting more accurate results. We don't want to include a bunch of extra junk that doesn't belong in the dataset. 
+So, as expected, the full majority of our data was taken from 
 
 ```{r}
 SoilHealthFixed %>%
   filter(!is.na(SoilpH)) %>%
-  group_by(Texture) %>%
-  summarize_at(vars(SoilpH), list(name = mean))
+  #filter(!is.na(Texture)) %>%
   #filter(str_detect(CoverCropGroup, 'Rye')) %>%
   #filter(str_detect(Country, 'USA')) %>%
   #filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
-  #ggplot(aes(x = Texture)) +
-  #geom_bar() +
-  #theme(axis.text.x = element_text(angle = 270))
+  ggplot(aes(Texture, SoilpH)) +
+  geom_boxplot() + 
+  geom_hline(yintercept = 5.5, color = "red") +
+  geom_hline(yintercept = 7.5, color = "red") +
+  theme(axis.text.x = element_text(angle = 270))
 ```
 
-Any soil within a pH between 5.5 and 7.5 is considered a healthy soil. As we can see here, we have one soil texture type that appears to be too acidic - silt. The other samples that were purely one texture - sand and clay - are right on the line of being too acidic. 
+Between the two red lines are the pH levels for healthy soils. As we can see here, we have one soil texture type that appears to be too acidic - silt. The other samples that were purely one texture - sand and clay - are right on the line of being too acidic. Perhaps this means most plants cannot handle soil that is purely silt. 
+
+```{r}
+SoilHealthFixed %>%
+  ggplot(aes(Texture, SamplingThickness)) +
+  geom_boxplot()
+```
+
