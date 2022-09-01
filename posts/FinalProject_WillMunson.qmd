@@ -70,25 +70,27 @@ SoilHealth %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-The majority of the samples taken in this study were sandy loam or silty loam, or a mix of the three soil compositions, sand, silt and clay. Now let's take a look at which soil textures are most common with legumes. 
+The majority of the samples taken in this study were sandy loam or silty loam, or a mix of the three soil compositions, sand, silt and clay. Now let's take a look at which soil textures are most common with legumes AND corn. 
 
 ```{r}
 SoilHealth %>%
   filter(!is.na(Texture)) %>%
   filter(str_detect(CoverCropGroup, 'Legume')) %>%
+  filter(str_detect(GrainCropGroup, 'Corn')) %>%
   filter(!str_detect(Texture, 'NotAvailable')) %>%
   ggplot(aes(x = Texture)) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-Again, we notice a similar pattern, except the legumes appear to show less of a difference between silt loam samples and sandy loam samples. This must indicate that legumes thrive within sandy loam or silty loam environments, which usually retain more water. 
+So, here we notice that most environments where they grow both legumes and corn are in sandy loam, or loamy sand. This could indicate that both plants tend to grow in environments where water is more easily absorbed by the soil. 
 
 Let's take a look at where these samples were studied too.
 ```{r}
 SoilHealth %>%
   filter(!is.na(Country)) %>%
   filter(!is.na(CoverCropGroup)) %>%
+  filter(!is.na(GrainCropGroup)) %>%
   filter(!is.na(Texture)) %>%
   filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
   filter(!str_detect(Texture, 'NotAvailable')) %>%
