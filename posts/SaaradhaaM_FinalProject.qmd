@@ -38,6 +38,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ## Introduction
 
+\*adding a new sentence here and resubmitting this to see if it works on the blog.
+
 Brooklyn Nine-Nine, which is about a police precinct in New York City, is one of my favourite TV shows. It made me want to learn more about actual crime statistics in the city.
 
 Specifically, this project examines how crime intersects with other social issues. The disparities in arrest rates across demographic groups have been well-documented (Jahn et al., 2022; Schleiden et al., 2020). Past research has also revealed a positive association between crime and drug usage (Pierce et al., 2017).
