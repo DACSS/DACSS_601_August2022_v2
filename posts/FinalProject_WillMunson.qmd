@@ -1,0 +1,101 @@
+---
+title: "Final Project Vertical Farming"
+author: "Will Munson"
+date: "8/29/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+---
+
+For my final project, I will be looking at data related to soil health. This data will involve a large-scale vertical farm in Brisbane, Australia. 
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+Vertical farming is set to be the future of farming and agriculture. While it won't replace traditional agriculture, it will make it so that farming can be done easily in urban areas, and without the need for extra land. This could also help reduce the need to transport goods across the country. Now, the dataset is a bit large, so I might have to limit the size of the data. 
+
+```{r}
+SoilHealth <- read_csv("_data/SoilHealthDB_V0.csv", show_col_types = FALSE)
+
+SoilHealth
+```
+
+Now, this is a large dataset, and it'll require a lot of cleaning up in order to obtain the data we need. So, without further ado, let's get rid of some junk.
+
+```{r}
+SoilHealth %>%
+  select_if(~!(all(is.na(.)) | all(. == ""))) %>%
+  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal"))
+```
+
+Alright, now, let's take a look at some bar graphs to see how each of these samples differ. Let's start with the crop cover groups that our soil has. 
+
+```{r}
+SoilHealth %>%
+  filter(!is.na(CoverCropGroup)) %>%
+  filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
+  ggplot(aes(x = CoverCropGroup)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
+As we can see here, the full majority of cover crops are within the legume group.
+
+```{r}
+SoilHealth %>%
+  filter(!is.na(Texture)) %>%
+  filter(!str_detect(Texture, 'NotAvailable')) %>%
+  ggplot(aes(x = Texture)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
+The majority of the samples taken in this study were sandy loam or silty loam, or a mix of the three soil compositions, sand, silt and clay. Now let's take a look at which soil textures are most common with legumes. 
+
+```{r}
+SoilHealth %>%
+  filter(!is.na(Texture)) %>%
+  filter(str_detect(CoverCropGroup, 'Legume')) %>%
+  filter(!str_detect(Texture, 'NotAvailable')) %>%
+  ggplot(aes(x = Texture)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
+Again, we notice a similar pattern, except the legumes appear to show less of a difference between silt loam samples and sandy loam samples. This must indicate that legumes thrive within sandy loam or silty loam environments, which usually retain more water. 
+
+Let's take a look at where these samples were studied too.
+```{r}
+SoilHealth %>%
+  filter(!is.na(Country)) %>%
+  filter(!is.na(CoverCropGroup)) %>%
+  filter(!is.na(Texture)) %>%
+  filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
+  filter(!str_detect(Texture, 'NotAvailable')) %>%
+  ggplot(aes(x = Country)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
+So, setting up the data so that it excludes any data that isn't readily available or is empty is essential to getting more accurate results. This is interesting, 
+
+```{r}
+SoilHealth %>%
+  filter(!is.na(CoverCropGroup)) %>%
+  #filter(str_detect(CoverCropGroup, 'Rye')) %>%
+  filter(str_detect(Country, 'USA')) %>%
+  filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
+  ggplot(aes(x = CoverCropGroup)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
