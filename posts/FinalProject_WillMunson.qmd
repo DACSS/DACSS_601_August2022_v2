@@ -41,10 +41,13 @@ SoilHealthFixed <- SoilHealth %>%
   filter(!is.na(Texture)) %>%
   filter(!is.na(SamplingThickness)) %>%
   filter(!is.na(Duration)) %>%
+  filter(!is.na(SoilpH)) %>%
   filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
   filter(!str_detect(Texture, 'NotAvailable')) %>%
   filter(!str_detect(SamplingThickness, 'Not-available')) %>%
   mutate(SamplingThickness = as.double(SamplingThickness))
+
+SoilHealthFixed
 ```
 
 Alright, now, let's take a look at some bar graphs to see how each of these samples differ. Let's start with the crop cover groups that our soil has. 
@@ -97,11 +100,11 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-So, as expected, the full majority of our data was taken from 
+So, as expected, the full majority of our data was taken from the United States. Before I added the restrictions on the SoilpH, the number of samples in the USA exceeded over a thousand. By adding the 
 
 ```{r}
 SoilHealthFixed %>%
-  filter(!is.na(SoilpH)) %>%
+  #filter(!is.na(SoilpH)) %>%
   #filter(!is.na(Texture)) %>%
   #filter(str_detect(CoverCropGroup, 'Rye')) %>%
   #filter(str_detect(Country, 'USA')) %>%
@@ -117,7 +120,7 @@ Between the two red lines are the pH levels for healthy soils. As we can see her
 
 ```{r}
 SoilHealthFixed %>%
-  filter(!is.na(SoilpH)) %>%
+  #filter(!is.na(SoilpH)) %>%
   ggplot(aes(CoverCropGroup, SoilpH)) +
   geom_boxplot() +
   geom_hline(yintercept = 5.5, color = "red") +
