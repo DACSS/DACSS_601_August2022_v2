@@ -113,11 +113,15 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-Between the two red lines are the pH levels for healthy soils. As we can see here, we have one soil texture type that appears to be too acidic - silt. The other samples that were purely one texture - sand and clay - are right on the line of being too acidic. Perhaps this means most plants cannot handle soil that is purely silt. 
+Between the two red lines are the pH levels for healthy soils. As we can see here, there weren't enough soil samples that offered pH for silt, but what this graph does show is that whatever samples they WERE able to obtain the pH for were not exactly healthy.  
 
 ```{r}
 SoilHealthFixed %>%
-  ggplot(aes(Texture, SamplingThickness)) +
-  geom_boxplot()
+  filter(!is.na(SoilpH)) %>%
+  ggplot(aes(CoverCropGroup, SoilpH)) +
+  geom_boxplot() +
+  geom_hline(yintercept = 5.5, color = "red") +
+  geom_hline(yintercept = 7.5, color = "red") +
+  theme(axis.text.x = element_text(angle = 270))
 ```
 
