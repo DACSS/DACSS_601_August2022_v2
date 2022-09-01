@@ -34,7 +34,7 @@ Now, this is a large dataset, and it'll require a lot of cleaning up in order to
 ```{r}
 SoilHealth %>%
   select_if(~!(all(is.na(.)) | all(. == ""))) %>%
-  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal"))
+  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("_T"))
 ```
 
 Alright, now, let's take a look at some bar graphs to see how each of these samples differ. Let's start with the crop cover groups that our soil has. 
@@ -103,12 +103,16 @@ So, setting up the data so that it excludes any data that isn't readily availabl
 
 ```{r}
 SoilHealth %>%
-  filter(!is.na(CoverCropGroup)) %>%
+  filter(!is.na(SoilpH)) %>%
+  filter(!is.na(Texture)) %>%
+  group_by(Texture) %>%
+  summarize_at(vars(SoilpH), list(name = mean))
   #filter(str_detect(CoverCropGroup, 'Rye')) %>%
-  filter(str_detect(Country, 'USA')) %>%
-  filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
-  ggplot(aes(x = CoverCropGroup)) +
-  geom_bar() +
-  theme(axis.text.x = element_text(angle = 270))
+  #filter(str_detect(Country, 'USA')) %>%
+  #filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
+  #ggplot(aes(x = Texture)) +
+  #geom_bar() +
+  #theme(axis.text.x = element_text(angle = 270))
 ```
 
+Any soil within a pH between 5.5 and 7.5 is considered a healthy soil. As we can see here, we have one soil texture type that falls below the recommended boundary - silt. 
