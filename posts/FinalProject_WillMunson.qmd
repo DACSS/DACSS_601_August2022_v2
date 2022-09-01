@@ -52,6 +52,17 @@ As we can see here, the full majority of cover crops are within the legume group
 
 ```{r}
 SoilHealth %>%
+  filter(!is.na(GrainCropGroup)) %>%
+  #filter(!str_detect(GrainCropGroup, 'Not_available')) %>%
+  ggplot(aes(x = GrainCropGroup)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 270))
+```
+
+As expected, corn is the main grain crop group observed. I believe corn is used for more than just a food source, but also for livestock, starch, beverage and industrial alcohol, and fuel ethanol. That's why you see so much corn out here in the US. 
+
+```{r}
+SoilHealth %>%
   filter(!is.na(Texture)) %>%
   filter(!str_detect(Texture, 'NotAvailable')) %>%
   ggplot(aes(x = Texture)) +
@@ -86,7 +97,7 @@ SoilHealth %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-So, setting up the data so that it excludes any data that isn't readily available or is empty is essential to getting more accurate results. This is interesting, 
+So, setting up the data so that it excludes any data that isn't readily available or is empty is essential to getting more accurate results. We don't want to include a bunch of extra junk that doesn't belong in the dataset. 
 
 ```{r}
 SoilHealth %>%
