@@ -38,7 +38,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ## Introduction
 
-\*adding a new sentence here and resubmitting this to see if it works on the blog.
+\*adding a new sentence here and resubmitting this to see if it works on the blog. \*resubmit attempt 2.
 
 Brooklyn Nine-Nine, which is about a police precinct in New York City, is one of my favourite TV shows. It made me want to learn more about actual crime statistics in the city.
 
