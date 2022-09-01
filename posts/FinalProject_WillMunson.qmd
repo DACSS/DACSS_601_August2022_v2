@@ -34,7 +34,17 @@ Now, this is a large dataset, and it'll require a lot of cleaning up in order to
 ```{r}
 SoilHealth %>%
   select_if(~!(all(is.na(.)) | all(. == ""))) %>%
-  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("_T"))
+  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("_T") & -contains("NoSubsample")) %>%
+  filter(!is.na(Country)) %>%
+  filter(!is.na(CoverCropGroup)) %>%
+  filter(!is.na(GrainCropGroup)) %>%
+  filter(!is.na(Texture)) %>%
+  filter(!is.na(SamplingThickness)) %>%
+  filter(!is.na(Duration)) %>%
+  filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
+  filter(!str_detect(Texture, 'NotAvailable')) %>%
+  filter(!str_detect(SamplingThickness, 'Not-available')) %>%
+  mutate(SamplingThickness = as.double(SamplingThickness))
 ```
 
 Alright, now, let's take a look at some bar graphs to see how each of these samples differ. Let's start with the crop cover groups that our soil has. 
