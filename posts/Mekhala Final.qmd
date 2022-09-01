@@ -1,8 +1,8 @@
 ---
-title: "Migration in Bangalore"
+title: "Migration in Bangalore (Work in Progress)"
 author: "Mekhala Kumar"
 description: "Final Project"
-date: "08/27/2022"
+date: "08/31/2022"
 format:
   html:
     toc: true
@@ -11,6 +11,7 @@ format:
 categories:
   - final
   - migration
+  - work in progress
 ---
 
 ```{r}
@@ -26,15 +27,31 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
 ## Read in data
+
 ### Briefly describe the data
-The data being used is Indian Census Data for the year 2011 and district of Bangalore. There are several tables in the Census such as population, languages spoken, education and migration.\
-For this project, I am using the population data and one of the migration tables (D3). The Indian Census has two definitions of migrations: 1)a person who lives in area other than their place of birth and 2)a person who changed their place of residence. The D3 Census table uses the second definition, it also includes information about the number of years they have resided in the area and reason why they migrated. 
+
+The data being used is Indian Census Data for the year 2011 and district
+of Bangalore. There are several tables in the Census such as population,
+languages spoken, education and migration.\
+For this project, I am using the population data and one of the
+migration tables (D3). The Indian Census has two definitions of
+migrations: 1)a person who lives in area other than their place of birth
+and 2)a person who changed their place of residence. The D3 Census table
+uses the second definition, it also includes information about the
+number of years they have resided in the area and reason why they
+migrated. I specifically chose the dataset for Karnataka(the receiving
+state) and filtered it for Bangalore; hence the receiving area is
+Bangalore and the various sending states/areas are looked into.\
 
 ```{r}
-#Removing unnecessary rows and renaming columns
-mig3 <- read_excel("_data/DS-2900-D03-MDDS.XLSX",skip=5,col_names = c("tab_name","state_code","dist_code","area","res","res_time","last_res","last_res_type","tot_p","tot_m","tot_f","work_p","work_m","work_f","busi_t","busi_m","busi_f","educ_t","educ_m","educ_f","mar_t","mar_m","mar_f","after_birth_t","after_birth_m","after_birth_f","with_hh_t","with_hh_m","with_hh_f","others_p","others_m","others_f"))%>%filter(area=="Bangalore")
-dim(mig3)
-print(summarytools::dfSummary(mig3,
+#Removing the top few rows which have just the table names and renaming columns
+mig <- read_excel("_data/Mekhala's data/DS-2900-D03-MDDS.XLSX",skip=5,col_names = c("tab_name","state_code","dist_code","area","res","res_time","last_res","last_res_type","tot_t","tot_m","tot_f","work_t","work_m","work_f","busi_t","busi_m","busi_f","educ_t","educ_m","educ_f","mar_t","mar_m","mar_f","afterbirth_t","afterbirth_m","afterbirth_f","withhh_t","withhh_m","withhh_f","others_t","others_m","others_f"))%>%filter(area=="Bangalore")
+mig_org<-mig
+dim(mig)
+#there are 45 unique values for last place of residence
+last_residence_temp1 <- unique(mig$last_res)
+last_residence_temp1
+print(summarytools::dfSummary(mig,
                         varnumbers = FALSE,
                         plain.ascii  = FALSE, 
                         style        = "grid", 
@@ -42,36 +59,131 @@ print(summarytools::dfSummary(mig3,
                         valid.col    = FALSE),
       method = 'render',
       table.classes = 'table-condensed')
-tail(mig3)
 
-pop <- read_excel("_data/A-1_NO_OF_VILLAGES_TOWNS_HOUSEHOLDS_POPULATION_AND_AREA (1).xlsx",skip=4,col_names=c("state_code","dist_code","sub_dist_code","type_of_region","name","reg_type","num_village_inhabit","num_village_uninhabit","num_town","num_hh","pop_t","pop_m","pop_f","area_region","pop_density"))%>%filter(name=="Bangalore")
-
-
-#things to be removed- all durations of residence, total in the total, rural, urban column? not sure
-#stuff that are aggregates- place of enum-res, 
-#keep the specifics or remove them?
-#how to print more values in summarytools
-```
-
-
-
-
-
-## Tidy Data
-
-In the last_res( last place of residence variable), place of enumeration refers to the district where the person's details were recorded. The state of enumeration is the state that the information was recorded. Since it can be confusing to understand, the values are being renamed as intrastate, intradistict, interdistrict and interstate to give an indication of the type of migration that was undertaken. 
-Recode was used because only certain observations needed to be changed and using case_When() instead would result in the unchanged values being saved as NA.
-
-Moreover, the reasons for migration in the dataset were present as various columns which needed to be pivoted in order to be in the tidy data format.21 columns of reasons for migration were pivoted and before doing the same, the new total number of rows and columns were calculated. 
-```{r}
 #recoding values
-mig3<-mutate(mig3,last_residence=recode(last_res,`Within the state of enumeration but outside the place of enumeration`= "Intrastate",
+mig<-mutate(mig,last_res=recode(last_res,`Within the state of enumeration but outside the place of enumeration`= "Intrastate",
          	`Elsewhere in the district of enumeration`= "Intradistrict",
         `In other districts of the state of enumeration` = "Interdistrict",
         `States in India beyond the state of enumeration`= "Interstate"))
-mig3<-mig3%>%select(tab_name,state_code,dist_code,area,res,res_time,last_res,last_residence,everything())
-mig3=subset(mig3,select=-c(7))
-dim(mig3)
+```
+
+## Checking how to filter out rows
+
+There are essentially 4 columns which have aggregate data- res(place of
+residence),last_res_type(type of place where the person last resided-
+rural/urban), last_res(the last residence) and res_time(duration of
+residence).\
+The aggregates from the res and last_res_type can be removed easily
+however, with last_res_type and last_res, there is a problem. Some of
+the last_res data only have a corresponding "Total" row in the
+last_res_type, for instance, people migrating from places outside
+India.\
+The original number of unique values in the last_res variable is 45 but
+by filtering out the "Total" from last_res_type reduces the number of
+unique values in last_res. I showed the number of unique values of
+last_res that are present after filtering out certain rows.I have tried
+two types:\
+1. Removing the "Total" rows in all 4 columns- this removes certain
+categories in last_res\
+2. Removing the "Total" rows in last_res and res_time but not removing
+the "Total" rows from last_res_type- this retains all the categories in
+last_res. Hence, for further checking, the filtering was done in this
+manner.
+
+```{r}
+
+mig3<-mig%>%filter(!str_detect(res, "Total"))%>%filter(!str_detect(last_res_type, "Total"))%>%select(-c(9:11))
+mig3_sub<-mig3%>%filter(res_time!="All durations of residence")
+
+last_residence_temp1 <- unique(mig3_sub$last_res)
+last_residence_temp1
+
+mig3_sub2<-mig%>%filter(!str_detect(last_res, "Total"))%>%select(-c(9:11))
+mig3_sub2<-mig%>%filter(res_time!="All durations of residence")
+last_residence_temp2 <- unique(mig3_sub2$last_res)
+last_residence_temp2
+
+```
+
+## Sanity check - This is where I am facing an issue because the totals do not add up
+
+In the last_res variable, there are the broad categories of those who
+last resided within India and those who last resided outside India.\
+Under those who last resided within India, there are interstate and
+intrastate migrants, which have further divisions of the state names for
+interstate migrants and whether the intrastate migrants moved within the
+district or between other districts.\
+Under those who last resided outside India, there are migrants who came
+from Asian countries other than India and those who came from the
+countries outside Asia.\
+1. Last residence within India\
+a. Interstate\
+-state names\
+b. Intrastate\
+-Intradistrict\
+-Interdistrict\
+2. Last residence outside India\
+a.Countries in Asia other than India\
+b. Other countries\
+The categories under last residence outside India only have corresponding "Total" rows in the last_res_type column. They do not have urban and rural.\
+Case 1: I filtered the res variable by removing all total rows and the res_time variable by removing the all durations rows. Then I filtered out the subcategories in the last_res variable and  filtered last_res_type to only have the Total rows. I then calculated the sum of the subcategories.
+Case 2: I then compared this to the sum found if we filtered the res variable to only include total and the res_time variable to only include all durations of residence; while keeping the filters for the remaining variables- last_res and last_res_type the same way (subcategories in last_res and only total in last_res_type).\
+I expected the sums to be the same in both cases, however, the sums of the categories in case 1 were lower.
+
+```{r}
+#selecting all the aggregates
+mig_filt<-mig%>%
+  filter(last_res=="Interstate"|last_res=="Intradistrict"|last_res=="Interdistrict"|last_res=="Countries in Asia beyond India"|last_res=="Other Countries"|last_res=="Unclassifiable")%>%
+  filter(!str_detect(last_res_type, "Rural"))%>%
+  filter(!str_detect(last_res_type, "Urban"))
+
+totals<-mig_filt%>%group_by(last_res)%>%
+  summarise(total_people = sum(tot_t))
+
+
+#COMPARISON
+mig_org<-mutate(mig_org,last_res=recode(last_res,`Within the state of enumeration but outside the place of enumeration`= "Intrastate",
+         	`Elsewhere in the district of enumeration`= "Intradistrict",
+        `In other districts of the state of enumeration` = "Interdistrict",
+        `States in India beyond the state of enumeration`= "Interstate"))
+
+mig_org_totals_data<-mig_org%>%filter(res=="Total")%>%
+  filter(res_time=="All durations of residence")%>%
+  filter(last_res=="Interstate"|last_res=="Intradistrict"|last_res=="Interdistrict"|last_res=="Countries in Asia beyond India"|last_res=="Other Countries"|last_res=="Unclassifiable")%>%
+  filter(!str_detect(last_res_type, "Rural"))%>%
+  filter(!str_detect(last_res_type, "Urban"))
+
+mig_org_totals<-mig_org_totals_data%>%group_by(last_res)%>%
+  summarise(total_people = sum(tot_t))
+```
+
+## Second dataset
+
+```{r}
+pop <- read_excel("_data/Mekhala's data/A-1_NO_OF_VILLAGES_TOWNS_HOUSEHOLDS_POPULATION_AND_AREA (1).xlsx",skip=4,col_names=c("state_code","dist_code","sub_dist_code","type_of_region","name","reg_type","num_village_inhabit","num_village_uninhabit","num_town","num_hh","pop_t","pop_m","pop_f","area_region","pop_density"))%>%filter(name=="Bangalore")
+
+```
+
+## Tidy Data
+
+In the last_res( last place of residence variable), place of enumeration
+refers to the district where the person's details were recorded. The
+state of enumeration is the state that the information was recorded.
+Since it can be confusing to understand, the values are being renamed as
+intrastate, intradistict, interdistrict and interstate to give an
+indication of the type of migration that was undertaken. Recode was used
+because only certain observations needed to be changed and using
+case_When() instead would result in the unchanged values being saved as
+NA.
+
+Moreover, the reasons for migration in the dataset were present as
+various columns which needed to be pivoted in order to be in the tidy
+data format.21 columns of reasons for migration were pivoted and before
+doing the same, the new total number of rows and columns were
+calculated.
+
+```{r}
+
 #pivoting data
 
 #sanity check
@@ -91,35 +203,35 @@ col
 mig3<-pivot_longer(mig3, 12:32, names_to = "Reason for Migration", values_to = "Number of People")
 dim(mig3)
 
-```
 
-
-
-```{r}
-table(mig3$res_time)
-table(mig3$last_residence)
-table(mig3$last_res_type)
-
-#why did it change after this
-residence_time_temp <- unique(mig3$res_time)
-residence_time_temp
 mig3<-mig3%>%
-  mutate(res_time2 = factor(res_time, 
-                       levels=residence_time_temp[c(1,2,3,4,5)]))%>%
-  select(-res_time)
-rm(residence_time_temp)
+  separate("Reason for Migration",into=c("Reason", "Value"), sep="_")
 
-table(mig3$res_time2)
+mig3<-mig3%>%
+  mutate(Reason_Mig = case_when(
+         Reason == "work" ~ "Work",
+         Reason == "busi" ~ "Business",
+         Reason == "educ" ~ "Education",
+         Reason == "mar" ~ "Marriage",
+         Reason == "afterbirth" ~ "After birth",
+         Reason == "withhh" ~ "With the household",
+         Reason == "others" ~ "Others"
+         ))
+mig3<-mig3%>%
+  mutate(Value_Mig = case_when(
+         Value == "t" ~ "Total",
+         Value == "m" ~ "Male",
+         Value == "f" ~ "Female",
+    
+         ))
+mig3<-mig3%>%select(-c(Reason,Value))
 
-last_residence_temp <- unique(mig3$last_residence)
-last_residence_temp
 
-last_res_type_temp <- unique(mig3$last_res_type)
-last_res_type_temp
 ```
 
 ## Join Data
 
-
-
-
+```{r}
+new<-mig3 %>% 
+  inner_join(pop, by = "dist_code")%>%select(-state_code.y)
+```
