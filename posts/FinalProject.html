@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Adithya Parupudi">
+<meta name="dcterms.date" content="2022-08-02">
+
+<title>- Final Project - Indian Stock Market Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Final Project - Indian Stock Market Analysis">
+<meta name="twitter:description" content="Looks like the last column has a spelling mistake. I am correcting it to prevent further confusion. `%Deliverble` changed to Percent_Deliverable">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries">Load Libraries</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#read-data" id="toc-read-data" class="nav-link" data-scroll-target="#read-data">Read Data</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data Cleaning</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Bibliography</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Final Project - Indian Stock Market Analysis</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">tidyverse</div>
+    <div class="quarto-category">final_project</div>
+    <div class="quarto-category">Adithya</div>
+    <div class="quarto-category">dataset</div>
+    <div class="quarto-category">ggplot2</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Adithya Parupudi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 2, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="load-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="load-libraries">Load Libraries</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</section>
+<section id="read-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-data">Read Data</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read all the CSV files at once</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"_data/NIFTY_AdithyaParupudi/"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>  <span class="fu">map_dfr</span>(read_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 3322 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 3202 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 3201 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5235 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4774 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5305 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2598 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5301 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4985 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5300 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4985 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 3994 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4985 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4184 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4427 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 2806 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4088 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 3359 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4985 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4139 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 3635 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4140 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 4287 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5305 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>all_stocks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 235,192 × 15
+   Date       Symbol   Series Prev …¹  Open  High   Low  Last Close  VWAP Volume
+   &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1 2007-11-27 MUNDRAP… EQ        440   770  1050   770   959   963.  985. 2.73e7
+ 2 2007-11-28 MUNDRAP… EQ        963.  984   990   874   885   894.  941. 4.58e6
+ 3 2007-11-29 MUNDRAP… EQ        894.  909   915.  841   887   884.  888. 5.12e6
+ 4 2007-11-30 MUNDRAP… EQ        884.  890   958   890   929   922.  929. 4.61e6
+ 5 2007-12-03 MUNDRAP… EQ        922.  940.  995   922   980   969.  966. 2.98e6
+ 6 2007-12-04 MUNDRAP… EQ        969.  985  1056   976  1049  1041. 1015. 4.85e6
+ 7 2007-12-05 MUNDRAP… EQ       1041. 1061  1100. 1050  1084  1082. 1083. 2.85e6
+ 8 2007-12-06 MUNDRAP… EQ       1082. 1089  1110. 1051  1090. 1081. 1087. 1.75e6
+ 9 2007-12-07 MUNDRAP… EQ       1081. 1100  1134  1078  1100  1102. 1107. 2.25e6
+10 2007-12-10 MUNDRAP… EQ       1102. 1110  1110  1061. 1074. 1075. 1080. 1.01e6
+# … with 235,182 more rows, 4 more variables: Turnover &lt;dbl&gt;, Trades &lt;dbl&gt;,
+#   `Deliverable Volume` &lt;dbl&gt;, `%Deliverble` &lt;dbl&gt;, and abbreviated variable
+#   name ¹​`Prev Close`
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(all_stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 235192     15</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(all_stocks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Date"               "Symbol"             "Series"            
+ [4] "Prev Close"         "Open"               "High"              
+ [7] "Low"                "Last"               "Close"             
+[10] "VWAP"               "Volume"             "Turnover"          
+[13] "Trades"             "Deliverable Volume" "%Deliverble"       </code></pre>
+</div>
+</div>
+<p>Looks like the last column has a spelling mistake. I am correcting it to prevent further confusion. `%Deliverble` changed to Percent_Deliverable</p>
+</section>
+<section id="data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">Percent_Deliverable =</span> <span class="st">`</span><span class="at">%Deliverble</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># separating year from the Date column</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># all_stocks %&gt;% select(Date) %&gt;% year()</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">format</span>(<span class="fu">as.Date</span>(all_stocks<span class="sc">$</span>Date, <span class="at">format=</span><span class="st">"%Y/%m/%d"</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yy=</span><span class="fu">year</span>(x)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Date)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_stocks_yy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 235,192 × 15
+   Symbol     Series Prev C…¹  Open  High   Low  Last Close  VWAP Volume Turno…²
+   &lt;chr&gt;      &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 MUNDRAPORT EQ         440   770  1050   770   959   963.  985. 2.73e7 2.69e15
+ 2 MUNDRAPORT EQ         963.  984   990   874   885   894.  941. 4.58e6 4.31e14
+ 3 MUNDRAPORT EQ         894.  909   915.  841   887   884.  888. 5.12e6 4.55e14
+ 4 MUNDRAPORT EQ         884.  890   958   890   929   922.  929. 4.61e6 4.28e14
+ 5 MUNDRAPORT EQ         922.  940.  995   922   980   969.  966. 2.98e6 2.88e14
+ 6 MUNDRAPORT EQ         969.  985  1056   976  1049  1041. 1015. 4.85e6 4.92e14
+ 7 MUNDRAPORT EQ        1041. 1061  1100. 1050  1084  1082. 1083. 2.85e6 3.08e14
+ 8 MUNDRAPORT EQ        1082. 1089  1110. 1051  1090. 1081. 1087. 1.75e6 1.90e14
+ 9 MUNDRAPORT EQ        1081. 1100  1134  1078  1100  1102. 1107. 2.25e6 2.49e14
+10 MUNDRAPORT EQ        1102. 1110  1110  1061. 1074. 1075. 1080. 1.01e6 1.09e14
+# … with 235,182 more rows, 4 more variables: Trades &lt;dbl&gt;,
+#   `Deliverable Volume` &lt;dbl&gt;, Percent_Deliverable &lt;dbl&gt;, yy &lt;dbl&gt;, and
+#   abbreviated variable names ¹​`Prev Close`, ²​Turnover
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 65 × 1
+   Symbol    
+   &lt;chr&gt;     
+ 1 MUNDRAPORT
+ 2 ADANIPORTS
+ 3 ASIANPAINT
+ 4 UTIBANK   
+ 5 AXISBANK  
+ 6 BAJAJ-AUTO
+ 7 BAJAJFINSV
+ 8 BAJAUTOFIN
+ 9 BAJFINANCE
+10 BHARTI    
+# … with 55 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>Reading-in the data of wipro stock from the dataset.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"/_data/NIFTY_3/"</span>, <span class="at">pattern =</span> <span class="st">"*.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>character(0)</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %&gt;% map_df(~read_csv(.))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Column description which is not obvious:</p>
+<ol type="1">
+<li>VWAP : volume-weighted average price - It’s a trading benchmark that represents the average price a security has traded at throughout the day, based on both volume and price</li>
+<li>Series column has EQ values - refers to equity</li>
+<li>Turnover : Stock turnover rate is considered to be <strong>a measure of sales performance</strong>; usually the higher the stock turnover rate, the better your stock/business is performing. The lower the rate, the longer the stock is taking to turn over.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(wipro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in is.data.frame(x): object 'wipro' not found</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>wipro <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/NIFTY_AdithyaParupudi/WIPRO.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 5306 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (2): Symbol, Series
+dbl  (12): Prev Close, Open, High, Low, Last, Close, VWAP, Volume, Turnover,...
+date  (1): Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>wipro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5,306 × 15
+   Date       Symbol Series Prev Cl…¹  Open  High   Low  Last Close  VWAP Volume
+   &lt;date&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1 2000-01-03 WIPRO  EQ         2522. 2724  2724. 2724  2724. 2724. 2724.   1599
+ 2 2000-01-04 WIPRO  EQ         2724. 2942. 2942. 2942. 2942. 2942. 2942.   4392
+ 3 2000-01-05 WIPRO  EQ         2942. 2942. 3178. 2715  3000  2990. 3064. 132297
+ 4 2000-01-06 WIPRO  EQ         2990. 3145. 3183  2790  2915  2932. 2962.  72840
+ 5 2000-01-07 WIPRO  EQ         2932. 2751  2751  2698. 2698. 2698. 2698.  10110
+ 6 2000-01-10 WIPRO  EQ         2698. 2698. 2914. 2612  2665  2701. 2741.  40382
+ 7 2000-01-11 WIPRO  EQ         2701. 2734  2789  2485. 2485. 2485. 2543.  46178
+ 8 2000-01-12 WIPRO  EQ         2485. 2590  2608  2485  2570  2563. 2544.  20037
+ 9 2000-01-13 WIPRO  EQ         2563. 2574  2620  2460  2485. 2480. 2540.  19080
+10 2000-01-14 WIPRO  EQ         2480. 2590  2590  2405  2475. 2498. 2470.  20412
+# … with 5,296 more rows, 4 more variables: Turnover &lt;dbl&gt;, Trades &lt;dbl&gt;,
+#   `Deliverable Volume` &lt;dbl&gt;, `%Deliverble` &lt;dbl&gt;, and abbreviated variable
+#   name ¹​`Prev Close`
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<p>There are no comments in this dataset, so saves time for cleaning to an extent</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(wipro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 15
+  Date       Symbol Series Prev Clo…¹  Open  High   Low  Last Close  VWAP Volume
+  &lt;date&gt;     &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1 2021-04-23 WIPRO  EQ           487.  484.  487.  474.  475.  476.  481. 1.36e7
+2 2021-04-26 WIPRO  EQ           476.  479.  484.  477   482   480.  480. 9.31e6
+3 2021-04-27 WIPRO  EQ           480.  481.  487   481   484.  485.  484. 7.21e6
+4 2021-04-28 WIPRO  EQ           485.  486.  493.  481.  489.  489.  488. 9.62e6
+5 2021-04-29 WIPRO  EQ           489.  493.  493.  486.  489   490.  489. 7.64e6
+6 2021-04-30 WIPRO  EQ           490.  492.  512.  489.  492.  493.  501. 2.91e7
+# … with 4 more variables: Turnover &lt;dbl&gt;, Trades &lt;dbl&gt;,
+#   `Deliverable Volume` &lt;dbl&gt;, `%Deliverble` &lt;dbl&gt;, and abbreviated variable
+#   name ¹​`Prev Close`
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(all_stocks_yy,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">all_stocks_yy</h4>
+<strong>Dimensions</strong>: 235192 x 15
+  <br><strong>Duplicates</strong>: 0
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Missing</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">Symbol
+[character]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. ASIANPAINT</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. BPCL</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. CIPLA</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4. DRREDDY</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5. GRASIM</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">6. HDFC</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">7. HDFCBANK</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8. ICICIBANK</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9. IOC</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10. ITC</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">[ 55 others ]</td></tr></tbody></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">5306</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">182132</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">77.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAF4AAAC8BAMAAAADcATUAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywMkIvFWwAAAHFJREFUaN7t17EJgDAUBNCs4AjqBrr/bmm0s7goQkLe1a8J3PFJKeNnW5csl995/oNv7VuoX3v953v29sLzuf97L/rP9+zdC57Pvb3wM3v95/nc2wvP595/nJ/Zuxc8n/vu9pLmfu+Z5eD5B9/at5FTAYmpQ8VSSfKuAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA5LTAxVDIzOjQ0OjEyKzAwOjAw7ETJEgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOS0wMVQyMzo0NDoxMiswMDowMJ0Zca4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Series
+[character]</td>
+      <td align="left">1. EQ</td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">235192</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">100.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHUAAAAXCAQAAACfMchmAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfmCQEXLAyQi8VbAAAAYElEQVRYw+3XQQoAEBCF4Rk5nRs4oRvM9diibFDy5n272chfFFrFi/B6A0xl6onYDwXu4mZdpIqk13u7yobJ0QFmKiKmImIqIqYiYioiR6nTc9/2VvmCwv3blhwdYKYiapF5Becy9uLlAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA5LTAxVDIzOjQ0OjEyKzAwOjAw7ETJEgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOS0wMVQyMzo0NDoxMiswMDowMJ0Zca4AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Prev Close
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1266.2 (2581.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 566.5 ≤ 32861.9</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 967.9 (2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">63729 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywN54z1zQAAAElJREFUWMPt17EJACAUA9E/gm6gcQPdfzcRLCwNdnLXP1In4v8kZae0XRsdh8PhcDgcDofD4XBvzrpkhxvOJO7GaVUdJ7MS/zcBTCUEh4CjpSAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDktMDFUMjM6NDQ6MTMrMDA6MDBKM8KmAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA5LTAxVDIzOjQ0OjEzKzAwOjAwO256GgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Open
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1267.8 (2585.3)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8.5 ≤ 567 ≤ 33399.9</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 968.3 (2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">44298 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywN54z1zQAAAElJREFUWMPt17EJACAUA9E/gm6gcQPdfzcRLCwNdnLXP1In4v8kZae0XRsdh8PhcDgcDofD4XBvzrpkhxvOJO7GaVUdJ7MS/zcBTCUEh4CjpSAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDktMDFUMjM6NDQ6MTMrMDA6MDBKM8KmAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA5LTAxVDIzOjQ0OjEzKzAwOjAwO256GgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">High
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1286.6 (2619.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9.8 ≤ 576.9 ≤ 33480</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 983.5 (2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">49036 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywN54z1zQAAAElJREFUWMPt17EJACAUA9E/gm6gcQPdfzcRLCwNdnLXP1In4v8kZae0XRsdh8PhcDgcDofD4XBvzrpkhxvOJO7GaVUdJ7MS/zcBTCUEh4CjpSAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDktMDFUMjM6NDQ6MTMrMDA6MDBKM8KmAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA5LTAxVDIzOjQ0OjEzKzAwOjAwO256GgAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Low
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1247.5 (2546.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">8.5 ≤ 556.5 ≤ 32468.1</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 952.1 (2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">51335 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywOfoWkdwAAAEpJREFUWMPt17ENACAIRFFG0A0MbiD772ajiSUXO/J//0JxFWb1c/eu1I6bsXA4HA6Hw+FwOBwO9+ekl+xxoZzEZVx+iutcbFj9Ng1ABFUO+GRBAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA5LTAxVDIzOjQ0OjE0KzAwOjAwj5T8KAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOS0wMVQyMzo0NDoxNCswMDowMP7JRJQAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Last
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1266.4 (2581.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9.1 ≤ 567 ≤ 32849</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 968.5 (2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">48570 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywOfoWkdwAAAElJREFUWMPt17EJACAUA9E/gm6gcQPdfzcRLCwNdnLXP1In4v8kZae0XRsdh8PhcDgcDofD4XBvzrpkhxvOJO7GaVUdJ7MS/zcBTCUEh4CjpSAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDktMDFUMjM6NDQ6MTQrMDA6MDCPlPwoAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA5LTAxVDIzOjQ0OjE0KzAwOjAw/slElAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Close
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1266.6 (2582.1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9.2 ≤ 566.7 ≤ 32861.9</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 968.1 (2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">63739 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywPCYKU4QAAAElJREFUWMPt17EJACAUA9E/gm6gcQPdfzcRLCwNdnLXP1In4v8kZae0XRsdh8PhcDgcDofD4XBvzrpkhxvOJO7GaVUdJ7MS/zcBTCUEh4CjpSAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDktMDFUMjM6NDQ6MTUrMDA6MDAp4/ecAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA5LTAxVDIzOjQ0OjE1KzAwOjAwWL5PIAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">VWAP
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1267.1 (2582.7)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">9.2 ≤ 566.9 ≤ 32975.2</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 968 (2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">138831 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywPCYKU4QAAAElJREFUWMPt17EJACAUA9E/gm6gcQPdfzcRLCwNdnLXP1In4v8kZae0XRsdh8PhcDgcDofD4XBvzrpkhxvOJO7GaVUdJ7MS/zcBTCUEh4CjpSAAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDktMDFUMjM6NDQ6MTUrMDA6MDAp4/ecAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA5LTAxVDIzOjQ0OjE1KzAwOjAwWL5PIAAAAABJRU5ErkJggg=="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Volume
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 3045903 (7333981)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3 ≤ 1010939 ≤ 481058927</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 2800842 (2.4)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">220434 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywQhIqZFAAAADtJREFUWMPtyzEVwCAQBbCTUBzQjwT8e2OpATreS/ZU9Ze848bzvbU9z/M8z/M8z/M8r8NL/rxcmtXfAer4/JmdygO1AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA5LTAxVDIzOjQ0OjE2KzAwOjAwGAvtAQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOS0wMVQyMzo0NDoxNiswMDowMGlWVb0AAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Turnover
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1.610138e+14 (3.298085e+14)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">10470000 ≤ 6.832603e+13 ≤ 3.564334e+16</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1.702553e+14 (2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">235184 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywR842pggAAADhJREFUWMPtyzENACAMALBJAAdkOAD/3ngwsBfavxHvy8xe0e6be3me53me53me53nety+LRrzvAOLRASxE1XugAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA5LTAxVDIzOjQ0OjE3KzAwOjAwvnzmtQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOS0wMVQyMzo0NDoxNyswMDowMM8hXgkAAAAASUVORK5CYII="></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Trades
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 61964.3 (68664.6)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">11 ≤ 44068 ≤ 1643015</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 57101.5 (1.1)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">79112 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywR842pggAAAE1JREFUWMPt17ENACAIBVFG0A0MbiD772ajiXbQEXLXv/yCCpH6qWqP1I6btnA4HA6Hw+FwOBwuqwu9Oo+zyCQuo/Of/nf+yes02JD6bVDRBem9S5VxAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA5LTAxVDIzOjQ0OjE3KzAwOjAwvnzmtQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOS0wMVQyMzo0NDoxNyswMDowMM8hXgkAAAAASUVORK5CYII="></td>
+      <td align="center">114848
+(48.8%)</td>
+    </tr>
+    <tr>
+      <td align="left">Deliverable Volume
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1315098 (2831670)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">5 ≤ 501756 ≤ 232530747</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 1326850 (2.2)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">199963 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywSaoT4OAAAAD5JREFUWMPt1zERACEMAMFIAAdPkIB/b9+AgLSZvX4FXET/MtesNK7bh+M4juM4juM4juM6uNoZP5fFvujfD/94/KlR5vtGAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA5LTAxVDIzOjQ0OjE4KzAwOjAwSDSWXAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOS0wMVQyMzo0NDoxOCswMDowMDlpLuAAAAAASUVORK5CYII="></td>
+      <td align="center">16077
+(6.8%)</td>
+    </tr>
+    <tr>
+      <td align="left">Percent_Deliverable
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 0.5 (0.2)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0 ≤ 0.5 ≤ 1</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 0.3 (0.4)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">9456 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywSaoT4OAAAAMVJREFUWMPt1tERgyAMBmBHaJ2gjRs0++9W4IAmqC1/6lmL5MEHLt95Qkgchvbjuhoj0X2+evngiIjZ4CZ+HN+5LQnOfSTmmINzj+6+dqHEDC6Rv3JlpdW68o1bu3QVYCdIe26UpYk4Rc7h9Hipd7ptLznfICwupnW3hYsNAnc5rbtKJ39HECfHUuHyjAVdkdbdQV1uvtLJmb7icpEqt5B2OhcvIeziIe7p/OFbnN+cl1O/4YB7kzZbILqZ3MS/cgRGci3HE+o3tfopkus+AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA5LTAxVDIzOjQ0OjE4KzAwOjAwSDSWXAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wOS0wMVQyMzo0NDoxOCswMDowMDlpLuAAAAAASUVORK5CYII="></td>
+      <td align="center">16077
+(6.8%)</td>
+    </tr>
+    <tr>
+      <td align="left">yy
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tbody><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 2010.9 (5.9)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min ≤ med ≤ max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2000 ≤ 2011 ≤ 2021</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">IQR (CV) : 10 (0)</td></tr></tbody></table></td>
+      <td align="left" style="vertical-align:middle">22 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gkBFywTHYPIrgAAAJNJREFUWMPt01EKgCAQBNCOkJ4g1xs0979baiZFUG5Egs34sYv6wLKGof+IOKPJmJ0HHd2vnY3/zpULG3KcKU2YBm4c4MOYAZFYUhNS79aSmlTed/lAancAtc7G96B29nTAGhcfa37gyoYvnC0fhtIBH7p8AXq3W6l35eKU7rhCR0dH18aJTI+cBx0dXXsnymyu5yySFgrRBjKCOwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wOS0wMVQyMzo0NDoxOSswMDowMO5DnegAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDktMDFUMjM6NDQ6MTkrMDA6MDCfHiVUAAAAAElFTkSuQmCC"></td>
+      <td align="center">0
+(0.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.2.1)<br>2022-09-01</p>
+</div>
+</div>
+</div>
+<p>Trades, Deliverable Volume and Deliverable% columns have a lot of NA’s. The other columns are full.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(wipro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Date"               "Symbol"             "Series"            
+ [4] "Prev Close"         "Open"               "High"              
+ [7] "Low"                "Last"               "Close"             
+[10] "VWAP"               "Volume"             "Turnover"          
+[13] "Trades"             "Deliverable Volume" "%Deliverble"       </code></pre>
+</div>
+</div>
+<p>To see on which date the highest sales were made, I picked the date and volume column and produced the result based on the grouped date column. We can see the highest number of shares ever sold was on 15 July 2020</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>wipro_year_wise<span class="ot">&lt;-</span> wipro <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Date</span><span class="st">`</span>,<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Date</span><span class="st">`</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ungroup() %&gt;% </span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># arrange(desc(`Date`)) %&gt;% </span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># slice(1:10)</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>wipro_year_wise</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5,306 × 2
+# Groups:   Date [5,306]
+   Date          Volume
+   &lt;date&gt;         &lt;dbl&gt;
+ 1 2020-07-15 130367693
+ 2 2021-04-16 109361636
+ 3 2020-10-08 107270570
+ 4 2020-10-14  74138275
+ 5 2021-01-14  71551807
+ 6 2020-10-09  55431052
+ 7 2020-10-12  52966063
+ 8 2020-07-16  52277954
+ 9 2021-01-11  47334018
+10 2020-12-23  44874433
+# … with 5,296 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>trying to visualize it in a ggplot. I will pick the top 10 results.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wipro_year_wise,<span class="dv">20</span>) <span class="sc">%&gt;%</span>   </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Date, Volume)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'Wipro - Date vs Volume'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="FinalProject_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Checking for the year 2000</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>wipro_y2000 <span class="ot">&lt;-</span> wipro_year_wise <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+</section>
+<section id="bibliography" class="level2">
+<h2 class="anchored" data-anchor-id="bibliography">Bibliography</h2>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb33" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project - Indian Stock Market Analysis "</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Adithya Parupudi"</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Analysing NIFTY50 Stocks between 2000-2021"</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/02/2022"</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - tidyverse</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - final_project</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - Adithya</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - dataset</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="co">  - ggplot2</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load Libraries</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>Stock is also refered to as securities</span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Column Descriptions</span></span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>Description of columns in the file:</span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Date --- Date of trade</span>
+<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>symbol --- Name of the company</span>
+<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Series --- We have only one series - EQ, which stands for Equity.</span>
+<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Prev Close --- Refers to the final price of a stock of the previous dat when the market officially closes, which is at 3:30pm IST</span>
+<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Open --- The open is the starting period of trading on a securities exchange or organized over-the-counter market.</span>
+<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>High --- Highest price at which a stock traded during the course of the trading day.</span>
+<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Low --- Lowest price at which a stock traded during the course of the trading day.</span>
+<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Last --- The last price of a stock is just one price to consider when buying or selling shares. The last price is simply the most recent one</span>
+<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-58"><a href="#cb33-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Close --- The close is a reference to the end of a trading session in the financial markets when the markets close for the day.</span>
+<span id="cb33-59"><a href="#cb33-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-60"><a href="#cb33-60" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>VWAP (Volume-weighted average price)- It is the ratio of the value traded to total volume traded over a particular time horizon. It is a measure of the average price at which a stock is traded over the trading horizon</span>
+<span id="cb33-61"><a href="#cb33-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-62"><a href="#cb33-62" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Volume --- It is the amount of a security that was traded during a given period of time</span>
+<span id="cb33-63"><a href="#cb33-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-64"><a href="#cb33-64" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Turnover -It is a measure of sellers versus buyers of a particular stock. It is calculated by dividing the daily volume of a stock by the \"float\" of a stock, which is the number of shares available for sale by the general trading public.</span>
+<span id="cb33-65"><a href="#cb33-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-66"><a href="#cb33-66" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Trades- The number of shares being traded on a given day is called trading volumes</span>
+<span id="cb33-67"><a href="#cb33-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Deliverable Volume --- quantity of shares which actually move from one set of people (who had those shares in their demat account before today and are selling today) to another set of people (who have purchased those shares</span>
+<span id="cb33-69"><a href="#cb33-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>%Deliverable --- shares which are actually transferred from one person\'s to another\'s demat account.</span>
+<span id="cb33-71"><a href="#cb33-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-72"><a href="#cb33-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read Data</span></span>
+<span id="cb33-73"><a href="#cb33-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-74"><a href="#cb33-74" aria-hidden="true" tabindex="-1"></a>There are multiple .csv files, one for each stock, which are placed in a folder. I am reading data from all the csv files and combining them into a single data-frame using purrr package.</span>
+<span id="cb33-75"><a href="#cb33-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-78"><a href="#cb33-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-79"><a href="#cb33-79" aria-hidden="true" tabindex="-1"></a><span class="co"># Read all the CSV files at once</span></span>
+<span id="cb33-80"><a href="#cb33-80" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"_data/NIFTY_AdithyaParupudi/"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>  <span class="fu">map_dfr</span>(read_csv)</span>
+<span id="cb33-81"><a href="#cb33-81" aria-hidden="true" tabindex="-1"></a>all_stocks</span>
+<span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-84"><a href="#cb33-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-87"><a href="#cb33-87" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-88"><a href="#cb33-88" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(all_stocks)</span>
+<span id="cb33-89"><a href="#cb33-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-90"><a href="#cb33-90" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(all_stocks)</span>
+<span id="cb33-91"><a href="#cb33-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-92"><a href="#cb33-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-93"><a href="#cb33-93" aria-hidden="true" tabindex="-1"></a>Looks like the last column has a spelling mistake. I am correcting it to prevent further confusion. <span class="sc">\`</span>%Deliverble<span class="sc">\`</span> changed to Percent_Deliverable</span>
+<span id="cb33-94"><a href="#cb33-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-95"><a href="#cb33-95" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Cleaning</span></span>
+<span id="cb33-96"><a href="#cb33-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-99"><a href="#cb33-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-100"><a href="#cb33-100" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">Percent_Deliverable =</span> <span class="st">`</span><span class="at">%Deliverble</span><span class="st">`</span>)</span>
+<span id="cb33-101"><a href="#cb33-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-102"><a href="#cb33-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-105"><a href="#cb33-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-106"><a href="#cb33-106" aria-hidden="true" tabindex="-1"></a><span class="co"># separating year from the Date column</span></span>
+<span id="cb33-107"><a href="#cb33-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-108"><a href="#cb33-108" aria-hidden="true" tabindex="-1"></a><span class="co"># all_stocks %&gt;% select(Date) %&gt;% year()</span></span>
+<span id="cb33-109"><a href="#cb33-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-110"><a href="#cb33-110" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">format</span>(<span class="fu">as.Date</span>(all_stocks<span class="sc">$</span>Date, <span class="at">format=</span><span class="st">"%Y/%m/%d"</span>))</span>
+<span id="cb33-111"><a href="#cb33-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-112"><a href="#cb33-112" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span> </span>
+<span id="cb33-113"><a href="#cb33-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yy=</span><span class="fu">year</span>(x)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-114"><a href="#cb33-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Date)</span>
+<span id="cb33-115"><a href="#cb33-115" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_stocks_yy)</span>
+<span id="cb33-116"><a href="#cb33-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-117"><a href="#cb33-117" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
+<span id="cb33-118"><a href="#cb33-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-119"><a href="#cb33-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-120"><a href="#cb33-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-121"><a href="#cb33-121" aria-hidden="true" tabindex="-1"></a>Reading-in the data of wipro stock from the dataset.</span>
+<span id="cb33-122"><a href="#cb33-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-125"><a href="#cb33-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-126"><a href="#cb33-126" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">"/_data/NIFTY_3/"</span>, <span class="at">pattern =</span> <span class="st">"*.csv"</span>) </span>
+<span id="cb33-127"><a href="#cb33-127" aria-hidden="true" tabindex="-1"></a><span class="co"># %&gt;% map_df(~read_csv(.))</span></span>
+<span id="cb33-128"><a href="#cb33-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-129"><a href="#cb33-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-130"><a href="#cb33-130" aria-hidden="true" tabindex="-1"></a>Column description which is not obvious:</span>
+<span id="cb33-131"><a href="#cb33-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-132"><a href="#cb33-132" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>VWAP : volume-weighted average price - It's a trading benchmark that represents the average price a security has traded at throughout the day, based on both volume and price</span>
+<span id="cb33-133"><a href="#cb33-133" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Series column has EQ values - refers to equity</span>
+<span id="cb33-134"><a href="#cb33-134" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Turnover : Stock turnover rate is considered to be **a measure of sales performance**; usually the higher the stock turnover rate, the better your stock/business is performing. The lower the rate, the longer the stock is taking to turn over.</span>
+<span id="cb33-135"><a href="#cb33-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-138"><a href="#cb33-138" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-139"><a href="#cb33-139" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(wipro)</span>
+<span id="cb33-140"><a href="#cb33-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-141"><a href="#cb33-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-144"><a href="#cb33-144" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-145"><a href="#cb33-145" aria-hidden="true" tabindex="-1"></a>wipro <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/NIFTY_AdithyaParupudi/WIPRO.csv"</span>)</span>
+<span id="cb33-146"><a href="#cb33-146" aria-hidden="true" tabindex="-1"></a>wipro</span>
+<span id="cb33-147"><a href="#cb33-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-148"><a href="#cb33-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-149"><a href="#cb33-149" aria-hidden="true" tabindex="-1"></a>There are no comments in this dataset, so saves time for cleaning to an extent</span>
+<span id="cb33-150"><a href="#cb33-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-153"><a href="#cb33-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-154"><a href="#cb33-154" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(wipro)</span>
+<span id="cb33-155"><a href="#cb33-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-156"><a href="#cb33-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-159"><a href="#cb33-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-160"><a href="#cb33-160" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(all_stocks_yy,</span>
+<span id="cb33-161"><a href="#cb33-161" aria-hidden="true" tabindex="-1"></a>                        <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb33-162"><a href="#cb33-162" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb33-163"><a href="#cb33-163" aria-hidden="true" tabindex="-1"></a>                        <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb33-164"><a href="#cb33-164" aria-hidden="true" tabindex="-1"></a>                        <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb33-165"><a href="#cb33-165" aria-hidden="true" tabindex="-1"></a>                        <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb33-166"><a href="#cb33-166" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb33-167"><a href="#cb33-167" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb33-168"><a href="#cb33-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-169"><a href="#cb33-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-170"><a href="#cb33-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-171"><a href="#cb33-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-172"><a href="#cb33-172" aria-hidden="true" tabindex="-1"></a>Trades, Deliverable Volume and Deliverable% columns have a lot of NA's. The other columns are full.</span>
+<span id="cb33-173"><a href="#cb33-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-176"><a href="#cb33-176" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-177"><a href="#cb33-177" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(wipro)</span>
+<span id="cb33-178"><a href="#cb33-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-179"><a href="#cb33-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-180"><a href="#cb33-180" aria-hidden="true" tabindex="-1"></a>To see on which date the highest sales were made, I picked the date and volume column and produced the result based on the grouped date column. We can see the highest number of shares ever sold was on 15 July 2020</span>
+<span id="cb33-181"><a href="#cb33-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-184"><a href="#cb33-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-185"><a href="#cb33-185" aria-hidden="true" tabindex="-1"></a>wipro_year_wise<span class="ot">&lt;-</span> wipro <span class="sc">%&gt;%</span> </span>
+<span id="cb33-186"><a href="#cb33-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-187"><a href="#cb33-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Date</span><span class="st">`</span>,<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-188"><a href="#cb33-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Date</span><span class="st">`</span>)</span>
+<span id="cb33-189"><a href="#cb33-189" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ungroup() %&gt;% </span></span>
+<span id="cb33-190"><a href="#cb33-190" aria-hidden="true" tabindex="-1"></a>  <span class="co"># arrange(desc(`Date`)) %&gt;% </span></span>
+<span id="cb33-191"><a href="#cb33-191" aria-hidden="true" tabindex="-1"></a>  <span class="co"># slice(1:10)</span></span>
+<span id="cb33-192"><a href="#cb33-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-193"><a href="#cb33-193" aria-hidden="true" tabindex="-1"></a>wipro_year_wise</span>
+<span id="cb33-194"><a href="#cb33-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-195"><a href="#cb33-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-196"><a href="#cb33-196" aria-hidden="true" tabindex="-1"></a>trying to visualize it in a ggplot. I will pick the top 10 results.</span>
+<span id="cb33-197"><a href="#cb33-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-200"><a href="#cb33-200" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-201"><a href="#cb33-201" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wipro_year_wise,<span class="dv">20</span>) <span class="sc">%&gt;%</span>   </span>
+<span id="cb33-202"><a href="#cb33-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Date, Volume)) <span class="sc">+</span></span>
+<span id="cb33-203"><a href="#cb33-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb33-204"><a href="#cb33-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color=</span><span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb33-205"><a href="#cb33-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'Wipro - Date vs Volume'</span>)</span>
+<span id="cb33-206"><a href="#cb33-206" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-207"><a href="#cb33-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-208"><a href="#cb33-208" aria-hidden="true" tabindex="-1"></a>Checking for the year 2000</span>
+<span id="cb33-209"><a href="#cb33-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-212"><a href="#cb33-212" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-213"><a href="#cb33-213" aria-hidden="true" tabindex="-1"></a>wipro_y2000 <span class="ot">&lt;-</span> wipro_year_wise <span class="sc">%&gt;%</span> </span>
+<span id="cb33-214"><a href="#cb33-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>()</span>
+<span id="cb33-215"><a href="#cb33-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-216"><a href="#cb33-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-217"><a href="#cb33-217" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
+<span id="cb33-218"><a href="#cb33-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-219"><a href="#cb33-219" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb33-220"><a href="#cb33-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-221"><a href="#cb33-221" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliography</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
