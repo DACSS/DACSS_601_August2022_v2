@@ -38,7 +38,7 @@ Now, this is a large dataset, and it'll require a lot of cleaning up in order to
 
 ```{r}
 SoilHealthFixed <- SoilHealth %>%
-  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("NoSubsample") & -contains("BD_T") & -contains("K_") & -contains("pH_T") & -contains("EC_T") & -contains("BS_T") & -contains("Aggre_T") & -contains("Porosity_T") & -contains("SQI") & -contains("_SD") & -contains("Microelement")) %>%
+  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("NoSubsample") & -contains("BD_T") & -contains("K_") & -contains("pH_T") & -contains("EC_T") & -contains("BS_T") & -contains("Aggre_T") & -contains("Porosity_T") & -contains("SQI") & -contains("_SD") & -contains("Microelement") & -contains("SOC_NaturalVeg")) %>%
   filter(!is.na(Country)) %>%
   filter(!is.na(CoverCropGroup)) %>%
   filter(!is.na(GrainCropGroup)) %>%
@@ -46,6 +46,7 @@ SoilHealthFixed <- SoilHealth %>%
   filter(!is.na(SamplingThickness)) %>%
   filter(!is.na(Duration)) %>%
   filter(!is.na(SoilpH)) %>%
+  filter(!is.na(MAP)) %>%
   filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
   filter(!str_detect(Texture, 'NotAvailable')) %>%
   filter(!str_detect(SamplingThickness, 'Not-available')) %>%
@@ -75,7 +76,7 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-Again, some of the grain crop categories represent multiple groups. AVG, again, means average of a group of crops. C means corn, S usually implies soybeans, O means oats (although it would appear we don't have oat as its own group in this data), and so on. 
+Again, we see that there are some variables which represent multiple groups. AVG represents an average amount of grain crops, and CV represents both corn and vegetables. 
 
 From what we see here, corn is a very common crop. A lot of this might have to do with the high demand for corn in more than just food. Corn is often used for feeding livestock, industrial oils, and ethanol production, which is why we see so many cornfields across the country. 
 
@@ -86,7 +87,7 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-The majority of the samples taken in this study were sandy loam or silty loam, or a mix of the three soil compositions, sand, silt and clay. 
+The majority of the samples taken in this study were sandy loam or loamy sand. Loam is a mix of the three soil compositions, sand, silt and clay, where sand is the largest soil texture and clay is the smallest and most dense texture. Water passes through sand more easily, while clay is less  
 
 Now let's take a look at which soil textures are most common with legumes AND corn. 
 
@@ -109,7 +110,7 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-So, as expected, the full majority of our data was taken from the United States and China. I was actually a bit more intrigued by the fact that there were also plenty of samples taken from Zambia as well. 
+So, apparently, while I was breaking down the data and cleaning it bit by bit to figure out what I needed here, I noticed that the US column kept getting smaller and smaller. While the untidy dataset consists mainly of US data, a good chunk of that data is incomplete, so every time I updated the chart, the bar for the USA kept shrinking and shrinking until finally, I reached a point where the US data is no longer the majority. This shows that while the US has more entries, countries like Zambia, Nigeria and China have more complete entries. 
 
 But this doesn't give us a very useful idea of where everything is - let's take a look at an actual map.
 
@@ -118,6 +119,8 @@ library(maps)
 map(database = "world")
 points(x = SoilHealthFixed$Longitude, y = SoilHealthFixed$Latitude, col = "Red")
 ```
+
+So, as we could see here, a full majority of the samples were more widely distributed throughout Africa and Europe. 
 
 ## Distribution of samples
 
@@ -135,20 +138,18 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-Between the two red lines are the pH levels for healthy soils. As we can see here, there weren't enough soil samples that offered pH for silt, but what this graph does show is that whatever samples they WERE able to obtain the pH for were not exactly healthy.  
+Between the two red lines are the pH levels for healthy soils. As we can see here, the median sample pH did not fall within the recommended levels for clay loam, loamy sand, or silt loam.
+
+Now, let's see what might affect the soil's pH levels. Let's start by looking at how the pH differs with mean annual precipitation (MAP). 
 
 ```{r}
 SoilHealthFixed %>%
-  filter(!is.na(Yield_T)) %>%
-  ggplot(aes(CoverCropGroup, Yield_T)) +
-  geom_boxplot() +
+  ggplot(aes(SoilpH, MAP)) +
+  geom_point() +
+  geom_smooth(method = lm)
   #geom_hline(yintercept = 5.5, color = "red") +
   #geom_hline(yintercept = 7.5, color = "red") +
-  theme(axis.text.x = element_text(angle = 270))
+  #theme(axis.text.x = element_text(angle = 270))
 ```
 
-```{r}
-ggplot(data = world) +
-    geom_sf()
-```
-
+Indeed there is a negative relationship with soil pH and mean annual precipitation. Wetter climates appear to lead to more acidic soils, while drier climates have more basic soils. 
