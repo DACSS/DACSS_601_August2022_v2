@@ -9,6 +9,8 @@ format:
     code-tools: true
 ---
 
+## Introduction 
+
 For my final project, I will be looking at data related to soil health. This data will involve studying observations from numerous studies, and interpreting how the quality of soil has changed over the years. 
 ```{r}
 #| label: setup
@@ -21,6 +23,8 @@ library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
+## Reading in the data 
+
 To know where and how to grow your crops is to understand the nutrients your crops require. This includes how much water the soil can absorb, the composition or texture of the soil, pests, etc. For this project, we'll be focusing in on the types of soil and crops each of these samples use, and how each factor affects the health of the soil.
 
 ```{r}
@@ -28,12 +32,13 @@ SoilHealth <- read_csv("_data/SoilHealthDB_V0.csv", show_col_types = FALSE)
 
 SoilHealth
 ```
+## Cleaning
 
 Now, this is a large dataset, and it'll require a lot of cleaning up in order to obtain the data we need. So, without further ado, let's get rid of some junk.
 
 ```{r}
 SoilHealthFixed <- SoilHealth %>%
-  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("NoSubsample")) %>%
+  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("NoSubsample") & -contains("BD_T") & -contains("K_") & -contains("pH_T") & -contains("EC_T") & -contains("BS_T") & -contains("Aggre_T") & -contains("Porosity_T") & -contains("SQI") & -contains("_SD") & -contains("Microelement")) %>%
   filter(!is.na(Country)) %>%
   filter(!is.na(CoverCropGroup)) %>%
   filter(!is.na(GrainCropGroup)) %>%
@@ -50,6 +55,8 @@ SoilHealthFixed <- SoilHealth %>%
 SoilHealthFixed
 ```
 
+## Visualizations
+
 Alright, now, let's take a look at some bar graphs to see how each of these samples differ. Let's start with the crop cover groups that our soil has. 
 
 ```{r}
@@ -59,7 +66,7 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-As we can see here, the full majority of cover crops are within the legume group.
+As we can see here, the full majority of cover crops are within the legume group. What we can also see here are that there are categories that represent more than one group. For example, many of the samples within the Legume group are vetch. Some of the LG samples grow a combination of vetch and oats, which are in the grass group. LB groups contain vetch and canola, which is part of the brassica group. AVG is an "average of vetch and rye". I believe MMT and MOT are also a mix of legumes and other plants, with MOT implying "this OR that". It's not exactly clear yet, but moving on. 
 
 ```{r}
 SoilHealthFixed %>%
@@ -68,7 +75,9 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-As expected, corn is the main grain crop group observed. I believe corn is used for more than just a food source, but also for livestock, starch, beverage and industrial alcohol, and fuel ethanol. That's why you see so much corn out here in the US. 
+Again, some of the grain crop categories represent multiple groups. AVG, again, means average of a group of crops. C means corn, S usually implies soybeans, O means oats (although it would appear we don't have oat as its own group in this data), and so on. 
+
+From what we see here, corn is a very common crop. A lot of this might have to do with the high demand for corn in more than just food. Corn is often used for feeding livestock, industrial oils, and ethanol production, which is why we see so many cornfields across the country. 
 
 ```{r}
 SoilHealthFixed %>%
@@ -100,7 +109,17 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-So, as expected, the full majority of our data was taken from the United States. Before I added the restrictions on the SoilpH, the number of samples in the USA exceeded over a thousand. 
+So, as expected, the full majority of our data was taken from the United States and China. I was actually a bit more intrigued by the fact that there were also plenty of samples taken from Zambia as well. 
+
+But this doesn't give us a very useful idea of where everything is - let's take a look at an actual map.
+
+```{r}
+library(maps)
+map(database = "world")
+points(x = SoilHealthFixed$Longitude, y = SoilHealthFixed$Latitude, col = "Red")
+```
+
+## Distribution of samples
 
 ```{r}
 SoilHealthFixed %>%
@@ -126,5 +145,10 @@ SoilHealthFixed %>%
   #geom_hline(yintercept = 5.5, color = "red") +
   #geom_hline(yintercept = 7.5, color = "red") +
   theme(axis.text.x = element_text(angle = 270))
+```
+
+```{r}
+ggplot(data = world) +
+    geom_sf()
 ```
 
