@@ -21,7 +21,7 @@ library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-To know where and how to grow your crops is to understand the nutrients your crops require. This includes how much water the soil can absorb, the composition or texture of the soil, 
+To know where and how to grow your crops is to understand the nutrients your crops require. This includes how much water the soil can absorb, the composition or texture of the soil, pests, etc. For this project, we'll be focusing in on the types of soil and crops each of these samples use, and how each factor affects the health of the soil.
 
 ```{r}
 SoilHealth <- read_csv("_data/SoilHealthDB_V0.csv", show_col_types = FALSE)
@@ -33,7 +33,6 @@ Now, this is a large dataset, and it'll require a lot of cleaning up in order to
 
 ```{r}
 SoilHealthFixed <- SoilHealth %>%
-  select_if(~!(all(is.na(.)) | all(. == ""))) %>%
   select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("NoSubsample")) %>%
   filter(!is.na(Country)) %>%
   filter(!is.na(CoverCropGroup)) %>%
@@ -45,7 +44,8 @@ SoilHealthFixed <- SoilHealth %>%
   filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
   filter(!str_detect(Texture, 'NotAvailable')) %>%
   filter(!str_detect(SamplingThickness, 'Not-available')) %>%
-  mutate(SamplingThickness = as.double(SamplingThickness))
+  mutate(SamplingThickness = as.double(SamplingThickness)) %>%
+  select_if(~!(all(is.na(.)) | all(. == "")))
 
 SoilHealthFixed
 ```
@@ -100,7 +100,7 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-So, as expected, the full majority of our data was taken from the United States. Before I added the restrictions on the SoilpH, the number of samples in the USA exceeded over a thousand. By adding the 
+So, as expected, the full majority of our data was taken from the United States. Before I added the restrictions on the SoilpH, the number of samples in the USA exceeded over a thousand. 
 
 ```{r}
 SoilHealthFixed %>%
@@ -120,11 +120,11 @@ Between the two red lines are the pH levels for healthy soils. As we can see her
 
 ```{r}
 SoilHealthFixed %>%
-  #filter(!is.na(SoilpH)) %>%
-  ggplot(aes(CoverCropGroup, SoilpH)) +
+  filter(!is.na(Yield_T)) %>%
+  ggplot(aes(CoverCropGroup, Yield_T)) +
   geom_boxplot() +
-  geom_hline(yintercept = 5.5, color = "red") +
-  geom_hline(yintercept = 7.5, color = "red") +
+  #geom_hline(yintercept = 5.5, color = "red") +
+  #geom_hline(yintercept = 7.5, color = "red") +
   theme(axis.text.x = element_text(angle = 270))
 ```
 
