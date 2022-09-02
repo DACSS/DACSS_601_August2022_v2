@@ -4,8 +4,11 @@ editor: visual
 ---
 
 ## 1) Read in a dataset and describe it using words and visuals.
+
 ## 2) Identify what needs to be done to tide the current data
+
 ## 3) Anticipate the shape of the pivoted data
+
 ## 4) Pivot the data into tidy format using 'pivot_longer'
 
 ```{r}
@@ -87,5 +90,3 @@ animal_weight_final <- animal_weightr8 %>%
 ```{r}
 ggplot(animal_weight_final, mapping = aes(ipcc_area, 'Standard Weight kg')) + geom_jitter()
 ```
-
-
