@@ -1,0 +1,162 @@
+---
+title: "Homework 3/Final Project - Katie Popiela"
+editor: visual
+---
+
+```{r}
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(tidyverse)
+library(plyr)
+library(tidyr)
+library(scales)
+library(poliscidata)
+```
+
+### Introduction
+
+I will be using the poliscidata package in R, and I will then use the 'world' data set. It's relatively large so I will not describe in depth, but it has a difference in statistics and information in almost every country. Some of these variables include "confidence in government institutions" (designated confidence interval), "ethnic and linguistic factionalization" (frac_eth3), and "is this state's government a democracy?" (democ_regime08).
+
+Based on my undergrad thesis, which focused on ethno-religious violence in the Polish-Ukrainian borderlands, I'm going to focus on the following variables:
+
+(1) country,
+(2) regionun (UN region)
+(3) frac_eth3 (level of ethnic factionalization)
+(4) durable (# of years since last regime transition)
+(5) dem_level14 (regime type)
+(6) dem_score14 (democracy score, Economist 2014)
+(7) pr_sys (proportional representation in government, yes or no)
+
+Some of the commonalities I found between incidents of ethno-religious violence in an ethnic borderland are as follows: (a) history of political suppression against one of the two dominant ethnicities/religions in the area, (b) each group has intense feelings of "rivalry," jealousy, and resentment against the other, (c) although language and culture in ethnic borderlands can be similar (such as with Poles and Ukrainians), their social, religious, and political traditions/aspirations are more often than not incredibly different, (d) the victorious group restarts the cycle and enacts harsh and repressive policies against the loser. And in situations where groups need to compete for survival (such as in times of war or general political instability), these trends combine and result in the eruption of violence.
+
+*NOTE: If I had more time, I would love to transform this into a larger project in which I would use the info gathered here and see if ethno-religious violence actually erupted in the places that match my criteria on paper.*
+
+```{r,echo=TRUE}
+poliscidata::world %>%
+  select(country,regionun) %>%
+  view()
+```
+
+In the interest of time, I'm not going to go through all 167 countries included in this data set and randomly pick locations. In this case, I have chosen Asia, which in this data set, includes the Middle East, Central Asia (former Soviet states), the Caucasus, and Eastern/Southern Asia. Since there were quite a few 'NA' entries, I removed them.
+
+```{r,echo=TRUE}
+data("gss")
+eth_rel_components <- world %>%
+  select(country,regionun,frac_eth3,durable,dem_level4,dem_score14,pr_sys) %>%
+  na.omit() %>%
+  filter(regionun == "Asia") %>%
+  print()
+```
+
+### Background Info and Data
+
+Now I'm going to tidy the data in the following variables: frac_eth3 (level of ethnic factionalism), dem_score14 (democratic score via The Economist), and pr_sys (proportionally representative government). My goal is to narrow this information down so that I can see what countries fit the criteria I laid out in the intro: (1) High levels of ethnic factionalism/inter-ethnic competition and rivalry (2) Artificial democratic government or a hybrid/authoritarian regime (3) Relatively short time-span between regime changes (4) Whichever group is in power will ensure that the "rival" group does not have governmental representation according to their population numbers.
+
+```{r,echo=TRUE}
+colnames(eth_rel_components)
+```
+
+```{r,echo=TRUE}
+eth_rel_components <- filter(eth_rel_components, frac_eth3 == "High" & dem_score14 < "7" & pr_sys == "No") %>%
+  print()
+```
+
+Now that the data set has been filtered down by design, I'm going to present some visuals to showcase different variables (both individual and in combination).
+
+### Visuals and Explanation
+
+```{r,echo=TRUE}
+ggplot(eth_rel_components, aes(x=durable, y=dem_level4, color=country)) + geom_jitter() + xlab("# of Years since Regime Change") + ylab("Regime Type") %>%
+  print()
+```
+
+Based on the information presented in this graph, it's noteworthy that all except for 3 countries (Qatar, Malaysia, and Bhutan) have experienced a regime change in the past 10 years. Most of these countries (including Qatar, but excluding Kyrgyzstan, Thailand, Malaysia, and Bhutan) have authoritarian regimes. The only country that's close to democracy is Malaysia and it's a decent bit above "Part Democ" (Part Democracy). None of the countries included here - which have high ethnic factionalism, low democracy scores, and no proportional representation in government - are fully democratic. This graph, however, can be improved. I don't think it needs the distinction of individual countries, and I think it'd be more succinct and clear if point color was determined by regime type instead.
+
+```{r,echo=TRUE}
+ggplot(eth_rel_components, aes(x=durable, y=dem_score14, color=dem_level4)) + geom_point() +xlab("# of Years since Last Regime Change") +ylab("Democracy Score") %>%
+  print()
+```
+
+Now let's see what a visualization of 'dem_score14' and 'dem_level4' shows us and how it relates to the above visualization.
+
+```{r,echo=TRUE}
+ggplot(eth_rel_components, aes(x=dem_score14,y=dem_level4, color=country)) + geom_point () + xlab("Democracy Score") + ylab("Regime Type") %>%
+  print()
+```
+
+Unlike the previous visualization, this one has a much wider distribution. However, this graph shows democracy score based on regime type. While the democracy score might be accurate - though it's hard to find each country's exact democracy score with the graph in this format - I do not believe the alignment of countries based so strictly on regime type is helpful at all. I would even go so far as to say the format of the y-axis is misleading. There isn't a set framework for how regimes govern. Authoritarianism, for instance, is very much a spectrum rather than a set value. For example, there are heavily authoritarian states like Belarus and Russia, but then there are authoritarian-leaning countries like Poland and Hungary. They can all be classified as "authoritarian", but they're not equally so.
+
+```{r,echo=TRUE}
+ggplot(eth_rel_components, aes(x=dem_score14, fill=dem_level4)) + geom_histogram () + xlab("Democracy Score") %>%
+  print()
+```
+
+This graph, admittedly, isn't the best. I wanted each entry to have it's own bar next to the previous, but it stacked the ones with the same democracy score on top of each other. It's not the biggest deal since the y-axis is 'count' and that just represents the number of countries with a given democracy score rather than the score itself.
+
+Just for comparison, I'm going to take out the geographic filter but keep the one where it filters out all entries with a 'dem_score14' value higher than 7 (the point at which regimes enter "democratic" territory).
+
+```{r,echo=TRUE}
+eth_rel_general <- world %>%
+    select(country,regionun,frac_eth3,durable,dem_level4,dem_score14,pr_sys) %>%
+  na.omit() %>%
+  filter(frac_eth3 == "High" & dem_score14 < 7) %>%
+  print()
+```
+
+```{r,echo=TRUE}
+ggplot(eth_rel_general, aes(x=regionun, y=dem_score14, color=dem_level4)) + geom_point() +xlab("Region") +ylab("Democracy Score") %>%
+  print()
+```
+
+### Summary Statistics and Reflection
+
+I'm going to provide summary statistics for the original data set I used 'eth_rel_components', which is geographically specific to Asia (and has a filter to only include countries without proportional representation), and then the last one, 'eth_rel_general', which applies to all nations in all regions with proportional and non-proportional representation. Then I will discuss and compare them.
+
+```{r,echo=TRUE}
+eth_rel_components %>%
+    summarise_at(.vars = vars(durable,dem_score14),
+               .funs = c(mean="mean"))
+```
+
+There is a sizable difference between the 'durable_mean' figures for 'eth_rel_components' and 'eth_rel_general'; it's a difference of 7.98516. However, the mean figures for 'dem_score14_mean' only have a 0.24436 difference. What does this mean? Well, for starters, it means that Asia in particular has longer lasting regimes/longer periods of time in between regime changes than the world overall. And the small difference between the mean figures for dem_score14 means that the global average democratic score is about the same as Asia specifically.
+
+```{r,echo=TRUE}
+eth_rel_general %>%
+  summarise_at(.vars = vars(durable,dem_score14),
+               .funs = c(mean="mean")) 
+```
+
+```{r,echo=TRUE}
+min(eth_rel_components$dem_score)
+max(eth_rel_components$dem_score)
+```
+
+Furthermore, if you compare the minimum and maximum dem_score14 values for each data set, they only differ from each other by about 0.5.
+
+```{r,echo=TRUE}
+min(eth_rel_general$dem_score14)
+max(eth_rel_general$dem_score14)
+```
+
+```{r,echo=TRUE}
+min(eth_rel_components$durable)
+max(eth_rel_components$durable)
+```
+
+The min and max values for 'durable', which kind of contradict the original mean calculations, are almost the exact same, except the min values are 1 off.
+
+```{r,echo=TRUE}
+min(eth_rel_general$durable)
+max(eth_rel_general$durable)
+```
+
+### Conclusion
+
+I started this project with the intention of measuring the criteria of ethno-religious violence that I picked up on while writing my thesis. I found the criteria and measured, but kind of as expected, I need more information to actually measure whether the countries that matched my criteria actually experience(d) eruptions of ethno-religious violence. I know certain countries in the data set have experienced ethnic/religious violence (Bangladesh, Bosnia, Cambodia, Kazakhstan, Uzbekistan, Ukraine, Vietnam) but this data set unfortunately doesn't have a category for "experienced ethnic violence." I would definitely be interested in pursuing this further and finding or making a dataset with the necessary information, I'm just not there yet skill-wise.
+
+### Bibliography
+
+The Economist, *The Intelligence Unit*, "Democracy Index Report, 2014." http://www.eiu.com/public/thankyou_download.aspx?activity=download&campaignid=Democracy0115
+
+'poliscidata,' R Package. 'world' dataset'.

@@ -25,7 +25,7 @@ tolerance4religion <- gss %>%
 
 #*NOTE: there are a lot of NA entries so I will be filtering those out*
 
-#I wouldn't be surprised if there was a correlation between the strength of one's religious affiliation and their level tolerance, but I also wouldn't be surprised if there wasn't. I know that religious people have the (very public) reputation of being intolerant to minorities/LGBTQ+ people/pretty much anyone they see as "different." But I also know quite a few people who actively practice religion who are some of the most tolerant people I've ever met.
+#I wouldn't be surprised if there was a correlation between the strength of one's religious affiliation and their level tolerance, but I also wouldn't be surprised if there wasn't. I know that religious people have the (very public) reputation of being intolerant to minorities/LGBTQ+ people/pretty much anyone they see as "different." But I also know quite a few people who actively practice religion who are some of the most tolerant people I've ever met. So, I will be investigating potential answers to the following question: is a person's tolerance toward others in any way affected by
 ```
 
 ```{r}
@@ -52,4 +52,3 @@ ggplot(tolerance4religion, mapping = aes(x= tolerance4, y=reliten)) +geom_jitter
 
 #I'd like to explore this topic further. I might use a different variable for the y-axis or I might make a second comparison and analyze both. 
 ```
-
