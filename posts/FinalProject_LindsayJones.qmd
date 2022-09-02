@@ -1,5 +1,5 @@
 ---
-title: "Final Project DRAFT"
+title: "Final Project"
 author: "Lindsay Jones"
 description: "Baby Names in the US"
 date: "09/02/2022"
@@ -11,6 +11,18 @@ format:
 categories:
   - final
 ---
+
+# Introduction
+
+A person's name can be a reflection of many things: their gender, when and where they were born, who or what their parents wanted them to be, etc.
+
+For this data analysis I chose to investigate the following:
+
+-   How have American names evolved over time?
+-   How do names vary between states?
+-   What is the impact of a specific celebrity on the popularity of a name?
+
+# Setting Up
 
 ```{r}
 #| label: setup
@@ -25,12 +37,11 @@ library(usmap)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Introduction
+# The Data
 
+My data was originally sourced from the Social Security Administration (SSA). It includes babies born from 1880-2021, organized by state, sex, year, name, and count (number of babies born with that name), For privacy purposes, this data does not include instances where fewer than 5 babies were born with that name.
 
-## Tidying the Data
-
-The data I've chosen to use is fairly clean. However, it came in separate CSV files for each state (and Washington DC). First, I have to read in all 51 files. I'm also going to cheat and read in a data set I found that has the national data already cleaned up, becaues I already spent so much time reading in 51 other data sets. 
+Unfortunately, I discovered too late that there is already a "babynames" package in R. Instead of using this package, I downloaded 51 files (50 states + Washington D.C.) from the SSA. First, I read in each file. I then read in a tidied version of the national dataset from Kaggle, saving me the effort of reading in 141 additional files.
 
 ```{r}
 library(readr)
@@ -140,10 +151,12 @@ WY <- read_csv("~/School/UMASS/DACSS601/Final/namesbystate/WY.csv",
 us_names <- read_csv("~/School/UMASS/DACSS601/Final/names.csv")
 ```
 
+# Data Setup
 
-Now that I've read in all those data sets, I need to combine them into one data frame and give them column names (since none of the files had column names). Once that's done, I'll sort by year. 
+Each data set has the same variables organized in the same order, so I used `bind_rows()` to combine the state data into one dataset. The columns were unnamed, so I used `rename()` to name them.
+
 ```{r}
-#bind all data frames
+#bind all datasets
 states <- bind_rows(AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY)
 
 #rename columns
@@ -152,9 +165,10 @@ states <- rename(states, "State" = "X1", "Sex" = "X2", "Year" = "X3", "Name" = "
 states
 ```
 
+From here I `split()` the state data into separate datasets by sex, so that I could more easily perform analyses by sex.
 
 ```{r}
-#split state data into separate tibbles by sex
+#split state data by sex
 X <- split(states, states$Sex)
 
 #assign each tibble a name for ease
@@ -162,8 +176,10 @@ f_state <- X$F
 m_state <- X$M
 ```
 
+I did the same with the national data.
+
 ```{r}
-#split national data into separate tibbles by sex
+#split national data by sex
 Y <- split(us_names, us_names$Sex)
 
 #assign each tibble a name for ease
@@ -171,10 +187,13 @@ f_natl <- Y$F
 m_natl <- Y$M
 ```
 
+# Visualizations
 
-```{r}
-arrange(f_natl, Year, desc(Count))
-```
+## How have American names evolved over time?
+
+I wanted to investigate the evolution of American names by creating two line graphs, one for each sex, which shows the most popular names on record and illustrates their popularity over time. I also wanted "social generations" shown on the plots to illustrate which names were most popular with each generation.
+
+First, I pulled the top names for each year. Then, I created dataset filtered for only these names and plotted them.
 
 ```{r}
 #top female names nationally, arranged by year
@@ -183,54 +202,55 @@ f_natl %>%
   top_n(1, Count) %>%
   arrange(Year)
 
-#setting up data frame to compare top female names
-top_f <- f_natl %>%
-  filter(Name %in% c("Mary", "Linda", "Lisa", "Jennifer", "Jessica", "Ashley", "Emily", "Emma", "Isabella", "Sophia", "Olivia"))
-
-#line plot
-fgens <- top_f %>%
-  ggplot(aes(x=Year, y=Count, group=Name, color=Name)) +
-    geom_line(size=1.25) +
-    theme_bw()+
-    ggtitle("Top Baby Girl Names") +
-    ylab("Number of Babies Born") +
-    #add bars to highlight generations
-    geom_rect(data = top_f,
-            aes(xmin = 1883, xmax = 1900, ymin = -Inf, ymax = Inf),
-            color = NA, fill = "grey", alpha = 0.01)+
-    geom_rect(data = top_f,
-            aes(xmin = 1928, xmax = 1945, ymin = -Inf, ymax = Inf),
-            color = NA, fill = "grey", alpha = 0.01)+
-    geom_rect(data = top_f,
-            aes(xmin = 1965, xmax = 1980, ymin = -Inf, ymax = Inf),
-            color = NA, fill = "grey", alpha = 0.01)+
-    geom_rect(data = top_f,
-            aes(xmin = 1997, xmax = 2012, ymin = -Inf, ymax = Inf),
-            color = NA, fill = "grey", alpha = 0.01)+
-    annotate("text", x=1892, y=100000, label="Lost")+
-    annotate("text", x=1914, y=95000, label="Greatest")+
-    annotate("text", x=1936, y=100000, label="Silent")+
-    annotate("text", x=1955, y=95000, label="Boomers")+
-    annotate("text", x=1973, y=100000, label="X")+
-    annotate("text", x=1988, y=95000, label="Millennials")+
-    annotate("text", x=2005, y=100000, label="Z")+
-    annotate("text", x=2017, y=95000, label="Alpha")
-
+#top male names nationally, arranged by year
 m_natl %>%
   group_by(Year) %>%
   top_n(1, Count) %>%
   arrange(Year)
+
+#setting up dataset to compare top female names
+top_f <- f_natl %>%
+  filter(Name %in% c("Mary", "Linda", "Lisa", "Jennifer", "Jessica", "Ashley", "Emily", "Emma", "Isabella", "Sophia", "Olivia"))
 
 #top male names nationally, arranged by year
 top_m <- m_natl %>%
   filter(Name %in% c("John", "Robert", "James", "Michael", "David", "Jacob", "Liam"))
 
 #line plot
+fgens <- top_f %>%
+  ggplot(aes(x=Year, y=Count, group=Name, color=Name)) +
+    geom_line(size=1.25) +
+    theme_bw()+
+    ggtitle("Top Baby Girl Names by Generation") +
+    ylab("Number of Babies Born") +
+    #add bars to highlight generations
+    geom_rect(data = top_f,
+            aes(xmin = 1883, xmax = 1900, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    geom_rect(data = top_f,
+            aes(xmin = 1928, xmax = 1945, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    geom_rect(data = top_f,
+            aes(xmin = 1965, xmax = 1980, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    geom_rect(data = top_f,
+            aes(xmin = 1997, xmax = 2012, ymin = -Inf, ymax = Inf),
+            color = NA, fill = "grey", alpha = 0.01)+
+    annotate("text", x=1892, y=100000, label="Lost")+
+    annotate("text", x=1914, y=95000, label="Greatest")+
+    annotate("text", x=1936, y=100000, label="Silent")+
+    annotate("text", x=1955, y=95000, label="Boomers")+
+    annotate("text", x=1973, y=100000, label="X")+
+    annotate("text", x=1988, y=95000, label="Millennials")+
+    annotate("text", x=2005, y=100000, label="Z")+
+    annotate("text", x=2017, y=95000, label="Alpha")
+
+#line plot
 mgens <- top_m %>%
   ggplot(aes(x=Year, y=Count, group=Name, color=Name)) +
     geom_line(size=1.25) +
     theme_bw()+
-    ggtitle("Top Baby Boy Names") +
+    ggtitle("Top Baby Boy Names by Generation") +
     ylab("Number of Babies Born") +
     #add bars to highlight generations
     geom_rect(data = top_m,
@@ -254,52 +274,58 @@ mgens <- top_m %>%
     annotate("text", x=2005, y=100000, label="Z")+
     annotate("text", x=2017, y=95000, label="Alpha")
 
-par(mfrow= c(1,2) )
-plot(fgens)
+par(mfrow= c(1,2))+
+plot(fgens)+
 plot(mgens)
 ```
 
-```{r}
-#name popularity by generation
-f_natl %>%
-  filter(Year %in% c(1883:1900)) %>%
-  group_by(Year) %>%
-  top_n(1, Count)
-  
-```
+We can see that the female names are slightly more diverse, as there are 11 compared to only 7 male names. There also tends to be one or two dominant female names in each generation, whereas male names are pretty closely split between at least three; however, approaching Gen Z, both sexes trend towards a more even split between several of the names. This could be interpreted as the diversification or detraditionalization of American names, though further analysis is required to prove this.
+
+## How do names vary between states?
+
+To examine how names vary between states, I created static maps of female names across two generations: Millennials and Gen Z.
 
 ```{r}
-#create top male gen z names data frame
-top_genz_m <- m_state %>%
-  filter(Year %in% c(1997:2012)) %>%
+#create top female millennial names dataset
+top_mill_f <- f_state %>%
+  filter(Year %in% c(1981:1996)) %>%
   group_by(State) %>%
   top_n(1, Count) %>%
+  #need to use a lowercase `s` so the plot_usmap function will work
   rename(state = State)
 
 #plot
-mmap <- plot_usmap(data = top_genz_m, values = "Name") +
-  labs(title = "Top Male Gen Z Names") +
+millmap <- plot_usmap(data = top_mill_f, values = "Name") +
+  labs(title = "Top Female Millennial Names") +
   theme(plot.title=element_text(hjust=0.5, size = 20))+
   theme(legend.position = "right")
 
-#create top female gen z names data frame
+#create top female gen z names dataset
 top_genz_f <- f_state %>%
   filter(Year %in% c(1997:2012)) %>%
   group_by(State) %>%
   top_n(1, Count) %>%
+  #need to use a lowercase `s` so the plot_usmap function will work
   rename(state = State)
 
 #plot
-fmap <- plot_usmap(data = top_genz_f, values = "Name") +
+genzmap <- plot_usmap(data = top_genz_f, values = "Name") +
   labs(title = "Top Female Gen Z Names") +
   theme(plot.title=element_text(hjust=0.5, size = 20))+
   theme(legend.position = "right")
 
-par(mfrow= c(1,2) )
-plot(fmap)
-plot(mmap)
+par(mfrow= c(1,2))
+plot(millmap)
+plot(genzmap)
 ```
 
+I did not anticipate that there would be no overlap between generations at all, though perhaps I should have given the previous analysis. Unsurprisingly, there are more Gen Z names and they are distributed less evenly than Millennial names, which supports my previous assertion that names have become increasingly diverse and/or less traditional in America. I do find it interesting that, in both maps, there are somewhat distinct regional differences. There are very few continental states which are "islands" not bordering others with the same most popular name.
+
+## What is the impact of a specific celebrity on the popularity of a name?
+
+I was inspired by [an article](https://www.espn.com/nba/story/_/id/31309206/the-jalen-generation-how-jalen-rose-name-spread-world-sports) I read several months ago which discussed the impact NBA star Jalen Rose had on the popularity of the name Jalen. Many college and professional athletes today share the name, which was almost unheard of before Rose started playing college basketball in 1991.
+
+I started by filtering Jalen (and every spelling variant I could think of) from the National dataset. Then I found the sum of every instance per year and plotted that. I also set the x-axis to begin at 1980 to improve the graph's visibility, since there were very few Jalens born before the 1980s.
 
 ```{r}
 #filter out all the Jalens
@@ -308,40 +334,44 @@ jalen_natl <- us_names %>%
   arrange(Year)
 #find the sum of all Jalens (and variants) by year
 jalen_natl <- aggregate(jalen_natl["Count"],by=jalen_natl["Year"],sum)
-
+  
 #plot
 ggplot(jalen_natl, aes(x=Year, y=Count)) +
+  xlim(1980,2021)+
   geom_line(color="#69b3a2", size=2, alpha=0.9) +
   labs(title = "The Rise and Fall of Jalen*",
               subtitle = "*and variants",
               caption = str_wrap("spelling variants include: Jalen, Jalin, Jalyn, Jalon, Jaylen, Jaylyn, Jaylynn, Jaylin,   Jaylon, Jaelen, Jaelyn, Jaelynn, Jailyn, Jailynn, Jailen, Jailon")) +
   theme(plot.title=element_text(hjust=0.5, size = 20),
-        plot.subtitle=element_text(hjust=0.5))
+        plot.subtitle=element_text(hjust=0.5))+
+  geom_vline(xintercept=1991)+
+  geom_vline(xintercept=1997)
 ```
 
-```{r}
-#filter out all the Jadens
-jaden_natl <- us_names %>%
-  filter(Name %in% c("Jaden", "Jadin", "Jadyn", "Jayden", "Jaydon", "Jaydyn", "Jaydin", "Jaeden", "Jaedyn", "Jaedon", "Jaidyn", "Jaidon", "Jaiden")) %>%
-  arrange(Year)
-#find the sum of all Jalens (and variants) by year
-jaden_natl <- aggregate(jaden_natl["Count"],by=jaden_natl["Year"],sum)
+I struggled to demonstrate this adequately on the graph, but you can see a sharp increase in Jalens in 1991 (when Jalen Rose started for Michigan) and 1997 (when Rose and his team performed well in the 97-98 season NBA Playoffs). If I had the time/resources, I would have liked to explore this further by comparing this graph with the number of college athletes who have this name.
 
-jaden_natl
-```
+# Reflection
 
-```{r}
-#plot Jaden vs. Jalen
-ggplot() +               
-  geom_area(data = jaden_natl, aes(x=Year, y=Count, fill="Jaden"))+
-  geom_area(data = jalen_natl, aes(x=Year,y=Count, fill ="Jalen"))+
-  #removing years with few data points from the x-axis to enhance visibility
-  xlim(1990,2021)+
-  labs(title = "Jalen* vs. Jaden*",
-       subtitle = "*and variants")+
-  theme(plot.title=element_text(hjust=0.5, size = 20),
-        plot.subtitle=element_text(hjust=0.5))
-```
+Names are a personal interest of mine, and I enjoyed taking an exploratory approach to this data for my first real R project. As I grow more comfortable with R and learn more about data visualization, I can see this being something I return to with more advanced research questions.I wish I had known about the `babynames` package before I got too invested in my work, but I decided not to use it so that I could demonstrate row binds. If I try this again I will definitely start with that package.
 
+My data was fairly tidy to begin with, so the most challenging part of this process for me was setting up specific datasets so that my visualizations would be accurate. For example, it took me a while to figure out that the `aggregate()` command is what I needed to find the number of Jalens born each year. Since most of my analysis involved the popularity of names in terms of certain variables, I became very comfortable using `filter()` and `group_by()`.
 
+It was more challenging than I anticipated to create visualizations that were both accurate and visually effective. When creating charts for the top names by generation, I originally planned to create sort of a heat map. Even when I got the data to display correctly, it was so unattractive that I decided to switch to a line graph.
 
+An interesting continuation of this project would be an animated map of the United States, which shows the most popular names in each state and how they change each year. This is something I looked into but did not have the time for.
+
+I also intended to examine NCAA rosters for Jalens and compare this to the SSA data, but it proved too difficult to gather the data myself. A Sankey diagram showing how many Jalens end up in different sports may have been interesting.
+
+# Conclusion
+
+I think the most interesting conclusion that can be drawn from this analysis is that American names are increasing in variety- while there will always be certain names which are popular with certain generations, more recent generations are not defined by particular names the way previous generations could be defined by names like "Mary" and "John". Naming patterns may also be regional, demonstrating the effect that culture and identity may have on names. Finally, we could see the direct impact the success of a celebrity had on a previously unheard of name.
+
+This analysis does not take race/ethnicity into consideration. The popularity of a name, how it might be spelled, which sex it is assigned to, etc. can be impacted by race. I don't know if it would be possible to collect this data, as I don't believe it is standard to collect racial data at birth, but I feel it is important to recognize how naming patterns might be affected by this.
+
+# Bibliography
+
+-   Di Lorenzo, P. (2022, February 27). Mapping the US. The Comprehensive R Archive Network. Retrieved August 31, 2022 from https://cran.r-project.org/web/packages/usmap/vignettes/mapping.html
+-   Mulla, R. (2022, August). US Baby Name Popularity, Version 1. Retrieved August 28, 2022 from https://www.kaggle.com/datasets/robikscube/us-baby-name-popularity.
+-   R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+-   Wickham, H., & Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.
+-   Wikimedia Foundation. (2022, August 26). Generation. Wikipedia. Retrieved August 29, 2022, from https://en.wikipedia.org/w/index.php?title=Generation&oldid=1106806918
