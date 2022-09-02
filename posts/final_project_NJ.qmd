@@ -2,7 +2,7 @@
 title: "Final Project"
 author: "Nayan Jani "
 description: "Analysis of EA Sports FIFA Data"
-date: "08/25/2022"
+date: "09/01/2022"
 format:
   html:
     df-print: paged
@@ -22,20 +22,15 @@ categories:
 library(tidyverse)
 library(ggplot2)
 library(stringr)
+library(ggrepel)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Challenge Overview
 
-Today's challenge is to:
+### Briefly describe the data
 
-1)  read in multiple data sets, and describe the data set using both words and any supporting information (e.g., tables, etc)
-2)  tidy data (as needed, including sanity checks)
-3)  mutate variables as needed (including sanity checks)
-4)  join two or more data sets and analyze some aspect of the joined data
-
-(be sure to only include the category tags for the data you use!)
+The datasets provided include the players data for the Career Mode from FIFA 15 to FIFA 20 ("players_20.csv"). The data allows multiple comparisons of the same players across the last 6 versions of the video game. The datasets all have the same amount of columns (104). Most of the columns are related to each players stats and each players rating based on position. There are columns of type character, double and date. My main goal is find relationships and patterns a different variables over the years of FIFA. I found this dataset on Kaggle and the data was scraped from sofifa.com.
 
 ## Read in data
 
@@ -48,11 +43,9 @@ csv_file_names <- list.files(path="_data/_players/", pattern="players*")
 csv_file_names
 ```
 
-### Briefly describe the data
+To read in the data, I used use list.files(), which produces a character vector of the names of files or directories in the named directory. From those files names. I then used the purr() function to iterate through each file and within each iteration use assign() and read_csv() to load each individual .csv file into the Global Environment. I used str_remove to parse our the .csv for each variable name.
 
-## Tidy Data (as needed)
 
-Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
 
 ```{r}
 
@@ -66,9 +59,12 @@ csv_file_names %>%
 
 ```
 
-Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
 
-Document your work here.
+After reading in each file, I can see that there is a ton of tidying to do. My first step is to remove all columns that I am not going to use. After that I will add a new columns called fifa_type to signify what version of the player it is since most players are in all games.
+
+
+
+## Tidy
 
 ```{r}
 
@@ -117,25 +113,26 @@ players_20<- players_20 %>%
 
 ```
 
-## Join Data
 
-Be sure to include a sanity check, and double-check that case count is correct!
+The reason for removing these columns is that they do not add anything to the analysis I am trying to do. The only statistic that I removed from each players numerical stats was mentality_composure. The reason for this is that the players_15 data does not have that stat.
+
+
 
 
 ```{r}
-players_15
+head(players_15)
 
-players_16
+head(players_16)
+head(players_17)
+head(players_18)
 
-players_17
-players_18
+head(players_19)
 
-players_19
-
-players_20
+head(players_20)
 
 ```
 
+After removing all useless columns, I realized that most of the stats are type character instead of type double.This is because those columns have extra characters (+,-) in them. FIFA uses live stats to update players each week and this data was scrapped from a specific week. I only want to deal with the original base stats so I will remove those characters. Every dataset except players_20 is set up that way. After scrapping, I will change each stat column to type double. 
 
 
 ```{r}
@@ -153,9 +150,14 @@ col_var_mut <- colnames(vars_mut)
 
 
 
-#players_15
+head(players_15)
 
 ```
+
+
+Using players_15 (since each dataset has the same cols), I select all the columns I do not want to mutate since the majority of the columns need to changed to type double. I create a variable called col_var_mut to store all my columns that need to be mutated. 
+
+
 ```{r}
 
 sub.var <- function(x, na.rm=FALSE) (str_sub(x,start = 1, end = 2))
@@ -187,21 +189,25 @@ players_19_tidy <- players_19%>%
 
 ```
 
-here i scraped the characters off all stats.
+In order to scrape the selected columns, I created a function called sub.var that selects a column and subsets each string for 2 digits. I am able to use str_sub since the columns are type character. I want a string of 2 digits because that will be the base value for all numerical stats. Once I scraped each columns for the selected datasets, I then change those columns to type double. The mutate_at() is essential because it only looks at the selected columns and saves me the time of writing out each column to mutate. I assign these new tidy datasets to new variables called players_x_tidy.
+ 
 
 
 ```{r}
 
-#players_15_tidy
-#players_16_tidy
-#players_17_tidy
-#players_18_tidy
-#players_19_tidy
-#players_20
+head(players_15_tidy)
+head(players_16_tidy)
+head(players_17_tidy)
+head(players_18_tidy)
+
+head(players_19_tidy)
+head(players_20)
 
 
 
 ```
+
+I display the head of each new dataset. Recall that players_20 already had clean player in game statistics and did not need to be mutated. At this point I am ready to join because now all columns are the same type for all datasets.
 
 
 ```{r}
@@ -211,10 +217,13 @@ FIFA<- full_join(players_15_tidy,players_16_tidy) %>%
   full_join(players_19_tidy) %>%
   full_join(players_20)
 
-# FIFA
+head(FIFA, 10)
   
 ```
 
+Here I use a full join to create one big dataset called FIFA. I realized that there is still some tidying to do. Looking at the player_positions column, there are multiple positions for some players which could be a problem if we wanted to filter by position. The players main position is listed first, so a solution to this problem will be to scrap the rest of the positions out of the columns so that each data instance has one column.
+
+## Visuals
 
 
 ```{r}
@@ -227,21 +236,53 @@ vis1<- FIFA %>%
   summarise(avg = mean(height_cm)) %>%
   mutate(player_positions = str_replace(player_positions, "[:punct:]", "+"))
   
-vis1
+#vis1
+
+data_ends <- vis1 %>%
+  filter(fifa_type == "15")
 
 
-ggplot(vis1, aes(x=fifa_type, y=avg, group=player_positions, color =player_positions )) +
+ggplot(vis1, aes(x=fifa_type, y=avg, group=player_positions, color = player_positions )) +
   geom_point(size=1) +
-  geom_line() +
+  geom_line(size=1) +
+  geom_label_repel(aes(label = player_positions),data = data_ends, size = 4) +
+  scale_colour_manual(values = c(CAM = "red", CB = "blue", "CB+" = "black", CDM = "green", CF= "violet",
+                        "CF+" =  "steelblue", CM = "orange", "CM+" = "pink4", GK = "purple4", LB = "navy",
+                        "LB+" = "mediumvioletred", LM = "darkorange3", "LM+" ="lightgoldenrod4",LW ="yellowgreen",
+                        "LW+" = "navajowhite4", LWB = "darkslategray", RB = "darkcyan", "RB+" = "tomato4", 
+                        RM = "tan2", "RM+" = "khaki",RW= "mistyrose4", "RW+" = "aquamarine2", RWB = "brown", 
+                        ST = "darkgreen", "ST+" = "darkseagreen")) +
+  ylim(179.5,190) +
   theme(legend.position = "right") +
   labs(title = "Average Height of all postions Over Years",
-     x = "Year of FIFA", y = "Average Height") + 
+     x = "Year of FIFA", y = "Average Height (cm)") + 
   theme_bw()
+
+
+ggplot(vis1, aes(x=fifa_type, y=avg, group=player_positions ,color = player_positions)) +
+  geom_point(size=1) +
+  geom_line(size =1) +
+  geom_label_repel(aes(label = player_positions),data = data_ends, size = 4) +
+   scale_colour_manual(values = c(CAM = "red", CB = "blue", "CB+" = "black", CDM = "green", CF= "violet",
+                        "CF+" =  "steelblue", CM = "orange", "CM+" = "pink4", GK = "purple4", LB = "navy",
+                        "LB+" = "mediumvioletred", LM = "darkorange3", "LM+" ="lightgoldenrod4",LW ="yellowgreen",
+                        "LW+" = "navajowhite4", LWB = "darkslategray", RB = "darkcyan", "RB+" = "tomato4",
+                         RM = "tan2", "RM+" = "khaki",RW= "mistyrose4", "RW+" = "aquamarine2", RWB = "brown",
+                         ST = "darkgreen", "ST+" = "darkseagreen")) +
+   ylim(175,180) +
+  theme(legend.position = "right") +
+  labs(title = "Average Height of all postions Over Years",
+     x = "Year of FIFA", y = "Average Height (cm)") + 
+  theme_bw()
+
   
 ```
 
 
+First, I created another function similar to sub.var but instead scrapes the first three characters of the player positions. It has to be three because of positions like CAM and CDM. This created another problem because for some player_positions the third character is a comma and will stay present. From here I decided if a player has multiple positions, I would signify that by replacing the comma with a plus. I was able to do this by using str_replace with the regex value of [:punct:] and assigning +. Once I dealt with the player_position column, I began to think about my first visualization. Recall that my main goal to to see relationships of certain variables over the course of different FIFAs. For my first visualization, I want to analyze the average height of all positions over each FIFA.
+To do this, I created two ggplot line plots. I created two since there are 25 different positions to be analyzed so plotting them all on the same graph will cause overlaps. I split up the observations by using ylim(). The first graph depicts average height values between 179.5 to 190 and the second graph depicts values between 175 and 180. I also used ggrepel to display the names of the positions on the graphs. The data_ends variable makes the labels show up at FIFA 15. 
 
+Looking at he first graph, I can see that Goalkeepers on average are the tallest players based on positions. I also see that there are height differences between ST, ST+ and CB, CB+. The ST+ and CB+ positions have a lower average height because they play multiple positions, meaning their roles on their team are different than strictly ST or CB. Looking at the second graph, the first observation that pops out to me is the rate of change of LW over the years of FIFA. The average height of a LW dips down to 175cm in FIFA 17 and rises about 3cm in FIFA 18. LWB also has a similar decrease in height at FIFA 17. Maybe in FIFA 17 the average height of the left side positions are shorter compared to the other FIFAs. Seeing that RB+ and LB+ both have higher height averages than RB and LB implies that RB+ and LB+ players can play CB as well.
 
 
 
@@ -254,23 +295,144 @@ FIFA_tidy<- FIFA %>%
             values_to = "value", values_drop_na = TRUE )
 
 
-#FIFA_tidy
+head(FIFA_tidy)
 ```
 
 
-possible ideas:
+To examine a specific players pace, passing etc. ratings, I had to pivot all the ratings into a column so that I could filter through it. The two new columns are stat and value, with stat being the name of the specific rating and value being the value of that rating. Rating ranges from 0-99.
 
-Historical comparison between Messi and Ronaldo (what skill attributes changed the most during time - compared to real-life stats);
 
-Ideal budget to create a competitive team (at the level of top n teams in Europe) and at which point the budget does not allow to buy significantly better players for the 11-men lineup. An extra is the same comparison with the Potential attribute for the lineup instead of the Overall attribute;
 
-Sample analysis of top n% players (e.g. top 5% of the player) to see if some important attributes as Agility or BallControl or Strength have been popular or not acroos the FIFA versions. An example would be seeing that the top 5% players of FIFA 20 are more fast (higher Acceleration and Agility) compared to FIFA 15. The trend of attributes is also an important indication of how some attributes are necessary for players to win games (a version with more top 5% players with high BallControl stats would indicate that the game is more focused on the technique rather than the physicial aspect).
-
-height of cbs over the years
 
 ```{r}
-FIFA_tidy %>%
-  select(fifa_type,player_positions, height_cm) %>%
-  filter(player_positions == "CB")
+vis2 <- FIFA_tidy %>%
+  select(short_name,fifa_type, stat,value) %>%
+  filter(short_name %in% "L. Messi" ,stat %in% c("pace","shooting", "passing", "dribbling"))
+
+vis3 <- FIFA_tidy %>%
+  select(short_name,fifa_type, stat,value) %>%
+  filter(short_name %in% "Cristiano Ronaldo" ,stat %in% c("pace","shooting", "passing", "dribbling"))
+
+ggplot(vis2, aes(x=fifa_type, y=value, group=stat, color = stat )) +
+  geom_point(size=1) +
+  geom_line() +
+  theme(legend.position = "right") +
+  labs(title = "Messi Base Stats Over the Years",
+     x = "Year of FIFA", y = "Value") + 
+  theme_bw()
+
+ggplot(vis3, aes(x=fifa_type, y=value, group=stat, color = stat )) +
+  geom_point(size=1) +
+  geom_line() +
+  theme(legend.position = "right") +
+  labs(title = " C. Ronaldo Base Stats Over Years",
+     x = "Year of FIFA", y = "Value") + 
+  theme_bw()
+
 ```
+
+For my next visuals I did a historical comparison between L. Messi and c. Ronaldo's base stat ratings over the years of FIFA. Base stat ratings include pace, passing, dribbling and shooting. For Messi, I can see that the two ratings that are affected the most are pace and passing. Over the years of FIFA, Messi's passing increase while his pace decreases. Maybe this is because he is getting older (lower pace) and is becoming more of a play maker than a goalscorer (higher passing). For Ronaldo, I also see a decrease in pace over the years but see that his passing slowly increases. I can conclude that both Messi and Ronaldo have been regressing from FIFA 15 to FIFA 20.
+
+
+```{r}
+vis3<- FIFA %>%
+  select(short_name,fifa_type,overall,skill_dribbling, skill_ball_control) %>%
+  group_by(fifa_type) %>%
+ top_frac(0.004,overall) %>%
+  summarise(avg_drib = mean(skill_dribbling),  avg_bc =mean(skill_ball_control))
+
+
+vis4<- FIFA %>%
+  select(short_name,fifa_type,overall,movement_acceleration, movement_sprint_speed, movement_agility) %>%
+  group_by(fifa_type) %>%
+ top_frac(0.004,overall) %>%
+  summarise(avg_acc = mean(movement_acceleration),  avg_ss =mean(movement_sprint_speed), avg_agil
+            =mean(movement_agility) )
+
+
+vis5<- FIFA %>%
+  select(short_name,fifa_type,overall,attacking_short_passing, skill_long_passing, mentality_vision) %>%
+  group_by(fifa_type) %>%
+ top_frac(0.004,overall) %>%
+  summarise(avg_shortP = mean(attacking_short_passing),  avg_longP =mean(skill_long_passing), avg_vision
+            =mean(mentality_vision))
+
+
+vis3 %>%
+  pivot_longer(cols =c(avg_drib, avg_bc), names_to = "stat", values_to = "value") %>%
+  ggplot(mapping = aes(x = fifa_type, y = value, color=stat, group = stat)) + 
+  geom_point()+
+  geom_line()+
+   facet_wrap(~ stat, nrow = 2) +
+   labs(title = " Advanced Dribbling Stats Over Years",
+     x = "Year of FIFA", y = "Value") + 
+  theme_bw()
+
+vis4 %>%
+  pivot_longer(cols =c(avg_acc, avg_ss, avg_agil), names_to = "stat", values_to = "value") %>%
+  ggplot(mapping = aes(x = fifa_type, y = value, color=stat, group = stat)) + 
+  geom_point()+
+  geom_line()+
+   facet_wrap(~ stat, nrow = 2) +
+   labs(title = " Advanced Pace Stats Over Years",
+     x = "Year of FIFA", y = "Value") + 
+  theme_bw()
+
+
+vis5 %>%
+  pivot_longer(cols =c(avg_shortP, avg_longP, avg_vision), names_to = "stat", values_to = "value") %>%
+  ggplot(mapping = aes(x = fifa_type, y = value, color=stat, group = stat)) + 
+  geom_point()+
+  geom_line()+
+   facet_wrap(~ stat, nrow = 2) +
+  labs(title = " Advanced Passing Stats Over Years",
+     x = "Year of FIFA", y = "Value") + 
+  theme_bw()
+
+
+
+```
+
+
+Next, I wanted to compare the average of the most important advanced player stats from the top players (player overall being greater then 83). Advanced stats are just more in depth base stats. For example, under the base stat dribbling there is a ball control and specific dribbling stat that make up that base dribbling stat. The advanced stats that I compared was dribbling to ball control, acceleration to agility to sprint speed and long pass to short pass to vision. To filter out the top players, I used top_frac() to find all players greater than overall 83. I then used the summarise() function to find the mean for each advanced stats. I also had to pivot the advanced stats into two new columns like I did earlier with the Messi and Ronaldo graphs. For each visual I used facet wrap to display each group of stat individually.
+
+Based on the comparison of ball control to dribbling, I can see that they both decrease over the years of FIFA and that the average ball control is greater than the average dribbling over the years. Looking at the comparisons of acceleration, agility and sprint speed, I can see that sprint speed and acceleration have regressed over the years. Agility has decreased but not as much as the other two. Looking at the comparisons of vision, long pass and short pass, I can see that they all increase over the years of FIFA. This could mean that the top players have become better passers over the years. In conclusion, the top players have decreased in pace and dribbling but have increased in passing.   
+
+
+
+
+```{r}
+
+FIFA %>%
+  select(short_name,fifa_type,dob,overall, wage_eur) %>%
+  filter(fifa_type %in% c("16","17","18","19","20")) %>%
+  top_frac(0.015,overall) %>%
+  ggplot(aes(x = dob, y = wage_eur,color = fifa_type, group = fifa_type)) +
+  geom_line() +
+  facet_wrap(~ fifa_type, nrow = 2) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(title = "Wages Across Players Based on DOB",
+     x = "DOB", y = "Wages (Euro)") + 
+  theme_bw()
+
+
+
+```
+
+For my last visual I want to show the distribution of wages based on the date of birth of the top 1.5% of players. I only selected FIFAs 16-20 because the wages are not available in FIFA 15. I again use top_frac to select the top 1.5%. I used scale_y_continuous to make the y axis values in comma form. Based on the graphs, I can say that players born in 1986 are most likely to have the top wages. Over the FIFA year we can see the apex of each graph slowly moving to the right. This is because as time progresses those younger players receive bigger contracts while older players either retire or accept less money.
+
+## Conclusion
+
+Overall I rate the difficultly of this project 7/10. The main issue was dealing with scraping the positions and all advanced stats columns and changing those advanced stat columns to type double. I also spent a lot of time trying to add labels on the average height of each positions graph because there were 25 positions to be labeled. I have a feeling there is a better way of displaying the labels rather than splitting it up into to separate graphs. I also believe that my code could be more efficient if I created more functions but my main focus was to get everything working. I only looked into a small part of this data. Some other possible questions that could be found out: Ideal budget to create a competitive team, average overall rating of players by team, which players have the most total stats. I am a huge FIFA and soccer fan so dealing with this data is interesting to me. Using this data has prepared me to work with more raw datasets in the near future. 
+
+
+## Works Cited
+
+Borjigin, Khachin. “SoFifa.” 2022, https://sofifa.com/. Accessed 1 Sept. 2022. 
+
+Grolemund, Garrett, and Hadley Wickham. *R for Data Science*. O’Reilly Media, 2017.
+
+Leone, Stefano. “FIFA 20 Complete Player Dataset.” Kaggle, 26 Sept. 2019, 
+  https://www.kaggle.com/datasets/stefanoleone992/fifa-20-complete-player-dataset?resource=download. 
+
 
