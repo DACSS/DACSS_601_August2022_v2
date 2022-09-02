@@ -153,3 +153,13 @@ SoilHealthFixed %>%
 ```
 
 Indeed there is a negative relationship with soil pH and mean annual precipitation. Wetter climates appear to lead to more acidic soils, while drier climates have more basic soils. 
+
+## Conclusions
+
+What this data tells us is that sandy loam and loamy sand are most the commonly used soils for farming, perhaps due to its mixed properties. Soils that have just the right amount of mean annual precipitation tend to be healthier. While the data was very informative, better calculations need to be taken in order to better understand the health of our soil. Further research could be done regarding the quality of soil samples.
+
+## Works cited
+
+  Jian, Jinshi, et al. “A Database for Global Soil Health Assessment.” Scientific Data, vol. 7, no. 1, Jan. 2020, p. 16, https://doi.org/10.1038/s41597-020-0356-3.
+
+
