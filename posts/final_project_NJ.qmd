@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 
 ### Briefly describe the data
 
-The datasets provided include the players data for the Career Mode from FIFA 15 to FIFA 20 ("players_20.csv"). The data allows multiple comparisons of the same players across the last 6 versions of the video game. The datasets all have the same amount of columns (104). Most of the columns are related to each players stats and each players rating based on position. There are columns of type character, double and date. My main goal is find relationships and patterns a different variables over the years of FIFA. I found this dataset on Kaggle and the data was scraped from sofifa.com.
+The datasets provided include the players data for the Career Mode from FIFA 15 to FIFA 20 ("players_20.csv"). The data allows multiple comparisons of the same players across the last 6 versions of the video game. The datasets all have the same amount of columns (104). Most of the columns are related to each players stats and each players rating based on position. There are columns of type character, double and date. My main goal is to find relationships and patterns of different variables over the years of FIFA. I found this dataset on Kaggle and the data was scraped from sofifa.com.
 
 ## Read in data
 
@@ -43,7 +43,7 @@ csv_file_names <- list.files(path="_data/_players/", pattern="players*")
 csv_file_names
 ```
 
-To read in the data, I used use list.files(), which produces a character vector of the names of files or directories in the named directory. From those files names. I then used the purr() function to iterate through each file and within each iteration use assign() and read_csv() to load each individual .csv file into the Global Environment. I used str_remove to parse our the .csv for each variable name.
+To read in the data, I used use list.files(), which produces a character vector of the names of files or directories in the named directory. I then used the purr() function to iterate through each file and within each iteration use assign() and read_csv() to load each individual .csv file into the Global Environment. I used str_remove to parse out the .csv for each variable name.
 
 
 
@@ -155,7 +155,7 @@ head(players_15)
 ```
 
 
-Using players_15 (since each dataset has the same cols), I select all the columns I do not want to mutate since the majority of the columns need to changed to type double. I create a variable called col_var_mut to store all my columns that need to be mutated. 
+Using players_15 (since each dataset has the same cols), I select all the columns I do not want to mutate since the majority of the columns need to be changed to type double. I create a variable called col_var_mut to store all my columns that need to be mutated. 
 
 
 ```{r}
