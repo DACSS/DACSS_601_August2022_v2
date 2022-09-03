@@ -1,8 +1,8 @@
 ---
-title: "Blog Post Template"
-author: "Your Name"
-desription: "Something to describe what I did"
-date: "08/02/2022"
+title: "Who Are The Women Who Voted For Trump?"
+author: "Karen Detter"
+desription: "Analysis of data from "
+date: "August 2022"
 format:
   html:
     toc: true
@@ -11,6 +11,7 @@ format:
     code-tools: true
 categories:
   - hw1
+  - hw2
   - challenge1
   - my name
   - dataset
