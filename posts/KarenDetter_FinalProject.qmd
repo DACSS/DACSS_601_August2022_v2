@@ -5,10 +5,13 @@ desription: "secondary analysis of UMass Poll data collected April 2021"
 date: "August 2022"
 format:
   html:
-    toc: true
-    code-fold: true
+    df-print: paged
+    toc: false
+    code-fold: false
+    code-overflow: wrap
     code-copy: true
     code-tools: true
+    css: styles.css
 categories:
   - final project
   - UMass Poll_April2021
@@ -18,39 +21,48 @@ categories:
 ```{r}
 #| label: setup
 #| warning: false
+#| message: false
 
 library(tidyverse)
-library(haven)
-library(foreign)
+library(pollster)
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
+
 
 # Introduction
 
-### from OpEd paper
+The common lore of the 2016 presidential election is that Donald Trump's victory over Hillary Clinton was secured by the support of both privileged and disenfranchised white men trying to "make America great again" by reviving traditional conservative values, including gendered social roles. However, when the dust settled and the official post-election numbers were crunched by the Pew Research Center, this narrative was challenged by the fact that 47% of white women had voted for Trump (Pew Research Center, 2019, p.11). Instead of allying with a fellow female who ostensibly shared at least some of their individual priorities, these women supported a man well-known for his sexism and boorish behavior towards women.
+
+Who are these women who voted for Donald Trump in 2016? In what ways do they differ from the women who voted for Hillary Clinton? The UMass Poll, a survey that collects public opinion data on a wide variety of political and social issues, may be able to provide some insight into these questions.
 
 
 # Data
 
-### description and transformation
+The specific UMass poll data used for this analysis was collected in April 2021. The frame was constructed using stratified sampling aligned to the American Community Survey, and the final dataset consists of 1000 unique observations. Since the data is organized using SPSS, the file is read into R using the 'haven' package and the contents are viewed:
+
+```{r}
+April_UMass_Poll <- read_sav("posts/_data/April_UMass_Poll.sav")
+View(April_UMass_Poll)
+
+```
 
 
 # Visualization
 
-### summary tables, crosstabs, and bar charts
+summary tables, crosstabs, and bar charts
 
 
 # Reflection
 
-### mention tutorials, homeworks, and SPSS transition
+mention tutorials, homeworks, and SPSS transition
 
 
 # Conclusion
 
-### from OpEd paper-conclusions and questions left unanswered after analysis
+from OpEd paper-conclusions and questions left unanswered after analysis
 
 
 # References
 
-#### list of sources
+list of sources
