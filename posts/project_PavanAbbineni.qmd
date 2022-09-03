@@ -330,9 +330,14 @@ We can see that as the age increases women tend to be prone to having a stroke a
 
 ### Conclusion
 
+Now that we have a detailed analysis of all the indicators that cause a stroke in our dataset, you can check for yourself how close you are to having a stroke. One thing we have no control over is age as everyone ages, but the rest of the attributes give us a lucid understanding of what to do to decrease our chances of having a stroke. A good start would be to quit smoking, Manage Stress, Normalize bmi, having low glucose level and having a better heart health.
+
+I hope this study helps you make a data-driven decision about your health and lifestyle in order to prevent strokes.
 
 
 ### Bibliography/ References
 
-https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9264165
-
+[1] https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9264165
+[2] https://ggplot2.tidyverse.org
+[3] https://r-graph-gallery.com/stacked-barplot.html
+[4] https://education.rstudio.com/learn/beginner/
