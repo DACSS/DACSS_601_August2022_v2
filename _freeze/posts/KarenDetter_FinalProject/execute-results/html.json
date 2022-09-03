@@ -1,0 +1,14 @@
+{
+  "hash": "7e32ffccf0146bcbcdcf5bfc580ea589",
+  "result": {
+    "markdown": "---\ntitle: \"Final Project - The Women Who Voted For Trump\"\nauthor: \"Karen Detter\"\ndesription: \"secondary analysis of UMass Poll data collected April 2021\"\ndate: \"August 2022\"\nformat:\n  html:\n    toc: true\n    code-fold: true\n    code-copy: true\n    code-tools: true\ncategories:\n  - final project\n  - UMass Poll_April2021\n  - Karen Detter\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(haven)\nlibrary(foreign)\n\nknitr::opts_chunk$set(echo = TRUE)\n```\n:::\n\n\n# Introduction\n\n### from OpEd paper\n\n\n# Data\n\n### description and transformation\n\n\n# Visualization\n\n### summary tables, crosstabs, and bar charts\n\n\n# Reflection\n\n### mention tutorials, homeworks, and SPSS transition\n\n\n# Conclusion\n\n### from OpEd paper-conclusions and questions left unanswered after analysis\n\n\n# References\n\n#### list of sources",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
