@@ -9,6 +9,8 @@ format:
     code-tools: true
 ---
 
+## Introduction 
+
 For my final project, I will be looking at data related to soil health. This data will involve studying observations from numerous studies, and interpreting how the quality of soil has changed over the years. 
 ```{r}
 #| label: setup
@@ -21,20 +23,22 @@ library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-To know where and how to grow your crops is to understand the nutrients your crops require. This includes how much water the soil can absorb, the composition or texture of the soil, 
+## Reading in the data 
+
+To know where and how to grow your crops is to understand the nutrients your crops require. This includes how much water the soil can absorb, the composition or texture of the soil, pests, etc. For this project, we'll be focusing in on the types of soil and crops each of these samples use, and how each factor affects the health of the soil.
 
 ```{r}
 SoilHealth <- read_csv("_data/SoilHealthDB_V0.csv", show_col_types = FALSE)
 
 SoilHealth
 ```
+## Cleaning
 
 Now, this is a large dataset, and it'll require a lot of cleaning up in order to obtain the data we need. So, without further ado, let's get rid of some junk.
 
 ```{r}
 SoilHealthFixed <- SoilHealth %>%
-  select_if(~!(all(is.na(.)) | all(. == ""))) %>%
-  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("NoSubsample")) %>%
+  select(-contains("Comments") & -contains("Author") & -contains("ClimateType") & -contains("Journal") & -contains("_C") & -contains("NoSubsample") & -contains("BD_T") & -contains("K_") & -contains("pH_T") & -contains("EC_T") & -contains("BS_T") & -contains("Aggre_T") & -contains("Porosity_T") & -contains("SQI") & -contains("_SD") & -contains("Microelement") & -contains("SOC_NaturalVeg")) %>%
   filter(!is.na(Country)) %>%
   filter(!is.na(CoverCropGroup)) %>%
   filter(!is.na(GrainCropGroup)) %>%
@@ -42,13 +46,17 @@ SoilHealthFixed <- SoilHealth %>%
   filter(!is.na(SamplingThickness)) %>%
   filter(!is.na(Duration)) %>%
   filter(!is.na(SoilpH)) %>%
+  filter(!is.na(MAP)) %>%
   filter(!str_detect(CoverCropGroup, 'Not_available')) %>%
   filter(!str_detect(Texture, 'NotAvailable')) %>%
   filter(!str_detect(SamplingThickness, 'Not-available')) %>%
-  mutate(SamplingThickness = as.double(SamplingThickness))
+  mutate(SamplingThickness = as.double(SamplingThickness)) %>%
+  select_if(~!(all(is.na(.)) | all(. == "")))
 
 SoilHealthFixed
 ```
+
+## Visualizations
 
 Alright, now, let's take a look at some bar graphs to see how each of these samples differ. Let's start with the crop cover groups that our soil has. 
 
@@ -59,7 +67,7 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-As we can see here, the full majority of cover crops are within the legume group.
+As we can see here, the full majority of cover crops are within the legume group. What we can also see here are that there are categories that represent more than one group. For example, many of the samples within the Legume group are vetch. Some of the LG samples grow a combination of vetch and oats, which are in the grass group. LB groups contain vetch and canola, which is part of the brassica group. AVG is an "average of vetch and rye". I believe MMT and MOT are also a mix of legumes and other plants, with MOT implying "this OR that". It's not exactly clear yet, but moving on. 
 
 ```{r}
 SoilHealthFixed %>%
@@ -68,7 +76,9 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-As expected, corn is the main grain crop group observed. I believe corn is used for more than just a food source, but also for livestock, starch, beverage and industrial alcohol, and fuel ethanol. That's why you see so much corn out here in the US. 
+Again, we see that there are some variables which represent multiple groups. AVG represents an average amount of grain crops, and CV represents both corn and vegetables. 
+
+From what we see here, corn is a very common crop. A lot of this might have to do with the high demand for corn in more than just food. Corn is often used for feeding livestock, industrial oils, and ethanol production, which is why we see so many cornfields across the country. 
 
 ```{r}
 SoilHealthFixed %>%
@@ -77,7 +87,7 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-The majority of the samples taken in this study were sandy loam or silty loam, or a mix of the three soil compositions, sand, silt and clay. 
+The majority of the samples taken in this study were sandy loam or loamy sand. Loam is a mix of the three soil compositions, sand, silt and clay, where sand is the largest soil texture and clay is the smallest and most dense texture. Water passes through sand more easily, while clay is less  
 
 Now let's take a look at which soil textures are most common with legumes AND corn. 
 
@@ -100,7 +110,19 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-So, as expected, the full majority of our data was taken from the United States. Before I added the restrictions on the SoilpH, the number of samples in the USA exceeded over a thousand. By adding the 
+So, apparently, while I was breaking down the data and cleaning it bit by bit to figure out what I needed here, I noticed that the US column kept getting smaller and smaller. While the untidy dataset consists mainly of US data, a good chunk of that data is incomplete, so every time I updated the chart, the bar for the USA kept shrinking and shrinking until finally, I reached a point where the US data is no longer the majority. This shows that while the US has more entries, countries like Zambia, Nigeria and China have more complete entries. 
+
+But this doesn't give us a very useful idea of where everything is - let's take a look at an actual map.
+
+```{r}
+library(maps)
+map(database = "world")
+points(x = SoilHealthFixed$Longitude, y = SoilHealthFixed$Latitude, col = "Red")
+```
+
+So, as we could see here, a full majority of the samples were more widely distributed throughout Africa and Europe. 
+
+## Distribution of samples
 
 ```{r}
 SoilHealthFixed %>%
@@ -116,15 +138,28 @@ SoilHealthFixed %>%
   theme(axis.text.x = element_text(angle = 270))
 ```
 
-Between the two red lines are the pH levels for healthy soils. As we can see here, there weren't enough soil samples that offered pH for silt, but what this graph does show is that whatever samples they WERE able to obtain the pH for were not exactly healthy.  
+Between the two red lines are the pH levels for healthy soils. As we can see here, the median sample pH did not fall within the recommended levels for clay loam, loamy sand, or silt loam.
+
+Now, let's see what might affect the soil's pH levels. Let's start by looking at how the pH differs with mean annual precipitation (MAP). 
 
 ```{r}
 SoilHealthFixed %>%
-  #filter(!is.na(SoilpH)) %>%
-  ggplot(aes(CoverCropGroup, SoilpH)) +
-  geom_boxplot() +
-  geom_hline(yintercept = 5.5, color = "red") +
-  geom_hline(yintercept = 7.5, color = "red") +
-  theme(axis.text.x = element_text(angle = 270))
+  ggplot(aes(SoilpH, MAP)) +
+  geom_point() +
+  geom_smooth(method = lm)
+  #geom_hline(yintercept = 5.5, color = "red") +
+  #geom_hline(yintercept = 7.5, color = "red") +
+  #theme(axis.text.x = element_text(angle = 270))
 ```
+
+Indeed there is a negative relationship with soil pH and mean annual precipitation. Wetter climates appear to lead to more acidic soils, while drier climates have more basic soils. 
+
+## Conclusions
+
+What this data tells us is that sandy loam and loamy sand are most the commonly used soils for farming, perhaps due to its mixed properties. Soils that have just the right amount of mean annual precipitation tend to be healthier. While the data was very informative, better calculations need to be taken in order to better understand the health of our soil. Further research could be done regarding the quality of soil samples.
+
+## Works cited
+
+  Jian, Jinshi, et al. “A Database for Global Soil Health Assessment.” Scientific Data, vol. 7, no. 1, Jan. 2020, p. 16, https://doi.org/10.1038/s41597-020-0356-3.
+
 
