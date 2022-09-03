@@ -1,0 +1,571 @@
+---
+title: "Final Project (Work-in-Progress)"
+author: "Ananya Pujary"
+description: "Analyzing Snapchat Political Ad Targeting and Expenditure in the US in 2020"
+date: "09/03/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final-project
+  - snapchat-political-ads
+  - tidyverse
+  - ggplot
+  - googlesheets4
+  - skimr
+  - dplyr
+  - stringr
+  - lubridate
+  - janitor
+  - purrr
+---
+
+:::{.callout-warning}
+to do: if-else for package installing, in text citations
+:::
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+library(googlesheets4)
+library(skimr)
+library(dplyr)
+library(stringr)
+library(lubridate)
+library(janitor)
+library(purrr)
+library(corrr)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+-   Snapchat has made data about the political ads shown on their app public
+-   focus on advertisements in the United States in 2020 for Biden and Trump
+- looking at ad expenditure, impressions, location targeting
+
+## Reading in the Data
+
+```{r}
+#| label: reading in the data
+
+polads_orig <- read_sheet('https://docs.google.com/spreadsheets/d/1S7jF0D2o8aC3gGndORVrksuSsvMMZwqVdKLmu4SYqUc/edit?usp=sharing')
+```
+
+```{r}
+#| label: describing the data (1)
+
+dim(polads_orig)
+
+skim(polads_orig)
+
+print(summarytools::dfSummary(polads_orig, varnumbers = FALSE, plain.ascii = FALSE, graph.magnif = 0.50, style = "grid", valid.col = FALSE), 
+      method = 'render', table.classes = 'table-condensed')
+
+```
+
+This file contains the information for political ads that are/have been displayed on Snapchat's platform. It has 12705 rows and 38 columns. There are 28 character-type, 1 list-type, 7 logical-type, and 2 numeric-type columns. the variables are:
+
+1)  `ADID`: A unique value for each political advertisement.
+
+2)  `CreativeURL`: A URL to the advertisement's creative content.
+
+3)  `Currency Code`: The currency used by the account creating the advertisement.
+
+4)  `Spend`: The amount spent by the advertiser for the ad campaign expressed in local currency.
+
+5)  `Impressions`: The number of times the advertisement has been viewed by Snapchat users.
+
+6)  `StartDate`: The time at which the advertisement was set to start running on the platform.
+
+7)  `EndDate`: The time at which the advertisement was set to stop running on the platform.
+
+8)  `OrganizationName`: The organization that is responsible for creating the advertisement.
+
+9)  `BillingAddress`: The address of the organization that is responsible for creating the advertisement.
+
+10) `CandidateBallotInformation`: Information on the candidate (for California elections: also the office they are contesting for) or ballot initiative that the advertisement is associated with the advertisement.
+
+11) `PayingAdvertiserName`: The entity that is providing funds for the advertisement.
+
+12) `CommitteeName`: The name of the committee paying for the advertisement.
+
+13) `CommitteeIdentificationNumber`: The identification number of the committee paying for the advertisement.
+
+14) `DisclosureNameOfCommittee`: The disclosure name of the committee paying for the advertisement, as stipulated by California law.
+
+15) `AdvertisingJurisdiction`: The jurisdiction that the advertisement refers to.
+
+16) `Gender`: The genders targeted by the advertisement. If this field is empty, all genders were targeted.
+
+17) `AgeBracket`: The ages targeted by the advertisement. If this field is empty, all ages were targeted.
+
+18) `CountryCode`: The country that the advertisement is targeting.
+
+19) `Regions (Included)`: The region(s) included in the advertisement's targeting criteria (states or provinces).
+
+20) `Regions (Excluded)`: The region(s) excluded in the advertisement's targeting criteria (states or provinces).
+
+21) `Electoral Districts (Included)`: The electoral district(s) included in the advertisement's targeting criteria.
+
+22) `Electoral Districts (Excluded)`: The electoral district(s) excluded in the advertisement's targeting criteria.
+
+23) `Radius Targeting (Included)`: The point-radius circles included in the advertisement's targeting criteria.
+
+24) `Radius Targeting (Excluded)`: The point-radius circles excluded in the advertisement's targeting criteria.
+
+25) `Metros (Included)`: The metro(s) included in the advertisement's targeting criteria.
+
+26) `Metros (Excluded)`: The metro(s) excluded in the advertisement's targeting criteria.
+
+27) `Postal Code (Included)`: The postal code(s) included in the advertisement's targeting criteria.
+
+28) `Postal Code (Excluded)`: The postal code(s) excluded in the advertisement's targeting criteria.
+
+29) `Location Categories (Included)`: The location categories included in the advertisement's targeting criteria.
+
+30) `Location Categories (Excluded)`: The location categories excluded in the advertisement's targeting criteria.
+
+31) `Interests`: The interest audience(s) included in the advertisement's targeting criteria. If this field is empty, then no interest targeting was used.
+
+32) `OsType`: The operating systems included in the advertisement's targeting criteria. If this field is empty, then all operating systems were targeted.
+
+33) `Segments`: The segments included in the advertisement's targeting criteria. This is advertiser-specific data used such as Snap Audience Match[^1] or Lookalike audiences[^2] .
+
+34) `Language`: The languages targeted by the advertisement. If this field is empty, then no language-based targeting was used.
+
+35) `AdvancedDemographics`: The third-party data segments targeted by the advertisement. If this field is empty, then no third-party data segments were used.
+
+[^1]: Snap Audience Match or Customer List Audience is a Snapchat feature that allows users to send their data to the platform and its affiliates to form custom audiences ("Snapchat Audience Match Terms", n.d.).
+
+[^2]: A Lookalike audience reaches Snapchat users that have similar characteristics to an organization account's existing customers. There are three different options: Similarity (a small-size audience that closely resembles the seed audience), Balance (a medium-size audience that balances similarity and reach), and Reach (a large-size audience that broadly resembles the seed audience) ("Lookalike Audiences", n.d.).
+
+<!-- -->
+
+36) `Targeting Connection Type`: The internet connection type targeted by the advertisement. If this field is empty, then no targeting based on internet connect type was used.
+
+37) `Targeting Carrier (ISP)`: The carrier type targeted by the advertisement. If this field is empty, all carrier types are targeted.
+
+38) `CreativeProperties`: The URL specified in advertisement's call to action.
+
+:::{.callout-warning}
+issue: all columns not showing up in plot
+:::
+
+```{r}
+
+missing.values <- polads_orig %>%
+  gather(key = "key", value = "val") %>%
+  mutate(isna = is.na(val)) %>%
+  group_by(key) %>%
+  mutate(total = n()) %>%
+  group_by(key, total, isna) %>%
+  summarise(num.isna = n()) %>%
+  mutate(percents = num.isna / total * 100)
+
+levels <-
+    (missing.values  %>% filter(isna == T) %>% arrange(desc(percents)))$key
+
+missing_val_plot <- missing.values %>%
+      ggplot() +
+        geom_bar(aes(x = reorder(key, desc(percents)), 
+                     y = percents, fill=isna), 
+                 stat = 'identity', alpha=0.8) +
+      scale_x_discrete(limits = levels) +
+      scale_fill_manual(name = "", 
+                        values = c('pink', 'grey'), labels = c("Present", "Missing")) +
+      coord_flip() + labs(title = "Percentage of missing values", x =
+             'Column', y = "Missing values %")
+
+missing_val_plot
+
+```
+
+Now, let's look at the distribution of countries receiving political advertisements on Snapchat.
+
+:::{.callout-warning}
+arrange in descending
+:::
+
+```{r}
+#| label: describing the data (2)
+  
+table(polads_orig$CountryCode) %>%
+  knitr::kable(caption = "Countries Receiving Political Ads on Snapchat (2020)",col.names = c("Country","Frequency"))
+
+```
+
+The highest number of political advertisements were delivered to places in the United States (11124).
+
+## Tidying the Data
+
+Snake case is typically recommended by tidyverse's style guide for column names and object names. However the column names in this dataset are written either in title case (e.g. `Currency Code`) or camel case (e.g. `OrganizationName`). Some of them also contain special characters like brackets which could interfere with implementing R functions.
+
+::: callout-note
+Snake case refers to the writing style that replaces spaces between words with an underscore (\_) and all of the letters in a word are lowercase. On the other hand, title case is the writing style in which the first letter of each word is capitalized and there are spaces between each word. A third type is the camel case, wherein phrases are written out without punctuation or spaces, and words are usually distinguished with the second word's first letter capitalized.
+:::
+
+Hence, using the `clean_names()` function from the 'janitor' package to convert all the column names accordingly.
+
+```{r}
+#| label: tidying the data (1)
+
+polads <-clean_names(polads_orig)
+
+colnames(polads)
+  
+```
+
+Since these columns only have missing values, they can be excluded from analysis: `committee_name`, `committee_identification_number`, `disclosure_name_of_committee`, `advertising_jurisdiction`, `electoral_districts_excluded`, `location_categories_included`, `location_categories_excluded`.
+
+```{r}
+#| label: tidying the data (2)
+
+polads <- polads %>% 
+  remove_empty()
+
+```
+
+### Narrowing down the data
+
+Only keeping rows that describe ads targeting the United States:
+
+```{r}
+#| label: tidying the data (3)
+
+polads <- filter(polads,country_code =="united states")
+polads
+```
+
+Verifying whether all ads targeted for the United States were paid for in USD.
+
+```{r}
+#| label: tidying the data (4)
+
+table(select(polads,currency_code))
+
+
+```
+
+Three ads were paid for in Canadian Dollars (CAD). Finding out more about these three rows:
+
+```{r}
+#| label: tidying the data (5)
+
+polads %>%
+  filter(currency_code=="CAD")
+
+```
+
+Two ads were paid for by the University of British Columbia and were targeted at people aged 16-25 in the following areas: San Francisco, Oakland, and San Jose. The third was paid for by Point Digital Creative Studio. None of them provided information about the candidate associated with the ad.
+
+Since we require information about the candidate in order to analyze relative ad spending, targetting and impressions, tidying up the `candidate_ballot_information` column by removing missing values:
+
+```{r}
+#| label: tidying the data (6)
+
+sum(is.na(polads$candidate_ballot_information))
+
+# removing rows with missing values
+polads <- drop_na(polads,candidate_ballot_information)
+polads
+
+```
+
+There were 5312 rows missing candidate information. Next, I'm only including those rows that explicitly states the candidate name (containing the words 'Biden' and 'Trump').
+
+```{r}
+#| label: tidying the data (7)
+
+table(select(polads,candidate_ballot_information))
+
+polads <- filter(polads, str_detect(candidate_ballot_information, 'Biden|Trump'))
+
+# sanity check
+
+table(select(polads,candidate_ballot_information)) %>%
+  knitr::kable()
+
+```
+
+There are two entries that contain the string "Trump" but are in fact campaigning against him ("Against Trump", "Operation Dump Trump", "Titere de Trump"). There's also an entry called "Biden vs Trump" which doesn't clearly indicate which party the ad will be supporting. Removing these rows so that they don't skew the results:
+
+```{r}
+#| label: tidying the data (8)
+
+polads <- polads %>%
+  filter(!(candidate_ballot_information=="Against Trump"| candidate_ballot_information=="Operation Dump Trump"| candidate_ballot_information=="Biden vs Trump"| candidate_ballot_information=="Titere de Trump"))
+
+```
+
+(aside: 7 ads for Kanye West!)
+
+Since missing values in certain columns indicate that either all or none of the categories in the column were targeted, I'm changing their missing values accordingly for easy analysis.
+
+```{r}
+#| label: tidying the data (9)
+
+table(select(polads,gender))
+table(select(polads,os_type))
+table(select(polads,language))
+table(select(polads,advanced_demographics))
+table(select(polads,targeting_connection_type))
+table(select(polads,targeting_carrier_isp))
+                  
+polads <- polads %>%
+  replace_na(list(gender = "ALL",os_type = "ALL",language = "none",advanced_demographics = "None",targeting_connection_type = "None",targeting_carrier_isp = "ALL"))
+
+# sanity check
+table(select(polads,gender))
+table(select(polads,os_type))
+table(select(polads,language))
+table(select(polads,advanced_demographics))
+table(select(polads,targeting_connection_type))
+table(select(polads,targeting_carrier_isp))
+
+```
+
+### The case of `age_bracket` and `advanced_demographics`
+
+The `age_bracket` column's values are as follows:
+
+```{r}
+#| label: tidying the data (10)
+
+table(select(polads,age_bracket)) %>%
+    knitr::kable()
+```
+
+Clearly, the column's values overlap and tend to refer to similar age groups, for instance, 18-20, 18-24, and 18+.
+
+As for `advanced_demographics`:
+
+```{r}
+#| label: tidying the data (11)
+
+table(select(polads,advanced_demographics))%>%
+  knitr::kable()
+
+```
+
+Clearly, very few ads provided additional demographic information for ad targetting and the data aren't uniform (i.e. there are details on people's household incomes, occupations, languages spoken, educational levels, number of children etc.), so I wouldn't be able to effectively analyze it in relation to other columns.
+
+Though I was looking forward to analyzing these columns, the data they had were too sparse to work with.
+
+### Wrangling with the date columns
+
+The "Z" at the end of the date-timestamp indicates that the timezone chosen is UTC, but I won't be requiring it for analysis, so I'll remove it. Also, I'm arranging the rows by the start date set for the advertisement and converting the data types of the date columns (`start_date` and `end_date`) from character to date-time.
+
+```{r}
+#| label: tidying the data (12)
+
+#checking for missing values
+table(is.na(polads$start_date))
+
+polads <- polads %>%
+  arrange(ymd_hms(polads$start_date))
+
+#sanity check
+
+head(polads)
+
+class(polads$start_date)
+
+# converting data types of date columns from string to datetime
+
+polads <- polads %>%
+  mutate(start_date = ymd_hms(start_date)) %>%
+  mutate(end_date = ymd_hms(end_date))
+
+# rechecking class of these columns
+class(polads$start_date)
+class(polads$end_date)
+
+head(polads)
+
+```
+
+Next, I want to create a new column that gives the duration for which the ad was run on Snapchat. I chose to display this information in hours.
+
+```{r}
+#| label: tidying the data (13)
+
+polads <- polads %>%
+  mutate(ad_duration = difftime(end_date,start_date,units= c("hours")))
+
+unique(polads$ad_duration)
+
+```
+
+Missing values show up for those rows without an end date for the advertisement.
+
+### Wrangling with the location columns
+
+The following columns indicate differnet types of information about the locations targeted by the advertisements: `regions_included`, `regions_excluded`, `electoral_districts_included`, `radius_targeting_included`, `radius_targeting_excluded`, `metros_included`, `metros_excluded`, `postal_codes_included`, `postal_codes_excluded`. Most of these columns do not have enough values to be effectively analyzed, and due to a lack of time, the list column `postal_codes_included` could not be included in analysis.
+
+I'll be using the `regions_included` and `regions_excluded` columns for analysis. They have multiple regions in them which need to be separated:
+
+```{r}
+#| label: tidying the data (14)
+
+# `regions_included`
+table(select(polads,regions_included)) %>%
+  knitr::kable()
+
+polads <- polads %>%
+  separate_rows(regions_included, sep = ",")
+
+# sanity check
+unique(polads$regions_included)
+
+# `regions_excluded`
+table(select(polads,regions_excluded)) %>%
+  knitr::kable()
+
+polads <- polads %>%
+  separate_rows(regions_excluded, sep = ",")
+
+# sanity check
+unique(polads$regions_excluded)
+
+```
+
+The states of Alaska, Hawaii, and California were excluded from being shown certain political advertisements of the candidates.
+
+\[california political advertisement disclosure law\]
+
+Checking whether information on `organization_name` and `paying_advertiser_name` is available for those advertisements excluding these regions:
+
+```{r}
+#| label: tidying the data (15)
+
+polads %>%
+  select(organization_name,paying_advertiser_name,spend,candidate_ballot_information,regions_excluded) %>%
+  group_by(organization_name) %>%
+  filter(str_detect(regions_excluded, 'California|Hawaii|Alaska')) %>%
+  distinct()
+
+```
+
+Interestingly, all of the ads that excluded these regions supported Donald Trump as a candidate, were by an organization called Marud Khan, and were paid for by Albbiom Marketing LLC. According to Markay (2020), Albbiom Marketing LLC is a marketing company that provides "free" Trump merchandise. They also found no evidence that 'Marud Khan' was a real person.
+
+Lastly, I'll be changing the entries `candidate_ballot_information` to either "Biden" or "Trump" so that it's more uniform for ease of analysis. For instance, "Joe Biden for President" will be changed to "Biden".
+
+```{r}
+#| label: tidying the data (16)
+
+# changing `candidate_ballot_information` to either "Biden" or "Trump"
+polads <- polads %>%
+  mutate(candidate_ballot_information = case_when(
+    str_detect(candidate_ballot_information, "Biden") ~ "Biden",
+    str_detect(candidate_ballot_information, "Trump")  ~ "Trump",
+    TRUE ~ candidate_ballot_information))
+
+# sanity check
+polads %>%
+  filter(str_detect(candidate_ballot_information, "Trump")) %>%
+  tally() %>%
+  knitr::kable(col.names = "Number of Trump ads")
+
+polads %>%
+  filter(str_detect(candidate_ballot_information, "Biden")) %>%
+  tally() %>%
+  knitr::kable(col.names = "Number of Biden ads")
+
+```
+
+There are 1410 political advertisements supporting Biden's campaign and 734 political advertisements for Trump's campaign.
+
+## Data Analysis and Visualization
+
+### Highest expenditure on a single ad by candidate
+
+```{r}
+#| label: highest expenditure on a single ad by candidate
+
+polads %>%
+  group_by(candidate_ballot_information) %>% 
+  slice(which.max(spend))
+
+```
+The highest funds allocated for a single political advertisement supporting Biden (and overall) was \$151724, while the \$33349 spent by Albbiom Marketing LLC was the most expensive political advertisement for Trump's campaign. The Biden advertisment was displayed almost all day on election day (11/03/2020) as indicated by its start and end date. Even though more was spent on the Biden advertisement, Trump's advertisement had more impressions (30383613).
+
+### Relative ad expenditure and impressions over time by candidate
+
+I'm interested in knowing the relative expenditure on advertisements for both candidates. First, I want to extract the month from the `start_date` and `end_date` columns and use it to determine spending over the months. I'll need to take a log transformation because the values in the `spend` column are skewed. I'm using a boxplot since I want to compare the distribution of `spend` for the two values in `candidate_ballot_information`.
+
+```{r}
+#| label: political ad expenditure by month
+
+polads <- polads %>%
+  mutate(start_month = month(start_date,label = TRUE),end_month = month(end_date, label = TRUE)) 
+
+#sanity check
+str(polads$start_month)
+str(polads$end_month)
+
+exp_by_month_plot <- ggplot(polads, aes(log(spend), start_month, color= candidate_ballot_information)) + geom_boxplot() + scale_color_brewer(palette = "Set2") + labs(title = "Snapchat Political Ad Expenditure By Month (2020)", x = "Expenditure", y = "Month", colour = "Candidate") + theme_minimal()
+
+exp_by_month_plot
+
+```
+On average, ads for Biden spent more that ads for Trump. Also, political ads supporting Biden's campaign were more frequent in the months leading up to election day, i.e. August to November. 
+
+- relative impressions over time for both campaigns
+
+```{r}
+#| label: political ad impressions by month
+
+imp_by_month_plot <- ggplot(polads, aes(log(impressions), start_month, color= candidate_ballot_information)) + geom_boxplot() + scale_color_brewer(palette = "Set2") + labs(title = "Snapchat Political Ad Impressions By Month (2020)", x = "Impressions", y = "Month", colour = "Candidate") + theme_minimal()
+
+imp_by_month_plot
+
+```
+
+I also want to determine whether there's a correlation between `spend` and `impressions`.
+
+```{r}
+
+polads_cor <- polads %>% 
+  select(spend,impressions) %>% 
+  correlate()
+
+polads_cor_plot <- rplot(polads_cor) + labs(title = "Correlation between Ad Expenditure and Impressions Received\n")
+polads_cor_plot
+
+```
+This plot shows us that there's a moderate correlation between these two variables.
+
+### Location targeting by candidate
+
+regions_included - chloropleth
+-  states targeted = grouped by candidate
+
+Note: missing values - x% were targeted to all states
+
+-   impressions sum - per org
+
+-   spend sum - per org
+
+-   spend and impressions - scatterplot/line graph - grouped by candidate, org
+
+
+## Reflections
+- the potential of political advertisements on social media - more impressions, and thus, more impact
+-   The US has made most use of the Snapchat platform for political ads compared to other countries.
+-   Wasn't able to use advanced_demographics because of sparse data and age_bracket because of overlapping categories - would've provided deeper insight into which demographics the candidates and their supporters were interested in
+
+## Further Directions and Conclusion
+
+-   Using the postal codes and latitude-longitude columns to map more specific regions
+
+## References
+
+::: {#refs}
+:::
