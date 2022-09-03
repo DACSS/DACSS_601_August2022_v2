@@ -1,0 +1,309 @@
+---
+title: "Final Project - Indian Stock Market Analysis "
+author: "Adithya Parupudi"
+desription: "Analysing NIFTY50 Stocks between 2000-2021"
+date: "08/02/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - tidyverse
+  - final_project
+  - Adithya Parupudi
+  - dataset
+  - ggplot2
+---
+
+## Load Libraries
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+library(ggplot2)
+library(forcats)
+library(lubridate)
+library(hrbrthemes)
+library(plotly)
+
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r, setup, warning=FALSE}
+```
+
+## Introduction
+
+Stock is also refered to as securities
+
+#### Column Descriptions
+
+Description of columns in the file:
+
+-   Date --- Date of trade
+
+-   symbol --- Name of the company
+
+-   Series --- We have only one series - EQ, which stands for Equity.
+
+-   Prev Close --- Refers to the final price of a stock of the previous dat when the market officially closes, which is at 3:30pm IST
+
+-   Open --- The open is the starting period of trading on a securities exchange or organized over-the-counter market.
+
+-   High --- Highest price at which a stock traded during the course of the trading day.
+
+-   Low --- Lowest price at which a stock traded during the course of the trading day.
+
+-   Last --- The last price of a stock is just one price to consider when buying or selling shares. The last price is simply the most recent one
+
+-   Close --- The close is a reference to the end of a trading session in the financial markets when the markets close for the day.
+
+-   VWAP (Volume-weighted average price)- It is the ratio of the value traded to total volume traded over a particular time horizon. It is a measure of the average price at which a stock is traded over the trading horizon
+
+-   Volume --- It is the amount of a security that was traded during a given period of time
+
+-   Turnover -It is a measure of sellers versus buyers of a particular stock. It is calculated by dividing the daily volume of a stock by the "float" of a stock, which is the number of shares available for sale by the general trading public.
+
+-   Trades- The number of shares being traded on a given day is called trading volumes
+
+-   Deliverable Volume --- quantity of shares which actually move from sellers to buyers
+
+-   %Deliverable --- shares which are actually transferred from one person's to another's demat account.
+
+## Read Data
+
+There are multiple .csv files, one for each stock, which are placed in a folder. I am reading data from all the csv files and combining them into a single data-frame using purrr package.
+
+```{r}
+# Read all the CSV files at once
+all_stocks <- dir("_data/NIFTY_AdithyaParupudi/", full.names = TRUE) %>%  map_dfr(read_csv, )
+all_stocks <- tibble(all_stocks)
+
+```
+
+```{r}
+str(all_stocks)
+```
+
+Looks like the last column has a spelling mistake. I am correcting it to prevent further confusion. \`%Deliverble\` changed to Percent_Deliverable
+
+## Data Cleaning
+
+### Renaming column
+
+The last column has a spelling mistake. Changing that to Percent_Deliverable to avoid confusion
+
+```{r}
+all_stocksv2 <- all_stocks %>% rename(Percent_Deliverable = `%Deliverble`)
+colnames(all_stocksv2)
+
+```
+
+The date format is yyyy/mm/dd. I only want the year aspect, so creating a new column with just that. A new column 'yy' has been created, which is the last column
+
+```{r}
+# x has all the modified values
+x<-format(as.Date(all_stocksv2$Date, format="%Y/%m/%d"))
+
+# all_stocks_yy has thethe replaced date column with the new col - 'yy'
+all_stocks_yy <- all_stocksv2 %>% 
+  mutate(yy=year(x)) %>%
+  select(-Date)
+print(all_stocks_yy)
+
+```
+
+### Checking missing data
+
+By running the summary command we see that Trades, Deliverable Volume and Percent_Deliverables have a lot of missing values. Since they are all numeric, I'm replacing them with 0 to avoid calculation errors.
+
+```{r}
+
+print(summarytools::dfSummary(all_stocks_yy,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+#### Replacing NA's with 0's
+
+```{r}
+#replacing NA with 0's
+all_stocks_yy[is.na(all_stocks_yy)] <- 0
+
+# counting the NA's after replacing them with 0's
+sum(is.na(all_stocks_yy$Trades))
+```
+
+## Observations
+
+### Distinct stocks
+
+NIFTY50 is supposed to be the top 50 stocks of the financial year(there must be 50 distinct stocks in the data set). This data from 2000 to 2021 is not consistent, i.e., there are 65 distinct entries found. Which suggests that some stocks under-performed and got replaced with new ones over time.
+
+```{r}
+all_stocks_yy %>% select(1) %>% distinct()
+```
+
+### Year vs Volume of stock traded
+
+We can infer from the mean of Volume column, the number of stocks sold each year kept increasing.
+
+1.  This can hint an increase in demat accounts and number of active trading as well.
+
+2.  New stocks must have entered the NIFTY50 index, and started performing well over the years
+
+3.  Special attention can be paid to volumes of stock sold between 2007 - 2009 and 2019 - 2021. There is a sharp increase in
+
+```{r}
+
+# Mean of all volumes grouped by years.  
+
+# between 2008 to 2009 and 2019 to 2020 there is a big increase in stock volumes. 2008 point to the stock market crash. 2019-2021 point to the covid-19 crisis, where stock market fell sharply and attracted more people in investing in stocks. 
+
+all_stocks_yy %>% 
+  group_by(yy) %>% 
+  select(`Volume`) %>% 
+  summarise_all(mean, na.rm=TRUE) 
+```
+
+#### Checking stock's consistency in NIFTY50 index
+
+By running the below code, I am checking whether a stock has maintained its consistency in the top 50 stocks. Looks like the top 50 stocks kept changing each year, and some stocks were not present in the list. The stocks not present in that year can be identified with 0 ( a metric for the sum of all shares sold in a year)
+
+Some observations that can be made here :
+
+1.  Stocks like ADANIPORTS, NESTLEIND, NTPC, SSLT didn't enter the stock market from 2000's. Their companies began listing further down the line, such as from 2010
+2.  Some companies, though made it to the NIFTY 50 list, have dropped out over the years due to a dip in stock price due to various factors. Some such examples would be KOTAKMAH, INFOSYSTCH, TELCO, TISCO and so on
+
+```{r}
+
+all_stocks_yy %>% 
+  pivot_wider(names_from=`yy`, values_from = `Volume`) %>% 
+  group_by(Symbol) %>% select(Trades, 14:35) %>% 
+  summarise_all(sum, na.rm=TRUE) %>% 
+  relocate(`2000`:`2006`, .before = `2007`)
+
+```
+
+#### Stocks which didn't enter stock market for 10 yrs
+
+There are 6 stocks which did not enter the stock market - ADANIPORTS, HEROMOTOCO, INFY,SSLT,UPL, VEDL. They were not publicly listed in to be traded, as they were still in the developmental phases. A company enters stock market once it has captured enough market in an area, and wants to expand its operations and brand to a larger scale.
+
+```{r}
+all_stocks_yy %>% 
+  pivot_wider(names_from=`yy`, values_from = `Volume`) %>% 
+  group_by(Symbol) %>% select(Trades, 14:35) %>% 
+  summarise_all(sum, na.rm=TRUE) %>% 
+  relocate(`2000`:`2006`, .before = `2007`) %>% 
+  select(`Symbol`, `2000`:`2010`) %>% 
+  filter(across(`2000`:`2010`, ~ . ==0)) %>% 
+  select(Symbol)
+```
+
+#### Best and Worst Performing Stock of 2000
+
+ZEETELE - Best performing stock in 2000, AJAUTOFIN - Worst performing stock 2000
+
+```{r}
+#best performing stock
+all_stocks_yy %>% 
+  group_by(yy, Symbol) %>% 
+  select(`Volume`) %>% 
+  summarise_all(sum, na.rm=TRUE) %>% 
+  arrange(desc(Volume)) %>% 
+  slice(1)
+
+#worst performing stock
+all_stocks_yy %>% 
+  group_by(yy, Symbol) %>% 
+  select(`Volume`) %>% 
+  summarise_all(sum, na.rm=TRUE) %>% 
+  arrange(Volume) %>% 
+  slice(1)
+
+```
+
+#### Plotting Best and Worst Stock
+
+```{r}
+
+
+p<-all_stocks_yy %>% 
+  select(Symbol, yy, `Prev Close`) %>% 
+  filter(Symbol == "ZEETELE" | Symbol == "BAJAUTOFIN") %>% 
+  group_by(yy, Symbol) %>% 
+  summarize_all(mean, na.rm = TRUE) %>% 
+  pivot_wider(names_from = Symbol, values_from = `Prev Close`) %>% 
+  ggplot()+
+  geom_line(aes(x=yy, y=BAJAUTOFIN), color='red') + 
+  geom_point(aes(x=yy, y=BAJAUTOFIN),size=1.5, color='red') + 
+  geom_line(aes(x=yy, y=ZEETELE), color='blue') + 
+  geom_point(aes(x=yy, y=ZEETELE),size=1.5, color="blue") +   
+  labs(title='ZEETELE - Stock performance', x="Year", y="Previous Close") + theme_bw() 
+
+ggplotly(p)
+```
+
+whuch stock dipped the most in 2008? and during covid?
+
+```{r}
+
+stocks_2008 <- all_stocks_yy %>% filter(`yy` == 2008) %>% 
+  select(yy, Symbol, VWAP , Trades, `Deliverable Volume`, `Prev Close`) %>% 
+  group_by(Symbol,yy) %>% 
+  summarise_all(mean, na.rm=TRUE) %>% 
+  ungroup() %>% 
+  arrange(desc(`Deliverable Volume`)) %>% 
+  head()
+
+stocks_2008 %>% ggplot(aes(x=VWAP, y=Symbol)) + 
+  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
+    coord_flip() +
+    xlab("") +
+    theme_bw()
+
+
+```
+
+Which stock dipped the most during the corona virus pandemic? Lets check the stock prices of top 5 shares between 2019-2021
+
+```{r}
+stocks_covid <- all_stocks_yy %>% 
+  filter(`yy` == 2018 | `yy` == 2019 | `yy` == 2020 |`yy` == 2021) %>% 
+  select(yy, Symbol, VWAP , Trades, `Deliverable Volume`) %>% 
+  group_by(Symbol,yy) %>% 
+  summarise_all(mean, na.rm=TRUE) %>% 
+  head(20)
+
+stocks_covid %>% ggplot( aes(x=yy, y=VWAP, label = yy)) +
+    geom_line( color="grey") +
+    geom_point(shape=21, color="blue", fill="#69b3a2", size=2) +
+  facet_wrap(~Symbol,nrow = 2) +
+    theme_ipsum() +
+    ggtitle("Stock dip during COVID-19")
+```
+
+## Reflection
+
+This project has been a great learning experience for me. It was interesting to see how many insights can be derived from a single data set. I felt I barely scratched the surface of this goldmine. I used to follow stock market trends for a while, which got me interested to try this do an EDA of this data-set. My current regret is, there are lot of amazing insights and visualizations that I could do, but I didn't know how to manipulate multiple variables to make it happen.
+
+I faced challenges with almost every aspect of this project. I've been going back to my notes, stackoverflow and a bunch of youtube videos to get clarity. I made use of really good websites and bookmarked some of the solutions for future reference. There is a lot of power in R and it made me realize I could really do a lot more with it.
+
+I've made use of other packages apart from the standard ones taught in the class, and tried resolving multiple errors by fine-tuning the functions. There is still a lot more to learn, and I will continue learning to be better at visualization.
+
+## Conclusion
+
+I got some clarity on the highs and lows of the stock market
+
+## Bibliography
+
+Downloaded dataset from kaggle - https://www.kaggle.com/datasets/rohanrao/nifty50-stock-market-data
