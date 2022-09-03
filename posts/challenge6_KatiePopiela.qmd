@@ -1,0 +1,15 @@
+---
+title: "Challenge 6"
+editor: visual
+---
+
+### 1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+### 2)  tidy data (as needed, including sanity checks)
+### 3)  mutate variables as needed (including sanity checks)
+### 4)  create at least one graph including time (evolution). Try to make them "publication" ready (optional). Explain why you choose the specific graph type
+### 5)  Create at least one graph depicting part-whole or flow relationship. Try to make them "publication" ready (optional). Explain why you choose the specific graph type
+
+```{r}
+library()
+```
+
