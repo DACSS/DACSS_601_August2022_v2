@@ -238,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <section id="briefly-describe-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="briefly-describe-the-data">Briefly describe the data</h3>
-<p>The datasets provided include the players data for the Career Mode from FIFA 15 to FIFA 20 (“players_20.csv”). The data allows multiple comparisons of the same players across the last 6 versions of the video game. The datasets all have the same amount of columns (104). Most of the columns are related to each players stats and each players rating based on position. There are columns of type character, double and date. My main goal is find relationships and patterns a different variables over the years of FIFA. I found this dataset on Kaggle and the data was scraped from sofifa.com.</p>
+<p>The datasets provided include the players data for the Career Mode from FIFA 15 to FIFA 20 (“players_20.csv”). The data allows multiple comparisons of the same players across the last 6 versions of the video game. The datasets all have the same amount of columns (104). Most of the columns are related to each players stats and each players rating based on position. There are columns of type character, double and date. My main goal is to find relationships and patterns of different variables over the years of FIFA. I found this dataset on Kaggle and the data was scraped from sofifa.com.</p>
 </section>
 <section id="read-in-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-in-data">Read in data</h2>
@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [5] "players_19.csv" "players_20.csv"</code></pre>
 </div>
 </div>
-<p>To read in the data, I used use list.files(), which produces a character vector of the names of files or directories in the named directory. From those files names. I then used the purr() function to iterate through each file and within each iteration use assign() and read_csv() to load each individual .csv file into the Global Environment. I used str_remove to parse our the .csv for each variable name.</p>
+<p>To read in the data, I used use list.files(), which produces a character vector of the names of files or directories in the named directory. I then used the purr() function to iterate through each file and within each iteration use assign() and read_csv() to load each individual .csv file into the Global Environment. I used str_remove to parse out the .csv for each variable name.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>csv_file_names <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(<span class="cf">function</span>(file_name){ </span>
@@ -530,7 +530,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>Using players_15 (since each dataset has the same cols), I select all the columns I do not want to mutate since the majority of the columns need to changed to type double. I create a variable called col_var_mut to store all my columns that need to be mutated.</p>
+<p>Using players_15 (since each dataset has the same cols), I select all the columns I do not want to mutate since the majority of the columns need to be changed to type double. I create a variable called col_var_mut to store all my columns that need to be mutated.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sub.var <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">na.rm=</span><span class="cn">FALSE</span>) (<span class="fu">str_sub</span>(x,<span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">2</span>))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1122,7 +1122,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Briefly describe the data</span></span>
 <span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>The datasets provided include the players data for the Career Mode from FIFA 15 to FIFA 20 ("players_20.csv"). The data allows multiple comparisons of the same players across the last 6 versions of the video game. The datasets all have the same amount of columns (104). Most of the columns are related to each players stats and each players rating based on position. There are columns of type character, double and date. My main goal is find relationships and patterns a different variables over the years of FIFA. I found this dataset on Kaggle and the data was scraped from sofifa.com.</span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>The datasets provided include the players data for the Career Mode from FIFA 15 to FIFA 20 ("players_20.csv"). The data allows multiple comparisons of the same players across the last 6 versions of the video game. The datasets all have the same amount of columns (104). Most of the columns are related to each players stats and each players rating based on position. There are columns of type character, double and date. My main goal is to find relationships and patterns of different variables over the years of FIFA. I found this dataset on Kaggle and the data was scraped from sofifa.com.</span>
 <span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
 <span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a></span>
@@ -1135,7 +1135,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a>csv_file_names</span>
 <span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>To read in the data, I used use list.files(), which produces a character vector of the names of files or directories in the named directory. From those files names. I then used the purr() function to iterate through each file and within each iteration use assign() and read_csv() to load each individual .csv file into the Global Environment. I used str_remove to parse our the .csv for each variable name.</span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a>To read in the data, I used use list.files(), which produces a character vector of the names of files or directories in the named directory. I then used the purr() function to iterate through each file and within each iteration use assign() and read_csv() to load each individual .csv file into the Global Environment. I used str_remove to parse out the .csv for each variable name.</span>
 <span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a></span>
@@ -1244,7 +1244,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb31-164"><a href="#cb31-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb31-165"><a href="#cb31-165" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-166"><a href="#cb31-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-167"><a href="#cb31-167" aria-hidden="true" tabindex="-1"></a>Using players_15 (since each dataset has the same cols), I select all the columns I do not want to mutate since the majority of the columns need to changed to type double. I create a variable called col_var_mut to store all my columns that need to be mutated. </span>
+<span id="cb31-167"><a href="#cb31-167" aria-hidden="true" tabindex="-1"></a>Using players_15 (since each dataset has the same cols), I select all the columns I do not want to mutate since the majority of the columns need to be changed to type double. I create a variable called col_var_mut to store all my columns that need to be mutated. </span>
 <span id="cb31-168"><a href="#cb31-168" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-169"><a href="#cb31-169" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-172"><a href="#cb31-172" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>

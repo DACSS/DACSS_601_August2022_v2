@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Young Soo Choi">
+<meta name="dcterms.date" content="2022-09-02">
+
+<title>- Final Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Final Project">
+<meta name="twitter:description" content="The economy is probably the most influential factor in everyone’s daily lives.">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#read-and-tidy-data" id="toc-read-and-tidy-data" class="nav-link" data-scroll-target="#read-and-tidy-data">Read and Tidy Data</a></li>
+  <li><a href="#visualization-and-analysis" id="toc-visualization-and-analysis" class="nav-link" data-scroll-target="#visualization-and-analysis">Visualization and Analysis</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
+  <li><a href="#conclution" id="toc-conclution" class="nav-link" data-scroll-target="#conclution">Conclution</a></li>
+  <li><a href="#bibiliography" id="toc-bibiliography" class="nav-link" data-scroll-target="#bibiliography">Bibiliography</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Final Project</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">final project</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Young Soo Choi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 2, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The economy is probably the most influential factor in everyone’s daily lives. As a public official in Korea (even though I am not in charge of economic policy), I have experienced how economic problems affect not only our daily lives but also the government.</p>
+<p>From this point of view, I chose the US economy as the subject of my final project of DACSS 601. This is because the U.S. economy has a great impact on the global economy due to its size and openness, and I wanted to check the theory and contents of economics that I learned when I was an undergraduate.</p>
+<p>I selected several research topics using the ‘federal funds rate’ data used in class.</p>
+<p>The first is to look at the general picture of the U.S. economy. I will visualize and examine the real gdp changes in the US economy since the 50s.</p>
+<p>Second, I’ll draw the famous Phillips curve, which represents the trade-off between unemployment and inflation, using real data from the United States, and see how the trade-off between the two really looks.</p>
+<p>Lastly, I’ll look at whether the target interest rate of the U.S. monetary policy authorities is for inflation management as I learned in the textbook. If the monetary authorities’ top policy goal is inflation management, they will raise the target interest rate when inflation is high to stabilize prices, and the correlation between the two will be high.</p>
+</section>
+<section id="read-and-tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-and-tidy-data">Read and Tidy Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Federal Funds Rate data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fedfundsrate_org<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/FedFundsRate.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>fedfundsrate_org</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 904 × 10
+    Year Month   Day Federal F…¹ Feder…² Feder…³ Effec…⁴ Real …⁵ Unemp…⁶ Infla…⁷
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1  1954     7     1          NA      NA      NA    0.8      4.6     5.8      NA
+ 2  1954     8     1          NA      NA      NA    1.22    NA       6        NA
+ 3  1954     9     1          NA      NA      NA    1.06    NA       6.1      NA
+ 4  1954    10     1          NA      NA      NA    0.85     8       5.7      NA
+ 5  1954    11     1          NA      NA      NA    0.83    NA       5.3      NA
+ 6  1954    12     1          NA      NA      NA    1.28    NA       5        NA
+ 7  1955     1     1          NA      NA      NA    1.39    11.9     4.9      NA
+ 8  1955     2     1          NA      NA      NA    1.29    NA       4.7      NA
+ 9  1955     3     1          NA      NA      NA    1.35    NA       4.6      NA
+10  1955     4     1          NA      NA      NA    1.43     6.7     4.7      NA
+# … with 894 more rows, and abbreviated variable names
+#   ¹​`Federal Funds Target Rate`, ²​`Federal Funds Upper Target`,
+#   ³​`Federal Funds Lower Target`, ⁴​`Effective Federal Funds Rate`,
+#   ⁵​`Real GDP (Percent Change)`, ⁶​`Unemployment Rate`, ⁷​`Inflation Rate`
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>This data includes dates from 1954 (separated by year, month, and day), and various economic variables. There are seven economic variables included, and if the Federal Funds Target Rate, Federal Funds Upper Target, and Federal Funds Lower Target are considered as one variable of the monetary authorities, the actual data included are five economic variables such as target interest rates, effective federal funds rate, real gdp percent change, unemployment rates, and inflation rates.</p>
+<p>This data contains a lot, but data from April of 2017 and later are missing. So, I found data after 2017 by variable on several web pages. Then, I read each data, organize the data using the pivot function, etc. if necessary, and had combined them into one using the join function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Federal Funds Upper Target after 2017</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>upper_target_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/DFEDTARU.csv"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Federal Funds Upper Target"</span>), </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Federal Funds Lower Target after 2017</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>lower_target_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/DFEDTARL.csv"</span>, </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Federal Funds Lower Target"</span>), </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                               <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                               <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Effective Federal Funds Rate after 2017</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>effr_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/DFF.csv"</span>, </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Effective Federal Funds Rate"</span>), </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                       <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                       <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Unemployment Rate after 2017</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>unemployment_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/UNRATE.csv"</span>, </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Unemployment Rate"</span>), </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                               <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                               <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Real GDP (Percent Change) after 2017</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>rgdp_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/A191RL1Q225SBEA.csv"</span>, </span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Real GDP (Percent Change)"</span>), </span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>                       <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>                       <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Inflation Rate after 2017</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>inflation_after17<span class="ot">&lt;-</span><span class="fu">read_xlsx</span>(<span class="st">"_data/ys_additional/SeriesReport-20220829142931_1adcd3.xlsx"</span>, </span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>                             <span class="at">range=</span><span class="st">"A72:M77"</span>, </span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                             <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Year"</span>,<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5"</span>, <span class="st">"6"</span>, <span class="st">"7"</span>, <span class="st">"8"</span>, <span class="st">"9"</span>, <span class="st">"10"</span>, <span class="st">"11"</span>, <span class="st">"12"</span>))</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot Inflation Rate data after 2017</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>inflation_after17<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(inflation_after17, </span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>                                <span class="at">cols =</span> <span class="st">"1"</span><span class="sc">:</span><span class="st">"12"</span>, </span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>                                <span class="at">names_to =</span> <span class="st">"Month"</span>, </span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>                                <span class="at">values_to =</span> <span class="st">"Inflation Rate"</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy Inflation Rate data after 2017</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>inflation_after17<span class="ot">&lt;-</span>inflation_after17 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">"Day"</span><span class="ot">=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">"Date"</span> <span class="ot">=</span> <span class="fu">make_date</span>(Year, Month, Day)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Date"</span>, <span class="st">"Inflation Rate"</span>)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Join all the after 2017 data</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>data_after2017<span class="ot">&lt;-</span><span class="fu">left_join</span>(upper_target_after17, lower_target_after17, <span class="at">key =</span> <span class="st">'Date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(effr_after17, <span class="at">key =</span> <span class="st">'Date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(rgdp_after17, <span class="at">key =</span> <span class="st">'Date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(unemployment_after17, <span class="at">key =</span> <span class="st">'Date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(inflation_after17, <span class="at">key =</span> <span class="st">'Date'</span>)</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>data_after2017</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,978 × 7
+   Date       Federal Funds Upper Targ…¹ Feder…² Effec…³ Real …⁴ Unemp…⁵ Infla…⁶
+   &lt;date&gt;                          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 2017-04-01                          1    0.75    0.82     2.3     4.4     1.9
+ 2 2017-04-02                          1    0.75    0.82    NA      NA      NA  
+ 3 2017-04-03                          1    0.75    0.91    NA      NA      NA  
+ 4 2017-04-04                          1    0.75    0.91    NA      NA      NA  
+ 5 2017-04-05                          1    0.75    0.91    NA      NA      NA  
+ 6 2017-04-06                          1    0.75    0.91    NA      NA      NA  
+ 7 2017-04-07                          1    0.75    0.91    NA      NA      NA  
+ 8 2017-04-08                          1    0.75    0.91    NA      NA      NA  
+ 9 2017-04-09                          1    0.75    0.91    NA      NA      NA  
+10 2017-04-10                          1    0.75    0.91    NA      NA      NA  
+# … with 1,968 more rows, and abbreviated variable names
+#   ¹​`Federal Funds Upper Target`, ²​`Federal Funds Lower Target`,
+#   ³​`Effective Federal Funds Rate`, ⁴​`Real GDP (Percent Change)`,
+#   ⁵​`Unemployment Rate`, ⁶​`Inflation Rate`
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>Now, I organized the date variables of the existing data to combine the existing data with the new data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy the original data to join data after 2017</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fedfundsrate_org<span class="ot">&lt;-</span>fedfundsrate_org<span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">make_date</span>(Year, Month, Day))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>tot_fedfundsrate<span class="ot">&lt;-</span><span class="fu">full_join</span>(fedfundsrate_org, data_after2017, <span class="at">key=</span> <span class="st">"Date"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>tot_fedfundsrate<span class="ot">&lt;-</span>tot_fedfundsrate<span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="st">"Year"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="st">"Month"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="st">"Day"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="fu">c</span>(<span class="st">"Date"</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>tot_fedfundsrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,882 × 8
+   Date       Federal Funds Ta…¹ Feder…² Feder…³ Effec…⁴ Real …⁵ Unemp…⁶ Infla…⁷
+   &lt;date&gt;                  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 1954-07-01                 NA      NA      NA    0.8      4.6     5.8      NA
+ 2 1954-08-01                 NA      NA      NA    1.22    NA       6        NA
+ 3 1954-09-01                 NA      NA      NA    1.06    NA       6.1      NA
+ 4 1954-10-01                 NA      NA      NA    0.85     8       5.7      NA
+ 5 1954-11-01                 NA      NA      NA    0.83    NA       5.3      NA
+ 6 1954-12-01                 NA      NA      NA    1.28    NA       5        NA
+ 7 1955-01-01                 NA      NA      NA    1.39    11.9     4.9      NA
+ 8 1955-02-01                 NA      NA      NA    1.29    NA       4.7      NA
+ 9 1955-03-01                 NA      NA      NA    1.35    NA       4.6      NA
+10 1955-04-01                 NA      NA      NA    1.43     6.7     4.7      NA
+# … with 2,872 more rows, and abbreviated variable names
+#   ¹​`Federal Funds Target Rate`, ²​`Federal Funds Upper Target`,
+#   ³​`Federal Funds Lower Target`, ⁴​`Effective Federal Funds Rate`,
+#   ⁵​`Real GDP (Percent Change)`, ⁶​`Unemployment Rate`, ⁷​`Inflation Rate`
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>All put together, it became a data table with 2882 rows and 8 columns. It felt too much. In order to facilitate analysis, I extracted data from January, April, July, and October using the filter function and made quarterly data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter quarterly data and rename columns </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fin_ffr<span class="ot">&lt;-</span>tot_fedfundsrate <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">month</span>(Date) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">10</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">day</span>(Date) <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(fin_ffr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"fftr"</span>, <span class="st">"ffut"</span>, <span class="st">"fflt"</span>, <span class="st">"effr"</span>, <span class="st">"rgdp"</span>, <span class="st">"ur"</span>, <span class="st">"ir"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fin_ffr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 273 × 8
+   date        fftr  ffut  fflt  effr  rgdp    ur    ir
+   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 1954-07-01    NA    NA    NA  0.8    4.6   5.8    NA
+ 2 1954-10-01    NA    NA    NA  0.85   8     5.7    NA
+ 3 1955-01-01    NA    NA    NA  1.39  11.9   4.9    NA
+ 4 1955-04-01    NA    NA    NA  1.43   6.7   4.7    NA
+ 5 1955-07-01    NA    NA    NA  1.68   5.5   4      NA
+ 6 1955-10-01    NA    NA    NA  2.24   2.4   4.3    NA
+ 7 1956-01-01    NA    NA    NA  2.45  -1.5   4      NA
+ 8 1956-04-01    NA    NA    NA  2.62   3.4   4      NA
+ 9 1956-07-01    NA    NA    NA  2.75  -0.3   4.4    NA
+10 1956-10-01    NA    NA    NA  2.96   6.7   3.9    NA
+# … with 263 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>Now, I finally created a dataset from the third quarter of 1954 to the third quarter of 2022 with 273 rows.</p>
+</section>
+<section id="visualization-and-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-and-analysis">Visualization and Analysis</h2>
+<p>Regarding the first topic, I drew a time series line graph of change in the US real GDP since 1954.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time series of Real GDP of the US</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>rgdp)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>rgdp)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Real GDP Change of the US"</span>)<span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Real GDP Change(Percent)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(fin_ffr<span class="sc">$</span>rgdp, <span class="at">na.rm=</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.08155</code></pre>
+</div>
+</div>
+<p>During this period, the average real GDP growth rate in the United States was 3.08 percent.(Missing growth rates for the period were excluded from the calculation)</p>
+<p>And the growth rate seems to be decreasing very little by little, but it is not seen well due to rapid changes since 2020. I drew the graph again except for rapid changes after 2020, which seems to be due to the COVID-19 pandemic.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exclude COVID period(2020-)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ffr_b20<span class="ot">&lt;-</span><span class="fu">filter</span>(fin_ffr, <span class="fu">year</span>(date)<span class="sc">&lt;=</span><span class="dv">2019</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>ffr_b20</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 262 × 8
+   date        fftr  ffut  fflt  effr  rgdp    ur    ir
+   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 1954-07-01    NA    NA    NA  0.8    4.6   5.8    NA
+ 2 1954-10-01    NA    NA    NA  0.85   8     5.7    NA
+ 3 1955-01-01    NA    NA    NA  1.39  11.9   4.9    NA
+ 4 1955-04-01    NA    NA    NA  1.43   6.7   4.7    NA
+ 5 1955-07-01    NA    NA    NA  1.68   5.5   4      NA
+ 6 1955-10-01    NA    NA    NA  2.24   2.4   4.3    NA
+ 7 1956-01-01    NA    NA    NA  2.45  -1.5   4      NA
+ 8 1956-04-01    NA    NA    NA  2.62   3.4   4      NA
+ 9 1956-07-01    NA    NA    NA  2.75  -0.3   4.4    NA
+10 1956-10-01    NA    NA    NA  2.96   6.7   3.9    NA
+# … with 252 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_b20) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>rgdp)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>rgdp)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Real GDP Change of the US(Before the COVID)"</span>)<span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Real GDP Change(Percent)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Now the blue trend line is small, but it certainly seems to be lowering. In addition, I can see the economic recession caused by the oil shock in the late 70s and early 80s and the economic recession caused by the financial crisis in the late 2000s.</p>
+<p>Next, I looked at the Phillips curve.</p>
+<p>After a single linear analysis of the correlation between the unemployment rate and the inflation rate since 1954, the trend line was drawn together on the scatter plot using this result.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># An Analysis of the Correlation Between Unemployment and Inflation Rate</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(fin_ffr<span class="sc">$</span>ir, fin_ffr<span class="sc">$</span>ur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  fin_ffr$ir and fin_ffr$ur
+t = 2.8275, df = 257, p-value = 0.005061
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.05292381 0.28945269
+sample estimates:
+     cor 
+0.173692 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ir<span class="sc">~</span>ur, fin_ffr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ir ~ ur, data = fin_ffr)
+
+Coefficients:
+(Intercept)           ur  
+     2.1054       0.2583  </code></pre>
+</div>
+</div>
+<p>The result is strange. The Pearson correlation coefficient was not high at 0.17, and the relationship between the unemployment rate and the inflation rate was rather positive, unlike the theory!</p>
+<p>The scatter plot and trend line were drawn using the ggplot function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phillips Curve of the US(1954-)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.2583</span>, <span class="at">intercept=</span><span class="fl">2.1054</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">'darkorange'</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Phillips Curve of the US"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Unemployment Rate"</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Inflation Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>To take a closer look, I divided the period from the oil shock in the early 80s and the financial crisis in the late 00s. To be exact, it was divided into three periods: 1954 to 1979, 1980 to 2008, and 2009 and later.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutate New Column by Decade</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fin_ffr <span class="ot">&lt;-</span> fin_ffr <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">"decade"</span> <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">year</span>(date)<span class="sc">&lt;=</span><span class="dv">1979</span>, <span class="st">"1950s to 1970s"</span>, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">ifelse</span>(<span class="fu">year</span>(date)<span class="sc">&lt;=</span><span class="dv">2008</span>, <span class="st">"1980s to 2000s"</span>, <span class="st">"2010s"</span>)))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw Phillips Curve of the US by Decade</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> decade)) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Phillips Curve of the US(disticted by period)"</span>)<span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Unemployment Rate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Inflation Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It seems that the Phillips curve, which is slightly familiar by period, is seen. Now, let’s take a closer look at each period.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seperate the Data</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ffr_1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(fin_ffr, decade<span class="sc">==</span><span class="st">"1950s to 1970s"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>ffr_2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(fin_ffr, decade<span class="sc">==</span><span class="st">"1980s to 2000s"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>ffr_3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(fin_ffr, decade<span class="sc">==</span><span class="st">"2010s"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Phillips Curve of Before 80s</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_1<span class="sc">$</span>ur, ffr_1<span class="sc">$</span>ir)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  ffr_1$ur and ffr_1$ir
+t = 3.1181, df = 86, p-value = 0.002476
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.1170705 0.4950937
+sample estimates:
+      cor 
+0.3186984 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ir<span class="sc">~</span>ur,ffr_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ir ~ ur, data = ffr_1)
+
+Coefficients:
+(Intercept)           ur  
+     0.4649       0.6773  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.6773</span>, <span class="at">intercept=</span><span class="fl">0.4649</span>, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Phillips Curve of the US(1954-1979)"</span>)<span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Unemployment Rate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Inflation Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In the same way, the relationship between inflation and unemployment before the 1980s is drawn as a trend line and a spread. It’s weird. It’s a positive relationship again.</p>
+<p>Let’s move on from 1980 to 2008.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phillips Curve of 1980-2010</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_2<span class="sc">$</span>ur, ffr_2<span class="sc">$</span>ir)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  ffr_2$ur and ffr_2$ir
+t = 6.6175, df = 114, p-value = 1.243e-09
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.3810965 0.6469862
+sample estimates:
+      cor 
+0.5268102 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ir<span class="sc">~</span>ur, ffr_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ir ~ ur, data = ffr_2)
+
+Coefficients:
+(Intercept)           ur  
+    -1.6648       0.9188  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.9188</span>, <span class="at">intercept=</span><span class="sc">-</span><span class="fl">1.6648</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Phillips Curve of the US(1980-2008)"</span>)<span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Unemployment Rate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Inflation Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It’s also a positive relationship. The correlation coefficient was rather higher.</p>
+<p>Next on, let’s look at the data since 2009.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Phillips Curve of 2010s</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_3<span class="sc">$</span>ur, ffr_3<span class="sc">$</span>ir)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  ffr_3$ur and ffr_3$ir
+t = -3.9436, df = 53, p-value = 0.0002371
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.6584062 -0.2415305
+sample estimates:
+       cor 
+-0.4763071 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ir<span class="sc">~</span>ur, ffr_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ir ~ ur, data = ffr_3)
+
+Coefficients:
+(Intercept)           ur  
+     3.5990      -0.2226  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="sc">-</span><span class="fl">0.2226</span>, <span class="at">intercept=</span><span class="fl">3.5990</span>,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Phillips Curve of the US(2009-)"</span>)<span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Unemployment Rate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Inflation Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Finally, we have the same Phillips curve as we talk about in theory. Looking at the scatter plot and trend line after 2009, there is a negative correlation between the unemployment rate and the inflation rate.</p>
+<p>Taking the Phillips curve together, the relationship between the unemployment rate and the inflation rate does not show a negative correlation in the long run as we talk about in theory. In the long run, as the monetary theorist argues, money does not seem to affect real economic variables other than nominal variables. However, in the short term, the trade-off between the unemployment rate and the inflation rate may actually appear.</p>
+<p>Now, let’s look at the final topic, the policy goals of monetary authorities.</p>
+<p>Monetary authorities set target interest rates to intervene in the market, and I will first look at how target interest rates have affected market interest rates(here, The effective federal funds rate). A line graph was drawn using data since 1983 when the target interest rate began to be set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the line graph of target rate and effective federal funds rate</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr, (<span class="fu">aes</span>(<span class="at">x=</span>date))) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>effr), <span class="at">color =</span> <span class="st">'red'</span>) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>fftr), <span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span> </span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>ffut), <span class="at">color =</span> <span class="st">'dark blue'</span>) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>fflt), <span class="at">color =</span> <span class="st">'sky blue'</span>) <span class="sc">+</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"1982-10-01"</span>),<span class="fu">as.Date</span>(<span class="st">"2022-07-01"</span>))) <span class="sc">+</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Target Rate and Effective Federal Funds Rate"</span>,</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Time"</span>,</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Rate"</span>) <span class="sc">+</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The red line is the effective federal funds rate, and the blue line is the monetary authority’s target interest rate.(Since 2008, when the upper and lower limits were set, dark blue means upper limit, and bright blue means lower limit)</p>
+<p>As shown in the figure, the target interest rate and the effective federal funds rate are almost identical. Therefore, for ease of analysis, I will consider the policy intention of the monetary authorities as the effective federal funds rate.</p>
+<p>So my concern would be how much the effective federal funds rate and the inflation rate move together. If the policy authorities value the inflation rate, as a policy tool, the effective federal funds rate and the inflation rate will show a high correlation. First, I analyzed the correlation between the two variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># An Analysis of the Correlation Between Inflation Rate and The Effective Federal Funds Rate</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(fin_ffr<span class="sc">$</span>ir, fin_ffr<span class="sc">$</span>effr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  fin_ffr$ir and fin_ffr$effr
+t = 19.042, df = 257, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.7092358 0.8112382
+sample estimates:
+      cor 
+0.7649925 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(effr<span class="sc">~</span>ir, fin_ffr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = effr ~ ir, data = fin_ffr)
+
+Coefficients:
+(Intercept)           ir  
+     0.5872       1.1331  </code></pre>
+</div>
+</div>
+<p>Pearson’s correlation coefficient was found to be quite high at 0.765. Along with the derived trend line, I also drew the distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the line graph of effective federal funds rate and inflation rate</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr) <span class="sc">+</span> </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>ir, <span class="at">y=</span>effr)) <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">1.1331</span>, <span class="at">intercept=</span><span class="fl">0.5872</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">'darkred'</span>) <span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Effective Federal Funds Rate and Inflation Rate"</span>,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Inflation Rate"</span>,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Effective Federal Funds Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In the same way as looking at the Phillips curve, it was analyzed by dividing it into three periods before the 1980s, before 2008, and after 2008.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effective Federal Funds Rate and Inflation Rate Before 80s</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_1<span class="sc">$</span>ir, ffr_1<span class="sc">$</span>effr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  ffr_1$ir and ffr_1$effr
+t = 10.237, df = 86, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.6293731 0.8228414
+sample estimates:
+      cor 
+0.7411226 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(effr<span class="sc">~</span>ir,ffr_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = effr ~ ir, data = ffr_1)
+
+Coefficients:
+(Intercept)           ir  
+     2.2459       0.7208  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ir, <span class="at">y=</span>effr)) <span class="sc">+</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.7208</span>, <span class="at">intercept=</span><span class="fl">2.2459</span>, </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Effective Federal Funds Rate and Inflation Rate(1954-1979)"</span>,</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Inflation Rate"</span>,</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Effective Federal Funds Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effective Federal Funds Rate and Inflation Rate Between 1980 and 2008</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_2<span class="sc">$</span>ir, ffr_2<span class="sc">$</span>effr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  ffr_2$ir and ffr_2$effr
+t = 17.863, df = 114, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.8014692 0.8998561
+sample estimates:
+      cor 
+0.8583611 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(effr<span class="sc">~</span>ir,ffr_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = effr ~ ir, data = ffr_2)
+
+Coefficients:
+(Intercept)           ir  
+      1.232        1.288  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ir, <span class="at">y=</span>effr)) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">1.288</span>, <span class="at">intercept=</span><span class="fl">1.232</span>, </span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Effective Federal Funds Rate and Inflation Rate(1980-2008)"</span>,</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Inflation Rate"</span>,</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Effective Federal Funds Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effective Federal Funds Rate and Inflation Rate After 2009</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_3<span class="sc">$</span>ir, ffr_3<span class="sc">$</span>effr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  ffr_3$ir and ffr_3$effr
+t = 0.85548, df = 53, p-value = 0.3961
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.1533385  0.3705312
+sample estimates:
+      cor 
+0.1167063 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(effr<span class="sc">~</span>ir,ffr_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = effr ~ ir, data = ffr_3)
+
+Coefficients:
+(Intercept)           ir  
+    0.36508      0.07397  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ir, <span class="at">y=</span>effr)) <span class="sc">+</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.07397</span>, <span class="at">intercept=</span><span class="fl">0.36508</span>, </span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Effective Federal Funds Rate and Inflation Rate(2009-)"</span>,</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Inflation Rate"</span>,</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Effective Federal Funds Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="finalproject-youngsoochoi_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Even when divided by period, the correlation between the two was quite high. However, after 2009, the results were rather lower, which may have been attributed to the fact that the inflation rate was stable at a lower level than before during the period and that the policy environment changed significantly due to COVID-19.</p>
+<p>Overall, the monetary authorities’ policy goals reflect the inflation rate well, and it can be seen that inflation rate management is their main policy goal.</p>
+</section>
+<section id="reflection" class="level2">
+<h2 class="anchored" data-anchor-id="reflection">Reflection</h2>
+<p>I summarized the shortcomings and improvements I felt while conducting this task.</p>
+<p>First, these are matters related to data analysis itself. As an undergraduate, I have dealt with statistical programs such as SPSS, but it is too long ago and never in the case of programming languages such as R. Therefore, the whole process was harder and took longer than I thought. In the future, I will have to get used to coding and continue to improve while attending the DACSS course. Specifically, as it is related to missing values, missing values were not confirmed in the data merger process. It was discovered later while conducting the analysis, but this is the first task and believes in the possibility of future improvement, and the analysis was conducted without missing values. In addition, detailed analysis was conducted separately from each data set, and it is believed that coding could have been performed more efficiently using functions such as group_by. In terms of visualization, including graphs, I think it will be possible to decorate more categories in a better way. Considering these points, I will further improve my coding ability. As mentioned in the class, there is no correct answer to R coding, so I will continue to try to find my own way.</p>
+<p>Next, reflection and supplementation points were considered in terms of analysis results. Regarding the first research problem, it is thought that more variables related to real GDP growth in the United States can be added to the analysis. Adding population growth rate, capital accumulation rate, and international economic environment related to imports and exports to the analysis, I think the endogenous aspects of U.S. economic development such as technological development can be grasped in more detail. Second, I reached a conclusion that is contrary to our common sense regarding the Phillips curve, and it is thought that the analysis results may be different if the analysis period was divided more accurately using background knowledge on American economic history. I felt that my hypothesis was oversimplified in relation to the third research question. In fact, since monetary authorities determine policies based on past inflation rates, adding time variables to the analysis is considered to be a more precise study.</p>
+</section>
+<section id="conclution" class="level2">
+<h2 class="anchored" data-anchor-id="conclution">Conclution</h2>
+<p>My research question was about historical trends in the U.S. economy, analysis of the Philips curve, and the relationship between the U.S. monetary authorities’ policy objectives and inflation rates.</p>
+<p>Now, in relation to the first question, the U.S. economy has seen a real GDP growth rate of about 3% per year, despite several economic crises over the past 70 years.</p>
+<p>In relation to the second problem, it was found that the Phillips curve in the United States has been different from the theory described in textbooks for the past 70 years. But, it was also found that a short-term look at the period may show a negative correlation between the unemployment rate and the inflation rate in the textbook.</p>
+<p>Finally, the U.S. monetary authorities’ policy goals and inflation rates have historically shown a fairly high correlation. This suggests that the monetary authorities’ policy objectives are closely related to the management of inflation rates.</p>
+</section>
+<section id="bibiliography" class="level2">
+<h2 class="anchored" data-anchor-id="bibiliography">Bibiliography</h2>
+<ol type="1">
+<li><p>Federal Funds Upper and Lower Target, Effective Federal Funds Rate, Real GDP(Percent Change), Unemployment Rate data after April of 2017 from ‘FRED economic data’(https://fred.stlouisfed.org/)</p></li>
+<li><p>Inflation Rate after April of 2017 from ‘US Bureau of Labor Statistic’(https://www.bls.gov/)</p></li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb58" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project"</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "The Demonstration of Some Economic Theories"</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Young Soo Choi"</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "09/02/2022"</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a><span class="co">  - final project</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a>The economy is probably the most influential factor in everyone's daily lives. As a public official in Korea (even though I am not in charge of economic policy), I have experienced how economic problems affect not only our daily lives but also the government.</span>
+<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-33"><a href="#cb58-33" aria-hidden="true" tabindex="-1"></a>From this point of view, I chose the US economy as the subject of my final project of DACSS 601. This is because the U.S. economy has a great impact on the global economy due to its size and openness, and I wanted to check the theory and contents of economics that I learned when I was an undergraduate.</span>
+<span id="cb58-34"><a href="#cb58-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-35"><a href="#cb58-35" aria-hidden="true" tabindex="-1"></a>I selected several research topics using the 'federal funds rate' data used in class.</span>
+<span id="cb58-36"><a href="#cb58-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-37"><a href="#cb58-37" aria-hidden="true" tabindex="-1"></a>The first is to look at the general picture of the U.S. economy. I will visualize and examine the real gdp changes in the US economy since the 50s.</span>
+<span id="cb58-38"><a href="#cb58-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-39"><a href="#cb58-39" aria-hidden="true" tabindex="-1"></a>Second, I'll draw the famous Phillips curve, which represents the trade-off between unemployment and inflation, using real data from the United States, and see how the trade-off between the two really looks.</span>
+<span id="cb58-40"><a href="#cb58-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-41"><a href="#cb58-41" aria-hidden="true" tabindex="-1"></a>Lastly, I'll look at whether the target interest rate of the U.S. monetary policy authorities is for inflation management as I learned in the textbook. If the monetary authorities' top policy goal is inflation management, they will raise the target interest rate when inflation is high to stabilize prices, and the correlation between the two will be high.</span>
+<span id="cb58-42"><a href="#cb58-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-43"><a href="#cb58-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read and Tidy Data</span></span>
+<span id="cb58-44"><a href="#cb58-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-47"><a href="#cb58-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-48"><a href="#cb58-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Federal Funds Rate data</span></span>
+<span id="cb58-49"><a href="#cb58-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-50"><a href="#cb58-50" aria-hidden="true" tabindex="-1"></a>fedfundsrate_org<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/FedFundsRate.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb58-51"><a href="#cb58-51" aria-hidden="true" tabindex="-1"></a>fedfundsrate_org</span>
+<span id="cb58-52"><a href="#cb58-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-53"><a href="#cb58-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-54"><a href="#cb58-54" aria-hidden="true" tabindex="-1"></a>This data includes dates from 1954 (separated by year, month, and day), and various economic variables. There are seven economic variables included, and if the Federal Funds Target Rate, Federal Funds Upper Target, and Federal Funds Lower Target are considered as one variable of the monetary authorities, the actual data included are five economic variables such as target interest rates, effective federal funds rate, real gdp percent change, unemployment rates, and inflation rates.</span>
+<span id="cb58-55"><a href="#cb58-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-56"><a href="#cb58-56" aria-hidden="true" tabindex="-1"></a>This data contains a lot, but data from April of 2017 and later are missing. So, I found data after 2017 by variable on several web pages. Then, I read each data, organize the data using the pivot function, etc. if necessary, and had combined them into one using the join function.</span>
+<span id="cb58-57"><a href="#cb58-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-60"><a href="#cb58-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-61"><a href="#cb58-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Federal Funds Upper Target after 2017</span></span>
+<span id="cb58-62"><a href="#cb58-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-63"><a href="#cb58-63" aria-hidden="true" tabindex="-1"></a>upper_target_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/DFEDTARU.csv"</span>,</span>
+<span id="cb58-64"><a href="#cb58-64" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Federal Funds Upper Target"</span>), </span>
+<span id="cb58-65"><a href="#cb58-65" aria-hidden="true" tabindex="-1"></a>                               <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb58-66"><a href="#cb58-66" aria-hidden="true" tabindex="-1"></a>                               <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb58-67"><a href="#cb58-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-68"><a href="#cb58-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Federal Funds Lower Target after 2017</span></span>
+<span id="cb58-69"><a href="#cb58-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-70"><a href="#cb58-70" aria-hidden="true" tabindex="-1"></a>lower_target_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/DFEDTARL.csv"</span>, </span>
+<span id="cb58-71"><a href="#cb58-71" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Federal Funds Lower Target"</span>), </span>
+<span id="cb58-72"><a href="#cb58-72" aria-hidden="true" tabindex="-1"></a>                               <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb58-73"><a href="#cb58-73" aria-hidden="true" tabindex="-1"></a>                               <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb58-74"><a href="#cb58-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-75"><a href="#cb58-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Effective Federal Funds Rate after 2017</span></span>
+<span id="cb58-76"><a href="#cb58-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-77"><a href="#cb58-77" aria-hidden="true" tabindex="-1"></a>effr_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/DFF.csv"</span>, </span>
+<span id="cb58-78"><a href="#cb58-78" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Effective Federal Funds Rate"</span>), </span>
+<span id="cb58-79"><a href="#cb58-79" aria-hidden="true" tabindex="-1"></a>                       <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb58-80"><a href="#cb58-80" aria-hidden="true" tabindex="-1"></a>                       <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb58-81"><a href="#cb58-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-82"><a href="#cb58-82" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Unemployment Rate after 2017</span></span>
+<span id="cb58-83"><a href="#cb58-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-84"><a href="#cb58-84" aria-hidden="true" tabindex="-1"></a>unemployment_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/UNRATE.csv"</span>, </span>
+<span id="cb58-85"><a href="#cb58-85" aria-hidden="true" tabindex="-1"></a>                               <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Unemployment Rate"</span>), </span>
+<span id="cb58-86"><a href="#cb58-86" aria-hidden="true" tabindex="-1"></a>                               <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb58-87"><a href="#cb58-87" aria-hidden="true" tabindex="-1"></a>                               <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb58-88"><a href="#cb58-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-89"><a href="#cb58-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Real GDP (Percent Change) after 2017</span></span>
+<span id="cb58-90"><a href="#cb58-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-91"><a href="#cb58-91" aria-hidden="true" tabindex="-1"></a>rgdp_after17<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/ys_additional/A191RL1Q225SBEA.csv"</span>, </span>
+<span id="cb58-92"><a href="#cb58-92" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Date"</span>, <span class="st">"Real GDP (Percent Change)"</span>), </span>
+<span id="cb58-93"><a href="#cb58-93" aria-hidden="true" tabindex="-1"></a>                       <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb58-94"><a href="#cb58-94" aria-hidden="true" tabindex="-1"></a>                       <span class="at">skip=</span><span class="dv">1</span>)</span>
+<span id="cb58-95"><a href="#cb58-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-96"><a href="#cb58-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Read Inflation Rate after 2017</span></span>
+<span id="cb58-97"><a href="#cb58-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-98"><a href="#cb58-98" aria-hidden="true" tabindex="-1"></a>inflation_after17<span class="ot">&lt;-</span><span class="fu">read_xlsx</span>(<span class="st">"_data/ys_additional/SeriesReport-20220829142931_1adcd3.xlsx"</span>, </span>
+<span id="cb58-99"><a href="#cb58-99" aria-hidden="true" tabindex="-1"></a>                             <span class="at">range=</span><span class="st">"A72:M77"</span>, </span>
+<span id="cb58-100"><a href="#cb58-100" aria-hidden="true" tabindex="-1"></a>                             <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Year"</span>,<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5"</span>, <span class="st">"6"</span>, <span class="st">"7"</span>, <span class="st">"8"</span>, <span class="st">"9"</span>, <span class="st">"10"</span>, <span class="st">"11"</span>, <span class="st">"12"</span>))</span>
+<span id="cb58-101"><a href="#cb58-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-102"><a href="#cb58-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot Inflation Rate data after 2017</span></span>
+<span id="cb58-103"><a href="#cb58-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-104"><a href="#cb58-104" aria-hidden="true" tabindex="-1"></a>inflation_after17<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(inflation_after17, </span>
+<span id="cb58-105"><a href="#cb58-105" aria-hidden="true" tabindex="-1"></a>                                <span class="at">cols =</span> <span class="st">"1"</span><span class="sc">:</span><span class="st">"12"</span>, </span>
+<span id="cb58-106"><a href="#cb58-106" aria-hidden="true" tabindex="-1"></a>                                <span class="at">names_to =</span> <span class="st">"Month"</span>, </span>
+<span id="cb58-107"><a href="#cb58-107" aria-hidden="true" tabindex="-1"></a>                                <span class="at">values_to =</span> <span class="st">"Inflation Rate"</span>)</span>
+<span id="cb58-108"><a href="#cb58-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-109"><a href="#cb58-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy Inflation Rate data after 2017</span></span>
+<span id="cb58-110"><a href="#cb58-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-111"><a href="#cb58-111" aria-hidden="true" tabindex="-1"></a>inflation_after17<span class="ot">&lt;-</span>inflation_after17 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">"Day"</span><span class="ot">=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb58-112"><a href="#cb58-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">"Date"</span> <span class="ot">=</span> <span class="fu">make_date</span>(Year, Month, Day)) <span class="sc">%&gt;%</span> </span>
+<span id="cb58-113"><a href="#cb58-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"Date"</span>, <span class="st">"Inflation Rate"</span>)</span>
+<span id="cb58-114"><a href="#cb58-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-115"><a href="#cb58-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Join all the after 2017 data</span></span>
+<span id="cb58-116"><a href="#cb58-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-117"><a href="#cb58-117" aria-hidden="true" tabindex="-1"></a>data_after2017<span class="ot">&lt;-</span><span class="fu">left_join</span>(upper_target_after17, lower_target_after17, <span class="at">key =</span> <span class="st">'Date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb58-118"><a href="#cb58-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(effr_after17, <span class="at">key =</span> <span class="st">'Date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb58-119"><a href="#cb58-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(rgdp_after17, <span class="at">key =</span> <span class="st">'Date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb58-120"><a href="#cb58-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(unemployment_after17, <span class="at">key =</span> <span class="st">'Date'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb58-121"><a href="#cb58-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(inflation_after17, <span class="at">key =</span> <span class="st">'Date'</span>)</span>
+<span id="cb58-122"><a href="#cb58-122" aria-hidden="true" tabindex="-1"></a>data_after2017</span>
+<span id="cb58-123"><a href="#cb58-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-124"><a href="#cb58-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-125"><a href="#cb58-125" aria-hidden="true" tabindex="-1"></a>Now, I organized the date variables of the existing data to combine the existing data with the new data.</span>
+<span id="cb58-126"><a href="#cb58-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-129"><a href="#cb58-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-130"><a href="#cb58-130" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy the original data to join data after 2017</span></span>
+<span id="cb58-131"><a href="#cb58-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-132"><a href="#cb58-132" aria-hidden="true" tabindex="-1"></a>fedfundsrate_org<span class="ot">&lt;-</span>fedfundsrate_org<span class="sc">%&gt;%</span></span>
+<span id="cb58-133"><a href="#cb58-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">make_date</span>(Year, Month, Day))</span>
+<span id="cb58-134"><a href="#cb58-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-135"><a href="#cb58-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-136"><a href="#cb58-136" aria-hidden="true" tabindex="-1"></a>tot_fedfundsrate<span class="ot">&lt;-</span><span class="fu">full_join</span>(fedfundsrate_org, data_after2017, <span class="at">key=</span> <span class="st">"Date"</span>)</span>
+<span id="cb58-137"><a href="#cb58-137" aria-hidden="true" tabindex="-1"></a>tot_fedfundsrate<span class="ot">&lt;-</span>tot_fedfundsrate<span class="sc">%&gt;%</span></span>
+<span id="cb58-138"><a href="#cb58-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="st">"Year"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb58-139"><a href="#cb58-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="st">"Month"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb58-140"><a href="#cb58-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="st">"Day"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb58-141"><a href="#cb58-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="fu">c</span>(<span class="st">"Date"</span>))</span>
+<span id="cb58-142"><a href="#cb58-142" aria-hidden="true" tabindex="-1"></a>tot_fedfundsrate</span>
+<span id="cb58-143"><a href="#cb58-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-144"><a href="#cb58-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-145"><a href="#cb58-145" aria-hidden="true" tabindex="-1"></a>All put together, it became a data table with 2882 rows and 8 columns. It felt too much.</span>
+<span id="cb58-146"><a href="#cb58-146" aria-hidden="true" tabindex="-1"></a>In order to facilitate analysis, I extracted data from January, April, July, and October using the filter function and made quarterly data.</span>
+<span id="cb58-147"><a href="#cb58-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-150"><a href="#cb58-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-151"><a href="#cb58-151" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter quarterly data and rename columns </span></span>
+<span id="cb58-152"><a href="#cb58-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-153"><a href="#cb58-153" aria-hidden="true" tabindex="-1"></a>fin_ffr<span class="ot">&lt;-</span>tot_fedfundsrate <span class="sc">%&gt;%</span></span>
+<span id="cb58-154"><a href="#cb58-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">month</span>(Date) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">10</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb58-155"><a href="#cb58-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">day</span>(Date) <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb58-156"><a href="#cb58-156" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(fin_ffr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"fftr"</span>, <span class="st">"ffut"</span>, <span class="st">"fflt"</span>, <span class="st">"effr"</span>, <span class="st">"rgdp"</span>, <span class="st">"ur"</span>, <span class="st">"ir"</span>)</span>
+<span id="cb58-157"><a href="#cb58-157" aria-hidden="true" tabindex="-1"></a>fin_ffr</span>
+<span id="cb58-158"><a href="#cb58-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-159"><a href="#cb58-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-160"><a href="#cb58-160" aria-hidden="true" tabindex="-1"></a>Now, I finally created a dataset from the third quarter of 1954 to the third quarter of 2022 with 273 rows.</span>
+<span id="cb58-161"><a href="#cb58-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-162"><a href="#cb58-162" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualization and Analysis</span></span>
+<span id="cb58-163"><a href="#cb58-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-164"><a href="#cb58-164" aria-hidden="true" tabindex="-1"></a>Regarding the first topic, I drew a time series line graph of change in the US real GDP since 1954.</span>
+<span id="cb58-165"><a href="#cb58-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-168"><a href="#cb58-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-169"><a href="#cb58-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Time series of Real GDP of the US</span></span>
+<span id="cb58-170"><a href="#cb58-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-171"><a href="#cb58-171" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr) <span class="sc">+</span></span>
+<span id="cb58-172"><a href="#cb58-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>rgdp)) <span class="sc">+</span></span>
+<span id="cb58-173"><a href="#cb58-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>rgdp)) <span class="sc">+</span></span>
+<span id="cb58-174"><a href="#cb58-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Real GDP Change of the US"</span>)<span class="sc">+</span></span>
+<span id="cb58-175"><a href="#cb58-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Real GDP Change(Percent)"</span>)</span>
+<span id="cb58-176"><a href="#cb58-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-177"><a href="#cb58-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-180"><a href="#cb58-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-181"><a href="#cb58-181" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(fin_ffr<span class="sc">$</span>rgdp, <span class="at">na.rm=</span>T)</span>
+<span id="cb58-182"><a href="#cb58-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-183"><a href="#cb58-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-184"><a href="#cb58-184" aria-hidden="true" tabindex="-1"></a>During this period, the average real GDP growth rate in the United States was 3.08 percent.(Missing growth rates for the period were excluded from the calculation)</span>
+<span id="cb58-185"><a href="#cb58-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-186"><a href="#cb58-186" aria-hidden="true" tabindex="-1"></a>And the growth rate seems to be decreasing very little by little, but it is not seen well due to rapid changes since 2020. I drew the graph again except for rapid changes after 2020, which seems to be due to the COVID-19 pandemic.</span>
+<span id="cb58-187"><a href="#cb58-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-190"><a href="#cb58-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-191"><a href="#cb58-191" aria-hidden="true" tabindex="-1"></a><span class="co"># Exclude COVID period(2020-)</span></span>
+<span id="cb58-192"><a href="#cb58-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-193"><a href="#cb58-193" aria-hidden="true" tabindex="-1"></a>ffr_b20<span class="ot">&lt;-</span><span class="fu">filter</span>(fin_ffr, <span class="fu">year</span>(date)<span class="sc">&lt;=</span><span class="dv">2019</span>)</span>
+<span id="cb58-194"><a href="#cb58-194" aria-hidden="true" tabindex="-1"></a>ffr_b20</span>
+<span id="cb58-195"><a href="#cb58-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-196"><a href="#cb58-196" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_b20) <span class="sc">+</span></span>
+<span id="cb58-197"><a href="#cb58-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>rgdp)) <span class="sc">+</span></span>
+<span id="cb58-198"><a href="#cb58-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>rgdp)) <span class="sc">+</span></span>
+<span id="cb58-199"><a href="#cb58-199" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Real GDP Change of the US(Before the COVID)"</span>)<span class="sc">+</span></span>
+<span id="cb58-200"><a href="#cb58-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Real GDP Change(Percent)"</span>)</span>
+<span id="cb58-201"><a href="#cb58-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-202"><a href="#cb58-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-203"><a href="#cb58-203" aria-hidden="true" tabindex="-1"></a>Now the blue trend line is small, but it certainly seems to be lowering. In addition, I can see the economic recession caused by the oil shock in the late 70s and early 80s and the economic recession caused by the financial crisis in the late 2000s.</span>
+<span id="cb58-204"><a href="#cb58-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-205"><a href="#cb58-205" aria-hidden="true" tabindex="-1"></a>Next, I looked at the Phillips curve. </span>
+<span id="cb58-206"><a href="#cb58-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-207"><a href="#cb58-207" aria-hidden="true" tabindex="-1"></a>After a single linear analysis of the correlation between the unemployment rate and the inflation rate since 1954, the trend line was drawn together on the scatter plot using this result.</span>
+<span id="cb58-208"><a href="#cb58-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-211"><a href="#cb58-211" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-212"><a href="#cb58-212" aria-hidden="true" tabindex="-1"></a><span class="co"># An Analysis of the Correlation Between Unemployment and Inflation Rate</span></span>
+<span id="cb58-213"><a href="#cb58-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-214"><a href="#cb58-214" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(fin_ffr<span class="sc">$</span>ir, fin_ffr<span class="sc">$</span>ur)</span>
+<span id="cb58-215"><a href="#cb58-215" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ir<span class="sc">~</span>ur, fin_ffr)</span>
+<span id="cb58-216"><a href="#cb58-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-217"><a href="#cb58-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-218"><a href="#cb58-218" aria-hidden="true" tabindex="-1"></a>The result is strange. The Pearson correlation coefficient was not high at 0.17, and the relationship between the unemployment rate and the inflation rate was rather positive, unlike the theory!</span>
+<span id="cb58-219"><a href="#cb58-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-220"><a href="#cb58-220" aria-hidden="true" tabindex="-1"></a>The scatter plot and trend line were drawn using the ggplot function.</span>
+<span id="cb58-221"><a href="#cb58-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-224"><a href="#cb58-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-225"><a href="#cb58-225" aria-hidden="true" tabindex="-1"></a><span class="co"># Phillips Curve of the US(1954-)</span></span>
+<span id="cb58-226"><a href="#cb58-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-227"><a href="#cb58-227" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb58-228"><a href="#cb58-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-229"><a href="#cb58-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.2583</span>, <span class="at">intercept=</span><span class="fl">2.1054</span>,</span>
+<span id="cb58-230"><a href="#cb58-230" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">'darkorange'</span>) <span class="sc">+</span></span>
+<span id="cb58-231"><a href="#cb58-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Phillips Curve of the US"</span>,</span>
+<span id="cb58-232"><a href="#cb58-232" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Unemployment Rate"</span>,</span>
+<span id="cb58-233"><a href="#cb58-233" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Inflation Rate"</span>)</span>
+<span id="cb58-234"><a href="#cb58-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-235"><a href="#cb58-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-236"><a href="#cb58-236" aria-hidden="true" tabindex="-1"></a>To take a closer look, I divided the period from the oil shock in the early 80s and the financial crisis in the late 00s. To be exact, it was divided into three periods: 1954 to 1979, 1980 to 2008, and 2009 and later.</span>
+<span id="cb58-237"><a href="#cb58-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-240"><a href="#cb58-240" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-241"><a href="#cb58-241" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutate New Column by Decade</span></span>
+<span id="cb58-242"><a href="#cb58-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-243"><a href="#cb58-243" aria-hidden="true" tabindex="-1"></a>fin_ffr <span class="ot">&lt;-</span> fin_ffr <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="st">"decade"</span> <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">year</span>(date)<span class="sc">&lt;=</span><span class="dv">1979</span>, <span class="st">"1950s to 1970s"</span>, </span>
+<span id="cb58-244"><a href="#cb58-244" aria-hidden="true" tabindex="-1"></a>                                                <span class="fu">ifelse</span>(<span class="fu">year</span>(date)<span class="sc">&lt;=</span><span class="dv">2008</span>, <span class="st">"1980s to 2000s"</span>, <span class="st">"2010s"</span>)))</span>
+<span id="cb58-245"><a href="#cb58-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-246"><a href="#cb58-246" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw Phillips Curve of the US by Decade</span></span>
+<span id="cb58-247"><a href="#cb58-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-248"><a href="#cb58-248" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb58-249"><a href="#cb58-249" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> decade)) <span class="sc">+</span></span>
+<span id="cb58-250"><a href="#cb58-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Phillips Curve of the US(disticted by period)"</span>)<span class="sc">+</span></span>
+<span id="cb58-251"><a href="#cb58-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Unemployment Rate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Inflation Rate"</span>)</span>
+<span id="cb58-252"><a href="#cb58-252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-253"><a href="#cb58-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-254"><a href="#cb58-254" aria-hidden="true" tabindex="-1"></a>It seems that the Phillips curve, which is slightly familiar by period, is seen. Now, let's take a closer look at each period.</span>
+<span id="cb58-255"><a href="#cb58-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-258"><a href="#cb58-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-259"><a href="#cb58-259" aria-hidden="true" tabindex="-1"></a><span class="co"># Seperate the Data</span></span>
+<span id="cb58-260"><a href="#cb58-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-261"><a href="#cb58-261" aria-hidden="true" tabindex="-1"></a>ffr_1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(fin_ffr, decade<span class="sc">==</span><span class="st">"1950s to 1970s"</span>)</span>
+<span id="cb58-262"><a href="#cb58-262" aria-hidden="true" tabindex="-1"></a>ffr_2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(fin_ffr, decade<span class="sc">==</span><span class="st">"1980s to 2000s"</span>)</span>
+<span id="cb58-263"><a href="#cb58-263" aria-hidden="true" tabindex="-1"></a>ffr_3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(fin_ffr, decade<span class="sc">==</span><span class="st">"2010s"</span>)</span>
+<span id="cb58-264"><a href="#cb58-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-265"><a href="#cb58-265" aria-hidden="true" tabindex="-1"></a><span class="co"># Phillips Curve of Before 80s</span></span>
+<span id="cb58-266"><a href="#cb58-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-267"><a href="#cb58-267" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_1<span class="sc">$</span>ur, ffr_1<span class="sc">$</span>ir)</span>
+<span id="cb58-268"><a href="#cb58-268" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ir<span class="sc">~</span>ur,ffr_1)</span>
+<span id="cb58-269"><a href="#cb58-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-270"><a href="#cb58-270" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb58-271"><a href="#cb58-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-272"><a href="#cb58-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.6773</span>, <span class="at">intercept=</span><span class="fl">0.4649</span>, </span>
+<span id="cb58-273"><a href="#cb58-273" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb58-274"><a href="#cb58-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Phillips Curve of the US(1954-1979)"</span>)<span class="sc">+</span></span>
+<span id="cb58-275"><a href="#cb58-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Unemployment Rate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Inflation Rate"</span>)</span>
+<span id="cb58-276"><a href="#cb58-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-277"><a href="#cb58-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-278"><a href="#cb58-278" aria-hidden="true" tabindex="-1"></a>In the same way, the relationship between inflation and unemployment before the 1980s is drawn as a trend line and a spread.</span>
+<span id="cb58-279"><a href="#cb58-279" aria-hidden="true" tabindex="-1"></a>It's weird. It's a positive relationship again.</span>
+<span id="cb58-280"><a href="#cb58-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-281"><a href="#cb58-281" aria-hidden="true" tabindex="-1"></a>Let's move on from 1980 to 2008.</span>
+<span id="cb58-282"><a href="#cb58-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-285"><a href="#cb58-285" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-286"><a href="#cb58-286" aria-hidden="true" tabindex="-1"></a><span class="co"># Phillips Curve of 1980-2010</span></span>
+<span id="cb58-287"><a href="#cb58-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-288"><a href="#cb58-288" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_2<span class="sc">$</span>ur, ffr_2<span class="sc">$</span>ir)</span>
+<span id="cb58-289"><a href="#cb58-289" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ir<span class="sc">~</span>ur, ffr_2)</span>
+<span id="cb58-290"><a href="#cb58-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-291"><a href="#cb58-291" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb58-292"><a href="#cb58-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-293"><a href="#cb58-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.9188</span>, <span class="at">intercept=</span><span class="sc">-</span><span class="fl">1.6648</span>,</span>
+<span id="cb58-294"><a href="#cb58-294" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb58-295"><a href="#cb58-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Phillips Curve of the US(1980-2008)"</span>)<span class="sc">+</span></span>
+<span id="cb58-296"><a href="#cb58-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Unemployment Rate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Inflation Rate"</span>)</span>
+<span id="cb58-297"><a href="#cb58-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-298"><a href="#cb58-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-299"><a href="#cb58-299" aria-hidden="true" tabindex="-1"></a>It's also a positive relationship. The correlation coefficient was rather higher.</span>
+<span id="cb58-300"><a href="#cb58-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-301"><a href="#cb58-301" aria-hidden="true" tabindex="-1"></a>Next on, let's look at the data since 2009.</span>
+<span id="cb58-302"><a href="#cb58-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-305"><a href="#cb58-305" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-306"><a href="#cb58-306" aria-hidden="true" tabindex="-1"></a><span class="co"># Phillips Curve of 2010s</span></span>
+<span id="cb58-307"><a href="#cb58-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-308"><a href="#cb58-308" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_3<span class="sc">$</span>ur, ffr_3<span class="sc">$</span>ir)</span>
+<span id="cb58-309"><a href="#cb58-309" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(ir<span class="sc">~</span>ur, ffr_3)</span>
+<span id="cb58-310"><a href="#cb58-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-311"><a href="#cb58-311" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ur, <span class="at">y=</span>ir)) <span class="sc">+</span></span>
+<span id="cb58-312"><a href="#cb58-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-313"><a href="#cb58-313" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="sc">-</span><span class="fl">0.2226</span>, <span class="at">intercept=</span><span class="fl">3.5990</span>,</span>
+<span id="cb58-314"><a href="#cb58-314" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb58-315"><a href="#cb58-315" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Phillips Curve of the US(2009-)"</span>)<span class="sc">+</span></span>
+<span id="cb58-316"><a href="#cb58-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Unemployment Rate"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Inflation Rate"</span>)</span>
+<span id="cb58-317"><a href="#cb58-317" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-318"><a href="#cb58-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-319"><a href="#cb58-319" aria-hidden="true" tabindex="-1"></a>Finally, we have the same Phillips curve as we talk about in theory.</span>
+<span id="cb58-320"><a href="#cb58-320" aria-hidden="true" tabindex="-1"></a>Looking at the scatter plot and trend line after 2009, there is a negative correlation between the unemployment rate and the inflation rate.</span>
+<span id="cb58-321"><a href="#cb58-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-322"><a href="#cb58-322" aria-hidden="true" tabindex="-1"></a>Taking the Phillips curve together, the relationship between the unemployment rate and the inflation rate does not show a negative correlation in the long run as we talk about in theory. In the long run, as the monetary theorist argues, money does not seem to affect real economic variables other than nominal variables. However, in the short term, the trade-off between the unemployment rate and the inflation rate may actually appear.</span>
+<span id="cb58-323"><a href="#cb58-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-324"><a href="#cb58-324" aria-hidden="true" tabindex="-1"></a>Now, let's look at the final topic, the policy goals of monetary authorities. </span>
+<span id="cb58-325"><a href="#cb58-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-326"><a href="#cb58-326" aria-hidden="true" tabindex="-1"></a>Monetary authorities set target interest rates to intervene in the market, and I will first look at how target interest rates have affected market interest rates(here, The effective federal funds rate). A line graph was drawn using data since 1983 when the target interest rate began to be set.</span>
+<span id="cb58-327"><a href="#cb58-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-330"><a href="#cb58-330" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-331"><a href="#cb58-331" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the line graph of target rate and effective federal funds rate</span></span>
+<span id="cb58-332"><a href="#cb58-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-333"><a href="#cb58-333" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr, (<span class="fu">aes</span>(<span class="at">x=</span>date))) <span class="sc">+</span></span>
+<span id="cb58-334"><a href="#cb58-334" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>effr), <span class="at">color =</span> <span class="st">'red'</span>) <span class="sc">+</span></span>
+<span id="cb58-335"><a href="#cb58-335" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>fftr), <span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span> </span>
+<span id="cb58-336"><a href="#cb58-336" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>ffut), <span class="at">color =</span> <span class="st">'dark blue'</span>) <span class="sc">+</span></span>
+<span id="cb58-337"><a href="#cb58-337" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>fflt), <span class="at">color =</span> <span class="st">'sky blue'</span>) <span class="sc">+</span></span>
+<span id="cb58-338"><a href="#cb58-338" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fu">as.Date</span>(<span class="st">"1982-10-01"</span>),<span class="fu">as.Date</span>(<span class="st">"2022-07-01"</span>))) <span class="sc">+</span></span>
+<span id="cb58-339"><a href="#cb58-339" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Target Rate and Effective Federal Funds Rate"</span>,</span>
+<span id="cb58-340"><a href="#cb58-340" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Time"</span>,</span>
+<span id="cb58-341"><a href="#cb58-341" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Rate"</span>) <span class="sc">+</span></span>
+<span id="cb58-342"><a href="#cb58-342" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>))</span>
+<span id="cb58-343"><a href="#cb58-343" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-344"><a href="#cb58-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-345"><a href="#cb58-345" aria-hidden="true" tabindex="-1"></a>The red line is the effective federal funds rate, and the blue line is the monetary authority's target interest rate.(Since 2008, when the upper and lower limits were set, dark blue means upper limit, and bright blue means lower limit)</span>
+<span id="cb58-346"><a href="#cb58-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-347"><a href="#cb58-347" aria-hidden="true" tabindex="-1"></a>As shown in the figure, the target interest rate and the effective federal funds rate are almost identical. Therefore, for ease of analysis, I will consider the policy intention of the monetary authorities as the effective federal funds rate.</span>
+<span id="cb58-348"><a href="#cb58-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-349"><a href="#cb58-349" aria-hidden="true" tabindex="-1"></a>So my concern would be how much the effective federal funds rate and the inflation rate move together. If the policy authorities value the inflation rate, as a policy tool, the effective federal funds rate and the inflation rate will show a high correlation.</span>
+<span id="cb58-350"><a href="#cb58-350" aria-hidden="true" tabindex="-1"></a>First, I analyzed the correlation between the two variables.</span>
+<span id="cb58-351"><a href="#cb58-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-354"><a href="#cb58-354" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-355"><a href="#cb58-355" aria-hidden="true" tabindex="-1"></a><span class="co"># An Analysis of the Correlation Between Inflation Rate and The Effective Federal Funds Rate</span></span>
+<span id="cb58-356"><a href="#cb58-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-357"><a href="#cb58-357" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(fin_ffr<span class="sc">$</span>ir, fin_ffr<span class="sc">$</span>effr)</span>
+<span id="cb58-358"><a href="#cb58-358" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(effr<span class="sc">~</span>ir, fin_ffr)</span>
+<span id="cb58-359"><a href="#cb58-359" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-360"><a href="#cb58-360" aria-hidden="true" tabindex="-1"></a>Pearson's correlation coefficient was found to be quite high at 0.765. Along with the derived trend line, I also drew the distribution.</span>
+<span id="cb58-361"><a href="#cb58-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-364"><a href="#cb58-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-365"><a href="#cb58-365" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the line graph of effective federal funds rate and inflation rate</span></span>
+<span id="cb58-366"><a href="#cb58-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-367"><a href="#cb58-367" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fin_ffr) <span class="sc">+</span> </span>
+<span id="cb58-368"><a href="#cb58-368" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>ir, <span class="at">y=</span>effr)) <span class="sc">+</span></span>
+<span id="cb58-369"><a href="#cb58-369" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">1.1331</span>, <span class="at">intercept=</span><span class="fl">0.5872</span>,</span>
+<span id="cb58-370"><a href="#cb58-370" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">'darkred'</span>) <span class="sc">+</span></span>
+<span id="cb58-371"><a href="#cb58-371" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Effective Federal Funds Rate and Inflation Rate"</span>,</span>
+<span id="cb58-372"><a href="#cb58-372" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Inflation Rate"</span>,</span>
+<span id="cb58-373"><a href="#cb58-373" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Effective Federal Funds Rate"</span>)</span>
+<span id="cb58-374"><a href="#cb58-374" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-375"><a href="#cb58-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-376"><a href="#cb58-376" aria-hidden="true" tabindex="-1"></a>In the same way as looking at the Phillips curve, it was analyzed by dividing it into three periods before the 1980s, before 2008, and after 2008.</span>
+<span id="cb58-377"><a href="#cb58-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-380"><a href="#cb58-380" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-381"><a href="#cb58-381" aria-hidden="true" tabindex="-1"></a><span class="co"># Effective Federal Funds Rate and Inflation Rate Before 80s</span></span>
+<span id="cb58-382"><a href="#cb58-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-383"><a href="#cb58-383" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_1<span class="sc">$</span>ir, ffr_1<span class="sc">$</span>effr)</span>
+<span id="cb58-384"><a href="#cb58-384" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(effr<span class="sc">~</span>ir,ffr_1)</span>
+<span id="cb58-385"><a href="#cb58-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-386"><a href="#cb58-386" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ir, <span class="at">y=</span>effr)) <span class="sc">+</span></span>
+<span id="cb58-387"><a href="#cb58-387" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-388"><a href="#cb58-388" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.7208</span>, <span class="at">intercept=</span><span class="fl">2.2459</span>, </span>
+<span id="cb58-389"><a href="#cb58-389" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"pink"</span>) <span class="sc">+</span></span>
+<span id="cb58-390"><a href="#cb58-390" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Effective Federal Funds Rate and Inflation Rate(1954-1979)"</span>,</span>
+<span id="cb58-391"><a href="#cb58-391" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Inflation Rate"</span>,</span>
+<span id="cb58-392"><a href="#cb58-392" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Effective Federal Funds Rate"</span>)</span>
+<span id="cb58-393"><a href="#cb58-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-394"><a href="#cb58-394" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-395"><a href="#cb58-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-398"><a href="#cb58-398" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-399"><a href="#cb58-399" aria-hidden="true" tabindex="-1"></a><span class="co"># Effective Federal Funds Rate and Inflation Rate Between 1980 and 2008</span></span>
+<span id="cb58-400"><a href="#cb58-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-401"><a href="#cb58-401" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_2<span class="sc">$</span>ir, ffr_2<span class="sc">$</span>effr)</span>
+<span id="cb58-402"><a href="#cb58-402" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(effr<span class="sc">~</span>ir,ffr_2)</span>
+<span id="cb58-403"><a href="#cb58-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-404"><a href="#cb58-404" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ir, <span class="at">y=</span>effr)) <span class="sc">+</span></span>
+<span id="cb58-405"><a href="#cb58-405" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-406"><a href="#cb58-406" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">1.288</span>, <span class="at">intercept=</span><span class="fl">1.232</span>, </span>
+<span id="cb58-407"><a href="#cb58-407" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb58-408"><a href="#cb58-408" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Effective Federal Funds Rate and Inflation Rate(1980-2008)"</span>,</span>
+<span id="cb58-409"><a href="#cb58-409" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Inflation Rate"</span>,</span>
+<span id="cb58-410"><a href="#cb58-410" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Effective Federal Funds Rate"</span>)</span>
+<span id="cb58-411"><a href="#cb58-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-412"><a href="#cb58-412" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-413"><a href="#cb58-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-416"><a href="#cb58-416" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb58-417"><a href="#cb58-417" aria-hidden="true" tabindex="-1"></a><span class="co"># Effective Federal Funds Rate and Inflation Rate After 2009</span></span>
+<span id="cb58-418"><a href="#cb58-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-419"><a href="#cb58-419" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(ffr_3<span class="sc">$</span>ir, ffr_3<span class="sc">$</span>effr)</span>
+<span id="cb58-420"><a href="#cb58-420" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(effr<span class="sc">~</span>ir,ffr_3)</span>
+<span id="cb58-421"><a href="#cb58-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-422"><a href="#cb58-422" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ffr_3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>ir, <span class="at">y=</span>effr)) <span class="sc">+</span></span>
+<span id="cb58-423"><a href="#cb58-423" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-424"><a href="#cb58-424" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span><span class="fl">0.07397</span>, <span class="at">intercept=</span><span class="fl">0.36508</span>, </span>
+<span id="cb58-425"><a href="#cb58-425" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb58-426"><a href="#cb58-426" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Effective Federal Funds Rate and Inflation Rate(2009-)"</span>,</span>
+<span id="cb58-427"><a href="#cb58-427" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Inflation Rate"</span>,</span>
+<span id="cb58-428"><a href="#cb58-428" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Effective Federal Funds Rate"</span>)</span>
+<span id="cb58-429"><a href="#cb58-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-430"><a href="#cb58-430" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb58-431"><a href="#cb58-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-432"><a href="#cb58-432" aria-hidden="true" tabindex="-1"></a>Even when divided by period, the correlation between the two was quite high. However, after 2009, the results were rather lower, which may have been attributed to the fact that the inflation rate was stable at a lower level than before during the period and that the policy environment changed significantly due to COVID-19.</span>
+<span id="cb58-433"><a href="#cb58-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-434"><a href="#cb58-434" aria-hidden="true" tabindex="-1"></a>Overall, the monetary authorities' policy goals reflect the inflation rate well, and it can be seen that inflation rate management is their main policy goal.</span>
+<span id="cb58-435"><a href="#cb58-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-436"><a href="#cb58-436" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
+<span id="cb58-437"><a href="#cb58-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-438"><a href="#cb58-438" aria-hidden="true" tabindex="-1"></a>I summarized the shortcomings and improvements I felt while conducting this task.</span>
+<span id="cb58-439"><a href="#cb58-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-440"><a href="#cb58-440" aria-hidden="true" tabindex="-1"></a>First, these are matters related to data analysis itself. As an undergraduate, I have dealt with statistical programs such as SPSS, but it is too long ago and never in the case of programming languages such as R. Therefore, the whole process was harder and took longer than I thought. In the future, I will have to get used to coding and continue to improve while attending the DACSS course. </span>
+<span id="cb58-441"><a href="#cb58-441" aria-hidden="true" tabindex="-1"></a>Specifically, as it is related to missing values, missing values were not confirmed in the data merger process. It was discovered later while conducting the analysis, but this is the first task and believes in the possibility of future improvement, and the analysis was conducted without missing values. </span>
+<span id="cb58-442"><a href="#cb58-442" aria-hidden="true" tabindex="-1"></a>In addition, detailed analysis was conducted separately from each data set, and it is believed that coding could have been performed more efficiently using functions such as group_by. In terms of visualization, including graphs, I think it will be possible to decorate more categories in a better way. </span>
+<span id="cb58-443"><a href="#cb58-443" aria-hidden="true" tabindex="-1"></a>Considering these points, I will further improve my coding ability. As mentioned in the class, there is no correct answer to R coding, so I will continue to try to find my own way.</span>
+<span id="cb58-444"><a href="#cb58-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-445"><a href="#cb58-445" aria-hidden="true" tabindex="-1"></a>Next, reflection and supplementation points were considered in terms of analysis results. </span>
+<span id="cb58-446"><a href="#cb58-446" aria-hidden="true" tabindex="-1"></a>Regarding the first research problem, it is thought that more variables related to real GDP growth in the United States can be added to the analysis. Adding population growth rate, capital accumulation rate, and international economic environment related to imports and exports to the analysis, I think the endogenous aspects of U.S. economic development such as technological development can be grasped in more detail. </span>
+<span id="cb58-447"><a href="#cb58-447" aria-hidden="true" tabindex="-1"></a>Second, I reached a conclusion that is contrary to our common sense regarding the Phillips curve, and it is thought that the analysis results may be different if the analysis period was divided more accurately using background knowledge on American economic history.</span>
+<span id="cb58-448"><a href="#cb58-448" aria-hidden="true" tabindex="-1"></a>I felt that my hypothesis was oversimplified in relation to the third research question. In fact, since monetary authorities determine policies based on past inflation rates, adding time variables to the analysis is considered to be a more precise study.</span>
+<span id="cb58-449"><a href="#cb58-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-450"><a href="#cb58-450" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclution</span></span>
+<span id="cb58-451"><a href="#cb58-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-452"><a href="#cb58-452" aria-hidden="true" tabindex="-1"></a>My research question was about historical trends in the U.S. economy, analysis of the Philips curve, and the relationship between the U.S. monetary authorities' policy objectives and inflation rates.</span>
+<span id="cb58-453"><a href="#cb58-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-454"><a href="#cb58-454" aria-hidden="true" tabindex="-1"></a>Now, in relation to the first question, the U.S. economy has seen a real GDP growth rate of about 3% per year, despite several economic crises over the past 70 years.</span>
+<span id="cb58-455"><a href="#cb58-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-456"><a href="#cb58-456" aria-hidden="true" tabindex="-1"></a>In relation to the second problem, it was found that the Phillips curve in the United States has been different from the theory described in textbooks for the past 70 years. But, it was also found that a short-term look at the period may show a negative correlation between the unemployment rate and the inflation rate in the textbook.</span>
+<span id="cb58-457"><a href="#cb58-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-458"><a href="#cb58-458" aria-hidden="true" tabindex="-1"></a>Finally, the U.S. monetary authorities' policy goals and inflation rates have historically shown a fairly high correlation. This suggests that the monetary authorities' policy objectives are closely related to the management of inflation rates.</span>
+<span id="cb58-459"><a href="#cb58-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-460"><a href="#cb58-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibiliography</span></span>
+<span id="cb58-461"><a href="#cb58-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-462"><a href="#cb58-462" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Federal Funds Upper and Lower Target, Effective Federal Funds Rate, Real GDP(Percent Change), Unemployment Rate data after April of 2017 from 'FRED economic data'(https://fred.stlouisfed.org/)</span>
+<span id="cb58-463"><a href="#cb58-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-464"><a href="#cb58-464" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Inflation Rate after April of 2017 from 'US Bureau of Labor Statistic'(https://www.bls.gov/)</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>

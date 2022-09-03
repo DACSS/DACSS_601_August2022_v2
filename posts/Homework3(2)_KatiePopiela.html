@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>- Homework 3/Final Project - Katie Popiela</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Homework 3/Final Project - Katie Popiela">
+<meta name="twitter:description" content="I will be using the poliscidata package in R, and I will then use the ‘world’ data set.">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#background-info-and-data" id="toc-background-info-and-data" class="nav-link" data-scroll-target="#background-info-and-data">Background Info and Data</a></li>
+  <li><a href="#visuals-and-explanation" id="toc-visuals-and-explanation" class="nav-link" data-scroll-target="#visuals-and-explanation">Visuals and Explanation</a></li>
+  <li><a href="#summary-statistics-and-reflection" id="toc-summary-statistics-and-reflection" class="nav-link" data-scroll-target="#summary-statistics-and-reflection">Summary Statistics and Reflection</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Bibliography</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Homework 3/Final Project - Katie Popiela</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages
+───────────────────────────────────────
+tidyverse 1.3.2 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ tibble  3.1.8     ✔ stringr 1.4.0
+✔ tidyr   1.2.0     ✔ forcats 0.5.1
+✔ purrr   0.3.4     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>------------------------------------------------------------------------------
+You have loaded plyr after dplyr - this is likely to cause problems.
+If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+library(plyr); library(dplyr)
+------------------------------------------------------------------------------
+
+Attaching package: 'plyr'
+
+The following object is masked from 'package:purrr':
+
+    compact
+
+The following objects are masked from 'package:dplyr':
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'scales'
+
+The following object is masked from 'package:purrr':
+
+    discard
+
+The following object is masked from 'package:readr':
+
+    col_factor</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(poliscidata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'gdata':
+  method         from  
+  reorder.factor gplots
+
+Attaching package: 'poliscidata'
+
+The following object is masked from 'package:plyr':
+
+    ddply</code></pre>
+</div>
+</div>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>I will be using the poliscidata package in R, and I will then use the ‘world’ data set. It’s relatively large so I will not describe in depth, but it has a difference in statistics and information in almost every country. Some of these variables include “confidence in government institutions” (designated confidence interval), “ethnic and linguistic factionalization” (frac_eth3), and “is this state’s government a democracy?” (democ_regime08).</p>
+<p>Based on my undergrad thesis, which focused on ethno-religious violence in the Polish-Ukrainian borderlands, I’m going to focus on the following variables:</p>
+<ol type="1">
+<li>country,</li>
+<li>regionun (UN region)</li>
+<li>frac_eth3 (level of ethnic factionalization)</li>
+<li>durable (# of years since last regime transition)</li>
+<li>dem_level14 (regime type)</li>
+<li>dem_score14 (democracy score, Economist 2014)</li>
+<li>pr_sys (proportional representation in government, yes or no)</li>
+</ol>
+<p>Some of the commonalities I found between incidents of ethno-religious violence in an ethnic borderland are as follows: (a) history of political suppression against one of the two dominant ethnicities/religions in the area, (b) each group has intense feelings of “rivalry,” jealousy, and resentment against the other, (c) although language and culture in ethnic borderlands can be similar (such as with Poles and Ukrainians), their social, religious, and political traditions/aspirations are more often than not incredibly different, (d) the victorious group restarts the cycle and enacts harsh and repressive policies against the loser. And in situations where groups need to compete for survival (such as in times of war or general political instability), these trends combine and result in the eruption of violence.</p>
+<p><em>NOTE: If I had more time, I would love to transform this into a larger project in which I would use the info gathered here and see if ethno-religious violence actually erupted in the places that match my criteria on paper.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>poliscidata<span class="sc">::</span>world <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country,regionun) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">view</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the interest of time, I’m not going to go through all 167 countries included in this data set and randomly pick locations. In this case, I have chosen Asia, which in this data set, includes the Middle East, Central Asia (former Soviet states), the Caucasus, and Eastern/Southern Asia. Since there were quite a few ‘NA’ entries, I removed them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"gss"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>eth_rel_components <span class="ot">&lt;-</span> world <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country,regionun,frac_eth3,durable,dem_level4,dem_score14,pr_sys) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(regionun <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        country regionun frac_eth3 durable    dem_level4 dem_score14 pr_sys
+1   Afghanistan     Asia      High       4 Authoritarian        2.77     No
+2       Armenia     Asia       Low       2        Hybrid        4.13     No
+3    Azerbaijan     Asia       Low       5 Authoritarian        2.83     No
+4       Bahrain     Asia    Medium      25 Authoritarian        2.87     No
+5    Bangladesh     Asia       Low       9        Hybrid        5.78     No
+6        Bhutan     Asia      High      93        Hybrid        4.87     No
+7      Cambodia     Asia       Low       2        Hybrid        4.78    Yes
+8         China     Asia       Low      51 Authoritarian        3.00     No
+9        Cyprus     Asia       Low      26    Part Democ        7.40    Yes
+10      Georgia     Asia    Medium       0        Hybrid        5.82     No
+11        India     Asia    Medium      50    Part Democ        7.92     No
+12    Indonesia     Asia      High       1    Part Democ        6.95    Yes
+13         Iran     Asia      High       3 Authoritarian        1.98     No
+14         Iraq     Asia    Medium      76        Hybrid        4.23    Yes
+15       Israel     Asia    Medium      52    Part Democ        7.63    Yes
+16        Japan     Asia       Low      48    Full Democ        8.08     No
+17       Jordan     Asia    Medium      11 Authoritarian        3.76     No
+18   Kazakhstan     Asia      High       9 Authoritarian        3.17     No
+19       Kuwait     Asia      High       8 Authoritarian        3.78     No
+20   Kyrgyzstan     Asia      High       9        Hybrid        5.24     No
+21         Laos     Asia    Medium      25 Authoritarian        2.21     No
+22      Lebanon     Asia       Low       0        Hybrid        5.12     No
+23     Malaysia     Asia      High      29    Part Democ        6.49     No
+24     Mongolia     Asia    Medium       8    Part Democ        6.62     No
+25        Nepal     Asia      High      10        Hybrid        4.77     No
+26         Oman     Asia    Medium      43 Authoritarian        3.15     No
+27     Pakistan     Asia      High       1        Hybrid        4.64     No
+28  Philippines     Asia       Low      13    Part Democ        6.77     No
+29        Qatar     Asia      High      29 Authoritarian        3.18     No
+30 Saudi Arabia     Asia       Low      74 Authoritarian        1.82     No
+31    Singapore     Asia    Medium      35    Part Democ        6.03     No
+32    Sri Lanka     Asia    Medium      52        Hybrid        5.69    Yes
+33        Syria     Asia    Medium      37 Authoritarian        1.74     No
+34       Taiwan     Asia    Medium       8    Part Democ        7.65     No
+35   Tajikistan     Asia    Medium       2 Authoritarian        2.37     No
+36     Thailand     Asia      High       8        Hybrid        5.39     No
+37       Turkey     Asia    Medium      17        Hybrid        5.12    Yes
+38 Turkmenistan     Asia    Medium       9 Authoritarian        1.83     No
+39   Uzbekistan     Asia    Medium       9 Authoritarian        2.45     No
+40      Vietnam     Asia       Low      46 Authoritarian        3.41     No</code></pre>
+</div>
+</div>
+</section>
+<section id="background-info-and-data" class="level3">
+<h3 class="anchored" data-anchor-id="background-info-and-data">Background Info and Data</h3>
+<p>Now I’m going to tidy the data in the following variables: frac_eth3 (level of ethnic factionalism), dem_score14 (democratic score via The Economist), and pr_sys (proportionally representative government). My goal is to narrow this information down so that I can see what countries fit the criteria I laid out in the intro: (1) High levels of ethnic factionalism/inter-ethnic competition and rivalry (2) Artificial democratic government or a hybrid/authoritarian regime (3) Relatively short time-span between regime changes (4) Whichever group is in power will ensure that the “rival” group does not have governmental representation according to their population numbers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(eth_rel_components)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "country"     "regionun"    "frac_eth3"   "durable"     "dem_level4" 
+[6] "dem_score14" "pr_sys"     </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>eth_rel_components <span class="ot">&lt;-</span> <span class="fu">filter</span>(eth_rel_components, frac_eth3 <span class="sc">==</span> <span class="st">"High"</span> <span class="sc">&amp;</span> dem_score14 <span class="sc">&lt;</span> <span class="st">"7"</span> <span class="sc">&amp;</span> pr_sys <span class="sc">==</span> <span class="st">"No"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       country regionun frac_eth3 durable    dem_level4 dem_score14 pr_sys
+1  Afghanistan     Asia      High       4 Authoritarian        2.77     No
+2       Bhutan     Asia      High      93        Hybrid        4.87     No
+3         Iran     Asia      High       3 Authoritarian        1.98     No
+4   Kazakhstan     Asia      High       9 Authoritarian        3.17     No
+5       Kuwait     Asia      High       8 Authoritarian        3.78     No
+6   Kyrgyzstan     Asia      High       9        Hybrid        5.24     No
+7     Malaysia     Asia      High      29    Part Democ        6.49     No
+8        Nepal     Asia      High      10        Hybrid        4.77     No
+9     Pakistan     Asia      High       1        Hybrid        4.64     No
+10       Qatar     Asia      High      29 Authoritarian        3.18     No
+11    Thailand     Asia      High       8        Hybrid        5.39     No</code></pre>
+</div>
+</div>
+<p>Now that the data set has been filtered down by design, I’m going to present some visuals to showcase different variables (both individual and in combination).</p>
+</section>
+<section id="visuals-and-explanation" class="level3">
+<h3 class="anchored" data-anchor-id="visuals-and-explanation">Visuals and Explanation</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(eth_rel_components, <span class="fu">aes</span>(<span class="at">x=</span>durable, <span class="at">y=</span>dem_level4, <span class="at">color=</span>country)) <span class="sc">+</span> <span class="fu">geom_jitter</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"# of Years since Regime Change"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Regime Type"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$y
+[1] "Regime Type"
+
+attr(,"class")
+[1] "labels"</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Homework3-2-_KatiePopiela_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Based on the information presented in this graph, it’s noteworthy that all except for 3 countries (Qatar, Malaysia, and Bhutan) have experienced a regime change in the past 10 years. Most of these countries (including Qatar, but excluding Kyrgyzstan, Thailand, Malaysia, and Bhutan) have authoritarian regimes. The only country that’s close to democracy is Malaysia and it’s a decent bit above “Part Democ” (Part Democracy). None of the countries included here - which have high ethnic factionalism, low democracy scores, and no proportional representation in government - are fully democratic. This graph, however, can be improved. I don’t think it needs the distinction of individual countries, and I think it’d be more succinct and clear if point color was determined by regime type instead.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(eth_rel_components, <span class="fu">aes</span>(<span class="at">x=</span>durable, <span class="at">y=</span>dem_score14, <span class="at">color=</span>dem_level4)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span><span class="fu">xlab</span>(<span class="st">"# of Years since Last Regime Change"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Democracy Score"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$y
+[1] "Democracy Score"
+
+attr(,"class")
+[1] "labels"</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Homework3-2-_KatiePopiela_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Now let’s see what a visualization of ‘dem_score14’ and ‘dem_level4’ shows us and how it relates to the above visualization.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(eth_rel_components, <span class="fu">aes</span>(<span class="at">x=</span>dem_score14,<span class="at">y=</span>dem_level4, <span class="at">color=</span>country)) <span class="sc">+</span> <span class="fu">geom_point</span> () <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Democracy Score"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Regime Type"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$y
+[1] "Regime Type"
+
+attr(,"class")
+[1] "labels"</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Homework3-2-_KatiePopiela_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Unlike the previous visualization, this one has a much wider distribution. However, this graph shows democracy score based on regime type. While the democracy score might be accurate - though it’s hard to find each country’s exact democracy score with the graph in this format - I do not believe the alignment of countries based so strictly on regime type is helpful at all. I would even go so far as to say the format of the y-axis is misleading. There isn’t a set framework for how regimes govern. Authoritarianism, for instance, is very much a spectrum rather than a set value. For example, there are heavily authoritarian states like Belarus and Russia, but then there are authoritarian-leaning countries like Poland and Hungary. They can all be classified as “authoritarian”, but they’re not equally so.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(eth_rel_components, <span class="fu">aes</span>(<span class="at">x=</span>dem_score14, <span class="at">fill=</span>dem_level4)) <span class="sc">+</span> <span class="fu">geom_histogram</span> () <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Democracy Score"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$x
+[1] "Democracy Score"
+
+attr(,"class")
+[1] "labels"</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Homework3-2-_KatiePopiela_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This graph, admittedly, isn’t the best. I wanted each entry to have it’s own bar next to the previous, but it stacked the ones with the same democracy score on top of each other. It’s not the biggest deal since the y-axis is ‘count’ and that just represents the number of countries with a given democracy score rather than the score itself.</p>
+<p>Just for comparison, I’m going to take out the geographic filter but keep the one where it filters out all entries with a ‘dem_score14’ value higher than 7 (the point at which regimes enter “democratic” territory).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>eth_rel_general <span class="ot">&lt;-</span> world <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(country,regionun,frac_eth3,durable,dem_level4,dem_score14,pr_sys) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(frac_eth3 <span class="sc">==</span> <span class="st">"High"</span> <span class="sc">&amp;</span> dem_score14 <span class="sc">&lt;</span> <span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    country                regionun frac_eth3 durable
+1               Afghanistan                    Asia      High       4
+2                    Angola                  Africa      High       3
+3                     Benin                  Africa      High       9
+4                    Bhutan                    Asia      High      93
+5                   Bolivia Latin America/Caribbean      High      18
+6    Bosnia and Herzegovina                  Europe      High       0
+7              Burkina Faso                  Africa      High      20
+8                  Cameroon                  Africa      High       8
+9  Central African Republic                  Africa      High       7
+10                     Chad                  Africa      High       8
+11                 Colombia Latin America/Caribbean      High      43
+12            Cote d'Ivoire                  Africa      High       0
+13                 Djibouti                  Africa      High       1
+14                  Ecuador Latin America/Caribbean      High       0
+15                  Eritrea                  Africa      High       7
+16                 Ethiopia                  Africa      High       5
+17                    Gabon                  Africa      High       9
+18                    Ghana                  Africa      High       4
+19                   Guinea                  Africa      High       5
+20            Guinea-Bissau                  Africa      High       0
+21                   Guyana Latin America/Caribbean      High       8
+22                Indonesia                    Asia      High       1
+23                     Iran                    Asia      High       3
+24               Kazakhstan                    Asia      High       9
+25                    Kenya                  Africa      High       3
+26                   Kuwait                    Asia      High       8
+27               Kyrgyzstan                    Asia      High       9
+28                  Liberia                  Africa      High       3
+29                    Libya                  Africa      High      49
+30                   Malawi                  Africa      High       6
+31                 Malaysia                    Asia      High      29
+32                     Mali                  Africa      High       8
+33               Mauritania                  Africa      High      38
+34               Mozambique                  Africa      High       6
+35                  Namibia                  Africa      High      10
+36                    Nepal                    Asia      High      10
+37                    Niger                  Africa      High       1
+38                  Nigeria                  Africa      High       1
+39                 Pakistan                    Asia      High       1
+40                     Peru Latin America/Caribbean      High       0
+41                    Qatar                    Asia      High      29
+42                  Senegal                  Africa      High       0
+43             Sierra Leone                  Africa      High       0
+44                    Sudan                  Africa      High      11
+45                 Tanzania                  Africa      High       0
+46                 Thailand                    Asia      High       8
+47                     Togo                  Africa      High       7
+48                   Uganda                  Africa      High       7
+49                   Zambia                  Africa      High       4
+      dem_level4 dem_score14 pr_sys
+1  Authoritarian        2.77     No
+2  Authoritarian        3.35    Yes
+3         Hybrid        5.65    Yes
+4         Hybrid        4.87     No
+5         Hybrid        5.79     No
+6         Hybrid        4.78    Yes
+7         Hybrid        4.09    Yes
+8  Authoritarian        3.41     No
+9  Authoritarian        1.49     No
+10 Authoritarian        1.50     No
+11    Part Democ        6.55    Yes
+12 Authoritarian        3.53     No
+13 Authoritarian        2.99     No
+14        Hybrid        5.87    Yes
+15 Authoritarian        2.44     No
+16 Authoritarian        3.72     No
+17 Authoritarian        3.76     No
+18    Part Democ        6.33     No
+19 Authoritarian        3.01     No
+20 Authoritarian        1.93    Yes
+21        Hybrid        5.91    Yes
+22    Part Democ        6.95    Yes
+23 Authoritarian        1.98     No
+24 Authoritarian        3.17     No
+25        Hybrid        5.13     No
+26 Authoritarian        3.78     No
+27        Hybrid        5.24     No
+28        Hybrid        4.95     No
+29 Authoritarian        3.80     No
+30        Hybrid        5.66     No
+31    Part Democ        6.49     No
+32        Hybrid        5.79     No
+33        Hybrid        4.17     No
+34        Hybrid        4.66    Yes
+35    Part Democ        6.24    Yes
+36        Hybrid        4.77     No
+37        Hybrid        4.02     No
+38 Authoritarian        3.76     No
+39        Hybrid        4.64     No
+40    Part Democ        6.54    Yes
+41 Authoritarian        3.18     No
+42    Part Democ        6.15     No
+43        Hybrid        4.56    Yes
+44 Authoritarian        2.54     No
+45        Hybrid        5.77     No
+46        Hybrid        5.39     No
+47 Authoritarian        3.45     No
+48        Hybrid        5.22     No
+49    Part Democ        6.39     No</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(eth_rel_general, <span class="fu">aes</span>(<span class="at">x=</span>regionun, <span class="at">y=</span>dem_score14, <span class="at">color=</span>dem_level4)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span><span class="fu">xlab</span>(<span class="st">"Region"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Democracy Score"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$y
+[1] "Democracy Score"
+
+attr(,"class")
+[1] "labels"</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="Homework3-2-_KatiePopiela_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="summary-statistics-and-reflection" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics-and-reflection">Summary Statistics and Reflection</h3>
+<p>I’m going to provide summary statistics for the original data set I used ‘eth_rel_components’, which is geographically specific to Asia (and has a filter to only include countries without proportional representation), and then the last one, ‘eth_rel_general’, which applies to all nations in all regions with proportional and non-proportional representation. Then I will discuss and compare them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>eth_rel_components <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(durable,dem_score14),</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">c</span>(<span class="at">mean=</span><span class="st">"mean"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  durable_mean dem_score14_mean
+1     18.45455         4.207273</code></pre>
+</div>
+</div>
+<p>There is a sizable difference between the ‘durable_mean’ figures for ‘eth_rel_components’ and ‘eth_rel_general’; it’s a difference of 7.98516. However, the mean figures for ‘dem_score14_mean’ only have a 0.24436 difference. What does this mean? Well, for starters, it means that Asia in particular has longer lasting regimes/longer periods of time in between regime changes than the world overall. And the small difference between the mean figures for dem_score14 means that the global average democratic score is about the same as Asia specifically.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>eth_rel_general <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(durable,dem_score14),</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">.funs =</span> <span class="fu">c</span>(<span class="at">mean=</span><span class="st">"mean"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  durable_mean dem_score14_mean
+1     10.46939         4.451633</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(eth_rel_components<span class="sc">$</span>dem_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.98</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(eth_rel_components<span class="sc">$</span>dem_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.49</code></pre>
+</div>
+</div>
+<p>Furthermore, if you compare the minimum and maximum dem_score14 values for each data set, they only differ from each other by about 0.5.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(eth_rel_general<span class="sc">$</span>dem_score14)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.49</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(eth_rel_general<span class="sc">$</span>dem_score14)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.95</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(eth_rel_components<span class="sc">$</span>durable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(eth_rel_components<span class="sc">$</span>durable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 93</code></pre>
+</div>
+</div>
+<p>The min and max values for ‘durable’, which kind of contradict the original mean calculations, are almost the exact same, except the min values are 1 off.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(eth_rel_general<span class="sc">$</span>durable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(eth_rel_general<span class="sc">$</span>durable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 93</code></pre>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>I started this project with the intention of measuring the criteria of ethno-religious violence that I picked up on while writing my thesis. I found the criteria and measured, but kind of as expected, I need more information to actually measure whether the countries that matched my criteria actually experience(d) eruptions of ethno-religious violence. I know certain countries in the data set have experienced ethnic/religious violence (Bangladesh, Bosnia, Cambodia, Kazakhstan, Uzbekistan, Ukraine, Vietnam) but this data set unfortunately doesn’t have a category for “experienced ethnic violence.” I would definitely be interested in pursuing this further and finding or making a dataset with the necessary information, I’m just not there yet skill-wise.</p>
+</section>
+<section id="bibliography" class="level3">
+<h3 class="anchored" data-anchor-id="bibliography">Bibliography</h3>
+<p>The Economist, <em>The Intelligence Unit</em>, “Democracy Index Report, 2014.” http://www.eiu.com/public/thankyou_download.aspx?activity=download&amp;campaignid=Democracy0115</p>
+<p>‘poliscidata,’ R Package. ‘world’ dataset’.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

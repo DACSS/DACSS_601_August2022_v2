@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Pavan Datta Abbineni">
+<meta name="dcterms.date" content="2022-08-28">
+
+<title>- Final Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Final Project">
+<meta name="twitter:description" content="According to the World Health Organization (WHO) stroke is the 2nd leading cause of death globally, responsible for approximately 11% of total deaths.">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#data-analysis-and-visualization" id="toc-data-analysis-and-visualization" class="nav-link" data-scroll-target="#data-analysis-and-visualization">Data Analysis and Visualization</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#bibliography-references" id="toc-bibliography-references" class="nav-link" data-scroll-target="#bibliography-references">Bibliography/ References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Final Project</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Final Project</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Pavan Datta Abbineni </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 28, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"viridis"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotrix)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(mosaic)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>According to the World Health Organization (WHO) stroke is the 2nd leading cause of death globally, responsible for approximately 11% of total deaths. This dataset is used to predict whether a patient is likely to get stroke based on the input parameters like gender, age, various diseases, and smoking status. Each row in the data provides relavant information about the patient.</p>
+</section>
+<section id="dataset" class="level3">
+<h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
+<section id="about-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="about-the-data">About the Data</h4>
+<p>Data for this project originates from the Electronic Health Record (EHR) controlled by McKinsey &amp; Company. This data is a well refined and filtered dataset of the original dataset which was collected over a course of several years in Bangladesh.</p>
+</section>
+<section id="project-goals" class="level4">
+<h4 class="anchored" data-anchor-id="project-goals">Project Goals</h4>
+<p>My main objective in this project is focused on finding the best lifestyle choices with the help of the attribute analysis in this dataset, inorder to prevent stroke.</p>
+</section>
+<section id="import-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="import-the-data">Import the data</h4>
+<p>The HealthCareStrokeDataset is imported into R for cleaning, wrangling,exploration and analysis.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>healthCareStrokeData<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"_data/healthcare-dataset-stroke-data.csv"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="attribute-information" class="level4">
+<h4 class="anchored" data-anchor-id="attribute-information">Attribute Information</h4>
+<ul>
+<li>id (int, categorical): unique identifier</li>
+<li>gender (str, categorical): “Male”, “Female” or “Other”</li>
+<li>age (int, numerical): age of the patient</li>
+<li>hypertension (int, categorical): 0 if the patient doesn’t have hypertension, 1 if the patient has hypertension</li>
+<li>heart_disease (int, categorical): 0 if the patient doesn’t have any heart diseases, 1 if the patient has a heart disease</li>
+<li>ever_married (str, categorical): “No” or “Yes”</li>
+<li>work_type (str, categorical): “children”, “Govt_jov”, “Never_worked”, “Private” or “Self-employed”</li>
+<li>Residence_type (str, categorical): “Rural” or “Urban”</li>
+<li>avg_glucose_level (int, numerical): average glucose level in blood</li>
+<li>bmi (str, numerical): body mass index*</li>
+<li>smoking_status (str, categorical): “formerly smoked”, “never smoked”, “smokes” or “Unknown”*</li>
+<li>stroke (int, categorical): 1 if the patient had a stroke or 0 if not</li>
+</ul>
+<p>Note: “Unknown, NA” in smoking_status and bmi means that the information is unavailable for this patient</p>
+</section>
+<section id="tidy-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="tidy-the-data">Tidy the data</h4>
+<p>To learn more about the dataset let’s get an idea of the column names, data dimensions, statistical summary comprised of min,max,median,mean and interquartile range.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(healthCareStrokeData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       id           gender               age         hypertension    
+ Min.   :   67   Length:5110        Min.   : 0.08   Min.   :0.00000  
+ 1st Qu.:17741   Class :character   1st Qu.:25.00   1st Qu.:0.00000  
+ Median :36932   Mode  :character   Median :45.00   Median :0.00000  
+ Mean   :36518                      Mean   :43.23   Mean   :0.09746  
+ 3rd Qu.:54682                      3rd Qu.:61.00   3rd Qu.:0.00000  
+ Max.   :72940                      Max.   :82.00   Max.   :1.00000  
+ heart_disease     ever_married        work_type         Residence_type    
+ Min.   :0.00000   Length:5110        Length:5110        Length:5110       
+ 1st Qu.:0.00000   Class :character   Class :character   Class :character  
+ Median :0.00000   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :0.05401                                                           
+ 3rd Qu.:0.00000                                                           
+ Max.   :1.00000                                                           
+ avg_glucose_level     bmi            smoking_status         stroke       
+ Min.   : 55.12    Length:5110        Length:5110        Min.   :0.00000  
+ 1st Qu.: 77.25    Class :character   Class :character   1st Qu.:0.00000  
+ Median : 91.89    Mode  :character   Mode  :character   Median :0.00000  
+ Mean   :106.15                                          Mean   :0.04873  
+ 3rd Qu.:114.09                                          3rd Qu.:0.00000  
+ Max.   :271.74                                          Max.   :1.00000  </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(healthCareStrokeData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5110   12</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(healthCareStrokeData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "id"                "gender"            "age"              
+ [4] "hypertension"      "heart_disease"     "ever_married"     
+ [7] "work_type"         "Residence_type"    "avg_glucose_level"
+[10] "bmi"               "smoking_status"    "stroke"           </code></pre>
+</div>
+</div>
+<p>To get a further insight into the dataset lets print in three different ways</p>
+<ul>
+<li>Head of the dataset,</li>
+<li>Tail of the dataset and</li>
+<li>Randomly print ‘n’ elements from the dataset.</li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(healthCareStrokeData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+     id gender   age hypertension heart_…¹ ever_…² work_…³ Resid…⁴ avg_g…⁵ bmi  
+  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;
+1  9046 Male      67            0        1 Yes     Private Urban      229. 36.6 
+2 51676 Female    61            0        0 Yes     Self-e… Rural      202. N/A  
+3 31112 Male      80            0        1 Yes     Private Rural      106. 32.5 
+4 60182 Female    49            0        0 Yes     Private Urban      171. 34.4 
+5  1665 Female    79            1        0 Yes     Self-e… Rural      174. 24   
+6 56669 Male      81            0        0 Yes     Private Urban      186. 29   
+# … with 2 more variables: smoking_status &lt;chr&gt;, stroke &lt;dbl&gt;, and abbreviated
+#   variable names ¹​heart_disease, ²​ever_married, ³​work_type, ⁴​Residence_type,
+#   ⁵​avg_glucose_level
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(healthCareStrokeData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 12
+     id gender   age hypertension heart_…¹ ever_…² work_…³ Resid…⁴ avg_g…⁵ bmi  
+  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;
+1 14180 Female    13            0        0 No      childr… Rural     103.  18.6 
+2 18234 Female    80            1        0 Yes     Private Urban      83.8 N/A  
+3 44873 Female    81            0        0 Yes     Self-e… Urban     125.  40   
+4 19723 Female    35            0        0 Yes     Self-e… Rural      83.0 30.6 
+5 37544 Male      51            0        0 Yes     Private Rural     166.  25.6 
+6 44679 Female    44            0        0 Yes     Govt_j… Urban      85.3 26.2 
+# … with 2 more variables: smoking_status &lt;chr&gt;, stroke &lt;dbl&gt;, and abbreviated
+#   variable names ¹​heart_disease, ²​ever_married, ³​work_type, ⁴​Residence_type,
+#   ⁵​avg_glucose_level
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>randomlySelectedData <span class="ot">&lt;-</span> healthCareStrokeData[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(healthCareStrokeData), <span class="dv">5</span>), ]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>randomlySelectedData</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 12
+     id gender   age hypertension heart_…¹ ever_…² work_…³ Resid…⁴ avg_g…⁵ bmi  
+  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;
+1 46136 Male      14            0        0 No      Never_… Rural     161.  19.1 
+2 25325 Female    42            0        0 Yes     Private Rural      82.2 23.8 
+3  2218 Male      42            0        0 Yes     Private Rural     108.  35.3 
+4 65888 Male      12            0        0 No      childr… Rural     117.  18.1 
+5  3532 Female    71            0        0 Yes     Private Urban      90.6 39.4 
+# … with 2 more variables: smoking_status &lt;chr&gt;, stroke &lt;dbl&gt;, and abbreviated
+#   variable names ¹​heart_disease, ²​ever_married, ³​work_type, ⁴​Residence_type,
+#   ⁵​avg_glucose_level
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<p>We can see that each row in our dataset is a unique observation which represents a unique persons lifestyle and if they had a stroke or not.</p>
+<p>Each variable is seen as one consistent data type, thus some variables are numeric and some are categorical. The datatype of each column is elaborated below.</p>
+<ul>
+<li>Categorical : Gender, Ever_married, Work_type, Residence_type, smoking_status</li>
+<li>Categorical ( Boolean ) : Hypertension, Heart_disease, stroke_label</li>
+<li>Quantitative (continuous) : avg_glucose_level, bmi</li>
+<li>Quantitative (discrete) : age</li>
+</ul>
+<p>Let’s check for any na values in our dataset.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(healthCareStrokeData))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>Next lets check our dataset for any duplicate rows.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>nOccur <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">table</span>(healthCareStrokeData<span class="sc">$</span>id))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>nOccur[nOccur<span class="sc">$</span>Freq <span class="sc">&gt;</span> <span class="dv">1</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Var1 Freq
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+</div>
+<p>From the above result we can confirm that there are no duplicates in our dataset.</p>
+<p>From the datatype of bmi we can see that it is in string format, we need to convert into numeric.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>healthCareStrokeData<span class="sc">$</span>bmi <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(healthCareStrokeData<span class="sc">$</span>bmi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>As we can see there are NA values introduced by coercion, so let’s drop all the NA values before going to the next step.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(healthCareStrokeData))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 201</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>healthCareStrokeData <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(healthCareStrokeData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>As our main interest in this project are only the people who had a stroke lets filter our dataset to only contain who had a stroke.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>healthCareOnlyStroke <span class="ot">&lt;-</span> healthCareStrokeData <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stroke <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Let’s do a , statistical summary comprised of min,max,median,mean and interquartile range,column names, data dimensions for our target dataset.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(healthCareOnlyStroke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       id           gender               age         hypertension   
+ Min.   :  210   Length:209         Min.   :14.00   Min.   :0.0000  
+ 1st Qu.:17308   Class :character   1st Qu.:58.00   1st Qu.:0.0000  
+ Median :36857   Mode  :character   Median :70.00   Median :0.0000  
+ Mean   :37546                      Mean   :67.71   Mean   :0.2871  
+ 3rd Qu.:56939                      3rd Qu.:78.00   3rd Qu.:1.0000  
+ Max.   :72918                      Max.   :82.00   Max.   :1.0000  
+ heart_disease    ever_married        work_type         Residence_type    
+ Min.   :0.0000   Length:209         Length:209         Length:209        
+ 1st Qu.:0.0000   Class :character   Class :character   Class :character  
+ Median :0.0000   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :0.1914                                                           
+ 3rd Qu.:0.0000                                                           
+ Max.   :1.0000                                                           
+ avg_glucose_level      bmi        smoking_status         stroke 
+ Min.   : 56.11    Min.   :16.90   Length:209         Min.   :1  
+ 1st Qu.: 80.43    1st Qu.:26.40   Class :character   1st Qu.:1  
+ Median :106.58    Median :29.70   Mode  :character   Median :1  
+ Mean   :134.57    Mean   :30.47                      Mean   :1  
+ 3rd Qu.:196.92    3rd Qu.:33.70                      3rd Qu.:1  
+ Max.   :271.74    Max.   :56.60                      Max.   :1  </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(healthCareOnlyStroke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 209  12</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="data-analysis-and-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-analysis-and-visualization">Data Analysis and Visualization</h3>
+<p>Now that our dataset has been imported, cleaned, and tidied it can be used for further visualization and analysis. Let’s begin our analysis with the most basic questions like the mean and median of our age, bmi and avg_glucose_level.</p>
+<p>As stated above the main variables I’m going to focus on are : * age * bmi and * avg_glucose_level</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>strokeLabels  <span class="ot">=</span> <span class="fu">table</span>(healthCareStrokeData<span class="sc">$</span>stroke)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(strokeLabels,<span class="at">labels =</span> strokeLabels, <span class="at">main =</span> <span class="st">"Number of people who had a stroke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/stroke-piechart-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>histogramStrokeData<span class="ot">&lt;-</span>healthCareStrokeData</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>histogramStrokeData<span class="sc">$</span>stroke <span class="ot">&lt;-</span> <span class="fu">factor</span>(histogramStrokeData<span class="sc">$</span>stroke,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Didn't have a stroke"</span>,<span class="st">"Had a Stroke"</span>))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(histogramStrokeData, <span class="fu">aes</span>(stroke,))<span class="sc">+</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill=</span><span class="fu">c</span>(<span class="st">"aquamarine2"</span>,<span class="st">"pink3"</span>)) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Stroke Analysis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/stroke-piechart-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>((healthCareStrokeData <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stroke <span class="sc">==</span> <span class="dv">0</span>))<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  min Q1 median Q3 max     mean       sd    n missing
+ 0.08 24     43 59  82 41.76045 22.26813 4700       0</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">favstats</span>((healthCareStrokeData <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stroke <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> min Q1 median Q3 max     mean       sd   n missing
+  14 58     70 78  82 67.71292 12.40285 209       0</code></pre>
+</div>
+</div>
+<section id="effect-of-age" class="level4">
+<h4 class="anchored" data-anchor-id="effect-of-age">Effect of Age</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>strokeAgeLabels<span class="ot">&lt;-</span>(healthCareStrokeData <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stroke <span class="sc">==</span> <span class="dv">1</span>))<span class="sc">$</span>age</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(strokeAgeLabels,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Age Histogram of all the people who had strokes"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Age"</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"white"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">border =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/strokeAge-histogram-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that the risk of having a stroke is a lot higher in the 70-80 age bracket.But age is something we cannot overcome so let’s have a detailed analysis of other attributes.</p>
+</section>
+<section id="effect-of-heart_disease" class="level4">
+<h4 class="anchored" data-anchor-id="effect-of-heart_disease">Effect of heart_disease</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>datasetForHeartAnalysis<span class="ot">&lt;-</span>healthCareStrokeData</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>datasetForHeartAnalysis<span class="sc">$</span>heart_disease[datasetForHeartAnalysis<span class="sc">$</span>heart_disease <span class="sc">==</span> <span class="dv">0</span>]<span class="ot">&lt;-</span><span class="st">"No Heart Disease"</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>datasetForHeartAnalysis<span class="sc">$</span>heart_disease[datasetForHeartAnalysis<span class="sc">$</span>heart_disease <span class="sc">==</span> <span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Has Heart Disease"</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>datasetForHeartAnalysis<span class="sc">$</span>stroke[healthCareStrokeData<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">0</span>]<span class="ot">&lt;-</span><span class="st">"Didn't have a Stroke"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>datasetForHeartAnalysis<span class="sc">$</span>stroke[healthCareStrokeData<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Had a Stroke"</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>datasetForHeartAnalysis <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stroke<span class="sc">==</span><span class="st">"Had a Stroke"</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">ggplot</span>(<span class="fu">aes</span>(age, <span class="at">fill=</span>heart_disease)) <span class="sc">+</span> </span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">ggtitle</span>(<span class="st">"Stroke by Age and heart_disease"</span>) <span class="sc">+</span> </span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">xlab</span>(<span class="st">"Age"</span>) <span class="sc">+</span> </span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">ylab</span>(<span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/heartDisease-ggplot-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datasetForHeartAnalysis,</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>heart_disease,</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill=</span>stroke,)) <span class="sc">+</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ggtitle</span>(<span class="st">"Stacked barchart for Heart Diseases v/s Stroke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/heartDisease-ggplot-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tableDatasetForHeartAnalysis<span class="ot">&lt;-</span>datasetForHeartAnalysis<span class="sc">%&gt;%</span><span class="fu">filter</span>(heart_disease<span class="sc">==</span><span class="st">"Has Heart Disease"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tableDatasetForHeartAnalysis<span class="sc">$</span>stroke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Didn't have a Stroke         Had a Stroke 
+                 203                   40 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tableDatasetForHeartAnalysis<span class="ot">&lt;-</span>datasetForHeartAnalysis<span class="sc">%&gt;%</span><span class="fu">filter</span>(heart_disease<span class="sc">==</span><span class="st">"No Heart Disease"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tableDatasetForHeartAnalysis<span class="sc">$</span>stroke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Didn't have a Stroke         Had a Stroke 
+                4497                  169 </code></pre>
+</div>
+</div>
+<p>We have a 16% chance to have a stroke if you have a heart disease and a 3.6% chance to have a stroke if you don’t have a heart disease.</p>
+<p>From the above data/plots it is clearly evident that the people with heart diseases are more likely to have a stroke as they age.</p>
+</section>
+<section id="effect-of-hypertension" class="level4">
+<h4 class="anchored" data-anchor-id="effect-of-hypertension">Effect of hypertension</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>datasetForHypertensionAnalysis<span class="ot">&lt;-</span>healthCareStrokeData</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>datasetForHypertensionAnalysis<span class="sc">$</span>hypertension[datasetForHypertensionAnalysis<span class="sc">$</span>hypertension <span class="sc">==</span> <span class="dv">0</span>]<span class="ot">&lt;-</span><span class="st">"No Hypertension"</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>datasetForHypertensionAnalysis<span class="sc">$</span>hypertension[datasetForHypertensionAnalysis<span class="sc">$</span>hypertension <span class="sc">==</span> <span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Has Hypertension"</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>datasetForHypertensionAnalysis<span class="sc">$</span>stroke[datasetForHypertensionAnalysis<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">0</span>]<span class="ot">&lt;-</span><span class="st">"Didn't have a Stroke"</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>datasetForHypertensionAnalysis<span class="sc">$</span>stroke[datasetForHypertensionAnalysis<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Had a Stroke"</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>datasetForHypertensionAnalysis <span class="sc">%&gt;%</span> <span class="fu">filter</span>(stroke<span class="sc">==</span><span class="st">"Had a Stroke"</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">ggplot</span>(<span class="fu">aes</span>(age, <span class="at">fill=</span>hypertension)) <span class="sc">+</span> </span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">ggtitle</span>(<span class="st">"Stroke by Age and hypertension "</span>) <span class="sc">+</span> </span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">xlab</span>(<span class="st">"Age"</span>) <span class="sc">+</span> </span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">ylab</span>(<span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/hypertension-ggplot-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datasetForHypertensionAnalysis,</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>hypertension,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill=</span>stroke,<span class="at">stat=</span><span class="st">"count"</span>)) <span class="sc">+</span> </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ggtitle</span>(<span class="st">"Stacked barchart for Heart Diseases v/s Stroke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/hypertension-ggplot-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tableDatasetForHypertension<span class="ot">&lt;-</span>datasetForHypertensionAnalysis<span class="sc">%&gt;%</span><span class="fu">filter</span>(hypertension<span class="sc">==</span><span class="st">"Has Hypertension"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tableDatasetForHypertension<span class="sc">$</span>stroke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Didn't have a Stroke         Had a Stroke 
+                 391                   60 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tableDatasetForHypertension<span class="ot">&lt;-</span>datasetForHypertensionAnalysis<span class="sc">%&gt;%</span><span class="fu">filter</span>(hypertension<span class="sc">==</span><span class="st">"No Hypertension"</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tableDatasetForHypertension<span class="sc">$</span>stroke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Didn't have a Stroke         Had a Stroke 
+                4309                  149 </code></pre>
+</div>
+</div>
+<p>We have a 13.33% chance to have a stroke if you have a heart disease and a 3.34% chance to have a stroke if you don’t hypertension</p>
+<p>We can see that we are at a higher chance ( approximately 4 times ) of having a stroke if you have hypertension.</p>
+<p>What if a person has both hypertension and heart disease?</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>tableForDualAnalysis<span class="ot">&lt;-</span>healthCareStrokeData<span class="sc">%&gt;%</span><span class="fu">filter</span>(hypertension<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> heart_disease<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tableForDualAnalysis<span class="sc">$</span>stroke)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 0  1 
+47 11 </code></pre>
+</div>
+</div>
+<p>We can see that a person having both hypertension and heart disease has a 19% chance to have a stroke.</p>
+</section>
+<section id="effect-of-bmi" class="level4">
+<h4 class="anchored" data-anchor-id="effect-of-bmi">Effect of bmi</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(healthCareStrokeData<span class="sc">$</span>bmi,<span class="at">col=</span><span class="fu">viridis</span>(<span class="dv">12</span>,<span class="fl">0.5</span>),<span class="at">xlab =</span> <span class="st">"Average Glucose Level"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/bmi-ggplot-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>datasetForbmiAnalysis<span class="ot">&lt;-</span>healthCareStrokeData</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>datasetForbmiAnalysis<span class="sc">$</span>stroke[datasetForbmiAnalysis<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">0</span>]<span class="ot">&lt;-</span><span class="st">"No Stroke"</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>datasetForbmiAnalysis<span class="sc">$</span>stroke[datasetForbmiAnalysis<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Had a Stroke"</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>datasetForbmiAnalysis <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(bmi, <span class="at">fill=</span>stroke)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Stroke by bmi"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"BMI"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/bmi-ggplot-2.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>healthCareOnlyStroke <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(age, bmi, <span class="at">color=</span>gender)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Stroke and bmi over Time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/bmi-ggplot-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that if you have a bmi greater than 25( overweight ) then you are more likely to have a stroke.</p>
+</section>
+<section id="effect-of-glucose-level" class="level4">
+<h4 class="anchored" data-anchor-id="effect-of-glucose-level">Effect of Glucose Level</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(healthCareStrokeData<span class="sc">$</span>avg_glucose_level,<span class="at">col=</span><span class="fu">viridis</span>(<span class="dv">12</span>,<span class="fl">0.5</span>),<span class="at">xlab =</span> <span class="st">"Average Glucose Level"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/glucose-ggplot-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>datasetForGlucoseAnalysis<span class="ot">&lt;-</span>healthCareStrokeData</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>datasetForGlucoseAnalysis<span class="sc">$</span>stroke[datasetForGlucoseAnalysis<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">0</span>]<span class="ot">&lt;-</span><span class="st">"No Stroke"</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>datasetForGlucoseAnalysis<span class="sc">$</span>stroke[datasetForGlucoseAnalysis<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Had a Stroke"</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>datasetForGlucoseAnalysis <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(avg_glucose_level, <span class="at">fill=</span>stroke)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Stroke by glucoselevel"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"avg_glucose_level"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/glucose-ggplot-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Similar to the case of bmi the chances of having a stroke is higher at higher glucose levels.</p>
+</section>
+<section id="effect-of-smoking" class="level4">
+<h4 class="anchored" data-anchor-id="effect-of-smoking">Effect of Smoking</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>datasetForSmokingAnalysis<span class="ot">&lt;-</span>healthCareStrokeData</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>datasetForSmokingAnalysis<span class="sc">$</span>stroke[datasetForSmokingAnalysis<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">0</span>]<span class="ot">&lt;-</span><span class="st">"No Stroke"</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>datasetForSmokingAnalysis<span class="sc">$</span>stroke[datasetForSmokingAnalysis<span class="sc">$</span>stroke <span class="sc">==</span> <span class="dv">1</span>]<span class="ot">&lt;-</span><span class="st">"Had a Stroke"</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datasetForSmokingAnalysis,</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>smoking_status,</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill=</span>stroke,)) <span class="sc">+</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Stacked barchart for Smoking Status v/s Stroke"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/smoking-ggplot-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>datasetForSmokingAnalysis <span class="sc">%&gt;%</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stroke <span class="sc">==</span> <span class="st">"Had a Stroke"</span> <span class="sc">&amp;</span> age<span class="sc">&lt;</span><span class="dv">70</span> <span class="sc">&amp;</span>smoking_status<span class="sc">!=</span><span class="st">"Unknown"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(age, <span class="at">fill=</span>smoking_status)) <span class="sc">+</span> </span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Stroke by Age and Smoking Status"</span>) <span class="sc">+</span> </span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Smoking Status"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Density"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/smoking-ggplot-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From the plot we can conclude that former smokers and a person who smokes is more likely to have a stroke when compared to a person who doesn’t smoke.</p>
+</section>
+<section id="effect-of-gender" class="level4">
+<h4 class="anchored" data-anchor-id="effect-of-gender">Effect of Gender</h4>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>healthCareOnlyStroke  <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(age, <span class="at">fill=</span>gender)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Stroke by Age in Male and Female"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_PavanAbbineni_files/figure-html/gender-ggplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that as the age increases women tend to be prone to having a stroke at an earlier age while men develop it over time.</p>
+</section>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Now that we have a detailed analysis of all the indicators that cause a stroke in our dataset, you can check for yourself how close you are to having a stroke. One thing we have no control over is age as everyone ages, but the rest of the attributes give us a lucid understanding of what to do to decrease our chances of having a stroke. A good start would be to quit smoking, Manage Stress, Normalize bmi, having low glucose level and having a better heart health.</p>
+<p>I hope this study helps you make a data-driven decision about your health and lifestyle in order to prevent strokes.</p>
+</section>
+<section id="bibliography-references" class="level3">
+<h3 class="anchored" data-anchor-id="bibliography-references">Bibliography/ References</h3>
+<p>[1] https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9264165 [2] https://ggplot2.tidyverse.org [3] https://r-graph-gallery.com/stacked-barplot.html [4] https://education.rstudio.com/learn/beginner/</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<pre class="markdown" data-shortcodes="false"><code>---
+title: "Final Project"
+author: "Pavan Datta Abbineni "
+desription: "Final Project"
+date: "08/28/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - Final Project
+---
+
+quarto-executable-code-5450563D
+
+```r
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(lubridate)
+library(magrittr)
+library(tidyverse)
+library("viridis")
+library(glue)
+library(leaflet)
+library(ggplot2)
+library(plotrix)
+library(lubridate)
+library(scales)
+library(plyr)
+require(mosaic)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+
+
+
+### Introduction
+According to the World Health Organization (WHO) stroke is the 2nd leading cause of death globally, responsible for approximately 11% of total deaths. This dataset is used to predict whether a patient is likely to get stroke based on the input parameters like gender, age, various diseases, and smoking status. Each row in the data provides relavant information about the patient.
+
+### Dataset 
+
+#### About the Data
+Data for this project originates from the Electronic Health Record (EHR) controlled by McKinsey &amp; Company. This data is a well refined and filtered dataset of the original dataset which was collected over a course of several years in Bangladesh. 
+
+#### Project Goals
+
+My main objective in this project is focused on finding the best lifestyle choices with the help of the attribute analysis in this dataset, inorder to prevent stroke.
+
+#### Import the data
+
+The HealthCareStrokeDataset is imported into R for cleaning, wrangling,exploration and analysis.
+
+```{r readingData}
+healthCareStrokeData&lt;-read_csv("_data/healthcare-dataset-stroke-data.csv",
+                        show_col_types = FALSE)
+
+```
+
+#### Attribute Information
+
+* id (int, categorical): unique identifier
+* gender (str, categorical): “Male”, “Female” or “Other”
+* age (int, numerical): age of the patient
+* hypertension (int, categorical): 0 if the patient doesn’t have hypertension, 1 if the patient has hypertension
+* heart_disease (int, categorical): 0 if the patient doesn’t have any heart diseases, 1 if the patient has a heart disease
+* ever_married (str, categorical): “No” or “Yes”
+* work_type (str, categorical): “children”, “Govt_jov”, “Never_worked”, “Private” or “Self-employed”
+* Residence_type (str, categorical): “Rural” or “Urban”
+* avg_glucose_level (int, numerical): average glucose level in blood
+* bmi (str, numerical): body mass index*
+* smoking_status (str, categorical): “formerly smoked”, “never smoked”, “smokes” or “Unknown”*
+* stroke (int, categorical): 1 if the patient had a stroke or 0 if not
+
+Note: “Unknown, NA” in smoking_status and bmi means that the information is unavailable for this
+patient
+
+#### Tidy the data
+
+To learn more about the dataset let's get an idea of the column names, data dimensions, statistical summary comprised of min,max,median,mean and interquartile range.
+
+```{r dataSummary}
+summary(healthCareStrokeData)
+dim(healthCareStrokeData)
+names(healthCareStrokeData)
+```
+
+To get a further insight into the dataset lets print in three different ways 
+
+* Head of the dataset,
+* Tail of the dataset and
+* Randomly print 'n' elements from the dataset.
+```{r data-head}
+head(healthCareStrokeData)
+```
+
+```{r data-tail}
+tail(healthCareStrokeData)
+```
+
+```{r data-random}
+randomlySelectedData &lt;- healthCareStrokeData[sample(1:nrow(healthCareStrokeData), 5), ]
+randomlySelectedData
+```
+
+We can see that each row in our dataset is a unique observation which represents a unique persons lifestyle and if they had a stroke or not.
+
+Each variable is seen as one consistent data type, thus some variables are numeric and some are categorical. The datatype of each column is elaborated below.
+
+* Categorical : Gender, Ever_married, Work_type, Residence_type, smoking_status
+* Categorical ( Boolean ) : Hypertension, Heart_disease, stroke_label
+* Quantitative (continuous) :  avg_glucose_level, bmi
+* Quantitative (discrete) : age
+
+Let's check for any na values in our dataset.
+```{r check-na}
+sum(is.na(healthCareStrokeData))
+```
+
+Next lets check our dataset for any duplicate rows.
+
+```{r checkForDuplicates}
+nOccur &lt;- data.frame(table(healthCareStrokeData$id))
+nOccur[nOccur$Freq &gt; 1,]
+```
+From the above result we can confirm that there are no duplicates in our dataset.
+
+
+From the datatype of bmi we can see that it is in string format, we need to convert into numeric.
+```{r convertBMI}
+healthCareStrokeData$bmi &lt;- as.numeric(healthCareStrokeData$bmi)
+```
+As we can see there are NA values introduced by coercion, so let's drop all the NA values before going to the next step.
+
+```{r check-na_2}
+sum(is.na(healthCareStrokeData))
+```
+```{r omit-na}
+healthCareStrokeData &lt;- na.omit(healthCareStrokeData)
+```
+
+As our main interest in this project are only the people who had a stroke lets filter our dataset to only contain who had a stroke.
+
+```{r onlyStrokeData}
+healthCareOnlyStroke &lt;- healthCareStrokeData %&gt;% filter(stroke == 1)
+```
+
+Let's do a , statistical summary comprised of min,max,median,mean and interquartile range,column names, data dimensions for our target dataset.
+
+```{r dataSummary-targetData}
+summary(healthCareOnlyStroke)
+dim(healthCareOnlyStroke)
+```
+### Data Analysis and Visualization
+Now that our dataset has been imported, cleaned, and tidied it can be used for further visualization and analysis. Let's begin our analysis with the most basic questions like the mean and median of our age, bmi and avg_glucose_level. 
+
+As stated above the main variables I'm going to focus on are : 
+* age
+* bmi and
+* avg_glucose_level
+
+
+```{r stroke-piechart}
+strokeLabels  = table(healthCareStrokeData$stroke)
+pie(strokeLabels,labels = strokeLabels, main = "Number of people who had a stroke")
+histogramStrokeData&lt;-healthCareStrokeData
+histogramStrokeData$stroke &lt;- factor(histogramStrokeData$stroke,
+                         levels = c(0,1),
+                         labels = c("Didn't have a stroke","Had a Stroke"))
+ggplot(histogramStrokeData, aes(stroke,))+
+  geom_bar(fill=c("aquamarine2","pink3")) +
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5))+
+  xlab("Stroke Analysis")
+```
+
+```{r stroke-stats}
+favstats((healthCareStrokeData %&gt;% filter(stroke == 0))$age)
+
+```
+
+```{r nostroke-stats}
+favstats((healthCareStrokeData %&gt;% filter(stroke == 1))$age)
+```
+#### Effect of Age
+
+```{r strokeAge-histogram}
+strokeAgeLabels&lt;-(healthCareStrokeData %&gt;% filter(stroke == 1))$age
+hist(strokeAgeLabels,
+     main = "Age Histogram of all the people who had strokes",
+     xlab = "Age",
+     col = "white",
+     border = 4)
+```
+We can see that the risk of having a stroke is a lot higher in the 70-80 age bracket.But age is something we cannot overcome so let's have a detailed analysis of other attributes.
+
+#### Effect of heart_disease
+
+```{r heartDisease-ggplot}
+datasetForHeartAnalysis&lt;-healthCareStrokeData
+datasetForHeartAnalysis$heart_disease[datasetForHeartAnalysis$heart_disease == 0]&lt;-"No Heart Disease"
+datasetForHeartAnalysis$heart_disease[datasetForHeartAnalysis$heart_disease == 1]&lt;-"Has Heart Disease"
+datasetForHeartAnalysis$stroke[healthCareStrokeData$stroke == 0]&lt;-"Didn't have a Stroke"
+datasetForHeartAnalysis$stroke[healthCareStrokeData$stroke == 1]&lt;-"Had a Stroke"
+
+datasetForHeartAnalysis %&gt;% filter(stroke=="Had a Stroke")%&gt;% 
+                        ggplot(aes(age, fill=heart_disease)) + 
+                        geom_density(alpha=0.3) + 
+                        ggtitle("Stroke by Age and heart_disease") + 
+                        xlab("Age") + 
+                        ylab("Density")
+
+ggplot(data = datasetForHeartAnalysis,
+       aes(x=heart_disease,
+           fill=stroke,)) + 
+          geom_bar() +
+          ggtitle("Stacked barchart for Heart Diseases v/s Stroke")
+```
+
+```{r heartdisease-cal}
+tableDatasetForHeartAnalysis&lt;-datasetForHeartAnalysis%&gt;%filter(heart_disease=="Has Heart Disease")
+table(tableDatasetForHeartAnalysis$stroke)
+tableDatasetForHeartAnalysis&lt;-datasetForHeartAnalysis%&gt;%filter(heart_disease=="No Heart Disease")
+table(tableDatasetForHeartAnalysis$stroke)
+```
+We have a 16% chance to have a stroke if you have a heart disease and a 3.6% chance to have a stroke if you don't have a heart disease.
+
+From the above data/plots it is clearly evident that the people with heart diseases are more likely to have a stroke as they age.
+
+#### Effect of hypertension
+
+```{r hypertension-ggplot}
+datasetForHypertensionAnalysis&lt;-healthCareStrokeData
+datasetForHypertensionAnalysis$hypertension[datasetForHypertensionAnalysis$hypertension == 0]&lt;-"No Hypertension"
+datasetForHypertensionAnalysis$hypertension[datasetForHypertensionAnalysis$hypertension == 1]&lt;-"Has Hypertension"
+datasetForHypertensionAnalysis$stroke[datasetForHypertensionAnalysis$stroke == 0]&lt;-"Didn't have a Stroke"
+datasetForHypertensionAnalysis$stroke[datasetForHypertensionAnalysis$stroke == 1]&lt;-"Had a Stroke"
+
+datasetForHypertensionAnalysis %&gt;% filter(stroke=="Had a Stroke")%&gt;% 
+                        ggplot(aes(age, fill=hypertension)) + 
+                        geom_density(alpha=0.3) + 
+                        ggtitle("Stroke by Age and hypertension ") + 
+                        xlab("Age") + 
+                        ylab("Density")
+
+ggplot(data = datasetForHypertensionAnalysis,
+       aes(x=hypertension,
+           fill=stroke,stat="count")) + 
+          geom_bar() +
+          ggtitle("Stacked barchart for Heart Diseases v/s Stroke")
+
+```
+```{r hypertension-cal}
+tableDatasetForHypertension&lt;-datasetForHypertensionAnalysis%&gt;%filter(hypertension=="Has Hypertension")
+table(tableDatasetForHypertension$stroke)
+tableDatasetForHypertension&lt;-datasetForHypertensionAnalysis%&gt;%filter(hypertension=="No Hypertension")
+table(tableDatasetForHypertension$stroke)
+```
+We have a 13.33% chance to have a stroke if you have a heart disease and a 3.34% chance to have a stroke if you don't hypertension
+
+We can see that we are at a higher chance ( approximately 4 times ) of having a stroke if you have hypertension.
+
+What if a person has both hypertension and heart disease?
+```{r dualanalysis-calc}
+tableForDualAnalysis&lt;-healthCareStrokeData%&gt;%filter(hypertension==1 &amp; heart_disease==1)
+table(tableForDualAnalysis$stroke)
+```
+We can see that a person having both hypertension and heart disease has a 19% chance to have a stroke. 
+
+#### Effect of bmi
+```{r bmi-ggplot}
+
+hist(healthCareStrokeData$bmi,col=viridis(12,0.5),xlab = "Average Glucose Level")
+
+datasetForbmiAnalysis&lt;-healthCareStrokeData
+datasetForbmiAnalysis$stroke[datasetForbmiAnalysis$stroke == 0]&lt;-"No Stroke"
+datasetForbmiAnalysis$stroke[datasetForbmiAnalysis$stroke == 1]&lt;-"Had a Stroke"
+datasetForbmiAnalysis %&gt;% ggplot(aes(bmi, fill=stroke)) + geom_density(alpha=0.3) + ggtitle("Stroke by bmi") + xlab("BMI") + ylab("Density")
+
+healthCareOnlyStroke %&gt;% ggplot(aes(age, bmi, color=gender)) + geom_point() + ggtitle("Stroke and bmi over Time")
+
+```
+We can see that if you have a bmi greater than 25( overweight ) then you are more likely to have a stroke.
+
+#### Effect of Glucose Level
+```{r glucose-ggplot}
+ 
+hist(healthCareStrokeData$avg_glucose_level,col=viridis(12,0.5),xlab = "Average Glucose Level")
+
+datasetForGlucoseAnalysis&lt;-healthCareStrokeData
+datasetForGlucoseAnalysis$stroke[datasetForGlucoseAnalysis$stroke == 0]&lt;-"No Stroke"
+datasetForGlucoseAnalysis$stroke[datasetForGlucoseAnalysis$stroke == 1]&lt;-"Had a Stroke"
+datasetForGlucoseAnalysis %&gt;% ggplot(aes(avg_glucose_level, fill=stroke)) + geom_density(alpha=0.3) + ggtitle("Stroke by glucoselevel") + xlab("avg_glucose_level") + ylab("Density")
+
+```
+Similar to the case of bmi the chances of having a stroke is higher at higher glucose levels.
+
+#### Effect of Smoking
+```{r smoking-ggplot}
+
+datasetForSmokingAnalysis&lt;-healthCareStrokeData
+datasetForSmokingAnalysis$stroke[datasetForSmokingAnalysis$stroke == 0]&lt;-"No Stroke"
+datasetForSmokingAnalysis$stroke[datasetForSmokingAnalysis$stroke == 1]&lt;-"Had a Stroke"
+
+ggplot(datasetForSmokingAnalysis,
+       aes(x=smoking_status,
+           fill=stroke,)) +
+  geom_bar() + ggtitle("Stacked barchart for Smoking Status v/s Stroke")
+
+
+datasetForSmokingAnalysis %&gt;% 
+  filter(stroke == "Had a Stroke" &amp; age&lt;70 &amp;smoking_status!="Unknown")%&gt;%
+  ggplot(aes(age, fill=smoking_status)) + 
+  geom_density(alpha=0.3) + 
+  ggtitle("Stroke by Age and Smoking Status") + 
+  xlab("Smoking Status") + ylab("Density")
+
+```
+From the plot we can conclude that former smokers and a person who smokes is more likely to have a stroke when compared to a person who doesn't smoke.
+
+#### Effect of Gender
+```{r gender-ggplot}
+healthCareOnlyStroke  %&gt;% ggplot(aes(age, fill=gender)) + geom_density(alpha=0.3) + ggtitle("Stroke by Age in Male and Female")
+```
+We can see that as the age increases women tend to be prone to having a stroke at an earlier age while men develop it over time.
+
+### Conclusion
+
+Now that we have a detailed analysis of all the indicators that cause a stroke in our dataset, you can check for yourself how close you are to having a stroke. One thing we have no control over is age as everyone ages, but the rest of the attributes give us a lucid understanding of what to do to decrease our chances of having a stroke. A good start would be to quit smoking, Manage Stress, Normalize bmi, having low glucose level and having a better heart health.
+
+I hope this study helps you make a data-driven decision about your health and lifestyle in order to prevent strokes.
+
+
+### Bibliography/ References
+
+[1] https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9264165
+[2] https://ggplot2.tidyverse.org
+[3] https://r-graph-gallery.com/stacked-barplot.html
+[4] https://education.rstudio.com/learn/beginner/</code></pre>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
