@@ -46,9 +46,8 @@ According to the World Health Organization (WHO) stroke is the 2nd leading cause
 Data for this project originates from the Electronic Health Record (EHR) controlled by McKinsey & Company. This data is a well refined and filtered dataset of the original dataset which was collected over a course of several years in Bangladesh. 
 
 #### Project Goals
-My main objective in this project is focused on finding th relationship between the bmi (Body Mass Index) using average glucose level and age of a patient. And also checking the dependence between some of the categorical variables like gender, residence type and stroke.
 
-My main objective in this project is focused on finding the best lifestyle choices inorder to 
+My main objective in this project is focused on finding the best lifestyle choices with the help of the attribute analysis in this dataset, inorder to prevent stroke.
 
 #### Import the data
 
@@ -162,7 +161,6 @@ As stated above the main variables I'm going to focus on are :
 * bmi and
 * avg_glucose_level
 
-You may have a question on why we chose the people who had a stroke and not the dataset with the people who haven't had a stroke. It's because of the median of the data of the two datasets which is shown below.
 
 ```{r stroke-piechart}
 strokeLabels  = table(healthCareStrokeData$stroke)
