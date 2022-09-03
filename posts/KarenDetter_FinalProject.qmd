@@ -1,8 +1,8 @@
 ---
-title: "hw2"
-author: "Lai Wei"
-desription: "Howmework 2"
-date: "08/20/2022"
+title: "Who Are The Women Who Voted For Trump?"
+author: "Karen Detter"
+desription: "Analysis of data from "
+date: "August 2022"
 format:
   html:
     toc: true
@@ -10,8 +10,10 @@ format:
     code-copy: true
     code-tools: true
 categories:
+  - hw1
   - hw2
-  - Lai Wei
+  - challenge1
+  - my name
   - dataset
   - ggplot2
 ---
