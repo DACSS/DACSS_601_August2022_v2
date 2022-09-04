@@ -1,17 +1,18 @@
 ---
-title: "Migration in Bangalore (Work in Progress)"
+title: "Reasons for Migration in Bangalore (2011)"
 author: "Mekhala Kumar"
 description: "Final Project"
-date: "08/31/2022"
+date: "09/03/2022"
 format:
   html:
     toc: true
     code-copy: true
     code-tools: true
 categories:
-  - final
-  - migration
-  - work in progress
+  - Final
+  - Migration
+  - Reasons for Migration
+  - Bangalore
 ---
 
 ```{r}
@@ -22,35 +23,80 @@ categories:
 library(tidyverse)
 library(readxl)
 library(ggplot2)
+library(plotly)
+library(gapminder)
+options(scipen = 100, digits = 4)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Read in data
+## Reasons for Migration in Bangalore (2011)
 
-### Briefly describe the data
+## Dataset for the Project
 
-The data being used is Indian Census Data for the year 2011 and district
-of Bangalore. There are several tables in the Census such as population,
-languages spoken, education and migration.\
-For this project, I am using the population data and one of the
-migration tables (D3). The Indian Census has two definitions of
-migrations: 1)a person who lives in area other than their place of birth
-and 2)a person who changed their place of residence. The D3 Census table
-uses the second definition, it also includes information about the
-number of years they have resided in the area and reason why they
-migrated. I specifically chose the dataset for Karnataka(the receiving
-state) and filtered it for Bangalore; hence the receiving area is
-Bangalore and the various sending states/areas are looked into.\
+### Indian Census Migration Data (Table D03) filtered for Bangalore
 
-```{r}
+The Indian Census collects information about multiple demographics such as population, languages spoken, education levels and migration. It is collected once every ten years, the latest one was collected in 2011. The data collection for the 2021 round has not been collected yet due to the Coronavirus pandemic (Bharadwaj & Batra, 2022).\
+
+For this project, the main dataset utilised is the Indian Census Migration Data for the year 2011 (Table D03).\
+I specifically chose the dataset for Karnataka (the receiving state) and filtered it for Bangalore (a district within Karnataka); hence the receiving area is Bangalore and the sending regions include other districts in Karnataka, other states in India and other countries\
+(Table D-03 is specifically named as D-03: Migrants within the State/UT by place of last residence, duration of residence and reason of migration - 2011).\
+The project mostly discusses internal migrants, that is people who shifted from within Karnataka or from other states in India.\
+I also utilised the population figures from the "A-01: Number of villages, towns, households, population and area (India, states/UTs, districts and Sub-districts) - 2011" dataset (Office of the Registrar General India, 2021).\
+
+The Indian Census has two definitions of migrants:
+
+1.  Migrant by birth place: This is a person whose enumeration occurs in a place that is not their birthplace (Government of India, n.d.).
+
+2.  Migrant by place of residence: This is a person whose place of enumeration in the current Census is different from the residence they were enumerated in during the last Census (Government of India, n.d.).
+
+Table D03 uses the second definition, it also includes information about the number of years they have resided in the area and reasons why they migrated. The variables pertinent to this project and their descriptions are provided below:
+
+1.  res: This is the current place of enumeration- it is divided into Total, Rural and Urban. Total being the aggregate of Rural and Urban.
+
+2.  res_time: This is the number of years the migrants have resided in the area- it is divided into All durations of residence, Duration of less than 1 year, Duration of 1-4 years, Duration of 5-9 years and Duration of 10 years and above. All durations of residence is the aggregate of the other values.
+
+3.  last_res: This is the place where one last resided. There are the broad categories of those who last resided within India and those who last resided outside India.\
+    Under those who last resided within India, there are interstate and intrastate migrants, which have further divisions of the state names/union territories for interstate migrants and whether the intrastate migrants moved within the district or between other districts.\
+    Under those who last resided outside India, there are migrants who came from Asian countries other than India and those who came from the countries outside Asia.\
+
+4.  Last residence within India
+
+a\. Interstate
+
+-   State names and Union Territories
+
+b.  Intrastate
+
+-   Intradistrict
+
+-   Interdistrict
+
+2.  Last residence outside India
+
+    a.  Countries in Asia other than India
+    b.  Other countries\
+        The categories under last residence outside India only have corresponding "Total" rows in the last_res_type column. They do not have urban and rural.\
+
+3.  last_res_type: This is the type of place where one last resided. There is Total, Rural and Urban, with Total being the aggregate.
+
+4.  reason: These are the reasons people migrated, which includes Work, Business, Education, Marriage, After birth, With the household and Others.\
+    (Office of the Registrar General India, 2021).\
+    *Note: The genders in the dataset are limited to male and female.*\
+
+In the last_res(last place of residence variable), place of enumeration refers to the district where the person's details were recorded. The state of enumeration is the state that the information was recorded. Since it can be confusing to understand, the values were renamed as intrastate, intradistict, interdistrict and interstate to give an indication of the type of migration that was undertaken. Recode was used because only certain observations needed to be changed and using case_When() instead would result in the unchanged values being saved as NA.
+
+```{r Reading in Data}
 #Removing the top few rows which have just the table names and renaming columns
 mig <- read_excel("_data/Mekhala's data/DS-2900-D03-MDDS.XLSX",skip=5,col_names = c("tab_name","state_code","dist_code","area","res","res_time","last_res","last_res_type","tot_t","tot_m","tot_f","work_t","work_m","work_f","busi_t","busi_m","busi_f","educ_t","educ_m","educ_f","mar_t","mar_m","mar_f","afterbirth_t","afterbirth_m","afterbirth_f","withhh_t","withhh_m","withhh_f","others_t","others_m","others_f"))%>%filter(area=="Bangalore")
-mig_org<-mig
+#recoding values
+mig<-mutate(mig,last_res=recode(last_res,`Within the state of enumeration but outside the place of enumeration`= "Intrastate",
+         `Elsewhere in the district of enumeration`= "Intradistrict",
+        `In other districts of the state of enumeration` = "Interdistrict",
+        `States in India beyond the state of enumeration`= "Interstate"))
 dim(mig)
-#there are 45 unique values for last place of residence
-last_residence_temp1 <- unique(mig$last_res)
-last_residence_temp1
+mig_org<-mig
+
 print(summarytools::dfSummary(mig,
                         varnumbers = FALSE,
                         plain.ascii  = FALSE, 
@@ -59,132 +105,119 @@ print(summarytools::dfSummary(mig,
                         valid.col    = FALSE),
       method = 'render',
       table.classes = 'table-condensed')
-
-#recoding values
-mig<-mutate(mig,last_res=recode(last_res,`Within the state of enumeration but outside the place of enumeration`= "Intrastate",
-         	`Elsewhere in the district of enumeration`= "Intradistrict",
-        `In other districts of the state of enumeration` = "Interdistrict",
-        `States in India beyond the state of enumeration`= "Interstate"))
 ```
 
-## Checking how to filter out rows
+## Rationale
 
-There are essentially 4 columns which have aggregate data- res(place of
-residence),last_res_type(type of place where the person last resided-
-rural/urban), last_res(the last residence) and res_time(duration of
-residence).\
-The aggregates from the res and last_res_type can be removed easily
-however, with last_res_type and last_res, there is a problem. Some of
-the last_res data only have a corresponding "Total" row in the
-last_res_type, for instance, people migrating from places outside
-India.\
-The original number of unique values in the last_res variable is 45 but
-by filtering out the "Total" from last_res_type reduces the number of
-unique values in last_res. I showed the number of unique values of
-last_res that are present after filtering out certain rows.I have tried
-two types:\
-1. Removing the "Total" rows in all 4 columns- this removes certain
-categories in last_res\
-2. Removing the "Total" rows in last_res and res_time but not removing
-the "Total" rows from last_res_type- this retains all the categories in
-last_res. Hence, for further checking, the filtering was done in this
-manner.
+During my undergraduate program, for my dissertation, I conducted in depth research on migration and population changesin five of ten of the most populated cities in India, which were, Mumbai, Kolkata, Delhi, Surat and Bangalore. This was between 1881 to 2011 and the migrants defined in the study were individuals who lived in an area different than their birthplace (the first definition). The research revealed how migrant growth was correlated to the industrial growth of a particular city. It also identified that major historical events like the 1918 influenza epidemic, Partition of India in 1947 and globalisation of India's economy in 1990s affected population and migrant numbers. Thus, this information could help in identifying when there is likely to be a rise or fall in migration and how the government can be prepared for the changes that would follow (Kumar,2022).\
+However, during the research, I did not look specifically into reasons people migrated, but instead suggested the reasons at a macro level (such as historical events), for changes in migration.\
+Looking at the individual reasons for migration can help depict if there is a dominating reason as to why people move, such as moving for business or moving with family. In the case that there is a dominating reason such as moving for business, policy suggestions for how to encourage people to set up businesses in the sending regions or how to improve business opportunities in the receiving region can be worked upon.\
+Studying the reasons why people migrate can also reveal whether there are gender-specific differences in reasons which is indicative of cultural practices.
 
-```{r}
+## Research Statement
 
-mig3<-mig%>%filter(!str_detect(res, "Total"))%>%filter(!str_detect(last_res_type, "Total"))%>%select(-c(9:11))
-mig3_sub<-mig3%>%filter(res_time!="All durations of residence")
+This project aims to look into whether there is a particular reason which is more common for migration, if the reasons for migration reflect any cultural norms and observe any other trends pertaining to reasons for migration.
 
-last_residence_temp1 <- unique(mig3_sub$last_res)
-last_residence_temp1
+## Background of Indian Census Migration Data 2011
 
-mig3_sub2<-mig%>%filter(!str_detect(last_res, "Total"))%>%select(-c(9:11))
-mig3_sub2<-mig%>%filter(res_time!="All durations of residence")
-last_residence_temp2 <- unique(mig3_sub2$last_res)
-last_residence_temp2
+This section has information about migration at a national level.
 
+### Number of Migrants
+
+In the 2011 data, the number of migrants recorded for India as a whole was around 456 million, which amounted to roughly 38% of the population. Among these, 99% of the migrants were internal and only 1% of the migrants came from other countries (Iyer, 2020).
+
+### Variation in intra- and interstate migration as well as variation by Gender
+
+#### Intrastate migrants
+
+Majority (70%) of the migrants who moved within the boundaries of a state, mentioned that they moved due to marriage and family. In contrast, the migrants who moved within the boundaries of a state was only 8%, and when split by male and female, it was 21% and 2% (Iyer, 2020).
+
+#### Interstate migrants
+
+In comparison to the intrastate migrants, there was a higher number of interstate migrants who moved for work, when split by male and female, it was 50% and 5%. However, it is important to note that the worker population is often undercounted because the Census data only takes note of the primary reason for migration. In this case, many women state their primary reason for migration as movement due to family but they also do tend to work after they migrate (Iyer, 2020).
+
+## Tidying data
+
+## Selecting appropiate method to filter the rows
+
+There are essentially 4 columns which have aggregate data- res(place of residence),last_res_type(type of place where the person last resided- rural/urban), last_res(the last residence) and res_time(duration of residence).\
+The aggregates from the res and last_res_type, which are Total and All durations of residence, can be removed easily however, with last_res_type and last_res, there is a problem. Some of the observations in the last_res data only have a corresponding "Total" row in the last_res_type, for instance, people migrating from places outside India. By removing the "Total" observation in last_res_type, the information regarding international migration was deleted.This was an issue as the international migration data would be required for the analysis.\
+The original number of unique values in the last_res variable is 45 but by filtering out the observations present as "Total" from last_res_type reduces the number of unique values in last_res. I showed the number of unique values of last_res that are present after filtering out certain row in two cases:
+
+1.  Removing the "Total" rows in all 4 columns (in the case of res_time: this observation is "All durations of residence"). This removes certain categories in last_res which are required for the analysis.
+
+2.  Removing the "Total" rows in res_time and last_res but not removing the obseravtions marked "Total" from last_res_type- this retains all the categories in last_res. Hence, in the further steps, the "Total" and "All durations of residence" were removed when required but the "Total" observations were not removed in the last_res_type variable.
+
+```{r Checking how filtering affects the dataset}
+#there are 45 unique values for last place of residence
+print("Unique Values of Last Place of Residence without filtering")
+unique(mig$last_res)
+
+temp1<-mig%>%
+  filter(!str_detect(res, "Total"))%>%
+  filter(!str_detect(res_time,"All durations of residence"))%>%
+  filter(!str_detect(last_res, "Total"))%>%
+  filter(!str_detect(last_res_type, "Total"))
+unique(temp1$last_res)
+
+temp2<-mig%>%
+  filter(!str_detect(res_time,"All durations of residence"))%>%
+  filter(!str_detect(last_res, "Total"))
+unique(temp2$last_res)
 ```
 
-## Sanity check - This is where I am facing an issue because the totals do not add up
+## Sanity check- Checking if the rows with aggregate values add up to rows which contain the Total
 
-In the last_res variable, there are the broad categories of those who
-last resided within India and those who last resided outside India.\
-Under those who last resided within India, there are interstate and
-intrastate migrants, which have further divisions of the state names for
-interstate migrants and whether the intrastate migrants moved within the
-district or between other districts.\
-Under those who last resided outside India, there are migrants who came
-from Asian countries other than India and those who came from the
-countries outside Asia.\
-1. Last residence within India\
-a. Interstate\
--state names\
-b. Intrastate\
--Intradistrict\
--Interdistrict\
-2. Last residence outside India\
-a.Countries in Asia other than India\
-b. Other countries\
-The categories under last residence outside India only have corresponding "Total" rows in the last_res_type column. They do not have urban and rural.\
-Case 1: I filtered the res variable by removing all total rows and the res_time variable by removing the all durations rows. Then I filtered out the subcategories in the last_res variable and  filtered last_res_type to only have the Total rows. I then calculated the sum of the subcategories.
-Case 2: I then compared this to the sum found if we filtered the res variable to only include total and the res_time variable to only include all durations of residence; while keeping the filters for the remaining variables- last_res and last_res_type the same way (subcategories in last_res and only total in last_res_type).\
-I expected the sums to be the same in both cases, however, the sums of the categories in case 1 were lower.
+Case 1: I filtered the res variable by removing all the observation with "Total" from res and removing the observations "All durations of residence" from res_time. Then I filtered out the subcategories in the last_res variable (Interstate, Intradistrict, Interdistrict,Countries in Asia Beyond India, Other Countries) and filtered last_res_type to only have the observations marked "Total". I then calculated the sum of the subcategories.\
+Case 2: I then compared this to the sum found if we filtered the res variable to only include observations marked "Total" and the res_time variable to only include observations marked "All durations of residence"; while keeping the filters for the remaining variables- last_res and last_res_type the same way as in case 1(subcategories in last_res and only total in last_res_type).\
+I expected the sums to be the same in both cases, however, the sums of the categories in Case 1 were lower.\
+This may be an error in the dataset itself, so I continued with tidying the data and the visualisations. However, it is important to keep in mind that there is a slight disparity in the totals.
 
-```{r}
+```{r Comparing the sums}
 #selecting all the aggregates
-mig_filt<-mig%>%
+mig_filt<- mig%>%
+  filter(!str_detect(res,"Total"))%>%
+  filter(!str_detect(res_time,"All durations of residence"))%>%
   filter(last_res=="Interstate"|last_res=="Intradistrict"|last_res=="Interdistrict"|last_res=="Countries in Asia beyond India"|last_res=="Other Countries"|last_res=="Unclassifiable")%>%
   filter(!str_detect(last_res_type, "Rural"))%>%
   filter(!str_detect(last_res_type, "Urban"))
-
-totals<-mig_filt%>%group_by(last_res)%>%
+ 
+totals<-mig_filt%>%
+  group_by(last_res)%>%
   summarise(total_people = sum(tot_t))
 
-
 #COMPARISON
-mig_org<-mutate(mig_org,last_res=recode(last_res,`Within the state of enumeration but outside the place of enumeration`= "Intrastate",
-         	`Elsewhere in the district of enumeration`= "Intradistrict",
-        `In other districts of the state of enumeration` = "Interdistrict",
-        `States in India beyond the state of enumeration`= "Interstate"))
-
-mig_org_totals_data<-mig_org%>%filter(res=="Total")%>%
+mig_org_totals_data<-mig%>%filter(res=="Total")%>%
   filter(res_time=="All durations of residence")%>%
   filter(last_res=="Interstate"|last_res=="Intradistrict"|last_res=="Interdistrict"|last_res=="Countries in Asia beyond India"|last_res=="Other Countries"|last_res=="Unclassifiable")%>%
   filter(!str_detect(last_res_type, "Rural"))%>%
   filter(!str_detect(last_res_type, "Urban"))
 
-mig_org_totals<-mig_org_totals_data%>%group_by(last_res)%>%
+mig_org_totals<-mig_org_totals_data%>%
+  group_by(last_res)%>%
   summarise(total_people = sum(tot_t))
+print("The first table is Case 1 and second table is Case 2")
+totals
+mig_org_totals
 ```
 
 ## Second dataset
 
-```{r}
-pop <- read_excel("_data/Mekhala's data/A-1_NO_OF_VILLAGES_TOWNS_HOUSEHOLDS_POPULATION_AND_AREA (1).xlsx",skip=4,col_names=c("state_code","dist_code","sub_dist_code","type_of_region","name","reg_type","num_village_inhabit","num_village_uninhabit","num_town","num_hh","pop_t","pop_m","pop_f","area_region","pop_density"))%>%filter(name=="Bangalore")
+I also used the Population data for the district of Bangalore.
+
+```{r Reading in Population data}
+pop <- read_excel("_data/Mekhala's data/A-1_NO_OF_VILLAGES_TOWNS_HOUSEHOLDS_POPULATION_AND_AREA (1).xlsx",skip=4,col_names=c("state_code","dist_code","sub_dist_code","type_of_region","name","reg_type","num_village_inhabit","num_village_uninhabit","num_town","num_hh","pop_t","pop_m","pop_f","area_region","pop_density"))%>%
+  filter(name=="Bangalore")
 
 ```
 
-## Tidy Data
+## Pivoting Data
 
-In the last_res( last place of residence variable), place of enumeration
-refers to the district where the person's details were recorded. The
-state of enumeration is the state that the information was recorded.
-Since it can be confusing to understand, the values are being renamed as
-intrastate, intradistict, interdistrict and interstate to give an
-indication of the type of migration that was undertaken. Recode was used
-because only certain observations needed to be changed and using
-case_When() instead would result in the unchanged values being saved as
-NA.
+The reasons for migration in the dataset were present as various columns which needed to be pivoted in order to be in the tidy data format.21 columns of reasons for migration were pivoted.\
+Before doing the same, the new total number of rows and columns were calculated. There were originally 1875 rows and 32 columns. The cases (number of columns to pivot were 21). It was estimated that there would be 39375 rows and 13 columns after pivoting.\
+After pivoting, the reasons column was separated into two columns, using separate and fill. This was divided into the reason and whether the data was for the total number of people, males or females.
 
-Moreover, the reasons for migration in the dataset were present as
-various columns which needed to be pivoted in order to be in the tidy
-data format.21 columns of reasons for migration were pivoted and before
-doing the same, the new total number of rows and columns were
-calculated.
-
-```{r}
-
-#pivoting data
+```{r Pivoting data}
 
 #sanity check
 #original rows=1875
@@ -200,15 +233,15 @@ col=(32-21)+2
 print("Expected number of columns:")
 col
 
-mig3<-pivot_longer(mig3, 12:32, names_to = "Reason for Migration", values_to = "Number of People")
-dim(mig3)
+mig<-pivot_longer(mig, 12:32, names_to = "Reason for Migration", values_to = "number_people")
+dim(mig)
 
 
-mig3<-mig3%>%
+mig<-mig%>%
   separate("Reason for Migration",into=c("Reason", "Value"), sep="_")
 
-mig3<-mig3%>%
-  mutate(Reason_Mig = case_when(
+mig<-mig%>%
+  mutate(reason_mig = case_when(
          Reason == "work" ~ "Work",
          Reason == "busi" ~ "Business",
          Reason == "educ" ~ "Education",
@@ -217,21 +250,360 @@ mig3<-mig3%>%
          Reason == "withhh" ~ "With the household",
          Reason == "others" ~ "Others"
          ))
-mig3<-mig3%>%
-  mutate(Value_Mig = case_when(
+mig<-mig%>%
+  mutate(value_mig = case_when(
          Value == "t" ~ "Total",
          Value == "m" ~ "Male",
          Value == "f" ~ "Female",
     
          ))
-mig3<-mig3%>%select(-c(Reason,Value))
-
+mig<-mig%>%select(-c(Reason,Value))
+mig<-mig%>%
+  select("tab_name","state_code","dist_code","area","res","res_time","last_res","last_res_type","reason_mig","value_mig","number_people",everything())
 
 ```
 
-## Join Data
+## Calculating the proportions
 
-```{r}
-new<-mig3 %>% 
-  inner_join(pop, by = "dist_code")%>%select(-state_code.y)
+I calculated 2 types of proportions.
+
+1.  The proportion of migrants by different reasons as a part of the total population of Bangalore.
+
+2.  The proportion of migrants by different reasons as a part of the total number of migrants present in Bangalore.
+
+```{r Calculating proportions}
+mig<-mig%>%
+  group_by(reason_mig)%>%
+  mutate(proportion_long=
+           case_when(
+           value_mig=="Total"~`number_people`/pop$pop_t[1],
+           value_mig=="Male"~`number_people`/pop$pop_m[1],
+           value_mig=="Female"~`number_people`/pop$pop_f[1]))%>%
+           mutate(proportion_pop=round(proportion_long,digits=3))%>%
+           select(-c(proportion_long))
+
+  
+
+total_mig<-mig_org$tot_t[1]
+male_mig<-mig_org$tot_m[1]
+female_mig<-mig_org$tot_f[1]
+mig<-mig%>%
+  group_by(reason_mig)%>%
+  mutate(proportion_longer=
+           case_when(
+           value_mig=="Total"~`number_people`/total_mig,
+           value_mig=="Male"~`number_people`/male_mig,
+           value_mig=="Female"~`number_people`/female_mig))%>%
+           mutate(proportion_mig=round(proportion_longer,digits=3))%>%
+           select(-c(proportion_longer))
+
 ```
+
+## Creating factors
+
+I created factors for the reasons variable because I did not want the categories to be presented in alphabetical order. When it was in alphabetical order, the "Others" category was in the middle of the observations and it made more sense to create levels in which the "Others" category came at the end.
+
+```{r Creating factors}
+mig<-mig%>%
+  mutate(reason=factor(reason_mig, levels=c("Work","Business","Education","Marriage","After birth","With the household","Others")))
+unique(mig$reason)
+
+mig<-mig%>%
+  select("tab_name","state_code","dist_code","area","res","res_time","last_res","last_res_type","reason","value_mig","number_people",everything())
+mig<-mig%>%
+     select(-c(reason_mig))
+```
+
+## Visualisation and Analysis
+
+Before plotting all the graphs, the mig dataset was filtered according to what I wanted to visualise. Each time after filtering, I checked the unique values present in the columns which I had filtered, in order to ensure that no mistakes had been made and the filters that I required worked. For each graph, I will be discussing the filters used along with explaining the graph. Moreover, wherever I used fill on the graphs for reasons for migration, I kept the same colour scheme using a set of hex codes to make it readability friendly (easier to compare and contrast graphs).\
+
+### Reasons for migration in General
+
+The first graph depicts the reasons and the number of people in each reason. In order to prepare the data for this graph, I filtered the residence to only have the "Total" observations, the residence time to have only the "All durations of residence" observations and last residence, last residence type and the people (by gender) to all be the "Total" observations. Essentially, this graph was made to give a broad overview of reasons for migration.\
+It is clearly visible that the most common reason for migration is work. Other reasons for moving which are significant include the others category, moving with the household and moving after marriage. When this information is split by reasons males migrate and reasons females migrate, there is a contrast that arises.
+
+```{r Reasons-General}
+Set <- c("#7400b8","#5e60ce", "#5390d9", "#48bfe3", "#64dfdf", "#72efdd", "#80ffdb")
+g1<-mig%>%
+  filter(res=="Total" & res_time=="All durations of residence" & last_res=="Total" & last_res_type=="Total" & value_mig=="Total" )
+unique(g1$res)
+unique(g1$res_time)
+unique(g1$last_res)
+unique(g1$last_res_type)
+unique(g1$value_mig)
+
+g1<-g1%>%
+  ggplot(aes(x=reason, y=number_people,fill=reason),width=0.7) +
+  geom_bar(stat="identity", width=1)+
+  scale_fill_manual(values = Set)+
+  labs(title = "Reasons for Migration")+
+  theme(legend.position="none")
+ggplotly(g1)
+```
+
+### Reasons for migration by Male/Female
+
+The second graph illustrates how the reasons people migrate differs depending on whether they are male or female. To prepare the data for this graph, I filtered the residence to only have the "Total" observations, the residence time to have only the "All durations of residence" observations, last residence and last residence type to be the "Total" observations, the observations kept for people (by gender) were male and female.\
+In these graphs, it is evident that the most common reason for males to migrate is for work whereas the most common reason for females to migrate is for marriage. While for males and females, the next two common reasons are others and moving with the household, there is a sharp difference between the top reason for males migrating and the other reasons they migrate, versus for females, the top reason and next two common reasons, do not have so much of stark difference in values between them.\
+These observations are a reflection of cultural norms and practices in India. The only legal form of marriage in India is heterosexual, and it is expected that the male's role is to earn money for the family. Hence, the main reason we see that males move is for work. Moreover, in India, the practice of virilocality (women moving to their husband's home) is common (Menon,2012). This is also demonstrated by the fact that majority of the females migrating, do so because of marriage. Finally, it is important to note that the secondary reasons for migration are not provided in the data,so although women may also be working after migrating, only their primary reason of moving because of marriage is recorded (Ministry of Housing and Urban Poverty Alleviation, 2017).\
+The next two graphs have the same information but presented in different manners.Therefore, the filtering of the rows in the next two graphs also remained the same. I made two more graphs with the same information because I wanted to show more intuitive ways of looking at this information.
+
+```{r Reasons by gender}
+g2<-mig%>%
+  filter(res=="Total" & res_time=="All durations of residence" & last_res=="Total" & last_res_type=="Total" & value_mig!="Total" )
+unique(g2$res)
+unique(g2$res_time)
+unique(g2$last_res)
+unique(g2$last_res_type)
+unique(g2$value_mig)
+
+g2<-g2%>%  ggplot(aes(x=reason, y=number_people,fill=reason),width=0.7) +
+  geom_bar(stat="identity", width=1) +
+  scale_fill_manual(values = Set)+
+  labs(title = "Reasons for Migration by Male/Female")+
+  facet_wrap(vars(value_mig))+
+  theme(legend.position="none")+ 
+  theme(axis.text.x=element_text(angle=90,hjust=1))
+ggplotly(g2)
+```
+
+## Reasons for Migration as a Proportion of the Total Migrants
+
+In this graph, we see the reasons that males and females migrate but instead of raw numbers, we see the values as a percentage of the total males and females who migrated. Hence, it is clearly seen that of all the females who migrated, the most common reason was because of marriage and of all the males who migrated, the most common reason was for work.
+
+```{r Reasons - Proportion by Migrant Numbers}
+g3<-mig%>%
+  filter(res=="Total" & res_time=="All durations of residence" & last_res=="Total" & last_res_type=="Total" & value_mig!="Total" )
+unique(g3$res)
+unique(g3$res_time)
+unique(g3$last_res)
+unique(g3$last_res_type)
+unique(g3$value_mig)
+unique(g3$reason)      
+g3<-g3%>%
+  ggplot(aes(fill=reason,x=value_mig, y=proportion_mig),width=0.7) +
+  geom_bar(position="stack", stat="identity")+
+  labs(title = "Reasons for Migration as a Proportion of the Total Migrants")+
+  scale_fill_manual(values = Set)
+ggplotly(g3)
+```
+
+## Reasons for Migration as a Proportion of the Total Population
+
+This graph also depicts the percentages of males and females migrating for different reasons, but here the values are percentages of the total population of Bangalore and not just the migrant population.\
+I created this graph because not only does it depict the reasons why people migrate but it also gives an idea of the division of population by natives (those who have not migrated) and migrants. From this graph, we understand that the migrant population is higher for males than females. It is also clear that the city is roughly divided in half for native population and the migrant population, as they are both around 50%.
+
+```{r Reasons - Proportion by Population}
+g4<-mig%>%
+  filter(res=="Total" & res_time=="All durations of residence" & last_res=="Total" & last_res_type=="Total" & (value_mig!="Total"))
+unique(g4$res)
+unique(g4$res_time)
+unique(g4$last_res)
+unique(g4$last_res_type)
+unique(g4$value_mig)
+unique(g4$reason)      
+g4<-g4%>%
+  ggplot(aes(fill=reason,x=value_mig, y=proportion_pop),width=0.7) +
+  geom_bar(position="stack", stat="identity")+
+  labs(title = "Reasons for Migration as a Proportion of the Total Population")+
+  scale_fill_manual(values = Set)
+ggplotly(g4)
+```
+
+## Reasons split by Last place of residence
+
+This graph illustrates how the reasons people migrate differ by their last place of residence.  To prepare the data for this graph, I filtered the residence to only have the "Total" observations, the residence time to have only the "All durations of residence" observations, last residence to have "Interstate","Intrastate", "Countries in Asia beyond India", "Other Countries" and "Unclassifiable", last residence type to be the "Total" observations, the observations kept for people (by gender) were "Total".\
+However, in this graph, it is evident that most of the migrants come from within India and there are hardly any international migrants. Therefore, I made a graph which only depicted interstate and intrastate migrants which will be discussed in the next section.
+
+```{r Reasons and Last place of residence}
+Set2 <- c("#02010a","#04052e", "#140152", "#22007c", "#0d00a4")
+
+g5<-mig%>%
+  filter(res=="Total")%>%
+  filter( res_time=="All durations of residence")%>%
+  filter(last_res=="Interstate"|last_res=="Intrastate"|last_res=="Countries in Asia beyond India"|last_res=="Other Countries"|last_res=="Unclassifiable")%>%
+  filter(last_res_type=="Total")%>%
+  filter(value_mig=="Total")
+unique(g5$res)
+unique(g5$res_time)
+unique(g5$last_res)
+unique(g5$last_res_type)
+unique(g5$value_mig)
+g5<-g5%>%ggplot(aes(fill=last_res, y=number_people, x=reason)) + 
+    geom_bar(position="dodge", stat="identity")+ 
+  theme(axis.text.x=element_text(angle=90,hjust=1))+
+  scale_fill_manual(values = Set2)+
+  labs(title = "Reasons split by last place of residence")
+ggplotly(g5)
+```
+
+## Reasons split by Intrastate and Interstate migration
+
+This graph illustrates the reasons for migration split by interstate and intrastate migrants.To prepare the data for this graph, I filtered the residence to only have the "Total" observations, the residence time to have only the "All durations of residence" observations, last residence to have "Interstate" and "Intrastate" observations, last residence type to be the "Total" observations and the observations kept for people (by gender) were "Total".\
+I represented the information of intrastate and interstate migrants as percentages of the total migrants from within India. I used group_by to separate the migrants depending on the reason and then checked the sums for each reason for the intrastate and interstate migrants. I also did the same group_by but for the sums for each reason for just migrants from within India. This was a sanity check to observe whether the sums would be the same in both cases and they were, so I moved forward with calculating the percentages. Finally I graphed the percentage values.\
+This graph demonstrates that regardless of the reason for migration, majority of the migrants were from within Karnataka. There were slightly higher percentages of those who moved from other states for work, business or education; but these values were still lesser than the percent of intrastate migrants. This indicates that migrants are more likely to move shorter distances. This is perhaps because migration can be expensive, and moving longer distances would also be costly in terms of the transportation costs.
+
+```{r Interstate vs Intrastate}
+Set3 <- c("#02010a", "#0d00a4")
+
+mig_ind_split<-mig%>%
+  filter(res=="Total")%>%
+  filter(res_time=="All durations of residence")%>%
+  filter(last_res=="Last residence within India")%>%
+  filter(last_res_type=="Total")%>%
+  filter(value_mig=="Total")%>%
+  group_by(reason)%>%
+  summarise(total_people = sum(number_people))
+
+#Sanity check
+mig_ind_split2<-mig%>%
+  filter(res=="Total")%>%
+  filter(res_time=="All durations of residence")%>%
+  filter(last_res=="Interstate"|last_res=="Intrastate")%>%
+  filter(last_res_type=="Total")%>%
+  filter(value_mig=="Total")%>%
+  group_by(reason)%>%
+   summarise(total_people = sum(number_people))
+
+mig_split<- mig%>%
+  filter(res=="Total")%>%
+  filter(res_time=="All durations of residence")%>%
+  filter(last_res=="Interstate"|last_res=="Intrastate")%>%
+  filter(last_res_type=="Total")%>%
+  filter(value_mig=="Total")%>%
+  group_by(reason)%>%
+  mutate(split_pct=
+           case_when(
+           reason=="Work"~`number_people`/mig_ind_split$total_people[1],
+           reason=="Business"~`number_people`/mig_ind_split$total_people[2],
+           reason=="Education"~`number_people`/mig_ind_split$total_people[3],
+           reason=="Marriage"~`number_people`/mig_ind_split$total_people[4],
+           reason=="After birth"~`number_people`/mig_ind_split$total_people[5],
+           reason=="With the household"~`number_people`/mig_ind_split$total_people[6],
+           reason=="Others"~`number_people`/mig_ind_split$total_people[7]))%>%
+           mutate(split_pct2=round(split_pct,digits=3))%>%
+           select(-c(split_pct))
+unique(mig_split$res)
+unique(mig_split$res_time)
+unique(mig_split$last_res)
+unique(mig_split$last_res_type)
+unique(mig_split$value_mig)
+unique(mig_split$reason)    
+
+g6<-mig_split%>%
+    filter(value_mig=="Total")%>%
+    ggplot(aes(fill=last_res, y=split_pct2, x=reason)) + 
+    geom_bar(position="stack", stat="identity")+ 
+  theme(axis.text.x=element_text(angle=90,hjust=1))+
+  scale_fill_manual(values = Set3)+
+  labs(title = "Reasons split by Intrastate and Interstate migration")
+ggplotly(g6)
+```
+
+### Interstate migrants who moved for Work or Marriage
+
+This graph illustrates the interstate migrants who moved to Bangalore either due to work or marriage.\
+To prepare the data for this graph, I filtered the residence to only have the "Total" observations, the residence time to have only the "All durations of residence" observations, last residence to have all the states within India except for Karnataka, last residence type to be the "Total" observations and the observations kept for people (by gender) were "Total". Furthermore, I only looked into two reasons- work and marriage as these were the common reasons for migration for males and females.\
+For both reasons for migration, the top three source states were Tamil Nadu, Andhra Pradesh and Kerala. These three are neighbouring states of Karnataka, once again depicting how most people migrate for comparatively shorter distances.
+
+```{r Reasons and States}
+g7<-mig%>%
+  filter(res=="Total")%>%
+  filter(res_time=="All durations of residence")%>%
+  filter(last_res!="Total"& last_res!="Last residence within India" & last_res!="Interstate"& last_res!="Intrastate"& last_res!="Intradistrict"&
+           last_res!="Interstate"& last_res!="Interdistrict"&
+           last_res!="Countries in Asia beyond India"& last_res!="Other Countries"& last_res!="Unclassifiable" & last_res!="Karnataka" & last_res!="Last residence outside India")%>%
+  filter(last_res_type=="Total")%>%
+  filter(value_mig!="Total")%>%
+  filter(reason=="Work"|reason=="Marriage")
+
+unique(g7$res)
+unique(g7$res_time)
+unique(g7$last_res)
+unique(g7$last_res_type)
+unique(g7$value_mig)
+unique(g7$reason)
+
+g7<- arrange(g7,desc(number_people))
+g7<-g7%>% 
+  ggplot(aes(fill=last_res, y=number_people, x=reason)) + 
+    geom_bar(position="dodge", stat="identity")+
+    labs(title = "Reasons split by states outside Karnataka")
+ggplotly(g7)
+```
+
+## Conclusion
+
+### Limitations
+
+-   Census Data only captures long term migration. It does not measure seasonal or circular migration. Hence, all the analysis provided is for long term migration only.
+
+-   The sum of the aggregates of the values for the groups by last place of residence were slightly lower than the total values for the groups by place of last residence, therefore, there may be some inaccuracy in the results.
+
+### Conclusion
+
+There were two major findings in the project:
+
+1.  Since the majority of men shift due to work and majority of women shift due to marriage, it is evident that migration to Bangalore is representative of cultural practices followed in India.
+
+2.  The distance of the receiving region from the source region plays a role- when the number of intrastate and interstate migrants for each reason was compared, it was found that there was always a higher percentage of intrastate migrants. Furthermore, even when only the migrants from states other than Karnataka (who moved because of work or marriage) were looked into, the top three sending states were states that border Karnataka. Therefore, this demonstrated that migrants often consider the distance of the place they are shifting to before travelling.\
+
+Therefore, the data on reasons for migration revealed information on cultural practices as well as how distance plays a role in migration.\
+
+### Future Research
+
+In future research, this project can be extended to include multiple time frames.For instance, a comparison between the reasons, places of residence and reasons by migration between 1991 to 2011.\
+Another aspect could be looking into the totals and aggregates more deeply in order to understand if there was under counting in the Census data or if there was some error while coding.\
+Finally, the same type of research can be conducted for other districts of India, so a cross-district analysis can take place.
+
+## Reflections
+
+There were several challenges I faced along the way but I was able to learn from them and gain knowledge about tidy data practices and good visualisation habits.
+
+1.  Selecting observations to filter in different columns: The dataset had so many columns which had aggregate values such as the residence, duration of residence, last place of residence and the type of residence in the last place of residence. It was confusing at first to filter out because even if I removed the observations marked "Total" from one of the columns, there could still be aggregate data because of the information available in the other columns. Moreover, simply removing the rows which had the word "Total" was not the best step as some of the these rows corresponded to required information in other variables. That is, sometimes the observations in various columns were linked to each other. Therefore, I had to be very careful while filtering observations from columns. Another possible issue that could have arisen would be that if I did not filter some observations that I was supposed to, the data visualised and analysed could be incorrect cause there would be a double count of the observations.
+
+2.  Checking totals: While checking whether the aggregates added up to the totals in each column, I faced many issues. At first, I took time to understand how to filter out the rows I needed to perform the addition on the groups and conduct a sanity check. Once, I was able to solve this issue by discussing with the Professor and my classmates, another issue I faced was that I was expecting the sums to be the same for the addition of the aggregate rows and the rows with the "Total" but this was not the result. I realised it could be undercounting in the data, an error which is found in many large scale datasets such as the Census.
+
+3.  Since I also wanted to incorporate information regarding the population of the Bangalore, I thought of joining the dataset with the population information to the migration dataset. However, I realised that there were essentially only three rows of data in the population information of Bangalore. When I did conduct a join, the same information was added multiple times. While there was nothing technically wrong with it, since the data was joined by district codes, it made the data look not tidy. Moreover, I only required three specific values from the dataset- population of everyone, population of females and population of males. I did not require the data that was about the area or number of households. Therefore, I decided not to join the two datasets, but only extracted the three values I needed while I was calculating proportions.\
+    I have attached the code of the join I had tried out and the result of the same.
+
+```{r Example of Join}
+new<-mig %>% 
+  inner_join(pop, by = "dist_code")%>%
+  select(-state_code.y)
+new
+```
+
+4.  Filtering out data for visualisations: When I first wrote the codes for my visualisations, I noticed that in one of the graphs, when I filtered for the values to be only male and female, it worked for one graph but not for the other graphs. This was because I filtered out all my variables in a single command and the logic may not have worked in the order that I wanted it to. I also realised that there could be potentially other columns where I thought I had filtered out observations but it had not occurred the way I had wanted it to. Therefore, I filtered the rows in each column separately and then checked the unique values for each of the columns where I had performed filtering. In this manner, I was able to ensure that the filtering worked out exactly the way that I wanted it to.
+
+5.  Creating the graph for Reasons split by Intrastate and Interstate migration: While calculating the proportions of this graph, I faced some confusion. I knew that I wanted to see the percentage of interstate and intrastate migrants that were present for each reason for migration. However, at first during the calculation of the proportions, I tried to groupby() the last place of residence(here interstate and intrastate), and find the proportions as a percentage of the number of people by the total number of migrants from within India. I realised after doing the same, that this was the wrong approach and I was instead supposed to do groupby() by region and calculate the proportions as a percentage of number of people by the value of the number of people present in each reason. Thus, the trial and error method helped me achieve the graph that I wanted.
+
+6.  Discussing with people: I found discussing my project with my classmates very helpful. When I faced coding issues, sometimes talking about the same with others helped because they had faced a similar issue earlier and were able to help me resolve the coding errors. At other times, tackling the code for certain visualisations step-by-step with a classmate, made the process less daunting because the classmate would be able to look at the issue with a fresh perspective.\
+
+Thus, overall, doing the project helped me practise and improve coding techniques I was not confident in earlier such as using group by() or creating factor variables. It also made me realise the importance of collaboration and discussion with others, since that also helps us exchange ideas about how to tidy and visualise data.
+
+## References
+
+-   Bhardwaj, A., & Batra, S. (2022, July 26). *No census 2021 in 2022 either - govt 'puts exercise on hold, timeframe not yet decided'.*ThePrint.https://theprint.in/india/no-census-2021-in-2022-either-govt-puts-exercise-on-hold-timeframe-not-yet-decided/1055772/\
+
+-   Government of India. (n.d.).*Drop-in-article on census - no.8 (migration).*\
+    https://censusindia.gov.in/nada/index.php/catalog/40447\
+
+-   Iyer, M. (2020, June 10). *Migration in India and the impact of the lockdown on migrants.* PRS Legislative Research. https://prsindia.org/theprsblog/migration-in-india-and-the-impact-of-the-lockdown-on-migrants
+
+-   Kumar, M. (2022).*Tracing more than a century of migration to major cities of India from the Census records*.\[Unpublished postgraduate diploma dissertation\]. FLAME University.
+
+-   Menon N. (2012). *Seeing like a feminist.* Published by Zubaan in collaboration with Penguin Books.
+
+-   Ministry of Housing and Urban Poverty Alleviation. (2017). Report of the Working Group on Migration. https://mohua.gov.in/upload/uploadfiles/files/1566.pdf
+
+-   Office of the Registrar General India. (2021). A-01: Number of villages, towns, households, population and area (India, states/UTs, districts and Sub-districts) - 2011. \
+    \[Karnataka\]. https://censusindia.gov.in/census.website/data/census-tables
+
+-   Office of the Registrar General India. (2021). D-03: Migrants within the State/UT by place of last residence, duration of residence and reason of migration - 2011.\
+    \[Karnataka\]. https://censusindia.gov.in/census.website/data/census-tables
+
+-   R Core Team. (2022). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL http://www.R-project.org/.
+
+-   Wickham, H., & Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.
