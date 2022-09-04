@@ -13,7 +13,7 @@ categories:
   - final_project
 ---
 
-## R Packages used in Analysis
+## R Package/libraries
 
 ```{r}
 #| label: setup
@@ -651,7 +651,6 @@ plot_w_l <- ggplot(crime_against_women_yr_state_l, aes(y = chargesheet_rate, col
   xlab('Years')+
   ylab('Chargesheet Rate')+
     theme_classic()
- 
 ggplotly(plot_w_l)
 
 ```
