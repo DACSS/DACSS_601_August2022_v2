@@ -60,6 +60,7 @@ The USCS data came in .TXT format hence, all the data was in character format. W
 
 For the second dataset, I chose the USA Household income dataset which provides the income range distribution grouped by Race from 1967-2018. This particular dataset is maintained and published by Census Bureau of USA. This particular group of data is a subset query of the Census data and is grouped by Income, Race and origin of Hispanic household.
 ```{r}
+#| label: Data Load
 USCS <- read_delim("../posts/_data/USCS_byArea.txt", 
     delim = "|", escape_double = FALSE, trim_ws = TRUE)
 
@@ -73,6 +74,7 @@ US_household_data <- read_excel("../posts/_data/USA Households by Total Money In
 Document your work here.
 ```{r}
 #! label: Data processing USCS
+#| warning: false
 USCS_tidy<-USCS%>%
   select(AREA, EVENT_TYPE, SITE,YEAR,RACE,SEX,POPULATION,COUNT)%>%
   mutate(
@@ -100,6 +102,8 @@ unique(USCS_tidy$RACE)
 
 ```
 ```{r}
+#| label: USCS Data Analysis
+#| warning: false
 USCS_graph<-ggplot(USCS_tidy%>%filter(YEAR==2018), aes(x=COUNT,y=SITE))+
   geom_bar(stat = "identity")
 USCS_graph
@@ -110,6 +114,7 @@ USCS_graph
 
 ```{r}
 #! label: Data processing USHH
+#| warning: false
 US_processed_data <- US_household_data%>%
   rowwise()%>% #to ensure the following operation runs row wise
   mutate(Race=case_when(
@@ -167,6 +172,8 @@ For the USCS Data, Here are the following operations that have been performed to
 
 Be sure to include a sanity check, and double-check that case count is correct!
 ```{r}
+#| label: Data Join
+#| warning: false
 joined_data<-merge(USCS_tidy,US_processed_data,by.x = c("CombinedRace","YEAR"),by.y = c("CombinedRace","Year"))
 Analysis<-joined_data%>%
   drop_na(COUNT)%>%
@@ -180,6 +187,8 @@ view(dfSummary(Analysis))
 
 ##Data Visualization
 ```{r}
+#| label: Data Visualiztion of join and analysis
+#| warning: false
 Analysis_viz<-ggplot(Analysis%>%filter(SITE=="All Cancer Sites Combined"),aes(x=YEAR,y=ApproxCount,fill=income_range))+
   geom_bar(stat="identity")+
   labs(title="Change in All cancer Site mortality rate across Year")
