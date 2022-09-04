@@ -118,6 +118,10 @@ yg <- all_joined %>%
   filter(!gender == "unknown") %>%
   group_by(year) %>%
   count(gender)
+sg <- all_joined %>%
+  filter(!gender == "unknown") %>%
+  group_by(year) %>%
+  count(gender)
 
 yg %>%
   ggplot(aes(year, n, color = gender)) +
