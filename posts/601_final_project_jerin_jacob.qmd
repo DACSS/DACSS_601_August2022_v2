@@ -1,5 +1,5 @@
 ---
-title: "601_final_project_jerinjacob"
+title: "601 Final Project"
 author: "Jerin Jacob"
 editor: visual
 description: "A study on the crime data of Massachusetts state"
@@ -14,9 +14,6 @@ format:
 categories:
   _final_project_601
 ---
-Crimes are always a safety concern to any human being. The study of crime data will give us insights on how to not be a victim by choosing a place that is less prone to a crime activity. 
-
-This is a study on crime data of Massachusetts states. The dataset is a county based number of crimes at a location and time of the day. I am trying to compare the numbers of different counties in the state. 
 
 ```{r}
 #| label: setup
@@ -32,14 +29,32 @@ library(hrbrthemes)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Reading the Data:
+## Introduction
+
+There are two main types of safety concerns for any living species on earth. One is natural calamities which are obviously uncontrollable, and the second is man-made. The man-made safety related problems can be reduced or controlled if we study it properly and take actions accordingly. Among the man- made safety issues, crimes are always on the top of the list. The study of crime data will give us insights on how to not be a victim, by choosing a place that is less prone to a crime activities. So I decided to take the crime dataset of Massachusetts state and study on it to see if a person chooses to be in a particular location in a county at a specific time of the day, whether it will be safe or not. I am trying to compare the numbers of different counties in the state.
+
+## Data
+
+This is a study on crime data of Massachusetts states. The dataset is a county based number of crimes at a location at a specific time of the day. The data is been taken from the public website of police department. Eventhough the data can be downloaded for the past years, I decided to take the data for 2021 as it is the most recent data. The data from police department had only the number of crimes at a location at a time of the day. If we take just the number of crime as such without considering other factors like the population or population density of the county, the analysis will be incomplete. So as an initial study, I decided to take the county-wise population data from the census 2020 and do the study on crime data as a function relative to the population of the county of occurance.
+
+### Reading the Data:
+
 As there are 14 counties in Massachusetts, my data contains 14 separate county files to be read along with the population data of Massachusetts counties.
+
+#### Reading population Data
+
+```{r}
+ma_population <- read_csv('_data/601_final_project_jerin_jacob/MA_population.csv', col_names = c("Number", "County", "Population"))
+ma_population$County <- word(ma_population$County, 1)
+ma_population <- ma_population[ -c(1) ]
+ma_population
+```
+
 ```{r}
 filepath <- "_data/601_final_project_jerin_jacob/"
 csv_file_names <- list.files(path = filepath, pattern = "_2021*")
 #csv_file_names
 ```
-
 
 ```{r}
 read_crimes<-function(file_name){
@@ -53,10 +68,19 @@ read_crimes<-function(file_name){
 counties<-
   purrr::map_dfr(csv_file_names, read_crimes)
 head(counties)
+dim(counties)
 ```
 
+### Understanding the Data:
+
+The population data is a clean data that has 14 rows of each county and the population.
+
+The crime data contains 54 rows and 11 columns for each county files. 54 rows are different location types in the county categorised as where any crime can possibly occur.
+
+### Sanity Check:
 
 In the dataset, there is a row for 'All Location Types'. I expected that to be same as the sum of all other Locations but it was not. This could be due to either data entry errors or overlapping/duplication of data in Locations with similar names. I could find 6 such Locations that duplicated. 'Commercial', 'Educational Facility', 'Government/Public Building and other', 'Road/Parking/Camps', 'Field/Woods/Waterways/Camps' and 'Construction/Industrial/Farm'. Those 6 Location types are just grouping of two or more other Location Types.
+
 ```{r}
 first_county <- counties %>%
   slice(1:54)
@@ -68,7 +92,8 @@ mapply(sum,first_county2[,c(2:9)], na.rm= TRUE)
 
 ```
 
-So I checked by droping those Locations for the Barnstable County. Now the sum of the locations is same as that of 'All Location Types'.
+So I checked by droping those overlapping/duplicated locations for the Barnstable County and again rechecked. Now the sum of the locations is same as that of 'All Location Types'.
+
 ```{r}
 dfRemain <- first_county[-c(3, 22,27,42,47,38), ]
 
@@ -89,37 +114,29 @@ new_county_data<-subset(counties, Location != 'Commercial' & Location !='Educati
 new_county_data
 ```
 
-
-
-
-
 ```{r}
 dim(counties)
 ```
 
-Analysing just the number of crimes in a location in a county will be meaningless. I am taking the total population of each counties as a baseline for comparing the number of crimes in the respective counties.
-
-Reading the MA population data.
 ```{r}
-ma_population <- read_csv('_data/601_final_project_jerin_jacob/MA_population.csv', col_names = c("Number", "County", "Population"))
-ma_population$County <- word(ma_population$County, 1)
-ma_population <- ma_population[ -c(1) ]
-ma_population
+
 ```
 
-Joining the crime data for 2021 with the population dataset of Massachusetts
+#### Joining the crime data for 2021 with the population dataset of Massachusetts
+
 ```{r}
 ma_crime_2021 <- new_county_data %>% left_join(ma_population,by="County")
 ```
 
+The number of crimes per 1000 people in the county can be a good way to start with the analysis. So I scaled down the population data to per 1000.
 
-The number of crimes per 1000 people in the county can be a good way to start with the analysis.
 ```{r}
 crime_per_population <- ma_crime_2021 %>%  
     mutate(across(c(2:9),
            .fns = ~./(Population/1000)))
 crime_per_population
 ```
+
 ```{r}
 crime_per_population <- pivot_longer(crime_per_population, `6-9pm`:`3-6pm`, names_to = "Time_of_day", values_to = "Crime_rate")
 
@@ -127,21 +144,24 @@ crime_per_population <- pivot_longer(crime_per_population, `6-9pm`:`3-6pm`, name
 
 ```{r}
 df <- crime_per_population[ -c(3,4) ]
+head(df)
 
 ```
-
 
 ```{r}
 summary(df)
 ```
 
 According to the data, the safest place in Massachusetts is an Air/Bus/Train Terminal in Middlesex at 12-3 am. Apparently, residences of Hampden between 3-6 pm turns out to be the most unsafe place or where most crimes happen.
+
 ```{r}
 df[which.max(df$Crime_rate),]
 df[which.min(df$Crime_rate),]
 
 ```
+
 Checking whether all locations in Hampden have high crime rates and if Middlesex is safe in all locations.
+
 ```{r}
 df_middlesex <- df %>%
   filter(County == "Middlesex")
@@ -159,6 +179,7 @@ ggplot(df_hampden, aes(x=Time_of_day, y=Crime_rate)) +
 
 ```
 
+### Comparing the crime rates in different counties.
 
 ```{r}
 df %>% ggplot(aes(Time_of_day, Crime_rate, color=County)) + geom_point()
@@ -170,4 +191,18 @@ ggplot(df, aes(fill=County, y=Crime_rate, x=Time_of_day)) +
     geom_bar(position="stack", stat="identity")
 ```
 
+## Reflection
 
+The data should be studied in depth to compare and find which time/location is safer. With the limited knowledge on R programming, I couldn't do all the analysis that I wanted to do in the time limit. I am planning to continue working on this project as my R knowledge gets stronger.
+
+## Conclusion
+
+The crime data is an interesting dataset to be studied and with the minimal resource and knowledge I have, the analysis is incomplete.
+
+## Bibliography
+
+#### Source of data: https://masscrime.chs.state.ma.us/public/View/dispview.aspx
+
+#### Programming Language: R
+
+#### Course book : R for Data Science by Hadley Wickham & Garrett Grolemund
