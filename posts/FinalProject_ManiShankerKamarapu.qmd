@@ -289,17 +289,19 @@ print(dfSummary(olympics,
 ## Generalized analysis
 
 ```{r}
-olympics %>%
+p <- olympics %>%
+  mutate(Year = as.numeric(Year)) %>%
   filter(NOC == "USA") %>% 
   arrange(desc(Year)) %>%
   group_by(Year) %>%
   count() %>%
-  ggplot(aes(x = as.numeric(Year), y = n)) +
+  rename(No_of_medals = n) %>%
+  ggplot(aes(x = Year, y = No_of_medals)) +
   geom_line() +
   geom_point() +
   theme_classic() + 
   labs(title = "Medal rate of recent years in USA", x = "Year", y = "Number of medals")
-
+ggplotly(p)
 ```
 
 The above figure gives us the fluctuations in the medal won in recent years in USA, they are basically from 300-850. But there is enormous irregularity in the findings as the medals won alternately increase and drops down.
@@ -325,17 +327,20 @@ As per the above graph, we get the medal distribution on basis of year and type 
 ## In-depth Analysis
 
 ```{r}
-olympics %>%
+p <- olympics %>%
   mutate(Year = as.numeric(Year)) %>%
   group_by(Year) %>%
   count(Sex) %>%
   drop_na(Sex) %>%
-  ggplot(aes(x = Year, y = n, fill = Sex)) +
+  rename(No_of_participant = n) %>%
+  ggplot(aes(x = Year, y = No_of_participant, fill = Sex)) +
   geom_area() +
+  geom_point() +
   theme_classic() + 
   facet_grid(vars(Sex)) +
   labs(title = "Gender Analysis", x = "Year", y = "No of participants") +
   theme(axis.text.x=element_text(angle=90)) 
+ggplotly(p)
 ```
 
 As per the above graph, we get that there is a huge difference between the male and female participants in the Olympics and there is clearly less female participation when compare to male.
@@ -343,16 +348,17 @@ As per the above graph, we get that there is a huge difference between the male 
 To further analysis I have taken an athlete "Heikki Savolainen" who is top player in gymnastics and played in largest number of events and we will try to approach different factors like age, position, medals, etc. 
 
 ```{r}
-olympics %>%
-  mutate(Year = as.numeric(Year)) %>%
+plot <- olympics %>%
+  mutate(Year = as.numeric(Year)) %>%       
   filter(Athlete == "Heikki Savolainen") %>%
   mutate(Position = as.numeric(Position)) %>%
   group_by(Year) %>%
   summarise(mean_position = mean(Position)) %>%
-  ggplot(aes(x = Year, y = mean_position)) +
+  ggplot(aes(x = Year, y = mean_position, fill = "red")) +
   geom_density(stat = "identity") +
   theme_classic() + 
   labs(title = "Mean Position of Heikki Savolainen over years", x = "Year", y = "Position")
+ggplotly(plot)
 ```
 
 According to the above figure, the athlete position was good but it gradually increased as he is end of his career, so his performance is gradually dropping as he is aging.
@@ -363,7 +369,8 @@ p <- olympics %>%
   drop_na(Medal) %>%
   group_by(Year, TeamSport) %>%
   count() %>%
-  ggplot(aes(x = Year, y = n, fill = TeamSport)) +
+  rename(No_of_medals = n) %>%
+  ggplot(aes(x = Year, y = No_of_medals, fill = TeamSport)) +
   geom_bar(stat = "identity") +
   theme_minimal() + 
   labs(title = "Medals earned in Team Sport vs Individual Sport", x = "Year", y = "No of medals") +
