@@ -1,0 +1,14 @@
+{
+  "hash": "8d3aeb638d57274282c4e48b60bd4ce5",
+  "result": {
+    "markdown": "---\ntitle: \"Challenge 6\"\neditor: visual\n---\n\n\n### 1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)\n### 2)  tidy data (as needed, including sanity checks)\n### 3)  mutate variables as needed (including sanity checks)\n### 4)  create at least one graph including time (evolution). Try to make them \"publication\" ready (optional). Explain why you choose the specific graph type\n### 5)  Create at least one graph depicting part-whole or flow relationship. Try to make them \"publication\" ready (optional). Explain why you choose the specific graph type\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary()\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
