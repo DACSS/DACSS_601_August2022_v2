@@ -10,10 +10,8 @@ format:
     code-tools: true
 categories:
   - challenge_8
-  - railroads
-  - snl
-  - faostat
-  - debt
+  - Adithya Parupudi
+  - snl data
 ---
 
 ```{r}
@@ -27,29 +25,12 @@ library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Challenge Overview
-
-Today's challenge is to:
-
-1)  read in multiple data sets, and describe the data set using both words and any supporting information (e.g., tables, etc)
-2)  tidy data (as needed, including sanity checks)
-3)  mutate variables as needed (including sanity checks)
-4)  join two or more data sets and analyze some aspect of the joined data
-
-(be sure to only include the category tags for the data you use!)
-
 ## Read in data
 
-Read in one (or more) of the following datasets, using the correct R package and command.
-
--   faostat ⭐⭐
--   railroads ⭐⭐⭐
--   fed_rate ⭐⭐⭐
--   debt ⭐⭐⭐
--   us_hh ⭐⭐⭐⭐
--   snl ⭐⭐⭐⭐⭐
-
 ```{r}
+snl_actors <- read_csv("_data/snl_actors.csv",show_col_types = FALSE)
+snl_casts <- read_csv("_data/snl_casts.csv",show_col_types = FALSE)
+snl_seasons <- read_csv("_data/snl_seasons.csv",show_col_types = FALSE)
 ```
 
 ### Briefly describe the data
@@ -60,17 +41,64 @@ Is your data already tidy, or is there work to be done? Be sure to anticipate yo
 
 ```{r}
 
+print(summarytools::dfSummary(snl_actors, 
+                              varnumbers = FALSE, 
+                              plain.ascii = FALSE, 
+                              style = "grid", 
+                              graph.magnif = 0.70, 
+                              valid.col = FALSE), 
+      method = 'render', 
+      table.classes = 'table-condensed')
+
+print(summarytools::dfSummary(snl_casts, 
+                              varnumbers = FALSE, 
+                              plain.ascii = FALSE, 
+                              style = "grid", 
+                              graph.magnif = 0.70, 
+                              valid.col = FALSE), 
+      method = 'render', 
+      table.classes = 'table-condensed')
+
+print(summarytools::dfSummary(snl_seasons, 
+                              varnumbers = FALSE, 
+                              plain.ascii = FALSE, 
+                              style = "grid", 
+                              graph.magnif = 0.70, 
+                              valid.col = FALSE), 
+      method = 'render', 
+      table.classes = 'table-condensed')
+```
+
+```{r}
+colnames(snl_actors)
+colnames(snl_casts)
+colnames(snl_seasons)
 
 ```
 
-Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
-
-Document your work here.
+Replacing NA in snl_casts with 0
 
 ```{r}
+snl_casts<- snl_casts %>% 
+  replace_na(list(`first_epid`=0,
+                  `last_epid`=0))
+```
 
+Removing url column from snl_actors as its not useful it is getting difficult to clean it.
+
+```{r}
+snl_actors<- snl_actors %>% 
+  select(-url)
 ```
 
 ## Join Data
 
-Be sure to include a sanity check, and double-check that case count is correct!
+```{r}
+actors_casts <- snl_actors %>%
+  inner_join(snl_casts, by = "aid")
+
+fully_joined_dataset <- actors_casts %>%
+  inner_join(snl_seasons, by = "sid")
+
+fully_joined_dataset
+```

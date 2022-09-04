@@ -1,0 +1,97 @@
+---
+title: "Challenge 4"
+author: "Adithya Parupudi"
+desription: "More data wrangling: pivoting"
+date: "08/18/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_4
+  - Adithya Parupudi
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Read in data
+
+```{r}
+feds<-read_csv("_data/FedFundsRate.csv",
+                        show_col_types = FALSE)
+feds
+
+```
+
+### Briefly describe the data
+
+```{r}
+colnames(feds)
+
+```
+
+All are numeric columns and the last columns have NA values.
+
+```{r}
+print(summarytools::dfSummary(feds,
+                        varnumbers = FALSE,
+                        plain.ascii  = FALSE, 
+                        style        = "grid", 
+                        graph.magnif = 0.70, 
+                        valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+```{r}
+str(feds)
+```
+
+## Tidy Data (as needed)
+
+replacing NA with 0
+
+```{r}
+
+feds<- feds %>% replace_na(list(`Federal Funds Target Rate`=0, 
+                                `Federal Funds Upper Target`=0, 
+                                `Federal Funds Lower Target`=0, 
+                                `Inflation Rate`=0, 
+                                `Real GDP (Percent Change)` =0,
+                                `Unemployment Rate` =0,
+                                `Effective Federal Funds Rate`=0))
+```
+
+checking for comments at EOF
+
+```{r}
+tail(feds)
+```
+
+## Identify variables that need to be mutated
+
+Renaming column names as they are too long
+
+```{r}
+colnames(feds)
+```
+
+```{r}
+feds<-feds %>% 
+  rename("TargetRate" = `Federal Funds Target Rate`, 
+         "UpperTarget"=`Federal Funds Upper Target`, 
+         "EffectiveRate"=`Effective Federal Funds Rate`,
+         "GDP%Change"=`Real GDP (Percent Change)`,
+         "InflationRate"=`Inflation Rate`)
+feds
+```
