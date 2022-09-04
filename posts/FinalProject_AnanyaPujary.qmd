@@ -1,8 +1,8 @@
 ---
-title: "Final Project (Work-in-Progress)"
+title: "Final Project (Work-in-Progress II)"
 author: "Ananya Pujary"
 description: "Analyzing Snapchat Political Ad Targeting and Expenditure in the US in 2020"
-date: "09/03/2022"
+date: "09/04/2022"
 format:
   html:
     toc: true
@@ -12,10 +12,7 @@ format:
 categories:
   - final-project
   - snapchat-political-ads
-  - tidyverse
   - ggplot
-  - googlesheets4
-  - skimr
   - dplyr
   - stringr
   - lubridate
@@ -23,9 +20,11 @@ categories:
   - purrr
 ---
 
-:::{.callout-warning}
-to do: if-else for package installing, in text citations
+::: callout-warning
+to do: if-else for package installing, in text citations, kable() specifications
 :::
+
+## Loading the Packages
 
 ```{r}
 #| label: setup
@@ -40,15 +39,23 @@ library(lubridate)
 library(janitor)
 library(purrr)
 library(corrr)
+library(usmap)
+library(viridis)
+library(gganimate)
+library(transformr)
+library(patchwork)
 
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Introduction
 
+In 2020, Snapchat had around 249 million active users on its platform (Rodriguez, 2020).
+
 -   Snapchat has made data about the political ads shown on their app public
 -   focus on advertisements in the United States in 2020 for Biden and Trump
-- looking at ad expenditure, impressions, location targeting
+-   looking at ad expenditure, impressions, location targeting
+Which candidate's advertisements reached more people? How much was spent on these advertisements? Which states were targeted by these advertisements?
 
 ## Reading in the Data
 
@@ -57,11 +64,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 polads_orig <- read_sheet('https://docs.google.com/spreadsheets/d/1S7jF0D2o8aC3gGndORVrksuSsvMMZwqVdKLmu4SYqUc/edit?usp=sharing')
 ```
+Looking at the dataset's various characteristics:
 
 ```{r}
 #| label: describing the data (1)
-
-dim(polads_orig)
 
 skim(polads_orig)
 
@@ -70,93 +76,7 @@ print(summarytools::dfSummary(polads_orig, varnumbers = FALSE, plain.ascii = FAL
 
 ```
 
-This file contains the information for political ads that are/have been displayed on Snapchat's platform. It has 12705 rows and 38 columns. There are 28 character-type, 1 list-type, 7 logical-type, and 2 numeric-type columns. the variables are:
-
-1)  `ADID`: A unique value for each political advertisement.
-
-2)  `CreativeURL`: A URL to the advertisement's creative content.
-
-3)  `Currency Code`: The currency used by the account creating the advertisement.
-
-4)  `Spend`: The amount spent by the advertiser for the ad campaign expressed in local currency.
-
-5)  `Impressions`: The number of times the advertisement has been viewed by Snapchat users.
-
-6)  `StartDate`: The time at which the advertisement was set to start running on the platform.
-
-7)  `EndDate`: The time at which the advertisement was set to stop running on the platform.
-
-8)  `OrganizationName`: The organization that is responsible for creating the advertisement.
-
-9)  `BillingAddress`: The address of the organization that is responsible for creating the advertisement.
-
-10) `CandidateBallotInformation`: Information on the candidate (for California elections: also the office they are contesting for) or ballot initiative that the advertisement is associated with the advertisement.
-
-11) `PayingAdvertiserName`: The entity that is providing funds for the advertisement.
-
-12) `CommitteeName`: The name of the committee paying for the advertisement.
-
-13) `CommitteeIdentificationNumber`: The identification number of the committee paying for the advertisement.
-
-14) `DisclosureNameOfCommittee`: The disclosure name of the committee paying for the advertisement, as stipulated by California law.
-
-15) `AdvertisingJurisdiction`: The jurisdiction that the advertisement refers to.
-
-16) `Gender`: The genders targeted by the advertisement. If this field is empty, all genders were targeted.
-
-17) `AgeBracket`: The ages targeted by the advertisement. If this field is empty, all ages were targeted.
-
-18) `CountryCode`: The country that the advertisement is targeting.
-
-19) `Regions (Included)`: The region(s) included in the advertisement's targeting criteria (states or provinces).
-
-20) `Regions (Excluded)`: The region(s) excluded in the advertisement's targeting criteria (states or provinces).
-
-21) `Electoral Districts (Included)`: The electoral district(s) included in the advertisement's targeting criteria.
-
-22) `Electoral Districts (Excluded)`: The electoral district(s) excluded in the advertisement's targeting criteria.
-
-23) `Radius Targeting (Included)`: The point-radius circles included in the advertisement's targeting criteria.
-
-24) `Radius Targeting (Excluded)`: The point-radius circles excluded in the advertisement's targeting criteria.
-
-25) `Metros (Included)`: The metro(s) included in the advertisement's targeting criteria.
-
-26) `Metros (Excluded)`: The metro(s) excluded in the advertisement's targeting criteria.
-
-27) `Postal Code (Included)`: The postal code(s) included in the advertisement's targeting criteria.
-
-28) `Postal Code (Excluded)`: The postal code(s) excluded in the advertisement's targeting criteria.
-
-29) `Location Categories (Included)`: The location categories included in the advertisement's targeting criteria.
-
-30) `Location Categories (Excluded)`: The location categories excluded in the advertisement's targeting criteria.
-
-31) `Interests`: The interest audience(s) included in the advertisement's targeting criteria. If this field is empty, then no interest targeting was used.
-
-32) `OsType`: The operating systems included in the advertisement's targeting criteria. If this field is empty, then all operating systems were targeted.
-
-33) `Segments`: The segments included in the advertisement's targeting criteria. This is advertiser-specific data used such as Snap Audience Match[^1] or Lookalike audiences[^2] .
-
-34) `Language`: The languages targeted by the advertisement. If this field is empty, then no language-based targeting was used.
-
-35) `AdvancedDemographics`: The third-party data segments targeted by the advertisement. If this field is empty, then no third-party data segments were used.
-
-[^1]: Snap Audience Match or Customer List Audience is a Snapchat feature that allows users to send their data to the platform and its affiliates to form custom audiences ("Snapchat Audience Match Terms", n.d.).
-
-[^2]: A Lookalike audience reaches Snapchat users that have similar characteristics to an organization account's existing customers. There are three different options: Similarity (a small-size audience that closely resembles the seed audience), Balance (a medium-size audience that balances similarity and reach), and Reach (a large-size audience that broadly resembles the seed audience) ("Lookalike Audiences", n.d.).
-
-<!-- -->
-
-36) `Targeting Connection Type`: The internet connection type targeted by the advertisement. If this field is empty, then no targeting based on internet connect type was used.
-
-37) `Targeting Carrier (ISP)`: The carrier type targeted by the advertisement. If this field is empty, all carrier types are targeted.
-
-38) `CreativeProperties`: The URL specified in advertisement's call to action.
-
-:::{.callout-warning}
-issue: all columns not showing up in plot
-:::
+This file contains the information for political ads that are/have been displayed on Snapchat's platform, such as the amount spent on them, the organization and advertisers behind them, the candidates/causes the ads support, demographic and location-based ad targeting, and so on. It has 12705 rows and 38 columns. There are 28 character-type, 1 list-type, 7 logical-type, and 2 numeric-type columns.
 
 ```{r}
 
@@ -167,21 +87,14 @@ missing.values <- polads_orig %>%
   mutate(total = n()) %>%
   group_by(key, total, isna) %>%
   summarise(num.isna = n()) %>%
-  mutate(percents = num.isna / total * 100)
-
-levels <-
-    (missing.values  %>% filter(isna == T) %>% arrange(desc(percents)))$key
+  mutate(percents = num.isna/total * 100)
 
 missing_val_plot <- missing.values %>%
       ggplot() +
         geom_bar(aes(x = reorder(key, desc(percents)), 
                      y = percents, fill=isna), 
-                 stat = 'identity', alpha=0.8) +
-      scale_x_discrete(limits = levels) +
-      scale_fill_manual(name = "", 
-                        values = c('pink', 'grey'), labels = c("Present", "Missing")) +
-      coord_flip() + labs(title = "Percentage of missing values", x =
-             'Column', y = "Missing values %")
+                 stat = 'identity', alpha=0.8) + scale_fill_manual(name = "", values = c('pink', 'grey'), labels = c("Present", "Missing")) +
+      coord_flip() + theme(axis.text.y = element_text(size = 5)) + labs(title = "Percentage of Missing Values", x = 'Variable', y = "Missing values %")
 
 missing_val_plot
 
@@ -189,7 +102,7 @@ missing_val_plot
 
 Now, let's look at the distribution of countries receiving political advertisements on Snapchat.
 
-:::{.callout-warning}
+::: callout-warning
 arrange in descending
 :::
 
@@ -197,7 +110,7 @@ arrange in descending
 #| label: describing the data (2)
   
 table(polads_orig$CountryCode) %>%
-  knitr::kable(caption = "Countries Receiving Political Ads on Snapchat (2020)",col.names = c("Country","Frequency"))
+  knitr::kable(caption = "Countries Receiving Snapchat Political Ads (2020)",col.names = c("Country","Frequency"))
 
 ```
 
@@ -265,7 +178,7 @@ polads %>%
 
 Two ads were paid for by the University of British Columbia and were targeted at people aged 16-25 in the following areas: San Francisco, Oakland, and San Jose. The third was paid for by Point Digital Creative Studio. None of them provided information about the candidate associated with the ad.
 
-Since we require information about the candidate in order to analyze relative ad spending, targetting and impressions, tidying up the `candidate_ballot_information` column by removing missing values:
+Since we require information about the candidate in order to analyze relative ad spending, targeting and impressions, tidying up the `candidate_ballot_information` column by removing missing values:
 
 ```{r}
 #| label: tidying the data (6)
@@ -278,7 +191,7 @@ polads
 
 ```
 
-There were 5312 rows missing candidate information. Next, I'm only including those rows that explicitly states the candidate name (containing the words 'Biden' and 'Trump').
+There were 5312 rows missing candidate information. Next, I'm only including those rows that explicitly states the candidate name (containing the words "Biden" and "Trump").
 
 ```{r}
 #| label: tidying the data (7)
@@ -310,14 +223,7 @@ Since missing values in certain columns indicate that either all or none of the 
 
 ```{r}
 #| label: tidying the data (9)
-
-table(select(polads,gender))
-table(select(polads,os_type))
-table(select(polads,language))
-table(select(polads,advanced_demographics))
-table(select(polads,targeting_connection_type))
-table(select(polads,targeting_carrier_isp))
-                  
+          
 polads <- polads %>%
   replace_na(list(gender = "ALL",os_type = "ALL",language = "none",advanced_demographics = "None",targeting_connection_type = "None",targeting_carrier_isp = "ALL"))
 
@@ -339,7 +245,7 @@ The `age_bracket` column's values are as follows:
 #| label: tidying the data (10)
 
 table(select(polads,age_bracket)) %>%
-    knitr::kable()
+    knitr::kable(caption = "Age Targeting by Snapchat Political Ads (2020)",col.names = c("Ages","Frequency"))
 ```
 
 Clearly, the column's values overlap and tend to refer to similar age groups, for instance, 18-20, 18-24, and 18+.
@@ -350,13 +256,11 @@ As for `advanced_demographics`:
 #| label: tidying the data (11)
 
 table(select(polads,advanced_demographics))%>%
-  knitr::kable()
+  knitr::kable(caption = "Advanced Demographics Targeting by Snapchat Political Ads (2020)",col.names = c("Advanced Demographics","Frequency"))
 
 ```
 
-Clearly, very few ads provided additional demographic information for ad targetting and the data aren't uniform (i.e. there are details on people's household incomes, occupations, languages spoken, educational levels, number of children etc.), so I wouldn't be able to effectively analyze it in relation to other columns.
-
-Though I was looking forward to analyzing these columns, the data they had were too sparse to work with.
+Clearly, very few ads provided additional demographic information for ad targetting and the data aren't uniform (i.e. there are details on people's household incomes, occupations, languages spoken, educational levels, number of children etc.), so I wouldn't be able to effectively analyze it in relation to other columns. Though I was looking forward to analyzing these columns, the data they had were too sparse to work with.
 
 ### Wrangling with the date columns
 
@@ -405,14 +309,125 @@ unique(polads$ad_duration)
 
 Missing values show up for those rows without an end date for the advertisement.
 
-### Wrangling with the location columns
+Lastly, I'll be changing the entries `candidate_ballot_information` to either "Biden" or "Trump" to make it more uniform and for ease of analysis. For instance, "Joe Biden for President" will be changed to "Biden".
 
-The following columns indicate differnet types of information about the locations targeted by the advertisements: `regions_included`, `regions_excluded`, `electoral_districts_included`, `radius_targeting_included`, `radius_targeting_excluded`, `metros_included`, `metros_excluded`, `postal_codes_included`, `postal_codes_excluded`. Most of these columns do not have enough values to be effectively analyzed, and due to a lack of time, the list column `postal_codes_included` could not be included in analysis.
+```{r}
+#| label: tidying the data (14)
+
+# changing `candidate_ballot_information` to either "Biden" or "Trump"
+polads <- polads %>%
+  mutate(candidate_ballot_information = case_when(
+    str_detect(candidate_ballot_information, "Biden") ~ "Biden",
+    str_detect(candidate_ballot_information, "Trump")  ~ "Trump",
+    TRUE ~ candidate_ballot_information))
+
+# sanity check
+polads %>%
+  filter(str_detect(candidate_ballot_information, "Trump")) %>%
+  tally() %>%
+  knitr::kable(col.names = "Number of Trump ads")
+
+polads %>%
+  filter(str_detect(candidate_ballot_information, "Biden")) %>%
+  tally() %>%
+  knitr::kable(col.names = "Number of Biden ads")
+
+```
+
+There are 1251 political advertisements supporting Biden's campaign and 483 political advertisements for Trump's campaign.
+
+## Visualizing the Data
+
+I want to determine whether there's a correlation between two variables I'm interested in: `spend` and `impressions`.
+
+```{r}
+
+polads_cor <- polads %>% 
+  select(spend,impressions) %>% 
+  correlate()
+
+polads_cor_plot <- rplot(polads_cor) + labs(title = "Correlation between Ad Expenditure and Impressions Received\n")
+polads_cor_plot
+
+```
+
+This plot shows us that there's a moderate correlation between these two variables.
+
+### Highest expenditure and impressions on a single ad by candidate
+
+```{r}
+#| label: highest expenditure on a single ad by candidate
+
+polads %>%
+  select(candidate_ballot_information,spend,organization_name,paying_advertiser_name,impressions,start_date,end_date) %>%
+  group_by(candidate_ballot_information) %>% 
+  slice(which.max(spend))
+
+```
+
+The highest funds allocated for a single political advertisement supporting Biden (and overall) was \$151,724, while the \$33,349 spent by Albbiom Marketing LLC was the most expensive political advertisement for Trump's campaign. The Biden advertisement was displayed almost all day on election day (11/03/2020) as indicated by its start and end date. Even though more funds was spent on the Biden advertisement, Trump's advertisement had more impressions (30,383,613).
+
+```{r}
+#| label: highest impressions on a single ad by candidate
+
+polads %>%
+  select(candidate_ballot_information,spend,organization_name,paying_advertiser_name,impressions,start_date,end_date) %>%
+  group_by(candidate_ballot_information) %>% 
+  slice(which.max(impressions))
+
+```
+The highest number of impressions for ads supporting Biden was 17,927,667, while for Trump it was 31,848,256. The higher number of impressions for Trump's ad could be attributed to it not having a set end date.
+
+### Relative ad expenditure and impressions over time by candidate
+
+I'm interested in knowing the relative expenditure and impressions for advertisements by candidate. First, I want to extract the month from the `start_date` and `end_date` columns and use it to determine spending over the months.
+
+```{r}
+#| label: new columns for the months that the advertisements began and stopped running on Snapchat
+
+polads <- polads %>%
+  mutate(start_month = month(start_date,label = TRUE),end_month = month(end_date, label = TRUE)) 
+
+# sanity check
+str(polads$start_month)
+str(polads$end_month)
+```
+
+I'll need to take a log transformation because the values in the `spend` column are skewed. I'm using a box plot since I want to compare the distribution of `spend` for the two values in `candidate_ballot_information`.
+
+```{r}
+#| label: political ad expenditure by month
+
+exp_by_month_plot <- ggplot(polads, aes(log(spend), start_month, color= candidate_ballot_information)) + geom_boxplot() + scale_color_brewer(palette = "Set2") + labs(title = "Snapchat Political Ad Expenditure By Month (2020)", x = "Expenditure", y = "Month", colour = "Candidate") + theme_minimal()
+
+exp_by_month_plot
+
+```
+
+On average, ads for Biden spent more that ads for Trump. Also, political ads supporting Biden's campaign were more frequent in the months leading up to election day, i.e. July to November.
+
+It would be worthwhile to compare the impressions of advertisements for both candidates too.
+
+```{r}
+#| label: political ad impressions by month
+
+imp_by_month_plot <- ggplot(polads, aes(log(impressions), start_month, color= candidate_ballot_information)) + geom_boxplot() + scale_color_brewer(palette = "Set2") + labs(title = "Snapchat Political Ad Impressions By Month (2020)", x = "Impressions", y = "Month", colour = "Candidate") + theme_minimal()
+
+imp_by_month_plot
+
+```
+
+Advertisements supporting Trump's campaign seem to have reached more people than Biden's advertisements. However, as noted before, impressions reached for advertisements for Biden's campaign were more prominent in the later months of the year.
+
+### Location targeting by candidate
+
+#### Wrangling with the location columns
+
+The following columns indicate different types of information about the locations targeted by the advertisements: `regions_included`, `regions_excluded`, `electoral_districts_included`, `radius_targeting_included`, `radius_targeting_excluded`, `metros_included`, `metros_excluded`, `postal_codes_included`, `postal_codes_excluded`. Most of these columns do not have enough values to be effectively analyzed, and due to a lack of time, the list column `postal_codes_included` could not be included in analysis.
 
 I'll be using the `regions_included` and `regions_excluded` columns for analysis. They have multiple regions in them which need to be separated:
 
 ```{r}
-#| label: tidying the data (14)
 
 # `regions_included`
 table(select(polads,regions_included)) %>%
@@ -436,18 +451,14 @@ unique(polads$regions_excluded)
 
 ```
 
-The states of Alaska, Hawaii, and California were excluded from being shown certain political advertisements of the candidates.
-
-\[california political advertisement disclosure law\]
+The states of Alaska, Hawaii, and California were excluded from being shown certain political advertisements of the candidates. This could be either due to the stringent laws these states have for reporting campaign contributions and expenditure activities or historic voting patterns ("Campaign Disclosure, Filer Resources, Alaska Public Offices Commission, Department of Administration, State of Alaska", n.d.;"Contribution Limits", n.d.;Electronic Media Advertisements, 2020).
 
 Checking whether information on `organization_name` and `paying_advertiser_name` is available for those advertisements excluding these regions:
 
 ```{r}
-#| label: tidying the data (15)
 
 polads %>%
   select(organization_name,paying_advertiser_name,spend,candidate_ballot_information,regions_excluded) %>%
-  group_by(organization_name) %>%
   filter(str_detect(regions_excluded, 'California|Hawaii|Alaska')) %>%
   distinct()
 
@@ -455,117 +466,251 @@ polads %>%
 
 Interestingly, all of the ads that excluded these regions supported Donald Trump as a candidate, were by an organization called Marud Khan, and were paid for by Albbiom Marketing LLC. According to Markay (2020), Albbiom Marketing LLC is a marketing company that provides "free" Trump merchandise. They also found no evidence that 'Marud Khan' was a real person.
 
-Lastly, I'll be changing the entries `candidate_ballot_information` to either "Biden" or "Trump" so that it's more uniform for ease of analysis. For instance, "Joe Biden for President" will be changed to "Biden".
+#### Creating a table for location analysis
 
-```{r}
-#| label: tidying the data (16)
-
-# changing `candidate_ballot_information` to either "Biden" or "Trump"
-polads <- polads %>%
-  mutate(candidate_ballot_information = case_when(
-    str_detect(candidate_ballot_information, "Biden") ~ "Biden",
-    str_detect(candidate_ballot_information, "Trump")  ~ "Trump",
-    TRUE ~ candidate_ballot_information))
-
-# sanity check
-polads %>%
-  filter(str_detect(candidate_ballot_information, "Trump")) %>%
-  tally() %>%
-  knitr::kable(col.names = "Number of Trump ads")
-
-polads %>%
-  filter(str_detect(candidate_ballot_information, "Biden")) %>%
-  tally() %>%
-  knitr::kable(col.names = "Number of Biden ads")
-
-```
-
-There are 1410 political advertisements supporting Biden's campaign and 734 political advertisements for Trump's campaign.
-
-## Data Analysis and Visualization
-
-### Highest expenditure on a single ad by candidate
-
-```{r}
-#| label: highest expenditure on a single ad by candidate
-
-polads %>%
-  group_by(candidate_ballot_information) %>% 
-  slice(which.max(spend))
-
-```
-The highest funds allocated for a single political advertisement supporting Biden (and overall) was \$151724, while the \$33349 spent by Albbiom Marketing LLC was the most expensive political advertisement for Trump's campaign. The Biden advertisment was displayed almost all day on election day (11/03/2020) as indicated by its start and end date. Even though more was spent on the Biden advertisement, Trump's advertisement had more impressions (30383613).
-
-### Relative ad expenditure and impressions over time by candidate
-
-I'm interested in knowing the relative expenditure on advertisements for both candidates. First, I want to extract the month from the `start_date` and `end_date` columns and use it to determine spending over the months. I'll need to take a log transformation because the values in the `spend` column are skewed. I'm using a boxplot since I want to compare the distribution of `spend` for the two values in `candidate_ballot_information`.
-
-```{r}
-#| label: political ad expenditure by month
-
-polads <- polads %>%
-  mutate(start_month = month(start_date,label = TRUE),end_month = month(end_date, label = TRUE)) 
-
-#sanity check
-str(polads$start_month)
-str(polads$end_month)
-
-exp_by_month_plot <- ggplot(polads, aes(log(spend), start_month, color= candidate_ballot_information)) + geom_boxplot() + scale_color_brewer(palette = "Set2") + labs(title = "Snapchat Political Ad Expenditure By Month (2020)", x = "Expenditure", y = "Month", colour = "Candidate") + theme_minimal()
-
-exp_by_month_plot
-
-```
-On average, ads for Biden spent more that ads for Trump. Also, political ads supporting Biden's campaign were more frequent in the months leading up to election day, i.e. August to November. 
-
-- relative impressions over time for both campaigns
-
-```{r}
-#| label: political ad impressions by month
-
-imp_by_month_plot <- ggplot(polads, aes(log(impressions), start_month, color= candidate_ballot_information)) + geom_boxplot() + scale_color_brewer(palette = "Set2") + labs(title = "Snapchat Political Ad Impressions By Month (2020)", x = "Impressions", y = "Month", colour = "Candidate") + theme_minimal()
-
-imp_by_month_plot
-
-```
-
-I also want to determine whether there's a correlation between `spend` and `impressions`.
+Checking the distribution of values in the `spend` and `impressions` columns:
 
 ```{r}
 
-polads_cor <- polads %>% 
-  select(spend,impressions) %>% 
-  correlate()
+ggplot(polads, aes(x=spend)) + geom_histogram()
 
-polads_cor_plot <- rplot(polads_cor) + labs(title = "Correlation between Ad Expenditure and Impressions Received\n")
-polads_cor_plot
+ggplot(polads, aes(x=impressions)) + geom_histogram()
 
 ```
-This plot shows us that there's a moderate correlation between these two variables.
 
-### Location targeting by candidate
+Clearly, both distributions are skewed to the right and are not symmetric. Hence, I'm taking the median of these columns for analysis.
 
-regions_included - chloropleth
--  states targeted = grouped by candidate
+```{r}
+polads_loc1 <- polads %>%
+  select(regions_included,spend,impressions,candidate_ballot_information) %>%
+  drop_na(regions_included) %>%
+  group_by(regions_included,candidate_ballot_information)%>%
+  summarize(spend_median = median(spend),impressions_median = median(impressions)) %>%
+  rename(state=regions_included)
 
-Note: missing values - x% were targeted to all states
+polads_loc1
+```
 
--   impressions sum - per org
+#### Visualizing ad expenditure across states
 
--   spend sum - per org
+```{r}
+# plotting expenditure
+loc_inc_spend_plot <- plot_usmap(data = polads_loc1, values = "spend_median", labels = FALSE) + scale_fill_viridis_c(name = "Median Ad Expenditure") +
+labs(title = "Snapchat Targeted Political Ad Expenditure Across the States",caption = "Note: This plot excludes ads targetting no states in particular") + theme(legend.position = "right")
 
--   spend and impressions - scatterplot/line graph - grouped by candidate, org
+loc_inc_spend_plot
+```
 
+From this plot, we can observe that ads targeting Pennsylvania and Nebraska had relatively higher median expenditure. Now, let's look at median ad expenditure across states by the candidate they supported.
+
+```{r}
+# Biden ads
+polads_loc1_biden <- polads %>%
+  select(regions_included,spend,impressions,candidate_ballot_information) %>%
+  filter(candidate_ballot_information=="Biden")%>%
+  drop_na(regions_included) %>%
+  group_by(regions_included,candidate_ballot_information)%>%
+  summarize(spend_median = median(spend),impressions_median = median(impressions)) %>%
+  rename(state=regions_included)
+
+polads_loc1_biden
+
+# plotting expenditure for Biden ads
+loc_inc_spend_biden_plot <- plot_usmap(data = polads_loc1_biden, values = "spend_median", labels = FALSE) + scale_fill_viridis_c(name = "Median Ad Expenditure") +
+labs(title = "Snapchat Targeted Political Ad Expenditure for Biden Across the States (2020)",caption = "Note: This plot excludes ads targetting no states in particular") + theme(legend.position = "right")
+
+# Trump ads
+polads_loc1_trump <- polads %>%
+  select(regions_included,spend,impressions,candidate_ballot_information) %>%
+  filter(candidate_ballot_information=="Trump")%>%
+  drop_na(regions_included) %>%
+  group_by(regions_included,candidate_ballot_information)%>%
+  summarize(spend_median = median(spend),impressions_median = median(impressions)) %>%
+  rename(state=regions_included)
+
+polads_loc1_trump
+
+# plotting expenditure for Trump ads
+loc_inc_spend_trump_plot <- plot_usmap(data = polads_loc1_trump, values = "spend_median", labels = FALSE) + scale_fill_viridis_c(name = "Median Ad Expenditure") +
+labs(title = "Snapchat Targeted Political Ad Expenditure for Trump Across the States (2020)",caption = "Note: This plot excludes ads targetting no states in particular") + theme(legend.position = "right")
+
+# comparing plots
+loc_inc_spend_biden_plot
+loc_inc_spend_trump_plot
+
+```
+
+Biden: Pennsylvania, Nebraska - seems that biden had more ads that targetted no states in particular Trump: Texas, Mississippi, South Carolina - explicitly targeted all states
+
+-   expenditure over the months
+```{r}
+#| eval: false
+
+polads_loc_month1 <- polads %>%
+  select(regions_included,spend,impressions,candidate_ballot_information,start_month) %>%
+  drop_na(regions_included) %>%
+  group_by(regions_included,candidate_ballot_information,start_month)%>%
+  summarize(spend_median = median(spend),impressions_median = median(impressions)) %>%
+  rename(state=regions_included)
+
+polads_loc_month1
+
+# plotting expenditure
+loc_inc_spend_month_plot <- plot_usmap(data = polads_loc_month1, values = "spend_median", labels = FALSE,label_color = "black") + scale_fill_viridis_c(name = "Ad Expenditure Amount by Month") +
+labs(title = "Snapchat Targeted Political Ad Expenditure Across the States") + theme(legend.position = "right")
+
+loc_inc_spend_month_plot
+
+#animating change in median expenditure by month
+loc_inc_spend_month_transition <- loc_inc_spend_month_plot +
+  labs(title = "Total Political Ad Expenditure in {as.numeric(frame_time)}") + transition_time(as.numeric(start_month))
+
+loc_inc_spend_anim <- animate(loc_inc_spend_month_transition, fps=10) + ease_aes('linear')
+loc_inc_spend_anim
+
+```
+
+#### Visualizing ad impressions across states
+
+```{r}
+
+# plotting impressions
+loc_inc_imp_plot <- plot_usmap(data = polads_loc1, values = "impressions_median", labels = FALSE) + scale_fill_viridis_c(name = "Median Ad Impressions") +
+labs(title = "Snapchat Targeted Political Ad Impressions Across the States (2020)",caption = "Note: This plot excludes ads targetting no states in particular") + theme(legend.position = "right")
+
+loc_inc_imp_plot
+```
+
+Mississippi and South Carolina had the highest median ad impressions.
+
+Now, looking at the median ad impressions across states by the candidate they supported.
+
+```{r}
+
+# plotting impressions for Biden ads
+loc_inc_imp_biden_plot <- plot_usmap(data = polads_loc1_biden, values = "impressions_median", labels = FALSE) + scale_fill_viridis_c(name = "Median Ad Impressions") +
+labs(title = "Snapchat Targeted Political Ad Impressions for Biden Across the States (2020)",caption = "Note: This plot excludes ads targetting no states in particular") + theme(legend.position = "right")
+
+# plotting impressions for Trump ads
+loc_inc_imp_trump_plot <- plot_usmap(data = polads_loc1_trump, values = "impressions_median", labels = FALSE) + scale_fill_viridis_c(name = "Median Ad Impressions") +
+labs(title = "Snapchat Targeted Political Ad Impressions for Trump Across the States (2020)",caption = "Note: This plot excludes ads targetting no states in particular") + theme(legend.position = "right")
+
+# comparing plots
+loc_inc_imp_biden_plot
+loc_inc_imp_trump_plot
+
+```
+
+-   Biden: Nebraska, Pennsylvania
+-   Trump: Texas, Mississippi, South Carolina
+
+Conducting a sanity check with the data:
+
+```{r}
+
+# checking highest median expenditure by candidate
+polads_loc1%>%
+  group_by(candidate_ballot_information) %>%
+  arrange(desc(spend_median)) %>%
+  slice(1:3)
+
+# checking highest median impressions by candidate
+polads_loc1%>%
+  group_by(candidate_ballot_information) %>%
+  arrange(desc(impressions_median)) %>%
+  slice(1:3)
+
+```
 
 ## Reflections
-- the potential of political advertisements on social media - more impressions, and thus, more impact
+
+-   the potential of political advertisements on social media - more impressions, more impact
 -   The US has made most use of the Snapchat platform for political ads compared to other countries.
 -   Wasn't able to use advanced_demographics because of sparse data and age_bracket because of overlapping categories - would've provided deeper insight into which demographics the candidates and their supporters were interested in
+-   targeting states that were predominantly Democratic or Republican
+-   spent a lot of time on cleaning the data to prepare it for analysis
+-   I learnt a lot while making this project - new packages like 'patchwork' and 'janitor', more familiarized with the tidyverse
 
 ## Further Directions and Conclusion
 
 -   Using the postal codes and latitude-longitude columns to map more specific regions
+-   add table with state populations and check spend and impressions verse population
+-   type of agency paying for ad - own campaign or outside?
+-   impressions sum - by organization
+-   spend sum - by organization
 
 ## References
 
 ::: {#refs}
+
+California Fair Political Practices Commission. (2020). *Electronic Media Advertisements* [PDF]. Retrieved 3 September 2022, from [https://www.fppc.ca.gov/content/dam/fppc/NS-Documents/AgendaDocuments/Task-Force/dttf-2020/march-2020/Legal.pdf](https://www.fppc.ca.gov/content/dam/fppc/NS-Documents/AgendaDocuments/Task-Force/dttf-2020/march-2020/Legal.pdf).
+
+*Campaign Disclosure, Filer Resources, Alaska Public Offices Commission, Department of Administration, State of Alaska*. Alaska Department of Administration. Retrieved 3 September 2022, from [https://doa.alaska.gov/apoc/FilerResources/campaignDisclosure.html](https://doa.alaska.gov/apoc/FilerResources/campaignDisclosure.html).
+
+*Contribution Limits*. Campaign Spending Commission. Retrieved 3 September 2022, from [https://ags.hawaii.gov/campaign/contribution-limits/](https://ags.hawaii.gov/campaign/contribution-limits/).
+
+Grolemund, G., & Wickham, H. (2016). *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data*. O'Reilly Media.
+
+*Lookalike Audiences*. Business Help Center - Snapchat. Retrieved 3 September 2022, from <https://businesshelp.snapchat.com/s/article/create-lookalike-audience?language=en_US>.
+
+Markay, L. (2020). *The Trump-Scam-Industrial-Complex Now Extends to Snapchat. Daily Beast*. Retrieved 2 September 2022, from <https://www.thedailybeast.com/the-trump-scam-industrial-complex-now-extends-to-snapchat?ref=scroll>.
+
+R Core Team (2020). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing, Vienna, Austria.<https://www.r-project.org>.
+
+Rodriguez, S. (2020). *Snap stock rockets up after surprise earnings beat*. CNBC. Retrieved 3 September 2022, from [https://www.cnbc.com/2020/10/20/snap-earnings-q3-2020.html](https://www.cnbc.com/2020/10/20/snap-earnings-q3-2020.html).
+
+RStudio Team (2019). *RStudio: Integrated Development for R*. RStudio, Inc., Boston, MA. <https://www.rstudio.com>.
+
+*Snap Audience Match Terms*. Snap Inc. Retrieved 3 September 2022, from <https://snap.com/en-US/terms/snap-audience-match>.
+
+Snap Inc. (n.d.). PoliticalAds \[Data set\]. <https://snap.com/en-US/political-ads>.
 :::
+
+## Appendix
+
+### Dataframe variable names and descriptions
+
+| **Variable Name**                | **Description**                                                                                                                                                                    |
+|------------------------------------|------------------------------------|
+| `ADID`                           | A unique value for each political advertisement.                                                                                                                                   |
+| `CreativeURL`                    | A URL to the advertisement's creative content.                                                                                                                                     |
+| `Currency Code`                  | The currency used by the account creating the advertisement.                                                                                                                       |
+| `Spend`                          | The amount spent by the advertiser for the ad campaign expressed in local currency.                                                                                                |
+| `Impressions`                    | The number of times the advertisement has been viewed by Snapchat users.                                                                                                           |
+| `StartDate`                      | The time at which the advertisement was set to start running on the platform.                                                                                                      |
+| `EndDate`                        | The time at which the advertisement was set to stop running on the platform.                                                                                                       |
+| `OrganizationName`               | The organization that is responsible for creating the advertisement.                                                                                                               |
+| `BillingAddress`                 | The address of the organization that is responsible for creating the advertisement.                                                                                                |
+| `CandidateBallotInformation`     | Information on the candidate (for California elections: also the office they are contesting for) or ballot initiative that the advertisement is associated with the advertisement. |
+| `PayingAdvertiserName`           | The entity that is providing funds for the advertisement.                                                                                                                          |
+| `CommitteeName`                  | The name of the committee paying for the advertisement.                                                                                                                            |
+| `CommitteeIdentificationNumber`  | The identification number of the committee paying for the advertisement.                                                                                                           |
+| `DisclosureNameOfCommittee`      | The disclosure name of the committee paying for the advertisement, as stipulated by California law.                                                                                |
+| `AdvertisingJurisdiction`        | The jurisdiction that the advertisement refers to.                                                                                                                                 |
+| `Gender`                         | The genders targeted by the advertisement. If this field is empty, all genders were targeted.                                                                                      |
+| `AgeBracket`                     | The ages targeted by the advertisement. If this field is empty, all ages were targeted.                                                                                            |
+| `CountryCode`                    | The country that the advertisement is targeting.                                                                                                                                   |
+| `Regions (Included)`             | The region(s) included in the advertisement's targeting criteria (states or provinces).                                                                                            |
+| `Regions (Excluded)`             | The region(s) excluded in the advertisement's targeting criteria (states or provinces).                                                                                            |
+| `Electoral Districts (Included)` | The electoral district(s) included in the advertisement's targeting criteria.                                                                                                      |
+| `Electoral Districts (Excluded)` | The electoral district(s) excluded in the advertisement's targeting criteria.                                                                                                      |
+| `Radius Targeting (Included)`    | The point-radius circles included in the advertisement's targeting criteria.                                                                                                       |
+| `Radius Targeting (Excluded)`    | The point-radius circles excluded in the advertisement's targeting criteria.                                                                                                       |
+| `Metros (Included)`              | The metro(s) included in the advertisement's targeting criteria.                                                                                                                   |
+| `Metros (Excluded)`              | The metro(s) excluded in the advertisement's targeting criteria.                                                                                                                   |
+| `Postal Code (Included)`         | The postal code(s) included in the advertisement's targeting criteria.                                                                                                             |
+| `Postal Code (Excluded)`         | The postal code(s) excluded in the advertisement's targeting criteria.                                                                                                             |
+| `Location Categories (Included)` | The location categories included in the advertisement's targeting criteria.                                                                                                        |
+| `Location Categories (Excluded)` | The location categories excluded in the advertisement's targeting criteria.                                                                                                        |
+| `Interests`                      | The interest audience(s) included in the advertisement's targeting criteria. If this field is empty, then no interest targeting was used.                                          |
+| `OsType`                         | The operating systems included in the advertisement's targeting criteria. If this field is empty, then all operating systems were targeted.                                        |
+| `Segments`                       | The segments included in the advertisement's targeting criteria. This is advertiser-specific data used such as Snap Audience Match[^1] or Lookalike audiences[^2]                  |
+| `Language`                       | The languages targeted by the advertisement. If this field is empty, then no language-based targeting was used.                                                                    |
+| `AdvancedDemographics`           | The third-party data segments targeted by the advertisement. If this field is empty, then no third-party data segments were used.                                                  |
+| `Targeting Connection Type`      | The internet connection type targeted by the advertisement. If this field is empty, then no targeting based on internet connect type was used.                                     |
+| `Targeting Carrier (ISP)`        | The carrier type targeted by the advertisement. If this field is empty, all carrier types are targeted.                                                                            |
+| `CreativeProperties`             | The URL specified in advertisement's call to action.                                                                                                                               |
+
+[^1]: Snap Audience Match or Customer List Audience is a Snapchat feature that allows users to send their data to the platform and its affiliates to form custom audiences ("Snapchat Audience Match Terms", n.d.).
+
+[^2]: A Lookalike audience reaches Snapchat users that have similar characteristics to an organization account's existing customers. There are three different options: Similarity (a small-size audience that closely resembles the seed audience), Balance (a medium-size audience that balances similarity and reach), and Reach (a large-size audience that broadly resembles the seed audience) ("Lookalike Audiences", n.d.).
