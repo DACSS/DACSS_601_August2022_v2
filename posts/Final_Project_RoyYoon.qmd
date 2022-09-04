@@ -9,8 +9,10 @@ format:
     code-copy: true
     code-tools: true
 categories:
-  - challenge_5
-  - cereal
+  - final 
+  - ilga wolrd
+  - lgbtqia+ politics 
+  - SOGIESC
   - ggplotly()
 ---
 
@@ -26,13 +28,40 @@ library(plotly)
 library(gapminder)
 library(readxl)
 
-
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Read in data
+# Intorduction:
 
-The 
+**ILGA World State-Sponsored Homophobia 2020: Global Legislation Overview Update**
+
+## About ILGA World
+
+Established in 1978, **ILGA World** is the **International Lesbian, Gay, Bisexual, Trans and Intersex Association**. As an international federation made up of over 160 countries, ILGA World campaigns for lesbian, gay, bisexual, trans and intersex human rights.
+
+Through advocacy, research, training and convenings, and global communications, ILGA world envisions a world of assured and established global justice and equity regardless of SOGIESC: Sexual Orientations, Gender Identities, Gender Expressions and Sex Characteristics.
+
+Since 2006, ILGA World has published a global legislation review update on "State-Sponsored Homophobia" which reports a world survey on sexual orientation laws.
+
+The report specifically focuses near exclusively to law and does not comment on issues regarding gender identity, gender expression, or sex-characteristics.
+
+## Guiding Ideas
+
+As a member of the LGBTQIA+ community interested pursuing a career in Law, I am interested to learn more about the relationship between legislation and sexual orientation.
+
+What kinds of sexual orientation laws are there?
+
+What is the relationship between legislation, protections, and recogntions of SOGIESC?
+
+Which countries are the most/least protected and recognized for SOGIESC legislation? Why?
+
+## Read in Data: State-Sponsored Homophobia 2020: Global Legislation Overview Update
+
+The ILGA_State_Sponsored_Homophobia_2020 data set originally contained 242 Observations and 16 variables. The original data set had its first row as labels that interfered with clear representation of variable names, which could be more clearly represented.
+
+The modified data set has 241 observations and 16 variables. There are three broad categories of variables, **Criminalisation**, **Protection**, and **Recognition** related to sexual orientation legal issues. The observations reports the congregate data of if a country does or does not have (as "Yes", "No", and "Limited") legislation regarding the broad topics.
+
+For my analysis, I decided to focus on the broad categories of **Protection** and **Recognition**.
 
 ```{r Read in Data}
 
@@ -41,16 +70,75 @@ ilga_base <- read_excel("_data/ILGA_State_Sponsored_Homophobia_2020_dataset.xlsx
 
 head(ilga_base,6)
 
-dim(ilga_base)
+```
 
+## Dimensions
+
+```{r Dimension of ilga_base}
+dim(ilga_base)
+```
+
+## Column Names
+
+```{r Column Name of ilga_base}
 colnames(ilga_base)
 ```
 
-## Data set Specific to Protections and Recognition
+# Data set Specific to Protection and Recognition
 
-**P** is added in front of variables pertaining to Protection and **R** is added to variables pertaining to Recognition
+## Variables Explained (According to ILGA World)
 
-```{r Prot and Recog Specific Data set}
+I renamed variables related to **Protection** and **Recognition** to better identify the legislation category.
+
+A "Yes", "No", or "Limited" value indicates if there is/is not legislation under each variable.
+
+**P** is added in front of variables pertaining to **Protection** and **R** is added to variables pertaining to **Recognition**.
+
+**Protection:**
+
+-   **P_Const** = Constitutional Protection
+
+    -   Observes constitutional protections in terms of discrimination against individuals on the basis of their sexual orientation.
+
+-   **P_BroadProt** = Broad Protection
+
+    -   Observes provisions for the penalizing of discrimination based on sexual orientation in employment, health, education, housing and provision of goods and services.
+
+-   **P_Employ** = Protection in Employment
+
+    -   Observes jurisdictions of employment protection for laws that explicitly prohibit employment discrimination on the basis of sexual orientation. Observes topics of unfair dismissal, social security, benefits, and so on.
+
+-   **P_HateCrime** = Criminal Liability(Hate Crime Laws)
+
+    -   Observes legislation that explicitly prohibit hate crimes on the basis of sexual orientation.
+
+-   **P_Incitement** = Prohibition of Incitement to Hatred, Violence or Discrimination
+
+    -   Observes the legislative prohibition of incitement to hatred, violence or discrimination on the basis of sexual orientation.
+
+-   **P_BanConvTherapies** = Bans on "Conversion Therapy"
+
+    -   Observes legislative developments to the legal bans on "conversion therapies".
+
+**Recognition:**
+
+-   **R_SameSexMarriage** = Same-Sex Marriage
+
+    -   Observes the legislative recognitions and progress in areas of same-sex marriage equality.
+
+-   **R_CivilUnion** = Partnership Recognition for Same-Sex Couples
+
+    -   Observes legislative recognitions for partners who do not wish to enter the institution of marriages for same-sex couples.
+
+-   **R_JointAdoptions** = Adoption by Same-Sex Couple (Joint Adoption)
+
+    -   Observes the legislative recognitions for same-sex couples' adoption rights
+
+-   **R_SecondParentAdoption** = Adoption by Same-Sex Couple (Second Parent Adoption)
+
+    -   Observes the legislative recognitions for same-sex couples' adoption rights
+
+```{r Protections and Recogition Specific Data set}
 
 #Data set specific to Protection and Recognition
 ilga_PR <- ilga_base%>%
@@ -66,98 +154,449 @@ ilga_PR <- ilga_base%>%
          R_JointAdoptions = "JOINT ADOPTION",
          R_SecondParentAdoption = "SECOND PARENT ADOPTION" )
 
+#Sanity Check
 ilga_PR
 
-
 ```
-## Recoding Values 
 
-The orignal data specifies the continent name under a large tab with all the countries to the continent.
+## Mutating Data set to Contain Continents
 
-I want to be able to express data grouped by the continent, so I made a continent Column that would specify the continent.
-```{r}
+The original data specifies the continent name for each country under a large tab with all the countries to the continent.
 
-#Recoding Values to Specify Continent
+I want to be able to express data grouped by the continent, so I made a **Continent** column that would specify the continent for each country.
+
+ILGA World specified 6 Continent labels: **Africa**, **Latin America/The Caribbean**, **North America**, **Asia**, **Europe**, and **Oceania**.
+
+```{r Adding Continent to ilga_PR}
+#Specify Continent
 ilga_PR_Cont<-ilga_PR%>%
   mutate(Continent = case_when(
          N >= 1 & N <= 54 ~ "Africa",
-         N >= 55 & N <= 87 ~ "South America",
+         N >= 55 & N <= 87 ~ "Latin America/The Caribbean",
          N >= 88 & N <= 89 ~ "North America",
          N >= 90 & N <= 131 ~ "Asia",
          N >= 132 & N <= 179 ~ "Europe",
          N >= 180 & N <= 193 ~ "Oceania")
   )
+```
 
+## Bring Continent Column to Front of Data set
+
+After adding a **Continent** column, I wanted to bring the column to the front of data set.
+
+Note: **N** is the order of the country in the scheme of all countries. **CN** is the country number within the **Continent** the country falls.
+
+```{r Continent Front}
 #Brings the newly created Continent column to the front 
 ilga_PR_Cont <- ilga_PR_Cont%>%
   select(N, CN, Continent, everything())
 
 #Sanity Check
-ilga_PR_Cont
-
+ilga_PR_Cont 
 ```
 
-## Pivoting Dataframe 
-```{r Pivot}
+## Treating NA
 
-#Pivoting Protection Column
+The data set contained **NA** values in **N** and **CN**, for areas that were broadly presenting as a "territory".
 
-ilga_PR_Cont_PivP <- pivot_longer(ilga_PR_Cont, P_Const:P_BanConvTherapies, names_to = "Protection", values_to = "Protection_Value")
+For my data, I decided to filter out the **NA** values and focused on the countries assigned a **N** and **CN** value.
+
+```{r NA Treating in ilga_PR_Cont}
+ilga_PR_Cont <- ilga_PR_Cont %>%
+  filter(!is.na(N))
+
+ilga_PR_Cont
+```
+
+## Pivoting Data
+
+To better analyze my data, I decided to pivot the data frame. Before, the "*Type* of measure" (**Protection** and **Recognition**) were written out as their own variables (**P_Type** and **R_Type**) with a "Yes", "No", or "Limited" as their values.
+
+After I pivoted my data longer,**P_Type** and **R_Type** fall under the variable **Type**, with the "Yes", "No", and "Limited" values falling under the variable **Yes_No_Limited**.
+
+```{r Pivot P and R to Type}
+
+#ilga_PR_Cont Pivot longer
+ilga_PIV <- pivot_longer(ilga_PR_Cont, P_Const:R_SecondParentAdoption, names_to = "Type", values_to = "Yes_No_Limited")
 
 #Sanity Check
-ilga_PR_Cont_PivP
-
-#Pivoting Recognition Column
-
-ilga_PR_Cont_PivPR <- pivot_longer(ilga_PR_Cont_PivP, R_SameSexMarriage:R_SecondParentAdoption, names_to = "Recognition", values_to = "Recognition_Value")
-
-#Sanity Check (this creates extra rows...so i am not sane); but here I know what my issues are; I need think of a way to pivot the data wiht both variables at once, or find a way to clenup my data after; later on in my work I did do something where both variables are under one variable...but does that make sense?
-ilga_PR_Cont_PivPR
+ilga_PIV
 ```
+
+# Visualizing Data
+
+## Number of Yes, No, Limited for Each Continent
+
+I wanted to visualize the Number of "Yes", "No", and "Limited" values for each **Type** by the **Continent**. I thought that just looking at the number of the "Yes", "No", and "Limited" values would help identify which countries did/or did not have protections and recognitions in legislation in regards to state-sponsored homophobia.
+
+I decided to make a bar graph that is facet wrapped by **Continent**, with the x variable as **Type** and the fill as **Yes, No, Limited**. This would allow a graph that showed the total make up of "Yes", "No", and "Limited" for each **Type** for each **Continent**.
+
+**Use of ggplotly**: Looking at the r-graph gallery, I found that the graph could be made interactive with the use of the function ggplotly(). To use this function, I installed the packages "gapminder" and "plotly". ggplotly() served as a useful way to check my data, as the interactions through the tool tip delivered a quick summary of each data point on my graph. I could confirm if the data did/or did not present the way I thought it would.
+
+**Use of Hex codes**: I wanted to choose the colors in my visualizations, and I learned that I could use the thousands of unique hex codes to specify the colors I wanted.
 
 ```{r}
 
-#used this to see where I would have NA
-print(summarytools::dfSummary(ilga_PR,
-                        varnumbers = FALSE,
-                        plain.ascii  = FALSE, 
-                        style        = "grid", 
-                        graph.magnif = 0.70, 
-                        valid.col    = FALSE),
-      method = 'render',
-      table.classes = 'table-condensed')
+#pal1 <- c("#5b7f95","#c69214", "#b3b995", "#aca39a", "#41273b", "#881c1c")
+
+# #CD6155 (red), #EB984E (orange), #F4D03F (yello) #52BE80 (green), #7FB3D5 (blue), #BB8FCE (purple), 
+
+#Hex code palette 
+pal1 <- c("#5b7f95","#8A1515", "#478335")
+
+All_Continent <- ggplot(data = ilga_PIV) + 
+  geom_bar(mapping = aes(x = Type, fill = `Yes_No_Limited`)) +
+  facet_wrap(~ Continent, nrow = 2) +
+  coord_flip() +
+  scale_fill_manual(values = pal1)
+
+ 
+ggplotly(All_Continent)
 
 ```
-Here is the issue:
 
-i do not know which way og pivoting and visual representation of my data makes sense from the material that i have
+My visualization shows a clear representation of the makeup of **Yes_No_Limited** for each **Type** under each **Continent**. The colors make a quick and easy distinction, that otherwise could be difficult to grasp by just looking at the data frame.
 
-should protection and recognition be under type?
-shoudl the p/r tage be separate?
+However, something that I did not account for was that just looking at the total count of **Yes_No_Limited**, though useful to compare the makeup of the **Type** within each **Continent**, is not the best standard to compare across **Continent**s. Each continent presented by ILGA World, has a different number of **COUNTRY**s for each **Continent**.
 
-should 
+Just looking at the count of **Yes_No_Limited** for each **Type** across each **Continent** can present a skewed view of the data. For example "North America" seemingly has a fewer number of **Yes_No_Limited** compared to "Europe". But that is not to say that the "North America" proportion/percent of "Yes", "No", and "Limited" is lesser than "Europe" when looking at the number of countries. What determined the number is number of **COUNTRY**s in each **Continent**.
+
+So for my next visualization(s), I aimed to look at the percent/some sort of better distinguished numeric data of "Yes", "No", and "Limited" for each **Continent**.
+
+## Treating YES, NO, and LIMITED as Numbers
+
+To compare the percentages of "Yes", "No", and "Limited" under **Yes_No_Limited** for each **Continent,** I first converted each "Yes", "No", and "Limited" to a numeric value.
+
+I gave the values NO = 0, YES = 1, LIMITED = 0.5. I did this because I wanted to create a numeric metric to compare the the number of Protections and Recognition for Continents and Countries in the data frame.
+
+First I recoded just for the **P_Type**
+
+```{r recode P_Type }
+
+#recodinng variables for Protection("P")
+ilga_PR_Cont_NumP <- ilga_PR_Cont %>%
+  mutate(across(starts_with("P"),
+                ~recode(., "NO" = 0,"YES" = 1, "LIMITED" = 0.5),
+  ))
+
+#Sanity Check
+ilga_PR_Cont_NumP
+```
+
+I did the same for the Recognition
+
 ```{r}
+#recoding variables for Protection and Recognition(P and R)
+ilga_PR_Cont_NumPR <- ilga_PR_Cont_NumP %>%
+  mutate(across(starts_with("R"),
+                ~recode(., "NO" = 0,"YES" = 1, "LIMITED" = 0.5),
+  ))
 
-#is this the right thing?; i have out figure out which visualization works.
-TEST <- pivot_longer(ilga_PR_Cont, P_Const:R_SecondParentAdoption, names_to = "Type", values_to = "Yes/No/Limited")
+#sanity check
+ilga_PR_Cont_NumPR
+```
 
-TEST
+The final data set *ilga_PR_Cont_NumPR* represents each "Yes", "No", and "Limited" as a number. Since the values are now a double type, I can better make numeric calculations and operations with my data.
 
-#this makes it so that the P and R is both under Type; this is just a test and not a final...but I am not sure what I want 
+## Freedom Score For Each Country
 
+With each Yes", "No", and "Limited" as a number, I decided to create a column called **Freedom_Score**.
+
+The **Freedom_Score** represents the aggregate score of the **P_Type** and **R_Type** added. So each number across **P_Const:R_SecondParentAdoption** is added to single number under the variable **Freedom_Score**.
+
+```{r Freedom Score}
+
+#Freedom Score Variable 
+ilga_PR_Cont_NumPR_FS <- ilga_PR_Cont_NumPR %>% 
+  rowwise() %>%
+  mutate(Freedom_Score = sum(c_across(P_Const:R_SecondParentAdoption)))
+
+#Sanity Check
+ilga_PR_Cont_NumPR_FS
+```
+
+## Adding the Freedom Score of Each Country for Each Continent
+
+With the **Freedom_Score** calculated for each **COUNTRY**, I wanted to create a data set that observed the **Freedom_Score** for each **Continent**. I saved this calculation as a **Total_Freedom_Score**.
+
+```{r Total Freedom Score}
+
+Total_FS <- ilga_PR_Cont_NumPR_FS %>% 
+  select(Continent, COUNTRY, Freedom_Score) %>%
+  group_by(Continent) %>%
+  summarise(Total_Freedom_Score = sum(Freedom_Score))
+
+#Sanity Check
+Total_FS
+
+colnames(Total_FS)
+```
+
+## Visualizing Total Freedom Score
+
+```{r All Continents Freedom Score}
+#Palette for Total_Freedom_Score
+# #CD6155 (red), #EB984E (orange), #F4D03F (yello) #52BE80 (green), #7FB3D5 (blue), #BB8FCE (purple)
+
+pal2 <- c("#CD6155","#EB984E", "#F4D03F", "#52BE80", "#7FB3D5", "#BB8FCE")
+
+##ggplot calculations
+All_Cont_FS<- ggplot(data = Total_FS) +
+  geom_bar(mapping = aes(x = Continent, y = `Total_Freedom_Score`, fill = Continent), stat = "identity") +
+  coord_flip()+
+  scale_fill_manual(values = pal2) +
+  theme(legend.position="none")
+ 
+```
+
+## Total_Freedom_Score (Aggregate Freedom_Score by COUNTRY for Continent)
+
+```{r All_Cont_FS Visualization }
+ggplotly(All_Cont_FS)
+```
+
+This visualization represents **Total_Freedom_Score**, a data set that observed the **Freedom_Score** for each **Continent**.
+
+# Continuing Numeric Calculations
+
+-   With the **Total_Freedom_Score** values, I continued to calculate the percentages of the **Total_Freedom_Score** from the total points a **COUNTRY** could have theoretically gained, under the variable **Real_Freedom_Score**.
+
+-   In theory, each **COUNTRY** can have a maximum of 10 under **Freedom_Score** ( 6 "Yes" in **P_Type** + 4 "No" in **R_Type** = 10).
+
+-   Thus, each **COUNTRY** could have a maximum of 10. If each **COUNTRY** has a maximum of 10 under **Freedom_Score**, then the **Total_Possible_Freedom_Score** for each **Continent** would be a calculation of the number of **COUNTRY**s multiplied by 10.
+
+I do the calculations as follows:
+
+## Finding Number of Country in Each Continent for Reported Data
+
+```{r Number of Country}
+
+ Continent_FS <- ilga_PR_Cont_NumPR_FS %>% 
+  select(Continent, COUNTRY, Freedom_Score) %>%
+  group_by(Continent) %>%
+  count()
+
+Continent_FS <-rename(Continent_FS, Number_Of_Country = n)
+
+#Sanity Check
+Continent_FS
 
 ```
 
-```{r}
+## Joining Number_of_Country Data set and Total_Freedom_Score to Create Real_Freedom_Score
 
+I joined *Continent_FS* data set and *Total_FS* data set to *joined_Cont_Total_FS*, so that the data set would contain information about the **Number_of_Country** and **Total_Freedom_Score**.
+
+I make a **Real_Freedom_Score** Column by (**Total_Freedom_Score**/(**Number_Of_Country** \* 10)) \* 100
+
+```{r Joining Data}
+joined_Cont_Total_FS <- full_join(Continent_FS, Total_FS)
+
+
+joined_Cont_Total_FS <- joined_Cont_Total_FS %>%
+  select(Number_Of_Country, Total_Freedom_Score) %>%
+  mutate(
+    Total_Possible_Freedom_Score = Number_Of_Country * 10,
+    Real_Freedom_Score = (Total_Freedom_Score/(Number_Of_Country * 10)) * 100
+    )
 
 ```
 
+## Real_Freedom_Score Observation
+
+Now all the potential types of scores are stored in *joined_Cont_Total_FS*
+
+```{r Scores}
+ joined_Cont_Total_FS 
 ```
 
-## Describe Data
+## Pivot Data in *joined_Cont_Total_FS*
 
-```{r}
+```{r Pivot joined_Cont_Total_FS }
 
+Total_Real_Score <- joined_Cont_Total_FS %>%
+  group_by(Continent)%>%
+  select(Continent, Real_Freedom_Score,Total_Freedom_Score) %>%
+  pivot_longer(Total_Freedom_Score:Real_Freedom_Score, names_to = "Score_Type", values_to = "Score")
 
 ```
+
+I pivoted the all scores **Total_Freedom_Score** and **Real_Freedom_Score** to **Score_Type** and the values to **Score** to the data set *Total_Real_Score*
+
+## Total_Real_Score
+
+```{r Total_Real_Score }
+Total_Real_Score
+```
+
+## Comparing Real_Freedom_Score to Total_Freedom_Score
+
+```{r Real_Freedom_Score to Total_Freedom_Score}
+
+#Palette for Total_Freedom_Score
+# #CD6155 (red), #EB984E (orange), #F4D03F (yello) #52BE80 (green), #7FB3D5 (blue), #BB8FCE (purple)
+
+pal3 <- c("#7FB3D5","#CD6155")
+
+Score_All <- ggplot(data = Total_Real_Score) + 
+  geom_bar(mapping = aes(x = Score_Type, y = Score, fill = Score_Type),stat = "identity") +
+  facet_wrap(~ Continent, nrow = 2)+
+  theme(axis.text.x=element_text(angle=25,hjust=1)) +
+  scale_fill_manual(values = pal3)+
+  theme(axis.title.x = element_text(margin = margin(t = 45))
+  )
+  
+
+ggplotly(Score_All)
+```
+
+This visualization compares the **Real_Freedom_Score** to **Total_Freedom_Score** of each continent. Looking at just the **Total_Freedom_Score**, the data can seem like "Europe" heavily outweighs the other **Continents**. However, when looking at **Real_Freedom_Score**, we see that "North America" outweighs "Europe".
+
+Making such observations informs the percent a **Continent** has achieved of the total **Total_Possible_Score**. However, it is also important to note the these proportions and calculations are based off of ILGA World's categorization of different countries and continents. Depending on the allocation of a country to a continent etc. their proportions will change.
+
+In this data set 2 **COUNTRY**s are allocated to "North America" and 48 **COUNTRY**s are allocated to "Europe". It is important to look at the proportion, but also to recognize the distribution and categorization of countries by ILGA WORLD.
+
+# Processing Data for Asian COUNTRYs
+
+I did the same process' and visualizations I did for the **Continent**s, for the **COUNTRY**s in "Asia".
+
+## Dataframes Specific to Asia with "Yes", "No", and "Limited".
+
+```{r Asia Dataframe with Yes/No}
+#Dataframe with Yes and NO
+
+Asia_YN <- ilga_PR_Cont %>%
+  filter( Continent == "Asia")
+
+Asia_YN
+```
+
+## Asia Data frame with "Yes", "No", and "Limited" as 1, 0, 0.5 and Freedom Score
+
+```{r Asia }
+
+#Dataframe with Numbers and Freedom Score
+Asia_FS <- ilga_PR_Cont_NumPR_FS %>%
+  filter( Continent == "Asia")
+
+Asia_FS
+
+```
+
+## Pivot Asia Dataframe
+
+```{r Pivot Asia_YN}
+Asia_Piv <- Asia_YN %>%
+  pivot_longer(P_Const:R_SecondParentAdoption, names_to = "Type", values_to = "Yes_No_Limited")
+
+Asia_Piv
+```
+
+## Observing Count of "Yes", "No", "Limited" for each Country in Asia
+
+```{r Y/N/L for Asia Country}
+# #CD6155 (red), #EB984E (orange), #F4D03F (yello) #52BE80 (green), #7FB3D5 (blue), #BB8FCE (purple),
+ 
+pal4 <- c("#7FB3D5", "#CD6155", "#52BE80" )
+
+Asia_Country <- ggplot(data = Asia_Piv) + 
+  geom_bar(mapping = aes(x = COUNTRY, fill = `Yes_No_Limited`)) +
+  scale_fill_manual(values = pal4) +
+  coord_flip() 
+
+ggplotly(Asia_Country)
+```
+
+## Observing Freedom_Score for each Country in Asia
+
+```{r Asia Freedom Score}
+
+pal4 <- c( "#52BE80" )
+
+Asia_FreedomScore <- ggplot(Asia_FS, aes(x = COUNTRY, y = Freedom_Score, width=.5))+ 
+    geom_bar(position="dodge", stat="identity") +
+    coord_flip() 
+
+ggplotly(Asia_FreedomScore)
+```
+
+# Conclusion/Reflections
+
+## Furthering project:
+
+Overall, my project gave an insight to how representing data in different structure can vastly affect the interpretation of the data.As my data did not track information over time, but rather gave a count, the way the count was represented greatly changed in how the data presented.
+
+**Years of Decriminalisation to Number of Protection/Recognition**
+
+I did not observe the criminalisation sections of the original data frame. The criminalisation data provides data on if same-sex acts are legal, the date of decriminalisation for same-sex acts, and the max penalty or same-sex acts.
+
+Something that can be interesting to observe would be to see if there is a relation between the time a country has decriminalized same-sex acts and the number of protections and recognition it has. I would hypothesize that there is a positive correlation between the years since decriminalization and the number of protections and recognition. However, with specific categories, I do believe that there could be a stagnation due to complacency of governments in legislation to generally appease people through surface legislation. Observing this relationship could give better insight into a potential prediction model between the number of years and the number of protections and recognition.
+
+**Between Protection and Recognition**
+
+Something I wanted to achieve in my analysis is to compare the protections to recognitions, rather than aggregate them under one Type. However, I could not code an apt data frame which I could use to make a ggplot. In my basic schema I would want protection values on the x axis and recognition values on the y axis for each county/continent. Observing the relationship between protections and recogntions could give better insight into which areas of legislation ought to be focused on/where countries worldwide lack in their legislative measures.
+
+**Map Data based on Protections and Recognitions**
+
+additionally, creating a map of the different protections and recognitions can give bettwe visual information to which areas of the world have what kinds of protections and recognitions. This kind of representation would abstract sounding data into a quickly absorbable image. For example, if country had more or less protections and recognitions, the country could be shaded darker, lighter, or not at all.
+
+## Thoughts:
+
+Throughout this project, the greatest data lesson I learned is flexibility in approaches.
+
+As a near first-time coder, the task of taking on a project seemed very daunting. I was very careful to make sure that all my lines of code "made sense" and that there were no errors. There was a lot of "noise" and confusion for the seemingly endless combinations of approaching a task with a common end.
+
+However, as I decided to just somewhat haphazardly experiment with my data sets and code, there were challenges that arose which ultimately helped me solve my problems of being "too scared" to code. I practiced tracing back my errors and researchig solutions.
+
+As someone who studied linguistics and political science during undergrad, I categorized coding as a topic that was unapproachable and far from my studies. However, this project gave insight into the several intersections between computational and social science studies. I better understand how visualization can be a powerful tool to represent information that is difficult to express in writing.
+
+
+**Planning:**
+
+Before I started any code, I physically drew out the types of visualizations I wanted. I had a basic schema of how my data frames would looks like and the types of visualizations I wanted. Though I made some adjustments to the visualizations as I completed my project, having a physical planned drawing definitely better guided my to what I wanted to achieve with code.
+
+**Use Country Code**
+
+For my data, I manually entered the continents for the Countries, based off the original data frame. However, there is a way to link countries to continents based on certain packages in R, which could produce more accurate results. This could also help account for the NAs in the data set, rather than having to remove them or manually enter each one into the data frame.
+
+**Pivoting Data:**
+
+One big issue that I had was understanding how to approach my data. I was used to pivoting my data frames for my projects, so I assumed that my data had to be pivoted from the beginning. However, thinking that I had to pivot my data right away created confusion in the way I approached my data and it made it difficult to understand what the pivoted data meant.
+
+After thinking through my process with tutors and classmates, I realized that I did not have to necessarily pivot my data for some of the calculations and observations I wanted to make.
+
+**ggplot:**
+
+I spent two days trying to figure out my *All_Continent* data. The ggplot I was making made sense to me, but the visualization that I was being produced did not make sense at all.
+
+All_Continent \<- ggplot(data = ilga_PIV) +
+
+geom_bar(mapping = aes(x = Type, fill = `Yes_No_Limited`)) +
+
+facet_wrap(\~ Continent, nrow = 2) + coord_flip() +
+
+scale_fill_manual(values = pal1)
+
+It turns out that the issue was that I used " " around **Yes_No_Limited** instead of . Something so seemingly small, created created days' long problems. After learning this error fix after discussion with a classmate, I remembered how there were notes that mentions similar topics about the importance of syntax in the early tutorials. Though I still have much to learn about the deeper mechanics of R, I do better understand the importance of topics building upon each other after completing my project.
+
+**Discuss, Discuss, and Discuss**
+
+One of the greatest helps of this project was the discussions I had with classmates. Taking the time to verbalize what I exactly wanted, helped me better understand the minutia of what I wanted to achieve with my code, and helped me better organize my thoughts. While helping classmates with their code, I saw how I could apply some of the solutions to their code to my project.
+
+# Bibliography
+
+1\.
+
+ILGA World: Lucas Ramon Mendos, Kellyn Botha, Rafael Carrano Lelis, Enrique López de la Peña,
+
+Ilia Savelev and Daron Tan, State-Sponsored Homophobia 2020: Global Legislation Overview Update
+
+(Geneva: ILGA, December 2020).
+
+2\.
+
+R Core Team (2022). R: A language and environment for statistical
+
+computing. R Foundation for Statistical Computing, Vienna, Austria.
+
+URL http://www.R-project.org/.
