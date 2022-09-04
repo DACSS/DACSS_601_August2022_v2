@@ -65,72 +65,80 @@ There are a total of five data sets which combined contains the complete informa
 ```{r}
 athlete <- read_csv("_data/Olympics/Olympic_Athlete_Bio.csv") %>%
   na_if("na")
-athlete
+head(athlete)
 
 ```
 
+While rendering it is taking a lot of time and consuming more space. So I have commented the below lines to submit my file
+
 ```{r}
-print(dfSummary(athlete, 
-                varnumbers = FALSE, 
-                plain.ascii = FALSE, 
-                graph.magnif = 0.70, 
-                style = "grid", 
-                valid.col = FALSE), 
-      method = 'render', 
-      table.classes = 'table-condensed')
+# print(dfSummary(athlete, 
+#                 varnumbers = FALSE, 
+#                 plain.ascii = FALSE, 
+#                 graph.magnif = 0.70, 
+#                 style = "grid", 
+#                 valid.col = FALSE), 
+#       method = 'render', 
+#       table.classes = 'table-condensed')
 ```
 
 ```{r}
 events <- read_csv("_data/Olympics/Olympic_Athlete_Event_Results.csv") %>%
   na_if("na")
-events
+head(events)
 ```
 
+While rendering it is taking a lot of time and consuming more space. So I have commented the below lines to submit my file
+
 ```{r}
-print(dfSummary(events, 
-                varnumbers = FALSE, 
-                plain.ascii = FALSE, 
-                graph.magnif = 0.70, 
-                style = "grid", 
-                valid.col = FALSE), 
-      method = 'render', 
-      table.classes = 'table-condensed')
+# print(dfSummary(events, 
+#                 varnumbers = FALSE, 
+#                 plain.ascii = FALSE, 
+#                 graph.magnif = 0.70, 
+#                 style = "grid", 
+#                 valid.col = FALSE), 
+#       method = 'render', 
+#       table.classes = 'table-condensed')
 ```
 
 ```{r}
 medals <- read_csv("_data/Olympics/Olympic_Games_Medal_Tally.csv") %>%
   select(!c("year", "total")) %>%
   na_if("na")
-medals
+head(medals)
 ```
 
+While rendering it is taking a lot of time and consuming more space. So I have commented the below lines to submit my file
+
 ```{r}
-print(dfSummary(medals, 
-                varnumbers = FALSE, 
-                plain.ascii = FALSE, 
-                graph.magnif = 0.70, 
-                style = "grid", 
-                valid.col = FALSE), 
-      method = 'render', 
-      table.classes = 'table-condensed')
+# print(dfSummary(medals, 
+#                 varnumbers = FALSE, 
+#                 plain.ascii = FALSE, 
+#                 graph.magnif = 0.70, 
+#                 style = "grid", 
+#                 valid.col = FALSE), 
+#       method = 'render', 
+#       table.classes = 'table-condensed')
 ```
 
 ```{r}
 results <- read_csv("_data/Olympics/Olympic_Results.csv") %>%
   select(!"result_detail") %>%
   na_if("na")
-results
+head(results)
 ```
 
+While rendering it is taking a lot of time and consuming more space. So I have commented the below lines to submit my file
+
 ```{r}
-print(dfSummary(results, 
-                varnumbers = FALSE, 
-                plain.ascii = FALSE, 
-                graph.magnif = 0.70, 
-                style = "grid", 
-                valid.col = FALSE), 
-      method = 'render', 
-      table.classes = 'table-condensed')
+# print(dfSummary(results, 
+#                 varnumbers = FALSE, 
+#                 plain.ascii = FALSE, 
+#                 graph.magnif = 0.70, 
+#                 style = "grid", 
+#                 valid.col = FALSE), 
+#       method = 'render', 
+#       table.classes = 'table-condensed')
 ```
 
 ```{r}
@@ -141,14 +149,14 @@ games
 ```
 
 ```{r}
-print(dfSummary(games, 
-                varnumbers = FALSE, 
-                plain.ascii = FALSE, 
-                graph.magnif = 0.70, 
-                style = "grid", 
-                valid.col = FALSE), 
-      method = 'render', 
-      table.classes = 'table-condensed')
+# print(dfSummary(games, 
+#                 varnumbers = FALSE, 
+#                 plain.ascii = FALSE, 
+#                 graph.magnif = 0.70, 
+#                 style = "grid", 
+#                 valid.col = FALSE), 
+#       method = 'render', 
+#       table.classes = 'table-condensed')
 ```
 
 ## Joining the data
@@ -158,53 +166,59 @@ The reading of data is done and to join the data and get a complete set, it is p
 ```{r}
 athlete_events <- full_join(athlete, events, by = c("athlete_id", "country_noc")) %>%
   select(!"name")
-athlete_events
+head(athlete_events)
 
 ```
 
+While rendering it is taking a lot of time and consuming more space. So I have commented the below lines to submit my file
+
 ```{r}
-print(dfSummary(athlete_events, 
-                varnumbers = FALSE, 
-                plain.ascii = FALSE, 
-                graph.magnif = 0.70, 
-                style = "grid", 
-                valid.col = FALSE), 
-      method = 'render', 
-      table.classes = 'table-condensed')
+# print(dfSummary(athlete_events, 
+#                 varnumbers = FALSE, 
+#                 plain.ascii = FALSE, 
+#                 graph.magnif = 0.70, 
+#                 style = "grid", 
+#                 valid.col = FALSE), 
+#       method = 'render', 
+#       table.classes = 'table-condensed')
 ```
 
 ```{r}
 olympics_competition <- full_join(athlete_events, results, by = c("edition", "edition_id", "result_id", "sport"))
-olympics_competition
+head(olympics_competition)
 ```
 
+While rendering it is taking a lot of time and consuming more space. So I have commented the below lines to submit my file
+
 ```{r}
-print(dfSummary(olympics_competition, 
-                varnumbers = FALSE, 
-                plain.ascii = FALSE, 
-                graph.magnif = 0.70, 
-                style = "grid", 
-                valid.col = FALSE), 
-      method = 'render', 
-      table.classes = 'table-condensed')
+# print(dfSummary(olympics_competition, 
+#                 varnumbers = FALSE, 
+#                 plain.ascii = FALSE, 
+#                 graph.magnif = 0.70, 
+#                 style = "grid", 
+#                 valid.col = FALSE), 
+#       method = 'render', 
+#       table.classes = 'table-condensed')
 ```
 
 ```{r}
 olympics <- full_join(olympics_competition, games, by =c("edition", "edition_id")) %>%
   filter(is.na(isHeld)) %>%
   select(!c("event", "isHeld")) 
-olympics
+head(olympics)
 ```
 
+While rendering it is taking a lot of time and consuming more space. So I have commented the below lines to submit my file
+
 ```{r}
-print(dfSummary(olympics, 
-                varnumbers = FALSE, 
-                plain.ascii = FALSE, 
-                graph.magnif = 0.70, 
-                style = "grid", 
-                valid.col = FALSE), 
-      method = 'render', 
-      table.classes = 'table-condensed')
+# print(dfSummary(olympics, 
+#                 varnumbers = FALSE, 
+#                 plain.ascii = FALSE, 
+#                 graph.magnif = 0.70, 
+#                 style = "grid", 
+#                 valid.col = FALSE), 
+#       method = 'render', 
+#       table.classes = 'table-condensed')
 ```
 
 ## Tidying the data
@@ -220,7 +234,7 @@ olympics <- olympics %>%
          end_date = as.Date(end_date, "%d-%m-%Y"), 
          competition_start_date = as.Date(competition_start_date, "%d-%m-%Y"), 
          competition_end_date = as.Date(competition_end_date, "%d-%m-%Y"))
-olympics
+head(olympics)
 ```
 
 ```{r}
@@ -228,14 +242,14 @@ medals <- medals %>%
   separate("edition", into = c("Year", "Season", "del"), sep = " ") %>%
   select(!del) %>%
   pivot_longer(c("gold", "silver", "bronze"), names_to = "type_of_medal", values_to = "medal_count")
-medals
+head(medals)
 ```
 
 ## Renaming the columns
 
 ```{r}
 colnames(olympics) <- c("Athlete_id", "Sex", "DOB", "Height", "Weight", "Country", "NOC", "Edition", "Edition_id", "Sport", "Result_id", "Athlete", "Position", "Medal", "TeamSport", "Event", "Result_location", "No_of_participants", "Result_format", "Result_description", "Event_start_date", "Event_end_date", "City", "Competition_start_date", "Competition_end_date")
-olympics
+head(olympics)
 ```
 
 ## Calculating BMI and Age of Participation for athletes
@@ -248,7 +262,7 @@ olympics <- olympics %>%
   separate(Edition, into = c("Year", "Season", "del"), sep = " ") %>%
   select(!del) %>%
   mutate(Age = as.integer((Event_start_date-DOB)/365.25)) 
-olympics
+head(olympics)
 
 ```
 
@@ -257,17 +271,18 @@ olympics
 ```{r}
 olympics <- olympics %>%
   relocate(c("Athlete", "BMI", "Age"), .after = "Athlete_id") 
-olympics
+head(olympics)
 ```
 
+
 ```{r}
-print(dfSummary(olympics, 
-                varnumbers = FALSE, 
-                plain.ascii = FALSE, 
-                graph.magnif = 0.70, 
-                style = "grid", 
-                valid.col = FALSE), 
-      method = 'render', 
+print(dfSummary(olympics,
+                varnumbers = FALSE,
+                plain.ascii = FALSE,
+                graph.magnif = 0.70,
+                style = "grid",
+                valid.col = FALSE),
+      method = 'render',
       table.classes = 'table-condensed')
 ```
 
