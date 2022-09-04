@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Yakub Rabiutheen">
+<meta name="dcterms.date" content="2022-09-04">
+
+<title>Final Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content=" - Final Project">
+<meta name="twitter:description" content="The Arab Spring was a Revolutionary Social Movement that resulted in protests that in some instances led to civil war such as Syria and Libya, and autocratic leaders stepping down such as Egypt and…">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">
+ August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">
+ DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#research-methods" id="toc-research-methods" class="nav-link" data-scroll-target="#research-methods">Research Methods</a></li>
+  <li><a href="#research-question-1-eda" id="toc-research-question-1-eda" class="nav-link" data-scroll-target="#research-question-1-eda">Research Question 1 EDA</a></li>
+  <li><a href="#research-question-2" id="toc-research-question-2" class="nav-link" data-scroll-target="#research-question-2">Research Question 2</a></li>
+  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1">Introduction</a></li>
+  <li><a href="#research-methods-1" id="toc-research-methods-1" class="nav-link" data-scroll-target="#research-methods-1">Research Methods</a></li>
+  <li><a href="#research-question-1-eda-1" id="toc-research-question-1-eda-1" class="nav-link" data-scroll-target="#research-question-1-eda-1">Research Question 1 EDA</a></li>
+  <li><a href="#research-question-2-1" id="toc-research-question-2-1" class="nav-link" data-scroll-target="#research-question-2-1">Research Question 2</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Final Project</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">final_project</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Yakub Rabiutheen </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 4, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(WDI) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The Arab Spring was a Revolutionary Social Movement that resulted in protests that in some instances led to civil war such as Syria and Libya, and autocratic leaders stepping down such as Egypt and Tunisia. This Final Project looks at the economic factors in Tunisia and Egypt to see what economic factors were relevant to the Arab Spring happening in Egypt and Tunisia. I also want to explore the how state-owned enterprises affected Egypt and Tunisia’s economy. In this project, I use data from the World Bank and the various economic indicators to explore economic metrics during the Arab Spring. As I am using the package(WDI), to fetch the using an API, there is no CSV file. If anyone wishes to look at the same data or run the same commands, all you have to do is install the (WDI) package.</p>
+</section>
+<section id="research-methods" class="level2">
+<h2 class="anchored" data-anchor-id="research-methods">Research Methods</h2>
+<p>There are two research questions being explored in this project.My first research question uses Mill’s Method of Agreement, where there are two or more instances of the same phenomenon and the causality is what is being explored. The Dependent variable is already known with the two case studies that I have chosen, Egypt and Tunisia. Both countries resulted in the autocrats in their countries stepping down with Ben Ali, President of Tunisia, resigning in January 14, 2011 and Hosni Mubarak, President of Egypt, resigning in February 11,2011. The Independent variable is unknown and I will be testing various economic indicators from 2008 to 2010.</p>
+<p>There is also a second research question that I will be exploring.The second research question that I want to test for this assignment is whether State Owned Enterprises(SOE) in Egypt and Tunisia played a factor in Youth Unemployment, as well how did SOE labor participation for Women. However this one will require going back to the 1960s as during the 60s there was Arab Socialist Regimes in Tunisia and Egypt that heavily invested in State Owned Enterprises so that the economy would be less reliant on the private sector(Amico,2017).</p>
+<p>So I will testing the following theories.</p>
+<ol type="1">
+<li>As Government Credit to GDP increased, Youth Unemployment Increased.</li>
+<li>AS Government Credit to GDP increased led to lower female Labor Force Participation. This is due to Government being male dominated institutions in Egypt and Tunisia, resulting in less government jobs for women.</li>
+</ol>
+</section>
+<section id="research-question-1-eda" class="level2">
+<h2 class="anchored" data-anchor-id="research-question-1-eda">Research Question 1 EDA</h2>
+<p>As seen below, I kinda just threw various economic indicators from the World Bank and added the years I was interested in. I found out later that you could search for specific countries by Symbol such as TN “Tunisia”. This is why a lot of my chunks below have filter statements. You can definitely remove the Country parameter I added, but it does slow down the runtime for the “economic_indicators” dataset being generated.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">WDI</span>(<span class="at">indicator =</span> <span class="fu">c</span>(<span class="st">"EG.ELC.ACCS.ZS"</span>, <span class="co"># access to electricity</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"BN.CAB.XOKA.GD.ZS"</span>, <span class="co"># current account balance</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"IC.BUS.DFRN.XQ"</span>, <span class="co"># ease of doing business</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"FP.CPI.TOTL.ZG"</span>, <span class="co"># CPI</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"FR.INR.LNDP"</span>, <span class="co"># interest rate spread</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"NY.GDP.PCAP.KD"</span>),<span class="co"># GDP</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> <span class="fu">c</span>(<span class="st">"TN"</span>,<span class="st">"EG"</span>),<span class="at">start =</span> <span class="dv">2000</span>, <span class="at">end =</span> <span class="dv">2010</span>) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="ot">-&gt;</span> economic_indicators</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Renamed the Columns so that I could keep track easier.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(economic_indicators) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'iso2c'</span>, <span class="st">'country'</span>, <span class="st">'year'</span>, <span class="st">'Electricity_Access'</span>, <span class="st">'Account_Balance'</span>, <span class="st">'Ease_Of_Doing_Business'</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                       <span class="st">'CPI'</span>,<span class="st">'Interest_Rate_Spread'</span>, <span class="st">'GDP'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Doing a Check to make sure the Names of the Columns have Changed.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(economic_indicators)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "iso2c"                  "country"                "year"                  
+[4] "Electricity_Access"     "Account_Balance"        "Ease_Of_Doing_Business"
+[7] "CPI"                    "Interest_Rate_Spread"   "GDP"                   </code></pre>
+</div>
+</div>
+<p>Creating a Filter for Egypt as well as making the CPI Calculation a Percentage.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>egypt_cpi<span class="ot">&lt;-</span>economic_indicators <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Egypt, Arab Rep."</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cpiprop =</span> CPI<span class="sc">/</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.,<span class="fu">aes</span>(year, cpiprop)) <span class="sc">+</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>, <span class="at">fill=</span><span class="st">"#619cff"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Consumer Price Index (Annual %)"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data: International Monetary Fund, via {WDI}"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"The Consumer Price Index (Annual %) in Egypt, 2000-2010"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Looking at Inflation Trends Prior to the Arab Spring"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Creating a Filter for Tunisia as well as making the CPI Calculation a Percentage.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tunisia_cpi<span class="ot">&lt;-</span>economic_indicators <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Tunisia"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cpiprop =</span> CPI<span class="sc">/</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.,<span class="fu">aes</span>(year, cpiprop)) <span class="sc">+</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>, <span class="at">fill=</span><span class="st">"#619cff"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Consumer Price Index (Annual %)"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data: International Monetary Fund, via {WDI}"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"The Consumer Price Index (Annual %) in Tunisia, 2000-2010"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Looking at Inflation Trends Prior to the Arab Spring"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>As plotted below, it seems that both Tunisia and Egypt both had spikes in Inflation although it seems Egypt had much more higher rates of Inflation. In 2008, Inflation for both countries was at it’s peak. However the Arab Spring for both countries happened in January 2011, if inflation was the primary cause of the Arab Spring, why didn’t it happen in 2008. If anything, Inflation was improving from 2008 to 2010.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tunisia_cpi<span class="sc">/</span>egypt_cpi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_Rabiutheen_Final_Project_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here I did a filter for Tunisia and Egypt as well as a Select function to make it easier to read my dataset.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tunisa_vs_egypt<span class="ot">&lt;-</span><span class="fu">select</span>(<span class="fu">filter</span>(economic_indicators, country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tunisia"</span>, <span class="st">"Egypt, Arab Rep."</span>)), <span class="fu">c</span>(country,year,CPI,Electricity_Access,Account_Balance,GDP,Interest_Rate_Spread,))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>It looks like the GDP Per Capita actually went up for both Tunisia and Egypt from 2008 to 2010, the economic trends show that GDP was increasing prior to the Arab Spring. However GDP per Capita is not a fully accurate representation of the economy as a whole. As GDP represents the mean of a population and doesn’t consider income inequality(Carr,2017). For example, Bermuda has the highest GDP per Capita in the world as it is a tax heaven, despite most of population working in the small fishing industry, making meager wages(Carr,2017). Other factors such as HDI would provide a better representation of the social problems.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tunisa_vs_egypt, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>GDP,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>)) </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_Rabiutheen_Final_Project_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hdi_factors <span class="ot">&lt;-</span> <span class="fu">WDI</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">"all"</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">indicator =</span> <span class="fu">c</span>(<span class="st">"SL.UEM.1524.ZS"</span>,<span class="st">"SL.UEM.TOTL.ZS"</span>,<span class="st">"UNDP.HDI.XD"</span>,<span class="st">"SP.DYN.LE00.IN"</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2000</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2010</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">extra =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cache =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">latest =</span> <span class="cn">NULL</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">language =</span> <span class="st">"en"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>unemployment<span class="ot">&lt;-</span><span class="fu">select</span>(<span class="fu">filter</span>(hdi_factors, country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tunisia"</span>, <span class="st">"Egypt, Arab Rep."</span>)), <span class="fu">c</span>(country,year,SL.UEM.<span class="fl">1524.</span>ZS,SL.UEM.TOTL.ZS,UNDP.HDI.XD,SP.DYN.LE00.IN,))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>As shown below, the HDI of both countries is between 0.6 and 0.7. This means that they would be classified as Medium in terms of HDI and the HDI of both countries were constantly rising and had a very upward trend(United Nations,2022). So in terms of HDI these countries are quite average for a developing country, as for example, India’s HDI is usually around 0.6 during 2008 to 2010(United Nations,2022)</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(unemployment, <span class="sc">!</span><span class="fu">is.na</span>(UNDP.HDI.XD)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>UNDP.HDI.XD,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>))<span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">na.translate=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"HDI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_Rabiutheen_Final_Project_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here is an factor of unemployment, that I am looking at. When we look at Total Unemployment it’s actually very high but decreasing after 2008. However this looks at Total Unemployment. Perhaps, looking at Youth Employment would be more relevant. As countries in the Arab World from ages 15 to 29 comprise the largest proportion of the population(Bajoria,2011). The Arab Spring is often regarded as a movement of Young Arabs who wanted their needs to be addressed(Bajoria,2011).</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(unemployment, <span class="sc">!</span><span class="fu">is.na</span>(SL.UEM.TOTL.ZS)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>SL.UEM.TOTL.ZS,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>))<span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">na.translate=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Total Unemployment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_Rabiutheen_Final_Project_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As shown below, Youth unemployment has always been at least 25% from 2000 to 2010. That means one out of every four Arabs, ages from 15 to 24 were out of a Job and had no job. This is gives us a huge insight, that economic metrics for the Youth in this country is what we should be looking at. As there seems to be a general trend in my analysis for most metrics, that factors such as GDP, HDI show that an upward trend despite the notion that Tunisia and Egypt were economically getting worse for young people and that’s why those countries had an uprising. A better approach is to look at the Youth and their economic metrics instead of the population as a whole.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(unemployment, <span class="sc">!</span><span class="fu">is.na</span>(SL.UEM.<span class="fl">1524.</span>ZS)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>SL.UEM.<span class="fl">1524.</span>ZS,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>))<span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">na.translate=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Youth Unemployment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_Rabiutheen_Final_Project_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="research-question-2" class="level2">
+<h2 class="anchored" data-anchor-id="research-question-2">Research Question 2</h2>
+<p>The Second research question that I want to test for this assignment is whether State Owned Enterprises played a factor in Youth Unemployment and perhaps damaged the economy as a whole in Tunisia and Egypt. However this one will require going back to the 1960s as during the 60s there was Arab Socialist Regimes in Tunisia and Egypt that heavily invested in State Owned Enterprises so that the economy would be less reliant on the private sector(Amico,2917).</p>
+<p>So I will testing the following theories.</p>
+<ol type="1">
+<li>As Government Credit to GDP increased, Youth Unemployment Increased.</li>
+<li>AS Government Credit to GDP increased led to lower female Labor Force Participation. This is due to the Military and Government being male dominated institutions in Egypt and Tunisia.</li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hdi_factors <span class="ot">&lt;-</span> <span class="fu">WDI</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">"TN"</span>,<span class="st">"EG"</span>),</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">indicator =</span> <span class="fu">c</span>(<span class="st">"FS.AST.CGOV.GD.ZS"</span>,<span class="st">"SL.UEM.1524.ZS"</span>,<span class="st">"MS.MIL.XPND.GD.ZS"</span>,<span class="st">"SL.UEM.TOTL.FE.ZS"</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">1960</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2010</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">extra =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cache =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">latest =</span> <span class="cn">NULL</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">language =</span> <span class="st">"en"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>As shown below, since the 1980s, there was a massive drop of Government Claims on the GDP but then a upward trend happened during the 2000s. It looks under Mubarak for example, there was a much greater increase of Government Claims on GDP more than triple the amount under Gamal Nasser who was considered a socialist.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(hdi_factors, <span class="sc">!</span><span class="fu">is.na</span>(FS.AST.CGOV.GD.ZS)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>FS.AST.CGOV.GD.ZS,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1960</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">5</span>))<span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">na.translate=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Government Claims on GDP"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Yakub_Rabiutheen_Final_Project_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Let’s see if there is any correlation between Youth Unemployment and Government Claims on GDP.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hdi_factors<span class="sc">$</span>FS.AST.CGOV.GD.ZS,hdi_factors<span class="sc">$</span>SL.UEM.<span class="fl">1524.</span>ZS,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.490647</code></pre>
+</div>
+</div>
+<p>That’s a complete negative Correlation.Perhaps Young people are able to get those Government jobs but the Supply is greater than the Demand.</p>
+<p>As seen below, a similar negative correlation happens when military spending % of GDP is increased. It seems that Military Spending and Government Claims on GDP actually increase employment for young people.As Such we can conclude that theory 1 is not accurate there is a negative correlation between youth unemployment for both Military Spending % of GDP as well as Government Claims on GDP.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hdi_factors<span class="sc">$</span>SL.UEM.<span class="fl">1524.</span>ZS,hdi_factors<span class="sc">$</span>MS.MIL.XPND.GD.ZS,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.3744965</code></pre>
+</div>
+</div>
+<p>In Contrast, for Women there is a strong correlation of Unemployment for Women, when the Military Spending is increased as well as Government Claims on GDP. This Confirms that Female Unemployment increased with state enterprises having more country of the Economy.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hdi_factors<span class="sc">$</span>FS.AST.CGOV.GD.ZS,hdi_factors<span class="sc">$</span>SL.UEM.TOTL.FE.ZS,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8043021</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hdi_factors<span class="sc">$</span>MS.MIL.XPND.GD.ZS,hdi_factors<span class="sc">$</span>SL.UEM.TOTL.FE.ZS,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7467696</code></pre>
+</div>
+</div>
+<p>As such, I can conclude that there isn’t much evidence for the assumption that state-owned enterprise as well as military spending led to the high levels of Youth Unemployment. However, it does have a strong correlation with high levels of Female Unemployment for Tunisia and Egypt.</p>
+<p>##Conclusion</p>
+<p>For research question one, I can conclude that Youth Unemployment is definitely the strongest causation factor out of the other economic indicators that I explored. GDP per Capita and HDI were constantly increasing under Mubarak and Ben Ali. Since at least 25% of Arab Youth were unemployed from 2008 to 2010, that allowed for large amounts of young protesters to mobilize as 1/4 of them had no job and had time to protest as well as organize a social movement to overthrow their authoritarian leaders.</p>
+<p>For research question two, there would have to be further greater exploration but I wasn’t able to tie the factor of State Owned Enterprises to Youth Unemployment as there was a negative correlation of Government Claims of GDP and youth unemployment. However, I was able to establish that Government Claim of GDP or Government having more assets of GDP%(SOE), resulted in less Female participation in the labor force. This is an important revelation as SOE firms are often more male-dominated, as such one has to address the fact if the government is used to employ people during high times of unemployment in Tunisia and Egypt, women might be left out in such government initiatives. This is similar to how in America during the New Deal, African Americans were less likely to get jobs in New Deal Job programs as there was a racial bias against government employment of African Americans at that time.</p>
+<p>##References Amico, A. (2017, January 1). Arab states as shareholders: Origins and consequences. International Development Policy | Revue internationale de politique de d�veloppement. Retrieved September 4, 2022, from https://journals.openedition.org/poldev/2282#quotation Nations, U. (2022, July 28). Human development index. Human Development Reports. Retrieved September 3, 2022, from https://hdr.undp.org/data-center/human-development-index#/indicies/HDI Bajoria, J. (2011, February 14). Demographics of Arab protests. Council on Foreign Relations. Retrieved September 4, 2022, from https://www.cfr.org/interview/demographics-arab-protests Carr, T. (2020, June 10). EconPress. Retrieved September 3, 2022, from https://web.northeastern.edu/econpress/2017/01/23/a-critique-of-gdp-per-capita-as-a-measure-of-wellbeing/</p>
+<pre><code>
+
+
+
+
+:::{#quarto-navigation-envelope .hidden}
+[Final Project]{.hidden render-id="quarto-int-sidebar-title"}
+[Final Project]{.hidden render-id="quarto-int-navbar-title"}
+[August 2022 Posts]{.hidden render-id="quarto-int-navbar:August 2022 Posts"}
+[Contributors]{.hidden render-id="quarto-int-navbar:Contributors"}
+[DACSS]{.hidden render-id="quarto-int-navbar:DACSS"}
+:::
+
+
+
+:::{#quarto-meta-markdown .hidden}
+[ - Final Project]{.hidden render-id="quarto-metatitle"}
+:::
+
+
+
+
+&lt;!-- --&gt;
+
+::: {.quarto-embedded-source-code}
+```````````````````{.markdown shortcodes="false"}
+---
+title: "Final Project"
+author: "Yakub Rabiutheen"
+desription: "Egypt and Tunisia, Economic Analysis"
+date: "09/04/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final_project
+---
+
+quarto-executable-code-5450563D
+
+```r
+#| label: setup
+#| warning: false
+library(WDI) 
+library(tidyverse)
+library(summarytools)</code></pre>
+</section>
+<section id="introduction-1" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-1">Introduction</h2>
+<p>The Arab Spring was a Revolutionary Social Movement that resulted in protests that in some instances led to civil war such as Syria and Libya, and autocratic leaders stepping down such as Egypt and Tunisia. This Final Project looks at the economic factors in Tunisia and Egypt to see what economic factors were relevant to the Arab Spring happening in Egypt and Tunisia. I also want to explore the how state-owned enterprises affected Egypt and Tunisia’s economy. In this project, I use data from the World Bank and the various economic indicators to explore economic metrics during the Arab Spring. As I am using the package(WDI), to fetch the using an API, there is no CSV file. If anyone wishes to look at the same data or run the same commands, all you have to do is install the (WDI) package.</p>
+</section>
+<section id="research-methods-1" class="level2">
+<h2 class="anchored" data-anchor-id="research-methods-1">Research Methods</h2>
+<p>There are two research questions being explored in this project.My first research question uses Mill’s Method of Agreement, where there are two or more instances of the same phenomenon and the causality is what is being explored. The Dependent variable is already known with the two case studies that I have chosen, Egypt and Tunisia. Both countries resulted in the autocrats in their countries stepping down with Ben Ali, President of Tunisia, resigning in January 14, 2011 and Hosni Mubarak, President of Egypt, resigning in February 11,2011. The Independent variable is unknown and I will be testing various economic indicators from 2008 to 2010.</p>
+<p>There is also a second research question that I will be exploring.The second research question that I want to test for this assignment is whether State Owned Enterprises(SOE) in Egypt and Tunisia played a factor in Youth Unemployment, as well how did SOE labor participation for Women. However this one will require going back to the 1960s as during the 60s there was Arab Socialist Regimes in Tunisia and Egypt that heavily invested in State Owned Enterprises so that the economy would be less reliant on the private sector(Amico,2017).</p>
+<p>So I will testing the following theories.</p>
+<ol type="1">
+<li>As Government Credit to GDP increased, Youth Unemployment Increased.</li>
+<li>AS Government Credit to GDP increased led to lower female Labor Force Participation. This is due to Government being male dominated institutions in Egypt and Tunisia, resulting in less government jobs for women.</li>
+</ol>
+</section>
+<section id="research-question-1-eda-1" class="level2">
+<h2 class="anchored" data-anchor-id="research-question-1-eda-1">Research Question 1 EDA</h2>
+<p>As seen below, I kinda just threw various economic indicators from the World Bank and added the years I was interested in. I found out later that you could search for specific countries by Symbol such as TN “Tunisia”. This is why a lot of my chunks below have filter statements. You can definitely remove the Country parameter I added, but it does slow down the runtime for the “economic_indicators” dataset being generated. quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">WDI</span>(<span class="at">indicator =</span> <span class="fu">c</span>(<span class="st">"EG.ELC.ACCS.ZS"</span>, <span class="co"># access to electricity</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"BN.CAB.XOKA.GD.ZS"</span>, <span class="co"># current account balance</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"IC.BUS.DFRN.XQ"</span>, <span class="co"># ease of doing business</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"FP.CPI.TOTL.ZG"</span>, <span class="co"># CPI</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"FR.INR.LNDP"</span>, <span class="co"># interest rate spread</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"NY.GDP.PCAP.KD"</span>),<span class="co"># GDP</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> <span class="fu">c</span>(<span class="st">"TN"</span>,<span class="st">"EG"</span>),<span class="at">start =</span> <span class="dv">2000</span>, <span class="at">end =</span> <span class="dv">2010</span>) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="ot">-&gt;</span> economic_indicators</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Renamed the Columns so that I could keep track easier. quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(economic_indicators) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'iso2c'</span>, <span class="st">'country'</span>, <span class="st">'year'</span>, <span class="st">'Electricity_Access'</span>, <span class="st">'Account_Balance'</span>, <span class="st">'Ease_Of_Doing_Business'</span>, </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                       <span class="st">'CPI'</span>,<span class="st">'Interest_Rate_Spread'</span>, <span class="st">'GDP'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Doing a Check to make sure the Names of the Columns have Changed.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(economic_indicators)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Creating a Filter for Egypt as well as making the CPI Calculation a Percentage. quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>egypt_cpi<span class="ot">&lt;-</span>economic_indicators <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Egypt, Arab Rep."</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cpiprop =</span> CPI<span class="sc">/</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.,<span class="fu">aes</span>(year, cpiprop)) <span class="sc">+</span> </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>, <span class="at">fill=</span><span class="st">"#619cff"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Consumer Price Index (Annual %)"</span>,</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data: International Monetary Fund, via {WDI}"</span>,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"The Consumer Price Index (Annual %) in Egypt, 2000-2010"</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Looking at Inflation Trends Prior to the Arab Spring"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Creating a Filter for Tunisia as well as making the CPI Calculation a Percentage. quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tunisia_cpi<span class="ot">&lt;-</span>economic_indicators <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Tunisia"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cpiprop =</span> CPI<span class="sc">/</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.,<span class="fu">aes</span>(year, cpiprop)) <span class="sc">+</span> </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">alpha=</span>.<span class="dv">8</span>, <span class="at">fill=</span><span class="st">"#619cff"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Consumer Price Index (Annual %)"</span>,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data: International Monetary Fund, via {WDI}"</span>,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"The Consumer Price Index (Annual %) in Tunisia, 2000-2010"</span>,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Looking at Inflation Trends Prior to the Arab Spring"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As plotted below, it seems that both Tunisia and Egypt both had spikes in Inflation although it seems Egypt had much more higher rates of Inflation. In 2008, Inflation for both countries was at it’s peak. However the Arab Spring for both countries happened in January 2011, if inflation was the primary cause of the Arab Spring, why didn’t it happen in 2008. If anything, Inflation was improving from 2008 to 2010.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tunisia_cpi<span class="sc">/</span>egypt_cpi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here I did a filter for Tunisia and Egypt as well as a Select function to make it easier to read my dataset.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tunisa_vs_egypt<span class="ot">&lt;-</span><span class="fu">select</span>(<span class="fu">filter</span>(economic_indicators, country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tunisia"</span>, <span class="st">"Egypt, Arab Rep."</span>)), <span class="fu">c</span>(country,year,CPI,Electricity_Access,Account_Balance,GDP,Interest_Rate_Spread,))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It looks like the GDP Per Capita actually went up for both Tunisia and Egypt from 2008 to 2010, the economic trends show that GDP was increasing prior to the Arab Spring. However GDP per Capita is not a fully accurate representation of the economy as a whole. As GDP represents the mean of a population and doesn’t consider income inequality(Carr,2017). For example, Bermuda has the highest GDP per Capita in the world as it is a tax heaven, despite most of population working in the small fishing industry, making meager wages(Carr,2017). Other factors such as HDI would provide a better representation of the social problems. quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tunisa_vs_egypt, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>GDP,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>)) </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>hdi_factors <span class="ot">&lt;-</span> <span class="fu">WDI</span>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">"all"</span>),</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">indicator =</span> <span class="fu">c</span>(<span class="st">"SL.UEM.1524.ZS"</span>,<span class="st">"SL.UEM.TOTL.ZS"</span>,<span class="st">"UNDP.HDI.XD"</span>,<span class="st">"SP.DYN.LE00.IN"</span>),</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2000</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2010</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">extra =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cache =</span> <span class="cn">NULL</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">latest =</span> <span class="cn">NULL</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">language =</span> <span class="st">"en"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>unemployment<span class="ot">&lt;-</span><span class="fu">select</span>(<span class="fu">filter</span>(hdi_factors, country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tunisia"</span>, <span class="st">"Egypt, Arab Rep."</span>)), <span class="fu">c</span>(country,year,SL.UEM.<span class="fl">1524.</span>ZS,SL.UEM.TOTL.ZS,UNDP.HDI.XD,SP.DYN.LE00.IN,))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As shown below, the HDI of both countries is between 0.6 and 0.7. This means that they would be classified as Medium in terms of HDI and the HDI of both countries were constantly rising and had a very upward trend(United Nations,2022). So in terms of HDI these countries are quite average for a developing country, as for example, India’s HDI is usually around 0.6 during 2008 to 2010(United Nations,2022)<br>
+quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(unemployment, <span class="sc">!</span><span class="fu">is.na</span>(UNDP.HDI.XD)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>UNDP.HDI.XD,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>))<span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">na.translate=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"HDI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here is an factor of unemployment, that I am looking at. When we look at Total Unemployment it’s actually very high but decreasing after 2008. However this looks at Total Unemployment. Perhaps, looking at Youth Employment would be more relevant. As countries in the Arab World from ages 15 to 29 comprise the largest proportion of the population(Bajoria,2011). The Arab Spring is often regarded as a movement of Young Arabs who wanted their needs to be addressed(Bajoria,2011). quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(unemployment, <span class="sc">!</span><span class="fu">is.na</span>(SL.UEM.TOTL.ZS)) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>SL.UEM.TOTL.ZS,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>))<span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">na.translate=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Total Unemployment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As shown below, Youth unemployment has always been at least 25% from 2000 to 2010. That means one out of every four Arabs, ages from 15 to 24 were out of a Job and had no job. This is gives us a huge insight, that economic metrics for the Youth in this country is what we should be looking at. As there seems to be a general trend in my analysis for most metrics, that factors such as GDP, HDI show that an upward trend despite the notion that Tunisia and Egypt were economically getting worse for young people and that’s why those countries had an uprising. A better approach is to look at the Youth and their economic metrics instead of the population as a whole.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(unemployment, <span class="sc">!</span><span class="fu">is.na</span>(SL.UEM.<span class="fl">1524.</span>ZS)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>SL.UEM.<span class="fl">1524.</span>ZS,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">2</span>))<span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">na.translate=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Youth Unemployment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="research-question-2-1" class="level2">
+<h2 class="anchored" data-anchor-id="research-question-2-1">Research Question 2</h2>
+<p>The Second research question that I want to test for this assignment is whether State Owned Enterprises played a factor in Youth Unemployment and perhaps damaged the economy as a whole in Tunisia and Egypt. However this one will require going back to the 1960s as during the 60s there was Arab Socialist Regimes in Tunisia and Egypt that heavily invested in State Owned Enterprises so that the economy would be less reliant on the private sector(Amico,2917).</p>
+<p>So I will testing the following theories.</p>
+<ol type="1">
+<li>As Government Credit to GDP increased, Youth Unemployment Increased.</li>
+<li>AS Government Credit to GDP increased led to lower female Labor Force Participation. This is due to the Military and Government being male dominated institutions in Egypt and Tunisia. quarto-executable-code-5450563D</li>
+</ol>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>hdi_factors <span class="ot">&lt;-</span> <span class="fu">WDI</span>(</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">"TN"</span>,<span class="st">"EG"</span>),</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">indicator =</span> <span class="fu">c</span>(<span class="st">"FS.AST.CGOV.GD.ZS"</span>,<span class="st">"SL.UEM.1524.ZS"</span>,<span class="st">"MS.MIL.XPND.GD.ZS"</span>,<span class="st">"SL.UEM.TOTL.FE.ZS"</span>),</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">1960</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2010</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">extra =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cache =</span> <span class="cn">NULL</span>,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">latest =</span> <span class="cn">NULL</span>,</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">language =</span> <span class="st">"en"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As shown below, since the 1980s, there was a massive drop of Government Claims on the GDP but then a upward trend happened during the 2000s. It looks under Mubarak for example, there was a much greater increase of Government Claims on GDP more than triple the amount under Gamal Nasser who was considered a socialist.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(hdi_factors, <span class="sc">!</span><span class="fu">is.na</span>(FS.AST.CGOV.GD.ZS)) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>FS.AST.CGOV.GD.ZS,<span class="at">fill=</span>country,<span class="at">color=</span>country,<span class="at">shape=</span>country)) <span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1960</span>, <span class="dv">2010</span>, <span class="at">by =</span> <span class="dv">5</span>))<span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">na.translate=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Government Claims on GDP"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s see if there is any correlation between Youth Unemployment and Government Claims on GDP.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hdi_factors<span class="sc">$</span>FS.AST.CGOV.GD.ZS,hdi_factors<span class="sc">$</span>SL.UEM.<span class="fl">1524.</span>ZS,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That’s a complete negative Correlation.Perhaps Young people are able to get those Government jobs but the Supply is greater than the Demand.</p>
+<p>As seen below, a similar negative correlation happens when military spending % of GDP is increased. It seems that Military Spending and Government Claims on GDP actually increase employment for young people.As Such we can conclude that theory 1 is not accurate there is a negative correlation between youth unemployment for both Military Spending % of GDP as well as Government Claims on GDP.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hdi_factors<span class="sc">$</span>SL.UEM.<span class="fl">1524.</span>ZS,hdi_factors<span class="sc">$</span>MS.MIL.XPND.GD.ZS,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In Contrast, for Women there is a strong correlation of Unemployment for Women, when the Military Spending is increased as well as Government Claims on GDP. This Confirms that Female Unemployment increased with state enterprises having more country of the Economy.</p>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hdi_factors<span class="sc">$</span>FS.AST.CGOV.GD.ZS,hdi_factors<span class="sc">$</span>SL.UEM.TOTL.FE.ZS,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(hdi_factors<span class="sc">$</span>MS.MIL.XPND.GD.ZS,hdi_factors<span class="sc">$</span>SL.UEM.TOTL.FE.ZS,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As such, I can conclude that there isn’t much evidence for the assumption that state-owned enterprise as well as military spending led to the high levels of Youth Unemployment. However, it does have a strong correlation with high levels of Female Unemployment for Tunisia and Egypt.</p>
+<p>##Conclusion</p>
+<p>For research question one, I can conclude that Youth Unemployment is definitely the strongest causation factor out of the other economic indicators that I explored. GDP per Capita and HDI were constantly increasing under Mubarak and Ben Ali. Since at least 25% of Arab Youth were unemployed from 2008 to 2010, that allowed for large amounts of young protesters to mobilize as 1/4 of them had no job and had time to protest as well as organize a social movement to overthrow their authoritarian leaders.</p>
+<p>For research question two, there would have to be further greater exploration but I wasn’t able to tie the factor of State Owned Enterprises to Youth Unemployment as there was a negative correlation of Government Claims of GDP and youth unemployment. However, I was able to establish that Government Claim of GDP or Government having more assets of GDP%(SOE), resulted in less Female participation in the labor force. This is an important revelation as SOE firms are often more male-dominated, as such one has to address the fact if the government is used to employ people during high times of unemployment in Tunisia and Egypt, women might be left out in such government initiatives. This is similar to how in America during the New Deal, African Americans were less likely to get jobs in New Deal Job programs as there was a racial bias against government employment of African Americans at that time.</p>
+<p>##References Amico, A. (2017, January 1). Arab states as shareholders: Origins and consequences. International Development Policy | Revue internationale de politique de d�veloppement. Retrieved September 4, 2022, from https://journals.openedition.org/poldev/2282#quotation Nations, U. (2022, July 28). Human development index. Human Development Reports. Retrieved September 3, 2022, from https://hdr.undp.org/data-center/human-development-index#/indicies/HDI Bajoria, J. (2011, February 14). Demographics of Arab protests. Council on Foreign Relations. Retrieved September 4, 2022, from https://www.cfr.org/interview/demographics-arab-protests Carr, T. (2020, June 10). EconPress. Retrieved September 3, 2022, from https://web.northeastern.edu/econpress/2017/01/23/a-critique-of-gdp-per-capita-as-a-measure-of-wellbeing/</p>
+<pre><code></code></pre>
+<p>:::</p>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

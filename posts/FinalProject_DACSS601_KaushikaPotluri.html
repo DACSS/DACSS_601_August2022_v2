@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-08-17">
+
+<title>- Final Project DACSS601</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Final Project DACSS601">
+<meta name="twitter:description" content="The data set I have chosen for my final project is the hotel booking demand data set.">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#importing-packages" id="toc-importing-packages" class="nav-link" data-scroll-target="#importing-packages">Importing Packages</a></li>
+  <li><a href="#loading-in-the-data-set" id="toc-loading-in-the-data-set" class="nav-link" data-scroll-target="#loading-in-the-data-set">Loading in the Data set</a></li>
+  </ul></li>
+  <li><a href="#tidying-the-data" id="toc-tidying-the-data" class="nav-link" data-scroll-target="#tidying-the-data">Tidying the Data</a>
+  <ul class="collapse">
+  <li><a href="#removing-unwanted-columns" id="toc-removing-unwanted-columns" class="nav-link" data-scroll-target="#removing-unwanted-columns">Removing unwanted columns</a></li>
+  <li><a href="#dealing-with-missing-values" id="toc-dealing-with-missing-values" class="nav-link" data-scroll-target="#dealing-with-missing-values">Dealing with missing values</a></li>
+  </ul></li>
+  <li><a href="#visualising-the-data" id="toc-visualising-the-data" class="nav-link" data-scroll-target="#visualising-the-data">Visualising the data</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Bibliography</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Final Project DACSS601</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 17, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>The data set I have chosen for my final project is the hotel booking demand data set. The data set comprised over 119,000 reservations from two Portugal hotels: a Resort Hotel and a City Hotel in Lisbon. Check-in dates ranged from July 2015 to August 2017. Since most reservations were for the City Hotel, the distribution is uneven. Research questions: What is the best time of the year to book a hotel in Portugal? Through what distribution channel was the booking made by most? Which is the busiest month for hotels? From which country do a majority of guests come? What could be the possible reasons for a high number of cancellations?</p>
+<section id="importing-packages" class="level2">
+<h2 class="anchored" data-anchor-id="importing-packages">Importing Packages</h2>
+</section>
+<section id="loading-in-the-data-set" class="level2">
+<h2 class="anchored" data-anchor-id="loading-in-the-data-set">Loading in the Data set</h2>
+<p>Importing and displaying the data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hoteldata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"_data/hotel_bookings.csv"</span>, <span class="at">stringsAsFactors=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hoteldata <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(hoteldata)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(hoteldata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 119,390
+Columns: 32
+$ hotel                          &lt;fct&gt; Resort Hotel, Resort Hotel, Resort Hote…
+$ is_canceled                    &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, …
+$ lead_time                      &lt;int&gt; 342, 737, 7, 13, 14, 14, 0, 9, 85, 75, …
+$ arrival_date_year              &lt;int&gt; 2015, 2015, 2015, 2015, 2015, 2015, 201…
+$ arrival_date_month             &lt;fct&gt; July, July, July, July, July, July, Jul…
+$ arrival_date_week_number       &lt;int&gt; 27, 27, 27, 27, 27, 27, 27, 27, 27, 27,…
+$ arrival_date_day_of_month      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ stays_in_weekend_nights        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ stays_in_week_nights           &lt;int&gt; 0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4, …
+$ adults                         &lt;int&gt; 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ children                       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ babies                         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ meal                           &lt;fct&gt; BB, BB, BB, BB, BB, BB, BB, FB, BB, HB,…
+$ country                        &lt;fct&gt; PRT, PRT, GBR, GBR, GBR, GBR, PRT, PRT,…
+$ market_segment                 &lt;fct&gt; Direct, Direct, Direct, Corporate, Onli…
+$ distribution_channel           &lt;fct&gt; Direct, Direct, Direct, Corporate, TA/T…
+$ is_repeated_guest              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ previous_cancellations         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ previous_bookings_not_canceled &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ reserved_room_type             &lt;fct&gt; C, C, A, A, A, A, C, C, A, D, E, D, D, …
+$ assigned_room_type             &lt;fct&gt; C, C, C, A, A, A, C, C, A, D, E, D, E, …
+$ booking_changes                &lt;int&gt; 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ deposit_type                   &lt;fct&gt; No Deposit, No Deposit, No Deposit, No …
+$ agent                          &lt;fct&gt; NULL, NULL, NULL, 304, 240, 240, NULL, …
+$ company                        &lt;fct&gt; NULL, NULL, NULL, NULL, NULL, NULL, NUL…
+$ days_in_waiting_list           &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ customer_type                  &lt;fct&gt; Transient, Transient, Transient, Transi…
+$ adr                            &lt;dbl&gt; 0.00, 0.00, 75.00, 75.00, 98.00, 98.00,…
+$ required_car_parking_spaces    &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ total_of_special_requests      &lt;int&gt; 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 3, …
+$ reservation_status             &lt;fct&gt; Check-Out, Check-Out, Check-Out, Check-…
+$ reservation_status_date        &lt;fct&gt; 2015-07-01, 2015-07-01, 2015-07-02, 201…</code></pre>
+</div>
+</div>
+<p>Displaying the first 10 elements of the data set gives a better idea.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hoteldata, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 32
+   hotel  is_ca…¹ lead_…² arriv…³ arriv…⁴ arriv…⁵ arriv…⁶ stays…⁷ stays…⁸ adults
+   &lt;fct&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;fct&gt;     &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;  &lt;int&gt;
+ 1 Resor…       0     342    2015 July         27       1       0       0      2
+ 2 Resor…       0     737    2015 July         27       1       0       0      2
+ 3 Resor…       0       7    2015 July         27       1       0       1      1
+ 4 Resor…       0      13    2015 July         27       1       0       1      1
+ 5 Resor…       0      14    2015 July         27       1       0       2      2
+ 6 Resor…       0      14    2015 July         27       1       0       2      2
+ 7 Resor…       0       0    2015 July         27       1       0       2      2
+ 8 Resor…       0       9    2015 July         27       1       0       2      2
+ 9 Resor…       1      85    2015 July         27       1       0       3      2
+10 Resor…       1      75    2015 July         27       1       0       3      2
+# … with 22 more variables: children &lt;int&gt;, babies &lt;int&gt;, meal &lt;fct&gt;,
+#   country &lt;fct&gt;, market_segment &lt;fct&gt;, distribution_channel &lt;fct&gt;,
+#   is_repeated_guest &lt;int&gt;, previous_cancellations &lt;int&gt;,
+#   previous_bookings_not_canceled &lt;int&gt;, reserved_room_type &lt;fct&gt;,
+#   assigned_room_type &lt;fct&gt;, booking_changes &lt;int&gt;, deposit_type &lt;fct&gt;,
+#   agent &lt;fct&gt;, company &lt;fct&gt;, days_in_waiting_list &lt;int&gt;,
+#   customer_type &lt;fct&gt;, adr &lt;dbl&gt;, required_car_parking_spaces &lt;int&gt;, …
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<p>Displaying the number of rows, columns and summary of the data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(hoteldata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 119390     32</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hoteldata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          hotel        is_canceled       lead_time   arrival_date_year
+ City Hotel  :79330   Min.   :0.0000   Min.   :  0   Min.   :2015     
+ Resort Hotel:40060   1st Qu.:0.0000   1st Qu.: 18   1st Qu.:2016     
+                      Median :0.0000   Median : 69   Median :2016     
+                      Mean   :0.3704   Mean   :104   Mean   :2016     
+                      3rd Qu.:1.0000   3rd Qu.:160   3rd Qu.:2017     
+                      Max.   :1.0000   Max.   :737   Max.   :2017     
+                                                                      
+ arrival_date_month arrival_date_week_number arrival_date_day_of_month
+ August :13877      Min.   : 1.00            Min.   : 1.0             
+ July   :12661      1st Qu.:16.00            1st Qu.: 8.0             
+ May    :11791      Median :28.00            Median :16.0             
+ October:11160      Mean   :27.17            Mean   :15.8             
+ April  :11089      3rd Qu.:38.00            3rd Qu.:23.0             
+ June   :10939      Max.   :53.00            Max.   :31.0             
+ (Other):47873                                                        
+ stays_in_weekend_nights stays_in_week_nights     adults      
+ Min.   : 0.0000         Min.   : 0.0         Min.   : 0.000  
+ 1st Qu.: 0.0000         1st Qu.: 1.0         1st Qu.: 2.000  
+ Median : 1.0000         Median : 2.0         Median : 2.000  
+ Mean   : 0.9276         Mean   : 2.5         Mean   : 1.856  
+ 3rd Qu.: 2.0000         3rd Qu.: 3.0         3rd Qu.: 2.000  
+ Max.   :19.0000         Max.   :50.0         Max.   :55.000  
+                                                              
+    children           babies                 meal          country     
+ Min.   : 0.0000   Min.   : 0.000000   BB       :92310   PRT    :48590  
+ 1st Qu.: 0.0000   1st Qu.: 0.000000   FB       :  798   GBR    :12129  
+ Median : 0.0000   Median : 0.000000   HB       :14463   FRA    :10415  
+ Mean   : 0.1039   Mean   : 0.007949   SC       :10650   ESP    : 8568  
+ 3rd Qu.: 0.0000   3rd Qu.: 0.000000   Undefined: 1169   DEU    : 7287  
+ Max.   :10.0000   Max.   :10.000000                     ITA    : 3766  
+ NA's   :4                                               (Other):28635  
+       market_segment  distribution_channel is_repeated_guest
+ Online TA    :56477   Corporate: 6677      Min.   :0.00000  
+ Offline TA/TO:24219   Direct   :14645      1st Qu.:0.00000  
+ Groups       :19811   GDS      :  193      Median :0.00000  
+ Direct       :12606   TA/TO    :97870      Mean   :0.03191  
+ Corporate    : 5295   Undefined:    5      3rd Qu.:0.00000  
+ Complementary:  743                        Max.   :1.00000  
+ (Other)      :  239                                         
+ previous_cancellations previous_bookings_not_canceled reserved_room_type
+ Min.   : 0.00000       Min.   : 0.0000                A      :85994     
+ 1st Qu.: 0.00000       1st Qu.: 0.0000                D      :19201     
+ Median : 0.00000       Median : 0.0000                E      : 6535     
+ Mean   : 0.08712       Mean   : 0.1371                F      : 2897     
+ 3rd Qu.: 0.00000       3rd Qu.: 0.0000                G      : 2094     
+ Max.   :26.00000       Max.   :72.0000                B      : 1118     
+                                                       (Other): 1551     
+ assigned_room_type booking_changes       deposit_type        agent      
+ A      :74053      Min.   : 0.0000   No Deposit:104641   9      :31961  
+ D      :25322      1st Qu.: 0.0000   Non Refund: 14587   NULL   :16340  
+ E      : 7806      Median : 0.0000   Refundable:   162   240    :13922  
+ F      : 3751      Mean   : 0.2211                       1      : 7191  
+ G      : 2553      3rd Qu.: 0.0000                       14     : 3640  
+ C      : 2375      Max.   :21.0000                       7      : 3539  
+ (Other): 3530                                            (Other):42797  
+    company       days_in_waiting_list         customer_type  
+ NULL   :112593   Min.   :  0.000      Contract       : 4076  
+ 40     :   927   1st Qu.:  0.000      Group          :  577  
+ 223    :   784   Median :  0.000      Transient      :89613  
+ 67     :   267   Mean   :  2.321      Transient-Party:25124  
+ 45     :   250   3rd Qu.:  0.000                             
+ 153    :   215   Max.   :391.000                             
+ (Other):  4354                                               
+      adr          required_car_parking_spaces total_of_special_requests
+ Min.   :  -6.38   Min.   :0.00000             Min.   :0.0000           
+ 1st Qu.:  69.29   1st Qu.:0.00000             1st Qu.:0.0000           
+ Median :  94.58   Median :0.00000             Median :0.0000           
+ Mean   : 101.83   Mean   :0.06252             Mean   :0.5714           
+ 3rd Qu.: 126.00   3rd Qu.:0.00000             3rd Qu.:1.0000           
+ Max.   :5400.00   Max.   :8.00000             Max.   :5.0000           
+                                                                        
+ reservation_status reservation_status_date
+ Canceled :43017    2015-10-21:  1461      
+ Check-Out:75166    2015-07-06:   805      
+ No-Show  : 1207    2016-11-25:   790      
+                    2015-01-01:   763      
+                    2016-01-18:   625      
+                    2015-07-02:   469      
+                    (Other)   :114477      </code></pre>
+</div>
+</div>
+<p>The hotel data set is composed of 119,390 rows and 32 columns.</p>
+</section>
+</section>
+<section id="tidying-the-data" class="level1">
+<h1>Tidying the Data</h1>
+<p>Displaying the overall amount of hotel and meal reservations made between the years of 2015 and 2017.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hoteldata<span class="sc">$</span>hotel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  City Hotel Resort Hotel 
+       79330        40060 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hoteldata<span class="sc">$</span>meal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+       BB        FB        HB        SC Undefined 
+    92310       798     14463     10650      1169 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hoteldata<span class="sc">$</span>arrival_date_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 2015  2016  2017 
+21996 56707 40687 </code></pre>
+</div>
+</div>
+<p>Here there are four meal options: BB: Bed and Breakfast (Breakfast is included in the hotel’s price). FB: Full Board (Breakfast, lunch and dinner are all included in the hotel’s price). HB: Half Board (Price includes breakfast and dinner in the hotel’s price). SC / Undefined: Self Catering meals.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replacing the undefined values with "SC" and then displaying it's unique values</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>hoteldata<span class="sc">$</span>meal <span class="ot">&lt;-</span><span class="fu">replace</span>(hoteldata<span class="sc">$</span>meal,hoteldata<span class="sc">$</span>meal<span class="sc">==</span><span class="st">'Undefined'</span>,<span class="st">'SC'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>hoteldata<span class="sc">$</span>meal <span class="ot">&lt;-</span> <span class="fu">factor</span>(hoteldata<span class="sc">$</span>meal)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(hoteldata<span class="sc">$</span>meal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "BB" "FB" "HB" "SC"</code></pre>
+</div>
+</div>
+<section id="removing-unwanted-columns" class="level2">
+<h2 class="anchored" data-anchor-id="removing-unwanted-columns">Removing unwanted columns</h2>
+<p>‘Company’ was omitted from this table because it did not seem helpful. There are too many ‘NULL’ values in the ‘Company’ column. Modifying the NaN values in this could make an immense difference in the data and change the meaning of the actual data. The company variable can be fully removed from the data set because there is no way to fill in the missing values. Three columns provide us with the reservation date: arrival date year, arrival date month, and arrival date day of the month. The “arrival date week number” column appears of little value in this situation. Eliminating the arrival_date_week_number and company variables:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>hoteldata <span class="ot">=</span> <span class="fu">subset</span>(hoteldata, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(company, arrival_date_week_number))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dealing-with-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="dealing-with-missing-values">Dealing with missing values</h2>
+<p>The agent column has a few missing values that can be omitted. Removing rows with missing values in the agent column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>hoteldata <span class="ot">&lt;-</span> hoteldata[<span class="sc">!</span>hoteldata<span class="sc">$</span>agent <span class="sc">==</span> <span class="st">"NULL"</span>, ]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(hoteldata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 103,050
+Columns: 30
+$ hotel                          &lt;fct&gt; Resort Hotel, Resort Hotel, Resort Hote…
+$ is_canceled                    &lt;int&gt; 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, …
+$ lead_time                      &lt;int&gt; 13, 14, 14, 9, 85, 75, 23, 35, 68, 18, …
+$ arrival_date_year              &lt;int&gt; 2015, 2015, 2015, 2015, 2015, 2015, 201…
+$ arrival_date_month             &lt;fct&gt; July, July, July, July, July, July, Jul…
+$ arrival_date_day_of_month      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ stays_in_weekend_nights        &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ stays_in_week_nights           &lt;int&gt; 1, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, …
+$ adults                         &lt;int&gt; 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ children                       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, …
+$ babies                         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ meal                           &lt;fct&gt; BB, BB, BB, FB, BB, HB, BB, HB, BB, HB,…
+$ country                        &lt;fct&gt; GBR, GBR, GBR, PRT, PRT, PRT, PRT, PRT,…
+$ market_segment                 &lt;fct&gt; Corporate, Online TA, Online TA, Direct…
+$ distribution_channel           &lt;fct&gt; Corporate, TA/TO, TA/TO, Direct, TA/TO,…
+$ is_repeated_guest              &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ previous_cancellations         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ previous_bookings_not_canceled &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ reserved_room_type             &lt;fct&gt; A, A, A, C, A, D, E, D, D, G, E, D, E, …
+$ assigned_room_type             &lt;fct&gt; A, A, A, C, A, D, E, D, E, G, E, E, E, …
+$ booking_changes                &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, …
+$ deposit_type                   &lt;fct&gt; No Deposit, No Deposit, No Deposit, No …
+$ agent                          &lt;fct&gt; 304, 240, 240, 303, 240, 15, 240, 240, …
+$ days_in_waiting_list           &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ customer_type                  &lt;fct&gt; Transient, Transient, Transient, Transi…
+$ adr                            &lt;dbl&gt; 75.00, 98.00, 98.00, 103.00, 82.00, 105…
+$ required_car_parking_spaces    &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ total_of_special_requests      &lt;int&gt; 0, 1, 1, 1, 1, 0, 0, 0, 3, 1, 0, 3, 0, …
+$ reservation_status             &lt;fct&gt; Check-Out, Check-Out, Check-Out, Check-…
+$ reservation_status_date        &lt;fct&gt; 2015-07-02, 2015-07-03, 2015-07-03, 201…</code></pre>
+</div>
+</div>
+<p>Checking if there are any missing values (NA/NaN) in the data set. Finding the number of missing values in every column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(hoteldata))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                         hotel                    is_canceled 
+                             0                              0 
+                     lead_time              arrival_date_year 
+                             0                              0 
+            arrival_date_month      arrival_date_day_of_month 
+                             0                              0 
+       stays_in_weekend_nights           stays_in_week_nights 
+                             0                              0 
+                        adults                       children 
+                             0                              2 
+                        babies                           meal 
+                             0                              0 
+                       country                 market_segment 
+                             0                              0 
+          distribution_channel              is_repeated_guest 
+                             0                              0 
+        previous_cancellations previous_bookings_not_canceled 
+                             0                              0 
+            reserved_room_type             assigned_room_type 
+                             0                              0 
+               booking_changes                   deposit_type 
+                             0                              0 
+                         agent           days_in_waiting_list 
+                             0                              0 
+                 customer_type                            adr 
+                             0                              0 
+   required_car_parking_spaces      total_of_special_requests 
+                             0                              0 
+            reservation_status        reservation_status_date 
+                             0                              0 </code></pre>
+</div>
+</div>
+<p>We can observe that only one column, the one with ‘children’ as the column name, seems to have values missing. Substituting the values in the children column for the ones in the babies column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(hoteldata)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> n) {</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">is.na</span>(hoteldata<span class="sc">$</span>children[i])) </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                hoteldata<span class="sc">$</span>children[i] <span class="ot">&lt;-</span> hoteldata<span class="sc">$</span>babies</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking for outliers</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>hoteldata<span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(adr<span class="sc">&gt;</span><span class="dv">800</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 30
+  hotel   is_ca…¹ lead_…² arriv…³ arriv…⁴ arriv…⁵ stays…⁶ stays…⁷ adults child…⁸
+  &lt;fct&gt;     &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;fct&gt;     &lt;int&gt;   &lt;int&gt;   &lt;int&gt;  &lt;int&gt;   &lt;int&gt;
+1 City H…       1      35    2016 March        25       0       1      2       0
+# … with 20 more variables: babies &lt;int&gt;, meal &lt;fct&gt;, country &lt;fct&gt;,
+#   market_segment &lt;fct&gt;, distribution_channel &lt;fct&gt;, is_repeated_guest &lt;int&gt;,
+#   previous_cancellations &lt;int&gt;, previous_bookings_not_canceled &lt;int&gt;,
+#   reserved_room_type &lt;fct&gt;, assigned_room_type &lt;fct&gt;, booking_changes &lt;int&gt;,
+#   deposit_type &lt;fct&gt;, agent &lt;fct&gt;, days_in_waiting_list &lt;int&gt;,
+#   customer_type &lt;fct&gt;, adr &lt;dbl&gt;, required_car_parking_spaces &lt;int&gt;,
+#   total_of_special_requests &lt;int&gt;, reservation_status &lt;fct&gt;, …
+# ℹ Use `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<p>Here it is visible that there in only one outlier where the average daily rate (adr) is greater than 800. Updating the outlier value by the mean of adr (average daily rate).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>hoteldata <span class="ot">=</span> hoteldata<span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">adr =</span> <span class="fu">replace</span>(adr, adr<span class="sc">&gt;</span><span class="dv">1000</span>, <span class="fu">mean</span>(adr)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>hoteldata<span class="sc">%&gt;%</span><span class="fu">group_by</span>(arrival_date_month, arrival_date_year)<span class="sc">%&gt;%</span><span class="fu">tally</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 26 × 3
+# Groups:   arrival_date_month [12]
+   arrival_date_month arrival_date_year     n
+   &lt;fct&gt;                          &lt;int&gt; &lt;int&gt;
+ 1 April                           2016  4854
+ 2 April                           2017  4904
+ 3 August                          2015  3357
+ 4 August                          2016  4692
+ 5 August                          2017  4633
+ 6 December                        2015  2367
+ 7 December                        2016  3264
+ 8 February                        2016  3056
+ 9 February                        2017  3405
+10 January                         2016  1784
+# … with 16 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+</div>
+<p>July and August are the only 2 months where they had bookings all the three years 2015,2016,2017. This could typically corelate with the weather and summer breaks for children.</p>
+</section>
+</section>
+<section id="visualising-the-data" class="level1">
+<h1>Visualising the data</h1>
+<p>Checking the number of bookings for Resort Hotel and City Hotel each:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hoteldata<span class="sc">$</span>hotel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  City Hotel Resort Hotel 
+       71199        31851 </code></pre>
+</div>
+</div>
+<p>Visualizing this graphically gives us a better picture.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The percentage of city hotels is more</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hoteldata, <span class="fu">aes</span>(<span class="at">x =</span> hotel)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> hotel), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">fill=</span> <span class="st">"black"</span>, <span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bookings based on hotel type"</span>, <span class="at">x=</span> <span class="st">"Type of hotel"</span>, <span class="at">y=</span> <span class="st">"Number of bookings"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that City Hotel has been booked more times than the Resort Hotel between 2015 - 2017. This uneven distribution was the primary reason why I chose this data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Check the number of cancellations made by respective hotels.</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hoteldata<span class="sc">$</span>is_canceled, hoteldata<span class="sc">$</span>hotel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   
+    City Hotel Resort Hotel
+  0      40706        22150
+  1      30493         9701</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the number of cancellations based on type of hotel.</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hoteldata,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> hotel,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="fu">prop.table</span>(<span class="fu">stat</span>(count)),</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="fu">factor</span>(is_canceled), <span class="at">width =</span> <span class="fl">0.5</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">prop.table</span>(<span class="fu">stat</span>(count)))</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>       )) <span class="sc">+</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"count"</span>,</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(.<span class="dv">9</span>),</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Status of Cancellations based on Hotel"</span>,</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Type of Hotel"</span>,</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Booking Status"</span>,</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Cancelled"</span>, <span class="st">"Not Cancelled"</span>)</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It is evident that City Hotel has more bookings than the Resort Hotel. However, the number of ‘Cancelled’ bookings is more for both the hotels than the bookings ‘Not Cancelled’. This could be related to something after the booking has been made.</p>
+<p><strong>Lead Time</strong> is the amount of time between the booking made and the actual date of check in.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hoteldata, <span class="fu">aes</span>(<span class="at">x =</span> hotel,<span class="at">y =</span> lead_time,<span class="at">fill    =</span><span class="fu">factor</span>(is_canceled))) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cancellations made after booking (lead time)"</span>, </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Type of Hotel"</span>,<span class="at">y =</span> <span class="st">"Lead Time"</span>) <span class="sc">+</span> <span class="fu">scale_fill_discrete</span>(<span class="at">name =</span> <span class="st">"Booking Status"</span>,<span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>),<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Cancelled"</span>, <span class="st">"Not Cancelled"</span>)) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Lead time is the actual time between the day when booking made and actual day of checking in. From the plot we can see that cancellation of bookings normally occurs soon after booking. The cancellations seem to be less when enough time has passed after the booking has been made.</p>
+<p>Checking the unique values in the arrival_date_year column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(hoteldata<span class="sc">$</span>arrival_date_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2015 2016 2017</code></pre>
+</div>
+</div>
+<p>Checking which year had most bookings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hoteldata, <span class="fu">aes</span>(<span class="at">x =</span> arrival_date_year)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> arrival_date_year, <span class="at">fill =</span> hotel), <span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">" Total bookings based on Year"</span>, <span class="at">x=</span> <span class="st">"Year"</span>, <span class="at">y=</span> <span class="st">"Number of bookings"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Comparison of year of Arrival date versus cancellation, year 2016 is the one with the most bookings as well as cancellations. More than double bookings were made in 2016, compared to the previous year. But the bookings decreased by almost 15% the next year. <strong>Inference:</strong> Bookings over the years are consistently greater for city hotels than resort hotels and do not increase proportionately over the years.</p>
+<p>It will be interesting to see which month was most favoured by visitors to travel. We will select the arrival_date_month feature to answer this question and get its value count. We must first sort the data because it is not organized according to the order of months.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Arranging months in correct order :</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>hoteldata<span class="sc">$</span>arrival_date_month <span class="ot">&lt;-</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(hoteldata<span class="sc">$</span>arrival_date_month, <span class="at">levels =</span> month.name)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Hotel bookings on Monthly basis</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>arrival_date_month <span class="ot">&lt;-</span> hoteldata<span class="sc">$</span>arrival_date_month</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>reservemonth<span class="ot">&lt;-</span><span class="fu">table</span>(arrival_date_month)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a> reservemonth<span class="ot">&lt;-</span><span class="fu">data.frame</span>(reservemonth)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a> reservemonth<span class="sc">$</span>arrival_date_month<span class="ot">&lt;-</span><span class="fu">factor</span>(reservemonth<span class="sc">$</span>arrival_date_month, <span class="at">levels=</span>month.name)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">ggplot</span>(reservemonth, <span class="fu">aes</span>(<span class="at">x=</span>arrival_date_month, <span class="at">y=</span>Freq, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">col=</span><span class="st">"navy"</span>) <span class="sc">+</span> </span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Reservations by Arrival Month"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Count"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Month"</span>)<span class="sc">+</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">40</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hoteldata, <span class="fu">aes</span>(<span class="at">x =</span> arrival_date_month)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="fu">aes</span>(<span class="at">label =</span> ..count..), <span class="at">hjust =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Month Wise Booking Request"</span>,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">x =</span> <span class="st">"Month"</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can observe that August and July are the most frequently booked months. Weather variations can be to blame for this. The winter season saw few reservations (November, December, and January). The month of August receives the most reservations because it is when most kids take their summer vacations. The month with the slightest reservations is January, which may be related to the climate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>arrival_date_month <span class="ot">&lt;-</span> hoteldata<span class="sc">$</span>arrival_date_month</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hoteldata, <span class="fu">aes</span>(<span class="at">x=</span>arrival_date_month, <span class="at">fill =</span> hotel)) <span class="sc">+</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(), <span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Booking Status by Month"</span>,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Month"</span>,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Seasonally, the combined revenue for the two hotels rose from year to year. This is particularly crucial for the resort hotel because the majority of its annual revenue is generated during the summer. The city hotel’s seasonal revenue is relatively stable during the fall, spring, and summer seasons but decreases during the winter.</p>
+<p>Shows when there are lesser days on the waiting list, there is a lesser number of cancellations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Histogram illustrating Days in waiting list and cancellations</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>hoteldata<span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(days_in_waiting_list<span class="sc">&gt;</span><span class="dv">1</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>days_in_waiting_list,<span class="at">fill=</span> <span class="fu">factor</span>(is_canceled)))<span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Visualising days in waiting list and cancellations"</span>, <span class="at">x=</span> <span class="st">"Days in waiting list"</span>, <span class="at">y=</span> <span class="st">"No. of cancellations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Inference:</strong> From this we can infer that when the number of days in the waiting list is low there seems to be lower cancellations. This could also be related to cancellation when they were informed they would not get the requested room.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking the purpose of the reservation and visualizing it.</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hoteldata, <span class="fu">aes</span>(<span class="at">y=</span> market_segment)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y=</span> market_segment), <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">stat =</span> <span class="st">"count"</span>, <span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.2</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Segment wise booking"</span>, <span class="at">y=</span> <span class="st">"market segment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Indirect bookings through online and offline travel agents are higher than direct bookings, and the same is true with group bookings, which are also high. For most countries and continents, online travel companies were the most common way to make reservations. Relying on these conclusions, the hotel advertising department might direct most of its marketing funds to these online travel agencies to draw current and potential visitors to their hotels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking the assigned room types:</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>hoteldata<span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> assigned_room_type, <span class="at">fill =</span> <span class="fu">factor</span>(is_canceled))) <span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bookings based on assigned room type"</span>, <span class="at">x=</span> <span class="st">"Assigned room type"</span>, <span class="at">y=</span> <span class="st">"Number of bookings"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Inference:</strong> We can observe that room type ‘A’ was booked the most by customers. However, the number of cancellations of room type ‘A’ also is the highest. This could be due to the non-availability of the room, or the customer could have been reassigned to another room, which could be the reason for such a high number of cancellations.</p>
+<p>Visualizing the total number of nights stayed at the City Hotel and the Resort Hotel. We calculate total number of nights stayed by adding values of two columns stays_in_weekend_nights and stays_in_week_nights.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>totalnights <span class="ot">&lt;-</span> hoteldata<span class="sc">$</span>stays_in_weekend_nights <span class="sc">+</span> hoteldata<span class="sc">$</span>stays_in_week_nights</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>totalcost <span class="ot">&lt;-</span> totalnights<span class="sc">*</span>hoteldata<span class="sc">$</span>adr</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>hoteldata<span class="sc">%&gt;%</span><span class="fu">mutate</span>(totalnights, totalcost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 103,050 × 32
+   hotel  is_ca…¹ lead_…² arriv…³ arriv…⁴ arriv…⁵ stays…⁶ stays…⁷ adults child…⁸
+   &lt;fct&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;fct&gt;     &lt;int&gt;   &lt;int&gt;   &lt;int&gt;  &lt;int&gt;   &lt;int&gt;
+ 1 Resor…       0      13    2015 July          1       0       1      1       0
+ 2 Resor…       0      14    2015 July          1       0       2      2       0
+ 3 Resor…       0      14    2015 July          1       0       2      2       0
+ 4 Resor…       0       9    2015 July          1       0       2      2       0
+ 5 Resor…       1      85    2015 July          1       0       3      2       0
+ 6 Resor…       1      75    2015 July          1       0       3      2       0
+ 7 Resor…       1      23    2015 July          1       0       4      2       0
+ 8 Resor…       0      35    2015 July          1       0       4      2       0
+ 9 Resor…       0      68    2015 July          1       0       4      2       0
+10 Resor…       0      18    2015 July          1       0       4      2       1
+# … with 103,040 more rows, 22 more variables: babies &lt;int&gt;, meal &lt;fct&gt;,
+#   country &lt;fct&gt;, market_segment &lt;fct&gt;, distribution_channel &lt;fct&gt;,
+#   is_repeated_guest &lt;int&gt;, previous_cancellations &lt;int&gt;,
+#   previous_bookings_not_canceled &lt;int&gt;, reserved_room_type &lt;fct&gt;,
+#   assigned_room_type &lt;fct&gt;, booking_changes &lt;int&gt;, deposit_type &lt;fct&gt;,
+#   agent &lt;fct&gt;, days_in_waiting_list &lt;int&gt;, customer_type &lt;fct&gt;, adr &lt;dbl&gt;,
+#   required_car_parking_spaces &lt;int&gt;, total_of_special_requests &lt;int&gt;, …
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hoteldata, <span class="fu">aes</span>(<span class="at">x=</span> totalnights, <span class="at">y=</span> totalcost, <span class="at">color =</span> hotel )) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bookings based total nights stayed"</span>, <span class="at">x=</span> <span class="st">"Total number of nights stayed"</span>, <span class="at">y=</span> <span class="st">"Total cost"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Inference:</strong> From this we can see majority of the customers stayed for a period less than 2 weeks and most people stayed at the city hotel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Exploring the data across different market segments</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hoteldata, <span class="fu">aes</span>(<span class="at">x=</span>totalnights,<span class="at">y=</span>totalcost,<span class="at">shape=</span>hotel,<span class="at">color=</span>is_canceled))<span class="sc">+</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>market_segment)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Here we can see nobody from Aviation segment stayed at the Resort Hotel. Majority of the customers that booked through Offline TA/TO and Online TA have more cancellations than other market segments. Groups segment has cancellation rate around 50%.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of days in waiting list based on market segment</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hoteldata, <span class="fu">aes</span>(<span class="at">x =</span> market_segment, <span class="at">y =</span> days_in_waiting_list)) <span class="sc">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>()<span class="sc">+</span> </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">'Number of days in waiting list'</span>)<span class="sc">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Market segment'</span>)<span class="sc">+</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">'Number of days in waiting list based on market segment'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The shortest period on the waiting list is in the aviation sector. The explanation may be because airlines have to arrange stay and meals for their employees or passengers, and therefore, they do not want to book hotels that would put them on a waiting list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visulizing bookings based on country:</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>hoteldatasample <span class="ot">&lt;-</span> hoteldata[hoteldata<span class="sc">$</span>reservation_status <span class="sc">==</span> <span class="st">"Check-Out"</span>,]</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>hoteldatasubset <span class="ot">&lt;-</span> hoteldata<span class="sc">%&gt;%</span><span class="fu">group_by</span>(country)<span class="sc">%&gt;%</span><span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;</span><span class="dv">1000</span>)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hoteldatasubset, <span class="fu">aes</span>(country, <span class="at">fill =</span> hotel)) <span class="sc">+</span> </span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(), <span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Booking Status by Country"</span>,</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Country"</span>,</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Portugal, UK and France, Spain and Germany are the top countries from most guests come, more than 80% come from these 5 countries. The fact that these hotels are in Portugal may help to explain why most reservations are from European nations, with Portugal accounting for the most significant percentage.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing bookings based on customer type:</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hoteldatasubset, <span class="fu">aes</span>(customer_type, <span class="at">fill =</span> hotel)) <span class="sc">+</span> </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(), <span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Hotel Preference by Customer Type"</span>,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Customer Type"</span>,</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="FinalProject_DACSS601_KaushikaPotluri_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>One of the leading market segments, transient guests, are people or groups who book fewer than ten rooms per night. Typically, they are drop-in visitors, last-minute travelers, or people who need to reserve a room at a hotel property for a brief period.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>There were numerous facets of this data set to examine. I wanted to investigate and find out where the majority of customers came from, what kind of hotel was most frequently booked, which year had the most bookings, and which market segment had the fewest days on the waiting list. Lastly, I wanted to find out which months are the busiest for both city hotels and resorts. Despite the fact that both hotel types had an increase in demand over the summer, I found it fascinating to note that the booking trend for resort hotels was more consistent throughout the year than for city hotels, which I would have expected to be the reverse. There are a few limitations to this data set. I surmised that a customer could have gotten an accommodation upgrade from what they reserved, which does not seem to be available to us. Another drawback of this data set is that the room kinds are encoded, making it impossible to know what each one contains (like the type of amenities available in the room). I could fine-tune these insights and determine whether or not a visitor is likely to terminate their stay if this data were available.</p>
+</section>
+<section id="bibliography" class="level1">
+<h1>Bibliography</h1>
+<p><a href="https://ggplot2-book.org/" class="uri">https://ggplot2-book.org/</a></p>
+<p><a href="https://github.com/hadley/tidyr" class="uri">https://github.com/hadley/tidyr</a></p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S2352340918315191" class="uri">https://www.sciencedirect.com/science/article/pii/S2352340918315191</a></p>
+<p><a href="https://www.researchgate.net/publication/329286343_Hotel_booking_demand_datasets" class="uri">https://www.researchgate.net/publication/329286343_Hotel_booking_demand_datasets</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
