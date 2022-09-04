@@ -2,13 +2,16 @@
 title: "Final Project - The Women Who Voted For Trump"
 author: "Karen Detter"
 desription: "secondary analysis of UMass Poll data collected April 2021"
-date: "August 2022"
+date: "September 2022"
 format:
   html:
-    toc: true
-    code-fold: true
+    df-print: paged
+    toc: false
+    code-fold: false
+    code-overflow: wrap
     code-copy: true
     code-tools: true
+    css: styles.css
 categories:
   - final project
   - UMass Poll_April2021
@@ -18,39 +21,218 @@ categories:
 ```{r}
 #| label: setup
 #| warning: false
+#| message: false
 
 library(tidyverse)
 library(haven)
-library(foreign)
+library(labelled)
+library(ggplot2)
+library(pollster)
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
+
 
 # Introduction
 
-### from OpEd paper
+The common lore of the 2016 presidential election is that Donald Trump's victory over Hillary Clinton was secured by the support of both privileged and disenfranchised white men trying to "make America great again" by reviving traditional conservative values, including gendered social roles. However, when the dust settled and the official post-election numbers were crunched by the Pew Research Center, this narrative was challenged by the fact that 47% of white women had voted for Trump (Pew Research Center, 2019, p.11). Instead of allying with a fellow female who ostensibly shared at least some of their individual priorities, these women supported a man well-known for his sexism and boorish behavior towards women.
+
+Who are these women who voted for Donald Trump in 2016? In what ways do they differ from the women who voted for Hillary Clinton? The UMass Poll, a survey that collects public opinion data on a wide variety of political and social issues, may be able to provide some insight into these questions.
 
 
 # Data
 
-### description and transformation
+The specific UMass poll data used for this analysis was collected in April 2021. The stratified sampling frame was aligned to the American Community Survey, and the final sample consisted of 1,000 respondents.
+
+
+```{r}
+#read in data and format as table
+April_UMass_Poll <- read_sav("_data/April_UMass_Poll.sav")
+tibble(April_UMass_Poll)
+```
+
+
+Examining the data, it is clear that each of the 222 columns represents either a survey question or an identifier variable, each of the 1,000 rows represents a unique observation, and each cell contains only one value. Because the data is already tidy, the next step is to wrangle the data frame into a form that is easily manipulated for analysis.
+
+Since the UMass Poll includes questions about a wide variety of topics, a subset that includes only relevant columns needs to be created. After using the survey codebook to identify appropriate variables, the data frame can be pared down to include only the columns of interest:
+
+
+```{r}
+#subset chosen variables
+April_UMass_Poll <- April_UMass_Poll %>%
+  select(weight, gender, party, ideology, vote2016, sexism1, sexism2, sexism3)
+tibble(April_UMass_Poll)
+```
+
+
+
+Because this data was imported from SPSS, a final, but critical, step is required before any analysis can be done:
+
+
+```{r}
+#convert variables from haven_labelled values to meaningful factors 
+April_UMass_Poll <- April_UMass_Poll %>%
+  mutate(gender = as_factor(gender), party = as_factor(party), ideology = as_factor(ideology), vote2016 = as_factor(vote2016), sexism1 = as_factor(sexism1), sexism2 = as_factor(sexism2), sexism3 = as_factor(sexism3))
+tibble(April_UMass_Poll)
+```
 
 
 # Visualization
 
-### summary tables, crosstabs, and bar charts
+Since this analysis is concerned with women, the data must first be filtered to isolate female cases:
+
+
+```{r}
+filter(April_UMass_Poll, gender == "Female")
+female <- April_UMass_Poll
+```
+
+
+Then, summary statistics can be used to assess the distributions of the data:
+
+```{r}
+#generate toplines with pollster package
+female %>%
+topline (df = female, variable = party, weight = weight) %>%
+  knitr::kable(digits = 0, caption = "Female Self-Reported Political Party ID")
+```
+```{r}
+topline (df = female, variable = ideology, weight = weight) %>%
+  knitr::kable(digits = 0, caption = "Female Self-Reported Political Ideology")
+```
+
+
+```{r}
+topline (df = female, variable = vote2016, weight = weight) %>%
+  knitr::kable(digits = 0, caption = "Female Vote Choice in 2016 Presidential Election")
+```
+
+
+The sexism indicators measured response to each statement:
+
+```{r}
+topline (df = female, variable = sexism1, weight = weight) %>%
+  knitr::kable(digits = 0, caption = "'Women seek to gain power by getting control over men'")
+```
+
+
+```{r}
+topline (df = female, variable = sexism2, weight = weight) %>%
+  knitr::kable(digits = 0, caption = "'Women are too easily offended'")
+```
+
+
+```{r}
+topline (df = female, variable = sexism3, weight = weight) %>%
+  knitr::kable(digits = 0, caption = "'Women exaggerate problems they have at work'")
+```
+
+
+Nothing particularly stands out from these toplines - the variables seem to be fairly normally distributed. So far, there is no new information to help characterize female Trump voters.
+
+The next step, then, is to look for relationships among variables:
+
+
+```{r}
+#run crosstabs between variables
+crosstab (df = female, x = party, y = vote2016,  weight = weight, pct_type = "column") %>%
+  knitr::kable(digits = 0, caption = "% Female Vote in 2016 Election by Political Party")
+```
+
+```{r}
+crosstab (df = female, x = ideology, y = vote2016,  weight = weight, pct_type = "column") %>%
+  knitr::kable(digits = 0, caption = "% Female Vote in 2016 Election by Political Ideology")
+```
+
+
+The first two cross-tabulations reveal nothing new, as they both reflect typical voting along party lines. 
+
+The remaining variables comprise a measure of sexism attitudes assessed by asking respondents whether they agree with three separate statements.
+
+
+```{r}
+#explore relationship between female sexist attitudes and vote choice
+crosstab (df = female, x = vote2016, y = sexism1,  weight = weight, pct_type = "column") %>%
+  knitr::kable(digits = 0, caption = "% Female Response to 'Women seek to gain power by getting control over men' By Vote Choice")
+```
+
+
+```{r}
+crosstab (df = female, x = vote2016, y = sexism2,  weight = weight, pct_type = "column") %>%
+  knitr::kable(digits = 0, caption = "% Female Response to 'Women are too easily offended' By Vote Choice")
+```
+
+```{r}
+crosstab (df = female, x = vote2016, y = sexism3,  weight = weight, pct_type = "column") %>%
+  knitr::kable(digits = 0, caption = "% Female Response to 'Women exaggerate problems they have at work' By Vote Choice")
+```
+
+
+The sexism indicators seem to have an interesting relationship with vote choice!
+
+
+
+Bar charts can help make the relationship more clear:
+
+
+```{r}
+#create bar charts for each sexism indicator by 2016 vote choice
+crosstab (df = female, x = sexism1, y = vote2016,  weight = weight, remove = c("Other Candidates", "Didn't Vote"), format = "long") %>%
+  ggplot(aes(vote2016, pct, fill = sexism1)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Female Response to Sexist Statement1 By 2016 Vote Choice")
+```
+
+
+```{r}
+crosstab (df = female, x = sexism2, y = vote2016,  weight = weight, remove = c("Other Candidates", "Didn't Vote"), format = "long") %>%
+  ggplot(aes(vote2016, pct, fill = sexism2)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Female Response to Sexist Statement2 By 2016 Vote Choice")
+```
+
+
+```{r}
+crosstab (df = female, x = sexism3, y = vote2016,  weight = weight, remove = c("Other Candidates", "Didn't Vote"), format = "long") %>%
+  ggplot(aes(vote2016, pct, fill = sexism3)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Female Response to Sexist Statement3 By 2016 Vote Choice")
+```
+
+
+At first glance, it may not be too surprising to see that large percentages of Trump voters agreed with each of the sexist statements - but once you remember that only WOMEN voters are represented here, those numbers take on new importance. 
+
+There is evidence from behavioral research that, during lifelong exposure to ingrained social norms of female inferiority and stereotypes, women themselves can internalize misogyny, often subconsciously. Could it be that this phenomenon is particularly prevalent in women who voted for Trump? 
 
 
 # Reflection
 
-### mention tutorials, homeworks, and SPSS transition
+I can honestly say that R has been the most difficult thing I've tried to learn in a long time! Having experience using SPSS added an extra hurdle, since I had to concentrate on letting go of the "that's not how it works in SPSS" mental block. However, I can also honestly say that seeing nicely formatted tables and charts pop up with no errors gave me an incredible feeling of accomplishment.
+
+As I was working through the videos and tutorials, I had a growing sense of anxiety from feeling like none of it was "clicking". Completing the homework assignments gave me a bit more confidence, but I still felt like I wasn't really "getting it". But when I started digging in to my dataset and trying to do specific things, the proverbial lightbulb seemed to come on and I finally felt like I knew what I was doing. I guess I'm really a hands-on type of learner.
+
+I would have liked to tackle more complex analysis in my final project, but I felt like it was a trade-off between complexity and making sure my code was solid and worked well. I would love to do further work on my research question with this dataset, maybe by combining the three sexism indicators into a single variable or including demographic variables with many categories that could be combined, such as income or education level. In any case, I do feel confident that I will be able to steadily improve my R skills! 
 
 
 # Conclusion
 
-### from OpEd paper-conclusions and questions left unanswered after analysis
+Obviously, women choose presidential candidates based on a wide variety of personal priorities and shouldn't be expected to vote en masse for a female candidate. But, the fact that women have been the larger portion of the US population for some time without ever being represented in the office of president makes it imperative to understand why a significant number of women voted for a known misogynist. The UMass Poll revealed that internalized sexism among female voters is an area that deserves further research. 
 
 
 # References
 
-#### list of sources
+Barrett, T. (2019). R for Researchers: An Introduction. https://tysonbarrett.com/Rstats/index.html
+
+Nteta, T., La Raja, R., Rhodes, J. & Theodoridis, A. (2021). UMass Poll: The Biden Administration at 100 Days [Data set].
+
+Nteta, T., La Raja, R., Rhodes, J. & Theodoridis, A. (2021). UMass Poll: The Biden Administration at 100 Days [Codebook].
+
+Paikousis, L. (2019). How to use the Haven package. Retrieved from https://rpubs.com/lefkios_paikousis/how-to-haven
+
+Pew Research Center (2019). For Most Trump Voters, “Very Warm” Feelings For Him Endured. Retrieved from https://www.pewresearch.org/politics/2018/08/09/an-examination-of-the-2016-electorate-based-on-validated-voters
+
+Smith, D. (2020). Survey Research Datasets and R. https://socialresearchcentre.github.io/r_survey_datasets/
+
+Wickham, H., & Grolemund, G. (2017). R for Data Science. O’Reilly. https://r4ds.had.co.nz
+
+Wickham, H., Navarro, D., & Pedersen, T. L. (2020). ggplot2: Elegant Graphics for Data Analysis (Third). Springer. https://ggplot2-book.org/index.html
