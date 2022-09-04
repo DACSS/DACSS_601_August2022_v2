@@ -9,7 +9,7 @@
 <meta name="author" content="Will Munson">
 <meta name="dcterms.date" content="2022-08-29">
 
-<title>- Final Project Vertical Farming</title>
+<title>- Final Project Soil Health</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,7 +123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 
 
-<meta name="twitter:title" content="- Final Project Vertical Farming">
+<meta name="twitter:title" content="- Final Project Soil Health">
 <meta name="twitter:description" content="For my final project, I will be looking at data related to soil health.">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:card" content="summary">
@@ -234,27 +234,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>SoilHealth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5,241 × 273
-   StudyID ExperimentID Author_F Autho…¹ YearP…² Sampl…³ Journal SiteI…⁴ Country
+<pre><code># A tibble: 5,241 x 273
+   StudyID ExperimentID Author_F Autho~1 YearP~2 Sampl~3 Journal SiteI~4 Country
      &lt;dbl&gt; &lt;lgl&gt;        &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
- 1       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
- 2       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
- 3       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
- 4       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
- 5       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
- 6       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
- 7       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
- 8       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
- 9       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
-10       1 NA           Abawi    G.S.       2000      NA Applie… New Yo… USA    
-# … with 5,231 more rows, 264 more variables: Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;,
-#   Elevation &lt;dbl&gt;, Tannual &lt;dbl&gt;, MAT &lt;dbl&gt;, Pannual &lt;dbl&gt;, MAP &lt;dbl&gt;,
-#   ClimateType &lt;chr&gt;, TimeAfterCoverCrop &lt;dbl&gt;, Duration &lt;dbl&gt;,
+ 1       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+ 2       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+ 3       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+ 4       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+ 5       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+ 6       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+ 7       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+ 8       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+ 9       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+10       1 NA           Abawi    G.S.       2000      NA Applie~ New Yo~ USA    
+# ... with 5,231 more rows, 264 more variables: Latitude &lt;dbl&gt;,
+#   Longitude &lt;dbl&gt;, Elevation &lt;dbl&gt;, Tannual &lt;dbl&gt;, MAT &lt;dbl&gt;, Pannual &lt;dbl&gt;,
+#   MAP &lt;dbl&gt;, ClimateType &lt;chr&gt;, TimeAfterCoverCrop &lt;dbl&gt;, Duration &lt;dbl&gt;,
 #   CC_planting_date &lt;lgl&gt;, CC_termination_date &lt;lgl&gt;, Time_Comments &lt;chr&gt;,
 #   SamplingDepth &lt;chr&gt;, SamplingThickness &lt;chr&gt;, SoilDepthGroup &lt;lgl&gt;,
 #   SurfaceSubsurface &lt;lgl&gt;, SoilBD &lt;dbl&gt;, SandPerc &lt;dbl&gt;, SiltPerc &lt;dbl&gt;,
-#   ClayPerc &lt;dbl&gt;, Texture &lt;chr&gt;, SoilpH &lt;dbl&gt;, BackgroundSOC &lt;dbl&gt;, …
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   ClayPerc &lt;dbl&gt;, Texture &lt;chr&gt;, SoilpH &lt;dbl&gt;, BackgroundSOC &lt;dbl&gt;, ...
+# i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
 </div>
 </div>
 </section>
@@ -280,27 +280,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>SoilHealthFixed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,243 × 70
-   StudyID YearP…¹ Sampl…² SiteI…³ Country Latit…⁴ Longi…⁵ Eleva…⁶ Tannual   MAT
+<pre><code># A tibble: 1,243 x 70
+   StudyID YearP~1 Sampl~2 SiteI~3 Country Latit~4 Longi~5 Eleva~6 Tannual   MAT
      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
- 1       7    1999    1995 Aurora… USA        45.2  -123.     48.4      NA    NA
- 2       7    1999    1995 Aurora… USA        45.2  -123.     48.4      NA    NA
- 3       7    1999    1995 Aurora… USA        45.2  -123.     48.4      NA    NA
- 4      53    2006    2000 Agricu… USA        34.0   -83.4   208.       NA    NA
- 5      53    2006    2000 Agricu… USA        34.0   -83.4   208.       NA    NA
- 6      53    2006    2000 Agricu… USA        34.0   -83.4   208.       NA    NA
- 7      53    2006    2000 Agricu… USA        34.0   -83.4   208.       NA    NA
- 8      53    2006    2000 Agricu… USA        34.0   -83.4   208.       NA    NA
- 9      53    2006    2000 Agricu… USA        34.0   -83.4   208.       NA    NA
-10      53    2006    2000 Agricu… USA        34.0   -83.4   208.       NA    NA
-# … with 1,233 more rows, 60 more variables: Pannual &lt;dbl&gt;, MAP &lt;dbl&gt;,
+ 1       7    1999    1995 Aurora~ USA        45.2  -123.     48.4      NA    NA
+ 2       7    1999    1995 Aurora~ USA        45.2  -123.     48.4      NA    NA
+ 3       7    1999    1995 Aurora~ USA        45.2  -123.     48.4      NA    NA
+ 4      53    2006    2000 Agricu~ USA        34.0   -83.4   208.       NA    NA
+ 5      53    2006    2000 Agricu~ USA        34.0   -83.4   208.       NA    NA
+ 6      53    2006    2000 Agricu~ USA        34.0   -83.4   208.       NA    NA
+ 7      53    2006    2000 Agricu~ USA        34.0   -83.4   208.       NA    NA
+ 8      53    2006    2000 Agricu~ USA        34.0   -83.4   208.       NA    NA
+ 9      53    2006    2000 Agricu~ USA        34.0   -83.4   208.       NA    NA
+10      53    2006    2000 Agricu~ USA        34.0   -83.4   208.       NA    NA
+# ... with 1,233 more rows, 60 more variables: Pannual &lt;dbl&gt;, MAP &lt;dbl&gt;,
 #   TimeAfterCoverCrop &lt;dbl&gt;, Duration &lt;dbl&gt;, SamplingDepth &lt;chr&gt;,
 #   SamplingThickness &lt;dbl&gt;, SoilBD &lt;dbl&gt;, SandPerc &lt;dbl&gt;, SiltPerc &lt;dbl&gt;,
 #   ClayPerc &lt;dbl&gt;, Texture &lt;chr&gt;, SoilpH &lt;dbl&gt;, BackgroundSOC &lt;dbl&gt;,
 #   SoilKsat &lt;dbl&gt;, SoilFamily &lt;chr&gt;, CoverCrop &lt;chr&gt;, CoverCropGroup &lt;chr&gt;,
 #   GrainCrop &lt;chr&gt;, GrainCropGroup &lt;chr&gt;, Rotation_T &lt;chr&gt;,
-#   Rotation_Diff &lt;chr&gt;, Tillage_T &lt;chr&gt;, Tillage_Top_T &lt;chr&gt;, …
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+#   Rotation_Diff &lt;chr&gt;, Tillage_T &lt;chr&gt;, Tillage_Top_T &lt;chr&gt;, ...
+# i Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
 </div>
 </div>
 </section>
@@ -675,7 +675,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project Vertical Farming"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project Soil Health"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Will Munson"</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "8/29/2022"</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>

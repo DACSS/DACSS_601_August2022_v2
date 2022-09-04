@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nick Boonstra">
+<meta name="dcterms.date" content="2022-09-03">
+<meta name="description" content="Comparing the 2014-2021 Formula 1 World Championships to Previous Seasons Using the R Statistical Package">
+
+<title>- Did Racing Improve During Formula 1’s Hybrid Era?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Did Racing Improve During Formula 1’s Hybrid Era?">
+<meta name="twitter:description" content="Comparing the 2014-2021 Formula 1 World Championships to Previous Seasons Using the R Statistical Package">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research Question</a></li>
+  </ul></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">Visualizations</a>
+  <ul class="collapse">
+  <li><a href="#fastest-laps" id="toc-fastest-laps" class="nav-link" data-scroll-target="#fastest-laps">Fastest Laps</a></li>
+  <li><a href="#race-laps" id="toc-race-laps" class="nav-link" data-scroll-target="#race-laps">Race Laps</a></li>
+  <li><a href="#qualifying-laps" id="toc-qualifying-laps" class="nav-link" data-scroll-target="#qualifying-laps">Qualifying Laps</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Did Racing Improve During Formula 1’s Hybrid Era?</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">final</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Comparing the 2014-2021 Formula 1 World Championships to Previous Seasons Using the R Statistical Package
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nick Boonstra </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 3, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The Formula 1 World Championship is the world’s premier motorsports competition. F1 Grands Prix are held in a number of countries every year, and millions of fans are attracted from even farther afield. As if racing at 200 mph wasn’t enough, competition is just about as competitive off the track as it is on it, with each of the Championship’s ten constructors constantly innovating and engineering along the cutting edge of what is possible – and what is allowed – in their pursuit of racing perfection.</p>
+<p>One of the most groundbreaking innovations in recent F1 history was the start of what has come to be known as the Hybrid Era, in 2014. The Hybrid Era, which lasted until the end of the 2021 season, saw a sweeping series of rule changes that forced constructors to transition from cars powered solely by internal combustion to ones with hybrid “power units,” combining turbo-charged engines with battery power as well as “energy recovery systems” that regenerate power from the energy lost in braking and other functions.</p>
+<section id="research-question" class="level3">
+<h3 class="anchored" data-anchor-id="research-question">Research Question</h3>
+<p>The intent of this analysis is to examine at a preliminary level whether or not lap time data from before and during F1’s Hybrid Era suggest that racing improved over the course of the Hybrid Era, with shorter lap times indicating improvement. It is important to note that faster lap times are an imperfect gauge for improvement in racing overall. Of course, a general trend toward shorter lap times would suggest higher (average) speeds and overall faster racing, as well as technological advancement when observed across the 20-car grid. However, such faster times could also be a symptom of racing with fewer overtakes, which is generally considered uninteresting and is a problem that Formula 1 has needed to address throughout the Hybrid Era. However, for the sake of simplicity, this analysis will focus on lap times. A more complete analysis would factor in overtaking data from before and during the Hybrid Era to gain a more complete understanding of the state of racing in F1.</p>
+</section>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The data I’m using is the <a href="https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020">“Formula 1 World Championship (1950-2022)”</a> dataset available on Kaggle from Rohan Rao, under the username <a href="https://www.kaggle.com/rohanrao">Vopani</a>, who in turn collected the data from an online API known by the name of <a href="http://ergast.com/mrd/">“Ergast”</a>. This dataset is a collection of <code>.csv</code> files, each detailing a certain aspect of race data, which can be joined easily for more in-depth analysis.</p>
+<p>For my analysis, I will only be using four of these <code>.csv</code> files:</p>
+<ul>
+<li><code>races.csv</code>, which holds identifying data about races referenced across the entire dataset;</li>
+<li><code>circuits.csv</code>, which similarly holds identifying data about every circuit;</li>
+<li><code>qualifying.csv</code>, which holds lap time data for racers’ best laps across all three qualifying rounds for every Grand Prix in the data set; and,</li>
+<li><code>lap_times.csv</code>, which holds lap time data for every racer’s every lap across all Grands Prix included.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># races.csv</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>master_races<span class="ot">&lt;-</span><span class="fu">read_csv</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">"_data/f1archive/races.csv"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip=</span><span class="dv">1</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">"race_id"</span>,<span class="st">"seas_year"</span>,<span class="st">"seas_round"</span>,<span class="st">"circ_id"</span>,<span class="st">"name_race"</span>,<span class="st">"date_race"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>master_races</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,079 × 6
+   race_id seas_year seas_round circ_id name_race             date_race 
+     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                 &lt;date&gt;    
+ 1       1      2009          1       1 Australian Grand Prix 2009-03-29
+ 2       2      2009          2       2 Malaysian Grand Prix  2009-04-05
+ 3       3      2009          3      17 Chinese Grand Prix    2009-04-19
+ 4       4      2009          4       3 Bahrain Grand Prix    2009-04-26
+ 5       5      2009          5       4 Spanish Grand Prix    2009-05-10
+ 6       6      2009          6       6 Monaco Grand Prix     2009-05-24
+ 7       7      2009          7       5 Turkish Grand Prix    2009-06-07
+ 8       8      2009          8       9 British Grand Prix    2009-06-21
+ 9       9      2009          9      20 German Grand Prix     2009-07-12
+10      10      2009         10      11 Hungarian Grand Prix  2009-07-26
+# … with 1,069 more rows
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># circuits.csv</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>master_circ<span class="ot">&lt;-</span><span class="fu">read_csv</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">"_data/f1archive/circuits.csv"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip=</span><span class="dv">1</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">"nccccnnn"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">"circ_id"</span>,<span class="st">"circ_ref"</span>,<span class="st">"circ_name"</span>,<span class="st">"circ_loc"</span>,<span class="st">"circ_nat"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>              <span class="st">"circ_lat"</span>,<span class="st">"circ_lng"</span>,<span class="st">"circ_alt"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>master_circ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 76 × 8
+   circ_id circ_ref       circ_name      circ_…¹ circ_…² circ_…³ circ_…⁴ circ_…⁵
+     &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1       1 albert_park    Albert Park G… Melbou… Austra…  -37.8   145.        10
+ 2       2 sepang         Sepang Intern… Kuala … Malays…    2.76  102.        18
+ 3       3 bahrain        Bahrain Inter… Sakhir  Bahrain   26.0    50.5        7
+ 4       4 catalunya      Circuit de Ba… Montme… Spain     41.6     2.26     109
+ 5       5 istanbul       Istanbul Park  Istanb… Turkey    41.0    29.4      130
+ 6       6 monaco         Circuit de Mo… Monte-… Monaco    43.7     7.42       7
+ 7       7 villeneuve     Circuit Gille… Montre… Canada    45.5   -73.5       13
+ 8       8 magny_cours    Circuit de Ne… Magny … France    46.9     3.16     228
+ 9       9 silverstone    Silverstone C… Silver… UK        52.1    -1.02     153
+10      10 hockenheimring Hockenheimring Hocken… Germany   49.3     8.57     103
+# … with 66 more rows, and abbreviated variable names ¹​circ_loc, ²​circ_nat,
+#   ³​circ_lat, ⁴​circ_lng, ⁵​circ_alt
+# ℹ Use `print(n = ...)` to see more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># qualifying.csv</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>qual<span class="ot">&lt;-</span><span class="fu">read_csv</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">"_data/f1archive/qualifying.csv"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip=</span><span class="dv">1</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">"qual_id"</span>,<span class="st">"race_id"</span>,<span class="st">"driv_id"</span>,<span class="st">"con_id"</span>,<span class="st">"driv_num"</span>,<span class="st">"qual_pos"</span>,<span class="st">"q1"</span>,<span class="st">"q2"</span>,<span class="st">"q3"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>qual_race<span class="ot">&lt;-</span>qual <span class="sc">%&gt;%</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">q1=</span><span class="fu">ms</span>(q1)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">q2=</span><span class="fu">ms</span>(q2)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">q3=</span><span class="fu">ms</span>(q3)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> q1<span class="sc">:</span>q3,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"qual_round"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"qual_time"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">qual_round=</span><span class="fu">str_remove_all</span>(qual_round,<span class="st">"[q]"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">qual_round=</span><span class="fu">as.numeric</span>(qual_round)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_races) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_circ)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>qual_race</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 28,185 × 20
+   qual_id race_id driv_id con_id driv_num qual_pos qual_ro…¹ qual_time  seas_…²
+     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;Period&gt;     &lt;dbl&gt;
+ 1       1      18       1      1       22        1         1 1M 26.572S    2008
+ 2       1      18       1      1       22        1         2 1M 25.187S    2008
+ 3       1      18       1      1       22        1         3 1M 26.714S    2008
+ 4       2      18       9      2        4        2         1 1M 26.103S    2008
+ 5       2      18       9      2        4        2         2 1M 25.315S    2008
+ 6       2      18       9      2        4        2         3 1M 26.869S    2008
+ 7       3      18       5      1       23        3         1 1M 25.664S    2008
+ 8       3      18       5      1       23        3         2 1M 25.452S    2008
+ 9       3      18       5      1       23        3         3 1M 27.079S    2008
+10       4      18      13      6        2        4         1 1M 25.994S    2008
+# … with 28,175 more rows, 11 more variables: seas_round &lt;dbl&gt;, circ_id &lt;dbl&gt;,
+#   name_race &lt;chr&gt;, date_race &lt;date&gt;, circ_ref &lt;chr&gt;, circ_name &lt;chr&gt;,
+#   circ_loc &lt;chr&gt;, circ_nat &lt;chr&gt;, circ_lat &lt;dbl&gt;, circ_lng &lt;dbl&gt;,
+#   circ_alt &lt;dbl&gt;, and abbreviated variable names ¹​qual_round, ²​seas_year
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lap_times.csv</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>lap_times<span class="ot">&lt;-</span><span class="fu">read_csv</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">"_data/f1archive/lap_times.csv"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip=</span><span class="dv">1</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">"race_id"</span>,<span class="st">"driv_id"</span>,<span class="st">"lap"</span>,<span class="st">"pos_race"</span>,<span class="st">"time_lap_char"</span>,<span class="st">"time_lap_ms"</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">"nnnncn"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>lap_times<span class="ot">&lt;-</span>lap_times <span class="sc">%&gt;%</span> </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_lap=</span><span class="fu">ms</span>(time_lap_char)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="st">"time_lap_char"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_races) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_circ)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>lap_times</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 528,785 × 18
+   race_id driv_id   lap pos_race time_lap_ms time_lap   seas_…¹ seas_…² circ_id
+     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt; &lt;Period&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1     841      20     1        1       98109 1M 38.109S    2011       1       1
+ 2     841      20     2        1       93006 1M 33.006S    2011       1       1
+ 3     841      20     3        1       92713 1M 32.713S    2011       1       1
+ 4     841      20     4        1       92803 1M 32.803S    2011       1       1
+ 5     841      20     5        1       92342 1M 32.342S    2011       1       1
+ 6     841      20     6        1       92605 1M 32.605S    2011       1       1
+ 7     841      20     7        1       92502 1M 32.502S    2011       1       1
+ 8     841      20     8        1       92537 1M 32.537S    2011       1       1
+ 9     841      20     9        1       93240 1M 33.24S     2011       1       1
+10     841      20    10        1       92572 1M 32.572S    2011       1       1
+# … with 528,775 more rows, 9 more variables: name_race &lt;chr&gt;,
+#   date_race &lt;date&gt;, circ_ref &lt;chr&gt;, circ_name &lt;chr&gt;, circ_loc &lt;chr&gt;,
+#   circ_nat &lt;chr&gt;, circ_lat &lt;dbl&gt;, circ_lng &lt;dbl&gt;, circ_alt &lt;dbl&gt;, and
+#   abbreviated variable names ¹​seas_year, ²​seas_round
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fastest_laps<span class="ot">&lt;-</span>lap_times <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(race_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">time_lap_ms=</span><span class="fu">min</span>(time_lap_ms)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lap_times) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_races)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>fastest_laps<span class="ot">&lt;-</span>fastest_laps <span class="sc">%&gt;%</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(seas_year<span class="sc">&gt;=</span><span class="dv">2002</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(circ_id,name_race) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n<span class="sc">&gt;=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fastest_laps) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>n) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(race_id<span class="sc">!=</span><span class="dv">1063</span>) <span class="sc">%&gt;%</span> <span class="co"># One-off race at modified Bahrain circuit</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_circ)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>fastest_laps</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 363 × 18
+   circ_id name_race    race_id time_…¹ driv_id   lap pos_r…² time_lap   seas_…³
+     &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;Period&gt;     &lt;dbl&gt;
+ 1       1 Australian …       1   87706       3    48       7 1M 27.706S    2009
+ 2       1 Australian …      18   87418       5    43       1 1M 27.418S    2008
+ 3       1 Australian …      36   85235       8    41       1 1M 25.235S    2007
+ 4       1 Australian …      55   86045       8    57       2 1M 26.045S    2006
+ 5       1 Australian …      71   85683       4    24       3 1M 25.683S    2005
+ 6       1 Australian …      90   84125      30    29       1 1M 24.125S    2004
+ 7       1 Australian …     108   87724       8    32       1 1M 27.724S    2003
+ 8       1 Australian …     124   88541       8    37       2 1M 28.541S    2002
+ 9       1 Australian …     141   88214      30    34       1 1M 28.214S    2001
+10       1 Australian …     158   91481      22    41       2 1M 31.481S    2000
+# … with 353 more rows, 9 more variables: seas_round &lt;dbl&gt;, date_race &lt;date&gt;,
+#   circ_ref &lt;chr&gt;, circ_name &lt;chr&gt;, circ_loc &lt;chr&gt;, circ_nat &lt;chr&gt;,
+#   circ_lat &lt;dbl&gt;, circ_lng &lt;dbl&gt;, circ_alt &lt;dbl&gt;, and abbreviated variable
+#   names ¹​time_lap_ms, ²​pos_race, ³​seas_year
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
+<p>These <code>.csv</code> files are for the most part already “Tidy” according to the Tidyverse understanding of data wrangling and analysis. Beyond superficial column-name changes, the most significant data cleanup act took place on the qualifying data, where I pivoted the rounds 1-3 columns longer into a “round” and a “lap time” column. Additionally, I joined both the qualifying and the lap times dataframes with the races and circuits master dataframes, for more complete identification.</p>
+<p>I ended up taking two dataframes out of the <code>lap_times.csv</code> data set. The first, <code>lap_times</code>, retains the data in its original form, joins notwithstanding. The second, <code>fastest_laps</code>, uses a <code>group_by()</code>/<code>summarise()</code> combo to isolate the fastest laps (minimum lap time) for each Grand Prix. This isolated fastest lap data plays a crucial role on its own in the analysis to follow.</p>
+</section>
+<section id="visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
+<p>The analysis of these Formula 1 data were performed using the <code>ggplot2</code> package from the Tidyverse collection of R-language packages. Again, these analyses are largely preliminary and exploratory, and were not verified with statistically rigorous hypotheses tests. They do, however, lay a solid foundation for such research to be performed in the future.</p>
+<p>What follows are three <code>ggplot</code> visualizations of qualifying and race lap time data drawn from Grands Prix held at nine different circuits between 1996 and 2021. The nine circuits chosen were selected based on the frequency of their use in an unchanging configuration; certain Formula 1-eligible circuits are not used regularly or even very often at all, while others have undergone significant alterations in their configuration, making lap time comparisons meaningless. The wide date range gives enough lead time to establish a visual baseline with which to compare the Hybrid Era seasons of 2014 to 2021.</p>
+<p>The selected nine circuits (along with their country and/or more familiar name) are:</p>
+<ul>
+<li>Albert Park (Australia)</li>
+<li>Autodromo Jose Carlos Pace (Interlagos/Sao Paolo, Brazil)</li>
+<li>Monza (Italy)</li>
+<li>Barcelona (Spain)</li>
+<li>Monaco</li>
+<li>Gilles Villneuve (Canada)</li>
+<li>Hungaroring (Hungary)</li>
+<li>Sepang (Malaysia)</li>
+<li>Suzuka (Japan)</li>
+</ul>
+<section id="fastest-laps" class="level3">
+<h3 class="anchored" data-anchor-id="fastest-laps">Fastest Laps</h3>
+<p>The first of these visualizations compares fastest in-race lap times from Grands Prix held at these nine circuits between 1996 and 2021.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fastest_laps <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(seas_year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span><span class="sc">:</span><span class="dv">2021</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_circ) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hybrid=</span><span class="fu">case_when</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    seas_year<span class="sc">&gt;=</span><span class="dv">2014</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    T <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time_lap_ms<span class="sc">&lt;=</span><span class="dv">110000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(circ_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.,<span class="fu">aes</span>(<span class="at">x=</span>date_race,<span class="at">y=</span><span class="fu">as.numeric</span>(time_lap),<span class="at">label=</span>seas_year,<span class="at">color=</span><span class="fu">as.factor</span>(hybrid))) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">size=</span><span class="fl">1.7</span>,<span class="at">hjust=</span><span class="sc">-</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(circ_name),<span class="at">scales=</span><span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Date"</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Lap Time (in seconds)"</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Fastest Laps By Year and Circuit"</span>,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">"Color-coding indicates pre-Hybrid (red) vs. Hybrid (blue) Era"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="final_nickboonstra_files/figure-html/fastest%20laps-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This visualization is a simple scatterplot superimposed with a time-series line graph, color-coded by pre-Hybrid vs Hybrid Era. First, it should be clarified that certain outliers are present that should not be considered in interpreting the data. Extremely high lap times, like those observed in Barcelona in 1996 or at Interlagos in 2016, correspond with wet-weather races, which tend to be significantly slower for obvious safety reasons. Certain years’ observations have been excluded entirely in the process of filtering out some of these outlier laps.</p>
+<p>Once wet-weather laps are ignored, there is a distinct trend that emerges in these fastest lap data. Across almost all nine circuits, there is an observable increase in fastest lap time from 2013 to 2014, as well as a subsequent year-over-year decrease in fastest lap time across all circuits as the Hybrid Era progressed. In the case of every circuit (except Monza, arguably), the fastest lap of the most recent Grand Prix is significantly faster than that of the last pre-Hybrid Era Grand Prix. The general trend appears to be that, after a brief adjustment period when the new rules were implemented, racers continually improved lap times throughout the Hybrid Era, achieving lap times that in every case bettered those to be expected at the end of the pre-Hybrid era. This is a strong initial sign that racing improved over the course of the Hybrid Era – more specifically, that technological and racing improvements were continually being made between 2014 and 2021.</p>
+</section>
+<section id="race-laps" class="level3">
+<h3 class="anchored" data-anchor-id="race-laps">Race Laps</h3>
+<p>My second exploratory visualization concerns the distribution of lap times by circuit and year.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ridgeline plot of lap time distributions by circuit and year</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>lap_times <span class="sc">%&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hybrid=</span><span class="fu">case_when</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    seas_year<span class="sc">&gt;=</span><span class="dv">2014</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    T <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time_lap_ms<span class="sc">&lt;=</span><span class="dv">115000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(seas_year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span><span class="sc">:</span><span class="dv">2021</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(circ_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(race_id<span class="sc">!=</span><span class="fu">c</span>(<span class="dv">1046</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(time_lap), </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="fu">as.factor</span>(seas_year),<span class="at">fill=</span><span class="fu">as.factor</span>(hybrid),<span class="at">alpha=</span><span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">6.5</span>)) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(circ_name),<span class="at">scales=</span><span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Distribution of Race Lap Times by Year and Circuit"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Color-coding indicates pre-Hybrid (red) vs. Hybrid (blue) Era"</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">"Lap Time (in Seconds)"</span>,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">"Season Year"</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="final_nickboonstra_files/figure-html/race%20laps-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>I chose to utilize a color-coded “ridgeline” plot for these distributions, allowing for simple year-by-year visual comparison. The individual “ridges” are density plots, reflecting the frequency (on the implied z-axis) of the given lap times on the x-axis, compared by year on the y-axis. Once again, color coding reflects whether a given year was pre-Hybrid Era (red) or Hybrid Era (blue).</p>
+<p>Once again, there appears to be a year-over-year trend toward collectively faster lap times as the Hybrid Era progressed. Certain circuits, such as Sepang or Suzuka, saw a broad distribution of lap times, and can make for some difficult interpretation. However, other circuits like Monza, the Hungaroring, and especially Gilles Villeneuve show a much more concentrated distribution of lap times that trend toward an improvement over pre-Hybrid Era times. It should be noted that these are lap times from across the grid, rather than isolated fastest laps from single drivers. The concentration of lap times around these circuits suggests that racing remained competitive during the Hybrid Era, while the collective shift toward faster lap times illustrates improvements being made up and down the grid, and not only coming from certain constructors or drivers.</p>
+</section>
+<section id="qualifying-laps" class="level3">
+<h3 class="anchored" data-anchor-id="qualifying-laps">Qualifying Laps</h3>
+<p>My final visualization concerns qualifying times from across all three rounds of qualifying for Grands Prix held at the same nine circuits across the same 25-year period.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">na.omit</span>(qual_race) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(seas_year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span><span class="sc">:</span><span class="dv">2021</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(circ_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(qual_time<span class="sc">&lt;</span><span class="fu">ms</span>(<span class="st">"2:45.00"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hybrid=</span><span class="fu">case_when</span>(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    seas_year<span class="sc">&gt;=</span><span class="dv">2014</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    T <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(qual_time),</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">y=</span><span class="fu">as.factor</span>(seas_year),</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill=</span><span class="fu">as.factor</span>(hybrid),<span class="at">alpha=</span><span class="fl">0.5</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(circ_name),<span class="at">scales=</span><span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">6.5</span>)) <span class="sc">+</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Distribution of Lap Times in Qualifying by Year and Circuit"</span>,</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Color-coding indicates pre-Hybrid (red) vs. Hybrid (blue) Era"</span>,</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">"Lap Time (in Seconds)"</span>,</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">"Season Year"</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="final_nickboonstra_files/figure-html/qual%20laps-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A similar ridgeline plot to the lap time visualization is used.</p>
+<p>It is important to understand the mechanics of Formula 1 qualifying in order to properly interpret this plot. F1 qualifying sessions are not held as competitive races between cars, but rather as concurrent time-trials held over three rounds, the first two of which feature the elimination of the five slowest cars from that round. Only a driver’s best time from a given round is recorded, and the above plot amalgamates times across rounds for each year. It is also important to note that, traditionally, qualifying sessions are held on the day preceding the race, which can make for differing weather conditions. In general, then, the above plot reflects less upon wheel-to-wheel, on-track racing, and speaks more to the quality of the cars up and down the grid, particularly in terms of technological advancements.</p>
+<p>Once again, this ridgeline plot illustrates an apparent trend toward year-over-year improvement, over and above the pre-Hybrid Era, across the grid throughout the duration of the Hybrid Era. This is perhaps most clearly seen in the Monaco circuit plot, with every Hybrid Era ridge (barring 2021) appearing to reflect a collective improvement on the previous race, which by 2016 are already faster than most or all of the qualifying time distributions from the pre-Hybrid Era. Additionally, these ridges once again remain concentrated throughout the Hybrid Era, suggesting that improvement was consistent across all constructors year over year.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This preliminary exploratory analysis of Formula 1 data from 1996 to 2021 suggests that racing consistently improved while remaining competitive throughout the duration of the sport’s Hybrid Era, especially when compared to data from seasons prior to this Era. Further analysis is needed, however, before conclusions can be drawn – analysis of overtaking data alongside lap time data, and analysis performed in a more statistically rigorous and scientific way.</p>
+</section>
+<section id="citations" class="level2">
+<h2 class="anchored" data-anchor-id="citations">Citations</h2>
+<p>“Ergast Developer API.” n.d. Ergast Developer API. Accessed September 3, 2022. http://ergast.com/mrd/.</p>
+<p>FORMULA 1, dir. 2022. The End Of An F1 Era | 2014 To 2021. https://www.youtube.com/watch?v=T_55mVi_wQQ.</p>
+<p>Grolemund, Garrett, and Hadley Wickham. 2017. R for Data Science. Sebastopol, CA: O’Reilly Media.</p>
+<p>Vopani. n.d. “Formula 1 World Championship (1950 - 2022).” Accessed September 3, 2022. https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020.</p>
+<p>R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</p>
+<p>RStudio Team (2022). RStudio: Integrated Development Environment for R. RStudio, PBC, Boston, MA URL http://www.rstudio.com/.</p>
+<p>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. doi:10.21105/joss.01686 <a href="https://doi.org/10.21105/joss.01686" class="uri">https://doi.org/10.21105/joss.01686</a>.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Did Racing Improve During Formula 1's Hybrid Era?"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Nick Boonstra" </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Comparing the 2014-2021 Formula 1 World Championships to Previous Seasons Using the R Statistical Package"</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "`r Sys.Date()`"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - final</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>The Formula 1 World Championship is the world's premier motorsports competition. F1 Grands Prix are held in a number of countries every year, and millions of fans are attracted from even farther afield. As if racing at 200 mph wasn't enough, competition is just about as competitive off the track as it is on it, with each of the Championship's ten constructors constantly innovating and engineering along the cutting edge of what is possible -- and what is allowed -- in their pursuit of racing perfection.</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>One of the most groundbreaking innovations in recent F1 history was the start of what has come to be known as the Hybrid Era, in 2014. The Hybrid Era, which lasted until the end of the 2021 season, saw a sweeping series of rule changes that forced constructors to transition from cars powered solely by internal combustion to ones with hybrid "power units," combining turbo-charged engines with battery power as well as "energy recovery systems" that regenerate power from the energy lost in braking and other functions.</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Research Question</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>The intent of this analysis is to examine at a preliminary level whether or not lap time data from before and during F1's Hybrid Era suggest that racing improved over the course of the Hybrid Era, with shorter lap times indicating improvement. It is important to note that faster lap times are an imperfect gauge for improvement in racing overall. Of course, a general trend toward shorter lap times would suggest higher (average) speeds and overall faster racing, as well as technological advancement when observed across the 20-car grid. However, such faster times could also be a symptom of racing with fewer overtakes, which is generally considered uninteresting and is a problem that Formula 1 has needed to address throughout the Hybrid Era. However, for the sake of simplicity, this analysis will focus on lap times. A more complete analysis would factor in overtaking data from before and during the Hybrid Era to gain a more complete understanding of the state of racing in F1.</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>The data I'm using is the <span class="co">[</span><span class="ot">"Formula 1 World Championship (1950-2022)"</span><span class="co">](https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020)</span> dataset available on Kaggle from Rohan Rao, under the username <span class="co">[</span><span class="ot">Vopani</span><span class="co">](https://www.kaggle.com/rohanrao)</span>, who in turn collected the data from an online API known by the name of <span class="co">[</span><span class="ot">"Ergast"</span><span class="co">](http://ergast.com/mrd/)</span>. This dataset is a collection of <span class="in">`.csv`</span> files, each detailing a certain aspect of race data, which can be joined easily for more in-depth analysis.</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>For my analysis, I will only be using four of these <span class="in">`.csv`</span> files:</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`races.csv`</span>, which holds identifying data about races referenced across the entire dataset;</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`circuits.csv`</span>, which similarly holds identifying data about every circuit;</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`qualifying.csv`</span>, which holds lap time data for racers' best laps across all three qualifying rounds for every Grand Prix in the data set; and,</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`lap_times.csv`</span>, which holds lap time data for every racer's every lap across all Grands Prix included.</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a><span class="in">```{r read in}</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: read in</span></span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a><span class="co"># races.csv</span></span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>master_races<span class="ot">&lt;-</span><span class="fu">read_csv</span>(</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">"_data/f1archive/races.csv"</span>,</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip=</span><span class="dv">1</span>,</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">"race_id"</span>,<span class="st">"seas_year"</span>,<span class="st">"seas_round"</span>,<span class="st">"circ_id"</span>,<span class="st">"name_race"</span>,<span class="st">"date_race"</span>)</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>master_races</span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a><span class="co"># circuits.csv</span></span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>master_circ<span class="ot">&lt;-</span><span class="fu">read_csv</span>(</span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">"_data/f1archive/circuits.csv"</span>,</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_select=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,</span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip=</span><span class="dv">1</span>,</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">"nccccnnn"</span>,</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">"circ_id"</span>,<span class="st">"circ_ref"</span>,<span class="st">"circ_name"</span>,<span class="st">"circ_loc"</span>,<span class="st">"circ_nat"</span>,</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>              <span class="st">"circ_lat"</span>,<span class="st">"circ_lng"</span>,<span class="st">"circ_alt"</span>)</span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>master_circ</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a><span class="co"># qualifying.csv</span></span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>qual<span class="ot">&lt;-</span><span class="fu">read_csv</span>(</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">"_data/f1archive/qualifying.csv"</span>,</span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip=</span><span class="dv">1</span>,</span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">"qual_id"</span>,<span class="st">"race_id"</span>,<span class="st">"driv_id"</span>,<span class="st">"con_id"</span>,<span class="st">"driv_num"</span>,<span class="st">"qual_pos"</span>,<span class="st">"q1"</span>,<span class="st">"q2"</span>,<span class="st">"q3"</span>)</span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>qual_race<span class="ot">&lt;-</span>qual <span class="sc">%&gt;%</span> </span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">q1=</span><span class="fu">ms</span>(q1)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">q2=</span><span class="fu">ms</span>(q2)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">q3=</span><span class="fu">ms</span>(q3)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> q1<span class="sc">:</span>q3,</span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"qual_round"</span>,</span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"qual_time"</span></span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">qual_round=</span><span class="fu">str_remove_all</span>(qual_round,<span class="st">"[q]"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">qual_round=</span><span class="fu">as.numeric</span>(qual_round)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_races) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_circ)</span>
+<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a>qual_race</span>
+<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a><span class="co"># lap_times.csv</span></span>
+<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a>lap_times<span class="ot">&lt;-</span><span class="fu">read_csv</span>(</span>
+<span id="cb15-108"><a href="#cb15-108" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">"_data/f1archive/lap_times.csv"</span>,</span>
+<span id="cb15-109"><a href="#cb15-109" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip=</span><span class="dv">1</span>,</span>
+<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="fu">c</span>(<span class="st">"race_id"</span>,<span class="st">"driv_id"</span>,<span class="st">"lap"</span>,<span class="st">"pos_race"</span>,<span class="st">"time_lap_char"</span>,<span class="st">"time_lap_ms"</span>),</span>
+<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">"nnnncn"</span></span>
+<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a>lap_times<span class="ot">&lt;-</span>lap_times <span class="sc">%&gt;%</span> </span>
+<span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_lap=</span><span class="fu">ms</span>(time_lap_char)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="st">"time_lap_char"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_races) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_circ)</span>
+<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a>lap_times</span>
+<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a>fastest_laps<span class="ot">&lt;-</span>lap_times <span class="sc">%&gt;%</span> </span>
+<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(race_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-124"><a href="#cb15-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">time_lap_ms=</span><span class="fu">min</span>(time_lap_ms)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lap_times) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_races)</span>
+<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a>fastest_laps<span class="ot">&lt;-</span>fastest_laps <span class="sc">%&gt;%</span> </span>
+<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(seas_year<span class="sc">&gt;=</span><span class="dv">2002</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(circ_id,name_race) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n<span class="sc">&gt;=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fastest_laps) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>n) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(race_id<span class="sc">!=</span><span class="dv">1063</span>) <span class="sc">%&gt;%</span> <span class="co"># One-off race at modified Bahrain circuit</span></span>
+<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_circ)</span>
+<span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>fastest_laps</span>
+<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a>These <span class="in">`.csv`</span> files are for the most part already "Tidy" according to the Tidyverse understanding of data wrangling and analysis. Beyond superficial column-name changes, the most significant data cleanup act took place on the qualifying data, where I pivoted the rounds 1-3 columns longer into a "round" and a "lap time" column. Additionally, I joined both the qualifying and the lap times dataframes with the races and circuits master dataframes, for more complete identification.</span>
+<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a>I ended up taking two dataframes out of the <span class="in">`lap_times.csv`</span> data set. The first, <span class="in">`lap_times`</span>, retains the data in its original form, joins notwithstanding. The second, <span class="in">`fastest_laps`</span>, uses a <span class="in">`group_by()`</span>/<span class="in">`summarise()`</span> combo to isolate the fastest laps (minimum lap time) for each Grand Prix. This isolated fastest lap data plays a crucial role on its own in the analysis to follow.</span>
+<span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualizations</span></span>
+<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a>The analysis of these Formula 1 data were performed using the <span class="in">`ggplot2`</span> package from the Tidyverse collection of R-language packages. Again, these analyses are largely preliminary and exploratory, and were not verified with statistically rigorous hypotheses tests. They do, however, lay a solid foundation for such research to be performed in the future.</span>
+<span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a>What follows are three <span class="in">`ggplot`</span> visualizations of qualifying and race lap time data drawn from Grands Prix held at nine different circuits between 1996 and 2021. The nine circuits chosen were selected based on the frequency of their use in an unchanging configuration; certain Formula 1-eligible circuits are not used regularly or even very often at all, while others have undergone significant alterations in their configuration, making lap time comparisons meaningless. The wide date range gives enough lead time to establish a visual baseline with which to compare the Hybrid Era seasons of 2014 to 2021.</span>
+<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-152"><a href="#cb15-152" aria-hidden="true" tabindex="-1"></a>The selected nine circuits (along with their country and/or more familiar name) are:</span>
+<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Albert Park (Australia)</span>
+<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Autodromo Jose Carlos Pace (Interlagos/Sao Paolo, Brazil)</span>
+<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Monza (Italy)</span>
+<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Barcelona (Spain)</span>
+<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Monaco</span>
+<span id="cb15-159"><a href="#cb15-159" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Gilles Villneuve (Canada)</span>
+<span id="cb15-160"><a href="#cb15-160" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Hungaroring (Hungary)</span>
+<span id="cb15-161"><a href="#cb15-161" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sepang (Malaysia)</span>
+<span id="cb15-162"><a href="#cb15-162" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Suzuka (Japan)</span>
+<span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fastest Laps</span></span>
+<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-166"><a href="#cb15-166" aria-hidden="true" tabindex="-1"></a>The first of these visualizations compares fastest in-race lap times from Grands Prix held at these nine circuits between 1996 and 2021.</span>
+<span id="cb15-167"><a href="#cb15-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fast}</span></span>
+<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fastest laps</span></span>
+<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-171"><a href="#cb15-171" aria-hidden="true" tabindex="-1"></a>fastest_laps <span class="sc">%&gt;%</span> </span>
+<span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(seas_year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span><span class="sc">:</span><span class="dv">2021</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(master_circ) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-174"><a href="#cb15-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hybrid=</span><span class="fu">case_when</span>(</span>
+<span id="cb15-175"><a href="#cb15-175" aria-hidden="true" tabindex="-1"></a>    seas_year<span class="sc">&gt;=</span><span class="dv">2014</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb15-176"><a href="#cb15-176" aria-hidden="true" tabindex="-1"></a>    T <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb15-177"><a href="#cb15-177" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-178"><a href="#cb15-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time_lap_ms<span class="sc">&lt;=</span><span class="dv">110000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-179"><a href="#cb15-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(circ_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-180"><a href="#cb15-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.,<span class="fu">aes</span>(<span class="at">x=</span>date_race,<span class="at">y=</span><span class="fu">as.numeric</span>(time_lap),<span class="at">label=</span>seas_year,<span class="at">color=</span><span class="fu">as.factor</span>(hybrid))) <span class="sc">+</span></span>
+<span id="cb15-181"><a href="#cb15-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-182"><a href="#cb15-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb15-183"><a href="#cb15-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">size=</span><span class="fl">1.7</span>,<span class="at">hjust=</span><span class="sc">-</span><span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb15-184"><a href="#cb15-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb15-185"><a href="#cb15-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(circ_name),<span class="at">scales=</span><span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb15-186"><a href="#cb15-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb15-187"><a href="#cb15-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Date"</span>,</span>
+<span id="cb15-188"><a href="#cb15-188" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Lap Time (in seconds)"</span>,</span>
+<span id="cb15-189"><a href="#cb15-189" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Fastest Laps By Year and Circuit"</span>,</span>
+<span id="cb15-190"><a href="#cb15-190" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">"Color-coding indicates pre-Hybrid (red) vs. Hybrid (blue) Era"</span>)</span>
+<span id="cb15-191"><a href="#cb15-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-192"><a href="#cb15-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-193"><a href="#cb15-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-194"><a href="#cb15-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-195"><a href="#cb15-195" aria-hidden="true" tabindex="-1"></a>This visualization is a simple scatterplot superimposed with a time-series line graph, color-coded by pre-Hybrid vs Hybrid Era. First, it should be clarified that certain outliers are present that should not be considered in interpreting the data. Extremely high lap times, like those observed in Barcelona in 1996 or at Interlagos in 2016, correspond with wet-weather races, which tend to be significantly slower for obvious safety reasons. Certain years' observations have been excluded entirely in the process of filtering out some of these outlier laps.</span>
+<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a>Once wet-weather laps are ignored, there is a distinct trend that emerges in these fastest lap data. Across almost all nine circuits, there is an observable increase in fastest lap time from 2013 to 2014, as well as a subsequent year-over-year decrease in fastest lap time across all circuits as the Hybrid Era progressed. In the case of every circuit (except Monza, arguably), the fastest lap of the most recent Grand Prix is significantly faster than that of the last pre-Hybrid Era Grand Prix. The general trend appears to be that, after a brief adjustment period when the new rules were implemented, racers continually improved lap times throughout the Hybrid Era, achieving lap times that in every case bettered those to be expected at the end of the pre-Hybrid era. This is a strong initial sign that racing improved over the course of the Hybrid Era -- more specifically, that technological and racing improvements were continually being made between 2014 and 2021.</span>
+<span id="cb15-198"><a href="#cb15-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a><span class="fu">### Race Laps</span></span>
+<span id="cb15-200"><a href="#cb15-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-201"><a href="#cb15-201" aria-hidden="true" tabindex="-1"></a>My second exploratory visualization concerns the distribution of lap times by circuit and year.</span>
+<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{r race}</span></span>
+<span id="cb15-204"><a href="#cb15-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: race laps</span></span>
+<span id="cb15-205"><a href="#cb15-205" aria-hidden="true" tabindex="-1"></a><span class="co"># Ridgeline plot of lap time distributions by circuit and year</span></span>
+<span id="cb15-206"><a href="#cb15-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a>lap_times <span class="sc">%&gt;%</span> </span>
+<span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hybrid=</span><span class="fu">case_when</span>(</span>
+<span id="cb15-209"><a href="#cb15-209" aria-hidden="true" tabindex="-1"></a>    seas_year<span class="sc">&gt;=</span><span class="dv">2014</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a>    T <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-212"><a href="#cb15-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time_lap_ms<span class="sc">&lt;=</span><span class="dv">115000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-213"><a href="#cb15-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(seas_year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span><span class="sc">:</span><span class="dv">2021</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-214"><a href="#cb15-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(circ_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(race_id<span class="sc">!=</span><span class="fu">c</span>(<span class="dv">1046</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-216"><a href="#cb15-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(time_lap), </span>
+<span id="cb15-217"><a href="#cb15-217" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="fu">as.factor</span>(seas_year),<span class="at">fill=</span><span class="fu">as.factor</span>(hybrid),<span class="at">alpha=</span><span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb15-218"><a href="#cb15-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">6.5</span>)) <span class="sc">+</span></span>
+<span id="cb15-221"><a href="#cb15-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(circ_name),<span class="at">scales=</span><span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb15-222"><a href="#cb15-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb15-223"><a href="#cb15-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Distribution of Race Lap Times by Year and Circuit"</span>,</span>
+<span id="cb15-225"><a href="#cb15-225" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Color-coding indicates pre-Hybrid (red) vs. Hybrid (blue) Era"</span>,</span>
+<span id="cb15-226"><a href="#cb15-226" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">"Lap Time (in Seconds)"</span>,</span>
+<span id="cb15-227"><a href="#cb15-227" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">"Season Year"</span></span>
+<span id="cb15-228"><a href="#cb15-228" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-229"><a href="#cb15-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-230"><a href="#cb15-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-231"><a href="#cb15-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-232"><a href="#cb15-232" aria-hidden="true" tabindex="-1"></a>I chose to utilize a color-coded "ridgeline" plot for these distributions, allowing for simple year-by-year visual comparison. The individual "ridges" are density plots, reflecting the frequency (on the implied z-axis) of the given lap times on the x-axis, compared by year on the y-axis. Once again, color coding reflects whether a given year was pre-Hybrid Era (red) or Hybrid Era (blue).</span>
+<span id="cb15-233"><a href="#cb15-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-234"><a href="#cb15-234" aria-hidden="true" tabindex="-1"></a>Once again, there appears to be a year-over-year trend toward collectively faster lap times as the Hybrid Era progressed. Certain circuits, such as Sepang or Suzuka, saw a broad distribution of lap times, and can make for some difficult interpretation. However, other circuits like Monza, the Hungaroring, and especially Gilles Villeneuve show a much more concentrated distribution of lap times that trend toward an improvement over pre-Hybrid Era times. It should be noted that these are lap times from across the grid, rather than isolated fastest laps from single drivers. The concentration of lap times around these circuits suggests that racing remained competitive during the Hybrid Era, while the collective shift toward faster lap times illustrates improvements being made up and down the grid, and not only coming from certain constructors or drivers.</span>
+<span id="cb15-235"><a href="#cb15-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-236"><a href="#cb15-236" aria-hidden="true" tabindex="-1"></a><span class="fu">### Qualifying Laps</span></span>
+<span id="cb15-237"><a href="#cb15-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-238"><a href="#cb15-238" aria-hidden="true" tabindex="-1"></a>My final visualization concerns qualifying times from across all three rounds of qualifying for Grands Prix held at the same nine circuits across the same 25-year period.</span>
+<span id="cb15-239"><a href="#cb15-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-240"><a href="#cb15-240" aria-hidden="true" tabindex="-1"></a><span class="in">```{r qual}</span></span>
+<span id="cb15-241"><a href="#cb15-241" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: qual laps</span></span>
+<span id="cb15-242"><a href="#cb15-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-243"><a href="#cb15-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-244"><a href="#cb15-244" aria-hidden="true" tabindex="-1"></a><span class="fu">na.omit</span>(qual_race) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-245"><a href="#cb15-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(seas_year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1996</span><span class="sc">:</span><span class="dv">2021</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-246"><a href="#cb15-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(circ_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">18</span>,<span class="dv">22</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-247"><a href="#cb15-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(qual_time<span class="sc">&lt;</span><span class="fu">ms</span>(<span class="st">"2:45.00"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-248"><a href="#cb15-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hybrid=</span><span class="fu">case_when</span>(</span>
+<span id="cb15-249"><a href="#cb15-249" aria-hidden="true" tabindex="-1"></a>    seas_year<span class="sc">&gt;=</span><span class="dv">2014</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb15-250"><a href="#cb15-250" aria-hidden="true" tabindex="-1"></a>    T <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb15-251"><a href="#cb15-251" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-252"><a href="#cb15-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb15-253"><a href="#cb15-253" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.numeric</span>(qual_time),</span>
+<span id="cb15-254"><a href="#cb15-254" aria-hidden="true" tabindex="-1"></a>        <span class="at">y=</span><span class="fu">as.factor</span>(seas_year),</span>
+<span id="cb15-255"><a href="#cb15-255" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill=</span><span class="fu">as.factor</span>(hybrid),<span class="at">alpha=</span><span class="fl">0.5</span>)</span>
+<span id="cb15-256"><a href="#cb15-256" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb15-257"><a href="#cb15-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb15-258"><a href="#cb15-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb15-259"><a href="#cb15-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb15-260"><a href="#cb15-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(circ_name),<span class="at">scales=</span><span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb15-261"><a href="#cb15-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fl">6.5</span>)) <span class="sc">+</span></span>
+<span id="cb15-262"><a href="#cb15-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-263"><a href="#cb15-263" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">"Distribution of Lap Times in Qualifying by Year and Circuit"</span>,</span>
+<span id="cb15-264"><a href="#cb15-264" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">"Color-coding indicates pre-Hybrid (red) vs. Hybrid (blue) Era"</span>,</span>
+<span id="cb15-265"><a href="#cb15-265" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">"Lap Time (in Seconds)"</span>,</span>
+<span id="cb15-266"><a href="#cb15-266" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">"Season Year"</span></span>
+<span id="cb15-267"><a href="#cb15-267" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-268"><a href="#cb15-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-269"><a href="#cb15-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-270"><a href="#cb15-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-271"><a href="#cb15-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-272"><a href="#cb15-272" aria-hidden="true" tabindex="-1"></a>A similar ridgeline plot to the lap time visualization is used.</span>
+<span id="cb15-273"><a href="#cb15-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-274"><a href="#cb15-274" aria-hidden="true" tabindex="-1"></a>It is important to understand the mechanics of Formula 1 qualifying in order to properly interpret this plot. F1 qualifying sessions are not held as competitive races between cars, but rather as concurrent time-trials held over three rounds, the first two of which feature the elimination of the five slowest cars from that round. Only a driver's best time from a given round is recorded, and the above plot amalgamates times across rounds for each year. It is also important to note that, traditionally, qualifying sessions are held on the day preceding the race, which can make for differing weather conditions. In general, then, the above plot reflects less upon wheel-to-wheel, on-track racing, and speaks more to the quality of the cars up and down the grid, particularly in terms of technological advancements.</span>
+<span id="cb15-275"><a href="#cb15-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-276"><a href="#cb15-276" aria-hidden="true" tabindex="-1"></a>Once again, this ridgeline plot illustrates an apparent trend toward year-over-year improvement, over and above the pre-Hybrid Era, across the grid throughout the duration of the Hybrid Era. This is perhaps most clearly seen in the Monaco circuit plot, with every Hybrid Era ridge (barring 2021) appearing to reflect a collective improvement on the previous race, which by 2016 are already faster than most or all of the qualifying time distributions from the pre-Hybrid Era. Additionally, these ridges once again remain concentrated throughout the Hybrid Era, suggesting that improvement was consistent across all constructors year over year.</span>
+<span id="cb15-277"><a href="#cb15-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-278"><a href="#cb15-278" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb15-279"><a href="#cb15-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-280"><a href="#cb15-280" aria-hidden="true" tabindex="-1"></a>This preliminary exploratory analysis of Formula 1 data from 1996 to 2021 suggests that racing consistently improved while remaining competitive throughout the duration of the sport's Hybrid Era, especially when compared to data from seasons prior to this Era. Further analysis is needed, however, before conclusions can be drawn -- analysis of overtaking data alongside lap time data, and analysis performed in a more statistically rigorous and scientific way.</span>
+<span id="cb15-281"><a href="#cb15-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-282"><a href="#cb15-282" aria-hidden="true" tabindex="-1"></a><span class="fu">## Citations</span></span>
+<span id="cb15-283"><a href="#cb15-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-284"><a href="#cb15-284" aria-hidden="true" tabindex="-1"></a>"Ergast Developer API." n.d. Ergast Developer API. Accessed September 3, 2022. http://ergast.com/mrd/.</span>
+<span id="cb15-285"><a href="#cb15-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-286"><a href="#cb15-286" aria-hidden="true" tabindex="-1"></a>FORMULA 1, dir. 2022. The End Of An F1 Era \| 2014 To 2021. https://www.youtube.com/watch?v=T_55mVi_wQQ.</span>
+<span id="cb15-287"><a href="#cb15-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-288"><a href="#cb15-288" aria-hidden="true" tabindex="-1"></a>Grolemund, Garrett, and Hadley Wickham. 2017. R for Data Science. Sebastopol, CA: O'Reilly Media.</span>
+<span id="cb15-289"><a href="#cb15-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-290"><a href="#cb15-290" aria-hidden="true" tabindex="-1"></a>Vopani. n.d. "Formula 1 World Championship (1950 - 2022)." Accessed September 3, 2022. https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020.</span>
+<span id="cb15-291"><a href="#cb15-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-292"><a href="#cb15-292" aria-hidden="true" tabindex="-1"></a>R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</span>
+<span id="cb15-293"><a href="#cb15-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-294"><a href="#cb15-294" aria-hidden="true" tabindex="-1"></a>RStudio Team (2022). RStudio: Integrated Development Environment for R. RStudio, PBC, Boston, MA URL http://www.rstudio.com/.</span>
+<span id="cb15-295"><a href="#cb15-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-296"><a href="#cb15-296" aria-hidden="true" tabindex="-1"></a>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). "Welcome to the tidyverse." *Journal of Open Source Software*, *4*(43), 1686. doi:10.21105/joss.01686 <span class="ot">&lt;https://doi.org/10.21105/joss.01686&gt;</span>.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
