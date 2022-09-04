@@ -5,7 +5,9 @@ description: "Introduction to Visualization"
 date: "08/22/2022"
 format:
   html:
+    df-print: paged
     toc: true
+    css: styles.css
     code-fold: true
     code-copy: true
     code-tools: true

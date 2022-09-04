@@ -1,0 +1,63 @@
+edition,edition_id,season,year,city,country_noc,start_date,end_date,isHeld,competition_start_date,competition_end_date
+1896 Summer Olympics,1,Summer,1896,Athina,GRE,1896-04-06,1896-04-15,na,1896-04-06,1896-04-13
+1900 Summer Olympics,2,Summer,1900,Paris,FRA,na,na,na,14-05-1900,28-10-1900
+1904 Summer Olympics,3,Summer,1904,St. Louis,USA,14-05-1904,na,na,01-07-1904,23-11-1904
+1908 Summer Olympics,5,Summer,1908,London,GBR,13-07-1908,na,na,27-04-1908,31-10-1908
+1912 Summer Olympics,6,Summer,1912,Stockholm,SWE,06-07-1912,27-07-1912,na,05-05-1912,27-07-1912
+1916 Summer Olympics,50,Summer,1916,Berlin,GER,na,na,Not held due to war,na,na
+1920 Summer Olympics,7,Summer,1920,Antwerpen,BEL,14-08-1920,30-08-1920,na,23-04-1920,12-09-1920
+1924 Summer Olympics,8,Summer,1924,Paris,FRA,05-07-1924,27-07-1924,na,04-05-1924,27-07-1924
+1928 Summer Olympics,9,Summer,1928,Amsterdam,NED,28-07-1928,12-08-1928,na,17-05-1928,12-08-1928
+1932 Summer Olympics,10,Summer,1932,Los Angeles,USA,30-07-1932,14-08-1932,na,30-07-1932,14-08-1932
+1936 Summer Olympics,11,Summer,1936,Berlin,GER,01-08-1936,16-08-1936,na,02-08-1936,16-08-1936
+1940 Summer Olympics,51,Summer,1940,Helsinki,FIN,na,na,Not held due to war,na,na
+1944 Summer Olympics,52,Summer,1944,London,GBR,na,na,Not held due to war,na,na
+1948 Summer Olympics,12,Summer,1948,London,GBR,29-07-1948,14-08-1948,na,26-07-1948,14-08-1948
+1952 Summer Olympics,13,Summer,1952,Helsinki,FIN,19-07-1952,03-08-1952,na,14-07-1952,03-08-1952
+1956 Summer Olympics,14,Summer,1956,Melbourne,AUS,22-11-1956,08-12-1956,na,22-11-1956,08-12-1956
+1960 Summer Olympics,15,Summer,1960,Roma,ITA,25-08-1960,11-09-1960,na,25-08-1960,11-09-1960
+1964 Summer Olympics,16,Summer,1964,Tokyo,JPN,10-10-1964,24-10-1964,na,11-10-1964,24-10-1964
+1968 Summer Olympics,17,Summer,1968,Ciudad de México,MEX,12-10-1968,27-10-1968,na,12-10-1968,27-10-1968
+1972 Summer Olympics,18,Summer,1972,München,FRG,26-08-1972,11-09-1972,na,26-08-1972,11-09-1972
+1976 Summer Olympics,19,Summer,1976,Montréal,CAN,17-07-1976,01-08-1976,na,18-07-1976,01-08-1976
+1980 Summer Olympics,20,Summer,1980,Moskva,URS,19-07-1980,03-08-1980,na,20-07-1980,03-08-1980
+1984 Summer Olympics,21,Summer,1984,Los Angeles,USA,28-07-1984,12-08-1984,na,06-07-1984,12-08-1984
+1988 Summer Olympics,22,Summer,1988,Seoul,KOR,17-09-1988,02-10-1988,na,17-09-1988,02-10-1988
+1992 Summer Olympics,23,Summer,1992,Barcelona,ESP,25-07-1992,09-08-1992,na,24-07-1992,09-08-1992
+1996 Summer Olympics,24,Summer,1996,Atlanta,USA,19-07-1996,04-08-1996,na,20-07-1996,04-08-1996
+2000 Summer Olympics,25,Summer,2000,Sydney,AUS,15-09-2000,01-10-2000,na,13-09-2000,01-10-2000
+2004 Summer Olympics,26,Summer,2004,Athina,GRE,13-08-2004,29-08-2004,na,11-08-2004,29-08-2004
+2008 Summer Olympics,53,Summer,2008,Beijing,CHN,08-08-2008,24-08-2008,na,06-08-2008,24-08-2008
+2012 Summer Olympics,54,Summer,2012,London,GBR,27-07-2012,12-08-2012,na,25-07-2012,12-08-2012
+2016 Summer Olympics,59,Summer,2016,Rio de Janeiro,BRA,05-08-2016,21-08-2016,na,03-08-2016,21-08-2016
+2020 Summer Olympics,61,Summer,2020,Tokyo,JPN,23-07-2021,23-07-2021,na,na,na
+2024 Summer Olympics,63,Summer,2024,Paris,FRA,na,na,na,na,na
+2028 Summer Olympics,64,Summer,2028,Los Angeles,USA,na,na,na,na,na
+2032 Summer Olympics,372,Summer,2032,Brisbane,AUS,na,na,na,na,na
+1924 Winter Olympics,29,Winter,1924,Chamonix,FRA,24-01-1924,05-02-1924,na,26-01-1924,04-02-1924
+1928 Winter Olympics,30,Winter,1928,Sankt Moritz,SUI,11-02-1928,17-02-1928,na,11-02-1928,19-02-1928
+1932 Winter Olympics,31,Winter,1932,Lake Placid,USA,04-02-1932,13-02-1932,na,04-02-1932,15-02-1932
+1936 Winter Olympics,32,Winter,1936,Garmisch-Partenkirchen,GER,06-02-1936,16-02-1936,na,06-02-1936,16-02-1936
+1940 Winter Olympics,55,Winter,1940,Garmisch-Partenkirchen,GER,na,na,Not held due to war,na,na
+1944 Winter Olympics,56,Winter,1944,Cortina d'Ampezzo,ITA,na,na,Not held due to war,na,na
+1948 Winter Olympics,33,Winter,1948,Sankt Moritz,SUI,30-01-1948,08-02-1948,na,30-01-1948,08-02-1948
+1952 Winter Olympics,34,Winter,1952,Oslo,NOR,15-02-1952,25-02-1952,na,14-02-1952,25-02-1952
+1956 Winter Olympics,35,Winter,1956,Cortina d'Ampezzo,ITA,26-01-1956,05-02-1956,na,26-01-1956,05-02-1956
+1960 Winter Olympics,36,Winter,1960,Squaw Valley,USA,18-02-1960,28-02-1960,na,19-02-1960,28-02-1960
+1964 Winter Olympics,37,Winter,1964,Innsbruck,AUT,29-01-1964,09-02-1964,na,27-01-1964,09-02-1964
+1968 Winter Olympics,38,Winter,1968,Grenoble,FRA,06-02-1968,18-02-1968,na,04-02-1968,18-02-1968
+1972 Winter Olympics,39,Winter,1972,Sapporo,JPN,03-02-1972,13-02-1972,na,03-02-1972,13-02-1972
+1976 Winter Olympics,40,Winter,1976,Innsbruck,AUT,04-02-1976,15-02-1976,na,03-02-1976,15-02-1976
+1980 Winter Olympics,41,Winter,1980,Lake Placid,USA,13-02-1980,24-02-1980,na,12-02-1980,24-02-1980
+1984 Winter Olympics,42,Winter,1984,Sarajevo,YUG,08-02-1984,19-02-1984,na,07-02-1984,19-02-1984
+1988 Winter Olympics,43,Winter,1988,Calgary,CAN,13-02-1988,28-02-1988,na,13-02-1988,28-02-1988
+1992 Winter Olympics,44,Winter,1992,Albertville,FRA,08-02-1992,23-02-1992,na,08-02-1992,23-02-1992
+1994 Winter Olympics,45,Winter,1994,Lillehammer,NOR,12-02-1994,27-02-1994,na,12-02-1994,27-02-1994
+1998 Winter Olympics,46,Winter,1998,Nagano,JPN,07-02-1998,22-02-1998,na,07-02-1998,22-02-1998
+2002 Winter Olympics,47,Winter,2002,Salt Lake City,USA,08-02-2002,24-02-2002,na,09-02-2002,24-02-2002
+2006 Winter Olympics,49,Winter,2006,Torino,ITA,10-02-2006,26-02-2006,na,11-02-2006,26-02-2006
+2010 Winter Olympics,57,Winter,2010,Vancouver,CAN,12-02-2010,28-02-2010,na,12-02-2010,28-02-2010
+2014 Winter Olympics,58,Winter,2014,Sochi,RUS,07-02-2014,23-02-2014,na,06-02-2014,23-02-2014
+2018 Winter Olympics,60,Winter,2018,PyeongChang,KOR,09-02-2018,25-02-2018,na,08-02-2018,25-02-2018
+2022 Winter Olympics,62,Winter,2022,Beijing,CHN,04-02-2022,20-02-2022,na,02-02-2022,20-02-2022
+2026 Winter Olympics,72,Winter,2026,Milano-Cortina d'Ampezzo,ITA,na,na,na,na,na
