@@ -1,0 +1,205 @@
+---
+title: "Final Project"
+author: "Lai Wei"
+desription: "final project"
+date: "09/4/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw2
+  - Lai Wei
+  - dataset
+  - ggplot2
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+  The University of Massachusetts Amherst (UMass Amherst, UMass) is a public research university in Amherst, Massachusetts and the sole public land-grant university in Commonwealth of Massachusetts.
+It was founded in 1863 as an agricultural college in the beginning.
+And the department of Mathematics and Statistics is an essential component of various researches and majors in Umass, which provides the student with broad exposure to the most important themes in mathematics and statistics and exposure to computing paradigms (whether in Java, Python, MATLAB, R, and/or SAS).
+
+  I will code and analyze mainly based on admission information in mathematics and statistics department.
+
+## Data
+
+  As a member of the class of 2018, I want to take a glance mainly of how Umass Amherst-math department developed and give a report about student admissions from 2012 to 2021, 9 years in total.The data is from Umass Amherst official website, including both undergraduate and graduate students.
+
+  In the first place, I import the data based on First-year, master and Phd students into R. 
+
+```{r}
+#Import data about Umass Amherst first-year students in math. 
+library(readxl)
+Admissions_orig <- read_excel("C:/Users/Lai Wei/Desktop/Umass Amherst/DACSS 601/Assignments/Final Project/Admissions_math.xlsx",
+                         sheet = "MATH",
+                         skip = 8,
+                         n_max=5,
+                         col_names = c("stats",2012:2021)) %>%
+  pivot_longer(cols=starts_with("20"), 
+               names_to = "year",
+               values_to = "value")%>%
+  pivot_wider(names_from = "stats", values_from = "value")
+Admissions_orig
+
+Admissions<-Admissions_orig%>%
+  mutate(enrollment_gwth1 = lag(Enrollments, n=1))
+
+#Import data based on master students in math
+Admissions_master <- read_excel("C:/Users/Lai Wei/Desktop/Umass Amherst/DACSS 601/Assignments/Final Project/Admissions_math.xlsx",
+                         sheet = "MATH",
+                         skip = 30,
+                         n_max = 5,
+                         col_names = c("stats",2012:2021)) %>%
+  pivot_longer(cols=starts_with("20"),
+                names_to = "year",
+               values_to = "value")%>%
+               pivot_wider(names_from = "stats", values_from = "value")
+Admissions_master
+
+#Import data based on Phd students in math
+Admissions_Phd <- read_excel("C:/Users/Lai Wei/Desktop/Umass Amherst/DACSS 601/Assignments/Final Project/Admissions_math.xlsx",
+                         sheet = "MATH",
+                         skip = 37,
+                         n_max = 5,
+                         col_names = c("stats",2012:2021)) %>%
+  pivot_longer(cols=starts_with("20"),
+                names_to = "year",
+               values_to = "value")%>%
+               pivot_wider(names_from = "stats", values_from = "value")
+Admissions_Phd
+
+```
+
+### Describe the Data
+
+  Secondly, I want to show some basic information of the data, such as column names and dimensions. 
+```{r}
+#import the number of year, from 2012 to 2021
+colnames(Admissions_orig)
+#Get the dimension of admission data
+dim(Admissions_orig)
+```
+  Next, for viewing and comparing the data easier, some more essential data will be gotten together. Also, I create some new variables. 
+  -enroll_rate: enrollment rate made by enrollment students number / acceptances students number, and both of them from math department. 
+```{r}
+#Show the enrollment rate in undergraduate freshmen   
+enroll_rate <- select(Admissions_orig,Acceptances,Enrollments)%>%
+  mutate(Enroll_rate = Enrollments/Acceptances) 
+enroll_rate
+```
+  Then I get two mean value according to acceptance rate and enrollment rate from 2012 to 2022.
+```{r}
+#Show the mean of acceptance rate and enrollment rate among 2012-2022
+summarise(Admissions_orig, accp_mean = mean(`Acceptance Rate (%)`,na.rm = TRUE))
+summarise(enroll_rate,enroll_mean = mean(Enroll_rate,na.rm = TRUE))
+```
+  From these two number, we can easily see that the average value of acceptance rate is much higher than the average value of enrollment rate, and we can tell it from the low Yields(%) rate as well, which is similar with the yields rate of the whole campus. We can see it from the total admission data. 
+
+### Data Comparison
+
+In this session, I import another two admission information, one is Physics department, and another is the whole admission. 
+```{r}
+#Import data about Umass Amherst first-year students in Physics. 
+library(readxl)
+Admissions_Phy <- read_excel("C:/Users/Lai Wei/Desktop/Umass Amherst/DACSS 601/Assignments/Final Project/Admissions_math.xlsx",
+                         sheet = "PHYS",
+                         skip = 8,
+                         n_max=5,
+                         col_names = c("stats",2012:2021)) %>%
+  pivot_longer(cols=starts_with("20"), 
+               names_to = "year",
+               values_to = "value")%>%
+  pivot_wider(names_from = "stats", values_from = "value")
+Admissions_Phy
+
+#Import data about Yields based on the whole campus. 
+library(readxl)
+Admissions <- read_excel("C:/Users/Lai Wei/Desktop/Umass Amherst/DACSS 601/Assignments/Final Project/Admissions_math.xlsx",
+                         sheet = "Campus",
+                         skip = 17,
+                         n_max = 3,
+                         col_names = c("stats",2012:2021)) %>%
+  pivot_longer(cols=starts_with("20"), 
+               names_to = "year",
+               values_to = "value")%>%
+  pivot_wider(names_from = "stats", values_from = "value")
+Admissions
+
+```
+For better vision, I combine two admission form together.
+```{r}
+#Combine two data form together
+tab1 <- merge(x = Admissions_orig, y = Admissions_Phy, by = 0, all = TRUE)
+colnames(tab1)
+tab1
+```
+```{r}
+#create a table that can show the application difference between two majors
+select(tab1, Applications.x,Applications.y)%>%
+  mutate(app_diff = Applications.x - Applications.y)
+#create a table that can show the enrollment difference between math and physics
+select(tab1,Enrollments.x,Enrollments.y)%>%
+  mutate(enrol_diff = Enrollments.x - Enrollments.y)
+
+```
+From the comparison, we can see that even though there is a bigger difference in applications, and the gap is in hundreds also more and more, the total enrollment students do not change too many, except in few years the data changed a lot. In addition, the enrollment of math is getting more and more, but in physics, the enrollment stays in a stable range. 
+
+## Data Visualizition 
+
+This section is about graphs. 
+```{r}
+#Bivariate Visualization for undergraduate first-year
+ggplot(Admissions_orig,aes(x = year, y = Enrollments))+
+  geom_point()
+```
+From this graph, we can see that in 2019, the enrollment number is the highest in these 9 years, which is more than one hunderd, and 2017 is the lowest. around 50s students. Most of the year is around 60s to 70s, and recent year is very unstable since 2018, when had a obvious increase and 2019 is the peak, then 2021 year goes back to 60s again. 
+```{r}
+#Bivariate Visualization for master students in math
+ggplot(Admissions_master,aes(x = year, y = Enrollments))+
+  geom_point()
+```
+The number of master students in math department is increasing stably. From these 9 years, it grows from 10s to 20s, maybe in the next 5 years, there will be more than 30 master students every year. 
+
+```{R}
+#Bivariate Visualization for Phd students in math
+ggplot(Admissions_Phd,aes(x = year, y = Enrollments))+
+  geom_point()
+```
+Phd students are only a few comparing with other stduents. 
+
+## Reflection
+
+  DACSS 601 is my first class to learn R step by step. It was quite hard in the beginning, but after I set Github and Rstudio ready everything started to go smoothly, so I think the start point is the most challenging. 
+  
+  Personally speaking, the time of my final project is a bit rush, since I spent my first mainly on figuring out what R and Github is, then I was behind to the whole schedule. As the result, in week 2, I have to make up the content in the first week. Similarly, in week 3, the final project week, I have to go through the challenges and readings of week 2, and that is the reason why my data visualization part is a bit easy, I had no time to go through everything (but I did in week 1 resource.
+  
+  Back to the project, the reason why I chose to focus on Umass Amherst Math department Admission is because is a understandable topic for me and for almost everyone in Umass.And I was an undergraduate student majored in math before, so I want to know more about the department which I spent 4 years. The process was harder than I thought, but luckily after many DACSS members' help, I finally imported my data in order. 
+  
+  The most challenge part is that I often met some small problems which blocked the whole process. For example, in many charts, the variable names have blank in so they cannot be called in the regular way. I tried many tips for solving it, such as rename (failed since could not call names with blank in the first place) and some other functions. But eventually I learnt to use `` for names with blank and it works! Since I think those kind of small problems are not big enough to make appointment, I had to try and try all by myself. 
+
+
+## Conclusion
+
+From this project, it is obvious that admissions in Math and Statistics department are getting bigger and bigger, but the acceptance rate is not changed a lot, so it must be the total applicants are also growing as time. And in the year 2019 to 2021, the application was unstable and different from other years, so may be COVID also had an influence on it. From the graph, it is hard to see a tendency of Phd students enrollments. I think it may be because Phd application system is more independent and has its own system and rules to decide how many they want each year. Applications are a lot in each year, but enrollments as well as acceptance rate is much lower than master and undergraduate.
+
+In Natural Science College, it is unpredictable that math majors are higher than physics majors, because I think physics is more useful in both research and industry fields. Maybe because physics is more abstract in undergraduate period, or math majors can have more choice in future? 
+
+
+## Bibliography
+
+"Admissions data by school and college", Admissions Statistics, Undergraduate Admissions, Umass Amherst official website, https://www.umass.edu/admissions/undergraduate-admissions/explore/admissions-statistics
