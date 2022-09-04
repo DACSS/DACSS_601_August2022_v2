@@ -1,0 +1,128 @@
+---
+title: "Challenge 7"
+author: "Animesh Sengupta"
+description: "Visualizing Multiple Dimensions"
+date: "08/24/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_7
+  - us_hh
+  - Animesh Sengupta
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(summarytools)
+library(plotly)
+library(stringr)
+library(ggalluvial)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  Recreate at least two graphs from previous exercises, but introduce at least one additional dimension that you omitted before using ggplot functionality (color, shape, line, facet, etc) The goal is not to create unneeded [chart ink (Tufte)](https://www.edwardtufte.com/tufte/), but to concisely capture variation in additional dimensions that were collapsed in your earlier 2 or 3 dimensional graphs.
+   - Explain why you choose the specific graph type
+5) If you haven't tried in previous weeks, work this week to make your graphs "publication" ready with titles, captions, and pretty axis labels and other viewer-friendly features
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code. And anyone not familiar with Edward Tufte should check out his [fantastic books](https://www.edwardtufte.com/tufte/books_vdqi) and [courses on data visualizaton.](https://www.edwardtufte.com/tufte/courses)
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+  - eggs ⭐
+  - abc_poll ⭐⭐
+  - australian_marriage ⭐⭐
+  - hotel_bookings ⭐⭐⭐
+  - air_bnb  ⭐⭐⭐
+  - us_hh ⭐⭐⭐⭐
+  - faostat ⭐⭐⭐⭐⭐
+
+```{r}
+#! label: Data loading
+US_household_data <- read_excel("../posts/_data/USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx",skip = 5, n_max = 353, col_names = c( "Year", "Number","Total","pd_<15000","pd_15000-24999","pd_25000-34999","pd_35000-49999","pd_50000-74999","pd_75000-99999","pd_100000-149999","pd_150000-199999","pd_>200000","median_income_estimate","median_income_moe","mean_income_estimate","mean_income_moe"))
+
+head(US_household_data,5)
+```
+
+### Briefly describe the data
+
+## Tidy Data (as needed)
+
+Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+
+```{r}
+#! label: Data processing
+US_processed_data <- US_household_data%>%
+  rowwise()%>% #to ensure the following operation runs row wise
+  mutate(Race=case_when(
+    is.na(Number) ~ Year
+  ))%>%
+  ungroup()%>% # to stop rowwise operation
+  fill(Race,.direction = "down")%>%
+  subset(!is.na(Number))%>%
+  rowwise()%>%
+  mutate(
+    Year=strsplit(Year,' ')[[1]][1],
+    Race=ifelse(grepl("[0-9]", Race ,perl=TRUE)[1],strsplit(Race," \\s*(?=[^ ]+$)",perl=TRUE)[[1]][1],Race),
+    mean_income_estimate=as.numeric(mean_income_estimate),
+    Number=as.numeric(Number),
+    Year=as.numeric(Year),
+    CombinedRace=case_when(
+      str_detect(Race,"ASIAN")~"ASIAN",
+      str_detect(Race,"BLACK")~"BLACK",
+      str_detect(Race,"WHITE")~"WHITE",
+      TRUE ~ Race
+    )
+  )%>%
+  pivot_longer(
+    cols = starts_with("pd"),
+    names_to = "income_range",
+    values_to = "percent_distribution",
+    names_prefix="pd_"
+  )
+view(dfSummary(US_processed_data))
+
+
+```
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+Document your work here.
+
+```{r}
+#| label: Part-whole Visualization
+alluvial_viz<-ggplot(US_processed_data,aes(axis1=CombinedRace,axis2=income_range,y=percent_distribution))+
+  geom_alluvium(aes(fill=CombinedRace))+
+  geom_stratum(aes(fill = CombinedRace))+
+  geom_text(stat = "stratum",size=3,
+            aes(label = after_stat(stratum)))+
+  theme_void()+
+  labs(title="Income range distribution across different races")
+alluvial_viz
+
+```
+
+## Visualization with Multiple Dimensions
+
+
+

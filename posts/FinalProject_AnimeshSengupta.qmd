@@ -1,0 +1,492 @@
+---
+title: "Cancer Incidence and Mortality Analysis across States and Age Groups"
+author: "Animesh Sengupta"
+description: "Exploratory analysis of Cancer incidence and mortality rate against the US population data between the years 2000-2019, grouped by State and Age Groups"
+date: "09/03/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - Final Project
+  - Animesh Sengupta
+  - Census Data
+  - Cancer USPS Data
+---
+
+```{r}
+#| label: Package Import
+#| warning: false
+#| message: false
+
+#install.packages("treemap")
+#install.packages("treemapify")
+#install.packages("usmap")
+#install.packages("ggalluvial")
+#install.packages("reshape")
+library(reshape) 
+library(usmap)
+library(tidyverse)
+library(ggplot2)
+library(readr)
+library(summarytools)
+library(plotly)
+library(stringr)
+library(ggalluvial)
+library(readxl)
+library(treemap)
+library(treemapify)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Project Overview
+
+This current project is the exploratory analysis for **DACSS 601 Fundamentals of Data Science - Final Project** of US Cancer Data grouped by Area, Age groups and Race against the Census population grouped by the same parameters across the year 2000 to 2020.
+
+This project contains the following sections:
+
+1) Introduction & Motivation
+2) US Cancer Statistics grouped by Area - Tidying and Sanitation 
+3) US Census Data grouped by Area - Tidying and Sanitation
+4) US Census Data grouped by Area - Analysis
+5) US Cancer vs Census Data grouped by Area Parameter - Join and Analysis
+6) US Census Data grouped by Age groups - Tidying and Sanitation
+7) US Cancer Statistics grouped by Age groups - Tidying and Sanitation
+8) US Cancer Statistics grouped by Age groups - Analysis
+9) US Cancer vs Census Data grouped by Age Parameter - Join and Analysis
+10) Conclusion
+11) References
+
+## Introduction and Motivation
+
+In the past few decades, our species have made significant strides in improving the medical facilities and technologies thus significantly improving our lifespans and quality of life. Even after such amazing technological feats and centuries of study of the human body, Cancer proves to be a thorn in our path. Cancer is one of the biggest chronic illnesses plaguing multiple people across the planet throughout decades. Since then, the solution to evade and treat Cancer is amongst the hottest topic in the scientific field and the research around its inception, is even more critical.
+
+In the ever changing world dynamics with overpopulation and pollution plaguing our societies, cancer has not only increased but has become prevalent. This small study aims to find questions regarding the incidence and mortality statistics across the US States and population. More Importantly this study aims to find how prevalent different types of Cancer are in the state. This study will also outline the spread of cancer among different age groups of US population as well. So in essance, in this study we are determined to ask two major questions:
+
+1. **How is cancer incidence and mortality cases spread across the states over the last 2 decades?**
+2. **How is Cancer incidence spread across different age groups in the US population?**
+
+To understand the following two questions, we are using two US government published datasets. They are as follow:
+
+1. US cancer statistics dataset: Maintained and procured by the CDC WONDER org.[1]
+2. US Census Bureau Population dataset.[2]
+
+
+
+##US Cancer Statistics grouped by Area - Tidying and sanitation.
+
+
+```{r}
+#| label: Data Tidy - USCS Cancer by Area
+#| warning: false
+#| message: false
+
+USCS_Area <- read_csv("../posts/_data/Animesh_data/USCS_Area1.csv")
+USCS_Area<-USCS_Area%>%select(AREA,YEAR,SITE,EVENT_TYPE,COUNT)%>%
+  filter(YEAR!='1999')%>%
+  filter(COUNT!="~" & COUNT!="+" & COUNT!="." & COUNT!="-")%>%
+  mutate(YEAR=as.double(YEAR),
+         COUNT=as.double(COUNT))%>%
+  drop_na(YEAR,AREA)%>%
+  unique()
+view(dfSummary(USCS_Area))
+head(USCS_Area,5)
+
+```
+Our first step would be to read the raw data provided by the US cancer statistics dataset and tidying it according to our needs. This dataset has the following dimensions `r dim(USCS_Area)`. The USCS raw data had a lot of statistical features, which wont be required for the study and thus were trimmed. The selected features of the dataset are `r colnames(USCS_Area)`.
+
+After careful consideration from viewing the dataframe summary of the data, the following tidying and sanitation actions were performed:
+1. Only the relevant features were selected and statistical features were trimmed from the dataset.
+2. The Year 1999 data was filtered out, because we are only concerened about the 2000-2019
+3. The type of feature Year and Count were converted from char to double
+4. duplicates rows were removed
+5. Rows with NA in year and area were also dropped to maintain consistency.
+
+From the dfsummary, we can check that the year are of proper type and runs from 2000-2019. All the other features types are as expected and there are no duplicate values either. 
+
+
+
+## US Census Data grouped by Area - Tidying and Sanitation
+
+One of the most challenging task was to extract the right dataset/table from the US Census datasets. To analyse the cancer trend among US population, we need the state wise US population statistics.
+
+We extracted the state wise population statistics for two decades i.e 2000-2010 and 2011-2020. The following code snippets extracts the data
+```{r}
+#| label: Data Tidy - Census 2000s Data by area
+#| warning: false
+#| message: false
+
+area_2000_Data<-read_excel("../posts/_data/Animesh_data/2000s_state_data.xls", 
+    skip = 4, n_max = 60,col_names=c("Area","2009","2008","2007","2006","2005","2004","2003","2002","2001","2000","April_2000_estimate","April_2000_census"))
+area_2000_Data<-area_2000_Data%>%select(-one_of(c("April_2000_census","April_2000_estimate")))%>%
+  pivot_longer(
+    cols=starts_with("20"),
+    names_to = "Year",
+    names_transform = list(Year = as.double),
+    values_to= "Population_count"
+  )
+```
+The following dataset had year as features. The following tidying actions were perfomed
+
+1. As a rule of thumb , all the population estimates figure for the years were taken on July 1. In that extent, the population estimate of 2010 was also chosen when presented with both April and July,2010 data. The rest of the data was skimmed
+2. The Year columns were pivoted longer and converted into row data.
+3. Appropriate numerical columns were converted from char to double
+
+
+The similar approach was also taken for the 2010 decade dataset. Similar features were present in this dataset too and thus a similar tidying approach were taken to tidy this too. Refer to the code below 
+
+```{r}
+#| label: PData Tidy - Census 2010s data by area
+#| warning: false
+#| message: false
+
+area_2010_Data<-read_excel("../posts/_data/Animesh_data/2010s_state_data.xlsx", 
+    skip = 4, n_max = 60,col_names=c("Area","April_2010_estimate","April_2010_census","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","April_2020_estimate","2020"))
+area_2010_Data<-area_2010_Data%>%select(-one_of(c("April_2010_census","April_2010_estimate","April_2020_estimate")))%>%
+  pivot_longer(
+    cols=starts_with("20"),
+    names_to = "Year",
+    names_transform = list(Year = as.double),
+    values_to= "Population_count"
+  )
+```
+Since most of the features were similar between the two dataset, similar tidying principles were applied. Our aim is to make both the dataframe homogenous for them to stack together appropriately. Our ulterior motive is to get a singular dataframe with Area statistics for both the decades. 
+
+
+Once both the data was extracted , we stacked them together. In addition to this, we also needed the State codes and abbreviation for our visualization purposes. In the code snippet below, we also extract a State to abbreviation mapping and join it to our Census dataset.
+```{r}
+#| label: Data Tidy - Census Data stacking
+#| warning: false
+#| message: false
+area_data<-bind_rows(area_2000_Data,area_2010_Data)
+area_data$Area<-str_remove(area_data$Area,"[[:punct:]]")
+area_code <- read_csv("../posts/_data/Animesh_data/state_code.csv")
+area_data_code<-merge(area_data,area_code,by.x=c("Area"),by.y=c("State"))
+head(area_data_code,10)
+```
+Now we have a dataframe containing the population change across different states over 2 decades. The dimensions of the dataset are `r dim(area_data_code)`. While the features for this dataset are `r colnames(area_data_code)`.
+
+## US Census Data grouped by Area - Analysis
+
+One of the most important aspect of population is to find out the rate of change of population across different states. This trend can prove to be a very important indicator in access to healthcare and important medicare resources across the states. Usually a buregoning population will have stressed resources and thus higher percentage of people with poor access to the healthcare Infra. 
+
+```{r}
+#| label: Data Visualization - 1. State population oveer time 
+#| warning: false
+#| message: false
+
+jarea_gg1<-ggplot(area_data_code,aes(x=Year,y=Population_count,color=Area))+
+  geom_line()+
+  ylab("Population Count")+
+  ggtitle("Change in population from 2000-2020 in US States")
+ggplotly(jarea_gg1)
+```
+As per the above visualization, The state of califoria has the highest population across the two decades. While the state of Texas has the steepest slope , hence have the highest rate of growth.
+
+```{r}
+#| label: Data Visualization - 2. US Census by Area 
+#| warning: false
+#| message: false
+jarea_gg2<-ggplot(area_data_code%>%filter(Year=="2020"),aes(area=Population_count,fill=Abbreviation, label=Abbreviation))+
+  geom_treemap()+
+  geom_treemap_text(colour = "white",
+                    place = "centre",
+                    size = 10) +
+  theme(legend.position = "none")+
+  ggtitle("State-wise Population Density for the Year 2020")
+jarea_gg2
+```
+We are also concerned about the population densty among the states. The above treemap paints a very good picture on where the population is scattered at. From the visualization we can observe that the state of California and Texas are the most populous state while Wyoming is less populated. 
+
+We chose the Treemap visualization to effectively show the population density amongst the states without cluttering the graphs. A treemap was the best visual tool to show the population size compared to different states.
+
+## US Cancer vs Census Data grouped by Area Parameter - Join and Analysis
+
+One of the important features of the USCS Cancer data is the count of cancer cases for a particular area. If we also have the population data for that area and year, we can identify the percentage of population affected by cancer.
+
+To achieve this, we perform a inner join between the Cancer Dataset and US census data over the Area and Year features. 
+
+```{r}
+#| label: Data Visualization - 3. State wise Mortality percentage 
+#| warning: false
+#| message: false
+Area_joined<-merge(USCS_Area,area_data_code,by.x=c("AREA","YEAR"), by.y=c("Area","Year"))
+
+view(dfSummary(Area_joined))
+
+Area_wise_cancer<-Area_joined%>%
+  filter(SITE=="All Cancer Sites Combined")%>%
+  filter(YEAR=="2000"|YEAR=="2010"|YEAR==
+           "2019")%>%
+  group_by(AREA,YEAR,SITE,Abbreviation,Population_count,EVENT_TYPE)%>%
+  summarize(Nct=sum(COUNT))%>%
+  mutate("Count_percent"=Nct/Population_count*100)%>%
+  dplyr::rename(state=AREA)%>%
+  ungroup()
+
+head(Area_wise_cancer,20)
+```
+
+To further fit the data to the require visualizations, we chose a subset of datasets. In our analysis, we can look into the change in % population during the turn of century. So for the year 2000,2010 and 2019, we plotted the %Count of the population affected by Cancer and died by cancer. To acheive this we did the following actions:
+1. Removed the "All cancer sites combined" parameter from Cancer Sites.
+2. Chose 2000,2010 and 2019 as subset years
+3. grouped according to Area year and site while summing the count. 
+4. Converted the feature name of Area to state for USmap package.
+
+
+
+```{r}
+#| warning: false
+#| message: false
+area_gg1<-plot_usmap(data=Area_wise_cancer%>%filter(EVENT_TYPE=="Mortality"),values="Count_percent", color = "red")+
+  scale_fill_continuous(
+    low = "white", high = "red", name = "Population Percent", label = scales::comma
+  )+
+  ggtitle("US Statewise Mortality Cases percent per population")+
+  facet_wrap(vars(YEAR))
+ggplotly(area_gg1)
+```
+We chose a USMap based visualization to effectively show the spread of Cancer across different states in a very visually appealing way. 
+
+As per the visualization, the fatalities have certainly increased especially in the East coast of America. The maximum Fatality change happened over the state of Maine, increasing from 0.95% to 1.009% of population. The central eastern states has certainly been affected more with cancer fatalities. Although Florida shows a decrease in cancer fatalities , it is still significantly higher than the rest of the country. Utah seems to be the most safest place, with low cancer fatalities and marginal change over the years. 
+
+```{r}
+#| label: Data Visualization - 4. State wise Incidence percentage 
+#| warning: false
+#| message: false
+
+area_gg2<-plot_usmap(data=Area_wise_cancer%>%filter(EVENT_TYPE=="Incidence"),values="Count_percent", color = "blue")+
+  scale_fill_continuous(
+    low = "white", high = "blue", name = "Population Percent", label = scales::comma
+  )+
+  ggtitle("US Statewise Incidence Cases percent per population")+
+  facet_wrap(vars(YEAR))
+ggplotly(area_gg2)
+```
+A similar approach was taken to map the Cancer incidence rate. As per the visualization, there is a clear increase in cancer incidences in every turn of the century. Maine shows the significant rise in Cancer incidences , topping the chart with 2.8% of population. While florida closely trails with 2.6% of population affected. Over the recent years , The state of nevada has successfully able to decrease the rate of cancer during the turn of the centuries.
+
+## US Census Data grouped by Age groups - Tidying and Sanitation
+
+The next part of the analysis takes us to measure the Incidence and Mortality rates amongst the different age groups in a step of 5.
+
+The US census data for Age group is very difficult to tidy with Intercensal info is overlapped with the Age group and row data. To tackle this problem, I created a data reading + tidying function to read the US census data by Age more efficiently. 
+```{r}
+#| label: Data Tidy - Census Data 2000 by Age
+#| warning: false
+#| message: false
+
+Age_2000s_data_func<-function(data_file_loc,skip_rows,max_rows,sex){
+  df<-read_excel(data_file_loc, 
+    skip = skip_rows, n_max = max_rows,col_names = c("Age","2009","2008","2007","2006","2005","2004","2003","2002","2001","2000","April_2000_estimate","April_2000_census"))%>%select(-one_of(c("April_2000_estimate","April_2000_census")))%>%
+  subset(Age!=".")%>%  
+  pivot_longer(
+    cols=starts_with("20"),
+    names_to = "Year",
+    names_transform = list(Year = as.double),
+    values_to= "Population_count"
+  )%>%
+    add_column(Sex=sex)
+  return(df)
+}
+
+Both_age_data_2000<-Age_2000s_data_func("../posts/_data/Animesh_data/2000s_age_data.xls",5,18,"Male and Female")
+Male_age_data_2000<-Age_2000s_data_func("../posts/_data/Animesh_data/2000s_age_data.xls",40,18,"Male")
+Female_age_data_2000<-Age_2000s_data_func("../posts/_data/Animesh_data/2000s_age_data.xls",75,18,"Female")
+
+age_data_2000<-bind_rows(Both_age_data_2000, Male_age_data_2000, Female_age_data_2000)
+tail(age_data_2000,20)
+```
+The following tidying actions were completed:
+1. The year wise data was pivoted longer to have Year as a singular column.
+2. Added a new column Sex and populated with static values as per the sheet.
+3. Removed special characters from Age groups
+
+A similar approach was taken to tidy the US Census by Age 2010s decade data too. Our aim was to make both the datasets homogenous in nature. So the tidying was done keeping that in mind.  
+```{r}
+#| label: Data Tidy - Census 2010 Data by age
+#| warning: false
+#| message: false
+
+Age_2010s_data<-read_excel("../posts/_data/Animesh_data/2010s_age_data.xlsx", 
+    skip = 6, n_max = 18,col_names = c("Age","April_2010_Census.Both","April_2010_Census.Male","April_2010_Census.Female","April_2010_est.Both","April_2010_est.Male","April_2010_est.Female","2010.Both","2010.Male","2010.Female","2011.Both","2011.Male","2011.Female","2012.Both","2012.Male","2012.Female","2013.Both","2013.Male","2013.Female","2014.Both","2014.Male","2014.Female","2015.Both","2015.Male","2015.Female","2016.Both","2016.Male","2016.Female","2017.Both","2017.Male","2017.Female","2018.Both","2018.Male","2018.Female","2019.Both","2019.Male","2019.Female"))%>%
+  select(-one_of(c("April_2010_Census.Both","April_2010_Census.Male","April_2010_Census.Female","April_2010_est.Both","April_2010_est.Male","April_2010_est.Female")))%>%
+  pivot_longer(cols=-1,names_pattern = "(20..).(.*)",names_to = c("Year",".value"),names_transform = list(Year = as.double))%>%
+  pivot_longer(cols=c("Both","Male","Female"),names_to = "Sex",values_to = "Population_count")%>%
+  drop_na(Age)%>%
+  mutate(Sex=ifelse(Sex=="Both","Male and Female",Sex))
+```
+A lot of tidying was done in this dataset too , the actions are as follows:
+1. We dropped all the rows with no age group data
+2. We mutated the Sex column of Both to match Male and Female
+3. We pivoted long twice to extract year and intercensal data from mulitple columns into two. Check the snippet for format.
+
+
+Additionally , the Age group was converted from character wording to number syntax i.e. ".5 to 9 years" was changed to "5-9". This was done keeping the USCS data in mind to enable easy joining.
+```{r}
+#| label: Data Tidy - 4. changing labels for US census age wise 
+#| warning: false
+#| message: false
+age_data<-bind_rows(Age_2010s_data,age_data_2000)%>%
+  mutate(Age=case_when(
+    Age==".Under 5 years"~"1-4",
+    Age==".5 to 9 years"~"5-9",
+    Age==".10 to 14 years"~"10-14",
+    Age==".15 to 19 years"~"15-19",
+    Age==".20 to 24 years"~"20-24",
+    Age==".25 to 29 years"~"25-29",
+    Age==".30 to 34 years"~"30-34",
+    Age==".35 to 39 years"~"35-39",
+    Age==".40 to 44 years"~"40-44",
+    Age==".45 to 49 years"~"45-49",
+    Age==".50 to 54 years"~"50-54",
+    Age==".55 to 59 years"~"55-59",
+    Age==".60 to 64 years"~"60-64",
+    Age==".65 to 69 years"~"65-69",
+    Age==".70 to 74 years"~"70-74",
+    Age==".75 to 79 years"~"75-79",
+    Age==".80 to 84 years"~"80-84",
+    Age==".85 years and over"~"85+"
+  ))
+head(age_data,10)
+view(dfSummary(age_data))
+```
+After tidying both the individual population dataset grouped by Age for both the decades, we stacked them to one dataframe. Since while tidying we ensured both the dataframes were homogenous , the stacking was as expected. The final dataframe has the following dimensions `r dim(age_data)`. The selected features for the datasets are `r colnames(age_data)`. With this dataset we now have a dataframe with year wise and age group wise population of the United States.
+
+## US Cancer Statistics grouped by Age groups - Tidying and Sanitation
+
+The US Cancer Statistics grouped by Age is absolutely similar to the previous USCS grouped by Area dataset. We did not face a lot of problems while tidying this dataset.
+```{r}
+#| label: Data Tidy - USCS Cancer by Age
+#| warning: false
+#| message: false
+
+
+USCS_Age <- read_csv("../posts/_data/Animesh_data/USCS_Age1.csv")
+
+USCS_Age_all<-USCS_Age%>%select(AGE,YEAR,SEX,SITE,EVENT_TYPE,COUNT)%>%
+  filter(YEAR!='1999')%>%
+  filter(COUNT!="~" & COUNT!="+" & COUNT!=".")%>%
+  mutate(YEAR=as.double(YEAR),
+         COUNT=as.double(COUNT))%>%
+  unique()
+view(dfSummary(USCS_Age_all))
+```
+The following actions were formed on this dataset for tidying and sanitation:
+1. The year=1999 was filtered out 
+2. Rows with count as special character were filtered out
+3. Duplicates values were removed
+4. Year and Count column type were changed form char to double.
+
+## US Cancer Statistics grouped by Age groups - Analysis
+
+After extraction of this dataset, we also got the valuable information of Cancer statistics with respect to the Age groups and gender. This information will help us to answer our second question on how cancer is spread across different age groups.
+```{r}
+#| label: Data Visualization - 5. US Cancer SITE wise statistics
+#| warning: false
+#| message: false
+age_gg_data<-USCS_Age_all%>%
+  filter(EVENT_TYPE=="Mortality"&SEX!="Male and Female"&SITE!="All Cancer Sites Combined")
+#head(age_gg_data,10)
+jage_gg1<-treemap(age_gg_data,index=c("SITE","SEX"),vSize="COUNT",type="index",
+                  title="Mortality Treemap of different type of Cancer Sites",
+                  border.col=c("black","red"),
+                  palette="Pastel2",
+                  fontsize.labels=c(9,6),
+                  align.labels=list(
+                    c("center", "center"), 
+                    c("right", "top")
+                    ), 
+                  )
+jage_gg1
+```
+One of the most important aspect before checking the spread of the cancer among age group is to see how the cancer sites affects the population in general amongst them. 
+This graph gives a very valuable information about how the cancer sites fare among themselves in general and how it is spread across gender. 
+Lung and Bronchus based cancer are the most prevalent while Throid cancer affects a very less population. Prostate cancer affects only men while Female breast cancer affects only female, and the visualization proves that by not having any subgroup within the Treemap.
+
+##  US Cancer vs Census Data grouped by Age Parameter - Join
+
+Before we start to analyse the spread of cancer among age groups , it is pertinent to note the relationship between the age groups and the different sites of cancer. It is also important to check the relationship on how many people get cancer and die from cancer among the age group
+
+To achieve these visualizations, our most important step was to perform an inner join between the USCS and US Census dataset both grouped by Age group. The Year,sex and age group was the common column with which the inner join was carried out. This is necessary because we need to find out what percentage of age group population is affected. 
+```{r}
+#| label: Data Visualization - 6. USCS and Census Data join by Age
+#| warning: false
+#| message: false
+
+Age_joined<-merge(USCS_Age_all,age_data,by.x = c("AGE","YEAR","SEX"),by.y = c("Age","Year","Sex"))
+
+Age_joined_viz<-Age_joined%>%
+  group_by(AGE,SEX,SITE,EVENT_TYPE)%>%
+  summarize(Total=sum(COUNT))%>%
+  filter(SITE!="All Cancer Sites Combined"&SEX!="Male and Female")
+
+```
+
+## US Cancer vs Census Data grouped by Age Parameter - Analysis
+
+
+```{r}
+#| warning: false
+#| message: false
+age_gg1<-ggplot(Age_joined_viz,aes(y=Total,axis1=AGE,axis3=SITE,axis2=EVENT_TYPE))+
+  geom_alluvium(aes(fill=SEX))+
+  geom_stratum()+
+  geom_text(stat = "stratum",size=1.8,
+            aes(label = after_stat(stratum)))+
+  scale_x_discrete(limits = c("SEX", "SITE"), expand = c(.05, .05)) +
+  scale_fill_brewer(type = "qual", palette = "Set1")+
+  ggtitle("Alluvial relationship between Age groups and cancer sites")
+age_gg1
+
+```
+The alluvial flow graph very beautifully captures the flow and relationship between different age groups of the population to the rate of incidence and mortality and also show the relation betweeen these two features with cancer sites.
+the Age group of 65-69 is most severely affected by cancer. Also interesting and very obvious trend that can be observed over here is that as the age group increases, the rate of cancer also increases. Also to note that Most of the cancer cases are identified and treated , and only one third people die. From the flow relationship diagram, we can see that female breast cancer incidence is far more prevalent than mortality from the same cancer.
+
+
+Next we want to determine the the spread of cancer across different year group. In order to achieve this, we had to calculate the percentage of population affected each year from cancer cases. Joining the dataset from USCS cancer statistics grouped by age with US census population dataset, helped us to achieve the same. The Count percentage was calculated after getting the population dataset from US census data.
+```{r}
+#| label: Data Visualization - 7. US Cancer count Age wise Statistics
+#| warning: false
+#| message: false
+Age_joined_viz2<-Age_joined%>%
+  group_by(AGE,SITE,EVENT_TYPE,Population_count,YEAR)%>%
+  summarize(Total=sum(COUNT))%>%
+  mutate("Count_percent"=Total/Population_count*100)%>%
+  ungroup
+
+#head(Age_joined_viz2,30)
+area_gg3<-ggplot(Age_joined_viz2%>%filter(EVENT_TYPE=="Incidence"),aes(YEAR,SITE))+
+  geom_tile(aes(fill=Count_percent))+
+  scale_fill_gradient(high= "blue", low = "white")+
+  labs(title="Gradient Heatmap of Cancer Incidence by Year")
+ggplotly(area_gg3)
+```
+This visualization shows a heat map of Count percentage of population affected by different Cancer sites over a period of two decades. From the graph , we can assume that the year 2017 was the most affected year with new cancer incidences.
+```{r}
+area_gg4<-ggplot(Age_joined_viz2%>%filter(EVENT_TYPE=="Mortality"),aes(YEAR,SITE))+
+  geom_tile(aes(fill=Count_percent))+
+  scale_fill_gradient(low = "white", high = "red") +
+  labs(title="Gradient Heatmap of Cancer Mortality by year")
+ggplotly(area_gg4)
+```
+A similar Heatmap visualization was created for the Cancer mortality cases across two decades and different cancer sites. Most Cancer related deaths happened during the year of 2011 as per the heatmap.
+
+## Conclusion
+
+The Cancer dataset was merged and joined with the US population Dataset grouped by Age groups and different states. While visualizing the joined data we were able to answer the questions we started out with . The visualizations aptly answers our questions and shows the spread of cancer among the age group and different states. 
+In conclusion to our findings, living in Utah at a early age might save you from cancer cases historically. 
+There's no correlation of cancer cases with Age Group or state , we were only concerned about the spread of the cancer cases. As a future work we can look into the correlation between different parameters to determine how likely a person is gonna get affected by cancer. 
+
+```{r}
+#| warning: false
+#| message: false
+#save_image(file="AnimeshSenguptaFinalProject.RData")
+```
+
+## References
+[1] National Program of Cancer Registries and Surveillance, Epidemiology, and End Results Program SEER*Stat Database: NPCR and SEER Incidence – U.S. Cancer Statistics Public Use Research Database, 2021 submission (2001–2019), United States Department of Health and Human Services, Centers for Disease Control and Prevention and National Cancer Institute. Released June 2022. Available at www.cdc.gov/cancer/uscs/public-use.
+
+[2]U.S. Census Bureau. "Population Estimates, July 1, 1999-2020 (V2020) -- Walla Walla city, WA." Quick Facts, 
+https://www2.census.gov/programs-surveys/popest/tables/

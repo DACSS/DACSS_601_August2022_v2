@@ -56,6 +56,7 @@ Read in one (or more) of the following datasets, using the correct R package and
 
 
 ```{r}
+#| warning: false
 #! label: Data loading
 US_household_data <- read_excel("../posts/_data/USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx",skip = 5, n_max = 353, col_names = c( "Year", "Number","Total","pd_<15000","pd_15000-24999","pd_25000-34999","pd_35000-49999","pd_50000-74999","pd_75000-99999","pd_100000-149999","pd_150000-199999","pd_>200000","median_income_estimate","median_income_moe","mean_income_estimate","mean_income_moe"))
 
@@ -75,6 +76,7 @@ The US household data is anything but tidy. Here are the following few operation
 6. Grouped multi sub + common races into more generic races
 
 ```{r}
+#| warning: false
 #! label: Data processing
 US_processed_data <- US_household_data%>%
   rowwise()%>% #to ensure the following operation runs row wise
@@ -110,6 +112,7 @@ view(dfSummary(US_processed_data))
 
 ## Time Dependent Visualization
 ```{r}
+#| warning: false
 #!label: Time dependent visualization
 time_viz<-ggplot(US_processed_data,aes(x=Year,y=percent_distribution,fill=factor(income_range, levels=c(">200000","150000-199999","100000-149999","75000-99999","50000-74999","35000-49999","25000-34999","15000-24999","<15000"
 ))))+
@@ -129,6 +132,7 @@ Fix the legend and wrap text
 
 ## Visualizing Part-Whole Relationships
 ```{r}
+#| warning: false
 #| label: Part-whole Visualization
 alluvial_viz<-ggplot(US_processed_data,aes(axis1=CombinedRace,axis2=income_range,y=percent_distribution))+
   geom_alluvium(aes(fill=CombinedRace))+
@@ -137,7 +141,7 @@ alluvial_viz<-ggplot(US_processed_data,aes(axis1=CombinedRace,axis2=income_range
   geom_text(stat = "stratum",size=3,
             aes(label = after_stat(stratum)))+
   theme_void()+
-  labs(title="Income range distribution across different races")
+
 alluvial_viz
 ```
 

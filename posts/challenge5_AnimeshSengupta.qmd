@@ -49,6 +49,7 @@ Today's challenge is to:
 
 ```{r}
 #! label: Data loading
+#| warning: false
 US_household_data <- read_excel("../posts/_data/USA Households by Total Money Income, Race, and Hispanic Origin of Householder 1967 to 2019.xlsx",skip = 5, n_max = 353, col_names = c( "Year", "Number","Total","pd_<15000","pd_15000-24999","pd_25000-34999","pd_35000-49999","pd_50000-74999","pd_75000-99999","pd_100000-149999","pd_150000-199999","pd_>200000","median_income_estimate","median_income_moe","mean_income_estimate","mean_income_moe"))
 
 head(US_household_data,5)
@@ -68,6 +69,7 @@ The US household data is anything but tidy. Here are the following few operation
 
 ```{r}
 #! label: Data processing
+#| warning: false
 US_processed_data <- US_household_data%>%
   rowwise()%>% #to ensure the following operation runs row wise
   mutate(Race=case_when(
@@ -100,6 +102,7 @@ One of the major problems in US Household data is to efficiently analyse the rac
 
 ```{r}
 #| label: Grouping Race variable
+#| #| warning: false
 US_mean_income_data<-US_processed_data%>%
   select(Year,mean_income_estimate,Race)%>%
   group_by(Race,Year)%>%
@@ -119,6 +122,7 @@ head(grouped_race,5)
 ## Univariate Visualizations
 ```{r}
 #| label: Univariate Visualization 1
+#| warning: false
 race_income_area <- ggplot(grouped_race%>%filter(CombinedRace=="ALL RACES"),aes(x=Year,y=race_mean_income_estimate,alpha=0.4,fill=Race)) +
   geom_area() +
   labs(title="All Races Income change across year", 
@@ -129,6 +133,7 @@ ggplotly(race_income_area)
 The above graph shows the change in mean income for all races combined over the years. I have plotted an area chart to efficiently visualize the change in income over the years. This chart is very easy to read and provides the necessary visual information instantly. In comparison to line chart choosing area chart, would help readers determine the change more efficiently.
 
 ```{r}
+#| warning: false
 #| label: Univariate Visualization 2
 All_race_income_data<-US_processed_data%>%
   select(Year,income_range,percent_distribution,Race)%>%
@@ -157,6 +162,7 @@ One of the many challenges I faced to bring univariate plot was to boil down to 
 
 ## Bivariate Visualization(s)
 ```{r}
+#| warning: false
 #| label: Bivariate Visualization
 race_income_line <- ggplot(grouped_race, aes(x=Year, y=race_mean_income_estimate, color=CombinedRace)) +
     geom_line() +
