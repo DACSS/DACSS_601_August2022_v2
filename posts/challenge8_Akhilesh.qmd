@@ -1,0 +1,139 @@
+---
+title: "Challenge 8 Akhilesh"
+author: "Akhilesh Kumar"
+description: "Joining Data"
+date: "08/25/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_8
+  - railroads
+  - snl
+  - faostat
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in multiple data sets, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  join two or more data sets and analyze some aspect of the joined data
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in snl datasets:
+- snl_actors
+- snl_casts
+- snl_seasons
+
+```{r}
+snl_actors<-read_csv("_data/snl_actors.csv", show_col_types = FALSE)
+snl_casts<-read_csv("_data/snl_casts.csv", show_col_types = FALSE)
+snl_seasons<-read_csv("_data/snl_seasons.csv", show_col_types = FALSE)
+```
+
+### Briefly describe the data
+"fed_rate" dataset contains year, month, day wise figures of Federal Funds Target Rate, Federal Funds Upper Target, Federal Funds Lower Target, Effective Federal Funds Rate, Real GDP (Percent Change), Unemployment Rate and Inflation Rate from July 1954 to March 2017
+"debt" dataset contains 
+
+'snl_seasons', 'snl_casts' and 'snl_actors' datasets contains various datasets pertaining to 'season', 'actor casting' and 'actors' details' for 'Saturday Night Live Show'.Saturday Night Live (often abbreviated to SNL) is an American late-night live television sketch comedy and variety show created by Lorne Michaels and developed by Dick Ebersol. Michaels currently serves as the program's showrunner. The show premiere was hosted by George Carlin on NBC on October 11, 1975, under the original title NBC's Saturday Night.
+
+'snl_seasons' contains 'Saturday Night Live' show details for following parameters/columns: 
+  - 'year': 'Saturday Night Live Show' Season year,  
+  - 'first_epid': first episode id for the season year,	        
+  - 'last_epid': last episode id for the season year and	
+  - 'n_episodes': number of episodes for the season year
+'snl_seasons' has 46 obervations and 5 columns, where each observation is contain details of separate season of 'Saturday Night Live Show'.
+
+"snl_casts" dataset contains casting details of actors for different seasons of 'Saturday Night Live Show'. It contains following parameters/columns: 
+  - sid: Season Id, for which the actor has appeared in the show
+  - featured: if the actor was featured
+  - first_epid: first episode of appearance of the actor
+  - last_epid: last episode of appearance of the actor
+  - update_anchor: if the actor was update ancor in the show
+  - n_episodes: number of episodes in the season
+
+'snl_casts' has 46 obervations and 5 columns, where each observation is contain details of separate season of 'Saturday Night Live Show'
+
+"snl_actors" dataset contains details of actors for 'Saturday Night Live Show'. It contains 'actor id', 'web url', 'actor type' and 'gender type' in columns 'aid',	'url', 'type',	and 'gender' respectively. Dataset has 2306 observations and 4 columns.
+
+
+## Tidy Data (as needed)
+
+Mutate to convert column variable type of 'first_epid', 'last_epid' to date format using lubridate package, for 'snl_seasons' and 'snl_casts' datasets.
+
+Mutate to convert column variables to factor, dataset wise details as given below:
+- snl_seasons: year
+- snl_casts: aid, featured, update_anchor
+- snl_actors: type, gender
+
+Rename 'first_epid', 'last_epi' &  'n_episodes' columns in 'snl_casts' dataset to 'first_epid_cast', 'last_epid_cast' & 'n_episodes_cast' respectively, as these columns contain details specific to an actor and there are similar columns in 'snl_seasons' dataset for specific season.
+
+```{r}
+
+snl_seasons<-snl_seasons %>% 
+  mutate_at(vars(first_epid, last_epid), ymd) %>% 
+  mutate_at(vars(year), as.factor)
+
+snl_casts<-snl_casts %>% 
+  select(-c(season_fraction)) %>% 
+  mutate_at(vars(first_epid, last_epid), ymd) %>% 
+  mutate_at(vars(aid, featured, update_anchor), as.factor) %>% 
+  rename(first_epid_cast = first_epid,
+         last_epid_cast = last_epid,
+         n_episodes_cast = n_episodes)
+
+snl_actors<-snl_actors %>% 
+  select(-c(url)) %>% 
+  mutate_at(vars(type, gender), as.factor) 
+
+
+#sanity check, check class of column variable to verify the class/format of date columns as converted above
+
+sapply(snl_seasons, class)
+
+sapply(snl_casts, class)
+
+sapply(snl_actors, class)
+```
+
+
+## Join Data
+
+- Left join snl_casts & snl_actors dataset on 'aid' key and named the join as 'cast_actors_left_join'
+- Left join cast_actors_left_join & snl_seasons dataset on 'sid' key and named the join as 'cast_actors_season_left_join'
+
+```{r}
+cast_actors_left_join <- left_join(snl_casts, snl_actors,
+                  by = c("aid" = "aid"))
+                   
+dim(cast_actors_left_join)
+head(cast_actors_left_join)
+
+cast_actors_season_left_join <- left_join(cast_actors_left_join, snl_seasons,
+                   by = c("sid" = "sid"))
+
+dim(cast_actors_season_left_join)
+head(cast_actors_season_left_join)
+
+```
