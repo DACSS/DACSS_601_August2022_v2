@@ -1,0 +1,164 @@
+---
+title: "Challenge 5 Akhilesh"
+author: "Akhilesh Kumar Meghwal"
+description: "Introduction to Visualization"
+date: "08/28/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_5
+  - railroads
+  - cereal
+  - air_bnb
+  - pathogen_cost
+  - australian_marriage
+  - public_schools
+  - usa_hh
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least two univariate visualizations
+   - try to make them "publication" ready
+   - Explain why you choose the specific graph type
+5)  Create at least one bivariate visualization
+   - try to make them "publication" ready
+   - Explain why you choose the specific graph type
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.
+
+(be sure to only include the category tags for the data you use!)
+
+## Read in data
+
+Read in one (or more) of the following datasets, using the correct R package and command.
+
+-   cereal ⭐
+-   pathogen cost ⭐
+-   Australian Marriage ⭐⭐ 
+-   AB_NYC_2019.csv ⭐⭐⭐
+-   railroads ⭐⭐⭐
+-   Public School Characteristics ⭐⭐⭐⭐ 
+-   USA Households ⭐⭐⭐⭐⭐
+
+```{r}
+
+cereal<-read_csv("_data/cereal.csv", show_col_types = FALSE)
+names(cereal)
+dim(cereal)
+summary(cereal)
+View(cereal)
+
+```
+
+### Briefly describe the data
+```{r}
+print(summarytools::dfSummary(cereal,
+                              varnumbers = FALSE,
+                              plain.ascii  = FALSE,
+                              style        = "grid",
+                              graph.magnif = 0.50,
+                              valid.col    = FALSE),
+      method = 'render',
+      table.classes = 'table-condensed')
+```
+
+- The dataset 'cereal' contains sodium, sugar value along with 'type of cereal' for each cereal type.
+- There are 20 different type of cereals
+- Type column variable has two values: 'A' and 'C', both have frequency of 10
+- 'Sodium' column variable has min, max, mean values of 0, 340, 167 respectively
+- 'Sugar' column variable has min, max, mean values of 0, 18, 8.75 respectively
+-  For 'A' type cereals min, max, mean values of 'Sodium' is 0, 340, 149 respectively
+-  For 'A' type cereals min, max, mean values of 'Sugar' is 0, 18, 9.22 respectively
+-  For 'C' type cereals min, max, mean values of 'Sodium' is 130, 290, 185 respectively
+-  For 'C' type cereals min, max, mean values of 'Sugar' is 1, 14, 9.2 respectively
+
+## Tidy Data (as needed)
+
+Is your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.
+```{r}
+
+cereal <- pivot_longer(cereal, cols= c('Sodium', 'Sugar'), names_to='Nutrient_type', values_to ='Value') 
+```
+# Sanity check
+```{r}
+head(cereal)
+str(cereal)
+summary(cereal)
+View(cereal)
+
+```
+
+### NA primary check
+
+```{r}
+
+NA_SUM <- sum(is.na(cereal))
+View(cereal)
+
+```
+
+NA_SUM is zero, so there is no NA value in the dataset
+
+
+#### Mutate to change class of 'Cereal' column from character to factor
+```{r}
+cereal <- cereal %>% 
+  mutate_at(c('Cereal', 'Type', 'Nutrient_type'), factor)
+```
+- 'Cereal', 'Type'& 'Nutrient_type'	columns are character class, need to be converted to factor and reorder for graphic visualization.
+
+- Remaining columns are numeric and don't need mutation, 
+
+- String values in the column, can be represented numerically by setting numeric labels
+
+- Factors are important for indicating subsets of dataset for categorical variables, also Reordering helps in alignment of graphs
+
+
+## Univariate Visualizations
+```{r}
+
+    
+b <- cereal %>% 
+  group_by(Nutrient_type, Type) %>% 
+  summarise(sum(Value),.groups = 'keep') %>% 
+  rename(nutrient_value = `sum(Value)`)
+
+ggplot(b, aes(nutrient_value, fill = Type)) + 
+  geom_histogram(binwidth = 20) + 
+  labs(title = "Sodium/Sugar Values") + 
+  theme_bw() +
+  facet_wrap(Nutrient_type~Type, scales = "free_x")
+
+```
+
+## Bivariate Visualization(s)
+
+```{r}
+ggplot(cereal, aes(x=Cereal, y=Value)) + 
+  geom_bar(stat = "identity")+theme(axis.text.x=element_text(angle=90,hjust=1))+
+  facet_wrap(~'Nutrient_type')+
+  labs(title = "Bar Graph on Cereal wise Value")
+
+```
+
+Any additional comments?
