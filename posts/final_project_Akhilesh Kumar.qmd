@@ -12,7 +12,9 @@ format:
 categories:
   - final_project
 ---
-## R Packages used in Analysis
+
+## R Package/libraries
+
 ```{r}
 #| label: setup
 #| warning: false
@@ -44,10 +46,9 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 
 ## Objective of the Analysis
 
-- Year wise/State wise Performance on Crime Chargesheet/Accusation Rate for different category of crimes in India from Year 1997 to 2000
+-   Year wise/State wise Performance on Crime Chargesheet/Accusation Rate for different category of crimes in India from Year 1997 to 2000
 
-
-- Analyse and Identify the High, Medium & Low Performing State for different category of crimes, such as: Murder, Kidnapping, Crime Against Women in India from Year 1997 to 2000
+-   Analyse and Identify the High, Medium & Low Performing State for different category of crimes, such as: Murder, Kidnapping, Crime Against Women in India from Year 1997 to 2000
 
 ## Fetch Datafiles' Names from working directory
 
@@ -124,11 +125,11 @@ read_crime_dataset<-function(cf){
 
 ## Read in Data
 
-- Data Read from multiple file with varied data columns
+-   Data Read from multiple file with varied data columns
 
-- Data Applied **"map_dfr"** function from **"purr package"** to consolidate data from multiple datasets in dataframe/tibble format
+-   Data Applied **"map_dfr"** function from **"purr package"** to consolidate data from multiple datasets in dataframe/tibble format
 
-- Function call from **"map_dfr"** to **"read_crime_dataset"**, to read all datasets as mentioned:
+-   Function call from **"map_dfr"** to **"read_crime_dataset"**, to read all datasets as mentioned:
 
     -   'india-crime-1997'
     -   'india-crime-1998',
@@ -147,9 +148,9 @@ View(crime_conviction_rate_data)
 
 ```
 
-## Summary Description 
+## Summary Description
 
-- Summary Description of "crime_conviction_rate_data" dataframe using **dfSummary**
+-   Summary Description of "crime_conviction_rate_data" dataframe using **dfSummary**
 
 ```{r}
 
@@ -167,12 +168,12 @@ print(summarytools::dfSummary(crime_conviction_rate_data,
 
 ## NA values Replacement
 
-- **NA values, in different columns pertaining to different crime categories, are replaced as explained below:**
+-   **NA values, in different columns pertaining to different crime categories, are replaced as explained below:**
 
-   -    state wise, crime category wise, Mean average of Chargesheet Rate is calculated
-   -    NA values of original dataset for Year, State, crime category is replaced with relevant mean values as calculated above for State and crime category
+    -   state wise, crime category wise, Mean average of Chargesheet Rate is calculated
+    -   NA values of original dataset for Year, State, crime category is replaced with relevant mean values as calculated above for State and crime category
 
-- **NA values replacement through state wise, crime catgory wise Average value of Chargesheet Rate for four years 1997,1998, 1999, 2000**
+-   **NA values replacement through state wise, crime catgory wise Average value of Chargesheet Rate for four years 1997,1998, 1999, 2000**
 
 ```{r}
 State_crime_wise_conviction_rate <- crime_conviction_rate_data %>% 
@@ -187,9 +188,9 @@ View(State_crime_wise_conviction_rate)
 head(State_crime_wise_conviction_rate)
 ```
 
-- **Pivot Longer on crime_conviction_rate_data to perform left join over unite of two columns, namely: States_UTs, crime_type**
+-   **Pivot Longer on crime_conviction_rate_data to perform left join over unite of two columns, namely: States_UTs, crime_type**
 
-  -   The result dataset would be further used to perform grouping, filtering, summary analysis on different parameters, such as crime_type
+    -   The result dataset would be further used to perform grouping, filtering, summary analysis on different parameters, such as crime_type
 
 ```{r}
 
@@ -206,7 +207,7 @@ head(crime_data_pivot_long)
 
 ```
 
-- **left join to replace NA values in crime_type column in 'crime_data_pivot_long' datset with relevant values of 'mean' column in 'State_crime_wise_conviction_rate' dataset**
+-   **left join to replace NA values in crime_type column in 'crime_data_pivot_long' datset with relevant values of 'mean' column in 'State_crime_wise_conviction_rate' dataset**
 
 ```{r}
   crime_data_na_rm <- left_join(crime_data_pivot_long, State_crime_wise_conviction_rate, by = 'States/UTs_crime') %>% 
@@ -220,14 +221,14 @@ View(crime_data_na_rm)
 
 ```
 
-## Summary Analysis 
+## Summary Analysis
 
-- Graphs (Ggplot2) & Tabular Presentation (Kable) for Year wise/State wise Performance on Crime Chargesheet/Accusation Rate for different category of crimes:
-
-- **State_UTs wise Performance on Crime Chargesheet/Accusation Rate for following three Categories pertaining to Murder Crime**
+-   **State_UTs wise Performance on Crime Chargesheet/Accusation Rate for following three Categories pertaining to Murder Crime**
 
 -   'Murder',
+
 -   'Attempt_to_Commit_Murder'
+
 -   'C.H.\_Not_Amounting_to_Murder'
 
 ```{r}
@@ -246,10 +247,12 @@ crime_murder
 
 ```
 
-- **State_UTs wise Performance on Crime Chargesheet/Accusation Rate for Average of following three Categories pertaining to Murder Crime:**
+-   **State_UTs wise Performance on Crime Chargesheet/Accusation Rate for Average of following three Categories pertaining to Murder Crime:**
 
 -   'Murder',
+
 -   'Attempt_to_Commit_Murder'
+
 -   'C.H.\_Not_Amounting_to_Murder'
 
 ```{r}
@@ -270,9 +273,10 @@ crime_murder_state
 ```
 
 ### Bar Graph Murder Related Crimes
-- Bar Graph on state wise performance on Average Chargesheet Rate of 'Murder', 'Attempt_to_Commit_Murder & 'C.H.\_Not_Amounting_to_Murder
-  - Y column displays "Average Chargesheet Rate" of Murder related crime.
-  - X Columns displays different states or union territories in India, considered for analysis.
+
+-   Bar Graph on state wise performance on Average Chargesheet Rate of 'Murder', 'Attempt_to_Commit_Murder & 'C.H.\_Not_Amounting_to_Murder
+    -   Y column displays "Average Chargesheet Rate" of Murder related crime.
+    -   X Columns displays different states or union territories in India, considered for analysis.
 
 ```{r}
 ggplot(crime_murder_state, aes(x=States_UTs, y=chargesheet_rate, fill=category)) + 
@@ -281,24 +285,27 @@ ggplot(crime_murder_state, aes(x=States_UTs, y=chargesheet_rate, fill=category))
 
 ```
 
-### Tabular Presentation Murder Related Crimes 
+### Tabular Presentation Murder Related Crimes
 
-- Tabular Presentation using Kable to display state wise performance on Average Chargesheet Rate of 'Murder', 'Attempt_to_Commit_Murder & 'C.H.\_Not_Amounting_to_Murder'
+-   Tabular Presentation using Kable to display state wise performance on Average Chargesheet Rate of 'Murder', 'Attempt_to_Commit_Murder & 'C.H.\_Not_Amounting_to_Murder'
 
 ```{r}
 
 half <-c(1:round(nrow(crime_murder_state)/2))
 knitr::kable(list(crime_murder_state[half,],  
            matrix(numeric(), nrow=0, ncol=1),
+           padding=20,
            crime_murder_state[-half,]), 
            caption = "State wise Avg. Chargesheet Rate of 'Murder', 'Attempt_to_Commit_Murder & 'C.H._Not_Amounting_to_Murder'")%>%
-  kableExtra::kable_styling(font_size=14)
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size=12, full_width = TRUE, fixed_thead = F)
 ```
 
-- **Year wise, State wise Performance on Crime Chargesheet/Accusation Rate for Average of following three Categories pertaining to Murder Crime:**
+-   **Year wise, State wise Performance on Crime Chargesheet/Accusation Rate for Average of following three Categories pertaining to Murder Crime:**
 
 -   'Murder',
+
 -   'Attempt_to_Commit_Murder'
+
 -   'C.H.\_Not_Amounting_to_Murder'
 
 ```{r}
@@ -314,23 +321,49 @@ crime_murder_yr_state <- crime_data_na_rm %>%
   mutate(Year=as.numeric(as.character(Year)))
 
 crime_murder_yr_state
-  
 
+crime_murder_yr_state_h<- crime_murder_yr_state%>% 
+  filter(category=='High')
+
+crime_murder_yr_state_m<- crime_murder_yr_state%>% 
+  filter(category=='Medium')
+
+crime_murder_yr_state_l<- crime_murder_yr_state%>% 
+  filter(category=='Low')
 ```
 
-### Time Series Plot Murder  Related Crimes
-- Time Series Plot for State wise, Murder Related Charge-sheet Rate (Yr 1997-2000)
+### Time Series Plot Murder Related Crimes
+
+**Time Series Plot for State wise, Murder Related Charge-sheet Rate, where Average chargesheet rate is 'Medium' or between 50 and 70 (Yr 1997-2000)**
 
 ```{r}
 
-plot <- ggplot(crime_murder_yr_state, aes(y = chargesheet_rate, color = as.factor(States_UTs), x = Year)) + 
+plot_m_m <- ggplot(crime_murder_yr_state_m, aes(y = chargesheet_rate, color = as.factor(States_UTs), x = as.numeric(as.character(Year)))) + 
   geom_line() + 
   geom_point()+
-  # facet_wrap( ~ category, nrow = 6 )
-  labs(title = "Year wise, State wise, Murder Related Chargesheet Rate")+
+  labs(title = "Time Series Plot, State wise, Murder related Charge-sheet Rate is Medium or between 50-70 (Yr 1997-2000)")+
+  xlab('Years')+
+  ylab('Chargesheet Rate')+
     theme_classic()
  
-ggplotly(plot)
+ggplotly(plot_m_m)
+
+```
+
+**Time Series Plot for State wise, Murder Related Charge-sheet Rate, where Average chargesheet rate is 'Low'/Less than 50 (Yr 1997-2000)**
+
+```{r}
+
+plot_m_l <- ggplot(crime_murder_yr_state_l, aes(y = chargesheet_rate, color = as.factor(States_UTs), x = as.numeric(as.character(Year)))) + 
+  geom_line() + 
+  geom_point()+
+  labs(title = "Time Series Plot, State wise, 'Crime Against Women' related Charge-sheet Rate is 'Low' or Less than 50 (Yr 1997-2000)")+
+  xlab('Years')+
+  ylab('Chargesheet Rate')+
+    theme_classic()
+ 
+ggplotly(plot_m_l)
+
 ```
 
 ### State_UTs wise Performance on Crime Chargesheet/Accusation Rate for following three Categories pertaining to "Kidnapping & Abduction" Crime
@@ -357,11 +390,11 @@ View(crime_kidnap)
 
 ```
 
-- **State_UTs wise Performance on Crime Chargesheet/Accusation Rate for Average of following three Categories pertaining to "Kidnapping & Abduction" Crime**
+-   **State_UTs wise Performance on Crime Chargesheet/Accusation Rate for Average of following three Categories pertaining to "Kidnapping & Abduction" Crime**
 
-  -   'Kidnapping & Abduction - Total',
-  -   'Kidnapping & Abduction - of Women & Girls'
-  -   'Kidnapping & Abduction - of others'
+    -   'Kidnapping & Abduction - Total',
+    -   'Kidnapping & Abduction - of Women & Girls'
+    -   'Kidnapping & Abduction - of others'
 
 ```{r}
 crime_kidnap_state <- crime_data_na_rm %>%
@@ -380,10 +413,12 @@ crime_kidnap_state
 
 
 ```
+
 ### Bar Graph Kidnap Related Crimes
-- Bar Graph on state wise performance on Average Chargesheet Rate of'Kidnapping & Abduction - Total','Kidnapping & Abduction - of Women & Girls'& 'Kidnapping & Abduction - of others'
-  - Y column displays "Average Chargesheet Rate" of Kidnap related crime.
-  - X Columns displays different states or union territories in India, considered for analysis.
+
+-   Bar Graph on state wise performance on Average Chargesheet Rate of'Kidnapping & Abduction - Total','Kidnapping & Abduction - of Women & Girls'& 'Kidnapping & Abduction - of others'
+    -   Y column displays "Average Chargesheet Rate" of Kidnap related crime.
+    -   X Columns displays different states or union territories in India, considered for analysis.
 
 ```{r}
 ggplot(crime_kidnap_state, aes(x=States_UTs, y=chargesheet_rate, fill=category)) + 
@@ -392,24 +427,28 @@ ggplot(crime_kidnap_state, aes(x=States_UTs, y=chargesheet_rate, fill=category))
 ```
 
 #### Tabular Presentation Kidnap Related Crimes
-  - Tabular Presentation using Kable to display state wise performance on Average Chargesheet Rate of  'Kidnapping & Abduction - Total','Kidnapping & Abduction - of Women & Girls' & 'Kidnapping & Abduction - of others'
+
+-   Tabular Presentation using Kable to display state wise performance on Average Chargesheet Rate of 'Kidnapping & Abduction - Total','Kidnapping & Abduction - of Women & Girls' & 'Kidnapping & Abduction - of others'
 
 ```{r}
 
 half <-c(1:round(nrow(crime_kidnap_state)/2))
 knitr::kable(list(crime_kidnap_state[half,],  
            matrix(numeric(), nrow=0, ncol=1),
+           padding=20,
            crime_kidnap_state[-half,]), 
            caption = "State wise Avg. Chargesheet Rate of - 'Kidnapping & Abduction - Total	', 
 - 'Kidnapping & Abduction - of Women & Girls'
 - 'Kidnapping & Abduction - of others'")%>%
-  kableExtra::kable_styling(font_size=12)
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size=12, full_width = TRUE, fixed_thead = F)
 ```
 
-- **Year wise, State_UTs wise Performance on Crime Chargesheet/Accusation Rate for Average of following three Categories pertaining to "Kidnapping & Abduction" Crime**
+-   **Year wise, State_UTs wise Performance on Crime Chargesheet/Accusation Rate for Average of following three Categories pertaining to "Kidnapping & Abduction" Crime**
 
 -   'Kidnapping & Abduction - Total',
+
 -   'Kidnapping & Abduction - of Women & Girls'
+
 -   'Kidnapping & Abduction - of others'
 
 ```{r}
@@ -425,33 +464,59 @@ crime_kidnap_yr_state <- crime_data_na_rm %>%
 
 crime_kidnap_yr_state
 
+crime_kidnap_yr_state_h<- crime_kidnap_yr_state%>% 
+  filter(category=='High')
+
+crime_kidnap_yr_state_m<- crime_kidnap_yr_state%>% 
+  filter(category=='Medium')
+
+crime_kidnap_yr_state_l<- crime_kidnap_yr_state%>% 
+  filter(category=='Low')
 ```
 
-### Time Series Plot Kidnap Related Crimes
-- Time Series Plot for State wise, Kidnap Related Charge-sheet Rate (Yr 1997-2000)
+### Time Series Plot Kidnap related crimes
+
+**Time Series Plot for State wise, Kidnap Related Charge-sheet Rate, where Average chargesheet rate is 'Medium' or between 50 and 70 (Yr 1997-2000)**
 
 ```{r}
 
-plot <- ggplot(crime_kidnap_yr_state, aes(y = chargesheet_rate, color = as.factor(States_UTs), x = as.numeric(as.character(Year)))) + 
+plot_k_m <- ggplot(crime_kidnap_yr_state_m, aes(y = chargesheet_rate, color = as.factor(States_UTs), x = as.numeric(as.character(Year)))) + 
   geom_line() + 
   geom_point()+
-  # facet_wrap( ~ category, nrow = 6 )
-  labs(title = "Time Series Plot for State wise, Kidnap Related Charge-sheet Rate (Yr 1997-2000)")+
+  labs(title = "Time Series Plot, State wise, Kidnap related Charge-sheet Rate is Medium or between 50-70 (Yr 1997-2000)")+
+  xlab('Years')+
+  ylab('Chargesheet Rate')+
     theme_classic()
- ggplotly(plot)
+ 
+ggplotly(plot_k_m)
+
 ```
 
+**Time Series Plot for State wise, Crime Against Women Related Charge-sheet Rate, where Average chargesheet rate is 'Low'/Less than 50 (Yr 1997-2000)**
 
+```{r}
+
+plot_k_l <- ggplot(crime_kidnap_yr_state_l, aes(y = chargesheet_rate, color = as.factor(States_UTs), x = as.numeric(as.character(Year)))) + 
+  geom_line() + 
+  geom_point()+
+  labs(title = "Time Series Plot, State wise, Kidnap related Charge-sheet Rate is 'Low' or Less than 50 (Yr 1997-2000)")+
+  xlab('Years')+
+  ylab('Chargesheet Rate')+
+    theme_classic()
+ 
+ggplotly(plot_k_l)
+
+```
 
 **- State_UTs wise Performance on Crime Chargesheet/Accusation Rate for following Seven Categories pertaining to Crime Against Women:**
 
-  -   Rape
-  -   Kidnapping\_&*Abduction-of_Women*&\_Girls
-  -   Dowry_Deaths
-  -   Molestation
-  -   Sexual_Harassment
-  -   Cruelty_by_Husband_and_Relatives
-  -   Importation_of_Girls
+-   Rape
+-   Kidnapping\_&*Abduction-of_Women*&\_Girls
+-   Dowry_Deaths
+-   Molestation
+-   Sexual_Harassment
+-   Cruelty_by_Husband_and_Relatives
+-   Importation_of_Girls
 
 ```{r}
 crime_against_women <- crime_data_na_rm %>%
@@ -493,10 +558,12 @@ crime_against_women_state <- crime_data_na_rm %>%
 crime_against_women_state
 
 ```
+
 ### Bar Graph Crime Against Women
-- Bar Graph on state wise performance on Average Chargesheet Rate of Crime Against Women
-  - Y column displays "Average Chargesheet Rate" of Crime Against Women.
-  - X Columns displays different states or union territories in India, considered for analysis.
+
+-   Bar Graph on state wise performance on Average Chargesheet Rate of Crime Against Women
+    -   Y column displays "Average Chargesheet Rate" of Crime Against Women.
+    -   X Columns displays different states or union territories in India, considered for analysis.
 
 ```{r}
 ggplot(crime_against_women_state, aes(x=States_UTs, y=chargesheet_rate, fill=category)) + 
@@ -506,16 +573,18 @@ ggplot(crime_against_women_state, aes(x=States_UTs, y=chargesheet_rate, fill=cat
 ```
 
 ### Tabular Presentation Crime Against Women
-  - Tabular Presentation using Kable to display state wise performance on Average Chargesheet Rate of Rape, Kidnapping\_&*Abduction-of_Women*&\_Girls, Dowry_Deaths, Molestation, Sexual_Harassment, Cruelty_by_Husband_and_Relatives, Importation_of_Girls
+
+-   Tabular Presentation using Kable to display state wise performance on Average Chargesheet Rate of Rape, Kidnapping\_&*Abduction-of_Women*&\_Girls, Dowry_Deaths, Molestation, Sexual_Harassment, Cruelty_by_Husband_and_Relatives, Importation_of_Girls
 
 ```{r}
 
 half <-c(1:round(nrow(crime_against_women_state)/2))
 knitr::kable(list(crime_against_women_state[half,],  
            matrix(numeric(), nrow=0, ncol=1),
+           padding=20,
            crime_against_women[-half,]), 
            caption = "State wise Avg. Chargesheet Rate of - 'Crime Against Women'")%>%
-  kableExtra::kable_styling(font_size=12)
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), font_size=12, full_width = TRUE, fixed_thead = F)
 ```
 
 **- Year wise, State_UTs wise Performance on Crime Chargesheet/Accusation Rate for Average of following Seven Categories pertaining to Crime Against Women**
@@ -542,24 +611,60 @@ crime_against_women_yr_state <- crime_data_na_rm %>%
 
 crime_against_women_yr_state
   
+crime_against_women_yr_state_h<- crime_against_women_yr_state%>% 
+  filter(category=='High')
+
+crime_against_women_yr_state_m<- crime_against_women_yr_state%>% 
+  filter(category=='Medium')
+
+crime_against_women_yr_state_l<- crime_against_women_yr_state%>% 
+  filter(category=='Low')
+
 ```
 
-###  Time Series Plot Crime Against Women
+### Time Series Plot Crime Against Women
 
-Time Series Plot for State wise, Crime Against Women Related Charge-sheet Rate (Yr 1997-2000)
+**Time Series Plot for State wise, Crime Against Women Related Charge-sheet Rate, where Average chargesheet rate is 'Medium' or between 50 and 70 (Yr 1997-2000)**
 
 ```{r}
 
-plot <- ggplot(crime_against_women_yr_state, aes(y = chargesheet_rate, color = as.factor(States_UTs), x = as.numeric(as.character(Year)))) + 
+plot_w_m <- ggplot(crime_against_women_yr_state_m, aes(y = chargesheet_rate, color = as.factor(States_UTs), x = as.numeric(as.character(Year)))) + 
   geom_line() + 
   geom_point()+
-  geom_smooth()
-  # facet_wrap( ~ category, nrow = 6 )
-  labs(title = "Time Series Plot for State wise, Crime Against Women Related Charge-sheet Rate (Yr 1997-2000)")+
+  labs(title = "Time Series Plot, State wise, 'Crime Against Women' related Charge-sheet Rate is Medium or between 50-70 (Yr 1997-2000)")+
+  xlab('Years')+
+  ylab('Chargesheet Rate')+
     theme_classic()
  
-ggplotly(plot)
+ggplotly(plot_w_m)
 
 ```
 
+**Time Series Plot for State wise, Crime Against Women Related Charge-sheet Rate, where Average chargesheet rate is 'Low'/Less than 50 (Yr 1997-2000)**
 
+```{r}
+
+plot_w_l <- ggplot(crime_against_women_yr_state_l, aes(y = chargesheet_rate, color = as.factor(States_UTs), x = as.numeric(as.character(Year)))) + 
+  geom_line() + 
+  geom_point()+
+  labs(title = "Time Series Plot, State wise, 'Crime Against Women' related Charge-sheet Rate is 'Low' or Less than 50 (Yr 1997-2000)")+
+  xlab('Years')+
+  ylab('Chargesheet Rate')+
+    theme_classic()
+ggplotly(plot_w_l)
+
+```
+
+#### Citation
+
+The Crime Chargesheet Rate Analysis performed above, is carried out on the data collected from https://data.gov.in/, where year-wise 'Chargesheeting Rate Of IPC Crimes' datasets are available for 4 years i.e., 1997,1998, 1999 and 2000.
+
+The Analysis provides Chargesheet Rate Projection on different types of crimes. The projections are done over differnt states and also aggregaged projection over timeseries.
+
+The exisiting dataset can be further enhanced by adding more years of data, as only limited datasets are available over Government open Data website, https://data.gov.in/ or concerned Government Department can be requested to provide additional set of data.
+
+More over, there is an opportunity to enhance the analysis performed above
+
+Kable Features can be enhanced for better table presentation
+
+Also more graphs can be added from GGPlot library to enance the quality of analysis and visualization.
