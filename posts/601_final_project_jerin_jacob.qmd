@@ -1,0 +1,173 @@
+---
+title: "601_final_project_jerinjacob"
+author: "Jerin Jacob"
+editor: visual
+description: "A study on the crime data of Massachusetts state"
+output: distill::distill_article
+date: "08/22/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  _final_project_601
+---
+Crimes are always a safety concern to any human being. The study of crime data will give us insights on how to not be a victim by choosing a place that is less prone to a crime activity. 
+
+This is a study on crime data of Massachusetts states. The dataset is a county based number of crimes at a location and time of the day. I am trying to compare the numbers of different counties in the state. 
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(readr)
+library(stringr)
+library(dplyr)
+library(hrbrthemes)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Reading the Data:
+As there are 14 counties in Massachusetts, my data contains 14 separate county files to be read along with the population data of Massachusetts counties.
+```{r}
+filepath <- "_data/601_final_project_jerin_jacob/"
+csv_file_names <- list.files(path = filepath, pattern = "_2021*")
+#csv_file_names
+```
+
+
+```{r}
+read_crimes<-function(file_name){
+  x<-unlist(str_split(file_name, pattern="[[:punct:]]", n=3))
+  read_csv(paste0(filepath, file_name),
+           skip = 8, 
+           col_names = c("Location","6-9pm","9-12pm","12-3am","3-6am","6-9am","9-12noon","12-3pm","3-6pm"))%>%
+             mutate(County = x[1],
+                    Year = x[2])
+}
+counties<-
+  purrr::map_dfr(csv_file_names, read_crimes)
+head(counties)
+```
+
+
+In the dataset, there is a row for 'All Location Types'. I expected that to be same as the sum of all other Locations but it was not. This could be due to either data entry errors or overlapping/duplication of data in Locations with similar names. I could find 6 such Locations that duplicated. 'Commercial', 'Educational Facility', 'Government/Public Building and other', 'Road/Parking/Camps', 'Field/Woods/Waterways/Camps' and 'Construction/Industrial/Farm'. Those 6 Location types are just grouping of two or more other Location Types.
+```{r}
+first_county <- counties %>%
+  slice(1:54)
+first_county
+
+first_county2 <- first_county %>%
+  slice(2:54)
+mapply(sum,first_county2[,c(2:9)], na.rm= TRUE)
+
+```
+
+So I checked by droping those Locations for the Barnstable County. Now the sum of the locations is same as that of 'All Location Types'.
+```{r}
+dfRemain <- first_county[-c(3, 22,27,42,47,38), ]
+
+
+dfRemain
+
+all_location <- dfRemain[c(1), ]
+all_location %>%
+  select(2:9)
+
+df <-  dfRemain[-c(1), ]
+mapply(sum,df[,c(2:9)], na.rm= TRUE)
+
+```
+
+```{r}
+new_county_data<-subset(counties, Location != 'Commercial' & Location !='Educational Facility' & Location != 'Government/Public Building and other' & Location != 'Road/Parking/Camps' & Location != 'Field/Woods/Waterways/Camps' & Location != 'Construction/Industrial/Farm' & Location != 'All Location Types')
+new_county_data
+```
+
+
+
+
+
+```{r}
+dim(counties)
+```
+
+Analysing just the number of crimes in a location in a county will be meaningless. I am taking the total population of each counties as a baseline for comparing the number of crimes in the respective counties.
+
+Reading the MA population data.
+```{r}
+ma_population <- read_csv('_data/601_final_project_jerin_jacob/MA_population.csv', col_names = c("Number", "County", "Population"))
+ma_population$County <- word(ma_population$County, 1)
+ma_population <- ma_population[ -c(1) ]
+ma_population
+```
+
+Joining the crime data for 2021 with the population dataset of Massachusetts
+```{r}
+ma_crime_2021 <- new_county_data %>% left_join(ma_population,by="County")
+```
+
+
+The number of crimes per 1000 people in the county can be a good way to start with the analysis.
+```{r}
+crime_per_population <- ma_crime_2021 %>%  
+    mutate(across(c(2:9),
+           .fns = ~./(Population/1000)))
+crime_per_population
+```
+```{r}
+crime_per_population <- pivot_longer(crime_per_population, `6-9pm`:`3-6pm`, names_to = "Time_of_day", values_to = "Crime_rate")
+
+```
+
+```{r}
+df <- crime_per_population[ -c(3,4) ]
+
+```
+
+
+```{r}
+summary(df)
+```
+
+According to the data, the safest place in Massachusetts is an Air/Bus/Train Terminal in Middlesex at 12-3 am. Apparently, residences of Hampden between 3-6 pm turns out to be the most unsafe place or where most crimes happen.
+```{r}
+df[which.max(df$Crime_rate),]
+df[which.min(df$Crime_rate),]
+
+```
+Checking whether all locations in Hampden have high crime rates and if Middlesex is safe in all locations.
+```{r}
+df_middlesex <- df %>%
+  filter(County == "Middlesex")
+
+ggplot(df_middlesex, aes(x=Time_of_day, y=Crime_rate)) +
+  geom_segment( aes(x=Time_of_day, xend=Time_of_day, y=0, yend=Crime_rate)) +
+  geom_point( size=5, color="red", fill=alpha("orange", 0.3), alpha=0.7, shape=21, stroke=2) 
+
+df_hampden <- df %>%
+  filter(County == "Hampden")
+
+ggplot(df_hampden, aes(x=Time_of_day, y=Crime_rate)) +
+  geom_segment( aes(x=Time_of_day, xend=Time_of_day, y=0, yend=Crime_rate)) +
+  geom_point( size=5, color="red", fill=alpha("orange", 0.3), alpha=0.7, shape=21, stroke=2)
+
+```
+
+
+```{r}
+df %>% ggplot(aes(Time_of_day, Crime_rate, color=County)) + geom_point()
+
+```
+
+```{r}
+ggplot(df, aes(fill=County, y=Crime_rate, x=Time_of_day)) + 
+    geom_bar(position="stack", stat="identity")
+```
+
+
