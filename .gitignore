@@ -53,4 +53,6 @@ posts/_metadata.yml
 #templates
 _templates/
 
+_freeze/site_libs/
+
 
