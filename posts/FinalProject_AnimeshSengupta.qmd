@@ -238,6 +238,7 @@ To further fit the data to the require visualizations, we chose a subset of data
 
 
 ```{r}
+#| label: Data Visualization - 4. Statewise Mortality graph
 #| warning: false
 #| message: false
 area_gg1<-plot_usmap(data=Area_wise_cancer%>%filter(EVENT_TYPE=="Mortality"),values="Count_percent", color = "red")+
@@ -428,6 +429,7 @@ Age_joined_viz<-Age_joined%>%
 
 
 ```{r}
+#| label: Data Visualization - 5. Alluvial graph
 #| warning: false
 #| message: false
 age_gg1<-ggplot(Age_joined_viz,aes(y=Total,axis1=AGE,axis3=SITE,axis2=EVENT_TYPE))+
@@ -465,6 +467,9 @@ ggplotly(area_gg3)
 ```
 This visualization shows a heat map of Count percentage of population affected by different Cancer sites over a period of two decades. From the graph , we can assume that the year 2017 was the most affected year with new cancer incidences.
 ```{r}
+#| label: Data Visualization - 8. US Cancer count Age wise Statistics for Mortality
+#| warning: false
+#| message: false
 area_gg4<-ggplot(Age_joined_viz2%>%filter(EVENT_TYPE=="Mortality"),aes(YEAR,SITE))+
   geom_tile(aes(fill=Count_percent))+
   scale_fill_gradient(low = "white", high = "red") +
