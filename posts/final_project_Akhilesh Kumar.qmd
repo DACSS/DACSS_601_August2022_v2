@@ -654,3 +654,17 @@ plot_w_l <- ggplot(crime_against_women_yr_state_l, aes(y = chargesheet_rate, col
 ggplotly(plot_w_l)
 
 ```
+
+#### Citation
+
+The Crime Chargesheet Rate Analysis performed above, is carried out on the data collected from https://data.gov.in/, where year-wise 'Chargesheeting Rate Of IPC Crimes' datasets are available for 4 years i.e., 1997,1998, 1999 and 2000.
+
+The Analysis provides Chargesheet Rate Projection on different types of crimes. The projections are done over differnt states and also aggregaged projection over timeseries.
+
+The exisiting dataset can be further enhanced by adding more years of data, as only limited datasets are available over Government open Data website, https://data.gov.in/ or concerned Government Department can be requested to provide additional set of data.
+
+More over, there is an opportunity to enhance the analysis performed above
+
+Kable Features can be enhanced for better table presentation
+
+Also more graphs can be added from GGPlot library to enance the quality of analysis and visualization.
