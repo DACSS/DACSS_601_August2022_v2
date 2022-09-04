@@ -1,0 +1,323 @@
+---
+title: "Final Project DACSS601"
+output: html_document
+date: "2022-08-17"
+---
+
+# Introduction
+
+The data set I have chosen for my final project is the hotel booking demand data set. The data set comprised over 119,000 reservations from two Portugal hotels: a Resort Hotel and a City Hotel in Lisbon. Check-in dates ranged from July 2015 to August 2017. Since most reservations were for the City Hotel, the distribution is uneven. Research questions: What is the best time of the year to book a hotel in Portugal? Through what distribution channel was the booking made by most? Which is the busiest month for hotels? From which country do a majority of guests come? What could be the possible reasons for a high number of cancellations?
+
+## Importing Packages
+
+```{r setup, include=FALSE}
+library(tidyverse) 
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(lubridate)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading in the Data set
+
+Importing and displaying the data set.
+
+```{r}
+hoteldata <- read.csv("_data/hotel_bookings.csv", stringsAsFactors=TRUE)
+```
+
+```{r}
+hoteldata <- as_tibble(hoteldata)
+glimpse(hoteldata)
+```
+
+Displaying the first 10 elements of the data set gives a better idea.
+
+```{r}
+head(hoteldata, n=10)
+```
+
+Displaying the number of rows, columns and summary of the data set.
+
+```{r}
+dim(hoteldata)
+summary(hoteldata)
+```
+The hotel data set is composed of 119,390 rows and 32 columns.
+
+# Tidying the Data
+
+Displaying the overall amount of hotel and meal reservations made between the years of 2015 and 2017.
+```{r}
+table(hoteldata$hotel)
+table(hoteldata$meal)
+table(hoteldata$arrival_date_year)
+```
+Here there are four meal options: BB: Bed and Breakfast (Breakfast is included in the hotel's price). 
+FB: Full Board (Breakfast, lunch and dinner are all included in the hotel's price). 
+HB: Half Board (Price includes breakfast and dinner in the hotel's price). 
+SC / Undefined: Self Catering meals.
+
+```{r}
+# Replacing the undefined values with "SC" and then displaying it's unique values
+hoteldata$meal <-replace(hoteldata$meal,hoteldata$meal=='Undefined','SC')
+hoteldata$meal <- factor(hoteldata$meal)
+levels(hoteldata$meal)
+```
+## Removing unwanted columns
+'Company' was omitted from this table because it did not seem helpful. There are too many 'NULL' values in the 'Company' column. Modifying the NaN values in this could make an immense difference in the data and change the meaning of the actual data. The company variable can be fully removed from the data set because there is no way to fill in the missing values. Three columns provide us with the reservation date: arrival date year, arrival date month, and arrival date day of the month. The "arrival date week number" column appears of little value in this situation. Eliminating the arrival_date_week_number and company variables:
+
+```{r}
+hoteldata = subset(hoteldata, select = -c(company, arrival_date_week_number))
+```
+
+## Dealing with missing values
+The agent column has a few missing values that can be omitted. Removing rows with missing values in the agent column.
+```{r}
+hoteldata <- hoteldata[!hoteldata$agent == "NULL", ]
+glimpse(hoteldata)
+```
+Checking if there are any missing values (NA/NaN) in the data set. Finding the number of missing values in every column.
+
+```{r}
+colSums(is.na(hoteldata))
+```
+We can observe that only one column, the one with 'children' as the column name, seems to have values missing. Substituting the values in the children column for the ones in the babies column.
+
+```{r}
+n <- length(hoteldata)
+for (i in n) {
+        if (is.na(hoteldata$children[i])) 
+                hoteldata$children[i] <- hoteldata$babies
+        
+}
+```
+
+```{r}
+# Checking for outliers
+hoteldata%>%
+  filter(adr>800)
+```
+Here it is visible that there in only one outlier where the average daily rate (adr) is greater than 800. Updating the outlier value by the mean of adr (average daily rate).
+
+```{r}
+hoteldata = hoteldata%>%
+  mutate(adr = replace(adr, adr>1000, mean(adr)))
+```
+
+```{r}
+hoteldata%>%group_by(arrival_date_month, arrival_date_year)%>%tally()
+```
+July and August are the only 2 months where they had bookings all the three years 2015,2016,2017. This could typically corelate with the weather and summer breaks for children.
+
+# Visualising the data
+
+Checking the number of bookings for Resort Hotel and City Hotel each:
+```{r}
+table(hoteldata$hotel)
+```
+
+Visualizing this graphically gives us a better picture.
+```{r}
+#The percentage of city hotels is more
+
+ggplot(hoteldata, aes(x = hotel)) + geom_bar(mapping = aes(x = hotel), color = "blue", fill= "black", stat = "count") + labs(title = "Bookings based on hotel type", x= "Type of hotel", y= "Number of bookings")
+
+```
+We can see that City Hotel has been booked more times than the Resort Hotel between 2015 - 2017. This uneven distribution was the primary reason why I chose this data set.
+
+```{r}
+#Check the number of cancellations made by respective hotels.
+table(hoteldata$is_canceled, hoteldata$hotel)
+```
+
+```{r}
+#Visualizing the number of cancellations based on type of hotel.
+ggplot(data = hoteldata,
+       aes(
+         x = hotel,
+         y = prop.table(stat(count)),
+         fill = factor(is_canceled), width = 0.5,
+         label = scales::percent(prop.table(stat(count)))
+       )) +
+  geom_bar(position = position_dodge()) +
+  geom_text(
+    stat = "count",
+    position = position_dodge(.9),
+    vjust = -0.5,
+    size = 3
+  ) + scale_y_continuous(labels = scales::percent) +
+  labs(title = "Status of Cancellations based on Hotel",
+       x = "Type of Hotel",
+       y = "Count") +
+  theme_classic() +
+  scale_fill_discrete(
+    name = "Booking Status",
+    labels = c("Cancelled", "Not Cancelled")
+  )
+```
+It is evident that City Hotel has more bookings than the Resort Hotel. However, the number of 'Cancelled' bookings is more for both the hotels than the bookings 'Not Cancelled'. This could be related to something after the booking has been made.
+
+**Lead Time** is the amount of time between the booking made and the actual date of check in.
+
+```{r}
+ggplot(data = hoteldata, aes(x = hotel,y = lead_time,fill    =factor(is_canceled))) + geom_boxplot(position = position_dodge()) +
+labs(title = "Cancellations made after booking (lead time)", 
+x = "Type of Hotel",y = "Lead Time") + scale_fill_discrete(name = "Booking Status",breaks = c("0", "1"),labels = c("Cancelled", "Not Cancelled")) + theme_classic()
+```
+Lead time is the actual time between the day when booking made and actual day of checking in. From the plot we can see that cancellation of bookings normally occurs soon after booking. The cancellations seem to be less when enough time has passed after the booking has been made.
+
+Checking the unique values in the arrival_date_year column.
+
+```{r}
+unique(hoteldata$arrival_date_year)
+```
+Checking which year had most bookings.
+
+```{r}
+ggplot(hoteldata, aes(x = arrival_date_year)) + geom_bar(mapping = aes(x = arrival_date_year, fill = hotel), stat = "count") + labs(title = " Total bookings based on Year", x= "Year", y= "Number of bookings")
+```
+Comparison of year of Arrival date versus cancellation, year 2016 is the one with the most bookings as well as cancellations. More than double bookings were made in 2016, compared to the previous year. But the bookings decreased by almost 15% the next year. **Inference:** Bookings over the years are consistently greater for city hotels than resort hotels and do not increase proportionately over the years.
+
+It will be interesting to see which month was most favoured by visitors to travel. We will select the arrival_date_month feature to answer this question and get its value count. We must first sort the data because it is not organized according to the order of months.
+
+```{r}
+#Arranging months in correct order :
+
+hoteldata$arrival_date_month <-
+  factor(hoteldata$arrival_date_month, levels = month.name)
+
+# Visualize Hotel bookings on Monthly basis
+
+arrival_date_month <- hoteldata$arrival_date_month
+reservemonth<-table(arrival_date_month)
+ reservemonth<-data.frame(reservemonth)
+ reservemonth$arrival_date_month<-factor(reservemonth$arrival_date_month, levels=month.name)
+ ggplot(reservemonth, aes(x=arrival_date_month, y=Freq, group=1)) + geom_line(col="navy") + 
+  ggtitle("Reservations by Arrival Month") + ylab("Count") + xlab("Month")+
+  theme(axis.text.x=element_text(angle=40))
+
+ggplot(data = hoteldata, aes(x = arrival_date_month)) +
+  geom_bar(fill = "black", alpha = 0.1) + geom_text(stat = "count", aes(label = ..count..), hjust = 3) +
+  coord_flip() + labs(title = "Month Wise Booking Request",
+                      x = "Month",
+                      y = "Count") +
+  theme_classic()
+```
+We can observe that August and July are the most frequently booked months. Weather variations can be to blame for this. The winter season saw few reservations (November, December, and January). The month of August receives the most reservations because it is when most kids take their summer vacations. The month with the slightest reservations is January, which may be related to the climate.
+
+```{r}
+arrival_date_month <- hoteldata$arrival_date_month
+ggplot(hoteldata, aes(x=arrival_date_month, fill = hotel)) + 
+  geom_bar(position = position_dodge(), stat = "count") + 
+  labs(title = "Booking Status by Month",
+       x = "Month",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.background = element_blank())
+```
+Seasonally, the combined revenue for the two hotels rose from year to year. This is particularly crucial for the resort hotel because the majority of its annual revenue is generated during the summer. The city hotel's seasonal revenue is relatively stable during the fall, spring, and summer seasons but decreases during the winter.
+
+Shows when there are lesser days on the waiting list, there is a lesser number of cancellations.
+
+```{r}
+#Histogram illustrating Days in waiting list and cancellations
+hoteldata%>%
+  filter(days_in_waiting_list>1)%>%
+  ggplot(aes(x=days_in_waiting_list,fill= factor(is_canceled)))+
+  geom_histogram(binwidth = 10) + labs(title = "Visualising days in waiting list and cancellations", x= "Days in waiting list", y= "No. of cancellations")
+
+```
+**Inference:** From this we can infer that when the number of days in the waiting list is low there seems to be lower cancellations. This could also be related to cancellation when they were informed they would not get the requested room.
+
+```{r}
+#Checking the purpose of the reservation and visualizing it.
+ggplot(hoteldata, aes(y= market_segment)) + geom_bar(mapping = aes(y= market_segment), colour = "black", stat = "count", width = 0.5) + theme(axis.text.x = element_text(hjust = 0.2)) + labs(title = "Segment wise booking", y= "market segment")
+```
+Indirect bookings through online and offline travel agents are higher than direct bookings, and the same is true with group bookings, which are also high. For most countries and continents, online travel companies were the most common way to make reservations. Relying on these conclusions, the hotel advertising department might direct most of its marketing funds to these online travel agencies to draw current and potential visitors to their hotels.
+
+```{r}
+#Checking the assigned room types:
+
+hoteldata%>%
+  ggplot(aes(x = assigned_room_type, fill = factor(is_canceled))) +
+  geom_bar() + labs(title = "Bookings based on assigned room type", x= "Assigned room type", y= "Number of bookings")
+```
+**Inference:** We can observe that room type 'A' was booked the most by customers. However, the number of cancellations of room type 'A' also is the highest. This could be due to the non-availability of the room, or the customer could have been reassigned to another room, which could be the reason for such a high number of cancellations.
+
+Visualizing the total number of nights stayed at the City Hotel and the Resort Hotel. We calculate total number of nights stayed by adding values of two columns stays_in_weekend_nights and stays_in_week_nights.
+
+```{r}
+totalnights <- hoteldata$stays_in_weekend_nights + hoteldata$stays_in_week_nights
+
+totalcost <- totalnights*hoteldata$adr
+
+hoteldata%>%mutate(totalnights, totalcost)
+
+ggplot(hoteldata, aes(x= totalnights, y= totalcost, color = hotel )) + geom_point(alpha=0.5) + labs(title = "Bookings based total nights stayed", x= "Total number of nights stayed", y= "Total cost") + theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.background = element_blank())
+```
+**Inference:** From this we can see majority of the customers stayed for a period less than 2 weeks and most people stayed at the city hotel.
+
+```{r}
+#Exploring the data across different market segments
+ggplot(hoteldata, aes(x=totalnights,y=totalcost,shape=hotel,color=is_canceled))+
+  geom_point()+
+  facet_wrap(~market_segment)
+```
+Here we can see nobody from Aviation segment stayed at the Resort Hotel. Majority of the customers that booked through Offline TA/TO and Online TA have more cancellations than other market segments. Groups segment has cancellation rate around 50%.
+
+```{r}
+#Number of days in waiting list based on market segment
+ggplot(hoteldata, aes(x = market_segment, y = days_in_waiting_list)) +
+   geom_point()+ 
+   ylab('Number of days in waiting list')+
+  xlab('Market segment')+
+  ggtitle('Number of days in waiting list based on market segment') 
+```
+The shortest period on the waiting list is in the aviation sector. The explanation may be because airlines have to arrange stay and meals for their employees or passengers, and therefore, they do not want to book hotels that would put them on a waiting list.
+
+```{r}
+#Visulizing bookings based on country:
+hoteldatasample <- hoteldata[hoteldata$reservation_status == "Check-Out",]
+
+hoteldatasubset <- hoteldata%>%group_by(country)%>%filter(n() >1000)
+
+ggplot(hoteldatasubset, aes(country, fill = hotel)) + 
+  geom_bar(position = position_dodge(), stat = "count") + 
+  labs(title = "Booking Status by Country",
+       x = "Country",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.background = element_blank())
+
+```
+Portugal, UK and France, Spain and Germany are the top countries from most guests come, more than 80% come from these 5 countries. The fact that these hotels are in Portugal may help to explain why most reservations are from European nations, with Portugal accounting for the most significant percentage.
+
+```{r}
+#Visualizing bookings based on customer type:
+ggplot(hoteldatasubset, aes(customer_type, fill = hotel)) + 
+  geom_bar(position = position_dodge(), stat = "count") + 
+  labs(title = "Hotel Preference by Customer Type",
+       x = "Customer Type",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.background = element_blank())
+
+```
+One of the leading market segments, transient guests, are people or groups who book fewer than ten rooms per night. Typically, they are drop-in visitors, last-minute travelers, or people who need to reserve a room at a hotel property for a brief period.
+
+# Conclusion
+
+There were numerous facets of this data set to examine. I wanted to investigate and find out where the majority of customers came from, what kind of hotel was most frequently booked, which year had the most bookings, and which market segment had the fewest days on the waiting list. Lastly, I wanted to find out which months are the busiest for both city hotels and resorts. Despite the fact that both hotel types had an increase in demand over the summer, I found it fascinating to note that the booking trend for resort hotels was more consistent throughout the year than for city hotels, which I would have expected to be the reverse. There are a few limitations to this data set. I surmised that a customer could have gotten an accommodation upgrade from what they reserved, which does not seem to be available to us. Another drawback of this data set is that the room kinds are encoded, making it impossible to know what each one contains (like the type of amenities available in the room). I could fine-tune these insights and determine whether or not a visitor is likely to terminate their stay if this data were available.
+
+# Bibliography
+
+<https://ggplot2-book.org/>
+
+<https://github.com/hadley/tidyr>
+
+<https://www.sciencedirect.com/science/article/pii/S2352340918315191>
+
+<https://www.researchgate.net/publication/329286343_Hotel_booking_demand_datasets>
