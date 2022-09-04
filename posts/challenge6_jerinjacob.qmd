@@ -1,0 +1,129 @@
+---
+title: "Challenge 6"
+author: "Jerin Jacob"
+description: "Visualizing Time and Relationships"
+date: "08/23/2022"
+format:
+  html:
+    toc: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_6
+  - debt
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge 6 Overview
+The data set used for this challenge is debt dataset.
+The library packages used are tidyverse, ggplot2, lubridate
+
+***Today's challenge is to:
+
+1)  read in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)
+2)  tidy data (as needed, including sanity checks)
+3)  mutate variables as needed (including sanity checks)
+4)  create at least one graph including time (evolution)
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+5)  Create at least one graph depicting part-whole or flow relationships
+   - try to make them "publication" ready (optional)
+   - Explain why you choose the specific graph type
+
+[R Graph Gallery](https://r-graph-gallery.com/) is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.
+
+(be sure to only include the category tags for the data you use!)***
+
+## Read in data
+
+The debt dataset is the category wise debt data in trillions from the first quarter of the year 2003 to the second quarter of 2021.
+
+
+```{r}
+debt <-read_excel("_data/debt_in_trillions.xlsx", skip= 1, col_names = c("Year_Quarter", "Mortgage", "HE_Revolving", "Auto_Loan", "Credit_Card", "Student_Loan", "Other", "Total")) 
+head(debt)
+  
+```
+ It has 6 types of debt variables namely Mortgage, Home Equity revolving debt, Auto Loan, Credit Card, Student Loan and a column for all other debts. The total debt got almost doubled over the period from 2003 to 2021.  
+
+### Briefly describe the data
+
+## Tidy Data (as needed)
+
+
+```{r}
+debt<-debt%>%
+  separate("Year_Quarter", into=c("Year", "Quarter"), sep=":")%>%
+  fill(Quarter)
+#debt
+```
+
+
+```{r}
+debt <- debt %>%
+  filter(Quarter == "Q4") %>%
+  select(!contains("Quarter"))
+#debt
+```
+The data has been filtered so that we can take the debt details at the year-ending quarter.
+
+```{r}
+attach(debt)
+par(mfrow=c(3,2))
+plot(Year, Mortgage, main="Scatterplot of Year vs. Mortgage")
+plot(Year, HE_Revolving, main="Scatterplot of Year vs HE_Revolving")
+plot(Year, Auto_Loan, main="Scatterplot of Year vs Auto_Loan")
+plot(Year, Credit_Card, main="Scatterplot of Year vs Credit_Card")
+plot(Year, Student_Loan, main="Scatterplot of Year vs Student_Loan")
+plot(Year, Other, main="Scatterplot of Year vs Other")
+
+
+```
+When the data is being visualized, we get a more clear idea about the trend for each type of debts over the years. Student loan showed a steady increase in the whole period. Mortgage, Auto Loan and Credit card showed an up trend from the year 2003 to 2008 and then had a decline for a couple of years and again started to regain the uptrend. HE Revolving, eventhough doubled in the period till 2008, continuously declined after that. 
+
+
+## Contribution to the total debt
+
+Each variables' contribution to the total debt is taken as percentage values. 
+```{r}
+debt_in_percentage <- debt %>%
+  mutate(Mortgage = (Mortgage/Total)*100, 
+         HE_Rev = (HE_Revolving/Total)*100, 
+         AutoLoan = (Auto_Loan/Total)*100, 
+         CreditCard = (Credit_Card/Total)*100,
+        StudentLoan = (Student_Loan/Total)*100,
+        Others = (Other/Total)*100)
+debt_in_percentage <- debt_in_percentage %>%
+    select(Year, Mortgage, HE_Rev, AutoLoan, CreditCard, StudentLoan, Others)
+debt_in_percentage
+```
+
+
+In any given year, Mortgage contributes the highest to the total debt. The contribution of Student Loan is increasing over the years and in 2020 it has reached above 10 % of the total debt. 
+
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+Document your work here.
+
+```{r}
+
+```
+
+## Time Dependent Visualization
+
+
+## Visualizing Part-Whole Relationships
+
