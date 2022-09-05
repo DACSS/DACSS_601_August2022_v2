@@ -1,0 +1,8 @@
+---
+title: "Featured Posts"
+listing:
+  contents: featured_posts
+  sort: "date desc"
+  type: default
+  categories: true
+---
