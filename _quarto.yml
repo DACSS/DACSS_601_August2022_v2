@@ -14,6 +14,8 @@ website:
     right:
       - text: "August 2022 Posts"
         href: https://dacss.github.io/DACSS_601_August2022_v2
+      - text: "Featured Posts"
+        file: featured_posts.qmd
       - text: "Contributors"
         file: about.qmd
       - href: https://umass.edu/sbs/dacss
