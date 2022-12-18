@@ -28,6 +28,8 @@ library(haven)
 library(labelled)
 library(ggplot2)
 library(pollster)
+library(ggthemes)
+library(RColorBrewer)
 
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 ```
@@ -39,168 +41,174 @@ The common lore of the 2016 presidential election is that Donald Trump's victory
 
 Who are these women who voted for Donald Trump in 2016? In what ways do they differ from the women who voted for Hillary Clinton? The UMass Poll, a survey that collects public opinion data on a wide variety of political and social issues, may be able to provide some insight into these questions.
 
-
 # Data
 
 The specific UMass poll data used for this analysis was collected in April 2021. The stratified sampling frame was aligned to the American Community Survey, and the final sample consisted of 1,000 respondents.
 
 
 ```{r}
-#read in data and format as table
+#read in SPSS data
 April_UMass_Poll <- read_sav("_data/April_UMass_Poll.sav")
-tibble(April_UMass_Poll)
+head(April_UMass_Poll)
 ```
 
 
-Examining the data, it is clear that each of the 222 columns represents either a survey question or an identifier variable, each of the 1,000 rows represents a unique observation, and each cell contains only one value. Because the data is already tidy, the next step is to wrangle the data frame into a form that is easily manipulated for analysis.
+Each of the 222 columns in the data frame represents either a survey question or an identifier variable, and each of the 1,000 rows represents a unique observation. Because the data is already *tidy*, the next step is to wrangle the data frame into a form that is easily manipulated for analysis.
 
 Since the UMass Poll includes questions about a wide variety of topics, a subset that includes only relevant columns needs to be created. After using the survey codebook to identify appropriate variables, the data frame can be pared down to include only the columns of interest:
 
 
 ```{r}
 #subset chosen variables
-April_UMass_Poll <- April_UMass_Poll %>%
-  select(weight, gender, party, ideology, vote2016, sexism1, sexism2, sexism3)
-tibble(April_UMass_Poll)
+sel_vars <- c('weight', 'gender', 'party', 'ideology', 'vote2016', 'sexism1', 'sexism2', 'sexism3')
+poll_selected <- April_UMass_Poll[sel_vars]
+head(poll_selected)
 ```
 
 
-
-Because this data was imported from SPSS, a final, but critical, step is required before any analysis can be done:
+Because this data was imported from **SPSS**, the critical final step of transforming the variables to *factor* type is required before any analysis can be done:
 
 
 ```{r}
-#convert variables from haven_labelled values to meaningful factors 
-April_UMass_Poll <- April_UMass_Poll %>%
+#convert variables from haven_labelled values to factors 
+poll_sel_fact <- poll_selected %>%
   mutate(gender = as_factor(gender), party = as_factor(party), ideology = as_factor(ideology), vote2016 = as_factor(vote2016), sexism1 = as_factor(sexism1), sexism2 = as_factor(sexism2), sexism3 = as_factor(sexism3))
-tibble(April_UMass_Poll)
+head(poll_sel_fact)
 ```
 
 
-# Visualization
+# Analysis & Visualization
 
-Since this analysis is concerned with women, the data must first be filtered to isolate female cases:
+Since this analysis is concerned with women, the data must first be filtered and subsetted to isolate female cases:
 
 
 ```{r}
-filter(April_UMass_Poll, gender == "Female")
-female <- April_UMass_Poll
+poll_fem <- poll_sel_fact[which(poll_sel_fact$gender == 'Female'),]
+head(poll_fem)
 ```
 
 
-Then, summary statistics can be used to assess the distributions of the data:
+
+Then, summary statistics can be generated to assess distribution frequencies:
+
+
 
 ```{r}
-#generate toplines with pollster package
-female %>%
-topline (df = female, variable = party, weight = weight) %>%
-  knitr::kable(digits = 0, caption = "Female Self-Reported Political Party ID")
+#generate toplines
+topline (df = poll_fem, variable = party, weight = weight, valid_pct = FALSE, cum_pct = FALSE) %>%
+  knitr::kable(digits = 0, caption = "Self-Reported Political Party ID WOMEN")
 ```
 ```{r}
-topline (df = female, variable = ideology, weight = weight) %>%
-  knitr::kable(digits = 0, caption = "Female Self-Reported Political Ideology")
+topline (df = poll_fem, variable = ideology, weight = weight, valid_pct = FALSE, cum_pct = FALSE) %>%
+  knitr::kable(digits = 0, caption = "Self-Reported Political Ideology WOMEN")
 ```
 
-
 ```{r}
-topline (df = female, variable = vote2016, weight = weight) %>%
-  knitr::kable(digits = 0, caption = "Female Vote Choice in 2016 Presidential Election")
-```
-
-
-The sexism indicators measured response to each statement:
-
-```{r}
-topline (df = female, variable = sexism1, weight = weight) %>%
-  knitr::kable(digits = 0, caption = "'Women seek to gain power by getting control over men'")
+topline (df = poll_fem, variable = vote2016, weight = weight, valid_pct = FALSE, cum_pct = FALSE) %>%
+  knitr::kable(digits = 0, caption = "Vote in 2016 Presidential Election WOMEN")
 ```
 
 
+
+Sexism indicator items measured agreement with each statement:
+
+
+
 ```{r}
-topline (df = female, variable = sexism2, weight = weight) %>%
-  knitr::kable(digits = 0, caption = "'Women are too easily offended'")
+topline (df = poll_fem, variable = sexism1, weight = weight, valid_pct = FALSE, cum_pct = FALSE) %>%
+  knitr::kable(digits = 0, caption = "'Women seek to gain power by getting control over men' - WOMEN")
 ```
 
 
 ```{r}
-topline (df = female, variable = sexism3, weight = weight) %>%
-  knitr::kable(digits = 0, caption = "'Women exaggerate problems they have at work'")
+topline (df = poll_fem, variable = sexism2, weight = weight, valid_pct = FALSE, cum_pct = FALSE) %>%
+  knitr::kable(digits = 0, caption = "'Women are too easily offended' - WOMEN")
 ```
 
 
-Nothing particularly stands out from these toplines - the variables seem to be fairly normally distributed. So far, there is no new information to help characterize female Trump voters.
+```{r}
+topline (df = poll_fem, variable = sexism3, weight = weight, valid_pct = FALSE, cum_pct = FALSE) %>%
+  knitr::kable(digits = 0, caption = "'Women exaggerate problems they have at work' - WOMEN")
+```
 
-The next step, then, is to look for relationships among variables:
+
+Nothing particularly stands out from these toplines - *party*, *ideology*, and *vote choice* seem to be normally distributed, and the majority of women disagree with each *sexism* indicator. So far, there is no new information to help characterize female Trump voters.
+
+The next step, then, is to examine cross-tabulations for relationships between variables:
 
 
 ```{r}
 #run crosstabs between variables
-crosstab (df = female, x = party, y = vote2016,  weight = weight, pct_type = "column") %>%
-  knitr::kable(digits = 0, caption = "% Female Vote in 2016 Election by Political Party")
+crosstab (df = poll_fem, x = party, y = vote2016,  weight = weight, pct_type = "column", n = FALSE) %>%
+  knitr::kable(digits = 0, caption = "% FEMALE Vote in 2016 by Political Party")
 ```
 
 ```{r}
-crosstab (df = female, x = ideology, y = vote2016,  weight = weight, pct_type = "column") %>%
-  knitr::kable(digits = 0, caption = "% Female Vote in 2016 Election by Political Ideology")
+crosstab (df = poll_fem, x = ideology, y = vote2016,  weight = weight, pct_type = "column", n = FALSE) %>%
+  knitr::kable(digits = 0, caption = "% FEMALE Vote in 2016 by Political Ideology")
 ```
 
 
 The first two cross-tabulations reveal nothing new, as they both reflect typical voting along party lines. 
 
-The remaining variables comprise a measure of sexism attitudes assessed by asking respondents whether they agree with three separate statements.
+The remaining variables comprise a measure of sexist attitudes assessed by asking respondents whether they agree with three separate statements.
+
+Could agreement with sexist statements by women, which indicates a phenomenon known as *internalized misogyny*, correlate with voting for Donald Trump?
 
 
 ```{r}
 #explore relationship between female sexist attitudes and vote choice
-crosstab (df = female, x = vote2016, y = sexism1,  weight = weight, pct_type = "column") %>%
-  knitr::kable(digits = 0, caption = "% Female Response to 'Women seek to gain power by getting control over men' By Vote Choice")
+crosstab (df = poll_fem, x = vote2016, y = sexism1,  weight = weight, pct_type = "column", n = FALSE) %>%
+  knitr::kable(digits = 0, caption = "% FEMALE Response to 'Women seek to gain power by getting control over men' (By Vote Choice)")
 ```
 
 
 ```{r}
-crosstab (df = female, x = vote2016, y = sexism2,  weight = weight, pct_type = "column") %>%
-  knitr::kable(digits = 0, caption = "% Female Response to 'Women are too easily offended' By Vote Choice")
+crosstab (df = poll_fem, x = vote2016, y = sexism2,  weight = weight, pct_type = "column", n = FALSE) %>%
+  knitr::kable(digits = 0, caption = "% FEMALE Response to 'Women are too easily offended' (By Vote Choice)")
 ```
 
 ```{r}
-crosstab (df = female, x = vote2016, y = sexism3,  weight = weight, pct_type = "column") %>%
-  knitr::kable(digits = 0, caption = "% Female Response to 'Women exaggerate problems they have at work' By Vote Choice")
+crosstab (df = poll_fem, x = vote2016, y = sexism3,  weight = weight, pct_type = "column", n = FALSE) %>%
+  knitr::kable(digits = 0, caption = "% FEMALE Response to 'Women exaggerate problems they have at work' (By Vote Choice)")
 ```
 
 
-The sexism indicators seem to have an interesting relationship with vote choice!
+The *sexism* indicators seem to have an interesting relationship with vote choice.
 
-
-
-Bar charts can help make the relationship more clear:
+Plotting responses to the sexism indicators by vote choice helps clearly visualize this relationship:
 
 
 ```{r}
-#create bar charts for each sexism indicator by 2016 vote choice
-crosstab (df = female, x = sexism1, y = vote2016,  weight = weight, remove = c("Other Candidates", "Didn't Vote"), format = "long") %>%
-  ggplot(aes(vote2016, pct, fill = sexism1)) +
+#tally percentages of women who agreed by 2016 vote
+chart1 <- crosstab (df = poll_fem, x = sexism1, y = vote2016,  weight = weight, n = FALSE, remove = c("Disagree"), format = "long")
+chart2 <- crosstab (df = poll_fem, x = sexism2, y = vote2016,  weight = weight, n = FALSE, remove = c("Disagree"), format = "long")
+chart3 <- crosstab (df = poll_fem, x = sexism3, y = vote2016,  weight = weight, n = FALSE, remove = c("Disagree"), format = "long")
+chart_data <- bind_rows(chart1,chart2,chart3)
+chart_data
+```
+
+```{r}
+#wrangle data for plotting
+vote_2016 <- c("Hillary Clinton", "Donald Trump", "Other Candidates", "Didn't Vote", "Hillary Clinton", "Donald Trump", "Other Candidates", "Didn't Vote", "Hillary Clinton", "Donald Trump", "Other Candidates", "Didn't Vote")
+statement <- c("S1", "S1","S1", "S1", "S2", "S2", "S2", "S2", "S3", "S3", "S3", "S3")
+pct <- c(15,51,2,33,13,57,1,29,14,57,2,27)
+plot_data <- data.frame(vote_2016, statement, pct)
+plot_data
+```
+
+```{r}
+#visualize
+ggplot(plot_data, aes(vote_2016, pct, fill=statement)) +
   geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Female Response to Sexist Statement1 By 2016 Vote Choice")
+  scale_fill_brewer(palette = 'Reds', direction = -1) +
+  theme_tufte() +
+  theme(legend.position = "none") + 
+  labs(title = "Vote Choice of Women Who Agreed With Each Of 3 Sexist Statements", y = "%", x="2016 Vote") 
 ```
 
 
-```{r}
-crosstab (df = female, x = sexism2, y = vote2016,  weight = weight, remove = c("Other Candidates", "Didn't Vote"), format = "long") %>%
-  ggplot(aes(vote2016, pct, fill = sexism2)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Female Response to Sexist Statement2 By 2016 Vote Choice")
-```
-
-
-```{r}
-crosstab (df = female, x = sexism3, y = vote2016,  weight = weight, remove = c("Other Candidates", "Didn't Vote"), format = "long") %>%
-  ggplot(aes(vote2016, pct, fill = sexism3)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Female Response to Sexist Statement3 By 2016 Vote Choice")
-```
-
-
-At first glance, it may not be too surprising to see that large percentages of Trump voters agreed with each of the sexist statements - but once you remember that only WOMEN voters are represented here, those numbers take on new importance. 
+At first glance, it may not be too surprising to see that large percentages of Trump voters agreed with each of the sexist statements - but once you remember that only WOMEN voters are represented here, those numbers take on new importance. Women who voted for Donald Trump agreed with the sexist statements far more often than women in *any* of the other vote choice categories.
 
 There is evidence from behavioral research that, during lifelong exposure to ingrained social norms of female inferiority and stereotypes, women themselves can internalize misogyny, often subconsciously. Could it be that this phenomenon is particularly prevalent in women who voted for Trump? 
 
