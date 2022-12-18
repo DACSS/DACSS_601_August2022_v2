@@ -147,6 +147,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../featured_posts.html">Featured Posts</a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../about.html">Contributors</a>
   </li>  
   <li class="nav-item">
@@ -262,8 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 AL    AUTAUGA                          102
  9 AL    BALDWIN                          143
 10 AL    BARBOUR                            1
-# … with 2,920 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 2,920 more rows</code></pre>
 </div>
 </div>
 <p>Add any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation.</p>
@@ -319,8 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 CO                3650
  9 CT                2592
 10 DC                 279
-# … with 43 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
+# … with 43 more rows</code></pre>
 </div>
 </div>
 <p>When I used the spec() function, it returned the variable types of the columns. We know that state is type col_character(), county is type col_character() and total_employees is type col_double(). When I filtered through just the state of AK it returns the list of the total employees for each county in that state. I created a pipe that groups all the states together an than is summarized by the total amount of employees in each state. This pipe is useful because I now know how many total employees are in each state. This data was likely gathered in 2012 from the most used railroad stations in the USA. This dataset is also long in the sense that the column length is much greater than the amount of columns present.</p>

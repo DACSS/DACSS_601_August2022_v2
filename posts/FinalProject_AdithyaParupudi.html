@@ -155,6 +155,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../featured_posts.html">Featured Posts</a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../about.html">Contributors</a>
   </li>  
   <li class="nav-item">
@@ -1347,378 +1350,404 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
 <span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>The NIFTY 50 is a benchmark Indian stock market index that represents the weighted average of 50 of the largest Indian companies listed on the National Stock Exchange. It is one of the two main stock indices used in India, the other being the BSE SENSEX. With the dataset I got from kaggle, I will perform an EDA of the stock prices listed from 2000 to 2021. Some answers I wanted to find out were :</span>
-<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Do all stocks remain the same each year?</span>
+<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>The NIFTY 50 is a benchmark Indian stock market index that represents the weighted average of 50 of the largest Indian companies listed on the National Stock Exchange. It is one of the two main stock indices used in India, the other being the BSE SENSEX.</span>
+<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a>It is owned and managed by <span class="co">[</span><span class="ot">NSE Indices</span><span class="co">](https://en.wikipedia.org/wiki/NSE_Indices "NSE Indices")</span> (previously known as India Index Services &amp; Products Limited), which is a wholly owned subsidiary of the NSE Strategic Investment Corporation Limited. <span class="co">[</span><span class="ot">NSE Indices</span><span class="co">](https://en.wikipedia.org/wiki/NSE_Indices "NSE Indices")</span> had a marketing and licensing agreement with <span class="co">[</span><span class="ot">Standard &amp; Poor's</span><span class="co">](https://en.wikipedia.org/wiki/Standard_%26_Poor%27s "Standard &amp; Poor's")</span> for co-branding equity indices until 2013. The Nifty 50 index was launched on 22 April 1996, and is one of the many stock indices of Nifty.</span>
+<span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>The NIFTY 50 index has shaped up to be the largest single financial product in India, with an ecosystem consisting of <span class="co">[</span><span class="ot">exchange-traded funds</span><span class="co">](https://en.wikipedia.org/wiki/Exchange-traded_fund "Exchange-traded fund")</span> (onshore and offshore), exchange-traded options at <span class="co">[</span><span class="ot">NSE</span><span class="co">](https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India "National Stock Exchange of India")</span>, and futures and options abroad at the <span class="co">[</span><span class="ot">SGX</span><span class="co">](https://en.wikipedia.org/wiki/Singapore_Exchange "Singapore Exchange")</span>. NIFTY 50 is the world's most actively traded contract. WFE, IOM and FIA surveys endorse NSE's leadership position.</span>
 <span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-47"><a href="#cb39-47" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What is the best and worst stock in a year?</span>
+<span id="cb39-47"><a href="#cb39-47" aria-hidden="true" tabindex="-1"></a>I want to analyse the stock trends over the past decade and wanted to see if this data would give me an idea about India's economic development. I downloaded the dataset from Kaggle and will perform an EDA of the stock prices listed from 2000 to 2021. Some answers I wanted to find out were :</span>
 <span id="cb39-48"><a href="#cb39-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-49"><a href="#cb39-49" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What is the stock performance of companies that I regularly use?</span>
+<span id="cb39-49"><a href="#cb39-49" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>D they all stocks remain the same in the NIFTY 50 index every year?</span>
 <span id="cb39-50"><a href="#cb39-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-51"><a href="#cb39-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column Descriptions</span></span>
+<span id="cb39-51"><a href="#cb39-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What is the best and worst stock in a year?</span>
 <span id="cb39-52"><a href="#cb39-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-53"><a href="#cb39-53" aria-hidden="true" tabindex="-1"></a>Description of columns in the file:</span>
+<span id="cb39-53"><a href="#cb39-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What is the stock performance of companies that I regularly invest in?</span>
 <span id="cb39-54"><a href="#cb39-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-55"><a href="#cb39-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Date --- Date of trade</span>
+<span id="cb39-55"><a href="#cb39-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Which stock plummeted the most in 2008?</span>
 <span id="cb39-56"><a href="#cb39-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-57"><a href="#cb39-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>symbol --- Name of the company</span>
+<span id="cb39-57"><a href="#cb39-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>What are the highest and lowest stock price ever observed?</span>
 <span id="cb39-58"><a href="#cb39-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-59"><a href="#cb39-59" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Series --- We have only one series - EQ, which stands for Equity.</span>
+<span id="cb39-59"><a href="#cb39-59" aria-hidden="true" tabindex="-1"></a><span class="fu">### Column Descriptions</span></span>
 <span id="cb39-60"><a href="#cb39-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-61"><a href="#cb39-61" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Prev Close --- Refers to the final price of a stock of the previous dat when the market officially closes, which is at 3:30pm IST</span>
+<span id="cb39-61"><a href="#cb39-61" aria-hidden="true" tabindex="-1"></a>The dataset has multiple columns which tells us about the stock prices, traded volumes and son.</span>
 <span id="cb39-62"><a href="#cb39-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-63"><a href="#cb39-63" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Open --- The open is the starting period of trading on a securities exchange or organized over-the-counter market.</span>
+<span id="cb39-63"><a href="#cb39-63" aria-hidden="true" tabindex="-1"></a>The column descriptions are as follows:</span>
 <span id="cb39-64"><a href="#cb39-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-65"><a href="#cb39-65" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>High --- Highest price at which a stock traded during the course of the trading day.</span>
+<span id="cb39-65"><a href="#cb39-65" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Date --- Date of trade</span>
 <span id="cb39-66"><a href="#cb39-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-67"><a href="#cb39-67" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Low --- Lowest price at which a stock traded during the course of the trading day.</span>
+<span id="cb39-67"><a href="#cb39-67" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>symbol --- Name of the company</span>
 <span id="cb39-68"><a href="#cb39-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-69"><a href="#cb39-69" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Last --- The last price of a stock is just one price to consider when buying or selling shares. The last price is simply the most recent one</span>
+<span id="cb39-69"><a href="#cb39-69" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Series --- We have only one series - EQ, which stands for Equity.</span>
 <span id="cb39-70"><a href="#cb39-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-71"><a href="#cb39-71" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Close --- The close is a reference to the end of a trading session in the financial markets when the markets close for the day.</span>
+<span id="cb39-71"><a href="#cb39-71" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Prev Close --- Refers to the final price of a stock of the previous dat when the market officially closes, which is at 3:30pm IST</span>
 <span id="cb39-72"><a href="#cb39-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-73"><a href="#cb39-73" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>VWAP (Volume-weighted average price)- It is the ratio of the value traded to total volume traded over a particular time horizon. It is a measure of the average price at which a stock is traded over the trading horizon</span>
+<span id="cb39-73"><a href="#cb39-73" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Open --- The open is the starting period of trading on a securities exchange or organized over-the-counter market.</span>
 <span id="cb39-74"><a href="#cb39-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-75"><a href="#cb39-75" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Volume --- It is the amount of a security that was traded during a given period of time</span>
+<span id="cb39-75"><a href="#cb39-75" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>High --- Highest price at which a stock traded during the course of the trading day.</span>
 <span id="cb39-76"><a href="#cb39-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-77"><a href="#cb39-77" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Turnover -It is a measure of sellers versus buyers of a particular stock. It is calculated by dividing the daily volume of a stock by the "float" of a stock, which is the number of shares available for sale by the general trading public.</span>
+<span id="cb39-77"><a href="#cb39-77" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Low --- Lowest price at which a stock traded during the course of the trading day.</span>
 <span id="cb39-78"><a href="#cb39-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-79"><a href="#cb39-79" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Trades- The number of shares being traded on a given day is called trading volumes</span>
+<span id="cb39-79"><a href="#cb39-79" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Last --- The last price of a stock is just one price to consider when buying or selling shares. The last price is simply the most recent one</span>
 <span id="cb39-80"><a href="#cb39-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-81"><a href="#cb39-81" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Deliverable Volume --- quantity of shares which actually move from sellers to buyers</span>
+<span id="cb39-81"><a href="#cb39-81" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Close --- The close is a reference to the end of a trading session in the financial markets when the markets close for the day.</span>
 <span id="cb39-82"><a href="#cb39-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-83"><a href="#cb39-83" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>%Deliverable --- shares which are actually transferred from one person's to another's demat account.</span>
+<span id="cb39-83"><a href="#cb39-83" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>VWAP (Volume-weighted average price)- It is the ratio of the value traded to total volume traded over a particular time horizon. It is a measure of the average price at which a stock is traded over the trading horizon</span>
 <span id="cb39-84"><a href="#cb39-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-85"><a href="#cb39-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read Data</span></span>
+<span id="cb39-85"><a href="#cb39-85" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Volume --- It is the amount of a security that was traded during a given period of time</span>
 <span id="cb39-86"><a href="#cb39-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-87"><a href="#cb39-87" aria-hidden="true" tabindex="-1"></a>There are multiple .csv files, one for each stock, which are placed in a folder. I am reading data from all the csv files and combining them into a single data-frame using purrr package.</span>
+<span id="cb39-87"><a href="#cb39-87" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Turnover -It is a measure of sellers versus buyers of a particular stock. It is calculated by dividing the daily volume of a stock by the "float" of a stock, which is the number of shares available for sale by the general trading public.</span>
 <span id="cb39-88"><a href="#cb39-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-91"><a href="#cb39-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-92"><a href="#cb39-92" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"_data/NIFTY_AdithyaParupudi/"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>  <span class="fu">map_dfr</span>(read_csv, )</span>
-<span id="cb39-93"><a href="#cb39-93" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(all_stocks)</span>
+<span id="cb39-89"><a href="#cb39-89" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Trades- The number of shares being traded on a given day is called trading volumes</span>
+<span id="cb39-90"><a href="#cb39-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-91"><a href="#cb39-91" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Deliverable Volume --- quantity of shares which actually move from sellers to buyers</span>
+<span id="cb39-92"><a href="#cb39-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-93"><a href="#cb39-93" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>%Deliverable --- shares which are actually transferred from one person's to another's demat account.</span>
 <span id="cb39-94"><a href="#cb39-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-95"><a href="#cb39-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-95"><a href="#cb39-95" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read Data</span></span>
 <span id="cb39-96"><a href="#cb39-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-99"><a href="#cb39-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-100"><a href="#cb39-100" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(all_stocks)</span>
-<span id="cb39-101"><a href="#cb39-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-102"><a href="#cb39-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-103"><a href="#cb39-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Cleaning</span></span>
+<span id="cb39-97"><a href="#cb39-97" aria-hidden="true" tabindex="-1"></a>There are multiple .csv files, one for each stock(around 55 files), which are located in a common folder. Using the purrr package, I am reading data from all the csv files and combining them into a single data-frame.</span>
+<span id="cb39-98"><a href="#cb39-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-101"><a href="#cb39-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-102"><a href="#cb39-102" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="st">"_data/NIFTY_AdithyaParupudi/"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>  <span class="fu">map_dfr</span>(read_csv, )</span>
+<span id="cb39-103"><a href="#cb39-103" aria-hidden="true" tabindex="-1"></a>all_stocks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(all_stocks)</span>
 <span id="cb39-104"><a href="#cb39-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-105"><a href="#cb39-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### Renaming column</span></span>
+<span id="cb39-105"><a href="#cb39-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-106"><a href="#cb39-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-107"><a href="#cb39-107" aria-hidden="true" tabindex="-1"></a>The last column has a spelling mistake. Changing that to PercentDeliverable to avoid confusion and also renamed another column to camel-casing</span>
+<span id="cb39-107"><a href="#cb39-107" aria-hidden="true" tabindex="-1"></a>The str() command gives me the column names, its datatype and first 5 observations from each column. Here we can notice that a majority of columns are numeric, one date and two character fields (stock-name). There are a total of 235192 rows, with 15 columns.</span>
 <span id="cb39-108"><a href="#cb39-108" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-111"><a href="#cb39-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-112"><a href="#cb39-112" aria-hidden="true" tabindex="-1"></a>all_stocksv2 <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">PercentDeliverable =</span> <span class="st">`</span><span class="at">%Deliverble</span><span class="st">`</span>, <span class="at">DeliverableVolume =</span> <span class="st">`</span><span class="at">Deliverable Volume</span><span class="st">`</span>)</span>
-<span id="cb39-113"><a href="#cb39-113" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(all_stocksv2)</span>
+<span id="cb39-112"><a href="#cb39-112" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(all_stocks)</span>
+<span id="cb39-113"><a href="#cb39-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-114"><a href="#cb39-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-115"><a href="#cb39-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-115"><a href="#cb39-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Cleaning</span></span>
 <span id="cb39-116"><a href="#cb39-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-117"><a href="#cb39-117" aria-hidden="true" tabindex="-1"></a>The date format is yyyy/mm/dd. I only want the year aspect, so creating a new column with just that. A new column 'yy' has been created, which is the last column</span>
+<span id="cb39-117"><a href="#cb39-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### Renaming column</span></span>
 <span id="cb39-118"><a href="#cb39-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-121"><a href="#cb39-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-122"><a href="#cb39-122" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">format</span>(<span class="fu">as.Date</span>(all_stocksv2<span class="sc">$</span>Date, <span class="at">format=</span><span class="st">"%Y/%m/%d"</span>))</span>
-<span id="cb39-123"><a href="#cb39-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-124"><a href="#cb39-124" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="ot">&lt;-</span> all_stocksv2 <span class="sc">%&gt;%</span> </span>
-<span id="cb39-125"><a href="#cb39-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yy=</span><span class="fu">year</span>(x)) <span class="sc">%&gt;%</span></span>
-<span id="cb39-126"><a href="#cb39-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Date)</span>
-<span id="cb39-127"><a href="#cb39-127" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_stocks_yy)</span>
+<span id="cb39-119"><a href="#cb39-119" aria-hidden="true" tabindex="-1"></a>The naming convention of last column, though intuitive, I feel would be better if I changed it to 'PercentDeliverable' instead of '%Deliverable'.</span>
+<span id="cb39-120"><a href="#cb39-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-123"><a href="#cb39-123" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-124"><a href="#cb39-124" aria-hidden="true" tabindex="-1"></a>all_stocksv2 <span class="ot">&lt;-</span> all_stocks <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">PercentDeliverable =</span> <span class="st">`</span><span class="at">%Deliverble</span><span class="st">`</span>, <span class="at">DeliverableVolume =</span> <span class="st">`</span><span class="at">Deliverable Volume</span><span class="st">`</span>)</span>
+<span id="cb39-125"><a href="#cb39-125" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(all_stocksv2)</span>
+<span id="cb39-126"><a href="#cb39-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-127"><a href="#cb39-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-128"><a href="#cb39-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-129"><a href="#cb39-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-129"><a href="#cb39-129" aria-hidden="true" tabindex="-1"></a><span class="fu">### Date field formatting</span></span>
 <span id="cb39-130"><a href="#cb39-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-131"><a href="#cb39-131" aria-hidden="true" tabindex="-1"></a><span class="fu">### Checking missing data</span></span>
+<span id="cb39-131"><a href="#cb39-131" aria-hidden="true" tabindex="-1"></a>The date format currently available is yyyy/mm/dd. For my analysis, only the year would suffice. Hence I am creating a new column with just the 'year' column called 'yy'.</span>
 <span id="cb39-132"><a href="#cb39-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-133"><a href="#cb39-133" aria-hidden="true" tabindex="-1"></a>By running the summary command we see that Trades, Deliverable Volume and Percent_Deliverables have a lot of missing values. Since they are all numeric, I'm replacing them with 0 to avoid calculation errors.</span>
-<span id="cb39-134"><a href="#cb39-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-137"><a href="#cb39-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-138"><a href="#cb39-138" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(all_stocks_yy,</span>
-<span id="cb39-139"><a href="#cb39-139" aria-hidden="true" tabindex="-1"></a>                        <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb39-140"><a href="#cb39-140" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb39-141"><a href="#cb39-141" aria-hidden="true" tabindex="-1"></a>                        <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
-<span id="cb39-142"><a href="#cb39-142" aria-hidden="true" tabindex="-1"></a>                        <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
-<span id="cb39-143"><a href="#cb39-143" aria-hidden="true" tabindex="-1"></a>                        <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb39-144"><a href="#cb39-144" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
-<span id="cb39-145"><a href="#cb39-145" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
-<span id="cb39-146"><a href="#cb39-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-147"><a href="#cb39-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-148"><a href="#cb39-148" aria-hidden="true" tabindex="-1"></a><span class="fu">### Replacing NA's with 0's</span></span>
-<span id="cb39-149"><a href="#cb39-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-150"><a href="#cb39-150" aria-hidden="true" tabindex="-1"></a>NA in the dataset are because - no trades happened to that stock when it was first listed in the NIFTY50 index. It is equal to 0, as no activity happened. NA's are present only in the numeric columns. So, I am replacing all the NA with 0</span>
-<span id="cb39-151"><a href="#cb39-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-152"><a href="#cb39-152" aria-hidden="true" tabindex="-1"></a>I tried using replace_na() but it wouldn't replace the NA's. So I had to use the base-r function for this.</span>
-<span id="cb39-153"><a href="#cb39-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-156"><a href="#cb39-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-157"><a href="#cb39-157" aria-hidden="true" tabindex="-1"></a>all_stocks_yy[<span class="fu">is.na</span>(all_stocks_yy)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb39-158"><a href="#cb39-158" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(all_stocks_yy<span class="sc">$</span>Trades))</span>
-<span id="cb39-159"><a href="#cb39-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-160"><a href="#cb39-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-161"><a href="#cb39-161" aria-hidden="true" tabindex="-1"></a><span class="fu">## Observations</span></span>
-<span id="cb39-162"><a href="#cb39-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-163"><a href="#cb39-163" aria-hidden="true" tabindex="-1"></a><span class="fu">### Distinct stocks</span></span>
-<span id="cb39-164"><a href="#cb39-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-165"><a href="#cb39-165" aria-hidden="true" tabindex="-1"></a>NIFTY50 is supposed to be the top 50 stocks of the financial year(there must be 50 distinct stocks in the data set). This data from 2000 to 2021 is not consistent, i.e., there are **65** distinct entries found. Which suggests that some stocks under-performed and got replaced with new ones over time.</span>
-<span id="cb39-166"><a href="#cb39-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-169"><a href="#cb39-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-170"><a href="#cb39-170" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
-<span id="cb39-171"><a href="#cb39-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-172"><a href="#cb39-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-173"><a href="#cb39-173" aria-hidden="true" tabindex="-1"></a><span class="fu">### Year vs Volume of stock traded</span></span>
-<span id="cb39-174"><a href="#cb39-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-175"><a href="#cb39-175" aria-hidden="true" tabindex="-1"></a>We can infer from the mean of Volume column, the number of stocks sold each year kept increasing.</span>
-<span id="cb39-176"><a href="#cb39-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-177"><a href="#cb39-177" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>This can hint an increase in demat accounts and number of active trading as well.</span>
+<span id="cb39-135"><a href="#cb39-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-136"><a href="#cb39-136" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">format</span>(<span class="fu">as.Date</span>(all_stocksv2<span class="sc">$</span>Date, <span class="at">format=</span><span class="st">"%Y/%m/%d"</span>))</span>
+<span id="cb39-137"><a href="#cb39-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-138"><a href="#cb39-138" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="ot">&lt;-</span> all_stocksv2 <span class="sc">%&gt;%</span> </span>
+<span id="cb39-139"><a href="#cb39-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">yy=</span><span class="fu">year</span>(x)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-140"><a href="#cb39-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Date)</span>
+<span id="cb39-141"><a href="#cb39-141" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_stocks_yy)</span>
+<span id="cb39-142"><a href="#cb39-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-143"><a href="#cb39-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-144"><a href="#cb39-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-145"><a href="#cb39-145" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summarising info and check for missing data</span></span>
+<span id="cb39-146"><a href="#cb39-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-147"><a href="#cb39-147" aria-hidden="true" tabindex="-1"></a>By running the summary command we see that Trades, Deliverable Volume and Percent_Deliverables have a lot of missing values. Since they are all numeric, I'm replacing them with 0 to avoid calculation errors.</span>
+<span id="cb39-148"><a href="#cb39-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-151"><a href="#cb39-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-152"><a href="#cb39-152" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(all_stocks_yy,</span>
+<span id="cb39-153"><a href="#cb39-153" aria-hidden="true" tabindex="-1"></a>                        <span class="at">varnumbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb39-154"><a href="#cb39-154" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb39-155"><a href="#cb39-155" aria-hidden="true" tabindex="-1"></a>                        <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb39-156"><a href="#cb39-156" aria-hidden="true" tabindex="-1"></a>                        <span class="at">graph.magnif =</span> <span class="fl">0.70</span>, </span>
+<span id="cb39-157"><a href="#cb39-157" aria-hidden="true" tabindex="-1"></a>                        <span class="at">valid.col    =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb39-158"><a href="#cb39-158" aria-hidden="true" tabindex="-1"></a>      <span class="at">method =</span> <span class="st">'render'</span>,</span>
+<span id="cb39-159"><a href="#cb39-159" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes =</span> <span class="st">'table-condensed'</span>)</span>
+<span id="cb39-160"><a href="#cb39-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-161"><a href="#cb39-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-162"><a href="#cb39-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### Replacing NA's with 0's</span></span>
+<span id="cb39-163"><a href="#cb39-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-164"><a href="#cb39-164" aria-hidden="true" tabindex="-1"></a>I've observed there are NA values in 3 columns. To avoid calculation/code errors, I decided to replace all NA's with 0. Also, replacing by zero doesn't have any impact on the observations because, the stock was not traded when it was first listen in the NIFTY index.</span>
+<span id="cb39-165"><a href="#cb39-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-166"><a href="#cb39-166" aria-hidden="true" tabindex="-1"></a>By using replace_na() function, I've picked 3 columns as a result of the above observations made from the summary table.</span>
+<span id="cb39-167"><a href="#cb39-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-170"><a href="#cb39-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-171"><a href="#cb39-171" aria-hidden="true" tabindex="-1"></a><span class="co"># all_stocks_yy[is.na(all_stocks_yy)] &lt;- 0</span></span>
+<span id="cb39-172"><a href="#cb39-172" aria-hidden="true" tabindex="-1"></a><span class="co"># sum(is.na(all_stocks_yy$Trades))</span></span>
+<span id="cb39-173"><a href="#cb39-173" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb39-174"><a href="#cb39-174" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb39-175"><a href="#cb39-175" aria-hidden="true" tabindex="-1"></a><span class="co"># all_stocks_yy %&gt;% mutate(</span></span>
+<span id="cb39-176"><a href="#cb39-176" aria-hidden="true" tabindex="-1"></a><span class="co">#     across(everything(), ~replace_na(., 0))</span></span>
+<span id="cb39-177"><a href="#cb39-177" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
 <span id="cb39-178"><a href="#cb39-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-179"><a href="#cb39-179" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>New stocks must have entered the NIFTY50 index, and started performing well over the years</span>
-<span id="cb39-180"><a href="#cb39-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-181"><a href="#cb39-181" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Special attention can be paid to volumes of stock sold between 2018 - 2021. There is a sharp increase in the volume of shares traded. Due to the COVID-19 pandemic, many stocks fell which encouraged more people than ever to open a demat account and start investing( I opened mine during this time!!!)</span>
-<span id="cb39-182"><a href="#cb39-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-185"><a href="#cb39-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-186"><a href="#cb39-186" aria-hidden="true" tabindex="-1"></a>barplot<span class="ot">&lt;-</span> all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-187"><a href="#cb39-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-188"><a href="#cb39-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-189"><a href="#cb39-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(mean, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb39-190"><a href="#cb39-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-191"><a href="#cb39-191" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height=</span>barplot<span class="sc">$</span>Volume, <span class="at">names=</span>barplot<span class="sc">$</span>yy, </span>
-<span id="cb39-192"><a href="#cb39-192" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">"#69b3a2"</span>,</span>
-<span id="cb39-193"><a href="#cb39-193" aria-hidden="true" tabindex="-1"></a>        <span class="at">horiz=</span>T, <span class="at">las=</span><span class="dv">1</span>,</span>
-<span id="cb39-194"><a href="#cb39-194" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">'Volume ---&gt;'</span>,</span>
-<span id="cb39-195"><a href="#cb39-195" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">'Year ---&gt;'</span>,</span>
-<span id="cb39-196"><a href="#cb39-196" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">'Year v/s Volume'</span>,</span>
-<span id="cb39-197"><a href="#cb39-197" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb39-198"><a href="#cb39-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-199"><a href="#cb39-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-200"><a href="#cb39-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-201"><a href="#cb39-201" aria-hidden="true" tabindex="-1"></a><span class="fu">### Checking stock's consistency in NIFTY50 index</span></span>
-<span id="cb39-202"><a href="#cb39-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-203"><a href="#cb39-203" aria-hidden="true" tabindex="-1"></a>By running the below code, I am checking whether a stock has maintained its consistency in the top 50 stocks. Looks like the top 50 stocks kept changing each year, and some stocks were not present in the list. The stocks not present in that year can be identified with 0 ( a metric for the sum of all shares sold in a year)</span>
-<span id="cb39-204"><a href="#cb39-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-205"><a href="#cb39-205" aria-hidden="true" tabindex="-1"></a>Some observations that can be made here :</span>
-<span id="cb39-206"><a href="#cb39-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-207"><a href="#cb39-207" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Stocks like ADANIPORTS, NESTLEIND, NTPC, SSLT didn't enter the stock market from 2000's. Their companies began listing further down the line, such as from 2010</span>
-<span id="cb39-208"><a href="#cb39-208" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Some companies, though made it to the NIFTY 50 list, have dropped out over the years due to a dip in stock price due to various factors. Some such examples would be KOTAKMAH, INFOSYSTCH, TELCO, TISCO and so on</span>
-<span id="cb39-209"><a href="#cb39-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-212"><a href="#cb39-212" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-213"><a href="#cb39-213" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-214"><a href="#cb39-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span><span class="st">`</span><span class="at">yy</span><span class="st">`</span>, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-215"><a href="#cb39-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Symbol) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Trades, <span class="dv">14</span><span class="sc">:</span><span class="dv">35</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-216"><a href="#cb39-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-217"><a href="#cb39-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2006</span><span class="st">`</span>, <span class="at">.before =</span> <span class="st">`</span><span class="at">2007</span><span class="st">`</span>)</span>
-<span id="cb39-218"><a href="#cb39-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-219"><a href="#cb39-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-220"><a href="#cb39-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-221"><a href="#cb39-221" aria-hidden="true" tabindex="-1"></a><span class="fu">### Stocks which didn't enter stock market for 10 yrs</span></span>
-<span id="cb39-222"><a href="#cb39-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-223"><a href="#cb39-223" aria-hidden="true" tabindex="-1"></a>There are 6 stocks which did not enter the stock market - ADANIPORTS, HEROMOTOCO, INFY,SSLT,UPL, VEDL. They were not publicly listed in to be traded, as they were still in the developmental phases. A company enters stock market once it has captured enough market in an area, and wants to expand its operations and brand to a larger scale.</span>
-<span id="cb39-224"><a href="#cb39-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-227"><a href="#cb39-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-228"><a href="#cb39-228" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-229"><a href="#cb39-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span><span class="st">`</span><span class="at">yy</span><span class="st">`</span>, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-230"><a href="#cb39-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Symbol) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Trades, <span class="dv">14</span><span class="sc">:</span><span class="dv">35</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-231"><a href="#cb39-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-232"><a href="#cb39-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2006</span><span class="st">`</span>, <span class="at">.before =</span> <span class="st">`</span><span class="at">2007</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-233"><a href="#cb39-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Symbol</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2010</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-234"><a href="#cb39-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">across</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2010</span><span class="st">`</span>, <span class="sc">~</span> . <span class="sc">==</span><span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-235"><a href="#cb39-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol)</span>
-<span id="cb39-236"><a href="#cb39-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-237"><a href="#cb39-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-238"><a href="#cb39-238" aria-hidden="true" tabindex="-1"></a><span class="fu">### Best and Worst Performing Stock of 2000</span></span>
-<span id="cb39-239"><a href="#cb39-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-240"><a href="#cb39-240" aria-hidden="true" tabindex="-1"></a>ZEETELE - Best performing stock in 2000, AJAUTOFIN - Worst performing stock 2000. They are calculated based on their cumulative volumes of all the years respectively</span>
-<span id="cb39-241"><a href="#cb39-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-244"><a href="#cb39-244" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-245"><a href="#cb39-245" aria-hidden="true" tabindex="-1"></a><span class="co"># best performing stock</span></span>
-<span id="cb39-246"><a href="#cb39-246" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-247"><a href="#cb39-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-248"><a href="#cb39-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-249"><a href="#cb39-249" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-250"><a href="#cb39-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Volume)) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-251"><a href="#cb39-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span>
-<span id="cb39-252"><a href="#cb39-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-253"><a href="#cb39-253" aria-hidden="true" tabindex="-1"></a><span class="co"># worst performing stock</span></span>
-<span id="cb39-254"><a href="#cb39-254" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-255"><a href="#cb39-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-256"><a href="#cb39-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-257"><a href="#cb39-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-258"><a href="#cb39-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Volume) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-259"><a href="#cb39-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span>
-<span id="cb39-260"><a href="#cb39-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-261"><a href="#cb39-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-262"><a href="#cb39-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-263"><a href="#cb39-263" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Plotting the above results</span></span>
-<span id="cb39-264"><a href="#cb39-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-265"><a href="#cb39-265" aria-hidden="true" tabindex="-1"></a>I have plotted a connected scatterplot for the best and the worst stock as shown below. It was surprising to see such a sharp decline in traded volumes for ZEETELE just the corresponding year. And the worst performing stock of 2000 gradually gained traction and crossed the aforementioned stock in the year 2006.</span>
-<span id="cb39-266"><a href="#cb39-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-267"><a href="#cb39-267" aria-hidden="true" tabindex="-1"></a>The dip in stock volume is observed for BAJAUTOFIN due to the stock market crash, but still continues to maintain its position in the NIFTY index. Looks like ZEETELE got kicked of the NIFTY index at the beginning of 2007</span>
-<span id="cb39-268"><a href="#cb39-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-269"><a href="#cb39-269" aria-hidden="true" tabindex="-1"></a>Red line - BAJAUTOFIN , Blue Line - ZEETELE</span>
-<span id="cb39-270"><a href="#cb39-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-273"><a href="#cb39-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-274"><a href="#cb39-274" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-275"><a href="#cb39-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, yy, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-276"><a href="#cb39-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Symbol <span class="sc">==</span> <span class="st">"ZEETELE"</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">"BAJAUTOFIN"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-277"><a href="#cb39-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-278"><a href="#cb39-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_all</span>(mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-279"><a href="#cb39-279" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Symbol, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-280"><a href="#cb39-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb39-281"><a href="#cb39-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>BAJAUTOFIN), <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span> </span>
-<span id="cb39-282"><a href="#cb39-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>BAJAUTOFIN),<span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span> </span>
-<span id="cb39-283"><a href="#cb39-283" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>ZEETELE), <span class="at">color=</span><span class="st">'blue'</span>) <span class="sc">+</span> </span>
-<span id="cb39-284"><a href="#cb39-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>ZEETELE),<span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span>   </span>
-<span id="cb39-285"><a href="#cb39-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'ZEETELE, BAJAUTOFIN - Stock performance'</span>, <span class="at">x=</span><span class="st">"Year"</span>, <span class="at">y=</span><span class="st">"Previous Close"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() </span>
+<span id="cb39-179"><a href="#cb39-179" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="ot">&lt;-</span> all_stocks_yy <span class="sc">%&gt;%</span> <span class="fu">replace_na</span>(<span class="fu">list</span>(<span class="at">PercentDeliverable =</span> <span class="dv">0</span>, <span class="at">DeliverableVolume =</span> <span class="dv">0</span>, <span class="at">Trades=</span><span class="dv">0</span>)) </span>
+<span id="cb39-180"><a href="#cb39-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-181"><a href="#cb39-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-182"><a href="#cb39-182" aria-hidden="true" tabindex="-1"></a><span class="fu">## Observations</span></span>
+<span id="cb39-183"><a href="#cb39-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-184"><a href="#cb39-184" aria-hidden="true" tabindex="-1"></a><span class="fu">### Distinct stocks</span></span>
+<span id="cb39-185"><a href="#cb39-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-186"><a href="#cb39-186" aria-hidden="true" tabindex="-1"></a>NIFTY50 is supposed to be the top 50 stocks of the financial year(there must be 50 distinct stocks in the data set). This data from 2000 to 2021 is not consistent, i.e., there are **65** distinct entries found. Which suggests that some stocks under-performed and got replaced with new ones over time. Hence the aggregate of all stocks combined became 65</span>
+<span id="cb39-187"><a href="#cb39-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-190"><a href="#cb39-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-191"><a href="#cb39-191" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">distinct</span>()</span>
+<span id="cb39-192"><a href="#cb39-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-193"><a href="#cb39-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-194"><a href="#cb39-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### Year vs Volume of stock traded</span></span>
+<span id="cb39-195"><a href="#cb39-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-196"><a href="#cb39-196" aria-hidden="true" tabindex="-1"></a>We can infer from the mean of Volume column, the number of stocks sold each year kept increasing.</span>
+<span id="cb39-197"><a href="#cb39-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-198"><a href="#cb39-198" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>This can hint an increase in demat accounts and number of active trading as well.</span>
+<span id="cb39-199"><a href="#cb39-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-200"><a href="#cb39-200" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>New stocks must have entered the NIFTY50 index, and started performing well over the years</span>
+<span id="cb39-201"><a href="#cb39-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-202"><a href="#cb39-202" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Special attention can be paid to volumes of stock sold between 2018 - 2021. There is a sharp increase in the volume of shares traded. Due to the COVID-19 pandemic, many stocks fell which encouraged more people than ever to open a demat account and start investing( I opened mine during this time!!!)</span>
+<span id="cb39-203"><a href="#cb39-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-206"><a href="#cb39-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-207"><a href="#cb39-207" aria-hidden="true" tabindex="-1"></a>barplot<span class="ot">&lt;-</span> all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-208"><a href="#cb39-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-209"><a href="#cb39-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-210"><a href="#cb39-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(mean, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb39-211"><a href="#cb39-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-212"><a href="#cb39-212" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height=</span>barplot<span class="sc">$</span>Volume, <span class="at">names=</span>barplot<span class="sc">$</span>yy, </span>
+<span id="cb39-213"><a href="#cb39-213" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">"#69b3a2"</span>,</span>
+<span id="cb39-214"><a href="#cb39-214" aria-hidden="true" tabindex="-1"></a>        <span class="at">horiz=</span>T, <span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb39-215"><a href="#cb39-215" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">'Volume ---&gt;'</span>,</span>
+<span id="cb39-216"><a href="#cb39-216" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">'Year ---&gt;'</span>,</span>
+<span id="cb39-217"><a href="#cb39-217" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">'Year v/s Volume'</span>,</span>
+<span id="cb39-218"><a href="#cb39-218" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb39-219"><a href="#cb39-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-220"><a href="#cb39-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-221"><a href="#cb39-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-222"><a href="#cb39-222" aria-hidden="true" tabindex="-1"></a><span class="fu">### Checking stock's consistency in NIFTY50 index</span></span>
+<span id="cb39-223"><a href="#cb39-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-224"><a href="#cb39-224" aria-hidden="true" tabindex="-1"></a>By running the below code, I am checking whether a stock has maintained its consistency in the top 50 stocks. Looks like the stocks kept changing each year, and some stocks were not present in the list at all! The stocks not present in that year can be identified with 0 ( a metric for the sum of all shares sold in a year ). That is, if no shares are sold, then the stock wouldn't make the list.</span>
+<span id="cb39-225"><a href="#cb39-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-226"><a href="#cb39-226" aria-hidden="true" tabindex="-1"></a>Some observations that can be made here are:</span>
+<span id="cb39-227"><a href="#cb39-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-228"><a href="#cb39-228" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Stocks like ADANIPORTS, NESTLEIND, NTPC, SSLT didn't enter the stock market from 2000. Their companies began appearing further down the line, such as from 2010</span>
+<span id="cb39-229"><a href="#cb39-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-230"><a href="#cb39-230" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Some companies, though made it to the NIFTY 50 list, have dropped out over the years due to a massive dip in stock price due to various factors. Some such examples would be KOTAKMAH, INFOSYSTCH, TELCO, TISCO have experienced huge losses which can be explained change in their leadership, an acquisition gone wrong, or someone filed a case in the court.</span>
+<span id="cb39-231"><a href="#cb39-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-232"><a href="#cb39-232" aria-hidden="true" tabindex="-1"></a>    From my understanding so far, a stock price dips heavily due to change in public sentiment, as a direct impact of news channels.</span>
+<span id="cb39-233"><a href="#cb39-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-236"><a href="#cb39-236" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-237"><a href="#cb39-237" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-238"><a href="#cb39-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span><span class="st">`</span><span class="at">yy</span><span class="st">`</span>, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-239"><a href="#cb39-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Symbol) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Trades, <span class="dv">14</span><span class="sc">:</span><span class="dv">35</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-240"><a href="#cb39-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-241"><a href="#cb39-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2006</span><span class="st">`</span>, <span class="at">.before =</span> <span class="st">`</span><span class="at">2007</span><span class="st">`</span>)</span>
+<span id="cb39-242"><a href="#cb39-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-243"><a href="#cb39-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-244"><a href="#cb39-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-245"><a href="#cb39-245" aria-hidden="true" tabindex="-1"></a><span class="fu">### Stocks which didn't enter stock market for 10 yrs</span></span>
+<span id="cb39-246"><a href="#cb39-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-247"><a href="#cb39-247" aria-hidden="true" tabindex="-1"></a>There are 6 stocks which did not enter the stock market - ADANIPORTS, HEROMOTOCO, INFY,SSLT,UPL, VEDL. They were not publicly listed in to be traded, as the company was still small in size. A company enters stock market once it has captured enough market in an area, and wants to expand its operations and brand to a larger scale. The companies then offer IPO, where the shares are made available to common people to invest. Using this additional income, the companies expand their scale of operations to PAN_India!</span>
+<span id="cb39-248"><a href="#cb39-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-251"><a href="#cb39-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-252"><a href="#cb39-252" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-253"><a href="#cb39-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span><span class="st">`</span><span class="at">yy</span><span class="st">`</span>, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-254"><a href="#cb39-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Symbol) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Trades, <span class="dv">14</span><span class="sc">:</span><span class="dv">35</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-255"><a href="#cb39-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-256"><a href="#cb39-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2006</span><span class="st">`</span>, <span class="at">.before =</span> <span class="st">`</span><span class="at">2007</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-257"><a href="#cb39-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Symbol</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2010</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-258"><a href="#cb39-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">across</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2010</span><span class="st">`</span>, <span class="sc">~</span> . <span class="sc">==</span><span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-259"><a href="#cb39-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol)</span>
+<span id="cb39-260"><a href="#cb39-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-261"><a href="#cb39-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-262"><a href="#cb39-262" aria-hidden="true" tabindex="-1"></a><span class="fu">### Best and Worst Performing Stock of 2000</span></span>
+<span id="cb39-263"><a href="#cb39-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-264"><a href="#cb39-264" aria-hidden="true" tabindex="-1"></a>ZEETELE - Best performing stock in 2000, AJAUTOFIN - Worst performing stock 2000. They are calculated based on their cumulative volumes of all the years respectively</span>
+<span id="cb39-265"><a href="#cb39-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-268"><a href="#cb39-268" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-269"><a href="#cb39-269" aria-hidden="true" tabindex="-1"></a><span class="co"># best performing stock</span></span>
+<span id="cb39-270"><a href="#cb39-270" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-271"><a href="#cb39-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-272"><a href="#cb39-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-273"><a href="#cb39-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-274"><a href="#cb39-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Volume)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-275"><a href="#cb39-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb39-276"><a href="#cb39-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-277"><a href="#cb39-277" aria-hidden="true" tabindex="-1"></a><span class="co"># worst performing stock</span></span>
+<span id="cb39-278"><a href="#cb39-278" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-279"><a href="#cb39-279" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-280"><a href="#cb39-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-281"><a href="#cb39-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-282"><a href="#cb39-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Volume) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-283"><a href="#cb39-283" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb39-284"><a href="#cb39-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-285"><a href="#cb39-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-286"><a href="#cb39-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-287"><a href="#cb39-287" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span>
-<span id="cb39-288"><a href="#cb39-288" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-289"><a href="#cb39-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-290"><a href="#cb39-290" aria-hidden="true" tabindex="-1"></a><span class="fu">### Best and Worst stock of 2021 by Volume</span></span>
-<span id="cb39-291"><a href="#cb39-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-292"><a href="#cb39-292" aria-hidden="true" tabindex="-1"></a>Best performing stock was TATAMOTORS, and the worst performing stock was SHREECEM</span>
-<span id="cb39-293"><a href="#cb39-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-296"><a href="#cb39-296" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-297"><a href="#cb39-297" aria-hidden="true" tabindex="-1"></a><span class="co"># best performing stock of 2021</span></span>
-<span id="cb39-298"><a href="#cb39-298" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-299"><a href="#cb39-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-300"><a href="#cb39-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-301"><a href="#cb39-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-302"><a href="#cb39-302" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Volume)) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-303"><a href="#cb39-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yy<span class="sc">==</span><span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-304"><a href="#cb39-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb39-305"><a href="#cb39-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-306"><a href="#cb39-306" aria-hidden="true" tabindex="-1"></a><span class="co"># worst performing stock of 2021</span></span>
-<span id="cb39-307"><a href="#cb39-307" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-308"><a href="#cb39-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-309"><a href="#cb39-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-310"><a href="#cb39-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-311"><a href="#cb39-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Volume) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-312"><a href="#cb39-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yy<span class="sc">==</span><span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-313"><a href="#cb39-313" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb39-314"><a href="#cb39-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-315"><a href="#cb39-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-316"><a href="#cb39-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-317"><a href="#cb39-317" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Plotting the above results</span></span>
-<span id="cb39-318"><a href="#cb39-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-319"><a href="#cb39-319" aria-hidden="true" tabindex="-1"></a>Over the years, SHREECEM have observed a steady growth. Its a cement manufacturing company from Rajasthan, who played a valuable role in India's development.</span>
-<span id="cb39-320"><a href="#cb39-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-323"><a href="#cb39-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-324"><a href="#cb39-324" aria-hidden="true" tabindex="-1"></a>stocks_2021<span class="ot">&lt;-</span>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-325"><a href="#cb39-325" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, yy, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-326"><a href="#cb39-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Symbol <span class="sc">==</span> <span class="st">"TATAMOTORS"</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">"SHREECEM"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-327"><a href="#cb39-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-328"><a href="#cb39-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_all</span>(mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-329"><a href="#cb39-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Symbol, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-330"><a href="#cb39-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb39-331"><a href="#cb39-331" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>SHREECEM), <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span> </span>
-<span id="cb39-332"><a href="#cb39-332" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>SHREECEM),<span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span> </span>
-<span id="cb39-333"><a href="#cb39-333" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>TATAMOTORS), <span class="at">color=</span><span class="st">'blue'</span>) <span class="sc">+</span> </span>
-<span id="cb39-334"><a href="#cb39-334" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>TATAMOTORS),<span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span>   </span>
-<span id="cb39-335"><a href="#cb39-335" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'TATAMOTORS, SHREECEM - Stock performance'</span>, <span class="at">x=</span><span class="st">"Year"</span>, <span class="at">y=</span><span class="st">"Previous Close"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() </span>
-<span id="cb39-336"><a href="#cb39-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-337"><a href="#cb39-337" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(stocks_2021)</span>
-<span id="cb39-338"><a href="#cb39-338" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-339"><a href="#cb39-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-340"><a href="#cb39-340" aria-hidden="true" tabindex="-1"></a><span class="fu">### Which stock plummeted the most in 2008?</span></span>
-<span id="cb39-341"><a href="#cb39-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-342"><a href="#cb39-342" aria-hidden="true" tabindex="-1"></a>The answer to that question is SESAGOA - an Iron Ore company in Goa</span>
-<span id="cb39-343"><a href="#cb39-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-346"><a href="#cb39-346" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-347"><a href="#cb39-347" aria-hidden="true" tabindex="-1"></a>stocks_2008 <span class="ot">&lt;-</span> all_stocks_yy <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-348"><a href="#cb39-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(yy, Symbol, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-349"><a href="#cb39-349" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Symbol,yy) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-350"><a href="#cb39-350" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(median, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-351"><a href="#cb39-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb39-352"><a href="#cb39-352" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-353"><a href="#cb39-353" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb39-354"><a href="#cb39-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-355"><a href="#cb39-355" aria-hidden="true" tabindex="-1"></a>bar_2008<span class="ot">&lt;-</span> stocks_2008 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>, <span class="at">y=</span>Symbol, <span class="at">color=</span>yy)) <span class="sc">+</span> </span>
-<span id="cb39-356"><a href="#cb39-356" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">fill=</span><span class="st">"#f68060"</span>, <span class="at">alpha=</span>.<span class="dv">6</span>, <span class="at">width=</span>.<span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb39-357"><a href="#cb39-357" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span>
-<span id="cb39-358"><a href="#cb39-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-359"><a href="#cb39-359" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(bar_2008)</span>
-<span id="cb39-360"><a href="#cb39-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-361"><a href="#cb39-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-362"><a href="#cb39-362" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-363"><a href="#cb39-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-364"><a href="#cb39-364" aria-hidden="true" tabindex="-1"></a><span class="fu">### Stock performance between 2018 to 2021</span></span>
+<span id="cb39-287"><a href="#cb39-287" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Plotting the above results</span></span>
+<span id="cb39-288"><a href="#cb39-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-289"><a href="#cb39-289" aria-hidden="true" tabindex="-1"></a>I have created a scatterplot for the best and the worst stock as shown below. It was surprising to see such a sharp decline in traded volumes for ZEETELE just the corresponding year. And the worst performing stock of 2000 gradually gained traction and crossed the aforementioned stock in the year 2006.</span>
+<span id="cb39-290"><a href="#cb39-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-291"><a href="#cb39-291" aria-hidden="true" tabindex="-1"></a>The dip in stock volume is observed for BAJAUTOFIN due to the stock market crash, but still continues to maintain its position in the NIFTY index. Looks like ZEETELE got kicked of the NIFTY index at the beginning of 2007</span>
+<span id="cb39-292"><a href="#cb39-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-293"><a href="#cb39-293" aria-hidden="true" tabindex="-1"></a>This <span class="co">[</span><span class="ot">link</span><span class="co">](https://www.investopedia.com/financial-edge/0911/how-september-11-affected-the-u.s.-stock-market.aspx)</span> describes about the US stock market crash after the attack on World Trade Center on Sept 11, 2001. The corresponding events led to stock crash world wide, thus effecting Indian markets as well. ZEETELE is one of those stock which got highly effected. In the following years, many stocks failed to make a come back and also got replaced by other stocks in the NIFTY index.</span>
+<span id="cb39-294"><a href="#cb39-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-295"><a href="#cb39-295" aria-hidden="true" tabindex="-1"></a>Red line - BAJAUTOFIN , Blue Line - ZEETELE</span>
+<span id="cb39-296"><a href="#cb39-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-299"><a href="#cb39-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-300"><a href="#cb39-300" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-301"><a href="#cb39-301" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, yy, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-302"><a href="#cb39-302" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Symbol <span class="sc">==</span> <span class="st">"ZEETELE"</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">"BAJAUTOFIN"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-303"><a href="#cb39-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-304"><a href="#cb39-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_all</span>(mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-305"><a href="#cb39-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Symbol, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-306"><a href="#cb39-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb39-307"><a href="#cb39-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>BAJAUTOFIN), <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span> </span>
+<span id="cb39-308"><a href="#cb39-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>BAJAUTOFIN),<span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span> </span>
+<span id="cb39-309"><a href="#cb39-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>ZEETELE), <span class="at">color=</span><span class="st">'blue'</span>) <span class="sc">+</span> </span>
+<span id="cb39-310"><a href="#cb39-310" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>ZEETELE),<span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span>   </span>
+<span id="cb39-311"><a href="#cb39-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'ZEETELE, BAJAUTOFIN - Stock performance'</span>, <span class="at">x=</span><span class="st">"Year"</span>, <span class="at">y=</span><span class="st">"Previous Close"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() </span>
+<span id="cb39-312"><a href="#cb39-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-313"><a href="#cb39-313" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span>
+<span id="cb39-314"><a href="#cb39-314" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-315"><a href="#cb39-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-316"><a href="#cb39-316" aria-hidden="true" tabindex="-1"></a><span class="fu">### Best and Worst stock of 2021 by Volume</span></span>
+<span id="cb39-317"><a href="#cb39-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-318"><a href="#cb39-318" aria-hidden="true" tabindex="-1"></a>Best performing stock was TATAMOTORS, and the worst performing stock was SHREECEM</span>
+<span id="cb39-319"><a href="#cb39-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-322"><a href="#cb39-322" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-323"><a href="#cb39-323" aria-hidden="true" tabindex="-1"></a><span class="co"># best performing stock of 2021</span></span>
+<span id="cb39-324"><a href="#cb39-324" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-325"><a href="#cb39-325" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-326"><a href="#cb39-326" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-327"><a href="#cb39-327" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-328"><a href="#cb39-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Volume)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-329"><a href="#cb39-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yy<span class="sc">==</span><span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-330"><a href="#cb39-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb39-331"><a href="#cb39-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-332"><a href="#cb39-332" aria-hidden="true" tabindex="-1"></a><span class="co"># worst performing stock of 2021</span></span>
+<span id="cb39-333"><a href="#cb39-333" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-334"><a href="#cb39-334" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-335"><a href="#cb39-335" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-336"><a href="#cb39-336" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-337"><a href="#cb39-337" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Volume) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-338"><a href="#cb39-338" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yy<span class="sc">==</span><span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-339"><a href="#cb39-339" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb39-340"><a href="#cb39-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-341"><a href="#cb39-341" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-342"><a href="#cb39-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-343"><a href="#cb39-343" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Plotting the above results</span></span>
+<span id="cb39-344"><a href="#cb39-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-345"><a href="#cb39-345" aria-hidden="true" tabindex="-1"></a>Over the years, SHREECEM have observed a steady growth. Its a cement manufacturing company from Rajasthan, who played a valuable role in India's development.</span>
+<span id="cb39-346"><a href="#cb39-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-349"><a href="#cb39-349" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-350"><a href="#cb39-350" aria-hidden="true" tabindex="-1"></a>stocks_2021<span class="ot">&lt;-</span>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-351"><a href="#cb39-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, yy, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-352"><a href="#cb39-352" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Symbol <span class="sc">==</span> <span class="st">"TATAMOTORS"</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">"SHREECEM"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-353"><a href="#cb39-353" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(yy, Symbol) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-354"><a href="#cb39-354" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_all</span>(mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-355"><a href="#cb39-355" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Symbol, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-356"><a href="#cb39-356" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb39-357"><a href="#cb39-357" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>SHREECEM), <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span> </span>
+<span id="cb39-358"><a href="#cb39-358" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>SHREECEM),<span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span> </span>
+<span id="cb39-359"><a href="#cb39-359" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>TATAMOTORS), <span class="at">color=</span><span class="st">'blue'</span>) <span class="sc">+</span> </span>
+<span id="cb39-360"><a href="#cb39-360" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>yy, <span class="at">y=</span>TATAMOTORS),<span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span>   </span>
+<span id="cb39-361"><a href="#cb39-361" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">'TATAMOTORS, SHREECEM - Stock performance'</span>, <span class="at">x=</span><span class="st">"Year"</span>, <span class="at">y=</span><span class="st">"Previous Close"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() </span>
+<span id="cb39-362"><a href="#cb39-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-363"><a href="#cb39-363" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(stocks_2021)</span>
+<span id="cb39-364"><a href="#cb39-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-365"><a href="#cb39-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-366"><a href="#cb39-366" aria-hidden="true" tabindex="-1"></a>I've picked a few stocks whose brands I am most familiar with and use their services in daily life. It was interesting to see that Britannia and HDFC stocks fell by a large number and quickly recovered in 2021. Their brand image is really good in the Indian market and they are immune to market volatility. These are some of the best long term investment options.</span>
+<span id="cb39-366"><a href="#cb39-366" aria-hidden="true" tabindex="-1"></a><span class="fu">### Which stock plummeted the most in 2008?</span></span>
 <span id="cb39-367"><a href="#cb39-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-370"><a href="#cb39-370" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-371"><a href="#cb39-371" aria-hidden="true" tabindex="-1"></a>stock_perf <span class="ot">&lt;-</span> all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-372"><a href="#cb39-372" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2018</span> <span class="sc">|</span> <span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2019</span> <span class="sc">|</span> <span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2020</span> <span class="sc">|</span><span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-373"><a href="#cb39-373" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(Symbol <span class="sc">==</span> <span class="st">'ADANIPORTS'</span> <span class="sc">|</span></span>
-<span id="cb39-374"><a href="#cb39-374" aria-hidden="true" tabindex="-1"></a>Symbol <span class="sc">==</span> <span class="st">'ASIANPAINT'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'BRITANNIA'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'INFY'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'CIPLA'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'HDFCBANK'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'RELIANCE'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'TCS'</span> <span class="sc">|</span>Symbol <span class="sc">==</span> <span class="st">'TECHM'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-375"><a href="#cb39-375" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(yy,Symbol, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-376"><a href="#cb39-376" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(Symbol,yy) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-377"><a href="#cb39-377" aria-hidden="true" tabindex="-1"></a>   <span class="fu">arrange</span>(<span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-378"><a href="#cb39-378" aria-hidden="true" tabindex="-1"></a>   <span class="fu">slice</span>(<span class="dv">1</span>) </span>
-<span id="cb39-379"><a href="#cb39-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-380"><a href="#cb39-380" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb39-381"><a href="#cb39-381" aria-hidden="true" tabindex="-1"></a>stock_perf<span class="sc">%&gt;%</span> <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x=</span>yy,<span class="at">y=</span><span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>, <span class="at">label =</span> yy)) <span class="sc">+</span></span>
-<span id="cb39-382"><a href="#cb39-382" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>( <span class="at">color=</span><span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb39-383"><a href="#cb39-383" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">"blue"</span>, <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb39-384"><a href="#cb39-384" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Symbol,<span class="at">nrow =</span><span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb39-385"><a href="#cb39-385" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'year'</span>, <span class="at">y=</span><span class="st">'Prev Close'</span>)</span>
-<span id="cb39-386"><a href="#cb39-386" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Stock performance during COVID-19"</span>) <span class="sc">+</span> <span class="fu">theme_dark</span>()</span>
+<span id="cb39-368"><a href="#cb39-368" aria-hidden="true" tabindex="-1"></a>The answer to that question is SESAGOA - an Iron Ore company in Goa</span>
+<span id="cb39-369"><a href="#cb39-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-372"><a href="#cb39-372" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-373"><a href="#cb39-373" aria-hidden="true" tabindex="-1"></a>stocks_2008 <span class="ot">&lt;-</span> all_stocks_yy <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-374"><a href="#cb39-374" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(yy, Symbol, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-375"><a href="#cb39-375" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Symbol,yy) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-376"><a href="#cb39-376" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(median, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-377"><a href="#cb39-377" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb39-378"><a href="#cb39-378" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-379"><a href="#cb39-379" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb39-380"><a href="#cb39-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-381"><a href="#cb39-381" aria-hidden="true" tabindex="-1"></a>bar_2008<span class="ot">&lt;-</span> stocks_2008 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>, <span class="at">y=</span>Symbol, <span class="at">color=</span>yy)) <span class="sc">+</span> </span>
+<span id="cb39-382"><a href="#cb39-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">fill=</span><span class="st">"#f68060"</span>, <span class="at">alpha=</span>.<span class="dv">6</span>, <span class="at">width=</span>.<span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb39-383"><a href="#cb39-383" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span>
+<span id="cb39-384"><a href="#cb39-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-385"><a href="#cb39-385" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(bar_2008)</span>
+<span id="cb39-386"><a href="#cb39-386" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-387"><a href="#cb39-387" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-388"><a href="#cb39-388" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-389"><a href="#cb39-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-390"><a href="#cb39-390" aria-hidden="true" tabindex="-1"></a><span class="fu">### Highest and Lowest stock prices observed in dataset</span></span>
+<span id="cb39-390"><a href="#cb39-390" aria-hidden="true" tabindex="-1"></a><span class="fu">### Stock performance between 2018 to 2021</span></span>
 <span id="cb39-391"><a href="#cb39-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-392"><a href="#cb39-392" aria-hidden="true" tabindex="-1"></a>Calculating this based on Prev Close column, which tells the last traded price of the stock.</span>
+<span id="cb39-392"><a href="#cb39-392" aria-hidden="true" tabindex="-1"></a>I've picked a few stocks whose brands I am most familiar with and use their services in daily life. It was interesting to see that Britannia and HDFC stocks fell by a large number and quickly recovered in 2021. Their brand image is really good in the Indian market and they are immune to market volatility. These are some of the best long term investment options.</span>
 <span id="cb39-393"><a href="#cb39-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-394"><a href="#cb39-394" aria-hidden="true" tabindex="-1"></a>Highest price is observed for EICHERMOT aka Eicher Motors Ltd in 2017, traded at 32,861.95 rupees per share. It is an Indian MNC which manufactures motorcycles and commercial vehicles, headquartered in New Delhi.</span>
-<span id="cb39-395"><a href="#cb39-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-396"><a href="#cb39-396" aria-hidden="true" tabindex="-1"></a>Lowest prices don't really count as per the code because the stock price is close to 0 when it enters the stock market.</span>
-<span id="cb39-397"><a href="#cb39-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-400"><a href="#cb39-400" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-401"><a href="#cb39-401" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-402"><a href="#cb39-402" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>, yy) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-403"><a href="#cb39-403" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-404"><a href="#cb39-404" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb39-396"><a href="#cb39-396" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-397"><a href="#cb39-397" aria-hidden="true" tabindex="-1"></a>stock_perf <span class="ot">&lt;-</span> all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-398"><a href="#cb39-398" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2018</span> <span class="sc">|</span> <span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2019</span> <span class="sc">|</span> <span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2020</span> <span class="sc">|</span><span class="st">`</span><span class="at">yy</span><span class="st">`</span> <span class="sc">==</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-399"><a href="#cb39-399" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(Symbol <span class="sc">==</span> <span class="st">'ADANIPORTS'</span> <span class="sc">|</span></span>
+<span id="cb39-400"><a href="#cb39-400" aria-hidden="true" tabindex="-1"></a>Symbol <span class="sc">==</span> <span class="st">'ASIANPAINT'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'BRITANNIA'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'INFY'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'CIPLA'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'HDFCBANK'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'RELIANCE'</span> <span class="sc">|</span> Symbol <span class="sc">==</span> <span class="st">'TCS'</span> <span class="sc">|</span>Symbol <span class="sc">==</span> <span class="st">'TECHM'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-401"><a href="#cb39-401" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(yy,Symbol, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-402"><a href="#cb39-402" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(Symbol,yy) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-403"><a href="#cb39-403" aria-hidden="true" tabindex="-1"></a>   <span class="fu">arrange</span>(<span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-404"><a href="#cb39-404" aria-hidden="true" tabindex="-1"></a>   <span class="fu">slice</span>(<span class="dv">1</span>) </span>
 <span id="cb39-405"><a href="#cb39-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-406"><a href="#cb39-406" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-407"><a href="#cb39-407" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>, yy) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-408"><a href="#cb39-408" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-409"><a href="#cb39-409" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
-<span id="cb39-410"><a href="#cb39-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-411"><a href="#cb39-411" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-412"><a href="#cb39-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-413"><a href="#cb39-413" aria-hidden="true" tabindex="-1"></a><span class="fu">### Which stock consistently maintained its position for the longest time?</span></span>
-<span id="cb39-414"><a href="#cb39-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-415"><a href="#cb39-415" aria-hidden="true" tabindex="-1"></a>Below are the list of 23 stocks which are consistently a part of NIFTY. Just like all the other stocks, they also experienced heavy price drops, but also gained the market share just as fast. These are the best performing stocks of the Indian market and we can safely invest in them for the long run.</span>
-<span id="cb39-416"><a href="#cb39-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-419"><a href="#cb39-419" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-420"><a href="#cb39-420" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
-<span id="cb39-421"><a href="#cb39-421" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span><span class="st">`</span><span class="at">yy</span><span class="st">`</span>, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-422"><a href="#cb39-422" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Symbol) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Trades, <span class="dv">14</span><span class="sc">:</span><span class="dv">35</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-423"><a href="#cb39-423" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-424"><a href="#cb39-424" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2006</span><span class="st">`</span>, <span class="at">.before =</span> <span class="st">`</span><span class="at">2007</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-425"><a href="#cb39-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Symbol</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2021</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-426"><a href="#cb39-426" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">across</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2021</span><span class="st">`</span>, <span class="sc">~</span> . <span class="sc">!=</span><span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-427"><a href="#cb39-427" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol)</span>
-<span id="cb39-428"><a href="#cb39-428" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-429"><a href="#cb39-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-430"><a href="#cb39-430" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
+<span id="cb39-406"><a href="#cb39-406" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb39-407"><a href="#cb39-407" aria-hidden="true" tabindex="-1"></a>stock_perf<span class="sc">%&gt;%</span> <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x=</span>yy,<span class="at">y=</span><span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>, <span class="at">label =</span> yy)) <span class="sc">+</span></span>
+<span id="cb39-408"><a href="#cb39-408" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>( <span class="at">color=</span><span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb39-409"><a href="#cb39-409" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">"blue"</span>, <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb39-410"><a href="#cb39-410" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Symbol,<span class="at">nrow =</span><span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb39-411"><a href="#cb39-411" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'year'</span>, <span class="at">y=</span><span class="st">'Prev Close'</span>)</span>
+<span id="cb39-412"><a href="#cb39-412" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Stock performance during COVID-19"</span>) <span class="sc">+</span> <span class="fu">theme_dark</span>()</span>
+<span id="cb39-413"><a href="#cb39-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-414"><a href="#cb39-414" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-415"><a href="#cb39-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-416"><a href="#cb39-416" aria-hidden="true" tabindex="-1"></a><span class="fu">### Highest and Lowest stock prices observed in dataset</span></span>
+<span id="cb39-417"><a href="#cb39-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-418"><a href="#cb39-418" aria-hidden="true" tabindex="-1"></a>Calculating this based on Prev Close column, which tells the last traded price of the stock.</span>
+<span id="cb39-419"><a href="#cb39-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-420"><a href="#cb39-420" aria-hidden="true" tabindex="-1"></a>Highest price is observed for EICHERMOT aka Eicher Motors Ltd in 2017, traded at 32,861.95 rupees per share. It is an Indian MNC which manufactures motorcycles and commercial vehicles, headquartered in New Delhi.</span>
+<span id="cb39-421"><a href="#cb39-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-422"><a href="#cb39-422" aria-hidden="true" tabindex="-1"></a>Lowest prices don't really count as per the code because the stock price is close to 0 when it enters the stock market.</span>
+<span id="cb39-423"><a href="#cb39-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-426"><a href="#cb39-426" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-427"><a href="#cb39-427" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-428"><a href="#cb39-428" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>, yy) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-429"><a href="#cb39-429" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-430"><a href="#cb39-430" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
 <span id="cb39-431"><a href="#cb39-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-432"><a href="#cb39-432" aria-hidden="true" tabindex="-1"></a>This project has been a great learning experience for me. It was interesting to see how many insights can be derived from a single data set. I felt I barely scratched the surface of this goldmine. I used to follow stock market trends for a while, which got me interested to try this do an EDA of this data-set. My current regret is, there are lot of amazing insights and visualizations that I could do, but I didn't know how to manipulate multiple variables to make it happen.</span>
-<span id="cb39-433"><a href="#cb39-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-434"><a href="#cb39-434" aria-hidden="true" tabindex="-1"></a>I faced challenges with almost every aspect of this project. I've been going back to my notes, stack overflow and a bunch of youtube videos to get clarity. I made use of really good websites and bookmarked some of the solutions for future reference. There is a lot of power in R and it made me realize I could really do a lot more with it.</span>
-<span id="cb39-435"><a href="#cb39-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-436"><a href="#cb39-436" aria-hidden="true" tabindex="-1"></a>I've made use of other packages apart from the standard ones taught in the class, and tried resolving multiple errors by fine-tuning the functions. There is still a lot more to learn, and I will continue learning to be better at visualization.</span>
-<span id="cb39-437"><a href="#cb39-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-438"><a href="#cb39-438" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
-<span id="cb39-439"><a href="#cb39-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-440"><a href="#cb39-440" aria-hidden="true" tabindex="-1"></a>I got some clarity on the highs and lows of the stock market. A stock doesn't appear to be consistent in the NIFTY index and new ones get added or replaced each consecutive year. Sometimes the stocks start at a very high price, but plummets almost immediately the next year,which makes it very dangerous to have had shares in that stock(,i.e., ZEETELE). Some stocks stood the test of time and their brand image grew bigger. Not all stocks started out at year 2000, while some of them entered almost 10 years later and continued to be in the NIFTY index.</span>
-<span id="cb39-441"><a href="#cb39-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-442"><a href="#cb39-442" aria-hidden="true" tabindex="-1"></a>A stocks performance directly proportional to its public image. The stock price immediately drops if the company's image is tarnished. The number of people who started investing in the stock grew each year, and the highest jump in the traded volumes can be observed between 2018 to 2021, a direct consequence of COVID-19 pandemic. Since people were restricted at home, there was a lot of surplus amount sitting idle in bank accounts. Therefore they invested in the stock markets which were crashing due to the declining businesses. All the NIFTY stocks will rise each time they fall, is what I've observed, but stocks from the manufacturing industry will only experience temporary dips in price.</span>
-<span id="cb39-443"><a href="#cb39-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-444"><a href="#cb39-444" aria-hidden="true" tabindex="-1"></a>As India is a developing country, there is a continuous involvement of the manufacturing industry. So even if there is a plateau in price, the price and public sentiment will eventually rise.</span>
-<span id="cb39-445"><a href="#cb39-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-446"><a href="#cb39-446" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliography</span></span>
-<span id="cb39-447"><a href="#cb39-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-448"><a href="#cb39-448" aria-hidden="true" tabindex="-1"></a>Dataset from kaggle - https://www.kaggle.com/datasets/rohanrao/nifty50-stock-market-data</span>
-<span id="cb39-449"><a href="#cb39-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-450"><a href="#cb39-450" aria-hidden="true" tabindex="-1"></a>Definitions - https://en.wikipedia.org/wiki/NIFTY_50</span>
+<span id="cb39-432"><a href="#cb39-432" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-433"><a href="#cb39-433" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol, <span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>, yy) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-434"><a href="#cb39-434" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="st">`</span><span class="at">Prev Close</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-435"><a href="#cb39-435" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb39-436"><a href="#cb39-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-437"><a href="#cb39-437" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-438"><a href="#cb39-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-439"><a href="#cb39-439" aria-hidden="true" tabindex="-1"></a><span class="fu">### Which stock consistently maintained its position for the longest time?</span></span>
+<span id="cb39-440"><a href="#cb39-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-441"><a href="#cb39-441" aria-hidden="true" tabindex="-1"></a>Below are the list of 23 stocks which are consistently a part of NIFTY. Just like all the other stocks, they also experienced heavy price drops, but also gained the market share just as fast. These are the best performing stocks of the Indian market and we can safely invest in them for the long run.</span>
+<span id="cb39-442"><a href="#cb39-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-445"><a href="#cb39-445" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-446"><a href="#cb39-446" aria-hidden="true" tabindex="-1"></a>all_stocks_yy <span class="sc">%&gt;%</span> </span>
+<span id="cb39-447"><a href="#cb39-447" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span><span class="st">`</span><span class="at">yy</span><span class="st">`</span>, <span class="at">values_from =</span> <span class="st">`</span><span class="at">Volume</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-448"><a href="#cb39-448" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Symbol) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Trades, <span class="dv">14</span><span class="sc">:</span><span class="dv">35</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-449"><a href="#cb39-449" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-450"><a href="#cb39-450" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2006</span><span class="st">`</span>, <span class="at">.before =</span> <span class="st">`</span><span class="at">2007</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-451"><a href="#cb39-451" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">Symbol</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2021</span><span class="st">`</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-452"><a href="#cb39-452" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">across</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2021</span><span class="st">`</span>, <span class="sc">~</span> . <span class="sc">!=</span><span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-453"><a href="#cb39-453" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Symbol)</span>
+<span id="cb39-454"><a href="#cb39-454" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb39-455"><a href="#cb39-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-456"><a href="#cb39-456" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reflection</span></span>
+<span id="cb39-457"><a href="#cb39-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-458"><a href="#cb39-458" aria-hidden="true" tabindex="-1"></a>This project has been a great learning experience for me. It was interesting to see how many insights can be derived from a single data set. I felt that I barely scratched the surface of this goldmine dataset. I used to follow stock market trends for a while during the covid lockdown, which made me interested to try this do an EDA of this data-set. My current regret is, there are lot of amazing insights and visualizations that I could do, but I didn't know how to manipulate multiple variables to make it happen.</span>
+<span id="cb39-459"><a href="#cb39-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-460"><a href="#cb39-460" aria-hidden="true" tabindex="-1"></a>I faced challenges with almost every aspect of this project. I've been going back to my notes, stack overflow and a bunch of youtube videos to get clarity. I made use of really good websites and bookmarked some of the solutions for future reference. There is a lot of power in R and it made me realize I could really do a lot more with it.</span>
+<span id="cb39-461"><a href="#cb39-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-462"><a href="#cb39-462" aria-hidden="true" tabindex="-1"></a>I've made use of other packages apart from the standard ones taught in the class, and tried resolving multiple errors by fine-tuning the functions. There is still a lot more to learn, and I will continue learning to be better at visualization.</span>
+<span id="cb39-463"><a href="#cb39-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-464"><a href="#cb39-464" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb39-465"><a href="#cb39-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-466"><a href="#cb39-466" aria-hidden="true" tabindex="-1"></a>I got some clarity on the highs and lows of the stock market. A stock doesn't appear to be consistent in the NIFTY index and new ones get added or replaced each consecutive year. Sometimes the stocks start at a very high price, but plummets almost immediately the next year,which makes it very dangerous to have had shares in that stock(,i.e., ZEETELE). Some stocks stood the test of time and their brand image grew bigger. Not all stocks started out at year 2000, while some of them entered almost 10 years later and continued to be in the NIFTY index. While some stocks changed considerably due to world events such as terrorist attacks on WTC, Covid 19, Wall Street crash etc, not all stocks managed to recover.</span>
+<span id="cb39-467"><a href="#cb39-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-468"><a href="#cb39-468" aria-hidden="true" tabindex="-1"></a>A stock'ss performance is directly proportional to its public image. The stock price immediately drops if the company's image is tarnished. The number of people who started investing grew each year, and the highest jump in the traded volumes can be observed between 2018 to 2021, a direct consequence of COVID-19 pandemic. Since people were restricted at home, there was a lot of surplus money sitting idly in their bank accounts. Therefore they invested in the stock markets which were crashing due to the declining businesses. All the NIFTY stocks will rise each time they fall, is what I've observed, but stocks from the manufacturing industry will only experience temporary dips in price.</span>
+<span id="cb39-469"><a href="#cb39-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-470"><a href="#cb39-470" aria-hidden="true" tabindex="-1"></a>As India is a developing country, there is a continuous involvement of the manufacturing industry. So even if there is a plateau in price, the price and public sentiment will eventually rise.</span>
+<span id="cb39-471"><a href="#cb39-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-472"><a href="#cb39-472" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliography</span></span>
+<span id="cb39-473"><a href="#cb39-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-474"><a href="#cb39-474" aria-hidden="true" tabindex="-1"></a>Dataset from kaggle - https://www.kaggle.com/datasets/rohanrao/nifty50-stock-market-data</span>
+<span id="cb39-475"><a href="#cb39-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-476"><a href="#cb39-476" aria-hidden="true" tabindex="-1"></a>Definitions - https://en.wikipedia.org/wiki/NIFTY_50</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

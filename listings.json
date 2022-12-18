@@ -36,6 +36,12 @@
     ]
   },
   {
+    "listing": "/featured_posts.html",
+    "items": [
+      "/featured_posts/example_post.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
       "/posts/challenge1_KatiePopiela.html",
