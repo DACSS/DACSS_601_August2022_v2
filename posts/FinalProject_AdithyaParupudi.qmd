@@ -38,17 +38,27 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ## Introduction
 
-The NIFTY 50 is a benchmark Indian stock market index that represents the weighted average of 50 of the largest Indian companies listed on the National Stock Exchange. It is one of the two main stock indices used in India, the other being the BSE SENSEX. With the dataset I got from kaggle, I will perform an EDA of the stock prices listed from 2000 to 2021. Some answers I wanted to find out were :
+The NIFTY 50 is a benchmark Indian stock market index that represents the weighted average of 50 of the largest Indian companies listed on the National Stock Exchange. It is one of the two main stock indices used in India, the other being the BSE SENSEX.
+It is owned and managed by [NSE Indices](https://en.wikipedia.org/wiki/NSE_Indices "NSE Indices") (previously known as India Index Services & Products Limited), which is a wholly owned subsidiary of the NSE Strategic Investment Corporation Limited. [NSE Indices](https://en.wikipedia.org/wiki/NSE_Indices "NSE Indices") had a marketing and licensing agreement with [Standard & Poor's](https://en.wikipedia.org/wiki/Standard_%26_Poor%27s "Standard & Poor's") for co-branding equity indices until 2013. The Nifty 50 index was launched on 22 April 1996, and is one of the many stock indices of Nifty.
+The NIFTY 50 index has shaped up to be the largest single financial product in India, with an ecosystem consisting of [exchange-traded funds](https://en.wikipedia.org/wiki/Exchange-traded_fund "Exchange-traded fund") (onshore and offshore), exchange-traded options at [NSE](https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India "National Stock Exchange of India"), and futures and options abroad at the [SGX](https://en.wikipedia.org/wiki/Singapore_Exchange "Singapore Exchange"). NIFTY 50 is the world's most actively traded contract. WFE, IOM and FIA surveys endorse NSE's leadership position.
 
--   Do all stocks remain the same each year?
+I want to analyse the stock trends over the past decade and wanted to see if this data would give me an idea about India's economic development. I downloaded the dataset from Kaggle and will perform an EDA of the stock prices listed from 2000 to 2021. Some answers I wanted to find out were :
+
+-   D they all stocks remain the same in the NIFTY 50 index every year?
 
 -   What is the best and worst stock in a year?
 
--   What is the stock performance of companies that I regularly use?
+-   What is the stock performance of companies that I regularly invest in?
+
+-   Which stock plummeted the most in 2008?
+
+-   What are the highest and lowest stock price ever observed?
 
 ### Column Descriptions
 
-Description of columns in the file:
+The dataset has multiple columns which tells us about the stock prices, traded volumes and son.
+
+The column descriptions are as follows:
 
 -   Date --- Date of trade
 
@@ -82,13 +92,15 @@ Description of columns in the file:
 
 ## Read Data
 
-There are multiple .csv files, one for each stock, which are placed in a folder. I am reading data from all the csv files and combining them into a single data-frame using purrr package.
+There are multiple .csv files, one for each stock(around 55 files), which are located in a common folder. Using the purrr package, I am reading data from all the csv files and combining them into a single data-frame.
 
 ```{r}
 all_stocks <- dir("_data/NIFTY_AdithyaParupudi/", full.names = TRUE) %>%  map_dfr(read_csv, )
 all_stocks <- tibble(all_stocks)
 
 ```
+
+The str() command gives me the column names, its datatype and first 5 observations from each column. Here we can notice that a majority of columns are numeric, one date and two character fields (stock-name). There are a total of 235192 rows, with 15 columns.
 
 ```{r}
 str(all_stocks)
@@ -98,7 +110,7 @@ str(all_stocks)
 
 ### Renaming column
 
-The last column has a spelling mistake. Changing that to PercentDeliverable to avoid confusion and also renamed another column to camel-casing
+The naming convention of last column, though intuitive, I feel would be better if I changed it to 'PercentDeliverable' instead of '%Deliverable'.
 
 ```{r}
 all_stocksv2 <- all_stocks %>% rename(PercentDeliverable = `%Deliverble`, DeliverableVolume = `Deliverable Volume`)
@@ -106,7 +118,9 @@ colnames(all_stocksv2)
 
 ```
 
-The date format is yyyy/mm/dd. I only want the year aspect, so creating a new column with just that. A new column 'yy' has been created, which is the last column
+### Date field formatting
+
+The date format currently available is yyyy/mm/dd. For my analysis, only the year would suffice. Hence I am creating a new column with just the 'year' column called 'yy'.
 
 ```{r}
 
@@ -119,7 +133,7 @@ print(all_stocks_yy)
 
 ```
 
-### Checking missing data
+### Summarising info and check for missing data
 
 By running the summary command we see that Trades, Deliverable Volume and Percent_Deliverables have a lot of missing values. Since they are all numeric, I'm replacing them with 0 to avoid calculation errors.
 
@@ -137,21 +151,28 @@ print(summarytools::dfSummary(all_stocks_yy,
 
 ### Replacing NA's with 0's
 
-NA in the dataset are because - no trades happened to that stock when it was first listed in the NIFTY50 index. It is equal to 0, as no activity happened. NA's are present only in the numeric columns. So, I am replacing all the NA with 0
+I've observed there are NA values in 3 columns. To avoid calculation/code errors, I decided to replace all NA's with 0. Also, replacing by zero doesn't have any impact on the observations because, the stock was not traded when it was first listen in the NIFTY index.
 
-I tried using replace_na() but it wouldn't replace the NA's. So I had to use the base-r function for this.
+By using replace_na() function, I've picked 3 columns as a result of the above observations made from the summary table.
 
 ```{r}
 
-all_stocks_yy[is.na(all_stocks_yy)] <- 0
-sum(is.na(all_stocks_yy$Trades))
+# all_stocks_yy[is.na(all_stocks_yy)] <- 0
+# sum(is.na(all_stocks_yy$Trades))
+# 
+# 
+# all_stocks_yy %>% mutate(
+#     across(everything(), ~replace_na(., 0))
+#   )
+
+all_stocks_yy <- all_stocks_yy %>% replace_na(list(PercentDeliverable = 0, DeliverableVolume = 0, Trades=0)) 
 ```
 
 ## Observations
 
 ### Distinct stocks
 
-NIFTY50 is supposed to be the top 50 stocks of the financial year(there must be 50 distinct stocks in the data set). This data from 2000 to 2021 is not consistent, i.e., there are **65** distinct entries found. Which suggests that some stocks under-performed and got replaced with new ones over time.
+NIFTY50 is supposed to be the top 50 stocks of the financial year(there must be 50 distinct stocks in the data set). This data from 2000 to 2021 is not consistent, i.e., there are **65** distinct entries found. Which suggests that some stocks under-performed and got replaced with new ones over time. Hence the aggregate of all stocks combined became 65
 
 ```{r}
 all_stocks_yy %>% select(1) %>% distinct()
@@ -186,12 +207,15 @@ barplot(height=barplot$Volume, names=barplot$yy,
 
 ### Checking stock's consistency in NIFTY50 index
 
-By running the below code, I am checking whether a stock has maintained its consistency in the top 50 stocks. Looks like the top 50 stocks kept changing each year, and some stocks were not present in the list. The stocks not present in that year can be identified with 0 ( a metric for the sum of all shares sold in a year)
+By running the below code, I am checking whether a stock has maintained its consistency in the top 50 stocks. Looks like the stocks kept changing each year, and some stocks were not present in the list at all! The stocks not present in that year can be identified with 0 ( a metric for the sum of all shares sold in a year ). That is, if no shares are sold, then the stock wouldn't make the list.
 
-Some observations that can be made here :
+Some observations that can be made here are:
 
-1.  Stocks like ADANIPORTS, NESTLEIND, NTPC, SSLT didn't enter the stock market from 2000's. Their companies began listing further down the line, such as from 2010
-2.  Some companies, though made it to the NIFTY 50 list, have dropped out over the years due to a dip in stock price due to various factors. Some such examples would be KOTAKMAH, INFOSYSTCH, TELCO, TISCO and so on
+1.  Stocks like ADANIPORTS, NESTLEIND, NTPC, SSLT didn't enter the stock market from 2000. Their companies began appearing further down the line, such as from 2010
+
+2.  Some companies, though made it to the NIFTY 50 list, have dropped out over the years due to a massive dip in stock price due to various factors. Some such examples would be KOTAKMAH, INFOSYSTCH, TELCO, TISCO have experienced huge losses which can be explained change in their leadership, an acquisition gone wrong, or someone filed a case in the court.
+
+    From my understanding so far, a stock price dips heavily due to change in public sentiment, as a direct impact of news channels.
 
 ```{r}
 
@@ -205,7 +229,7 @@ all_stocks_yy %>%
 
 ### Stocks which didn't enter stock market for 10 yrs
 
-There are 6 stocks which did not enter the stock market - ADANIPORTS, HEROMOTOCO, INFY,SSLT,UPL, VEDL. They were not publicly listed in to be traded, as they were still in the developmental phases. A company enters stock market once it has captured enough market in an area, and wants to expand its operations and brand to a larger scale.
+There are 6 stocks which did not enter the stock market - ADANIPORTS, HEROMOTOCO, INFY,SSLT,UPL, VEDL. They were not publicly listed in to be traded, as the company was still small in size. A company enters stock market once it has captured enough market in an area, and wants to expand its operations and brand to a larger scale. The companies then offer IPO, where the shares are made available to common people to invest. Using this additional income, the companies expand their scale of operations to PAN_India!
 
 ```{r}
 all_stocks_yy %>% 
@@ -243,9 +267,11 @@ all_stocks_yy %>%
 
 #### Plotting the above results
 
-I have plotted a connected scatterplot for the best and the worst stock as shown below. It was surprising to see such a sharp decline in traded volumes for ZEETELE just the corresponding year. And the worst performing stock of 2000 gradually gained traction and crossed the aforementioned stock in the year 2006.
+I have created a scatterplot for the best and the worst stock as shown below. It was surprising to see such a sharp decline in traded volumes for ZEETELE just the corresponding year. And the worst performing stock of 2000 gradually gained traction and crossed the aforementioned stock in the year 2006.
 
 The dip in stock volume is observed for BAJAUTOFIN due to the stock market crash, but still continues to maintain its position in the NIFTY index. Looks like ZEETELE got kicked of the NIFTY index at the beginning of 2007
+
+This [link](https://www.investopedia.com/financial-edge/0911/how-september-11-affected-the-u.s.-stock-market.aspx) describes about the US stock market crash after the attack on World Trade Center on Sept 11, 2001. The corresponding events led to stock crash world wide, thus effecting Indian markets as well. ZEETELE is one of those stock which got highly effected. In the following years, many stocks failed to make a come back and also got replaced by other stocks in the NIFTY index.
 
 Red line - BAJAUTOFIN , Blue Line - ZEETELE
 
@@ -402,7 +428,7 @@ all_stocks_yy %>%
 
 ## Reflection
 
-This project has been a great learning experience for me. It was interesting to see how many insights can be derived from a single data set. I felt I barely scratched the surface of this goldmine. I used to follow stock market trends for a while, which got me interested to try this do an EDA of this data-set. My current regret is, there are lot of amazing insights and visualizations that I could do, but I didn't know how to manipulate multiple variables to make it happen.
+This project has been a great learning experience for me. It was interesting to see how many insights can be derived from a single data set. I felt that I barely scratched the surface of this goldmine dataset. I used to follow stock market trends for a while during the covid lockdown, which made me interested to try this do an EDA of this data-set. My current regret is, there are lot of amazing insights and visualizations that I could do, but I didn't know how to manipulate multiple variables to make it happen.
 
 I faced challenges with almost every aspect of this project. I've been going back to my notes, stack overflow and a bunch of youtube videos to get clarity. I made use of really good websites and bookmarked some of the solutions for future reference. There is a lot of power in R and it made me realize I could really do a lot more with it.
 
@@ -410,9 +436,9 @@ I've made use of other packages apart from the standard ones taught in the class
 
 ## Conclusion
 
-I got some clarity on the highs and lows of the stock market. A stock doesn't appear to be consistent in the NIFTY index and new ones get added or replaced each consecutive year. Sometimes the stocks start at a very high price, but plummets almost immediately the next year,which makes it very dangerous to have had shares in that stock(,i.e., ZEETELE). Some stocks stood the test of time and their brand image grew bigger. Not all stocks started out at year 2000, while some of them entered almost 10 years later and continued to be in the NIFTY index.
+I got some clarity on the highs and lows of the stock market. A stock doesn't appear to be consistent in the NIFTY index and new ones get added or replaced each consecutive year. Sometimes the stocks start at a very high price, but plummets almost immediately the next year,which makes it very dangerous to have had shares in that stock(,i.e., ZEETELE). Some stocks stood the test of time and their brand image grew bigger. Not all stocks started out at year 2000, while some of them entered almost 10 years later and continued to be in the NIFTY index. While some stocks changed considerably due to world events such as terrorist attacks on WTC, Covid 19, Wall Street crash etc, not all stocks managed to recover.
 
-A stocks performance directly proportional to its public image. The stock price immediately drops if the company's image is tarnished. The number of people who started investing in the stock grew each year, and the highest jump in the traded volumes can be observed between 2018 to 2021, a direct consequence of COVID-19 pandemic. Since people were restricted at home, there was a lot of surplus amount sitting idle in bank accounts. Therefore they invested in the stock markets which were crashing due to the declining businesses. All the NIFTY stocks will rise each time they fall, is what I've observed, but stocks from the manufacturing industry will only experience temporary dips in price.
+A stock'ss performance is directly proportional to its public image. The stock price immediately drops if the company's image is tarnished. The number of people who started investing grew each year, and the highest jump in the traded volumes can be observed between 2018 to 2021, a direct consequence of COVID-19 pandemic. Since people were restricted at home, there was a lot of surplus money sitting idly in their bank accounts. Therefore they invested in the stock markets which were crashing due to the declining businesses. All the NIFTY stocks will rise each time they fall, is what I've observed, but stocks from the manufacturing industry will only experience temporary dips in price.
 
 As India is a developing country, there is a continuous involvement of the manufacturing industry. So even if there is a plateau in price, the price and public sentiment will eventually rise.
 
