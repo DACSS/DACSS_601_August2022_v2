@@ -15,7 +15,7 @@ library(ggplot2)
 ## Briefly describe the data
 
 ```{r}
-poultry_tidy<-read_csv("https://raw.githubusercontent.com/DACSS/DACSS_601_August2022_v2/template/posts/_data/poultry_tidy.csv",
+poultry_tidy<-read_csv("_data/poultry_tidy.csv",
                         show_col_types = FALSE)
 ```
 

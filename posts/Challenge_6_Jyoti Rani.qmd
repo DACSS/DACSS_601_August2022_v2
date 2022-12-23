@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
-Air_Bnb <- read_csv("https://raw.githubusercontent.com/jyotirani28/DACSS_601_August2022_v2/template/posts/_data/AB_NYC_2019.csv", col_names = c("del", "name", "del", "host_name","neighbourhood_group", "neighbourhood", "latitude", "longitude", "room_type", "price", "minimum_nights", "number_of_reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365" ), skip=1) %>% 
+Air_Bnb <- read_csv("_data/AB_NYC_2019.csv", col_names = c("del", "name", "del", "host_name","neighbourhood_group", "neighbourhood", "latitude", "longitude", "room_type", "price", "minimum_nights", "number_of_reviews", "last_review", "reviews_per_month", "calculated_host_listings_count", "availability_365" ), skip=1) %>% 
   select(!starts_with("del")) %>%
   drop_na(reviews_per_month)
   
