@@ -1,0 +1,64 @@
+---
+title: "Challenge_5"
+author: "Jyoti Rani"
+date: "2022-08-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+
+```
+
+## Read in data
+
+Read Autralian Marriage tidy data file.
+```{r}
+ab_nyc <- read_csv("_data/AB_NYC_2019.csv",
+                   show_col_types = FALSE)
+ab_nyc
+```
+
+## Briefly describe the data
+This data set looks like a customer review collected by a company. It contains nearly 50,000 people’s review and each data distinguished by their id, neighborhood, and etc.
+
+### Univariate Visualizations
+
+First of all, I took a look about their neighbourhood group. I choosed bar graph because it can be recognized easily.
+
+```{r}
+count(ab_nyc, neighbourhood_group)
+```
+
+```{r}
+ggplot(ab_nyc, aes(neighbourhood_group)) +
+  geom_bar()
+```
+Most neighbourhood group are Manhattan(21661) and Brooklyn(20104).
+
+Next, I took a closer look at the Manhattan.
+
+```{r}
+ab_nyc_man <- ab_nyc%>%
+  filter(neighbourhood_group=="Manhattan")
+
+count(ab_nyc_man, neighbourhood)
+```
+```{r}
+ggplot(ab_nyc_man, aes(neighbourhood)) +
+  geom_bar()
+```
+32 neighbourhood are in the Manhattan and Harlem’s proportion is the largest.
+
+## Bivariate Visualization
+
+Now, I wondered whether availity and amount of review is related. So I made scatter plot regarding availity and reviews per month. I selected review per month to avoid distortion due to subscription period, etc.
+```{r}
+ggplot(ab_nyc, aes(x=availability_365, y=reviews_per_month)) +
+  geom_point()
+```
+
+Anything is hard to recognized. It seems like there are no relations between availity and amount of reviews.
+

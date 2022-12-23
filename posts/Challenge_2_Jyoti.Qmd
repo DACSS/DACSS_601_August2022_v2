@@ -1,0 +1,87 @@
+---
+title: "Challenge2_Jyoti"
+author: "Jyoti Rani"
+date: "2022-08-22"
+format:
+  html:
+    print: paged 
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_2
+  - State County dataset
+---
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readr)
+library(readxl)
+library(stringr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading in Data
+
+I have used the dataset State County (the excel file). While reading in the data, it was also cleaned by removing the first few rows and last few rows which had unnecessary text.
+
+```{r}
+railroad_df <- read_excel("/Users/jyotirani/Documents/r_subdirectory/StateCounty2012.xls",skip=3,col_names= c("state", "delete", "county", "delete", "total_employees"))%>%
+select(!contains("delete"))%>%
+  filter(!str_detect(state, "Total"))
+tail(railroad_df, 10)
+railroad_df<-head(railroad_df, -2)
+tail(railroad_df, 10)
+railroad_df<-head(railroad_df, -1)
+tail(railroad_df, 10)
+railroad_df = railroad_df[-1,] 
+railroad_df <- transform(railroad_df,employees = as.numeric(total_employees))
+head(railroad_df)
+```
+
+## Data description
+
+The data consists of 3 columns- state, county and employees. There are 53 states included in the data and 1709 counties. The number of employees by state can also be seen in the third table.
+
+```{r}
+head(railroad_df)
+railroad_df%>%
+  select(state)%>%
+  n_distinct(.)
+railroad_df%>%
+  select(county)%>%
+  n_distinct(.)
+railroad_df %>%
+  group_by(state) %>%
+  summarise(employees2 = sum(employees))
+```
+
+## Grouped Summary Statistics and Interpretation
+
+We use summary statistics were checked for a country wide comparison. 
+Then a few states were selected in such a way that a few states had many employees (around 13000) and a few states selected had a small number of employees (100-200). 
+This was done in order to check how the central tendency and dispersion varied across counties in a particular state.
+Both California and Nebraska, which had a larger number of employees, had a higher mean for the total employees among the counties compared to the mean number of employees across states. This is possibly due to the fact that they had more employees. Similarly, it was observed that in the case where there were a lower number of employees, the mean for the total employees across counties were lower and the standard deviation across counties was lower (in Vermont and Alaska). 
+Finally, the total number of employees in each county of a state were arranged in descending order because a county with a higher number of employees indicates that there are more job opportunities or perhaps a higher population in the area.
+
+```{r}
+library(dplyr)
+library(summarytools)
+
+railroad_df%>% summarise (mean.employees = mean(`employees`), median.employees = median(`employees`), min.employees = min(`employees`), max.employees = max(`employees`), sd.employees = sd(`employees`), var.employees = var(`employees`), IQR.employees = IQR(`employees`))
+
+
+railroad_df%>% filter(state == "CA")%>% summarise (mean.employees = mean(`employees`), median.employees = median(`employees`), min.employees = min(`employees`), max.employees = max(`employees`), sd.employees = sd(`employees`), var.employees = var(`employees`), IQR.employees = IQR(`employees`))
+railroad_df%>% filter(state == "CA")%>%group_by(county)%>%arrange(county, desc(employees))
+
+railroad_df%>% filter(state == "NE")%>% summarise (mean.employees = mean(`employees`), median.employees = median(`employees`), min.employees = min(`employees`), max.employees = max(`employees`), sd.employees = sd(`employees`), var.employees = var(`employees`), IQR.employees = IQR(`employees`))
+railroad_df%>% filter(state == "NE")%>%group_by(county)%>%arrange(county, desc(employees))
+
+railroad_df%>% filter(state == "DC")%>% summarise (mean.employees = mean(`employees`), median.employees = median(`employees`), min.employees = min(`employees`), max.employees = max(`employees`), sd.employees = sd(`employees`), var.employees = var(`employees`), IQR.employees = IQR(`employees`))
+
+railroad_df%>% filter(state == "VT")%>% summarise (mean.employees = mean(`employees`), median.employees = median(`employees`), min.employees = min(`employees`), max.employees = max(`employees`), sd.employees = sd(`employees`), var.employees = var(`employees`), IQR.employees = IQR(`employees`))
+railroad_df%>% filter(state == "VT")%>%group_by(county)%>%arrange(county, desc(employees))
+
+railroad_df%>% filter(state == "WY")%>% summarise (mean.employees = mean(`employees`), median.employees = median(`employees`), min.employees = min(`employees`), max.employees = max(`employees`), sd.employees = sd(`employees`), var.employees = var(`employees`), IQR.employees = IQR(`employees`))
+railroad_df%>% filter(state == "WY")%>%group_by(county)%>%arrange(county, desc(employees))
+```

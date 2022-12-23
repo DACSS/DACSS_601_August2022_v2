@@ -1,0 +1,67 @@
+---
+title: "Challenge_3_Jyoti_Rani"
+author: "Jyoti Rani"
+date: "2022-08-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readxl)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Read the data 
+```{r}
+eggs <- read_excel("/Users/jyotirani/Documents/GitHub/DACSS_601_August2022_v2/organiceggpoultry.xls",
+                   sheet = "Data",
+                   skip = 4,
+                   range =cell_limits(c(6,2),c(NA,6)),
+                  col_names = c("date", "xldozen", "xlhalf_dozen", "large_dozen", "large_half_dozen"))
+
+eggs
+```
+Above I read in the data set as an excel file. I had to look at the solutions sheet to learn how to read in the data. The only trouble I had was figuring out the “range” parameter of the function. That one I just had to copy in because I was getting an error without it, but I understand that this tells R which cells to read.
+
+
+```{r}
+eggs %>% 
+  select("date")  %>% 
+  distinct()
+```
+Now we still have the issue of notes in the names of our months. This is most evident with “Jan…”, but the ” /1” in February needs to go. This needs to be removed to make analysis later on a bit easier to look at.
+
+```{r}
+eggs <- eggs %>% 
+  mutate(date = str_remove(date, " /1"))
+```
+
+Next, the January columns need to be dealt with so below I will remove the years in the “Jan” column with the separate and fill function.
+
+```{r}
+eggs <- eggs %>% 
+  separate(date, c("month", "year"), convert = TRUE) %>% 
+  fill("year")
+  
+
+eggs
+```
+You can see as the years progress, the price of eggs increase, though at what rate I am uncertain. Now the data set is read for some pivoting. Now let me do a sanity check to view the data dimensions before the pivot and then I will look at it after the pivot.
+
+```{r}
+dim(eggs)
+```
+
+There are four columns with the type of eggs this data set is viewing. If we want even tidier data we can collapse these four columns into one. Lets call this new data set “eggstidy” to represent the final form of the data in this challenge.
+```{r}
+eggstidy <- eggs %>% 
+  pivot_longer(c(3:6), names_to = "egg_type", values_to = "price")
+
+eggstidy
+```
+By pivoting the data, each row has one observation, making it tidy for future manipulation. Within each row we can look at the particular variables within that observation with ease.
+
+Below the dimensions have clearly changed, adding significantly more rows, but also condensing the amount of columns.
+
+
