@@ -216,66 +216,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="read-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-the-data">Read the data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>eggs <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"/Users/jyotirani/Documents/GitHub/DACSS_601_August2022_v2/organiceggpoultry.xls"</span>,</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>eggs <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/organiceggpoultry.xls"</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">"Data"</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">skip =</span> <span class="dv">4</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">range =</span><span class="fu">cell_limits</span>(<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">2</span>),<span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">6</span>)),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"xldozen"</span>, <span class="st">"xlhalf_dozen"</span>, <span class="st">"large_dozen"</span>, <span class="st">"large_half_dozen"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error: `path` does not exist: '/Users/jyotirani/Documents/GitHub/DACSS_601_August2022_v2/organiceggpoultry.xls'</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>eggs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'eggs' not found</code></pre>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"date"</span>, <span class="st">"xldozen"</span>, <span class="st">"xlhalf_dozen"</span>, <span class="st">"large_dozen"</span>, <span class="st">"large_half_dozen"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>eggs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 120 × 5
+   date      xldozen xlhalf_dozen large_dozen large_half_dozen
+   &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+ 1 Jan 2004     230          132         230              126 
+ 2 February     230          134.        226.             128.
+ 3 March        230          137         225              131 
+ 4 April        234.         137         225              131 
+ 5 May          236          137         225              131 
+ 6 June         241          137         231.             134.
+ 7 July         241          137         234.             134.
+ 8 August       241          137         234.             134.
+ 9 September    241          136.        234.             130.
+10 October      241          136.        234.             128.
+# … with 110 more rows</code></pre>
 </div>
 </div>
 <p>Above I read in the data set as an excel file. I had to look at the solutions sheet to learn how to read in the data. The only trouble I had was figuring out the “range” parameter of the function. That one I just had to copy in because I was getting an error without it, but I understand that this tells R which cells to read.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>eggs <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"date"</span>)  <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in select(., "date"): object 'eggs' not found</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>eggs <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">"date"</span>)  <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 22 × 1
+   date     
+   &lt;chr&gt;    
+ 1 Jan 2004 
+ 2 February 
+ 3 March    
+ 4 April    
+ 5 May      
+ 6 June     
+ 7 July     
+ 8 August   
+ 9 September
+10 October  
+# … with 12 more rows</code></pre>
 </div>
 </div>
 <p>Now we still have the issue of notes in the names of our months. This is most evident with “Jan…”, but the ” /1” in February needs to go. This needs to be removed to make analysis later on a bit easier to look at.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>eggs <span class="ot">&lt;-</span> eggs <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">str_remove</span>(date, <span class="st">" /1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in mutate(., date = str_remove(date, " /1")): object 'eggs' not found</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>eggs <span class="ot">&lt;-</span> eggs <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">str_remove</span>(date, <span class="st">" /1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, the January columns need to be dealt with so below I will remove the years in the “Jan” column with the separate and fill function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>eggs <span class="ot">&lt;-</span> eggs <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(date, <span class="fu">c</span>(<span class="st">"month"</span>, <span class="st">"year"</span>), <span class="at">convert =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(<span class="st">"year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in separate(., date, c("month", "year"), convert = TRUE): object 'eggs' not found</code></pre>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>eggs <span class="ot">&lt;-</span> eggs <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(date, <span class="fu">c</span>(<span class="st">"month"</span>, <span class="st">"year"</span>), <span class="at">convert =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(<span class="st">"year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 2 pieces. Missing pieces filled with `NA` in 110 rows [2, 3,
+4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, ...].</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>eggs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'eggs' not found</code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>eggs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 120 × 6
+   month      year xldozen xlhalf_dozen large_dozen large_half_dozen
+   &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;
+ 1 Jan        2004    230          132         230              126 
+ 2 February   2004    230          134.        226.             128.
+ 3 March      2004    230          137         225              131 
+ 4 April      2004    234.         137         225              131 
+ 5 May        2004    236          137         225              131 
+ 6 June       2004    241          137         231.             134.
+ 7 July       2004    241          137         234.             134.
+ 8 August     2004    241          137         234.             134.
+ 9 September  2004    241          136.        234.             130.
+10 October    2004    241          136.        234.             128.
+# … with 110 more rows</code></pre>
 </div>
 </div>
 <p>You can see as the years progress, the price of eggs increase, though at what rate I am uncertain. Now the data set is read for some pivoting. Now let me do a sanity check to view the data dimensions before the pivot and then I will look at it after the pivot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'eggs' not found</code></pre>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(eggs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 120   6</code></pre>
 </div>
 </div>
 <p>There are four columns with the type of eggs this data set is viewing. If we want even tidier data we can collapse these four columns into one. Lets call this new data set “eggstidy” to represent the final form of the data in this challenge.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>eggstidy <span class="ot">&lt;-</span> eggs <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>), <span class="at">names_to =</span> <span class="st">"egg_type"</span>, <span class="at">values_to =</span> <span class="st">"price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in pivot_longer(., c(3:6), names_to = "egg_type", values_to = "price"): object 'eggs' not found</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>eggstidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'eggstidy' not found</code></pre>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>eggstidy <span class="ot">&lt;-</span> eggs <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>), <span class="at">names_to =</span> <span class="st">"egg_type"</span>, <span class="at">values_to =</span> <span class="st">"price"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>eggstidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 480 × 4
+   month     year egg_type         price
+   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt;
+ 1 Jan       2004 xldozen           230 
+ 2 Jan       2004 xlhalf_dozen      132 
+ 3 Jan       2004 large_dozen       230 
+ 4 Jan       2004 large_half_dozen  126 
+ 5 February  2004 xldozen           230 
+ 6 February  2004 xlhalf_dozen      134.
+ 7 February  2004 large_dozen       226.
+ 8 February  2004 large_half_dozen  128.
+ 9 March     2004 xldozen           230 
+10 March     2004 xlhalf_dozen      137 
+# … with 470 more rows</code></pre>
 </div>
 </div>
 <p>By pivoting the data, each row has one observation, making it tidy for future manipulation. Within each row we can look at the particular variables within that observation with ease.</p>
