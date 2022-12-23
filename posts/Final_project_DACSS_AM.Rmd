@@ -1,0 +1,814 @@
+---
+title: "Final_project_DACSS_601"
+author: "Akhilesh Meghwal"
+date: "2022-11-23"
+output:
+  # pdf_document:
+  #   toc: yes
+  #   toc_depth: 2
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: 2
+---
+
+```{=html}
+<style>
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: scroll !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+}
+</style>
+```
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE, message = FALSE, warning = FALSE, fig.width=8, fig.height=5, fig.align = "center")
+qwraps2::lazyload_cache_dir(path = "FINAL_REPORT/html5")
+```
+
+## Libraries
+
+```{r loading libraries}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(lubridate)
+library(tidyr)
+library(stringr)
+library(tools)
+library(leaflet)
+library(rfishnet2)
+library(chron)
+library(readxl)
+library(leaflet.extras)
+library(summarytools)
+library(skimr)
+library(tinytex)
+library(knitr)
+library(kableExtra)
+library(htmlTable)
+load("final_project_AM.RData")
+```
+
+## Introduction:
+
+Crime in the United States has been recorded since its founding. Crime rates have varied over time, with a sharp rise after 1900 and reaching a broad bulging peak between the 1970s and early 1990s. After 1992, crime rates began to fall year by year and have since declined significantly. This trend lasted until 2015, when crime rates began to rise slightly, which reversed in 2018 and 2019.Despite the increase in violent crime, particularly murders, between 2020 and 2021, the quantity of overall crime is still far below the peak of crime seen in the United States during the late 1980s and early 1990s, as other crimes such as rape, property crime and robbery continued to decline.
+
+The Boston Police Department (BPD) is the primary law enforcement agency for the city of Boston, Massachusetts. It was established in 1838 and is one of the oldest police departments in the United States.The BPD is responsible for protecting and serving the residents of Boston, as well as maintaining order and enforcing the law within the city limits. The BPD is organized into several divisions, including patrol, detective, and special operations, and it has a number of specialized units, such as the bomb squad and the marine unit.The Boston Police Depurtment divides the City into twelve police districts, each covering a major geographic area, namely:
+
+1.  A1-Downtown, North End & Waterfront, West End, China Town, Theater District, Boston Commons,
+2.  A15-Beacon Hill Charlestown
+3.  A7-East Boston
+4.  B2-Roxbury
+5.  B3-Mattapan
+6.  C6-South Boston
+7.  C11-Dorchester
+8.  D4-South End
+9.  D14-Allston & Brighton
+10. E5-West Roxbury & Roslindale
+11. E13-Jamaica Plain
+12. E18-Hyde Park
+
+In this analysis report Boston Crime Data from Year 2015 to date is analyzed, the analysis consists of exploratory, timeseries and geographic analysis of crime incidents pertaining to different crime categories to identify major crimes being held in different police districts of Boston Police Department.Crime incidents are classified into 303 different crime categories.
+
+## Research Questions:
+
+1. What is trend of crime incidents, if the overall trend of crimes of increasing or decreasing?
+2. What crimes are more prominent in Boston Police Districts, and requires targeted approach from authorities to address the crime incidents? 
+3. Which crime incidents are higher in which Months, Day, or Hours?
+4. How does crime vary by neighborhood or police district in Boston?
+	- Which Boston Police Districts generate highest number of crime incidents, and requires attention from authorities
+	- Which Street in Boston generate highest number of crime incidents, and requires attention from authorities?
+
+## Boston Police Department Dataset 
+
+The Boston Crime Data is a dataset that contains records of crimes reported in the city of Boston, Massachusetts. The BPD publishes crime data on its website through the CrimeStat system. CrimeStat allows users to view and analyze crime data for the city of Boston, including incidents of violent crime, property crime, and drug offenses.The Boston Crime Data contains records of crimes reported in the city of Boston, Massachusetts. The dataset is collected by the Boston Police Department and is made available to the public through the city's open data portal. 
+
+This is a dataset containing records from the new crime incident report system. The dataset includes information about the type of crimes, the location of the crime, the time and date the crime occurred, and other relevant details. The Boston Crime Data is useful in analysing trends in crime rates over time or identifying patterns in the types of crimes that are committed in different parts of the city. It can also be used to inform public safety policies and procedures.The dataset includes the following fields:
+
+- INCIDENT_NUMBER: A unique identifier for each crime incident
+- OFFENSE_CODE: A code that represents the type of crime that was committed
+- OFFENSE_CODE_GROUP: A broader category that groups related offenses together
+- OFFENSE_DESCRIPTION: A description of the offense
+- DISTRICT: The police district where the crime occurred
+- REPORTING_AREA: The specific area within the district where the crime occurred
+- SHOOTING: A flag indicating whether a shooting was involved in the incident
+- OCCURRED_ON_DATE: The date and time when the crime occurred
+- YEAR: The year when the crime occurred
+- MONTH: The month when the crime occurred
+- DAY_OF_WEEK: The day of the week when the crime occurred
+- HOUR: The hour when the crime occurred
+- UCR_PART: The part of the Uniform Crime Reporting system that the crime falls under
+- STREET: The street where the crime occurred (if applicable)
+- LATITUDE: The latitude of the location where the crime occurred
+- LONGITUDE: The longitude of the location where the crime occurred
+
+The dataset has only has Boston Police Districts codes but BPD district names are not available, One more column is integrated to include Boston Police Districts name as well, mapping of 'district cod'e wise 'District Name' is given below:
+
+- A1: Downtown, North End & Waterfront, West End, China Town, Theater District, Boston Commons, Beacon Hill
+- A15: Charlestown
+- A7: East Boston
+- B2: Roxbury
+- B3: Mattapan
+- C6: South Boston
+- C11: Dorchester
+- D4: South End
+- D14: Allston & Brighton
+- E5: West Roxbury & Roslindale
+- E13: Jamaica Plain
+- E18: Hyde Park
+
+The dataset contains 644, 843 rows, and 16 columns. 303 Offense types (OFFENSE_DESCRIPTION) have been renamed and merged into 93 Offense classes for better representation of graphs. Each row in the dataset represent single crime incidents, 
+
+## Dataset Read
+
+```{r reading in data}
+# crime <- read_excel("boston data.xlsx") %>%
+#   mutate(OFFENSE_DESCRIPTION = str_trim(OFFENSE_DESCRIPTION))
+# area_codes <- read_csv("boston_area_codes.csv")
+# crime_classes <- read_csv("offense_descriptions.csv", col_names = c("OFFENSE_DESCRIPTION", "Class")) %>% mutate(OFFENSE_DESCRIPTION #str_trim(OFFENSE_DESCRIPTION),
+#        Class = str_trim(Class))
+# crime <- merge(crime, area_codes, by = "DISTRICT", all.x = TRUE)
+# crime <- merge(crime, crime_classes, by = "OFFENSE_DESCRIPTION", all = TRUE)
+# write.csv(unique(crime$OFFENSE_DESCRIPTION), "offense_descriptions.csv")
+```
+
+```{r}
+# skimr::skim(crime)
+```
+```{r}
+# crime$OFFENSE_CODE_GROUP <- toTitleCase(crime$OFFENSE_CODE_GROUP)
+# crime$OFFENSE_DESCRIPTION <- toTitleCase(crime$OFFENSE_DESCRIPTION)
+# crime$STREET <- toTitleCase(crime$STREET)
+# crime$Class <- toTitleCase(crime$Class)
+# crime_classes$OFFENSE_DESCRIPTION<-toTitleCase(crime_classes$OFFENSE_DESCRIPTION)
+```
+
+## 1. What is trend of crime incidents, if the overall trend of crimes of increasing or decreasing?
+
+### Year wise Trend of Crime Incidents
+
+```{r}
+crime_yearwise <- crime %>% 
+  group_by(YEAR) %>% 
+  summarise(frequency = n())
+
+
+fig <- plot_ly(crime_yearwise, x = ~YEAR, y = ~frequency, type = 'scatter', mode = 'lines', line = list(dash = "solid"),
+               text = ~paste("Year:", YEAR, "<br>Crime:", frequency), 
+               textfont = list(color = 'red', size = 12)) %>%
+  layout(
+    xaxis = list(title = 'Timeline', tickangle = -90, showgrid = TRUE, zeroline = TRUE, showline = TRUE, tickfont = list(size = 12)),
+    yaxis = list(title = 'Crime Incidents', showgrid = TRUE, zeroline = TRUE, showline = TRUE, tickfont = list(size = 12)),
+    title = 'Crime incidents over the years',
+    font = list(family = 'sans-serif', size = 15, color = '#444'),
+    plot_bgcolor = "#FFFFFF", 
+    paper_bgcolor = "#FFFFFF"
+  )
+
+# Display the graph
+fig
+```
+The Boston Police Department (BPD) has made progress in reducing crime rates over the past few years, according to data from the department. The overall crime rate has decreased since 2017, with the exception of a slight 0.16% increase in 2021. While this small increase may be concerning, it is worth noting that the overall trend in crime rates has been downward since 2017.
+
+There has been a significant year-on-year decline in crime rates from 2018 to 2019 (12.36%), and an even larger decline from 2019 to 2020 (18.23%). The additional decline in 2020 may be attributed to the COVID-19 pandemic and the lockdown measures that were implemented to slow the spread of the virus. However, there was a slight increase in crime rates in 2021, which may be due to the economic downturn caused by the pandemic and the resulting unemployment. There was a further decline in crime rates in 2022, which may be attributed to the recovery in the economy or to controlling measures put in place by the BPD.
+
+It is also important to consider the context of the significant increase in crime rates between 2015 and 2017. According to the BPD data, there was an 89% increase in crime incidents over this two-year period, with the number of incidents rising from 53468 in 2015 to 100805 in 2017. This spike in crime is likely due to a variety of factors, including social and economic conditions, changes in law enforcement policies and strategies, and other external influences.
+
+Despite this increase in crime, the Boston Police Department has been able to bring crime rates down since 2017. It is likely that the department has implemented new strategies and techniques to address crime and improve public safety, such as community policing, crime prevention programs, and targeted enforcement efforts. This is a positive development for the city of Boston and its residents, as it indicates that the department is effectively working to reduce crime and maintain public safety.
+
+
+## 2. What crimes are more prominent in Boston Police Districts, and requires targeted approach from authorities to address the crime incidents?
+
+### Distribution of Crime Category wise No. of Crime Incidents
+
+```{r}
+crime$Class <- iconv(crime$Class, to = "UTF-8")
+crime_category_class <- crime %>%
+  group_by(Class) %>%
+  summarise(count = n())%>%
+  rename(labels = Class, values = count)%>%
+  top_n(10)
+
+# Create the pie chart using the pie_data data frame
+plot_ly(crime_category_class, labels = ~labels, values = ~values, type = 'pie', hole = 0.3) %>%
+  layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+```
+```{r}
+# Create a new data frame with the labels and values for the table
+
+crime_category_class = arrange(crime_category_class,desc(values))%>%
+  top_n(10)
+
+colnames(crime_category_class) <- c("Crime Category", "No. of Crime Incidents")
+# Create  table using the kable function
+crime_category_table <- kable(crime_category_class, "html")
+
+# Use the kable_styling function to apply formatting to the table
+crime_category_table %>%
+  kable_styling(bootstrap_options = "striped")
+```
+
+### Year wise Trend of Number of Assault / Battery,Investigate Person/Property, Larceny, Motor Vehicle, Property related Crime Incidents
+
+```{r}
+crime_year <- crime %>% 
+  group_by(YEAR, Class) %>% 
+  summarise(frequency = n()) %>% 
+  slice_max(order_by = frequency, n = 5)
+
+plot_ly(crime_year, x = ~YEAR, y = ~frequency, 
+         type = 'bar', text = ~Class, color = ~Class) %>%
+  layout(xaxis = list(title = 'Year-wise Top 4 Crimes', tickangle = -90), yaxis = list(title = 'No. of Crime Incidents'), barmode = 'group')
+```
+According to data from the Boston Police Department (BPD), the overall crime rate saw a steep decline in 2020 compared to the previous year. This significant drop may be attributed to the COVID lockdown measures that were implemented during this time, which likely disrupted criminal activity and reduced the opportunity for crime to occur. The BPD has identified four types of crimes as the most common in the city: motor vehicle, larceny, investigate person/property, and assault/battery. These crimes account for a total of 64.51% of all crimes committed in Boston.
+
+Of these crimes, motor vehicle-related offenses are the most common and a major area of concern for the BPD. While there was a decline in the number of motor vehicle crime incidents from 16579 in 2017 to 11345 in 2020, there has been a recent increase in 2021 and 2022, with 14216 and 12764 incidents, respectively. It is important for the BPD to continue to monitor and address this type of crime in order to maintain the downward trend in overall crime rates.
+
+Larceny-related crimes have consistently declined since 2016, which is a positive trend as this category is among the top three contributors to crime in the city. The BPD's efforts to address and prevent larceny may be contributing to this decline. On the other hand, assault/battery-related crimes have been declining since 2018, with 7730 incidents in 2018 and 4369 incidents in 2020. However, there has not been much improvement in crime control for assault/battery-related crimes since 2020, and it will be important for the BPD to continue to focus on this type of crime in order to maintain the overall downward trend in crime rates.
+
+In addition to traditional crime, the BPD has also seen an increase in the number of sick assist incidents, which are calls for assistance related to medical emergencies. These types of calls have been increasing since 2016, with a 9% increase in 2020 compared to 2019. This increase may be linked to the COVID pandemic and the added stress it has placed on the healthcare system.
+
+Finally, it is worth noting that drug crimes were among the top five contributors to the overall crime rate in 2015, but have not been among the top five since 2016. This suggests that the BPD has been effective in addressing and controlling drug-related crime in the city. It will be important for the BPD to continue these efforts in order to maintain a low overall crime rate in Boston.
+
+## 3. Which crime incidents are higher in which Months, Day, or Hours?
+
+### Month wise distribution of Crime Incidents
+```{r}
+crime_Month<- crime %>% 
+  group_by(MONTH) %>% 
+  summarise(frequency = n()) %>% 
+  plot_ly(x = ~MONTH, y = ~frequency, type = 'bar', name = ~MONTH) %>%
+  layout(xaxis = list(title = 'Month', tickangle = -45), yaxis = list(title = 'No. of Crime Incidents'), barmode = 'group', showlegend=FALSE)
+crime_Month
+```
+Seasonality in projection of Number of Crime Incidents can be observed in the month wise projection of Number of Crime Incidents from Year. There are several factors that can contribute to seasonality in crime rates. Some of the most common factors include:
+
+- Weather: Crime rates often increase during the warmer months, when people are more likely to be outside and there are more opportunities for criminal activity.
+
+- Holidays: Crime rates may also increase during holiday periods, when there are more people out and about and there may be more opportunities for criminal activity.
+
+- Economic conditions: Economic downturns can lead to increases in crime, as people may turn to criminal activity in an effort to make money or support themselves. 2015-2022.
+
+### Weekday wise distribution of Crime Incidents
+```{r}
+crime_weekday<- crime %>% 
+  group_by(DAY_OF_WEEK) %>% 
+  summarise(frequency = n()) %>% 
+  plot_ly(x = ~DAY_OF_WEEK, y = ~frequency, type = 'bar', name = ~DAY_OF_WEEK) %>%
+  layout(xaxis = list(title = 'Week day', tickangle = -45), yaxis = list(title = 'No. of Crime Incidents'), barmode= 'group', showlegend = FALSE)
+crime_weekday  
+
+
+```
+
+Weekday-wise projections of the number of crime incidents suggest that there are more incidents on Friday and Thursday and fewer on Sunday. Possible reasons for this pattern include:
+
+Alcohol consumption: Crime rates may be higher on weekends, when people are more likely to be drinking alcohol and may be more prone to engaging in risky or aggressive behavior.
+
+Social activities: Crime rates may also be influenced by social activities that occur on Friday and Thursday. For example, there may be more opportunities for criminal activity at events such as parties or sporting events on these days.
+
+Economic factors: The distribution of work and leisure time can also affect crime rates. For example, crime rates may be higher on weekdays when more people are at work and fewer people are at home, while crime rates may be lower on Sunday when more people are at home.
+
+### Hour wise distribution of Crime Incidents
+```{r}
+crime_hour<- crime %>% 
+  group_by(HOUR) %>% 
+  summarise(frequency = n()) %>% 
+  plot_ly(x = ~HOUR, y = ~frequency, type = 'bar', name = 'frequency', color = 'blue') %>%
+  layout(xaxis = list(title = 'Hour wise Crime', tickangle = -90), yaxis = list(title = 'No. of Crime Incidents'))
+crime_hour
+```
+Hour wise projection of Number of Crime Incidents, suggest that there are most number of crime incidents during the day from 8 AM to 12 AM, and there is a sudden surge at 12 AM, where 36,380 crime incidents are reported between 11PM-12 AM. 
+
+- 87 % of the crime incidents happen between 8 AM to 12 AM duration
+
+- 5 % of the crime incidents happen between 11 PM to 12 AM duration
+
+It's possible that the high number of crime incidents during the day from 8 AM to 12 AM and the sudden surge at 12 AM (midnight) could be due to a variety of factors, potential reasons for this pattern could include:
+
+Legal and law enforcement factors: The patterns of crime may also be influenced by legal and law enforcement factors, such as the presence of police patrols and the effectiveness of law enforcement in preventing and responding to crime.The 12 AM surge might highlight lack of police patrol in certain areas of Boston Police Department
+
+Economic factors: Crime rates may be higher during the day when more people are out and about and there are more opportunities for criminal activity. 
+
+Lack of Cohesion in the Neighborhood: Community cohesion refers to the level of social connection and mutual trust within a community. When a community has a high level of cohesion, its members are more likely to work together and support each other, and they may be less likely to engage in criminal activity. On the other hand, when a community has a low level of cohesion, its members may be more isolated and less likely to help each other or intervene in situations that could lead to crime. In this case, a lack of cohesion among neighbors might lead to indifference towards any mishappenings such as crime incidents in the neighborhood, which could contribute to an increase in crime incidents.
+
+## 4. How does Crime Vary by Neighborhood or Police District in Boston?
+
+	- Which Boston Police Districts generate highest number of crime incidents, and requires attention from authorities
+	- Which Street in Boston generate highest number of crime incidents, and requires attention from authorities?
+
+### Police District wise Distribution of Crime Incidents
+
+```{r}
+crime <- crime %>% filter(!is.na(district_area))
+crime$district_area <- iconv(crime$district_area, to = "UTF-8")
+dist_crime_frequency <- crime %>%
+  group_by(district_area) %>%
+  summarise(count = n())%>%
+  rename(labels = district_area, values = count)%>%
+  top_n(15)
+dist_crime_frequency$labels <- str_trunc(dist_crime_frequency$labels, width = 20)
+# Create the pie chart using the pie_data data frame
+plot_ly(dist_crime_frequency, labels = ~labels, values = ~values, type = 'pie', hole = 0.3) %>%
+  layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+```
+
+The above Pie Chart explains the distribution of crime incidents between Boston Police Department Districts
+
+```{r}
+# Create a new data frame with the labels and values for the table
+
+dist_crime_frequency = arrange(dist_crime_frequency,desc(values))
+
+colnames(dist_crime_frequency) <- c("BPD District", "No. of Crime Incidents")
+# Create  table using the kable function
+dist_crime_frequency_table <- kable(dist_crime_frequency, "html")
+
+# Use the kable_styling function to apply formatting to the table
+dist_crime_frequency_table %>%
+  kable_styling(bootstrap_options = "striped")
+```
+
+### Police District Wise Crime Categories, where maximum crime incidents Occurred
+
+```{r}
+street_and_crimes_dist <- crime %>% 
+  group_by(district_area, Class) %>% 
+  summarise(frequency = n()) %>% 
+  filter(!is.na(district_area)) %>% 
+  arrange(desc(frequency)) %>%
+  slice(1)%>%
+  ungroup()%>%
+  arrange(desc(frequency))%>%
+  slice(1:12)
+street_and_crimes_dist$district_area <- str_trunc(street_and_crimes_dist$district_area, width = 20)
+
+plot_ly(street_and_crimes_dist, x = ~district_area, y = ~frequency, text = ~Class,
+        type = 'bar', mode = 'markers', name= ~Class, showlegend= FALSE)%>%
+  layout(xaxis = list(title = 'District Name', tickangle = -90), yaxis = list(title = 'No. of Crime Incidents'), showlegends = FALSE)
+```
+It's worth noting that Roxbury, Dorchester, and South End together make up 41.5% of total crime incidents. This suggests that these three districts may have higher crime rates compared to the other districts.
+
+Larceny, which includes crimes such as theft and shoplifting, is often more common in areas with a high concentration of retail businesses and foot traffic. South End and "Downtown, North End-" may have more incidents of larceny due to their urban, commercial character. These areas may have a higher concentration of retail establishments and a larger number of people visiting these areas for shopping and other activities, which can create opportunities for larceny.
+
+On the other hand, motor vehicle crimes, such as car theft and joyriding, may be more common in neighborhoods with a higher concentration of cars and parking areas. This could explain the higher prevalence of motor vehicle crimes in the other districts, these districts may have more cars and parking areas, which can create opportunities for motor vehicle crimes.
+
+### Roxbury District Crime Distribution
+```{r}
+crime <- crime %>% filter(!is.na(DISTRICT))
+crime$district_area <- iconv(crime$district_area, to = "UTF-8")
+district_B2_crimes <- crime %>%
+  filter(district_area %in% c("Roxbury")) %>%
+  group_by(Class) %>%
+  summarise(count = n())%>%
+  rename(labels = Class, values = count)%>%
+  top_n(15)
+
+district_B2_crimes$labels <- str_trunc(district_B2_crimes$labels, width = 30)
+# Create the pie chart using the pie_data data frame
+plot_ly(district_B2_crimes, labels = ~labels, values = ~values, type = 'pie', hole = 0.3) %>%
+  layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), title="Roxbury District Crime Distribution")
+```
+
+### Year wise Trend of Number of Assault / Battery,Investigate Person/Property, Larceny, Motor Vehicle, Property related Crime Incidents for  Roxbury District Area
+
+```{r}
+crime_year_dist_B2 <- crime %>%
+  filter(DISTRICT=='B2')%>%
+  group_by(YEAR, Class) %>% 
+  summarise(frequency = n()) %>% 
+  top_n(10) %>%
+  pivot_wider(names_from = Class, values_from = frequency)
+```
+
+
+```{r}
+crime_year_dist_B2_2 <- crime_year_dist_B2 %>% 
+  select(assault = `Assault / Battery`, `Investigate Person/Property`, Larceny, `Motor Vehicle`, Property)
+
+```
+
+```{r}
+
+plot_ly(crime_year_dist_B2_2, x = ~YEAR, y = ~assault, name = "Assault / Battery",
+         type = 'scatter', mode = 'line') %>%
+  add_trace(y = ~`Investigate Person/Property`, name = 'Investigate Person/Property', mode = 'line') %>% 
+  add_trace(y = ~Larceny, name = 'Larceny', mode = 'line') %>% 
+  add_trace(y = ~`Motor Vehicle`, name = 'Motor Vehicle', mode = 'line') %>% 
+  add_trace(y = ~Property, name = 'Property', mode = 'line') %>% 
+  layout(xaxis = list(title = 'Year'), yaxis = list(title = 'No. of Crime Incidents'), barmode = 'group')
+```
+It's important to understand that the number of motor vehicle crime incidents in the Roxbury District has been a significant concern for the Boston Police Department. The number of motor vehicle crime incidents in the Roxbury District has consistently been higher compared to other districts in the city.
+
+In recent years, the number of motor vehicle crime incidents in the Roxbury District has fluctuated. In 2017, there were 2527 reported incidents. This number declined to 1855 in 2020, but then increased to 2259 in 2021. While the number of incidents did decline to 1903 in 2022, it is still higher compared to 2020 and cannot be considered a declining trend at this point.
+
+It's possible that the efforts of the Boston Police Department have contributed to the decline in motor vehicle crime incidents in the Roxbury District from 2017 to 2020. However, it's worth noting that the number of motor vehicle crime incidents increased in 2021, and it's possible that the COVID-19 pandemic and resulting unemployment may have played a role in this increase. The impact of the pandemic on crime rates is a complex issue, and it's possible that it has had both positive and negative effects on different types of crime in different areas. It's also worth noting that there may be other factors at play in the trends in motor vehicle crime incidents in the Roxbury District.
+
+On the other hand, it's good to see that larceny and assault & battery related crimes have been declining in the Roxbury District from 2018 to 2022. This could be a positive indication for the Boston Police Department and a sign of progress in addressing these types of crime in the area. It's important to continue monitoring crime trends in the Roxbury District and to work to address any ongoing issues in order to create a safer community for all residents.
+
+### Dorchester District Crime Distribution
+
+```{r}
+
+district_C11_crimes <- crime %>%
+  filter(district_area %in% c("Dorchester")) %>%
+  group_by(Class) %>%
+  summarise(count = n())%>%
+  rename(labels = Class, values = count)%>%
+  top_n(15)
+
+district_C11_crimes$labels <- str_trunc(district_C11_crimes$labels, width = 30)
+# Create the pie chart using the pie_data data frame
+plot_ly(district_C11_crimes, labels = ~labels, values = ~values, type = 'pie', hole = 0.3) %>%
+  layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), title="Dorchester District Crime Distribution")
+```
+
+### Year wise Trend of Number of Assault / Battery,Investigate Person/Property, Larceny, Motor Vehicle, Property related Crime Incidents for  Dorchester District Area
+
+```{r}
+crime_year_dist_C11 <- crime %>%
+  filter(DISTRICT=='C11')%>%
+  group_by(YEAR, Class) %>% 
+  summarise(frequency = n()) %>% 
+  top_n(10) %>%
+  pivot_wider(names_from = Class, values_from = frequency)
+
+crime_year_dist_C11 <- crime_year_dist_C11 %>% 
+  select(assault = `Assault / Battery`,`Investigate Person/Property`, Larceny, `Motor Vehicle`, Property)
+
+plot_ly(crime_year_dist_C11, x = ~YEAR, y = ~assault, name = "Assault / Battery",
+         type = 'scatter', mode = 'line') %>%
+  add_trace(y = ~`Investigate Person/Property`, name = 'Investigate Person/Property', mode = 'line') %>% 
+  add_trace(y = ~Larceny, name = 'Larceny', mode = 'line') %>% 
+  add_trace(y = ~`Motor Vehicle`, name = 'Motor Vehicle', mode = 'line') %>% 
+  add_trace(y = ~Property, name = 'Property', mode = 'line') %>% 
+  layout(xaxis = list(title = 'Year'), yaxis = list(title = 'No. of Crime Incidents'), barmode = 'group', title="Dorchester District: Year wise Crime Trend")
+```
+In the Dorchester District, it's worth noting that the distribution and patterns of crime incidents have been relatively consistent over the past several years.
+
+In recent years, the number of motor vehicle crime incidents in the Dorchester District has fluctuated. In 2017, there were 2266 reported incidents. This number declined to 1729 in 2020, but then increased to 2251 in 2021. While the number of incidents did decline to 1903 in 2022, it is still higher compared to 2020 and cannot be considered a declining trend at this point. This suggests that motor vehicle crimes remain a significant concern in the Dorchester District.
+
+On the other hand, assault & battery related crimes have been declining in the Dorchester District from 2018 to 2020. However, there was an increase in larceny crime incidents from 503 in 2020 to 530 in 2021, which could be a matter of concern for the Boston Police Department. It's worth noting that larceny cases have been consistently declining in the Dorchester District since 2019, which could be considered a declining trend.
+
+It's important to continue monitoring crime trends in the Dorchester District and to work to address any ongoing issues in order to create a safer community for all residents.
+
+### South End District Crime Distribution
+
+```{r}
+
+district_D4_crimes <- crime %>%
+  filter(district_area %in% c("South End")) %>%
+  group_by(Class) %>%
+  summarise(count = n())%>%
+  rename(labels = Class, values = count)%>%
+  top_n(15)
+
+district_D4_crimes$labels <- str_trunc(district_D4_crimes$labels, width = 30)
+# Create the pie chart using the pie_data data frame
+plot_ly(district_D4_crimes, labels = ~labels, values = ~values, type = 'pie', hole = 0.3) %>%
+  layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), title="South End District Crime Distribution")
+```
+### Year wise Trend of Number of Assault / Battery,Investigate Person/Property, Larceny, Motor Vehicle, Property related Crime Incidents for  Southend District Area
+```{r}
+district_D4_crimes <- crime %>%
+  filter(DISTRICT=='D4')%>%
+  group_by(YEAR, Class) %>% 
+  summarise(frequency = n()) %>% 
+  top_n(10) %>%
+  pivot_wider(names_from = Class, values_from = frequency)
+
+crime_year_dist_D4 <- district_D4_crimes %>% 
+  select(assault = `Assault / Battery`,`Investigate Person/Property`, Larceny, `Motor Vehicle`, Property)
+
+plot_ly(crime_year_dist_D4, x = ~YEAR, y = ~assault, name = "Assault / Battery",
+         type = 'scatter', mode = 'line') %>%
+  add_trace(y = ~`Investigate Person/Property`, name = 'Investigate Person/Property', mode = 'line') %>% 
+  add_trace(y = ~Larceny, name = 'Larceny', mode = 'line') %>% 
+  add_trace(y = ~`Motor Vehicle`, name = 'Motor Vehicle', mode = 'line') %>% 
+  add_trace(y = ~Property, name = 'Property', mode = 'line') %>% 
+  layout(xaxis = list(title = 'Year'), yaxis = list(title = 'No. of Crime Incidents'), barmode = 'group', title="South End District : Year wise Crime Trend")
+```
+In the South End District, larceny has been the most common crime, with 25% of total crime incidents. However, it's worth noting that larceny has been showing a declining trend from 2018 to 2022, with 2700 larceny crime incidents in 2018 and 1617 incidents in 2022. This could be considered a positive indication, and the Boston Police Department should continue monitoring larceny crimes in the South End District to help keep these crimes in control.
+
+Motor vehicle crime incidents have also been declining in the South End District, with 1912 cases in 2017 and 1045 cases in 2020. However, there was a sudden increase in the number of motor vehicle crime cases, with 1292 cases in 2021 and 1311 cases in 2022. This sudden increase could be a matter of concern for the Boston Police Department.
+
+On the other hand, assault & battery crime incidents have been declining in the South End District from 2019, with 997 cases in 2019 and 581 cases in 2022. However, the trend has remained stable between 2021 and 2022, with 581 assault & battery cases in both years.
+
+It's worth noting that the decline in all crime incidents in 2020 could be due to the COVID-19 pandemic and related lockdown measures. The sudden increase in crime incidents in 2021 and 2022 could potentially be linked to the COVID-19 pandemic and resulting unemployment. It's important to continue monitoring crime trends in the South End District and to work to address any ongoing issues in order to create a safer community for all residents
+
+### Street wise Number of Crime Incidents
+
+
+```{r}
+
+street_crime_frequency <- crime %>%
+  group_by(STREET) %>%
+  filter(!is.na(STREET)) %>% 
+  summarise(count = n())%>%
+  rename(labels = STREET, values = count)%>%
+  top_n(10)
+street_crime_frequency$labels = str_to_title(street_crime_frequency$labels)
+street_crime_frequency$labels <- str_trunc(street_crime_frequency$labels, width = 30)
+# Create the pie chart using the pie_data data frame
+plot_ly(street_crime_frequency, labels = ~labels, values = ~values, type = 'pie', hole = 0.3) %>%
+  layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), title="Street wise Crime Distribution")
+```
+
+
+## Street wise, largest Single Contributer to Crime Incidents
+
+```{r}
+street_and_crimes <- crime %>% 
+  group_by(STREET, Class) %>% 
+  summarise(frequency = n()) %>% 
+  filter(!is.na(STREET)) %>% 
+  arrange(desc(frequency)) %>%
+  slice(1)%>%
+  ungroup()%>%
+  arrange(desc(frequency))%>%
+  slice(1:20)
+street_and_crimes$STREET = str_to_title(street_and_crimes$STREET)
+plot_ly(street_and_crimes, x = ~STREET, y = ~frequency, text = ~Class,
+        type = 'bar', mode = 'markers', name= ~Class, showlegend= FALSE)%>%
+  layout(xaxis = list(title = 'Street Name', tickangle = -90), yaxis = list(title = 'No. of Crime Incidents'), showlegends = FALSE, title="Street wise Most Common Crime")
+```
+Washington Street, Blue Hill Avenue, and Boylston Street are three of the busiest streets in Boston, and unfortunately, they also have a high number of crime incidents. According to the data provided, these three streets alone contribute to 48.91% of the total crime incidents in the city. This is a significant portion and highlights the need for increased attention and efforts to address the crime problem in these areas.
+
+Larceny and motor vehicle crimes are the major contributors to the overall crime rate on these streets. Larceny, which includes theft of personal property, is particularly prevalent on Washington Street and Boylston Street, with 5705 and 4140 incidents respectively. Motor vehicle crimes, such as car thefts and break-ins, are more common on Blue Hill Avenue, with 2910 incidents reported.
+
+Overall, it is clear that Washington Street, Blue Hill Avenue, and Boylston Street have a significant crime problem that needs to be addressed. 
+
+
+### Washington Streeet Crime Distribution
+
+```{r}
+
+washington_street_crimes <- crime %>%
+  filter(STREET %in% c("WASHINGTON ST")) %>% 
+  group_by(Class) %>%
+  summarise(count = n())%>%
+  rename(labels = Class, values = count)%>%
+  top_n(10)
+
+washington_street_crimes$labels = str_to_title(washington_street_crimes$labels)
+washington_street_crimes$labels <- str_trunc(washington_street_crimes$labels, width = 30)
+# Create the pie chart using the pie_data data frame
+plot_ly(washington_street_crimes, labels = ~labels, values = ~values, type = 'pie', hole = 0.3) %>%
+  layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), title="Washington Street Crime Distribution")
+```
+### Year wise Trend of Number of Assault / Battery,Investigate Person/Property, Larceny, Motor Vehicle, Property related Crime Incidents for  Washington Street
+```{r}
+crime_year_WST <- crime %>%
+  filter(STREET=='WASHINGTON ST')%>%
+  group_by(YEAR, Class) %>% 
+  summarise(frequency = n()) %>% 
+  top_n(10) %>%
+  pivot_wider(names_from = Class, values_from = frequency)
+
+crime_year_WST <- crime_year_WST %>% 
+  select(assault = `Assault / Battery`,`Investigate Person/Property`, Larceny, `Motor Vehicle`, Property)
+
+plot_ly(crime_year_WST, x = ~YEAR, y = ~assault, name = "Assault / Battery",
+         type = 'scatter', mode = 'line') %>%
+  add_trace(y = ~`Investigate Person/Property`, name = 'Investigate Person/Property', mode = 'line') %>% 
+  add_trace(y = ~Larceny, name = 'Larceny', mode = 'line') %>% 
+  add_trace(y = ~`Motor Vehicle`, name = 'Motor Vehicle', mode = 'line') %>% 
+  add_trace(y = ~Property, name = 'Property', mode = 'line') %>% 
+  layout(xaxis = list(title = 'Year'), yaxis = list(title = 'No. of Crime Incidents'), barmode = 'group', title="Washington Street Year wise Crime Trend")
+```
+Almost All Crime Categories show increasing trend in crime incidents, at the same time there was sharp decline in all crime incidents in 2020, possibly because of COVID Pandemic Lockdown.
+
+It appears that the trend of crime incidents has been increasing in most categories in recent years in Washington Street . However, there was a sharp decline in all crime incidents in 2020, which may be attributed to the COVID-19 pandemic and the resulting lockdown measures.
+
+Larceny crime incidents, which involve the theft of personal property without the use of force or intimidation, have increased from 661 in 2019 to 1067 in 2022. However, there was a decrease to 525 in 2020.
+
+Motor vehicle crime incidents, have also increased from 437 in 2019 to 835 in 2022. However, there was a decrease to 336 in 2020.
+
+Assault and battery crime incidents, which involve the use of physical force or violence against another person, have increased from 307 in 2019 to 308 in 2022. However, there was a decrease to 225 in 2020.
+
+To fetch more information on 2020 crime incident decline, a month wise graph is plotted below.
+
+### Washington Street Month wise Crime Trend, for Year 2020
+
+```{r}
+crime_year_prt_WST_all_2020 <- crime %>%
+  filter(YEAR %in% c(2020), STREET=='WASHINGTON ST')%>%
+  group_by(label_month, Class) %>% 
+  summarise(frequency = n()) %>% 
+  top_n(10) %>% 
+  pivot_wider(names_from = Class, values_from = frequency)
+
+crime_year_prt_WST_all_2020 <- crime_year_prt_WST_all_2020 %>%
+  select(assault = `Assault / Battery`,`Investigate Person/Property`, Larceny, `Motor Vehicle`, Property)
+
+plot_ly(crime_year_prt_WST_all_2020, x = ~label_month, y = ~assault, name = "Assault / Battery",
+         type = 'scatter', mode = 'line') %>%
+  add_trace(y = ~`Investigate Person/Property`, name = 'Investigate Person/Property', mode = 'line') %>% 
+  add_trace(y = ~Larceny, name = 'Larceny', mode = 'line') %>% 
+  add_trace(y = ~`Motor Vehicle`, name = 'Motor Vehicle', mode = 'line') %>% 
+  add_trace(y = ~Property, name = 'Property', mode = 'line') %>% 
+  layout(xaxis = list(title = 'Year-2020 Crimes Washington Street'), yaxis = list(title = 'No. of Crime Incidents'), barmode = 'group')
+```
+It can be clearly interpreted that crime incidents declined in the months of March, April, May, and June, and then picked up again in July. This pattern of crime incident trends may be related to the COVID-19 pandemic and the lockdown measures that were implemented in Boston.
+
+The lockdown measures, which were implemented in order to slow the spread of the virus, likely had a significant impact on crime rates. Many businesses and schools were closed, and people were asked to stay at home as much as possible, which may have reduced the opportunities for crime to occur. Additionally, the economic downturn caused by the pandemic may have led to an increase in financial stress and desperation among some individuals, which could have contributed to an increase in crime.
+
+
+### Boylston street Crime Distribution
+
+```{r}
+
+Boylston_street_crimes <- crime %>%
+  filter(STREET %in% c("BOYLSTON ST")) %>% 
+  group_by(Class) %>%
+  summarise(count = n())%>%
+  rename(labels = Class, values = count)%>%
+  top_n(10)
+
+Boylston_street_crimes$labels = str_to_title(Boylston_street_crimes$labels)
+Boylston_street_crimes$labels <- str_trunc(Boylston_street_crimes$labels, width = 30)
+# Create the pie chart using the pie_data data frame
+plot_ly(Boylston_street_crimes, labels = ~labels, values = ~values, type = 'pie', hole = 0.3) %>%
+  layout(xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE), title="Boylston Street Ave Crime Distribution")
+```
+### Year wise Trend of Number of Assault / Battery,Investigate Person/Property, Larceny, Motor Vehicle, Property related Crime Incidents for Boylston Street
+
+```{r}
+crime_year_Boylston <- crime %>%
+  filter(STREET=='BOYLSTON ST')%>%
+  group_by(YEAR, Class) %>% 
+  summarise(frequency = n()) %>% 
+  top_n(10) %>%
+  pivot_wider(names_from = Class, values_from = frequency)
+
+crime_year_Boylston <- crime_year_Boylston %>% 
+  select(assault = `Assault / Battery`,`Investigate Person/Property`, Larceny, `Motor Vehicle`, Property)
+
+plot_ly(crime_year_Boylston, x = ~YEAR, y = ~assault, name = "Assault / Battery",
+         type = 'scatter', mode = 'line') %>%
+  add_trace(y = ~`Investigate Person/Property`, name = 'Investigate Person/Property', mode = 'line') %>% 
+  add_trace(y = ~Larceny, name = 'Larceny', mode = 'line') %>% 
+  add_trace(y = ~`Motor Vehicle`, name = 'Motor Vehicle', mode = 'line') %>% 
+  add_trace(y = ~Property, name = 'Property', mode = 'line') %>% 
+  layout(xaxis = list(title = 'Year'), yaxis = list(title = 'No. of Crime Incidents'), barmode = 'group', title="Boylston Street Yearwise Crime Trend")
+```
+Larceny, including crimes like theft and shoplifting, is a significant contributor to the overall crime rate in Boylston Street. Despite a decline in larceny incidents from 2016 to 2021, there was a slight increase in 2022. Similarly, while assault and battery incidents have generally been decreasing since 2018, there was also an increase in 2022. 
+
+It is important for the Boylston Police Department (BPD) to consider long-term trends and work with community organizations to address and prevent crime in the area, with a particular focus on larceny.
+
+## Geo-Graphic Maps: Street wise, Day-Time wise, Crime Distribution
+
+Geographic maps that show crime incidents by location and time of day can be a valuable tool for the Boston Police Department (BPD) and the citizens of Boston. These maps can help the BPD to identify patterns in crime and to focus their efforts on areas where crime is more likely to occur.
+
+For citizens, these maps can be helpful in making informed decisions about their safety when traveling to certain areas. By showing the location and frequency of crime incidents, citizens can choose routes that may be safer and take additional precautions to protect themselves.
+
+In addition, it's important to remember that crime can occur anywhere and that no area is completely immune to it. It's always a good idea for individuals to be aware of their surroundings and to take appropriate precautions to protect themselves and their property. 
+
+```{r}
+breaks <- hour(hm("00:00", "2:59", "5:59", "8:59", "11:59","14:59", "17:59","20:50", "23:59"))
+crime$OCCURRED_ON_DATE <- ymd_hms(crime$OCCURRED_ON_DATE)
+labels <- c("After Midnight","Toward Morning" ,"Early Morning","Late Morning", "Early Afternoon","Late Afternoon", "Evening", "Late Evening")
+
+crime$Time_of_day <- cut(x=hour(crime$OCCURRED_ON_DATE), breaks = breaks, labels = labels, include.lowest=TRUE)
+crime$OFFENSE_DESCRIPTION <-   str_replace_all(crime$OFFENSE_DESCRIPTION,"^[a-zA-Z]\\s", "")
+crime$label_month <- month(crime$OCCURRED_ON_DATE, label = TRUE)
+```
+
+```{r}
+dtmap1 <-  crime %>%
+  select(STREET,Time_of_day, Lat, Long, OFFENSE_DESCRIPTION) %>% 
+  filter(!is.na(STREET)) %>%
+  filter(!is.na(Lat)) %>% 
+  filter(!(Lat %in% c(-1,1))) %>% 
+  filter(!is.na(Long)) %>% 
+  filter(!(Long %in% c(-1,1))) %>% 
+  group_by(STREET,OFFENSE_DESCRIPTION,Time_of_day, Lat, Long ) %>%
+  summarise(total =n()) %>% 
+  filter(total > 1)
+
+
+dtmap1$content <- paste("<b>Street:</b>",dtmap1$STREET,"<br/>",
+                        "<b>Type of Offense:</b>", dtmap1$OFFENSE_DESCRIPTION,"<br/>",
+                        "<b>Time of offense:</b>",dtmap1$Time_of_day,"<br/>",
+                        "<b>Frequency:</b>",dtmap1$total )
+
+colors <- c("green", "orange", "red")
+pal <- colorFactor(colors, dtmap1$total)
+
+leaflet() %>%
+  setView(lng = -71.0589, lat = 42.3601, zoom = 11) %>% 
+  addTiles() %>%
+  addCircleMarkers(data = dtmap1,
+                   lat = ~Lat,
+                   lng = ~Long,
+                   popup = ~as.character(content),
+                   label = ~as.character(STREET),
+                   color = ~pal(total),
+                   clusterOptions = markerClusterOptions())%>%
+addHeatmap(data = dtmap3,lng=~Long, lat=~Lat, blur=15, max =10, radius = 10)
+```
+
+
+## Geo-Graphic Maps: Street wise, Crime Type wise-Number of Incidents
+
+A geographic map that displays the total number of incidents by location and crime category can be a useful tool for the Boston Police Department (BPD) to understand the geographic distribution of crime incidents in the city. This type of map can help the BPD to identify patterns in crime and to focus their efforts on areas where crime is more prevalent.
+
+```{r}
+reporting_area <- crime %>% 
+  group_by(REPORTING_AREA) %>% 
+  summarise(n())
+```
+
+```{r}
+top_crimes <- crime %>% 
+  group_by(OFFENSE_DESCRIPTION) %>% 
+  summarise(frequency = n())
+```
+
+```{r}
+dtmap2 <-  crime %>%
+  select(STREET, Lat, Long, OFFENSE_DESCRIPTION) %>% 
+  filter(!is.na(STREET)) %>%
+  filter(!is.na(Lat)) %>% 
+  filter(!(Lat %in% c(-1,1))) %>% 
+  filter(!is.na(Long)) %>% 
+  filter(!(Long %in% c(-1,1))) %>% 
+  group_by(STREET, OFFENSE_DESCRIPTION) %>%
+  summarise(frequency = n()) %>% 
+  slice_max(order_by = frequency, n=3) %>% 
+  mutate(temp = paste0(OFFENSE_DESCRIPTION, " (",frequency,") " ,collapse = ";"))%>% 
+  distinct(STREET, .keep_all = TRUE)
+
+street_coordinates <- crime %>% 
+  filter(!is.na(STREET)) %>%
+  filter(!is.na(Lat)) %>% 
+  filter(!(Lat %in% c(-1,1))) %>% 
+  filter(!is.na(Long)) %>% 
+  filter(!(Long %in% c(-1,1))) %>% 
+  group_by(STREET, Lat, Long) %>% 
+  summarise(count = n())%>% 
+  ungroup() %>% 
+  distinct(STREET, .keep_all = TRUE)
+
+dtmap2 <- left_join(dtmap2, street_coordinates, by = "STREET" ) %>% 
+  distinct(STREET, .keep_all = TRUE)
+
+
+dtmap2$content <- paste("<b>Street:</b>",dtmap2$STREET,"<br/>",
+                        "<b>Type of Offense:</b>", dtmap2$temp)
+
+colors <- c("green", "orange", "red")
+pal <- colorFactor(colors, dtmap2$total)
+
+
+leaflet() %>%
+  setView(lng = -71.0589, lat = 42.3601, zoom = 11) %>% 
+  addTiles(options = providerTileOptions(minZoom = 8, maxZoom = 17)) %>%
+  addCircleMarkers(data = dtmap2,
+                   lat = ~Lat,
+                   lng = ~Long,
+                   popup = ~as.character(content),
+                   label = ~as.character(STREET),
+                   clusterOptions = markerClusterOptions())%>%
+addHeatmap(data = dtmap3,lng=~Long, lat=~Lat, blur=15, max =10, radius = 10)
+```
+
+# Most Recent Crimes in the Street
+
+Geographic maps can be a useful tool for the Boston Police Department (BPD) and the citizens of Boston to identify areas where crime incidents have occurred. By showing the location of recent crimes, these maps can help the BPD to focus their efforts and resources on areas where crime is more prevalent.
+
+For citizens, these maps can be helpful in alerting them to potential safety concerns when traveling to certain areas. By showing the location of recent crimes, citizens can make informed decisions about the routes they take and the precautions they take to protect themselves.
+
+```{r}
+
+leaflet() %>%
+  setView(lng = -71.0589, lat = 42.3601, zoom = 11) %>%
+  addTiles() %>%
+  addCircleMarkers(data = dtmap3,
+                   lat = ~Lat,
+                   lng = ~Long,
+                   popup = ~as.character(content),
+                   label = ~as.character(STREET),
+                   clusterOptions = markerClusterOptions())%>%
+  addHeatmap(data = dtmap3,lng=~Long, lat=~Lat, blur=15, max =10, radius = 10)
+
+```
+## References:
+Boston Crime Data Analysis: https://www.kaggle.com/search?q=boston+crime+data
+Boston Crime Data Source: https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system
+Boston Crime Data Analysis using Plotly: https://www.kaggle.com/code/fedi1996/boston-crime-analysis-with-plotly
+
+```{r}
+save.image("final_project_AM.RData")
+```
