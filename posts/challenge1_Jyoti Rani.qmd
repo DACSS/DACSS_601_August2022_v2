@@ -1,0 +1,86 @@
+---
+title: "Challenge 1_Jyoti Rani"
+author: "Jyoti Rani"
+desription: "Reading in data and creating a post"
+date: "08/15/2022"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge_1
+---
+
+```{r}
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+## Challenge Overview
+
+Today's challenge is to
+
+1)  read in a dataset, and
+
+2)  describe the dataset using both words and any supporting information (e.g., tables, etc)
+
+## Read in the Data
+
+Read in one (or more) of the following data sets, using the correct R package and command.
+
+-   railroad_2012_clean_county.csv ⭐
+-   birds.csv ⭐⭐
+-   FAOstat\*.csv ⭐⭐
+-   wild_bird_data.xlsx ⭐⭐⭐
+-   StateCounty2012.xlsx ⭐⭐⭐⭐
+
+I will be working on the “wild_bird_data” dataset.
+
+```{r}
+library(readxl)
+wild_bird_data <- read_xlsx("/Users/jyotirani/Documents/r_subdirectory/wild_bird_data.xlsx")
+
+# View the dataset
+wild_bird_data
+```
+## Describe the data
+
+Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).
+
+```{r}
+# Use dim() to get dimensions of dataset
+dim(wild_bird_data)
+```
+There are 147 cases in 2 columns(Reference and Taken from Figure 1 of Nee et al). Actually the second row has the real column names so we will now make second row as column names and remove the first row.
+
+```{r}
+#Rename the column names
+colnames(wild_bird_data) <- wild_bird_data[1,]
+#Removing the first row
+wild_bird_data <- wild_bird_data[-1,]
+#New dimensions of dataset
+dim(wild_bird_data)
+```
+
+```{r}
+#View the dataset
+wild_bird_data
+```
+```{r}
+#Summary of dataset
+summary(wild_bird_data)
+```
+
+```{r}
+#Converting datset to numeric
+wild_bird_data$`Wet body weight [g]` <- as.numeric(wild_bird_data$`Wet body weight [g]`)
+wild_bird_data$`Population size` <- as.numeric(wild_bird_data$`Population size`)
+#Summary of the converted dataset
+summary(wild_bird_data)
+```
+
+Brief summary of the wild_bird dataset.

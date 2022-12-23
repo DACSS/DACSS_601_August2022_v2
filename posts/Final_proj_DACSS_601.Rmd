@@ -1,0 +1,307 @@
+---
+title: "Final Project"
+author: "Jyoti Rani"
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Misogyny in Professional scenarios
+
+## Introduction
+
+For my project I am examining whether people in academia portray and judge women and men differently in everyday “conversations” that take place online.
+Economic Job Market Rumours (EJMR) is a website which is supposed to be a very active discussion board among PhD students and students pursuing Masters as shown on the homepage. There is an anonymously editable job market wiki for every year’s hiring cycle. There is a journal wiki to provide public information about economics journal practices. Moreover, users post anonymously on this website. Anonymity presumably eliminates any social pressure participants may feel to edit their speech, and thus creates a natural setting to capture what people believe but would
+not openly say.
+
+![A few of the posts on the site are :](EJPIC.png)
+
+What’s really happening on EJMR: There is a fair amount of gender-related discussions on this forum, which can address women and men in general. Despite the presence of moderators who regularly remove offensive or inappropriate material, the remaining posts still show significant evidence of gender stereotyping.
+
+In this paper, I aim to examine whether people using EJMR portray and judge women and men differently in everyday “conversations” that take place online. We have used text scraped from EJMR, Topic Modelling using Markov Chain Monte Carlo Sampling. 
+
+## Data: 
+I have scraped 1000 pages from the EJmR site using string operations to extract topics and then cleansed the data to remove stop words using the TM Package. The website primarily contains 40 topics on each page and every topic can be further clicked-on and posts are viewed on the topic. We have scraped 1000 pages by creating a URL by manipulating the topic string and created a CSV file Econo_j_129 
+
+We have used the following packages to finish our project:
+library(dplyr), library(stringr), library(tm), library(topicmodels), library(reshape2), library(ggplot2),
+library(wordcloud), library(pals), library(SnowballC),library(lda), library(tidyverse), library(tidytext),
+library(SentimentAnalysis), library(tidyr)
+
+{r}
+install.packages("tm")
+install.packages("topicmodels")
+install.packages("reshape2")
+install.packages("ggplot2")
+install.packages("wordcloud")
+install.packages("pals")
+install.packages("SnowballC")
+install.packages("lda")
+install.packages("ldatuning")
+install.packages("kableExtra")
+install.packages("DT")
+install.packages("flextable")
+# install klippy for copy-to-clipboard button in code chunks
+install.packages("remotes")
+remotes::install_github("rlesur/klippy")
+
+
+```{r}
+library(dplyr)
+library(stringr)
+# set options
+options(stringsAsFactors = F)         # no automatic data transformation
+options("scipen" = 100, "digits" = 4) # suppress math annotation
+# load packages
+library(knitr) 
+library(kableExtra) 
+library(DT)
+library(tm)
+library(topicmodels)
+library(reshape2)
+library(ggplot2)
+library(wordcloud)
+library(pals)
+library(SnowballC)
+library(lda)
+library(ldatuning)
+library(flextable)
+# activate klippy for copy-to-clipboard button
+klippy::klippy()
+```
+
+```{r}
+# here I have showed a sample execution of 10 pages, in my project I have scraped a 1000 pages and savred as csv : 
+Sl.No <- 1:400
+Econojob_Topics = c()
+Message_E = c()
+Topics_r <- list()
+for(SL_NO in 2:11){
+        Link_url = paste0("https://www.econjobrumors.com/page/", SL_NO)
+        job_html<- readLines(con=Link_url)
+exp_1<- "(?=.*\t<td> <a href=\"https://www.econjobrumors.com/topic/).*(?=.*</a></td>)"
+topic<-str_detect(job_html, exp_1)
+topic_data <- job_html [topic]
+topic_exp <- "\t<td> <a href=\"https://www.econjobrumors.com/topic/|</a></td>"
+JOB_TOPIC <- str_replace_all(topic_data, topic_exp, "") 
+JOB_TOPIC <- str_replace(JOB_TOPIC, ",", ".")
+for (i in 1:40){
+Message_E = c(Message_E, unlist(str_split(JOB_TOPIC[i],">"))[2])
+New_Message_E = gsub("</a","",Message_E)
+Last_Message_E = gsub("[&#039;]","", New_Message_E)
+Topics_r[[SL_NO]]= Last_Message_E
+}}
+dflist<- list(doc_id = Sl.No,  Topic = Topics_r[[SL_NO]])
+dats_ejmr = as.data.frame(do.call(cbind, dflist))
+write.csv(dats_ejmr, "ejmr-1299.csv")
+```
+
+
+```{r}
+head(dats_ejmr)
+```
+
+The process starts as usual with the reading of the corpus data. Documents lengths clearly affects the results of topic modeling as we have short texts here we have scraped around 10000 posts/topics/messages, whatever we may call them.  
+For text preprocessing, we remove stopwords, since they tend to occur as "noise" in the estimated topics of the LDA model.
+
+```{r}
+# Preprocessing data
+datset_ejmr <- read.csv("ejmr-129_1")
+datset_ejmr <- subset (datset_ejmr, select = -c(2))
+names(datset_ejmr)[1] <- "doc_id"
+names(datset_ejmr)[2] <- "text"
+datset_ejmr$text <- datset_ejmr$text %>%str_to_lower()
+datset_ejmr$text <- str_replace_all(datset_ejmr$text, "[:digit:]", "")
+datset_ejmr$text <- gsub(paste0('\\b',tm::stopwords("english"), '\\b', collapse = '|'), '', datset_ejmr$text)
+datset_ejmr$text <- gsub("[^[:alnum:]['-]", " ", datset_ejmr$text)
+# create corpus object
+corpus1 <- Corpus(DataframeSource(datset_ejmr))
+# Preprocessing chain
+processedCorpus1 <- tm_map(corpus1, stemDocument, language = "en")
+processedCorpus1 <- tm_map(processedCorpus1, stripWhitespace)
+```
+
+We have also used the TM Package to further cleanse our data to strip whitespaces and Stem the document.
+
+After the preprocessing, we have two corpus objects: processedCorpus, on which we calculate an LDA topic model (Blei, Ng, and Jordan 2003). To this end, stopwords, i.e. function words that have relational rather than content meaning, were removed, words were stemmed and converted to lowercase letters and special characters were removed. The second corpus object corpus serves to be able to view the original texts and thus to facilitate a qualitative control of the topic model results.
+
+We now calculate a topic model on the processedCorpus. For this purpose, a DTM of the corpus is created. In this case, we only want to consider terms that occur with a certain minimum frequency in the body. This is primarily used to speed up the model calculation.
+
+```{r}
+minimumFrequency <- 5
+DTM <- DocumentTermMatrix(processedCorpus1, control = list(bounds = list(global = c(minimumFrequency, Inf))))
+# have a look at the number of documents and terms in the matrix
+dim(DTM)
+# due to vocabulary pruning, we have empty rows in our DTM
+# LDA does not like this. So we remove those docs from the
+# DTM and the metadata
+sel_idx <- slam::row_sums(DTM) > 0
+DTM <- DTM[sel_idx, ]
+datset_ejmr <- datset_ejmr[sel_idx, ]
+```
+
+For our analysis we choose a thematic "resolution" of K = 20 topics. 
+
+```{r}
+# number of topics
+K <- 20
+# set random number generator seed
+set.seed(9161)
+# compute the LDA model, inference via 1000 iterations of Gibbs sampling
+topicModel <- LDA(DTM, K, method="Gibbs", control=list(iter = 500, verbose = 25))
+```
+### We can now plot the results. 
+In this case, we have only use two methods CaoJuan2009 and Griffith2004. The best number of topics shows low values for CaoJuan2009 and high values for Griffith2004 (optimally, several methods should converge and show peaks and dips respectively for a certain number of topics).
+
+```{r}
+result <- ldatuning::FindTopicsNumber(
+  DTM,
+  topics = seq(from = 2, to = 20, by = 1),
+  metrics = c("CaoJuan2009",  "Deveaud2014"),
+  method = "Gibbs",
+  control = list(seed = 77),
+  verbose = TRUE
+)
+FindTopicsNumber_plot(result)
+```
+Depending on the size of the vocabulary, the collection size and the number K, the inference of topic models can take a very long time. This calculation may take several minutes. 
+
+```{r}
+# have a look a some of the results (posterior distributions)
+tmResult <- posterior(topicModel)
+# format of the resulting object
+attributes(tmResult)
+nTerms(DTM)              # lengthOfVocab
+# topics are probability distribtions over the entire vocabulary
+beta <- tmResult$terms   # get beta from results
+dim(beta)                # K distributions over nTerms(DTM) terms
+rowSums(beta)            # rows in beta sum to 1
+nDocs(DTM)               # size of collection
+# for every document we have a probaility distribution of its contained topics
+theta <- tmResult$topics 
+dim(theta)               # nDocs(DTM) distributions over K topics
+rowSums(theta)[1:10]     # rows in theta sum to 1
+```
+
+## Visualization 
+Let's take a look at the 10 most likely terms within the term probabilities beta of the inferred topics (only the first 8 are shown below).
+
+```{r}
+terms(topicModel, 10)
+```
+
+We now concatenate the five most likely terms of each topic to a string that represents a pseudo-name for each topic.
+
+We now see that Topic 1, 2 and 6 look gendered and Topic 11, 17, 19,10 and 3 are not related to economics.
+
+```{r}
+top5termsPerTopic <- terms(topicModel, 5)
+topicNames <- apply(top5termsPerTopic, 2, paste, collapse=" ")
+topicNames
+```
+
+We now create a wordcloud for topic 1, 2 and 6.
+
+```{r}
+topicToViz1 <- 1 
+topicToViz2 <- 2 
+topicToViz6 <- 6 
+top40terms1 <- sort(tmResult$terms[topicToViz1,], decreasing=TRUE)[1:40]
+top40terms2 <- sort(tmResult$terms[topicToViz2,], decreasing=TRUE)[1:40]
+top40terms6 <- sort(tmResult$terms[topicToViz6,], decreasing=TRUE)[1:40]
+words1 <- names(top40terms1)
+words2 <- names(top40terms2)
+words6 <- names(top40terms6)
+probabilities <- sort(tmResult$terms[topicToViz1,], decreasing=TRUE)[1:40]
+probabilities <- sort(tmResult$terms[topicToViz2,], decreasing=TRUE)[1:40]
+probabilities <- sort(tmResult$terms[topicToViz6,], decreasing=TRUE)[1:40]
+mycolors <- brewer.pal(8, "Dark2")
+wordcloud(words1, probabilities, random.order = FALSE, color = mycolors)
+wordcloud(words2, probabilities, random.order = FALSE, color = mycolors)
+wordcloud(words6, probabilities, random.order = FALSE, color = mycolors)
+```
+
+We now look more closely at the distribution of topics within individual documents. To this end, we visualize the distribution in 3 sample documents.
+
+Let us first take a look at the contents of three sample documents:
+
+```{r}
+exampleIds <- c(2, 100, 200)
+lapply(corpus1[exampleIds], as.character)
+```
+### Topic distributions
+The figure above shows how topics within a document are distributed according to the model. In the current model all three documents show at least a small percentage of each topic. However, two to three topics dominate each document.
+
+```{r}
+N <- length(exampleIds)
+# get topic proportions form example documents
+topicProportionExamples <- theta[exampleIds,]
+colnames(topicProportionExamples) <- topicNames
+vizDataFrame <- melt(cbind(data.frame(topicProportionExamples), document = factor(1:N)), variable.name = "topic", id.vars = "document")  
+ggplot(data = vizDataFrame, aes(topic, value, fill = document), ylab = "proportion") + 
+geom_bar(stat="identity") +theme(axis.text.x = element_text(angle = 90, hjust = 1)) +  coord_flip() +facet_wrap(~ document, ncol = N)
+```
+### Topic ranking
+First, we try to get a more meaningful order of top terms per topic by re-ranking them with a specific score (Chang et al. 2009). The idea of re-ranking terms is similar to the idea of TF-IDF. The more a term appears in top levels w.r.t. its probability, the less meaningful it is to describe the topic. Hence, the scoring advanced favors terms to describe a topic.
+
+What are the defining topics within a collection? There are different approaches to find out which can be used to bring the topics into a certain order.
+
+
+We sort topics according to their probability within the entire collection:
+
+```{r}
+# What are the most probable topics in the entire collection?
+topicNames <- apply(lda::top.topic.words(beta, 5, by.score = T), 2, paste, collapse = " ")
+topicProportions <- colSums(theta) / nDocs(DTM)  # mean probablities over all paragraphs
+names(topicProportions) <- topicNames     # assign the topic names we created before
+soP <-sort(topicProportions, decreasing = TRUE) # show summed proportions in decreased order
+paste(round(soP, 5), ":", names(soP))
+```
+We recognize some topics that are way more likely to occur in the corpus than others. These describe rather general thematic coherence. Other topics correspond more to specific contents.
+
+We count how often a topic appears as a primary topic within a paragraph This method is also called Rank-1.
+
+```{r}
+countsOfPrimaryTopics <- rep(0, K)
+names(countsOfPrimaryTopics) <- topicNames
+for (i in 1:nDocs(DTM)) {
+  topicsPerDoc <- theta[i, ] # select topic distribution for document i
+  # get first element position from ordered list
+  primaryTopic <- order(topicsPerDoc, decreasing = TRUE)[1] 
+  countsOfPrimaryTopics[primaryTopic] <- countsOfPrimaryTopics[primaryTopic] + 1
+}
+sort(countsOfPrimaryTopics, decreasing = TRUE)
+```
+
+## Reflection 
+
+The initial thought behind the project was to predict whether a gendered post is Male or Female, but after scraping the data, I realised that most of the topics discussed on the platform were not related to economics and moreover, this platform was being treated as any other social media platform rather than one designed to help Economics professionals.
+
+So the question arises here whether a serious candidate, will ever return to this website after exploraing the conents posted on thsi site. From the opic modelling I have done, it is very evident that with the amounbt on smack talk and unprofessionalism being portrayed on the site, serious professionals will refrain from visiting this site.
+
+Further, some of the posts were skewed in the way of being gendered, which to a certain point also becomes viscious towards females.  
+
+One of the challenges was that the website experiences a heavy traffic and if there has been any special international event, it constitutes of major part of the top few hundreds of threads, making it difficult to analyse the data from the perspective of being gendered.
+
+As an unsupervised machine learning method, topic models are suitable for the exploration of data. The calculation of topic models aims to determine the proportionate composition of a fixed number of topics in the documents of a collection. It is useful to experiment with different parameters in order to find the most suitable parameters for your own analysis needs.
+For parameterized models such as Latent Dirichlet Allocation (LDA), the number of topics K is the most important parameter to define in advance. How an optimal K should be selected depends on various factors. If K is too small, the collection is divided into a few very general semantic contexts. If K is too large, the collection is divided into too many topics of which some may overlap and others are hardly interpretable.
+Hence,for our analysis we choose a thematic "resolution" of K = 20 topics. In contrast to a resolution of 100 or more, this number of topics can be evaluated qualitatively very easy.
+
+Moreover, the complexity of defining the data in Female and male was beyond my R Programming skills at the moment and I wish to take this up for my future work. I intend to filter the words with the strongest predictive power on gender, selected by the Lasso-logistic model, provide a direct look into the gender stereotyping language on this forum. In future work I would also like to quantify the kinds of threat posted on this website as I have noticed that there seemed to be a tendency of getting aggressive when questioned.
+
+## Conclusion 
+The stereotypical attitudes revealed on the EJMR forum are most likely not exclusive to the economics profession, but reflects the overall attitude of new-age professionals and challenges women are facing in many traditionally male-dominated fields. Understanding people’s true gender attitudes is crucial to improving policies aimed at increasing diversity in a profession.I interpret discussions about women’s personal characteristics as a means to cast doubt on their professional abilities and thus protect male posters against an identity threat.
+My aim was to show that “water cooler” conversations have migrated online, leaving behind a computerized archive. The quality of conversation going on is highly unprofessional.With the use of machine-learning techniques to explore patterns in large bodies of text, and as a result, it’s now possible to quantify the tenor of that kind of gossip. ...
+
+
+## Bibliography 
+
+I have taken inspiration from Alice H. Wu's work on Gender Stereotyping in Academia: Evidence from Economics Job Market Rumors Forum
+
+Data has been scraped on 12/9/2022 from Economic Job rumours website
+
+Topic modelling guides from Language Technology and Data analysis labortory
+

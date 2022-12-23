@@ -1,0 +1,37 @@
+---
+title: "Challenge_4"
+author: "Jyoti Rani"
+date: "2022-08-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+
+```
+
+## Briefly describe the data
+
+```{r}
+poultry_tidy<-read_csv("https://raw.githubusercontent.com/DACSS/DACSS_601_August2022_v2/template/posts/_data/poultry_tidy.csv",
+                        show_col_types = FALSE)
+```
+
+## Tidy Data
+
+In our data each value has its own column. However, the year column seems to be backwards, and the price values don't round up to two digits. 
+
+## Identify variables that need to be mutated
+
+Are there any variables that require mutation to be usable in your analysis stream? For example, are all time variables correctly coded as dates? Are all string variables reduced and cleaned to sensible categories? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?
+
+Document your work here.
+
+```{r}
+poultry_tidy %>%
+  arrange(Product, Year) %>%
+  mutate_at(vars(Price_Dollar), funs(round(., digit = 2)))
+```
+
