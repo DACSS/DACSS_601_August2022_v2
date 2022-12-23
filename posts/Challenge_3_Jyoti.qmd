@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Read the data 
 ```{r}
-eggs <- read_excel("/Users/jyotirani/Documents/GitHub/DACSS_601_August2022_v2/organiceggpoultry.xls",
+eggs <- read_excel("_data/organiceggpoultry.xls",
                    sheet = "Data",
                    skip = 4,
                    range =cell_limits(c(6,2),c(NA,6)),

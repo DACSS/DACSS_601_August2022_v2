@@ -27,13 +27,13 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 
 I read 3 SNL datasets, together
 ```{r}
-snl_actors <- (read_csv("https://raw.githubusercontent.com/jyotirani28/DACSS_601_August2022_v2/template/posts/_data/snl_actors.csv", show_col_types = FALSE) [,-2])
+snl_actors <- (read_csv("_data/snl_actors.csv", show_col_types = FALSE) [,-2])
 snl_actors <- complete(snl_actors)
 
-snl_casts <- read_csv("https://raw.githubusercontent.com/jyotirani28/DACSS_601_August2022_v2/template/posts/_data/snl_casts.csv", show_col_types = FALSE)
+snl_casts <- read_csv("_data/snl_casts.csv", show_col_types = FALSE)
 snl_casts <- complete(snl_casts)
 
-snl_seasons <- read_csv("https://raw.githubusercontent.com/jyotirani28/DACSS_601_August2022_v2/template/posts/_data/snl_seasons.csv", show_col_types = FALSE)
+snl_seasons <- read_csv("_data/snl_seasons.csv", show_col_types = FALSE)
 snl_seasons <- complete(snl_seasons)
 ```
 

@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE)
 I have used the dataset State County (the excel file). While reading in the data, it was also cleaned by removing the first few rows and last few rows which had unnecessary text.
 
 ```{r}
-railroad_df <- read_excel("/Users/jyotirani/Documents/r_subdirectory/StateCounty2012.xls",skip=3,col_names= c("state", "delete", "county", "delete", "total_employees"))%>%
+railroad_df <- read_excel("_data/StateCounty2012.xls",skip=3,col_names= c("state", "delete", "county", "delete", "total_employees"))%>%
 select(!contains("delete"))%>%
   filter(!str_detect(state, "Total"))
 tail(railroad_df, 10)
