@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jyoti Rani">
+<meta name="dcterms.date" content="2022-09-15">
+
+<title>- Homework_2_Jyoti</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="- Homework_2_Jyoti">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="">
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_August2022_v2">August 2022 Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../featured_posts.html">Featured Posts</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Contributors</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss">DACSS</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/DACSS/DACSS_601_August2022_v2"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a>
+  <ul class="collapse">
+  <li><a href="#homework-2-reading-in-data--read-in-a-dataset-from-the-_data-folder-in-the-course-blog-repository-or-choose-your-own-data.-if-you-decide-to-use-one-of-the-datasets-we-have-provided-please-use-a-challenging-dataset---check-with-us-if-you-are-not-sure.--clean-the-data-as-needed-using-dplyr-and-related-tidyverse-packages.--provide-a-narrative-about-the-data-set-look-it-up-if-you-arent-sure-what-you-have-got-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is.-the-goal-of-this-step-is-to-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code.--identify-potential-research-questions-that-your-dataset-can-help-answer" id="toc-homework-2-reading-in-data--read-in-a-dataset-from-the-_data-folder-in-the-course-blog-repository-or-choose-your-own-data.-if-you-decide-to-use-one-of-the-datasets-we-have-provided-please-use-a-challenging-dataset---check-with-us-if-you-are-not-sure.--clean-the-data-as-needed-using-dplyr-and-related-tidyverse-packages.--provide-a-narrative-about-the-data-set-look-it-up-if-you-arent-sure-what-you-have-got-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is.-the-goal-of-this-step-is-to-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code.--identify-potential-research-questions-that-your-dataset-can-help-answer" class="nav-link" data-scroll-target="#homework-2-reading-in-data--read-in-a-dataset-from-the-_data-folder-in-the-course-blog-repository-or-choose-your-own-data.-if-you-decide-to-use-one-of-the-datasets-we-have-provided-please-use-a-challenging-dataset---check-with-us-if-you-are-not-sure.--clean-the-data-as-needed-using-dplyr-and-related-tidyverse-packages.--provide-a-narrative-about-the-data-set-look-it-up-if-you-arent-sure-what-you-have-got-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is.-the-goal-of-this-step-is-to-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code.--identify-potential-research-questions-that-your-dataset-can-help-answer">Homework 2: Reading in Data -Read in a dataset from the _data folder in the course blog repository, or choose your own data. If you decide to use one of the datasets we have provided, please use a challenging dataset - check with us if you are not sure. -Clean the data as needed using dplyr and related tidyverse packages. -Provide a narrative about the data set (look it up if you aren’t sure what you have got) and the variables in your dataset, including what type of data each variable is. The goal of this step is to communicate in a visually appealing way to non-experts - not to replicate r-code. -Identify potential research questions that your dataset can help answer</a></li>
+  <li><a href="#describing-the-data" id="toc-describing-the-data" class="nav-link" data-scroll-target="#describing-the-data">Describing the data</a></li>
+  <li><a href="#tidy-the-data" id="toc-tidy-the-data" class="nav-link" data-scroll-target="#tidy-the-data">Tidy the data</a></li>
+  <li><a href="#narrative-about-the-data-set" id="toc-narrative-about-the-data-set" class="nav-link" data-scroll-target="#narrative-about-the-data-set">Narrative about the data set</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Homework_2_Jyoti</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jyoti Rani </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 15, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="instructions" class="level1">
+<h1>Instructions</h1>
+<section id="homework-2-reading-in-data--read-in-a-dataset-from-the-_data-folder-in-the-course-blog-repository-or-choose-your-own-data.-if-you-decide-to-use-one-of-the-datasets-we-have-provided-please-use-a-challenging-dataset---check-with-us-if-you-are-not-sure.--clean-the-data-as-needed-using-dplyr-and-related-tidyverse-packages.--provide-a-narrative-about-the-data-set-look-it-up-if-you-arent-sure-what-you-have-got-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is.-the-goal-of-this-step-is-to-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code.--identify-potential-research-questions-that-your-dataset-can-help-answer" class="level2">
+<h2 class="anchored" data-anchor-id="homework-2-reading-in-data--read-in-a-dataset-from-the-_data-folder-in-the-course-blog-repository-or-choose-your-own-data.-if-you-decide-to-use-one-of-the-datasets-we-have-provided-please-use-a-challenging-dataset---check-with-us-if-you-are-not-sure.--clean-the-data-as-needed-using-dplyr-and-related-tidyverse-packages.--provide-a-narrative-about-the-data-set-look-it-up-if-you-arent-sure-what-you-have-got-and-the-variables-in-your-dataset-including-what-type-of-data-each-variable-is.-the-goal-of-this-step-is-to-communicate-in-a-visually-appealing-way-to-non-experts---not-to-replicate-r-code.--identify-potential-research-questions-that-your-dataset-can-help-answer">Homework 2: Reading in Data -Read in a dataset from the _data folder in the course blog repository, or choose your own data. If you decide to use one of the datasets we have provided, please use a challenging dataset - check with us if you are not sure. -Clean the data as needed using dplyr and related tidyverse packages. -Provide a narrative about the data set (look it up if you aren’t sure what you have got) and the variables in your dataset, including what type of data each variable is. The goal of this step is to communicate in a visually appealing way to non-experts - not to replicate r-code. -Identify potential research questions that your dataset can help answer</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>debt <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"_data/debt_in_trillions.xlsx"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>debt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 74 × 8
+   `Year and Quarter` Mortgage HE Revolvin…¹ Auto …² Credi…³ Stude…⁴ Other Total
+   &lt;chr&gt;                 &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 03:Q1                  4.94         0.242   0.641   0.688   0.241 0.478  7.23
+ 2 03:Q2                  5.08         0.26    0.622   0.693   0.243 0.486  7.38
+ 3 03:Q3                  5.18         0.269   0.684   0.693   0.249 0.477  7.56
+ 4 03:Q4                  5.66         0.302   0.704   0.698   0.253 0.449  8.07
+ 5 04:Q1                  5.84         0.328   0.72    0.695   0.260 0.446  8.29
+ 6 04:Q2                  5.97         0.367   0.743   0.697   0.263 0.423  8.46
+ 7 04:Q3                  6.21         0.426   0.751   0.706   0.33  0.41   8.83
+ 8 04:Q4                  6.36         0.468   0.728   0.717   0.346 0.423  9.04
+ 9 05:Q1                  6.51         0.502   0.725   0.71    0.364 0.394  9.21
+10 05:Q2                  6.70         0.528   0.774   0.717   0.374 0.402  9.49
+# … with 64 more rows, and abbreviated variable names ¹​`HE Revolving`,
+#   ²​`Auto Loan`, ³​`Credit Card`, ⁴​`Student Loan`</code></pre>
+</div>
+</div>
+</section>
+<section id="describing-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="describing-the-data">Describing the data</h2>
+<p>This data set shows amount of debt people have from 2003 by the type of debt in trillions. It has 74 rows and 8 columns. The types of debts are 6 and end of the column. It shows total amount of debt.</p>
+</section>
+<section id="tidy-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-the-data">Tidy the data</h2>
+<p>Firstly, I changed column names and added column ‘order’ to make time series line graph.(original year variables are characteristic variables so R told me that it cannot be made into graph. Maybe there are other better way to do this, but now I don’t know about it. I’ll try to find out.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(debt) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"year_and_quarter"</span>, <span class="st">"mortgage"</span>,<span class="st">"HE_revolving"</span>, <span class="st">"auto_loan"</span>,<span class="st">"credit_card"</span>,<span class="st">"student_loan"</span>,<span class="st">"other"</span>,<span class="st">"total"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>debt<span class="ot">&lt;-</span><span class="fu">mutate</span>(debt, <span class="st">'order'</span><span class="ot">=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">74</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(debt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "year_and_quarter" "mortgage"         "HE_revolving"     "auto_loan"       
+[5] "credit_card"      "student_loan"     "other"            "total"           
+[9] "order"           </code></pre>
+</div>
+</div>
+<p>It has many columns so cannot easily recognized. So I pivoted it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pivot_debt<span class="ot">&lt;-</span><span class="fu">pivot_longer</span>(debt,<span class="at">col=</span><span class="fu">c</span>(mortgage, HE_revolving, auto_loan, credit_card,student_loan,other, total), <span class="at">names_to=</span><span class="st">"types"</span>, <span class="at">values_to=</span><span class="st">"amount_of_debt"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pivot_debt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 518 × 4
+   year_and_quarter order types        amount_of_debt
+   &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;                 &lt;dbl&gt;
+ 1 03:Q1                1 mortgage              4.94 
+ 2 03:Q1                1 HE_revolving          0.242
+ 3 03:Q1                1 auto_loan             0.641
+ 4 03:Q1                1 credit_card           0.688
+ 5 03:Q1                1 student_loan          0.241
+ 6 03:Q1                1 other                 0.478
+ 7 03:Q1                1 total                 7.23 
+ 8 03:Q2                2 mortgage              5.08 
+ 9 03:Q2                2 HE_revolving          0.26 
+10 03:Q2                2 auto_loan             0.622
+# … with 508 more rows</code></pre>
+</div>
+</div>
+<p>Now, I can see it at one glance. Its column reduced 8 to 3 and row increased 74 to 518.</p>
+</section>
+<section id="narrative-about-the-data-set" class="level2">
+<h2 class="anchored" data-anchor-id="narrative-about-the-data-set">Narrative about the data set</h2>
+<p>I made a time series line graph of total debt by quarter.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>debt_tot<span class="ot">&lt;-</span><span class="fu">filter</span>(pivot_debt, types<span class="sc">==</span><span class="st">"total"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>debt_tot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 74 × 4
+   year_and_quarter order types amount_of_debt
+   &lt;chr&gt;            &lt;int&gt; &lt;chr&gt;          &lt;dbl&gt;
+ 1 03:Q1                1 total           7.23
+ 2 03:Q2                2 total           7.38
+ 3 03:Q3                3 total           7.56
+ 4 03:Q4                4 total           8.07
+ 5 04:Q1                5 total           8.29
+ 6 04:Q2                6 total           8.46
+ 7 04:Q3                7 total           8.83
+ 8 04:Q4                8 total           9.04
+ 9 05:Q1                9 total           9.21
+10 05:Q2               10 total           9.49
+# … with 64 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(debt_tot, <span class="fu">aes</span>(<span class="at">x=</span>order, <span class="at">y=</span>amount_of_debt)) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Quarterly Total Debt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="HW---2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In the same way, I can draw a time series graph according to the type of debt.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>debt_mort<span class="ot">&lt;-</span><span class="fu">filter</span>(pivot_debt, types<span class="sc">==</span><span class="st">"mortgage"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(debt_mort, <span class="fu">aes</span>(<span class="at">x=</span>order, <span class="at">y=</span>amount_of_debt)) <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Quarterly Mortgage Debt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="HW---2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Using this data, changes in debt related to the financial crisis in the late 2000s can be reviewed by type. We can find out what type of debt was sensitive to the financial crisis. In addition, research problems such as identifying which of the various debt types is most closely linked to the total debt can be established.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_August2022_v2" data-repo-id="R_kgDOH1g84A" data-category="Announcements" data-category-id="DIC_kwDOH1g84M4CQ6Pq" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

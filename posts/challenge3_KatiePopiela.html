@@ -217,29 +217,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.3.6     ✔ dplyr   1.0.9
-✔ tibble  3.1.8     ✔ stringr 1.4.0
-✔ readr   2.1.2     ✔ forcats 0.5.1
-✔ purrr   0.3.4     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✔ ggplot2 3.4.0      ✔ dplyr   1.0.10
+✔ tibble  3.1.8      ✔ stringr 1.5.0 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+✔ purrr   0.3.5      </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>animal_weight <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"_data/animal_weight.csv"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#So this dataset covers the (I'm assuming average) weight of different farm animals/farm-adjacent animals in difference areas of the world. For instance, some columns are the usual "cattle, chickens, swine, etc.", but others include camels, llamas, and buffalo. </span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#The geographic areas the data was pulled from are: Indian Subcontinent, Eastern Europe, Africa, Oceania, Western Europe, Latin America, Asia, Middle East, and Northern America.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>animal_weight <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"_data/animal_weight.csv"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#So this dataset covers the (I'm assuming average) weight of different farm animals/farm-adjacent animals in difference areas of the world. For instance, some columns are the usual "cattle, chickens, swine, etc.", but others include camels, llamas, and buffalo. </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#The geographic areas the data was pulled from are: Indian Subcontinent, Eastern Europe, Africa, Oceania, Western Europe, Latin America, Asia, Middle East, and Northern America.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#NOTE: The data does not specify the unit of weight, but given that Buffalo weigh way more than 380lbs I'm assuming that the measurements are in kilos/kg.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#NOTE: The data does not specify the unit of weight, but given that Buffalo weigh way more than 380lbs I'm assuming that the measurements are in kilos/kg.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>animal_weight <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>animal_weight <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "IPCC.Area"          "Cattle...dairy"     "Cattle...non.dairy"
  [4] "Buffaloes"          "Swine...market"     "Swine...breeding"  
@@ -250,57 +261,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#In order to make the tidying process easier I'm going to start by renaming the columns. As they are, the names aren't super easy to code, so lets fix that!</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>animal_weightr1 <span class="ot">&lt;-</span> animal_weight <span class="sc">%&gt;%</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ipcc_area =</span> <span class="st">'IPCC.Area'</span>, <span class="at">cattle_dairy =</span> <span class="st">'Cattle...dairy'</span>, <span class="at">cattle_nondairy =</span> <span class="st">'Cattle...non.dairy'</span>, <span class="at">special_buffaloes =</span> <span class="st">'Buffaloes'</span>, <span class="at">swine_market =</span> <span class="st">'Swine...market'</span>, <span class="at">swine_breeding =</span> <span class="st">'Swine...breeding'</span>, <span class="at">chicken_br =</span> <span class="st">'Chicken...Broilers'</span>, <span class="at">chicken_lyr =</span> <span class="st">'Chicken...Layers'</span>, <span class="at">ducks =</span> <span class="st">'Ducks'</span>, <span class="at">turkeys =</span> <span class="st">'Turkeys'</span>, <span class="at">standard_sheep =</span> <span class="st">'Sheep'</span>, <span class="at">standard_goats =</span> <span class="st">'Goats'</span>, <span class="at">equine_horses =</span> <span class="st">'Horses'</span>, <span class="at">equine_asses =</span> <span class="st">'Asses'</span>, <span class="at">equine_mules =</span> <span class="st">'Mules'</span>, <span class="at">special_camels =</span> <span class="st">'Camels'</span>, <span class="at">special_llamas =</span> <span class="st">'Llamas'</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(animal_weightr1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#In order to make the tidying process easier I'm going to start by renaming the columns. As they are, the names aren't super easy to code, so lets fix that!</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>animal_weightr1 <span class="ot">&lt;-</span> animal_weight <span class="sc">%&gt;%</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ipcc_area =</span> <span class="st">'IPCC.Area'</span>, <span class="at">cattle_dairy =</span> <span class="st">'Cattle...dairy'</span>, <span class="at">cattle_nondairy =</span> <span class="st">'Cattle...non.dairy'</span>, <span class="at">special_buffaloes =</span> <span class="st">'Buffaloes'</span>, <span class="at">swine_market =</span> <span class="st">'Swine...market'</span>, <span class="at">swine_breeding =</span> <span class="st">'Swine...breeding'</span>, <span class="at">chicken_br =</span> <span class="st">'Chicken...Broilers'</span>, <span class="at">chicken_lyr =</span> <span class="st">'Chicken...Layers'</span>, <span class="at">ducks =</span> <span class="st">'Ducks'</span>, <span class="at">turkeys =</span> <span class="st">'Turkeys'</span>, <span class="at">standard_sheep =</span> <span class="st">'Sheep'</span>, <span class="at">standard_goats =</span> <span class="st">'Goats'</span>, <span class="at">equine_horses =</span> <span class="st">'Horses'</span>, <span class="at">equine_asses =</span> <span class="st">'Asses'</span>, <span class="at">equine_mules =</span> <span class="st">'Mules'</span>, <span class="at">special_camels =</span> <span class="st">'Camels'</span>, <span class="at">special_llamas =</span> <span class="st">'Llamas'</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(animal_weightr1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now that everything has been renamed, I'm going to start re-grouping columns using the pivot_longer() function. I tried to streamline this but I couldn't get it to work so I did all of it individually.</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>animal_weightr2 <span class="ot">&lt;-</span> animal_weightr1 <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"cattle"</span>)), <span class="at">names_to =</span> <span class="st">"all_cattle"</span>, <span class="at">values_to =</span> <span class="st">"Cattle Weight kg"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(all_cattle)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>animal_weightr3 <span class="ot">&lt;-</span> animal_weightr2 <span class="sc">%&gt;%</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"equine"</span>)), <span class="at">names_to =</span> <span class="st">"all_equine"</span>, <span class="at">values_to =</span> <span class="st">"Equine Weight kg"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(all_equine)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>animal_weightr4 <span class="ot">&lt;-</span> animal_weightr3 <span class="sc">%&gt;%</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"special"</span>)), <span class="at">names_to =</span> <span class="st">"specialty_animals"</span>, <span class="at">values_to =</span> <span class="st">"Specialized Weight kg"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(specialty_animals)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>animal_weightr5 <span class="ot">&lt;-</span> animal_weightr4 <span class="sc">%&gt;%</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"standard"</span>)), <span class="at">names_to =</span> <span class="st">"standard_farm"</span>, <span class="at">values_to =</span> <span class="st">"Standard Weight kg"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(standard_farm)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>animal_weightr6 <span class="ot">&lt;-</span> animal_weightr5 <span class="sc">%&gt;%</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"swine"</span>)), <span class="at">names_to =</span> <span class="st">"all_swine"</span>, <span class="at">values_to =</span> <span class="st">"Pigs Weight kg"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(all_swine)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>animal_weightr7 <span class="ot">&lt;-</span> animal_weightr6 <span class="sc">%&gt;%</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"chicken"</span>)), <span class="at">names_to =</span> <span class="st">"all_chickens"</span>, <span class="at">values_to =</span> <span class="st">"Chickens Weight kg"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(all_chickens)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>animal_weightr8 <span class="ot">&lt;-</span> animal_weightr7 <span class="sc">%&gt;%</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"ducks"</span>,<span class="st">"turkeys"</span>), <span class="at">names_to =</span> <span class="st">"farm_birds"</span>, <span class="at">values_to =</span> <span class="st">"Farm Birds Weight kg"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(farm_birds)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(animal_weightr8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now that everything has been renamed, I'm going to start re-grouping columns using the pivot_longer() function. I tried to streamline this but I couldn't get it to work so I did all of it individually.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>animal_weightr2 <span class="ot">&lt;-</span> animal_weightr1 <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"cattle"</span>)), <span class="at">names_to =</span> <span class="st">"all_cattle"</span>, <span class="at">values_to =</span> <span class="st">"Cattle Weight kg"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(all_cattle)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>animal_weightr3 <span class="ot">&lt;-</span> animal_weightr2 <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"equine"</span>)), <span class="at">names_to =</span> <span class="st">"all_equine"</span>, <span class="at">values_to =</span> <span class="st">"Equine Weight kg"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(all_equine)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>animal_weightr4 <span class="ot">&lt;-</span> animal_weightr3 <span class="sc">%&gt;%</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"special"</span>)), <span class="at">names_to =</span> <span class="st">"specialty_animals"</span>, <span class="at">values_to =</span> <span class="st">"Specialized Weight kg"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(specialty_animals)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>animal_weightr5 <span class="ot">&lt;-</span> animal_weightr4 <span class="sc">%&gt;%</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"standard"</span>)), <span class="at">names_to =</span> <span class="st">"standard_farm"</span>, <span class="at">values_to =</span> <span class="st">"Standard Weight kg"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(standard_farm)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>animal_weightr6 <span class="ot">&lt;-</span> animal_weightr5 <span class="sc">%&gt;%</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"swine"</span>)), <span class="at">names_to =</span> <span class="st">"all_swine"</span>, <span class="at">values_to =</span> <span class="st">"Pigs Weight kg"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(all_swine)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>animal_weightr7 <span class="ot">&lt;-</span> animal_weightr6 <span class="sc">%&gt;%</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">contains</span>(<span class="st">"chicken"</span>)), <span class="at">names_to =</span> <span class="st">"all_chickens"</span>, <span class="at">values_to =</span> <span class="st">"Chickens Weight kg"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(all_chickens)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>animal_weightr8 <span class="ot">&lt;-</span> animal_weightr7 <span class="sc">%&gt;%</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"ducks"</span>,<span class="st">"turkeys"</span>), <span class="at">names_to =</span> <span class="st">"farm_birds"</span>, <span class="at">values_to =</span> <span class="st">"Farm Birds Weight kg"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(farm_birds)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(animal_weightr8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now that all the columns are grouped together accordingly, I'm going to look more specifically at animals in a specific geographic area. I chose to look at the weight of sheep in Eastern Europe.</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>animal_weightr8 <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ipcc_area, standard_farm, <span class="st">`</span><span class="at">Standard Weight kg</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ipcc_area <span class="sc">==</span> <span class="st">"Eastern Europe"</span>, standard_farm <span class="sc">==</span> <span class="st">"standard_goats"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">view</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now that all the columns are grouped together accordingly, I'm going to look more specifically at animals in a specific geographic area. I chose to look at the weight of sheep in Eastern Europe.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>animal_weightr8 <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ipcc_area, standard_farm, <span class="st">`</span><span class="at">Standard Weight kg</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ipcc_area <span class="sc">==</span> <span class="st">"Eastern Europe"</span>, standard_farm <span class="sc">==</span> <span class="st">"standard_goats"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">view</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Since the average weight (kg) for goats in Eastern Europe is 38.5kg, I'm going to add in a different geographical area for the purpose of visuals</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>animal_weight_final <span class="ot">&lt;-</span> animal_weightr8 <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ipcc_area, standard_farm, <span class="st">`</span><span class="at">Standard Weight kg</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ipcc_area <span class="sc">==</span> <span class="fu">c</span>(<span class="st">"Eastern Europe"</span>,<span class="st">"Indian Subcontinent"</span>), standard_farm <span class="sc">==</span> <span class="st">"standard_goats"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">view</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Since the average weight (kg) for goats in Eastern Europe is 38.5kg, I'm going to add in a different geographical area for the purpose of visuals</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>animal_weight_final <span class="ot">&lt;-</span> animal_weightr8 <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ipcc_area, standard_farm, <span class="st">`</span><span class="at">Standard Weight kg</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ipcc_area <span class="sc">==</span> <span class="fu">c</span>(<span class="st">"Eastern Europe"</span>,<span class="st">"Indian Subcontinent"</span>), standard_farm <span class="sc">==</span> <span class="st">"standard_goats"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">view</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(animal_weight_final, <span class="at">mapping =</span> <span class="fu">aes</span>(ipcc_area, <span class="st">'Standard Weight kg'</span>)) <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(animal_weight_final, <span class="at">mapping =</span> <span class="fu">aes</span>(ipcc_area, <span class="st">'Standard Weight kg'</span>)) <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="challenge3_KatiePopiela_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
